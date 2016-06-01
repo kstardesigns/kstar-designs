@@ -1,0 +1,232 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+/* variable list 
+background image of SF: #sec1
+social media icons: #social li
+header logo: #logo
+main logo: #logo-large
+main header: #main-header
+sub header: #sub-header
+navigation links: #mainnav li
+
+/*  -  -  -  -  - Global -  -  -  -  -  */
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,700);
+@import url(http://fonts.googleapis.com/css?family=Shadows+Into+Light);
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif:700italic);
+
+body {margin: 0;font-family: 'Raleway', sans-serif;}
+a {text-decoration: none; color: #000;}
+p {margin: 0;}
+h1 {font-size: 36px;text-transform: uppercase;margin: 0;}
+h2 {font-size: 28px;text-transform: uppercase;}
+.c {clear:both;}
+
+.section {
+	width: 100%;
+}
+
+.content {
+	margin: 0 auto;
+	display: block;
+	width: 80%;
+	text-align: center;	
+}
+
+/*  -  -  -  -  - Section Navbar -  -  -  -  -  */
+
+.navbar {
+	background-color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+}
+
+.cn {
+	padding: 7px 0;
+	width: 100%;
+	text-align: left;
+	margin-bottom: -19px;
+}
+
+.cn img.logo {
+	margin: 0 25px;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+.mobilenav {display:none;}
+.mobilenav a {color:#fff;}
+
+.mainnav {
+	position: relative;
+	bottom: 20px;
+	display: inline-block;
+	width: 675px;
+}
+
+.mainnav li {
+	display: inline;
+	padding: 20px;
+}
+
+.mainnav li a {
+	color: #fff;
+}
+
+.mainnav li a:hover {
+	color: #936b7b;
+}
+
+a#pull {
+	display: none;
+}		
+
+
+.social {
+	position: absolute;
+	top: 0px;
+	right: 15px;
+	list-style-type: none;
+	display: inline-block;
+}
+
+.social li {
+	background-image: url(assets/social.png);
+	line-height: 32px;
+	width: 32px;
+	height: 32px;
+	background-position: 0px -32px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+
+.social li:hover {
+	cursor: pointer;
+}
+
+.social li a {
+	display: inline-block;
+	height: 32px;
+	width: 32px;
+}
+
+
+.social li.fb {background-position: 0px 0px;}
+.social li.fb:hover {background-position: 0px -32px;}
+.social li.tw {background-position: 0px -256px;}
+.social li.tw:hover {background-position: 0px -288px;}
+.social li.gp {background-position: 0px -64px;}
+.social li.gp:hover {background-position: 0px -96px;}
+.social li.li {background-position: 0px -192px;}
+.social li.li:hover {background-position: 0px -224px;}
+.social li.in {background-position: 0px -128px;}
+.social li.in:hover {background-position: 0px -160px;}
+
+
+/*  -  -  -  -  - Section 1 -  -  -  -  -  */
+
+.one {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)), url(assets/sf1.jpg);
+	background-size: cover;
+}
+
+.logo-large {
+	margin-bottom: 15px;
+}
+
+.one h1, .one h2 {
+	color: #fff;
+}
+
+.one h2 {
+	font-family: 'Shadows Into Light', sans-serif;
+	margin-top: -5px;
+}
+
+.c1 {
+	padding: 180px 0 130px 0;
+}
+/*  -  -  -  -  - Section Footer -  -  -  -  -  */
+
+.footer {
+	background-color: #000;
+
+}
+.cf {
+	padding: 10px 0;
+}
+
+.cf p {
+	color: #fff;
+	font-size: 14px;
+}
+
+.cf a {
+	color: #fff;
+	text-decoration: underline;
+}
+
+/*  -  -  -  -  - Responsive Stuff -  -  -  -  -  */
+
+
+@media only screen and (max-width: 1024px) {
+	.social  {display: none;}
+}
+
+@media only screen and (max-width : 850px) {
+	.navbar {background-color: #000;}
+	.mainnav {
+		display: none;
+		
+	}
+
+	.mobilenav {
+		height: auto;
+		width: 100%;
+		margin: 25px 0 56px -40px;
+	}
+
+	.mobilenav li {  
+        display: block;    
+   		padding: 15px;	
+   		text-align: center;
+   		color: #fff;
+   		border-bottom: 1px solid rgba(255,255,255,0.2);  
+    }  
+    
+    .mobilenav li:nth-child(1) {  
+   		border-top: 1px solid rgba(255,255,255,0.2);  
+    }
+
+	a#pull {
+		display: block;  
+        width: 100%;  
+        position: relative;
+    }
+
+    a#pull:after {  
+        content:"";  
+        background: url('assets/menu.png') no-repeat;  
+        width: 24px;  
+        height: 24px;  
+        display: inline-block;  
+        position: absolute;  
+        bottom: 16px;
+        right: 25px;
+    }  
+    .cn {margin-bottom:-3px;}
+
+    .c1 {padding: 170px 0 100px 0;}
+}
+
+@media only screen and (max-width: 480px) {
+	h1 {font-size: 32px;}
+	h2 {font-size: 20px;}
+
+	.c1 {padding: 130px 0 65px 0;}
+	.logo-large {width:80px;height: 83px;}
+}

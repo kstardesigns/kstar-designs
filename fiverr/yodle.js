@@ -1,0 +1,1 @@
+javascript:(function(w, d) {document.getElementById('cas7').value = 'Closed';document.getElementById('00N60000002vdsN').value = 'Satisfactory';document.getElementById('00N60000002vdsS').value = 'Satisfactory';document.getElementById('CF00N60000002JmmS').value = 'Kyle Stark';document.getElementById('00N60000002JqID').value = '15';}(window, document));
