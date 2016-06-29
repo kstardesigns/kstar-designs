@@ -95,7 +95,7 @@ if(!isset($_SESSION['id']) ) {
 
 					<div class="product mints">
 							<div class="productimage">
-								<img src="img/mints.png" alt="Mints" />
+								<img src="../assets/mints-ind.png" alt="Mints" />
 							</div>
 							<div class="counters">
 								<h3 class="name">Mints</h3>
@@ -108,7 +108,7 @@ if(!isset($_SESSION['id']) ) {
 
 					<div class="product taffy">
 							<div class="productimage">
-								<img src="img/taffy.png" alt="Taffy" />
+								<img src="../assets/taffy-ind.png" alt="Taffy" />
 							</div>
 							<div class="counters">
 								<h3 class="name">Taffy</h3>
@@ -123,7 +123,7 @@ if(!isset($_SESSION['id']) ) {
 
 					<div class="product gummies">
 							<div class="productimage">
-								<img src="img/gummies.png" alt="Gummies" />
+								<img src="../assets/gummies-ind.png" alt="Gummies" />
 							</div>
 							<div class="counters">
 								<h3 class="name">Gummies</h3>
@@ -132,6 +132,20 @@ if(!isset($_SESSION['id']) ) {
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Pineapple</div></div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Orange</div></div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Grape</div></div>
+							</div>
+							<div class="c"></div>
+					</div>
+					<div class="product hardcandy">
+							<div class="productimage">
+								<img src="../assets/hardcandy-ind.png" alt="Hard Candy" />
+							</div>
+							<div class="counters">
+								<h3 class="name">Hard Candy</h3>
+								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Watermelon</div></div>
+								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Green Apple</div></div>
+								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Cherry</div></div>
+								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Root Beer</div></div>
+								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Lemon</div></div>
 							</div>
 							<div class="c"></div>
 					</div>
@@ -156,6 +170,8 @@ if(!isset($_SESSION['id']) ) {
 							<ul class="chosen taffy" style="list-style-type: none; padding-left: 0; ">
 							</ul>
 							<ul class="chosen gummies" style="list-style-type: none; padding-left: 0; ">
+							</ul>
+							<ul class="chosen hardcandy" style="list-style-type: none; padding-left: 0; ">
 							</ul>
 
 							

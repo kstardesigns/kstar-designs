@@ -60,6 +60,7 @@ $(document).ready(function(){
 	      	var chosenMints = '';
 	      	var chosenTaffy = '';
 	      	var chosenGummies = '';
+	      	var chosenHardCandy = '';
 		  
 	      	$('.picker .product.soda .qty').each(function(i, e) {
 		        var $this = $(this);
@@ -103,6 +104,17 @@ $(document).ready(function(){
 		        }
 
 		        $('.currentorder .chosen.gummies').html(chosenGummies);
+	     	});
+
+	     	$('.picker .product.hardcandy .qty').each(function(i, e) {
+		        var $this = $(this);
+		        var orderAmt = parseInt($this.find('.amt').html());
+
+		        if (orderAmt > 0) {
+		          chosenHardCandy += '<li>' + orderAmt + ' x ' + $this.find('.flavor').html() + ' Hard Candy</li>';
+		        }
+
+		        $('.currentorder .chosen.hardcandy').html(chosenHardCandy);
 	     	});
 	};
 
