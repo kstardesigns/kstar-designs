@@ -28,10 +28,10 @@ $(document).ready(function(){
                 // For more options see: https://developers.google.com/maps/documentation/javascript/markers
                 var mapOptions = {
                     // Zoom level: the higher the #, the more zoomed in
-                    zoom: 11,
+                    zoom: 9,
 
                     // The latitude and longitude to center the map (always required)
-                    center: new google.maps.LatLng(33.413926, -111.926698), // Make this same as main location so it shows on mobile
+                    center: new google.maps.LatLng(33.495413, -112.115573), // Make this same as main location so it shows on mobile
 
                     // This is where you would paste any style found on Snazzy Maps.
                     styles: [{"featureType":"water","stylers":[{"hue":"#ffe500"},{"saturation":-20},{"lightness":20}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#ffe500"},{"lightness":-15},{"saturation":50}]},{"featureType":"landscape","stylers":[{"weight":0.1},{"hue":"#ffe500"},{"saturation":50},{"lightness":10},{"visibility":"on"}]},{"elementType":"labels","stylers":[{"hue":"#ffe500"},{"saturation":50},{"lightness":-10},{"weight":2}]},{"featureType":"poi","stylers":[{"hue":"#ffe500"},{"saturation":75},{"lightness":-10}]},{"featureType":"transit.station.airport","stylers":[{"hue":"#ffe500"},{"saturation":50},{"lightness":-10}]},{}]
@@ -43,44 +43,122 @@ $(document).ready(function(){
                 // Create the Google Map using our element and options defined above
                 var map = new google.maps.Map(mapElement, mapOptions);
 
-                // Markers
+                // Marker icon
                 var image = 'assets/mapicon.png';
-                var marker1 = new google.maps.Marker({ position: new google.maps.LatLng(33.349562, -111.967259), map: map, title: 'Shop #1', icon: image });
-                var marker2 = new google.maps.Marker({ position: new google.maps.LatLng(33.377816, -111.636653), map: map, title: 'Shop #2', icon: image});
-                var marker3 = new google.maps.Marker({ position: new google.maps.LatLng(33.413926, -111.926698), map: map, title: 'Shop #3', icon: image});
+
+                    // Location list
+                    var markers = [
+                    {
+                        'locationNo': '1',
+                        'infoName': 'The Green House Dispensary',
+                        'address1': '8160 W Union Hills Dr.',
+                        'address2': 'Glendale, AZ 85308',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/8160+W+Union+Hills+Dr,+Glendale,+AZ+85308',
+                        'latitude': '33.653635',
+                        'longitude': '-112.234997'
+                    },
+                    {
+                        'locationNo': '2',
+                        'infoName': 'Harvest of Tempe',
+                        'address1': '710 W Elliot Road #102',
+                        'address2': 'Tempe, AZ 85284',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/710+W+Elliot+Rd+%23102,+Tempe,+AZ+85284',
+                        'latitude': '33.349665',
+                        'longitude': '-111.947519'
+                    },
+                    {
+                        'locationNo': '3',
+                        'infoName': 'Phoenix Relief Center',
+                        'address1': '6330 S 35th Avenue #104',
+                        'address2': 'Phoenix, AZ 85041',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/6330+S+35th+Ave+%23104,+Phoenix,+AZ+85041',
+                        'latitude': '33.388368',
+                        'longitude': '-112.133639'
+                    },
+                    {
+                        'locationNo': '4',
+                        'infoName': 'Health for Life, Inc. - East Mesa',
+                        'address1': '7343 S 89th Place',
+                        'address2': 'Mesa, AZ 85212',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/7343+S+89th+Pl,+Mesa,+AZ+85212',
+                        'latitude': '33.281430',
+                        'longitude': '-111.639535'
+                       
+                    },
+                    {
+                        'locationNo': '5',
+                        'infoName': 'The Holistic Center',
+                        'address1': '21035 N Cave Creek Rd',
+                        'address2': 'Phoenix, AZ 85024',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/21035+N+Cave+Creek+Rd,+Phoenix,+AZ+85024',
+                        'latitude': '33.677664',
+                        'longitude': '-112.029195'
+                       
+                    },
+                    {
+                        'locationNo': '6',
+                        'infoName': 'Urban Greenhouse',
+                        'address1': '2630 W Indian School Rd',
+                        'address2': 'Phoenix, AZ 85017',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/2630+W+Indian+School+Rd,+Phoenix,+AZ+85017',
+                        'latitude': '33.495413',
+                        'longitude': '-112.115573'
+                       
+                    }
+                    ];
+
+                    //Create and open InfoWindow.
+                    var infoWindow = new google.maps.InfoWindow();
+             
+                    for (var i = 0; i < markers.length; i++) {
+                        var data = markers[i];
+                        var myLatlng = new google.maps.LatLng(data.latitude, data.longitude);
+                        var marker = new google.maps.Marker({
+                            position: myLatlng,
+                            map: map,
+                            icon: image,
+                            title: data.infoName
+                        });
+
+                        var info = '<div class="location"><strong><span class="markernum">' + data.locationNo + '</span> ' + data.infoName + '</strong><p>' + data.address1 + '<br/>' + data.address2 + '</p><a href="' + data.directionsLink + '" target="_blank">Get directions</a></div>';
+                        $('.flexlocations').append(info);
+
+                        //Attach click event to the marker.
+                        (function (marker, data) {
+                            google.maps.event.addListener(marker, "click", function (e) {
+                                //Populate InfoWindow
+                                infoWindow.setContent('<strong><span class="markernum">' + data.locationNo + '</span> ' + data.infoName + '</strong><p>' + data.address1 + '<br/>' + data.address2 + '</p><a href="' + data.directionsLink + '" target="_blank">Get directions</a>');
+                                infoWindow.open(map, marker);
+                            });
+                        })(marker, data);
+                    }
+                    
 
 
-                // Info windows
-                /* -----  #1 ------- */
-                var info1 = '<strong><span class="markernum">1</span> Shop #1</strong><p>1810 W Elliot Rd,<br/>Tempe, AZ 85284<br/>Hours: 8:00am-5:00pm</p><a href="https://www.google.com/maps/dir/Current+Location/1810+W+Elliot+Rd+Tempe+AZ+85284" target="_blank">Get directions</a>';
-
-                var infowindow1 = new google.maps.InfoWindow({ content: info1 });
-    
-                marker1.addListener('click', function() {
-                    infowindow1.open(map, marker1);
-                    infowindow2.close();
-                    infowindow3.close();
-                }); 
-
-                /* -----  #2 ------- */
-                var info2 = '<strong><span class="markernum">2</span> Shop #2</strong><p>2056 S Ellsworth Rd,<br/>Mesa, AZ 85209<br/>Hours: 8:00am-5:00pm</p><a href="https://www.google.com/maps/dir/Current+Location/2056+S+Ellsworth+Rd+Mesa+AZ+85209" target="_blank">Get directions</a>';
-
-                var infowindow2 = new google.maps.InfoWindow({ content: info2 });
                 
-                marker2.addListener('click', function() {
-                    infowindow2.open(map, marker2);
-                    infowindow1.close();
-                    infowindow3.close();
-                  });
 
-                /* -----  #3 ------- */
-                var info3 = '<strong><span class="markernum">3</span> Shop #3</strong><p>1314 S Rural Rd,<br/>Tempe AZ 85281<br/>Hours: 8:00am-5:00pm</p><a href="https://www.google.com/maps/dir/Current+Location/1314+S+Rural+Rd+Tempe+AZ+85281" target="_blank">Get directions</a>';
 
-                var infowindow3 = new google.maps.InfoWindow({ content: info3 });
-                
-                marker3.addListener('click', function() {
-                    infowindow3.open(map, marker3);
-                    infowindow1.close();
-                    infowindow2.close();
-                  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
+
+
