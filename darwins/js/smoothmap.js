@@ -28,7 +28,7 @@ $(document).ready(function(){
                 // For more options see: https://developers.google.com/maps/documentation/javascript/markers
                 var mapOptions = {
                     // Zoom level: the higher the #, the more zoomed in
-                    zoom: 9,
+                    zoom: 10,
 
                     // The latitude and longitude to center the map (always required)
                     center: new google.maps.LatLng(33.495413, -112.115573), // Make this same as main location so it shows on mobile
@@ -103,6 +103,76 @@ $(document).ready(function(){
                         'directionsLink': 'https://www.google.com/maps/dir/Current+Location/2630+W+Indian+School+Rd,+Phoenix,+AZ+85017',
                         'latitude': '33.495413',
                         'longitude': '-112.115573'
+                       
+                    },
+                    {
+                        'locationNo': '7',
+                        'infoName': 'Valley of the Sun Medical Dispensary',
+                        'address1': '16200 W Eddie Albert Way',
+                        'address2': 'Goodyear, AZ 85338',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/16200+W+Eddie+Albert+Way,+Goodyear,+AZ+85338',
+                        'latitude': '33.409466',
+                        'longitude': '-112.406975'
+                       
+                    },
+                    {
+                        'locationNo': '8',
+                        'infoName': 'Herbal Wellness Center (Chandler)',
+                        'address1': '26427 S Arizona Ave',
+                        'address2': 'Chandler, AZ 85248',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/26427+S+Arizona+Ave,+Chandler,+AZ+85248',
+                        'latitude': '33.205719',
+                        'longitude': '-111.840697'
+                       
+                    },
+                    {
+                        'locationNo': '9',
+                        'infoName': 'Herbal Wellness Center (Phoenix)',
+                        'address1': '4126 W Indian School Rd',
+                        'address2': 'Phoenix, AZ 85019',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/4126+W+Indian+School+Rd,+Phoenix,+AZ+85019',
+                        'latitude': '33.495222',
+                        'longitude': '-112.147254'
+                       
+                    },
+                    {
+                        'locationNo': '10',
+                        'infoName': 'Nature\'s Wonder (Apache Junction)',
+                        'address1': '260 Apache Trail',
+                        'address2': 'Apache Junction, AZ 85120',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/260+Apache+Trail,+Apache+Junction,+AZ+85120',
+                        'latitude': '33.415229',
+                        'longitude': '-111.552671'
+                       
+                    },
+                    {
+                        'locationNo': '11',
+                        'infoName': 'Nature\'s AZ Medicine - McDowell',
+                        'address1': '2439 W McDowell Rd',
+                        'address2': 'Phoenix, AZ 85009',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/2439+W+McDowell+Rd,+Phoenix,+AZ+85009',
+                        'latitude': '33.465321',
+                        'longitude': '-112.112590'
+                       
+                    },
+                    {
+                        'locationNo': '12',
+                        'infoName': 'Arizona Organix, Glendale',
+                        'address1': '5301 W Glendale Ave',
+                        'address2': 'Glendale, AZ 85301',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/5301+W+Glendale+Ave,+Glendale,+AZ+85301',
+                        'latitude': '33.538326',
+                        'longitude': '-112.172732'
+                       
+                    },
+                    {
+                        'locationNo': '13',
+                        'infoName': 'Reef Dispensary',
+                        'address1': '18423 E San Tan Blvd #1',
+                        'address2': 'Queen Creek, AZ 85142',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/18423+E+San+Tan+Blvd+#1,+Queen+Creek,+AZ+85142',
+                        'latitude': '33.211763',
+                        'longitude': '-111.684671'
                        
                     }
                     ];
