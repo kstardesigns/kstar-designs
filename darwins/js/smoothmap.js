@@ -31,7 +31,7 @@ $(document).ready(function(){
                     zoom: 10,
 
                     // The latitude and longitude to center the map (always required)
-                    center: new google.maps.LatLng(33.495413, -112.115573), // Make this same as main location so it shows on mobile
+                    center: new google.maps.LatLng(33.466283, -111.995231), // Make this same as main location so it shows on mobile
 
                     // This is where you would paste any style found on Snazzy Maps.
                     styles: [{"featureType":"water","stylers":[{"hue":"#ffe500"},{"saturation":-20},{"lightness":20}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#ffe500"},{"lightness":-15},{"saturation":50}]},{"featureType":"landscape","stylers":[{"weight":0.1},{"hue":"#ffe500"},{"saturation":50},{"lightness":10},{"visibility":"on"}]},{"elementType":"labels","stylers":[{"hue":"#ffe500"},{"saturation":50},{"lightness":-10},{"weight":2}]},{"featureType":"poi","stylers":[{"hue":"#ffe500"},{"saturation":75},{"lightness":-10}]},{"featureType":"transit.station.airport","stylers":[{"hue":"#ffe500"},{"saturation":50},{"lightness":-10}]},{}]
@@ -174,7 +174,204 @@ $(document).ready(function(){
                         'latitude': '33.211763',
                         'longitude': '-111.684671'
                        
+                    },
+                    {
+                        'locationNo': '14',
+                        'infoName': 'Nature\'s AZ Medicine - Fountain Hills',
+                        'address1': '16913 E Enterprise Dr',
+                        'address2': 'Fountain Hills, AZ 85268',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/16913+E+Enterprise+Dr,+Fountain+Hills,+AZ+85268/',
+                        'latitude': '33.596217',
+                        'longitude': '-111.715133'
+                       
+                    },
+                    {
+                        'locationNo': '15',
+                        'infoName': 'Salubrious Wellness Center, Tempe',
+                        'address1': '2009 E 5th Street #11',
+                        'address2': 'Tempe, AZ 85281',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/2009+E+5th+Street+#11,+Tempe,+AZ+85281/',
+                        'latitude': '33.424802',
+                        'longitude': '-111.899789'
+                       
+                    },
+                    {
+                        'locationNo': '16',
+                        'infoName': 'Sunflower Meds - Phoenix',
+                        'address1': '10827 S 51st Street #104',
+                        'address2': 'Phoenix, AZ 85044',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/10827+S+51st+Street+#104,+Phoenix,+AZ+85044/',
+                        'latitude': '33.348487',
+                        'longitude': '-111.974422'
+                       
+                    },
+                    {
+                        'locationNo': '17',
+                        'infoName': 'Arizona Cannabis Society',
+                        'address1': '8376 El Mirage Rd #2',
+                        'address2': 'El Mirage, AZ 85335',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/8376+N+El+Mirage+Rd+%232,+El+Mirage,+AZ+85335',
+                        'latitude': '33.555053',
+                        'longitude': '-112.324760'
+                       
+                    },
+                    {
+                        'locationNo': '18',
+                        'infoName': 'Ponderosa Releaf',
+                        'address1': '49237 W Papago Rd #3',
+                        'address2': 'Maricopa, AZ 85139',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/49237+W+Papago+Rd+%233,+Maricopa,+AZ+85139',
+                        'latitude': '32.984038',
+                        'longitude': '-112.096961'
+                       
+                    },
+                    {
+                        'locationNo': '19',
+                        'infoName': 'PARC Dispensary',
+                        'address1': '4201 E University Dr',
+                        'address2': 'Phoenix, AZ 85034',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/4201+E+University+Dr,+Phoenix,+AZ+85034',
+                        'latitude': '33.421616',
+                        'longitude': '-111.991009'
+                       
+                    },
+                    {
+                        'locationNo': '20',
+                        'infoName': 'Tru Med Dispensary',
+                        'address1': '1613 N 40th Street',
+                        'address2': 'Phoenix, AZ 85008',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/1613+N+40th+St,+Phoenix,+AZ+85008',
+                        'latitude': '33.466283',
+                        'longitude': '-111.995231'
+                       
+                    },
+                    {
+                        'locationNo': '21',
+                        'infoName': 'Leaf Life Live Life, Casa Grande',
+                        'address1': '1860 N Salk Dr. #B1',
+                        'address2': 'Casa Grande, AZ 85122',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/1860+N+Salk+Dr,+Casa+Grande,+AZ+85122',
+                        'latitude': '32.881056',
+                        'longitude': '-111.707160'
+                       
+                    },
+                    {
+                        'locationNo': '22',
+                        'infoName': 'Horizon Health Center',
+                        'address1': '1860 N Salk Dr. #B1',
+                        'address2': 'Phoenix, AZ 85051',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/10040+North+Metro+Pkwy+W,+Phoenix,+AZ+85051',
+                        'latitude': '33.578070',
+                        'longitude': '-112.124977'
+                       
+                    },
+                    {
+                        'locationNo': '23',
+                        'infoName': 'All Greens Surprise',
+                        'address1': '13431 W Westgate Dr #103',
+                        'address2': 'Surprise, AZ 85378',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/13431+W+Westgate+Dr+%23103,+Surprise,+AZ+85378',
+                        'latitude': '33.640341',
+                        'longitude': '-112.349728'
+                       
+                    },
+                    {
+                        'locationNo': '24',
+                        'infoName': 'Encanto Green Cross',
+                        'address1': '2620 W Encanto Blvd',
+                        'address2': 'Phoenix, AZ 85009',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/2620+W+Encanto+Blvd,+Phoenix,+AZ+85009',
+                        'latitude': '33.473752',
+                        'longitude': '-112.116060'
+                       
+                    },
+                    {
+                        'locationNo': '25',
+                        'infoName': 'Monarch Wellness Center',
+                        'address1': '8729 E Manzanita Dr',
+                        'address2': 'Scottsdale, AZ 85258',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/8729+E+Manzanita+Dr,+Scottsdale,+AZ+85258',
+                        'latitude': '33.553979',
+                        'longitude': '-111.892734'
+                       
+                    },
+                    {
+                        'locationNo': '26',
+                        'infoName': 'Arizona Natural Selections',
+                        'address1': '9275 W Peoria Ave #3',
+                        'address2': 'Peoria, AZ 85345',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/9275+W+Peoria+Ave+%233,+Peoria,+AZ+85345',
+                        'latitude': '33.580371',
+                        'longitude': '-112.257674'
+                       
+                    },
+                    {
+                        'locationNo': '27',
+                        'infoName': 'Arizona Natural Selections',
+                        'address1': '7320 E Butherus Dr #100',
+                        'address2': 'Scottsdale, AZ 85260',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/7320+E+Butherus+Dr+%23100,+Scottsdale,+AZ+85260',
+                        'latitude': '33.623300',
+                        'longitude': '-111.921739'
+ 
+                    },
+                    {
+                        'locationNo': '28',
+                        'infoName': 'The Giving Tree',
+                        'address1': '938 E Juanita Ave',
+                        'address2': 'Gilbert, AZ 85204',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/938+E+Juanita+Ave,+Mesa,+AZ+85204',
+                        'latitude': '33.382521',
+                        'longitude': '-111.810885'
+                    },
+                    {
+                        'locationNo': '29',
+                        'infoName': 'Emerald Palace',
+                        'address1': '175 S Hamilton Pl',
+                        'address2': 'Gilbert, AZ 85233',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/175+S+Hamilton+Pl,+Gilbert,+AZ+85233',
+                        'latitude': '33.346374',
+                        'longitude': '-111.831740'
+                    },
+                    {
+                        'locationNo': '30',
+                        'infoName': 'Swell Farmacy',
+                        'address1': '11200 W Michigan Ave #5',
+                        'address2': 'Youngtown, AZ 85363',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/11200+W+Michigan+Ave+%235,+Youngtown,+AZ+85363',
+                        'latitude': '33.604602',
+                        'longitude': '-112.300621' 
+                    },
+                    {
+                        'locationNo': '31',
+                        'infoName': 'Sunflower Meds - Mesa',
+                        'address1': '5205 E University Dr',
+                        'address2': 'Mesa, AZ 85205',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/5205+E+University+Dr,+Mesa,+AZ+85205',
+                        'latitude': '33.422410',
+                        'longitude': '-111.718782'           
+                    },
+                    {
+                        'locationNo': '32',
+                        'infoName': 'Arizona Grass Roots',
+                        'address1': '14980 N 78th Way #204',
+                        'address2': 'Scottsdale, AZ 85260',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/14980+N+78th+Way+%23204,+Scottsdale,+AZ+85260',
+                        'latitude': '33.621131',
+                        'longitude': '-111.909163'
+                    },
+                    {
+                        'locationNo': '33',
+                        'infoName': 'White Mountain Health Center',
+                        'address1': '9420 W Bell Rd',
+                        'address2': 'Sun City, AZ 85351',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/9420+W+Bell+Rd,+Sun+City,+AZ+85351',
+                        'latitude': '33.638595',
+                        'longitude': '-112.262757'
+                       
                     }
+
+
                     ];
 
                     //Create and open InfoWindow.
