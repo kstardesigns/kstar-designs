@@ -257,8 +257,8 @@ $(document).ready(function(){
                     },
                     {
                         'locationNo': '22',
-                        'infoName': 'Horizon Health Center',
-                        'address1': '1860 N Salk Dr. #B1',
+                        'infoName': 'Horizon THC Dispensary',
+                        'address1': '10040 N Metro Pkwy West',
                         'address2': 'Phoenix, AZ 85051',
                         'directionsLink': 'https://www.google.com/maps/dir/Current+Location/10040+North+Metro+Pkwy+W,+Phoenix,+AZ+85051',
                         'latitude': '33.578070',
