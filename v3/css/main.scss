@@ -75,37 +75,49 @@ nav {
     cursor: pointer;
     @include transition(background-color, 500ms);
 
+    .menu {
+      margin-top: 3px;
+      margin-left: 1px;
+    }
+
+    span {
+      width: 24px;
+      height: 3px;
+      margin-bottom: 4px;
+      background-color: #fff;
+      display: block;
+      @include border-radius(5px); 
+    }
+
   	&:hover {
   		@include transition(background-color, 500ms);
   		background-color: $pri-color-dark;
   	}
 
-  	path.top {
+  	.top {
   		@include transition(transform 500ms);
-  		@include transform(rotate(0deg) translate(0, 0) scale(1, 1));
+  		@include transform(rotate(0deg) translate(0, 0));
   	}
 
-		&:hover path.top {
+		&:hover .top {
 			@include transition(transform 500ms);
-			@include transform(rotate(90deg) translate(-4px, -45px) scale(.9, .9));
+			@include transform(rotate(90deg) translate(6px,0));
 		}
 
-		path.middle {
+		.mid {
 			@include transition(transform 500ms);
-			@include transform(translate(0, 0) scale(1, 1));
 		}
 
-		&:hover path.middle {
+		&:hover .mid {
 			@include transition(transform 500ms);
-			@include transform(translate(3px, 2px) scale(.9, .9));
 		}
 
-		path.bottom {
+		.bot {
 			@include transition(opacity 500ms);
 			opacity: 1;
 		}
 
-		&:hover path.bottom {
+		&:hover .bot {
 			@include transition(opacity 500ms);
 			opacity: 0;
 		}
@@ -123,6 +135,22 @@ nav {
 }
 
 // add mixins for transform, transition, etc
+
+
+h2 {
+  text-transform: lowercase;
+  font-family: $pri-font;
+  font-size: 2.5em;
+  color: #fff;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-align: center;
+  padding-top: 32px;
+  background: linear-gradient(rgba(0, 155, 255, 0.75) 0%, rgba(0, 255, 155, 0.85) 55%, rgba(0, 155, 255, 0.75) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: $sec-color;
+}
 
 /* Intro section */
 
@@ -166,7 +194,6 @@ header h1 {
   max-width: 100%;
   display: block;
   margin: 0 auto;
-  animation: $animlength $iteration $playpause responsify;
 }
 
 .screen-border {
@@ -177,7 +204,6 @@ header h1 {
   background: $device-color;
   box-shadow: 0 0 $screen-padding-tb*.5 rgba(0,0,0,.33) inset;
   @include border-radius(8px);
-  animation: $animlength $iteration $playpause screen-padding;
 }
 
 .screen {
@@ -195,7 +221,6 @@ header h1 {
   font-size: $initial-font-size;
   text-align: center;
   color: $black;
-  animation: $animlength $iteration $playpause adjust-font;
 }
 
 .innerwrap {
@@ -213,7 +238,6 @@ header h1 {
 
 .innerwrap .c1 {
   width: 25%;
-  animation: $animlength $iteration $playpause left-float;
   .innerbox {
     background-color: $lcol-color;
     height: 40%;
@@ -223,7 +247,6 @@ header h1 {
 
 .innerwrap .c2 {
   width: 50%;
-  animation: $animlength $iteration $playpause mid-float;
   .innerbox {
     background-color: $mcol-color;
     height: 50%;
@@ -233,7 +256,6 @@ header h1 {
 
 .innerwrap .c3 {
   width: 25%;
-  animation: $animlength $iteration $playpause right-float;
   .innerbox {
     background-color: $pri-color-dark;
     height: 20%;
@@ -249,7 +271,6 @@ header h1 {
   margin: 0 auto;
    @include border-radius(50%);
   box-shadow: 0px 0px 1px rgba(0,0,0,.2) inset;
-  animation: $animlength $iteration $playpause button;
 }
 
 .desktop-stand {
@@ -257,7 +278,6 @@ header h1 {
   margin: 0 auto;
   width: $bottom-width;
   opacity: 1;
-  animation: $animlength $iteration $playpause stand;
 }
 
 .stand {
@@ -277,131 +297,15 @@ header h1 {
   @include border-radius(3px 3px 0 0);
 }
 
-@keyframes responsify { 
-  0% { width: $total-width; } /* full screen desktop */
-  18.75% { width: $total-width;} /* end full screen, transition to tablet */
-  25% { width: $tablet-width;} /* tablet */
-  43.75% { width: $tablet-width;} /* end tablet, transition to mobile */
-  50% { width: $mobile-width;} /* mobile phone */
-  68.75% { width: $mobile-width;} /* end mobile, back to tablet */
-  75% { width: $tablet-width;} /* tablet */
-  93.75% { width: $tablet-width;} /* end tablet, back to full screen desktop */
-  100% { width: $total-width; } /* end at desktop, start over */
-}
 
-@keyframes stand { 
-  0% { opacity: 1; } /* full screen desktop */
-  18.75% { opacity: 1; } /* end full screen, transition to tablet */
-  25% { opacity: 0; } /* tablet */
-  43.75% { opacity: 0; } /* end tablet, transition to mobile */
-  50% { opacity: 0; } /* mobile phone */
-  68.75% { opacity: 0; } /* end mobile, back to tablet */
-  75% { opacity: 0 } /* tablet */
-  93.75% { opacity: 0; } /* end tablet, back to full screen desktop */
-  100% { opacity: 1; } /* end at desktop, start over */
-}
-
-@keyframes screen-padding { 
-  0% { padding: $screen-padding-tb $screen-padding-lr; } /* full screen desktop */
-  18.75% { padding: $screen-padding-tb $screen-padding-lr; } /* end full screen, transition to tablet */
-  25% { padding: $screen-padding-tb-tablet $screen-padding-lr; } /* tablet */
-  43.75% { padding: $screen-padding-tb-tablet $screen-padding-lr; } /* end tablet, transition to mobile */
-  50% { padding: $screen-padding-tb-mobile $screen-padding-lr; } /* mobile phone */
-  68.75% { padding: $screen-padding-tb-mobile $screen-padding-lr; } /* end mobile, back to tablet */
-  75% { padding: $screen-padding-tb-tablet $screen-padding-lr; } /* tablet */
-  93.75% { padding: $screen-padding-tb-tablet $screen-padding-lr; } /* end tablet, back to full screen desktop */
-  100% { padding: $screen-padding-tb $screen-padding-lr; } /* end at desktop, start over */
-}
-
-@keyframes button {
-  0% { height: 0; width: 0; } /* full screen desktop */
-  18.75% { height: 0; width: 0; } /* end full screen, transition to tablet */
-  25% { height: $button; width: $button; margin: ($screen-padding-tb-tablet - $button) / 2 auto; } /* tablet */
-  43.75% { height: $button; width: $button; margin: ($screen-padding-tb-tablet - $button) / 2 auto; } /* end tablet, transition to mobile */
-  50% { height: $button*1.1; width: $button*1.1; margin: ($screen-padding-tb-mobile - $button*1.1) / 2 auto; } /* mobile phone */
-  68.75% { height: $button*1.1; width: $button*1.1; margin: ($screen-padding-tb-mobile - $button*1.1) / 2 auto; } /* end mobile, back to tablet */
-  75% { height: $button; width: $button;  margin: ($screen-padding-tb-tablet - $button) / 2 auto; } /* tablet */
-  93.75% { height: $button; width: $button;  margin: ($screen-padding-tb-tablet - $button) / 2 auto; } /* end tablet, back to full screen desktop */
-  100% { height: 0; width: 0; } /* end at desktop, start over */
-}
-
-@keyframes adjust-font {
-  0% { font-size: $initial-font-size; } /* full screen desktop */
-  18.75% { font-size: $initial-font-size; } /* end full screen, transition to tablet */
-  25% { font-size: $tablet-font-size; } /* tablet */
-  43.75% { font-size: $tablet-font-size;  } /* end tablet, transition to mobile */
-  50% { font-size: $mobile-font-size; } /* mobile phone */
-  68.75% { font-size: $mobile-font-size; } /* end mobile, back to tablet */
-  75% { font-size: $tablet-font-size; } /* tablet */
-  93.75% { font-size: $tablet-font-size; } /* end tablet, back to full screen desktop */
-  100% { font-size: $initial-font-size; } /* end at desktop, start over */
-}
-
-@keyframes left-float {
-  0% { width: 25%; } /* full screen desktop */
-  18.75% { width: 25%; } /* end full screen, transition to tablet */
-  25% { width: 33.33%; } /* tablet */
-  43.75% { width: 33.33%; } /* end tablet, transition to mobile */
-  50% { width: 0%; } /* mobile phone */
-  68.75% { width: 0%; } /* end mobile, back to tablet */
-  75% { width: 33.33%; } /* tablet */
-  93.75% { width: 33.33%; } /* end tablet, back to full screen desktop */
-  100% { width: 25%; } /* end at desktop, start over */
-}
-
-@keyframes mid-float {
-  0% { width: 50%; } /* full screen desktop */
-  18.75% { width: 50%; } /* end full screen, transition to tablet */
-  25% { width: 66.66%; } /* tablet */
-  43.75% { width: 66.66%; } /* end tablet, transition to mobile */
-  50% { width: 96%; } /* mobile phone */
-  68.75% { width: 96%; } /* end mobile, back to tablet */
-  75% { width: 66.66%; } /* tablet */
-  93.75% { width: 66.66%; } /* end tablet, back to full screen desktop */
-  100% { width: 50%; } /* end at desktop, start over */
-}
-
-@keyframes right-float {
-  0% { width: 25%; } /* full screen desktop */
-  18.75% { width: 25%; } /* end full screen, transition to tablet */
-  25% { width: 0%; } /* tablet */
-  43.75% { width: 0%; } /* end tablet, transition to mobile */
-  50% { width: 0%; } /* mobile phone */
-  68.75% { width: 0%; } /* end mobile, back to tablet */
-  75% { width: 0%; } /* tablet */
-  93.75% { width: 0%; } /* end tablet, back to full screen desktop */
-  100% { width: 25%; } /* end at desktop, start over */
-}
-
-//mobile
-@keyframes m-responsify { 
-  0% { width: $mobile-width;} /* mobile phone */
-  100% { width: $mobile-width;} 
-}
-
-@keyframes m-screen-padding { 
-  0% { padding: $screen-padding-tb-mobile $screen-padding-lr; } /* mobile phone */
-  100% { padding: $screen-padding-tb-mobile $screen-padding-lr; } 
-
-}
-
-@keyframes m-adjust-font {
-  0% { font-size: $mobile-font-size; } /* mobile phone */
-  100% { font-size: $mobile-font-size; } 
-}
-
-@keyframes m-mid-float {
-  0% { width: 100%; } /* mobile phone */
-  100% { width: 100%; }
-}
 
 
 /* Striped sections */
 .stripe {
-	height: 200px;
+	height: 240px;
 	margin: -20px 0 10px -10%;
 	@include transform(rotate(-1deg));
-	background-color: $sec-color-dark;
+	background-color: #fff;
 	width: 120%;
 }
 
@@ -413,20 +317,8 @@ header h1 {
   max-width: 1100px;
 }
 
-.stripe-inside h2 {
-  text-transform: lowercase;
-  font-family: $pri-font;
-  font-size: 2.5em;
-  color: #fff;
-  letter-spacing: 1px;
-  font-weight: 600;
-  text-align: center;
-  padding-top: 15px;
-}
-
 .stripe.experience {
-	background-color: $sec-color;
-	margin: 10px 0 10px -10%;
+  margin: 30px 0 10px -10%;
 }
 
 .skills {
@@ -434,7 +326,7 @@ header h1 {
     .svgs {
       width: $svg-div;
       display: block;
-      margin: 10px auto;
+      margin: 25px auto;
     }
 
     figure {
@@ -444,9 +336,10 @@ header h1 {
 
         figcaption {
           text-align: center;
-          color: #fff;
+          color: #333;
           font-family: $pri-font;
-          font-size: 1.1em;
+          font-size: 1.2em;
+          font-weight: bold;
           margin-top: 5px;
           display: none;
           letter-spacing: 1px;
@@ -465,16 +358,80 @@ header h1 {
 
 }
 
+.experience {
+    height: 300px;
+
+    .svgs {
+      width: $svg-div + 100px;
+      display: block;
+      margin: 20px auto;
+    }
+
+    figure {
+      float: left;
+      width: 33.33%;
+      position: relative;
+      height: 150px;
+
+        img {
+          display: block;
+          margin: 0 auto;
+        }
+
+        &.webcom img {
+          width: 240px;
+          margin: 14px auto;
+        }
+
+        &.godaddy img {
+          width: 210px;
+        }
+
+        &.asu img {
+          width: 180px;
+          margin: 10px auto;
+        }
+
+        figcaption {
+          text-align: center;
+          color: #333;
+          font-family: $pri-font;
+          font-size: 1.1em;
+          margin-top: 5px;
+          letter-spacing: 1px;
+          line-height: 1.4em;
+          width: 100%;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+      }
+}
+
+/* Portfolio section */
+
+#portfolio {
+  @include transform(rotate(-1deg));
+  background-color: #fff;
+  width: 120%;
+  height: 500px;
+  margin: 30px 0 10px -10%;
+
+    .portfolio-inside {
+      @include transform(rotate(1deg));
+      max-width: 1100px;
+    }
+
+
+}
+
 
 /* Responsive */
 @media screen and (max-width: 500px) {
   .kstardesigns-logo { margin: 10px; }
-  .responsive-wrap { animation: 1s 1 paused m-responsify; }
-  .screen h1 { animation: 1s 1 paused m-adjust-font; }
-  .screen-border { animation: 1s 1 paused m-screen-padding; }
   .desktop-stand { display: none; }
   .innerwrap .c1 { display: none; }
-  .innerwrap .c2 { width: 100%; animation: 1s 1 running m-mid-float; }
+  .innerwrap .c2 { width: 100%; }
   .innerwrap .c3 { display: none; }
   .innerwrap .c2 .innerbox { height: 20%; margin-bottom: 5%; }
   .innerwrap .c2 .innerbox:nth-child(2) { background-color: $lcol-color; }
