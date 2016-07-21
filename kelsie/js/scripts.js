@@ -21,6 +21,10 @@ $('.tab3').click(function(){
     $('.portrait-toggle span:not(.tab3)').removeClass('activetab');
 });
 
+$('.inside nav:not(ul)').click(function(){
+    $('.inside nav ul').toggle();
+    $('.inside .navmenu').toggleClass('open');
+});
 
 
 //$(document).ready(function() {

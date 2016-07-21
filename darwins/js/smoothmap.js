@@ -49,6 +49,42 @@ $(document).ready(function(){
                     // Location list
                     var markers = [
                     {
+                        'locationNo': '0a',
+                        'infoName': 'Bloom Phoenix',
+                        'address1': '14 S 41st Pl.',
+                        'address2': 'Phoenix, AZ 85034',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/14+S+41st+Pl.,+Phoenix,+AZ+85034',
+                        'latitude': '33.447507',
+                        'longitude': '-111.991918'
+                    },
+                    {
+                        'locationNo': '0b',
+                        'infoName': 'Bloom Tucson',
+                        'address1': '4695 N Oracle Rd.',
+                        'address2': 'Tucson, AZ 85705',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/4695+N+Oracle+Rd.,+Tucson,+AZ+85705',
+                        'latitude': '32.291728',
+                        'longitude': '-110.979214'
+                    },
+                    {
+                        'locationNo': '0c',
+                        'infoName': 'Bloom Copper Country',
+                        'address1': '1880 W American Ave.',
+                        'address2': 'Oracle, AZ 85623',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/81880+W+American+Ave,+Oracle,+AZ+85623',
+                        'latitude': '32.618359',
+                        'longitude': '-110.790455'
+                    },
+                    {
+                        'locationNo': '0d',
+                        'infoName': 'Bloom Sedona',
+                        'address1': '465 Jordan Rd.',
+                        'address2': 'Sedona, AZ 86336',
+                        'directionsLink': 'https://www.google.com/maps/dir/Current+Location/465+Jordan+Rd,+Sedona,+AZ+86336',
+                        'latitude': '34.873592',
+                        'longitude': '-111.761422'
+                    },
+                    {
                         'locationNo': '1',
                         'infoName': 'The Green House Dispensary',
                         'address1': '8160 W Union Hills Dr.',
@@ -387,14 +423,14 @@ $(document).ready(function(){
                             title: data.infoName
                         });
 
-                        var info = '<div class="location"><strong><span class="markernum">' + data.locationNo + '</span> ' + data.infoName + '</strong><p>' + data.address1 + '<br/>' + data.address2 + '</p><a href="' + data.directionsLink + '" target="_blank">Get directions</a></div>';
+                        var info = '<div class="location"><strong>' + data.infoName + '</strong><p>' + data.address1 + '<br/>' + data.address2 + '</p><a href="' + data.directionsLink + '" target="_blank">Get directions</a></div>';
                         $('.flexlocations').append(info);
 
                         //Attach click event to the marker.
                         (function (marker, data) {
                             google.maps.event.addListener(marker, "click", function (e) {
                                 //Populate InfoWindow
-                                infoWindow.setContent('<strong><span class="markernum">' + data.locationNo + '</span> ' + data.infoName + '</strong><p>' + data.address1 + '<br/>' + data.address2 + '</p><a href="' + data.directionsLink + '" target="_blank">Get directions</a>');
+                                infoWindow.setContent('<strong>' + data.infoName + '</strong><p>' + data.address1 + '<br/>' + data.address2 + '</p><a href="' + data.directionsLink + '" target="_blank">Get directions</a>');
                                 infoWindow.open(map, marker);
                             });
                         })(marker, data);

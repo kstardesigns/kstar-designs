@@ -22,7 +22,6 @@ section { width: 100%; }
 
 .banner {
   position: relative;
-  z-index: 0;
 
       header {
         width: 100%;
@@ -65,21 +64,22 @@ section { width: 100%; }
                   }  
 
             }
+
       }
 
       img {
         width: 100%;
+        z-index: -1;
       }
 
       ul {
         position: absolute;
         color: #fff;
         left: 50px;
-        bottom: 80px;
+        bottom: 120px;
         list-style-type: none;
         font-size: 26px;
         line-height: 44px;
-
           &.homenav a:hover {
             text-shadow: 1px 1px 15px rgba(0,0,0,.75); 
           }
@@ -98,6 +98,7 @@ section { width: 100%; }
               left: inherit;
               width: 250px;
               text-align: right;
+              display: none;
             }
 
             nav {
@@ -110,6 +111,23 @@ section { width: 100%; }
                     margin: 15px auto;
                     width: 30px;
 
+                    &.open  {
+                      margin-top: 23px;
+
+                      span:nth-child(1) {
+                        @include transform(rotate(45deg));
+                      }
+
+                      span:nth-child(2) {
+                        display: none;
+                      }
+
+                      span:nth-child(3) {
+                        @include transform(rotate(-45deg));
+                        margin-top: -8px;
+                      }
+                    }
+
                     span {
                       background-color: #fff;
                       width: 30px;
@@ -120,6 +138,8 @@ section { width: 100%; }
                         &:last {
                           margin-bottom:0;
                         }
+
+                        
                     }
                 }
 
@@ -151,6 +171,14 @@ section { width: 100%; }
               position: absolute;
             }
       }
+
+      &.inside.home {
+        height: inherit;
+      }
+}
+
+.inside nav a {
+  line-height: 44px;
 }
 
 .publications .banner.inside,
@@ -191,6 +219,7 @@ section { width: 100%; }
       z-index: 99;
       border: 5px solid #fff;
       box-shadow: 0px 0px 34px rgba(0, 0, 0, 0.5);
+      position: relative;
     }
 
 }
@@ -210,7 +239,7 @@ blockquote {
   font-size: 26px;
   line-height: 36px;
   text-align: center;
-  padding: 50px 0;
+  padding: 50px 0 40px 0;
   width: 60%;
   display: block;
   margin: 0 auto;
@@ -265,7 +294,18 @@ footer ul {
 /* portraits page */
 
 .portraits {
-    
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .main a {
+      color: $purple;
+
+        &:hover {
+          color: darken($purple, 10%);
+        }
+    }
+
     .main > div {
       display: none;
 
@@ -315,6 +355,60 @@ footer ul {
               margin: 20px auto;
               max-width: 100%;
             }
+
+    .pricing-doc {
+      width: 400px;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .main-list {
+      list-style-type: none;
+    }
+
+    .session {
+      background: url('../assets/diamond.svg') no-repeat top 8px left;
+      background-size: 20px 20px;
+      padding-left: 30px;
+      font-size: 24px;
+      color: #8d67ad;
+    } 
+
+    .sub {
+      list-style-type: disc;
+      font-size: 18px;
+      color: #000;
+      padding-left: 40px;
+    }
+
+    .other-list {
+      margin-top: 40px;
+      list-style-type: none;
+      text-align: center;
+      line-height: 26px;
+
+        .alacarte, .products {
+          color: #8d67ad;
+          font-size: 24px;
+          margin-top: 10px;
+
+            .sub {
+              color: #000;
+              padding-left: 0;
+              font-size: 18px;
+              list-style-type: none;
+              margin-top: 10px;
+
+            }
+        }
+    }
+
+    .notes {
+      margin: 20px 0;
+      list-style-type: none;
+      font-size: 14px;
+    }
 }
 
 
@@ -345,7 +439,7 @@ footer ul {
 
             .bookimg {
               width: 332px;
-              margin: 0 auto;
+              margin: 0 auto 30px auto;
               display: block;
             }
 
@@ -357,6 +451,10 @@ footer ul {
               width: 250px;
               height: 40px;
 
+              &:hover {
+                box-shadow: 0 0 5px rgba(0,0,0,.25);
+              }
+
                 .b-left {
                   float: left;
                   width: 140px;
@@ -365,11 +463,11 @@ footer ul {
 
                 .b-right {
                   float: right;
-                  background: $green;
+                  background: $purple;
                   text-transform: capitalize;
                   width: 100px;
                   text-align: center;
-                  line-height: 38px;
+                  line-height: 39px;
                   color: #fff;
                   font-family: $Karla;
                   font-style: italic;
@@ -534,4 +632,56 @@ footer ul {
         }
 
     }
+}
+
+/* kstar */
+.kstar {
+  clear: both;
+
+    p {
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      color: $black;
+      line-height: 27px;
+    }
+
+    img {
+      width: 100px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-bottom: 3px;
+    }
+}
+
+
+
+/* responsive */
+
+@media screen and (max-width: 1200px) {
+  .intro .left { padding: 80px 100px 110px 100px; }
+}
+
+@media screen and (max-width: 960px) {
+  .intro img { display: none; }
+  .intro .left { height: auto; width: 100%; }
+  .quote { clear: both; }
+}
+
+@media screen and (max-width: 850px) {
+  .homenav { display: none; }
+  footer ul { display: none; }
+  .kstar p { padding-top: 5px; }
+}
+
+@media screen and (max-width: 580px) {
+  .title span { display: none; }
+  .intro .left { font-size: 20px; padding: 40px; }
+  .quote blockquote { font-size: 20px; line-height: 26px; padding: 40px; width: 100%;}
+  .quote blockquote cite { font-size: 18px; }
+}
+
+@media screen and (max-width: 400px) {
+  .intro .left { padding: 30px 15px; font-size: 18px; line-height: 28px; }
+  .quote blockquote { padding: 30px 15px; }
 }
