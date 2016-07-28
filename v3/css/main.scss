@@ -3,6 +3,7 @@
 /* Fonts */
 
 @import url(https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700);
 
 /* Partials */
 
@@ -12,7 +13,8 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 .c { clear: both; }
 html { height: 100%; }
-body { overflow-x: hidden; height: 100%; 
+body { 
+  height: 100%; 
   background: linear-gradient(45deg, rgba(0,155,255,.75) 0%, rgba(0, 255, 155,.85) 15%, rgba(0, 155, 255, 0.75) 55%, rgba(0, 255, 155,.85) 70%, rgba(0, 155, 255, 0.75) 100%), url(http://i.imgur.com/y2RrozH.jpg);
   background-size: cover;
   background-attachment: fixed;
@@ -20,33 +22,38 @@ body { overflow-x: hidden; height: 100%;
 a { text-decoration: none; color: inherit; }
 section { width: 100%; }
 ::selection { background-color: $pri-color; }
+.overflow-wrap { overflow-x: hidden; height: 100%; position: relative; }
 
 /* Navigation */
 
 nav {
 	position: fixed;
     top: 0;
-    right: -170px;
+    right: 0;
     height: 100%;
-    width: 250px;
+    width: 80px;
     z-index: 10;
     @include border-gradient(5px, solid, $pri-color 0%, $pri-color-dark 55%, transparent 100%);
-    @include transition(right 500ms, opacity 500ms);
+    @include transition(width 500ms, opacity 500ms);
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 0;
 
     	ul {
     		list-style-type: none;
         margin: 10px 5px 0 0;
     		text-align: right;
         color: #fff;
+        width: 250px;
     		display: none;
 
     			li {
-    				font-size: 32px;
+    				font-size: 28px;
     				text-transform: lowercase;
     				font-family: $pri-font;
     				font-weight: 300;
 				    letter-spacing: 2px;
-				    margin: 8px 20px;
+				    margin: 12px 30px;
 
               a:hover {
                 display: inline-block;
@@ -57,7 +64,7 @@ nav {
     	}
 
     	&.open {
-    		right: 0;
+    		width: 250px;
         background: linear-gradient(45deg, rgba(0,155,255,.75) 0%, rgba(0, 255, 155,.85) 55%, rgba(0, 155, 255, 0.75) 100%);
     	}
 
@@ -68,7 +75,7 @@ nav {
 	background-color: $pri-color;
 	width: 40px;
     height: 40px;
-    position: fixed;
+    position: absolute;
     padding: 9px 7px;
     top: 50px;
     margin-left: -23px;
@@ -142,12 +149,12 @@ h2 {
   font-family: $pri-font;
   font-size: 2.5em;
   color: #fff;
-  letter-spacing: 1px;
-  font-weight: 600;
+  letter-spacing: 2px;
+  font-weight: 300;
   text-align: center;
-  padding-top: 32px;
+  padding-top: 38px;
   //background: linear-gradient(rgba(0, 155, 255, 0.75) 0%, rgba(0, 255, 155, 0.85) 55%, rgba(0, 155, 255, 0.75) 100%);
- //-webkit-background-clip: text;
+  //-webkit-background-clip: text;
   //-webkit-text-fill-color: transparent;
   color: $sec-color;
 }
@@ -175,9 +182,10 @@ header {
 
 header h1 {
 	font-family: $pri-font;
-	@include transform(rotate(-11deg));
-  margin-top: -17px;
-  margin-left: -50px;
+  font-weight: 400;
+	@include transform(rotate(-10deg));
+  margin-top: -15px;
+  margin-left: -80px;
   font-size: 1.1em;
   color: #fff;
   letter-spacing: 1.5px;
@@ -241,9 +249,9 @@ header h1 {
           margin-left: -14px;
         }
 
-        &:hover figcaption {
-          display: block;
-        }
+        //&:hover figcaption {
+        //  display: block;
+        //}
 
 
     }
@@ -275,13 +283,14 @@ header h1 {
           margin: 24px auto;
         }
 
-        &.godaddy img {
-          width: 190px;
+        &.petsmart img {
+          width: 230px;
+          margin: 22px auto;
         }
 
         &.asu img {
-          width: 160px;
-          margin: 14px auto;
+          width: 135px;
+          margin: 18px auto;
         }
 
         figcaption {
@@ -318,7 +327,7 @@ header h1 {
     .portfolio-top {
       font-family: $pri-font;
       display: block;
-      margin: 40px auto;
+      margin: 40px auto 15px auto;
       width: 500px;
       text-align: center;
 
@@ -326,12 +335,19 @@ header h1 {
 
     .portfolio-block {
       display: block;
+      margin: 10px auto;
+      width: 450px;
 
         img {
           background: $pri-color;
           width: 26px;
           height: 26px;
           border-radius: 50%;
+          cursor: pointer;
+
+          &:hover { 
+            background: darken($pri-color, 10%);
+          }
 
           &.left {
             padding: 4px 3px 4px 0;
@@ -351,14 +367,117 @@ header h1 {
           font-size: 32px;
           line-height: 32px;
           margin: 0 20px;
+          width: 350px;
         }
 
+        .item-description {
+          font-size: 18px; 
+          letter-spacing: .5px;
+          line-height: 24px; 
+          font-weight: 300;
+          height: 50px;
+
+            a {
+              color: $sec-color;
+
+              &:hover {
+                color: $sec-color-dark;
+              }
+
+              span {
+                font-size: 14px;
+              }
+
+            }
+        }
     }
 }
 
+/* About section */
+#about {
+  @include transform(rotate(-2deg));
+  background-color: #fff;
+  width: 120%;
+  margin: 30px 0 10px -10%;
+  padding-bottom: 10px;
+
+    .about-inside {
+      @include transform(rotate(2deg));
+      max-width: 1100px;
+      display: block;
+      margin: 30px auto;
+    }
+
+    p {
+      text-align: center;
+      color: #333;
+      font-family: $pri-font;
+      font-size: 1.2em;
+      margin-top: 20px;
+      line-height: 1.5em;
+      width: 60%;
+      display: block;
+      margin: 20px auto;
+      font-weight: 300;
+    }
+
+    .kyle {
+      display: block;
+      margin: 0 auto;
+      width: 150px;
+      @include border-radius(50%);
+    }
+}
+
+/* Contact section */
+
+#contact {
+  @include transform(rotate(-2deg));
+  background-color: #fff;
+  width: 120%;
+  margin: 30px 0 20px -10%;
+  padding-bottom: 10px;
+
+    .contact-inside {
+      @include transform(rotate(2deg));
+      max-width: 1100px;
+      display: block;
+      margin: 0 auto;
+      padding-top: 5px;
+    }
+
+    .svgs {
+      width: $svg-div-social;
+      display: block;
+      margin: 20px auto 10px auto;
+    }
+
+    figure {
+      float: left;
+      width: $svg-size-social;
+      margin: $svg-margin;
+      box-sizing: border-box;
+    }
+
+    img { 
+      border-radius: 50%;
+
+    }
+    
+    a {
+      display: block;
+      @include transition(border 500ms, border-color 500ms);
+
+      &:hover img {
+        border: 3px solid $pri-color;
+      }
+
+    }
+
+}
 
 /* Computer CSS drawing */
-.project { 
+#project { 
   display: block; 
   margin: 0 auto; 
   width: $total-width + $mobile-width; 
@@ -370,7 +489,7 @@ header h1 {
   height: $total-height;
   max-width: 100%;
   display: block;
-  margin: 60px auto;
+  margin: 0 auto 50px auto;
   float: left;
 }
 
@@ -393,8 +512,6 @@ header h1 {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: url('http://kstardesigns.com/h/leslie-desktop.jpg');
-  background-size: cover;
   box-shadow: 0 0 $screen-padding-tb*.25 rgba(0,0,0,.5) inset;
   @include border-radius(2px);
 }
@@ -406,7 +523,7 @@ header h1 {
   background-color: darken($device-color, 5%);
   display: block;
   margin: 0 auto;
-  border-radius: 50%;
+  @include border-radius(50%);
   box-shadow: 0px 0px 1px rgba(0,0,0,.2) inset;
 }
 
@@ -456,11 +573,6 @@ header h1 {
     .screen-border {
       padding: $screen-padding-tb-tablet*1.6 $screen-padding-lr;
     }
-
-    .screen {
-      background: $screen-color url('http://kstardesigns.com/h/leslie-tablet-fullsize.jpg');
-      background-size: cover;
-    }
     
     .mic {
       height: $button*0.25;
@@ -484,16 +596,10 @@ header h1 {
   height: $mobile-height;
   z-index: 5;
   margin-left: -50px;
-  // margin-left: 50px;
-  margin-top: 100px;
+  margin-top: 40px;
 
     .screen-border {
       padding: $screen-padding-tb-mobile $screen-padding-lr;
-    }
-
-    .screen {
-      background: $screen-color url('http://kstardesigns.com/h/leslie-mobile.jpg');
-      background-size: cover;
     }
     
     .mic {
@@ -513,11 +619,36 @@ header h1 {
   
 }
 
+.leslie .screen { background: url('../assets/portfolio/leslie-desktop.jpg'); background-size: cover; }
+.leslie .tablet .screen { background: $screen-color url('../assets/portfolio/leslie-tablet.jpg'); background-size: cover; }
+.leslie .mobile .screen { background: $screen-color url('../assets/portfolio/leslie-mobile.jpg'); background-size: cover; }
+
+.whogotlucilled .screen { background: url('../assets/portfolio/wgl-desktop.jpg'); background-size: cover; }
+.whogotlucilled .tablet .screen { background: $screen-color url('../assets/portfolio/wgl-tablet.jpg'); background-size: cover; }
+.whogotlucilled .mobile .screen { background: $screen-color url('../assets/portfolio/wgl-mobile.jpg'); background-size: cover; }
+
+.cbc .screen { background: url('../assets/portfolio/cbc-desktop.jpg'); background-size: cover; }
+.cbc .tablet .screen { background: $screen-color url('../assets/portfolio/cbc-tablet.jpg'); background-size: cover; }
+.cbc .mobile .screen { background: $screen-color url('../assets/portfolio/cbc-mobile.jpg'); background-size: cover; }
+
+.thewikifix .screen { background: url('../assets/portfolio/wikifix-desktop.jpg'); background-size: cover; }
+.thewikifix .tablet .screen { background: $screen-color url('../assets/portfolio/wikifix-tablet.jpg'); background-size: cover; }
+.thewikifix .mobile .screen { background: $screen-color url('../assets/portfolio/wikifix-mobile.jpg'); background-size: cover; }
+
+.clayton .screen { background: url('../assets/portfolio/clayton-desktop.jpg'); background-size: cover; }
+.clayton .tablet .screen { background: $screen-color url('../assets/portfolio/clayton-tablet.jpg'); background-size: cover; }
+.clayton .mobile .screen { background: $screen-color url('../assets/portfolio/clayton-mobile.jpg'); background-size: cover; }
+
+.sandman .screen { background: url('../assets/portfolio/sandman-desktop.jpg'); background-size: cover; }
+.sandman .tablet .screen { background: $screen-color url('../assets/portfolio/sandman-tablet.jpg'); background-size: cover; }
+.sandman .mobile .screen { background: $screen-color url('../assets/portfolio/sandman-mobile.jpg'); background-size: cover; }
+
+
 @media screen and (max-width: ($total-width + $mobile-width + 50px)) {
-  .project { width: $tablet-width + $mobile-width + 50px; }
+  #project { width: $tablet-width + $mobile-width + 50px; }
   .responsive-wrap.desktop { display: none; }
   .responsive-wrap.tablet { display: block; }
-  .responsive-wrap.tablet { margin-right: 0; margin-top: 30px; }
+  .responsive-wrap.tablet { margin: 30px 0 0 0; }
   .responsive-wrap.mobile { margin-left: 50px; margin-top: 30px; }
 }
 
@@ -528,8 +659,43 @@ header h1 {
 
 /* Responsive */
 
+@media screen and (max-width: 850px) {
+  nav { position: absolute; right: 0; border-left: 0; width: 35px; }
+  nav ul { text-align: center; margin: 55px auto 0 auto; }
+  nav ul li { margin: 20px; font-size: 42px; }
+  .menu-button { top: 15px; background-color: transparent; }
+  .menu-button:hover { background-color: transparent; }
+  nav.open { mxargin-right: 0; width: 100%; }
+  nav.open .menu-button { margin-left: 17px; background-color: transparent; }
+  nav.open .menu-button:hover { background-color: transparent; }
+  .kstardesigns-logo { width: 400px; }
+  header h1 { font-size: 1em; margin-top: -3px; margin-left: -100px; @include transform(rotate(-11deg)); }
+  .stripe { height: auto; padding-bottom: 30px; }
+  .skills .svgs { width: $svg-div / 2;}
+  .skills figure { margin: ($svg-margin / 2) $svg-margin; }
+  .experience .svgs { width: 100%; margin: 40px auto 20px auto; }
+  .experience figure { width: 100%; float: none; }
+  .experience figure figcaption { position: relative; }
+  .experience figure.webcom img { margin: 10px auto; }
+  }
+
+
+@media screen and (max-width: 650px) {
+  #intro { height: 370px; background: linear-gradient(45deg, rgba(0,155,255,.75) 0%, rgba(0, 255, 155,.85) 15%, rgba(0, 155, 255, 0.75) 55%, rgba(0, 255, 155,.85) 70%, rgba(0, 155, 255, 0.75) 100%), url(http://i.imgur.com/y2RrozH.jpg);
+  background-size: cover; }
+  header { top: calc(50% - 60px); }
+  #portfolio { padding-bottom: 20px; }
+  #portfolio .portfolio-top { width: 300px; }
+  #portfolio .portfolio-block { width: 100%; }
+  #portfolio .portfolio-block .item-name { font-size: 22px; line-height: 22px; margin: 0 10px; width: 240px; }
+  #portfolio .portfolio-block .item-description { height: 65px; }
+  #portfolio .portfolio-block img { width: 18px; height: 18px; }
+  #portfolio .portfolio-block img.left { padding: 4px 2px 4px 0; }
+  #portfolio .portfolio-block img.right { padding: 4px 0 4px 2px; }
+  #about p { width: 70%; }
+}
+
 @media screen and (max-width: 500px) {
-  .kstardesigns-logo { margin: 10px; }
   .desktop-stand { display: none; }
   .innerwrap .c1 { display: none; }
   .innerwrap .c2 { width: 100%; }
@@ -537,6 +703,24 @@ header h1 {
   .innerwrap .c2 .innerbox { height: 20%; margin-bottom: 5%; }
   .innerwrap .c2 .innerbox:nth-child(2) { background-color: $lcol-color; }
   .innerwrap .c2 .innerbox:last-child { background-color: $pri-color-dark; }
+  .responsive-wrap.tablet { margin: 0 auto; }
+}
+
+@media screen and (max-width: 440px) {
+  .kstardesigns-logo { width: 300px; }
+  header h1 { margin-top: -5px; margin-left: -65px; }
+  header h1 span { display: none; }
+  .stripe { padding-bottom: 20px; }
+  .skills .svgs { width: 320px; }
+  .skills figure { width: 60px; }
+  .experience figure.webcom img { width: 160px; }
+  .experience figure.petsmart img { width: 170px; }
+  .experience figure.asu img { width: 130px; }
+  #contact .svgs { width: 300px; }
+  #contact .svgs img { width: 40px; display: block; margin: 0 auto; }
+  #contact figure { margin: 10px 5px; }
+  h2 { font-size: 2em; }
+
 }
 
 
