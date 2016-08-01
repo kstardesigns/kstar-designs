@@ -80,6 +80,7 @@ section { width: 100%; }
         list-style-type: none;
         font-size: 26px;
         line-height: 44px;
+        z-index: 999;
           &.homenav a:hover {
             text-shadow: 1px 1px 15px rgba(0,0,0,.75); 
           }
@@ -90,6 +91,10 @@ section { width: 100%; }
         background: url('../assets/kelsie-portraits.jpg');
         background-size: 100% auto;
         background-repeat: no-repeat;
+
+        &.home {
+          background: none;
+        }
 
             ul {
               top: 50px;
@@ -159,7 +164,7 @@ section { width: 100%; }
               color: #fff;
               font-size: 38px;
               font-style: italic;
-              padding: 10px 20px 2px 45px;
+              padding: 3px 20px 2px 45px;
               border-top: 1px solid darken($purple, 10%);
               border-right: 1px solid darken($purple, 10%);
               border-bottom: 3px solid darken($purple, 10%);
@@ -283,7 +288,7 @@ footer ul {
 /* inside pages - main section */
 
 .main {
-  padding: 40px 0;
+  padding: 40px 10px;
   max-width: 1300px;
   display: block;
   margin: 0 auto;
@@ -296,6 +301,8 @@ footer ul {
 .portraits {
     h2 {
       margin-bottom: 20px;
+      text-align: center;
+      line-height: 24px; 
     }
 
     .main a {
@@ -350,7 +357,7 @@ footer ul {
       float: left;
     }
 
-        img {
+    .main img {
               display: block;
               margin: 20px auto;
               max-width: 100%;
@@ -439,6 +446,7 @@ footer ul {
 
             .bookimg {
               width: 332px;
+              max-width: 100%; 
               margin: 0 auto 30px auto;
               display: block;
             }
@@ -508,7 +516,7 @@ footer ul {
       margin: 0 1%
     }
 
-        img {
+    .main img {
               display: block;
               margin: 20px auto;
               max-width: 100%;
@@ -566,6 +574,7 @@ footer ul {
           line-height: 30px;
           color: #fff;
           padding: 5px 5px 5px 10px;
+          border-radius: 0;
           outline: none;
           border: none;
           float: right;
@@ -576,6 +585,12 @@ footer ul {
           height: 90px;
         }
 
+        select { 
+        -webkit-appearance: none;
+        padding: 5px;
+        line-height: 25px; 
+        }
+        
         .message {
           height: 90px;
 
@@ -594,6 +609,7 @@ footer ul {
               margin: 0 auto;
               padding: 3px;
               cursor: pointer;
+              -webkit-appearance: none; 
 
                 &:hover {
                   background-color: darken($purple, 10%);
@@ -624,7 +640,7 @@ footer ul {
         .story {
           font-size: 18px;
           line-height: 24px;
-          padding: 40px 20px;
+          padding: 10px 20px;
 
             p {
               margin: 15px 0;
@@ -637,7 +653,7 @@ footer ul {
 /* kstar */
 .kstar {
   clear: both;
-
+  padding: 5px 0 0 0;
     p {
       text-align: center;
       font-weight: bold;
@@ -654,6 +670,16 @@ footer ul {
     }
 }
 
+.thankyou {
+  color: darken($purple,10%);
+  text-align: center;
+  font-size: 18px;
+  padding: 15px;
+
+    a {
+      font-weight: bold;
+    }
+}
 
 
 /* responsive */
@@ -666,22 +692,52 @@ footer ul {
   .intro img { display: none; }
   .intro .left { height: auto; width: 100%; }
   .quote { clear: both; }
+  .contact .left { display: none; }
+  .contact .right { width: 100%; }
+  .about .left { display: none; }
+  .about .right { width: 100%; }
+  .about .main { padding: 0 10px; }
 }
 
 @media screen and (max-width: 850px) {
   .homenav { display: none; }
-  footer ul { display: none; }
-  .kstar p { padding-top: 5px; }
+  footer { display: none; }
+  .banner.inside, .publications .banner.inside, .contact .banner.inside, .modeling .banner.inside { background-position: center 50px; height: 300px; background-size: cover; }
+  .banner.inside h1 { text-align: center; padding: 0; width: 100%; top: 50px; bottom: inherit; font-size: 32px; }
+  .main { padding: 20px 10px;  }
+  .portraits .main p { font-size: 18px; margin: 5px 0 10px 0; }
+  .portraits .portrait-toggle span { padding: 0 5px; width: 90px; }
+  .portraits .pricing-doc { width: 100%; padding: 0 20px; }
+  .publications .left, .publications .right { width: 100%; float: none; }
+  .publications .right { margin-top: 30px; }
+  .contact .right .contactform  { margin: 20px auto; }
 }
 
 @media screen and (max-width: 580px) {
   .title span { display: none; }
+  .banner header .title p { font-size: 28px; }
   .intro .left { font-size: 20px; padding: 40px; }
   .quote blockquote { font-size: 20px; line-height: 26px; padding: 40px; width: 100%;}
   .quote blockquote cite { font-size: 18px; }
+  .banner.inside, .publications .banner.inside, .contact .banner.inside, .modeling .banner.inside { background-position: center 90px; }
+  .portraits .left, .portraits .middle, .portraits .right { width: 98%; }
+  .portraits .left img, .portraits .middle img, .portraits .right img { width: 48%; margin: 5px 0.5%; float: left; }  
+  .publications .main p, .modeling .main p { font-size: 18px; }
+  .modeling .left, .modeling .right { width: 100%; float: none; margin: 0; }
+  .modeling .main p { margin: 5px 0 30px 0; }
+  .contact .right label { float: none; display: block; margin: 10px 0; text-align: center; width: 100%; padding-right: 0;}
+  .contact .right .message { height: auto; }
+  .contact .right .message label { margin: 15px 0; }
+  .contact .right div { margin: 5px 0; }
+  .contact .right .submit-button { margin: 20px 0; }
+  .contact .right .contactform { width: 250px; margin: 0 auto; }
+
+
 }
 
 @media screen and (max-width: 400px) {
   .intro .left { padding: 30px 15px; font-size: 18px; line-height: 28px; }
   .quote blockquote { padding: 30px 15px; }
+  .portraits .left, .portraits .middle, .portraits .right { width: 98%; }
+  .portraits .left img, .portraits .middle img, .portraits .right img { width: 98%; margin: 5px 1%; }
 }
