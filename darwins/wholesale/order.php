@@ -83,7 +83,43 @@ if(!isset($_SESSION['id']) ) {
 								<img src="../assets/rootbeer-ind.png" alt="Craft Soda" />
 							</div>
 							<div class="counters">
-								<h3 class="name">Craft Soda</h3>
+								<h3 class="name">Craft Soda - 10mg THC/can</h3>
+								<div class="wholesale-pricing">$<span class="priceper">36</span>/case</div>
+								<div class="wholesale-desc">(Sold by the case; 24 cans per case)</div>
+								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Root Beer</div></div>
+								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Kiwi Strawberry</div></div>
+								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Lemon Lime</div></div>
+								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Mandarin Orange</div></div>
+								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Black Cherry</div></div>
+							</div>
+							<div class="c"></div>
+					</div>
+
+					<div class="product soda50">
+							<div class="productimage">
+								<img src="../assets/lemonlime-ind.png" alt="Craft Soda" />
+							</div>
+							<div class="counters">
+								<h3 class="name">Craft Soda - 50mg THC/can</h3>
+								<div class="wholesale-pricing">$<span class="priceper">120</span>/case</div>
+								<div class="wholesale-desc">(Sold by the case; 24 cans per case)</div>
+								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Root Beer</div></div>
+								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Kiwi Strawberry</div></div>
+								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Lemon Lime</div></div>
+								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Mandarin Orange</div></div>
+								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Black Cherry</div></div>
+							</div>
+							<div class="c"></div>
+					</div>
+
+					<div class="product soda100">
+							<div class="productimage">
+								<img src="../assets/blackcherry-ind.png" alt="Craft Soda" />
+							</div>
+							<div class="counters">
+								<h3 class="name">Craft Soda - 100mg THC/can</h3>
+								<div class="wholesale-pricing">$<span class="priceper">228</span>/case</div>
+								<div class="wholesale-desc">(Sold by the case; 24 cans per case)</div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Root Beer</div></div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Kiwi Strawberry</div></div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Lemon Lime</div></div>
@@ -99,9 +135,11 @@ if(!isset($_SESSION['id']) ) {
 							</div>
 							<div class="counters">
 								<h3 class="name">Mints</h3>
+								<div class="wholesale-pricing">$<span class="priceper">180</span>/case</div>
+								<div class="wholesale-desc">(Sold by the case.  Each case contains 20 tins, each tin contains 20 5mg THC mints)</div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Peppermint</div></div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Cinnamon</div></div>
-								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Mixed Fruit</div></div>
+								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Fruit Punch</div></div>
 							</div>
 							<div class="c"></div>
 					</div>
@@ -112,11 +150,13 @@ if(!isset($_SESSION['id']) ) {
 							</div>
 							<div class="counters">
 								<h3 class="name">Taffy</h3>
+								<div class="wholesale-pricing">$<span class="priceper">135</span>/case</div>
+								<div class="wholesale-desc">(Sold by the case. Each case contains 20 pouches, each pouch contains one 75mg THC taffy)</div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Watermelon</div></div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Orange</div></div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Green Apple</div></div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Chocolate</div></div>
-								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Caramel</div></div>
+								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Salted Caramel</div></div>
 							</div>
 							<div class="c"></div>
 					</div>
@@ -127,6 +167,8 @@ if(!isset($_SESSION['id']) ) {
 							</div>
 							<div class="counters">
 								<h3 class="name">Gummies</h3>
+								<div class="wholesale-pricing">$<span class="priceper">90</span>/case</div>
+								<div class="wholesale-desc">(Sold by the case.  Each case contains 20 pouches; each pouch contains one 50mg THC gummy)</div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Watermelon</div></div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Green Apple</div></div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Pineapple</div></div>
@@ -141,11 +183,14 @@ if(!isset($_SESSION['id']) ) {
 							</div>
 							<div class="counters">
 								<h3 class="name">Hard Candy</h3>
+								<div class="wholesale-pricing">$<span class="priceper">180</span>/case</div>
+								<div class="wholesale-desc">(Sold by the case.  Each case contains 20 pouches; each pouch contains 10 10mg THC hard candies)</div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Watermelon</div></div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Green Apple</div></div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Cherry</div></div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Root Beer</div></div>
 								<div class="qty"><div class="remove">-</div><div class="amt">0</div><div class="add">+</div> <div class="flavor">Lemon</div></div>
+								
 							</div>
 							<div class="c"></div>
 					</div>
@@ -165,6 +210,10 @@ if(!isset($_SESSION['id']) ) {
 							<div class="orderfields"><strong style="margin-top: 15px; display: inline-block;">Items ordered:</strong></div>
 							<ul class="chosen soda" style="list-style-type: none; padding-left: 0; ">
 							</ul>
+							<ul class="chosen soda50" style="list-style-type: none; padding-left: 0; ">
+							</ul>
+							<ul class="chosen soda100" style="list-style-type: none; padding-left: 0; ">
+							</ul>
 							<ul class="chosen mints" style="list-style-type: none; padding-left: 0; ">
 							</ul>
 							<ul class="chosen taffy" style="list-style-type: none; padding-left: 0; ">
@@ -174,6 +223,16 @@ if(!isset($_SESSION['id']) ) {
 							<ul class="chosen hardcandy" style="list-style-type: none; padding-left: 0; ">
 							</ul>
 
+							<ul class="totals">
+								<li class="indTotalSoda"></li>
+								<li class="indTotalSoda50"></li>
+								<li class="indTotalSoda100"></li>
+								<li class="indTotalMints"></li>
+								<li class="indTotalTaffy"></li>
+								<li class="indTotalGummies"></li>
+								<li class="indTotalHardCandy"></li>
+							</ul>
+							<div class="orderTotal"></div>
 							
 
 							<input id="content" type="hidden" name="content"/>

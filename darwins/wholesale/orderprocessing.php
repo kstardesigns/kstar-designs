@@ -72,7 +72,7 @@ $success = mail($to, $subject, $Body, $headers);
 
 // redirect to success page 
 if ($success){
-  echo '<p class="emessage">Thank you! I will get back to you as soon as possible.</p><p class="emessage"><a href="order.php">Place another order request.</a></p>';
+  echo '<p class="emessage">Thank you! Your order has been submitted. You will be contacted shortly.</p><p class="emessage"><a href="order.php">Place another order request.</a></p>';
 }
 else{
   print "<meta http-equiv=\"refresh\" content=\"0;URL=forget.php\">";
