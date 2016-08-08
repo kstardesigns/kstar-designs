@@ -1,10 +1,10 @@
 <?php
 
-  $to = "kyleastark@gmail.com";
+  $to = "sales@darwinsnatural.com";
   $subject = "Order request";
   $message = $_POST["content"];
   $comments = $_POST["comments"];
-  $headers = "From: Darwin's Natural website <info@darwinsnatural.com>" . "\r\n" .
+  $headers = "From: Darwin's Natural website <sales@darwinsnatural.com>" . "\r\n" .
              "Content-type: text/html" . "\r\n";
 
 

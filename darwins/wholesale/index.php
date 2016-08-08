@@ -95,9 +95,7 @@ include_once("login.php");
 				</footer>
 				
 			</form>
-			<label for="">
-				<p>Don't have an account? <a href="registration.php">Register now</a>.</p>
-			</label>			
+					
 		</div>
 		
 		
