@@ -14,10 +14,16 @@ $('nav ul a').click(function(){
 
 var portfolioItems = [
 		{
-			'proj': 'leslie',
-			'itemname': 'Leslie Stark, Realtor',
-			'itemdescription': 'A single-page realtor website developed with a tabbed design. <a href="http://lesliestarkaz.com" target="_blank" title="">View site <span>&rarr;</span></a>',
-			'projlink': 'http://lesliestarkaz.com'
+			'proj': 'cbc',
+			'itemname': 'CBC, Inc.',
+			'itemdescription': 'A custom website developed for a luxury home builder in Mesa, AZ. <a href="http://cbcarizona.com" target="_blank" title="">View site <span>&rarr;</span></a>',
+			'projlink': 'http://cbcarizona.com'
+		},
+		{
+			'proj': 'darwins',
+			'itemname': 'Darwin\'s Natural',
+			'itemdescription': 'A custom website built for a medicinal marijuana wholesale company. <a href="http://darwinsnatural.com" target="_blank" title="">View site <span>&rarr;</span></a>',
+			'projlink': 'http://darwinsnatural.com'
 		},
 		{
 			'proj': 'whogotlucilled',
@@ -25,11 +31,12 @@ var portfolioItems = [
 			'itemdescription': 'A fansite for <i>The Walking Dead</i> where fans can vote about the cliffhanger from the 6th season finale. <a href="http://whogotlucilled.com" target="_blank" title="">View site <span>&rarr;</span></a>',
 			'projlink': 'http://whogotlucilled.com'
 		},
+		
 		{
-			'proj': 'cbc',
-			'itemname': 'CBC, Inc.',
-			'itemdescription': 'A custom website developed for a luxury home builder in Mesa, AZ. <a href="http://cbcarizona.com" target="_blank" title="">View site <span>&rarr;</span></a>',
-			'projlink': 'http://cbcarizona.com'
+			'proj': 'leslie',
+			'itemname': 'Leslie Stark, Realtor',
+			'itemdescription': 'A single-page realtor website developed with a tabbed design. <a href="http://lesliestarkaz.com" target="_blank" title="">View site <span>&rarr;</span></a>',
+			'projlink': 'http://lesliestarkaz.com'
 		},
 		{
 			'proj': 'thewikifix',
@@ -81,6 +88,8 @@ $(document).ready(function() {
    $('.item-name').html(portfolioItems[portfolioNumber].itemname);
    $('.item-description').html(portfolioItems[portfolioNumber].itemdescription);
    $('.screen a.projlink').attr('href', portfolioItems[portfolioNumber].projlink);
+
+   
 
 });
 
