@@ -26,12 +26,11 @@ var portfolioItems = [
 			'projlink': 'http://darwinsnatural.com'
 		},
 		{
-			'proj': 'whogotlucilled',
-			'itemname': 'Who Got Lucille\'d?',
-			'itemdescription': 'A fansite for <i>The Walking Dead</i> where fans can vote about the cliffhanger from the 6th season finale. <a href="http://whogotlucilled.com" target="_blank" title="">View site <span>&rarr;</span></a>',
-			'projlink': 'http://whogotlucilled.com'
+			'proj': 'titledrops',
+			'itemname': 'Title Drops',
+			'itemdescription': 'A project that tells when a TV show or movie mentions its own title in its script. <a href="http://titledrops.xyz" target="_blank" title="">View site <span>&rarr;</span></a>',
+			'projlink': 'http://titledrops.xyz'
 		},
-		
 		{
 			'proj': 'leslie',
 			'itemname': 'Leslie Stark, Realtor',
@@ -43,6 +42,12 @@ var portfolioItems = [
 			'itemname': 'The WikiFix',
 			'itemdescription': 'A random fact-generating website consisting of information taken from Wikipedia. <a href="http://thewikifix.com" target="_blank" title="">View site <span>&rarr;</span></a>',
 			'projlink': 'http://thewikifix.com'
+		},
+		{
+			'proj': 'whogotlucilled',
+			'itemname': 'Who Got Lucille\'d?',
+			'itemdescription': 'A fansite for <i>The Walking Dead</i> where fans can vote about the cliffhanger from the 6th season finale. <a href="http://whogotlucilled.com" target="_blank" title="">View site <span>&rarr;</span></a>',
+			'projlink': 'http://whogotlucilled.com'
 		},
 		{
 			'proj': 'clayton',
