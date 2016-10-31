@@ -85,7 +85,18 @@ $('.left').click(function(){
 	showPortfolio();
 });
 
+/* Scroll transition to anchor */
 
+$('.godown').click(function() {
+
+$('*').animate({
+  scrollTop: $("#skills").offset().top },
+  '1500' 
+);
+// Prevent default behavior of link
+return false;
+});
+    
 
 $(document).ready(function() {
 
@@ -93,8 +104,6 @@ $(document).ready(function() {
    $('.item-name').html(portfolioItems[portfolioNumber].itemname);
    $('.item-description').html(portfolioItems[portfolioNumber].itemdescription);
    $('.screen a.projlink').attr('href', portfolioItems[portfolioNumber].projlink);
-
-   
 
 });
 
