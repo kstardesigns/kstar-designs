@@ -23,7 +23,7 @@ var portfolioItems = [
 			'proj': 'darwins',
 			'itemname': 'Darwin\'s Natural',
 			'itemdescription': 'A custom website built for a medicinal marijuana wholesale company. <a href="http://darwinsnatural.com" target="_blank" title="">View site <span>&rarr;</span></a>',
-			'projlink': 'http://darwinsnatural.com'
+			'projlink': 'darwins/index.html'
 		},
 		{
 			'proj': 'titledrops',
@@ -59,14 +59,14 @@ var portfolioItems = [
 			'proj': 'sandman',
 			'itemname': 'Charity Golf Scramble',
 			'itemdescription': 'A single-page website giving information for a charity golf event. <a href="http://kstardesigns.com/sandman" target="_blank" title="">View site <span>&rarr;</span></a>',
-			'projlink': 'http://kstardesigns.com/sandman'
+			'projlink': 'sandman/index.html'
 		}
 	];
 
 
 var portfolioNumber = 0;
 
-$('.right').click(function(){ 
+$('.right').click(function(){
 	if (portfolioNumber > (portfolioItems.length - 2)) {
 		portfolioNumber = 0;
 	} else {
@@ -78,8 +78,8 @@ $('.right').click(function(){
 $('.left').click(function(){
 	if (portfolioNumber == 0) {
 		portfolioNumber = (portfolioItems.length);
-	} 
-	
+	}
+
 	portfolioNumber--;
 
 	showPortfolio();
@@ -91,12 +91,12 @@ $('.godown').click(function() {
 
 $('*').animate({
   scrollTop: $("#skills").offset().top },
-  '1500' 
+  '1500'
 );
 // Prevent default behavior of link
 return false;
 });
-    
+
 
 $(document).ready(function() {
 
@@ -113,4 +113,3 @@ function showPortfolio(){
 	$('.item-description').html(portfolioItems[portfolioNumber].itemdescription);
     $('.screen a.projlink').attr('href', portfolioItems[portfolioNumber].projlink);
 }
-
