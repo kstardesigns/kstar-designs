@@ -7,26 +7,28 @@
 
     <link rel="shortcut icon" href="assets/favicon.png">
 
-    <title>Who Got Lucille'd?</title>
+    <title>Who Got Lucille'd?</title> 
+
     <link href="styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 	<header>
 		<div class="title">Who got Lucille'd?</div>
 		<div class="vote">
-			<p>Choose a character below to vote in the poll.</p>
+			<p>View the poll results <a class="showresults" href="#" title="View poll results">here</a> or <a class="showthedead" href="#" title="Show me who died">see who got Lucille'd</a>.</p>
 		</div>
 		<div class="icons">
-			<div class="iconwrap">
-				<i class="info" title="More info"></i>
-				<i class="results" title="View current results"></i>
+			<div class="iconwrap">				
+				<i class="fa fa-info info" title="More info"></i>
+				<i class="fa fa-bar-chart results" title="View current results"></i>
 			</div>
 		</div>
 		<div class="c"></div>
 	</header>
 
-	<form method="post" action="voteprocessing.php">
+	<form id="voteform" method="post" action="voteprocessing.php">
 
 
 
@@ -77,13 +79,14 @@
 			<li id="rick">
 				<div class="bg"><label for="Rick" id="VoteRick" class="vote"></label></div>
 			</li>
-			<li id="negan">
+			<li id="negan" class="mobile">
 				<div class="bg"></div>
 			</li>
 		</ul>
 
 	</div>
 
+		<!--
 		<div class="submitbox">
 			<h1>Submit vote for <span class="votename"></span>?</h1>
 			<div class="buttons">
@@ -91,9 +94,16 @@
 				<input type="button" name="cancel" value="Cancel" class="submit-button closesb" />
 			</div>
 		</div>
+		-->
+		<div class="submitbox">
+			<h1>Voting is now closed! Thanks for participating.</h1>
+			<div class="buttons">
+				<input type="button" name="cancel" value="View the results" class="submit-button closesb showresults" />
+			</div>
+		</div>
 		<div class="neganbox">
 			<h1>... IT.</h1>
-			<img src="assets/negan.gif" alt="... IT." />
+			<img src="assets/negan.gif" alt="Negan pointing Lucille at the camera" />
 			<div class="buttons">
 				<input type="button" name="cancel" value="Cancel" class="submit-button closenb" />
 			</div>
@@ -103,43 +113,51 @@
 
 	<div id="info">
 		<h1>More info</h1>
-		<div class="close">x</div>
+		<div class="close"><i class="fa fa-close"></i></div>
 		<div class="popup-bottom">
-			<img src="assets/twdlogo.png" alt="The Walking Dead"/>
-			<p class="main"><span>Who Got Lucille'd?</span> is a fanmade website with the simple goal of letting fans of <em>The Walking Dead</em> vote on who they think got beaten to death by Negan in the sixth season finale. By now it's well-known that <a href="assets/comicglenn.png" target="_blank">Glenn</a> was the one who took the beating in the comic.
+			<p class="main"><span>Who Got Lucille'd?</span> is a fanmade website with the simple goal of letting fans of <em>The Walking Dead</em> vote on who they think got beaten to death by Negan in the sixth season finale. <!-- By now it's well-known that <a href="assets/comicglenn.png" target="_blank">Glenn</a> was the one who took the beating in the comic.</p> -->
 			<img src="assets/negan2.gif" alt="Negan carrying Lucille" />
 			<p class="disclaimer">Whogotlucilled.com is an unofficial fansite and is not affiliated with The Walking Dead TV series or comic book series, its filmmakers or owners, AMC Studios, Circle of Confusion, Valhalla Entertainment, or Idiot Box Production. We claim no rights to the series, logo, images, character names, etc.</p>
 
-			<p class="disclaimer">All photos and animated .gifs found on this site are being used for entertainment purposes and are credited to the following people: <a href='http://algunlucho.tumblr.com/' target='blank'>algunlucho</a>, <a href='http://neverlendbooks.tumblr.com/' target='blank'>neverlendbooks</a>, <a href='http://tchamblers.tumblr.com/' target='blank'>tchamblers</a>, and the person who made the Negan .gif above. This site is for pure entertainment and built with the intention of promoting the TV series and its season 6 cliffhanger finale.</p>
+			<p class="disclaimer">All images found on this site are being used for entertainment purposes and are credited to the following people: <a href='http://algunlucho.tumblr.com/' target='blank'>algunlucho</a>, <a href='http://neverlendbooks.tumblr.com/' target='blank'>neverlendbooks</a>, <a href='http://tchamblers.tumblr.com/' target='blank'>tchamblers</a>, and the person who made the Negan gif above. This site is for pure entertainment and built with the intention of promoting the TV series and its season 6 cliffhanger finale. The site opened on April 8, 2016 and will stay open for voting until either the season 7 premiere or until the Lucille death is officially revealed. </p>
 
-			<p class="disclaimer">Created by <a href="http://kstardesigns.com/" target="_blank">kstar designs</a>. April 6-7, 2016.</p>
+			<p class="disclaimer">Questions or suggestions? Contact me at <a href="http://kstardesigns.com/" target="_blank">kstar designs</a>. <!-- April 6-8, 2016. --> </p>
+			<footer><a class="tw" href="https://twitter.com/share?url=http%3A//whogotlucilled.com&text=Who%20did%20Negan%20kill?%20Vote%20now!&hashtags=thewalkingdead" target="_blank"><i class="fa fa-twitter"></i> Share</a>  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//whogotlucilled.com" target="_blank"><i class="fa fa-facebook"></i> Share</a></footer>
 		</div>
 	</div>
 
 	<div id="results">
 		<h1>Current results</h1>
-		<div class="close">x</div>
+		<div class="close"><i class="fa fa-close"></i></div>
 		<div class="popup-bottom">
-			<p class="main">Thanks for voting! Here are the most recent results.</p>
+			<!-- <p class="main">Here are the most recent results.</p> --> <div class="mobile">Hover over each character to see the number of votes.</div>
 
 			<div class="chart">
 				<dl>
-	                <dt>Abraham</dt><dd id="abrahambar"><span id="abrahamtotal"></span></dd>
-	                <dt>Maggie</dt><dd id="maggiebar"><span id="maggietotal"></span></dd>
-	                <dt>Sasha</dt><dd id="sashabar"><span id="sashatotal"></span></dd>
-	                <dt>Daryl</dt><dd id="darylbar"><span id="daryltotal"></span></dd>
-	                <dt>Glenn</dt> <dd id="glennbar"><span id="glenntotal"></span></dd>
-	                <dt>Aaron</dt><dd id="aaronbar"><span id="aarontotal"></span></dd>
-	                <dt>Eugene</dt> <dd id="eugenebar"><span id="eugenetotal"></span></dd>
-	                <dt>Michonne</dt> <dd id="michonnebar"><span id="michonnetotal"></span></dd>
-	                <dt>Carl</dt> <dd id="carlbar"><span id="carltotal"></span></dd>
-	                <dt>Rosita</dt> <dd id="rositabar"><span id="rositatotal"></span></dd>
-	                <dt>Rick</dt> <dd id="rickbar"><span id="ricktotal"></span></dd>
+	                <div class="charwrap"><dt>Abraham</dt><dd id="abrahambar"></dd><dd><span id="abrahamperc"></span><span id="abrahamtotal"></span></dd><div class="c"></div></div>
+	                <div class="charwrap"><dt>Maggie</dt><dd id="maggiebar"></dd><dd><span id="maggieperc"></span><span id="maggietotal"></span></dd><div class="c"></div></div>
+	                <div class="charwrap"><dt>Sasha</dt><dd id="sashabar"></dd><dd><span id="sashaperc"></span><span id="sashatotal"></span></dd><div class="c"></div></div>
+	                <div class="charwrap"><dt>Daryl</dt><dd id="darylbar"></dd><dd><span id="darylperc"></span><span id="daryltotal"></span></dd><div class="c"></div></div>
+	                <div class="charwrap"><dt>Glenn</dt> <dd id="glennbar"></dd><dd><span id="glennperc"></span><span id="glenntotal"></span></dd><div class="c"></div></div>
+	                <div class="charwrap"><dt>Aaron</dt><dd id="aaronbar"></dd><dd><span id="aaronperc"></span><span id="aarontotal"></span></dd><div class="c"></div></div>
+	                <div class="charwrap"><dt>Eugene</dt> <dd id="eugenebar"></span></dd><dd><span id="eugeneperc"></span><span id="eugenetotal"></dd><div class="c"></div></div>
+	                <div class="charwrap"><dt>Michonne</dt> <dd id="michonnebar"></dd><dd><span id="michonneperc"></span><span id="michonnetotal"></span></dd><div class="c"></div></div>
+	                <div class="charwrap"><dt>Carl</dt> <dd id="carlbar"></dd><dd><span id="carlperc"></span><span id="carltotal"></span></dd><div class="c"></div></div>
+	                <div class="charwrap"><dt>Rosita</dt> <dd id="rositabar"></dd><dd><span id="rositaperc"></span><span id="rositatotal"></span></dd><div class="c"></div></div>
+	                <div class="charwrap"><dt>Rick</dt> <dd id="rickbar"></dd><dd><span id="rickperc"></span><span id="ricktotal"></span></dd><div class="c"></div></div>
 	            </dl>
 	            <div class="c"></div>
 			</div>
-
-			<p class="disclaimer c">Results are counted manually and will be updated as often as possible. Last update: 4/8/16 @ 10:45am MST.</p>
+			<p class="main">Total votes counted: <span class="totalvotes"></span></p>
+			<!-- <div class="morestats">View more stats</div>
+			<ul>
+				<li>The website and voting opened on 4/8/16</li>
+				<li>The website got its 100th vote on 4/10/16</li>
+				<li>Maggie was the last character to get a vote, at vote #157.</li>
+				<li>Number of votes counted manually before live voting was implemented: 460</li>
+			</ul> -->
+			<p class="disclaimer c">The poll is now closed. Voting was live 4/8/2016 - 10/16/2016.<br/> Thanks for your participation!</p>
+			<footer><a class="tw" href="https://twitter.com/share?url=http%3A//whogotlucilled.com&text=Who%20did%20Negan%20kill?%20Vote%20now!&hashtags=thewalkingdead" target="_blank"><i class="fa fa-twitter"></i> Share</a>  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//whogotlucilled.com" target="_blank"><i class="fa fa-facebook"></i> Share</a></footer>
 		</div>
 	</div>
 

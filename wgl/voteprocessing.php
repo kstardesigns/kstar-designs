@@ -1,43 +1,36 @@
-<head>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="shortcut icon" href="assets/favicon.png">
-
-    <title>Who Got Lucille'd?</title>
-	<link rel="stylesheet" href="css/main.css" type="text/css">
-</head>
-
 <?php
 
-$EmailFrom = "Who got Lucille'd?";
-$EmailTo = "whogotlucilled@gmail.com"; 
-$Poll = Trim(stripslashes($_POST['radio'])); 
-$Subject = "Vote: ";
-$Subject .= $Poll; 
+$cookie_name = "voted";
+$cookie_value = true;
 
-// validation
-$validationOK=true;
-if (!$validationOK) {
-  print "<meta http-equiv=\"refresh\" content=\"0;URL=error.htm\">";
-  exit;
+if(!isset($_COOKIE[$cookie_name])) {
+    
+    //set the cookie   
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+    
+   $Poll = strtolower(Trim(stripslashes($_POST['radio'])));
+
+    $data = file_get_contents('data.json');
+    if (!$data){
+      header('Location: error.html');
+    }
+
+    $array = json_decode($data,true);
+
+    $array[$Poll] = $array[$Poll]+1;
+
+    $array['lastupdate'] = date('n/j/Y @ g:ia T');
+
+    if (!file_put_contents('data.json', json_encode($array))){
+      header('Location: error.html');
+    }else{
+      header('Location: thanks.html');
+    } 
+}
+else
+{
+    header('Location: error.html');
 }
 
-// prepare email body text
-$Body = "";
-$Body .= "Vote: ";
-$Body .= $Poll;
 
-
-// send email 
-$success = mail($EmailTo, $Subject, $Body, "From: <$EmailFrom>");
-
-// redirect to success page 
-if ($success){
-  print "<meta http-equiv=\"refresh\" content=\"0;URL=thanks.html\">";
-}
-else{
-  print "<meta http-equiv=\"refresh\" content=\"0;URL=error.html\">";
-}
-?> 
+?>
