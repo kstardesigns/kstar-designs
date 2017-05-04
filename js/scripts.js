@@ -22,7 +22,7 @@ var portfolioItems = [
 		{
 			'proj': 'darwins',
 			'itemname': 'Darwin\'s Natural',
-			'itemdescription': 'A custom website built for a medicinal marijuana wholesale company. <a href="http://darwinsnatural.com" target="_blank" title="">View site <span>&rarr;</span></a>',
+			'itemdescription': 'A custom website built for a medicinal marijuana wholesale company. <a href="darwins/index.html" target="_blank" title="">View site <span>&rarr;</span></a>',
 			'projlink': 'darwins/index.html'
 		},
 		{
@@ -46,8 +46,8 @@ var portfolioItems = [
 		{
 			'proj': 'whogotlucilled',
 			'itemname': 'Who Got Lucille\'d?',
-			'itemdescription': 'A fansite for <i>The Walking Dead</i> where fans can vote about the cliffhanger from the 6th season finale. <a href="http://whogotlucilled.com" target="_blank" title="">View site <span>&rarr;</span></a>',
-			'projlink': 'http://whogotlucilled.com'
+			'itemdescription': 'A fansite for <i>The Walking Dead</i> where fans can vote about the cliffhanger from the 6th season finale. <a href="wgl/index.html" target="_blank" title="">View site <span>&rarr;</span></a>',
+			'projlink': 'wgl/index.html'
 		},
 		{
 			'proj': 'clayton',
@@ -58,7 +58,7 @@ var portfolioItems = [
 		{
 			'proj': 'sandman',
 			'itemname': 'Charity Golf Scramble',
-			'itemdescription': 'A single-page website giving information for a charity golf event. <a href="http://kstardesigns.com/sandman" target="_blank" title="">View site <span>&rarr;</span></a>',
+			'itemdescription': 'A single-page website giving information for a charity golf event. <a href="sandman/index.html" target="_blank" title="">View site <span>&rarr;</span></a>',
 			'projlink': 'sandman/index.html'
 		}
 	];
