@@ -3,12 +3,14 @@
 $('.menu-button').click(function(){
     $('nav').toggleClass('open');
     $('nav ul').toggle();
+    $('nav .navBottom').toggle();
     $('.menu').toggleClass('close-icon');
 });
 
 $('nav ul a').click(function(){
 	$('nav').removeClass('open');
 	$('nav ul').toggle();
+	$('nav .navBottom').toggle();
 	$('.menu').toggleClass('close-icon');
 });
 
@@ -97,6 +99,10 @@ $('*').animate({
 return false;
 });
 
+var key = '462c6f631e646e613d842ece6bf05a6a';
+var colors = ['#e08a04','#e1d605','#ff8800','#f07000','#ff7f3f','#ff6e1a','#f03800','#ff1a1a'];
+var random = Math.floor(Math.random()*colors.length);
+
 
 $(document).ready(function() {
 
@@ -104,6 +110,15 @@ $(document).ready(function() {
    $('.item-name').html(portfolioItems[portfolioNumber].itemname);
    $('.item-description').html(portfolioItems[portfolioNumber].itemdescription);
    $('.screen a.projlink').attr('href', portfolioItems[portfolioNumber].projlink);
+
+   var apiString = 'https://api.darksky.net/forecast/' + key + '/33.4455,-112.0668?exclude=hourly,daily,minutely,alerts&callback=?'; 
+  
+    $.getJSON(apiString, function(getTemp) {
+      var currently = Math.round(getTemp.currently.temperature);
+      $('.currTemp').html(currently + '&deg;');
+      var shadow1 = '0 0 ' + currently*.5 + 'px #ffc109';
+      $('.sun').css('box-shadow', shadow1)
+    });
 
 });
 

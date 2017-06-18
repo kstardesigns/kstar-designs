@@ -64,6 +64,50 @@ nav {
 
     	}
 
+      .navBottom {
+        position: fixed;
+        bottom: 40px;
+        width: 250px;
+        display: none;
+      }
+
+      .sunSpot {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-direction: normal; 
+        -ms-flex-direction: column;
+        flex-direction: column;
+        p {
+          color: #fff;
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 18px;
+          letter-spacing: 1px;
+          text-align: center;
+          line-height: 21px;
+        }
+      }
+
+      .sun {
+        background-color: $sun;
+        border-radius: 50%;
+        height: 72px;
+        width: 72px;
+        margin: 10px auto;
+        border: 5px solid $blurry;
+      }
+
+      .currTemp {
+        text-align: center;
+        line-height: 62px;
+        font-size: 28px;
+        margin-left: 4px;
+        display: block;
+        color: #fff;
+        font-family: 'Source Sans Pro', serif;
+        text-shadow: 0 0 7px darken($blurry, 20%);
+      }
+
     	&.open {
     		width: 250px;
         background: linear-gradient(45deg, rgba(0,155,255,.75) 0%, rgba(0, 255, 155,.85) 55%, rgba(0, 155, 255, 0.75) 100%);
@@ -141,9 +185,6 @@ nav {
 		}
 
 }
-
-// add mixins for transform, transition, etc
-
 
 h2 {
   text-transform: lowercase;
@@ -790,6 +831,7 @@ header h1 {
   nav.open { margin-right: 0; width: 100%; }
   nav.open .menu-button { margin-left: 17px; background-color: transparent; }
   nav.open .menu-button:hover { background-color: transparent; }
+  nav .navBottom { width: 100%; }
   .kstardesigns-logo { width: 400px; }
   header h1 {  font-size: 1em; margin-top: -3px; margin-left: -100px; @include transform(rotate(-11deg)); -webkit-transform-origin: 50%  51%; }
   .stripe { height: auto; padding-bottom: 30px; }
@@ -844,3 +886,8 @@ header h1 {
   h2 { font-size: 2em; }
 
 }
+
+@media screen and (max-height: 450px) {
+  nav .navBottom { display: none; }
+  }
+
