@@ -15,6 +15,12 @@ $('nav ul a').click(function(){
 });
 
 var portfolioItems = [
+    {
+      'proj': 'millerlite',
+      'itemname': 'Miller Lite Ugly Sweater Promotion',
+      'itemdescription': 'An ugly sweater instant win promotion.* <a href="https://digitalbeerpromo.com/uglysweater17" target="_blank" title="">View site <span>&rarr;</span></a>',
+      'projlink': 'https://digitalbeerpromo.com/uglysweater17'
+    },
 		{
 			'proj': 'cbc',
 			'itemname': 'CBC, Inc.',
@@ -111,8 +117,8 @@ $(document).ready(function() {
    $('.item-description').html(portfolioItems[portfolioNumber].itemdescription);
    $('.screen a.projlink').attr('href', portfolioItems[portfolioNumber].projlink);
 
-   var apiString = 'https://api.darksky.net/forecast/' + key + '/33.4455,-112.0668?exclude=hourly,daily,minutely,alerts&callback=?'; 
-  
+   var apiString = 'https://api.darksky.net/forecast/' + key + '/33.4455,-112.0668?exclude=hourly,daily,minutely,alerts&callback=?';
+
     $.getJSON(apiString, function(getTemp) {
       var currently = Math.round(getTemp.currently.temperature);
       $('.currTemp').html(currently + '&deg;');
