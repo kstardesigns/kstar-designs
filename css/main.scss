@@ -187,7 +187,7 @@ nav {
 
 }
 
-h2 {
+h2, h3 {
   text-transform: lowercase;
   font-family: $pri-font;
   font-size: 2.5em;
@@ -196,11 +196,18 @@ h2 {
   font-weight: 300;
   text-align: center;
   padding-top: 38px;
+  margin: 0 auto;
+  max-width: 80%;
+  line-height: 1.2em;
   color: $sec-color;
   background: -webkit-linear-gradient(rgba(0, 155, 255, 0.75) 0%, rgba(0, 255, 155, 0.85) 40%, rgba(0, 155, 255, 0.75) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
 
+h3 {
+  font-size: 2.2em;
+  text-transform: initial;
 }
 
 /* Intro section */
@@ -326,7 +333,7 @@ header h1 {
 }
 
 .experience {
-    height: 480px;
+    height: 980px;
 
     .svgs {
       width: 900px;
@@ -340,6 +347,35 @@ header h1 {
       -ms-flex-direction: row;
       flex-direction: row;
       margin: 35px auto;
+      &--companies {
+        figure {
+          width: 25%;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+
+          img {
+            display: block;
+            width: 120px;
+            height: auto;
+            -ms-flex-item-align: center;
+            align-self: center;
+            // -webkit-filter: grayscale(75%);
+            // filter: grayscale(75%);
+
+            // &:hover {
+            //   -webkit-filter: grayscale(0%);
+            //   filter: grayscale(0%);
+            // }
+          }
+
+          &.millerlite, &.jimbeam {
+            img {
+              width: 100px;
+            }
+          }
+        }
+      }
     }
 
     figure {
@@ -385,7 +421,12 @@ header h1 {
           line-height: 1.4em;
           width: 100%;
         }
+
+
+
       }
+
+
 }
 
 /* Portfolio section */
@@ -846,6 +887,12 @@ footer {
 
 /* Responsive */
 
+@media screen and (max-width: 970px) {
+  .experience .svgs {
+    width: 750px;
+  }
+}
+
 @media screen and (max-width: 850px) {
   nav { position: absolute; right: 0; border-left: 0; width: 35px; }
   nav ul { text-align: center; margin: 55px auto 0 auto; width: 300px; }
@@ -862,11 +909,16 @@ footer {
   .skills .svgs { width: $svg-div / 2; -ms-flex-wrap: wrap; flex-wrap: wrap; }
   .skills figure { margin: ($svg-margin / 2) $svg-margin; }
   .experience .svgs { width: 100%; margin: 40px auto 20px auto; }
+  .experience .svgs--companies { width: 80%; }
   .experience figure { width: 100%; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
+  .experience .svgs--companies figure { -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; }
   .experience figure figcaption { position: relative; }
   .experience figure.webcom img, .experience figure.petsmart img, .experience figure.asu img { margin: 10px auto; }
   }
 
+@media screen and (max-width: 750px) {
+  .experience .svgs--companies figure { width: 33.333%; }
+}
 
 @media screen and (max-width: 650px) {
   //#intro { height: 420px; position: relative; }
@@ -883,6 +935,10 @@ footer {
   #about p { width: 70%; }
 }
 
+@media screen and (max-width: 550px) {
+  .experience .svgs--companies figure { width: 50%; }
+}
+
 @media screen and (max-width: 500px) {
   .desktop-stand { display: none; }
   .innerwrap .c1 { display: none; }
@@ -896,6 +952,7 @@ footer {
 
 @media screen and (max-width: 440px) {
   .kstardesigns-logo { width: 300px; }
+  nav ul li { font-size: 34px; }
   header h1 { margin-top: -2px; margin-left: -70px; }
   header h1 span { display: none; }
   .stripe { padding-bottom: 20px; }
@@ -905,12 +962,21 @@ footer {
   #contact .svgs { width: 300px; }
   #contact .svgs img { width: 40px; display: block; margin: 0 auto; }
   #contact figure { margin: 10px 5px; }
-  h2 { font-size: 2em; width: 230px; margin: 0 auto; }
+  h2 { font-size: 2em; }
+  h3 { font-size: 1.8em; }
 }
 
 @media screen and (max-width: 360px) {
   .experience figure figcaption { font-size: 1.1em; }
+  #portfolio .portfolio-block { width: 90%; }
   #portfolio .portfolio-block .item-description { font-size: 1em; }
+  #portfolio .portfolio-block .item-name { width: 210px; }
+  #about p { font-size: 1em; }
+  .experience .svgs--companies figure {
+    &.millerlite img, &.jimbeam img, img {
+      width: 80px;
+    }
+   }
 }
 
 @media screen and (max-height: 450px) {
