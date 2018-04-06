@@ -17,9 +17,15 @@ $('nav ul a').click(function(){
 var portfolioItems = [
     {
       'proj': 'millerlite',
-      'itemname': 'Miller Lite Ugly Sweater Promotion',
-      'itemdescription': 'An ugly sweater instant win promotion.* <a href="https://digitalbeerpromo.com/uglysweater17" target="_blank" title="">View site <span>&rarr;</span></a>',
-      'projlink': 'https://digitalbeerpromo.com/uglysweater17'
+      'itemname': 'Miller Lite Ugly Sweater Game',
+      'itemdescription': 'An ugly sweater instant win promotion.* <a href="/" target="_blank" title="">View site <span>&rarr;</span></a>',
+      'projlink': '/'
+    },
+    {
+      'proj': 'cheetos',
+      'itemname': 'Cheetos Everybunny Wins Game',
+      'itemdescription': 'A wheel spinning game with Cheetos prizes.* <a href="https://www.dgrewards.com/pepsico/" target="_blank" title="">View site <span>&rarr;</span></a>',
+      'projlink': 'https://www.dgrewards.com/pepsico/'
     },
 		{
 			'proj': 'cbc',
