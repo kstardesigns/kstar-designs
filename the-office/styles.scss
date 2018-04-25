@@ -5,6 +5,10 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .inner-width {
 	width: 100%;
 	max-width: 1000px;
@@ -91,4 +95,594 @@ p {
   p {
     margin: 0;
   }
+}
+
+.top-eps {
+  .box {
+  	width: 800px;
+  	max-width: 100%;
+  	margin: 0 auto;
+  	box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  }
+
+  .top-section {
+  	display: flex;
+
+  	.episode {
+  		width: 50%;
+  		height: 224px;
+  		display: flex;
+  		justify-content: space-between;
+  		align-items: flex-end;
+  		padding: 10px 15px;
+  		cursor: pointer;
+  		position: relative;
+
+  		@media screen and (max-width: 590px) {
+  			height: 170px;
+  		}
+
+  		@media screen and (max-width: 500px) {
+  			justify-content: center;
+  			align-items: center;
+  			flex-direction: column;
+  		}
+
+  		&.pda {
+  			background: linear-gradient(to top right, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 30%, rgba(255,255,255,0.3) 70%, rgba(255,255,255,0.1) 100%), url('assets/pda.jpg') top center no-repeat;
+  			background-size: cover;
+  			transition: all .3s ease-in;
+  			border-left: 5px solid #fff;
+  			border-top: 5px solid #fff;
+
+  			&.active, &:hover {
+  				background: url('assets/pda.jpg') top center no-repeat;
+  			background-size: cover;
+  				transition: all .3s ease-in;
+  			}
+
+  			@media screen and (min-width: 801px) {
+  				&.active {
+  					.episode-title {
+  						background-color: rgba(83, 139, 185, 0.85);
+  						border-right: 2px solid rgb(83, 139, 185);
+  						border-bottom: 2px solid rgb(83, 139, 185);
+  						transition: all .5s ease;
+  						transform: translate(300px, 65px);
+  						text-shadow: unset;
+  						padding: 0 5px;
+  						line-height: 38px;
+  					}
+  				}
+  			}
+  		}
+
+  		&.counseling {
+  			background: linear-gradient(to top right, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 30%, rgba(255,255,255,0.3) 70%, rgba(255,255,255,0.1) 100%), url('assets/counseling.jpg') top center no-repeat;
+  			background-size: 100% auto, cover;
+  			border-right: 5px solid #fff;
+  			border-top: 5px solid #fff;
+
+  			@media screen and (max-width: 400px) {
+  				background: linear-gradient(to top right, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 30%, rgba(255,255,255,0.3) 70%, rgba(255,255,255,0.1) 100%), url('assets/counseling.jpg') top right no-repeat;
+  				background-size: 100% auto, cover;
+  			}
+
+  			&.active, &:hover {
+  				background: url('assets/counseling.jpg') top center no-repeat;
+  				background-size: cover;
+  				transition: all .3s ease-in;
+  				@media screen and (max-width: 400px) {
+  					background-position: top right;
+  				}
+  			}
+
+  			@media screen and (min-width: 801px) {
+  				&.active {
+  					.episode-title {
+  						background-color: rgba(83, 139, 185, 0.85);
+  						border-right: 2px solid rgb(83, 139, 185);
+  						border-bottom: 2px solid rgb(83, 139, 185);
+  						transition: all .5s ease;
+  						transform: translate(-124px, 65px);
+  						text-shadow: unset;
+  						padding: 0 5px;
+  						line-height: 38px;
+  					}
+  				}
+  			}
+  		}
+  	}
+
+  	.episode-title, .count {
+  		font-size: 30px;
+  		line-height: 54px;
+  		color: #fff;
+  		text-shadow: 1px 3px 10px rgba(0,0,0,0.9);
+  	}
+
+  	.episode-title {
+  		transition: all .5s ease;
+
+  		@media screen and (max-width: 680px) {
+  			font-size: 20px;
+  		}
+
+  		@media screen and (max-width: 450px) {
+  			line-height: 22px;
+  			text-align: center;
+
+  			span {
+  				display: block;
+  			}
+  		}
+  	}
+
+  	.count {
+  		font-size: 48px;
+
+  		@media screen and (max-width: 680px) {
+  			font-size: 38px;
+  		}
+
+  		@media screen and (max-width: 590px) {
+  			font-size: 28px;
+  		}
+  	}
+
+  }
+
+  .middle-section {
+  	width: 100%;
+  	height: 0;
+  	transition: .5s all ease;
+
+  	&.active {
+  		height: auto;
+  		border-bottom: 1px solid #c0c0c0;
+  	}
+  	.quotes {
+  		display: none;
+  		padding-top: 40px;
+  		@media screen and (max-width: 800px) {
+  			padding-top: 20px;
+  		}
+
+  		.episode-title {
+  			display: none;
+  			background-color: rgba(83, 139, 185, 0.85);
+  			border-right: 2px solid rgb(83, 139, 185);
+  			border-bottom: 2px solid rgb(83, 139, 185);
+  			padding: 0 5px;
+  			line-height: 38px;
+  			font-size: 30px;
+  			color: #fff;
+  			text-align: center;
+  			width: 280px;
+  			margin: 0 auto;
+
+  			@media screen and (max-width: 800px) {
+  				display: block;
+  			}
+
+  			@media screen and (max-width: 400px) {
+  				font-size: 22px;
+  				width: 200px;
+  			}
+  		}
+
+  		ul {
+  			padding: 0 30px;
+  			@media screen and (max-width: 600px) {
+
+  			}
+
+  		}
+
+  		li {
+  			list-style: none;
+  			display: flex;
+  			align-items: center;
+
+  			@media screen and (max-width: 600px) {
+  				flex-direction: column;
+  			}
+
+  			img {
+  				width: 80px;
+  				height: 80px;
+  				border-radius: 50%;
+
+  				@media screen and (max-width: 600px) {
+  					order: 1;
+  				}
+  			}
+
+  			p {
+  				background-color: rgba(255,248,43,0.8);
+  				color: #222;
+  				font-size: 18px;
+          line-height: 21px;
+  				border-radius: 20px;
+  				padding: 10px 15px;
+  				@media screen and (max-width: 600px) {
+  					order: 2;
+  				}
+
+  				@media screen and (max-width: 400px) {
+  					font-size: 15px;
+  				}
+
+          strong {
+            color: inherit;
+          }
+  			}
+
+  			&:nth-child(odd) {
+  				justify-content: flex-start;
+
+  				p {
+  					padding: 10px 15px 10px 30px;
+  					position: relative;
+  					margin-left: -10px;
+  					z-index: -1;
+  					@media screen and (max-width: 600px) {
+  						margin-left: 0;
+  						margin-top: -10px;
+  						padding: 15px 20px 15px;
+      				text-align: center;
+  					}
+  				}
+
+  			}
+
+  			&:nth-child(even) {
+  				justify-content: flex-end;
+
+  				p {
+  					padding: 10px 30px 10px 15px;
+  					position: relative;
+  					margin-right: -10px;
+  					z-index: -1;
+  					text-align: right;
+  					@media screen and (max-width: 600px) {
+  						margin-right: 0;
+  						margin-top: -10px;
+  						padding: 15px 20px 15px;
+      				text-align: center;
+  					}
+  				}
+
+  			}
+
+  		}
+
+  		&.active {
+  			display: block;
+  		}
+  	}
+  }
+
+  .bottom-section {
+  	display: flex;
+  	flex-wrap: wrap;
+  	@media screen and (max-width: 600px) {
+  		flex-direction: column;
+  	}
+
+  	.episode {
+  		width: 50%;
+  		height: 80px;
+  		display: flex;
+  		justify-content: space-between;
+  		padding: 0 15px;
+  		border-bottom: 1px solid #c0c0c0;
+
+  		&:nth-child(odd) {
+  			border-right: 1px solid #c0c0c0;
+  			@media screen and (max-width: 600px) {
+  				border-right: 0;
+  			}
+  		}
+
+  		@media screen and (max-width: 600px) {
+  			width: 100%;
+  		}
+
+  		@media screen and (max-width: 350px) {
+  			height: 50px;
+  		}
+  	}
+
+  	.episode-title {
+  		color: #555353;
+  		font-size: 22px;
+  		line-height: 80px;
+  		font-weight: bold;
+
+  		@media screen and (min-width: 600px) and (max-width: 800px) {
+  			font-size: 15px;
+  		}
+
+  		@media screen and (max-width: 600px) {
+  			font-size: 18px;
+  		}
+
+  		@media screen and (max-width: 350px) {
+  			font-size: 14px;
+  			line-height: 50px;
+  		}
+  	}
+
+  	.count {
+  		color: #222;
+  		font-size: 34px;
+  		line-height: 80px;
+  		font-weight: bold;
+
+  		@media screen and (min-width: 600px) and (max-width: 800px) {
+  			font-size: 24px;
+  		}
+
+  		@media screen and (max-width: 600px) {
+  			font-size: 28px;
+  		}
+
+  		@media screen and (max-width: 350px) {
+  			line-height: 50px;
+  		}
+
+  	}
+  }
+
+}
+
+.per-char-per-season {
+	&.flexbox {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		@media screen and (max-width: 1300px) {
+			flex-direction: column;
+			margin: 0 auto;
+		}
+	}
+
+	.left-label {
+		text-align: center;
+    width: 120px;
+    margin-left: -28px;
+		font-size: 14px;
+
+		@media screen and (max-width: 1000px) {
+			font-size: 12px;
+		}
+
+		p {
+			margin: 0;
+		}
+	}
+
+	svg {
+		max-width: 100%;
+		margin: 0 auto;
+		display: block;
+		@media screen and (max-width: 700px) {
+			max-width: 700px;
+			height: 400px;
+		}
+	}
+
+	.chart {
+		@media screen and (max-width: 700px) {
+			overflow-x: scroll;
+		}
+	}
+
+	.grid .tick {
+		stroke: lightgrey;
+		opacity: 0.7;
+		shape-rendering: crispEdges;
+	}
+
+	.grid path {
+		stroke-width: 0;
+	}
+
+	.axis path {
+		fill: none;
+		stroke: #bbb;
+		shape-rendering: crispEdges;
+	}
+
+	.axis text {
+		fill: #555;
+	}
+
+	.axis line {
+		stroke: #e7e7e7;
+		shape-rendering: crispEdges;
+	}
+
+	.axis .axis-label {
+		font-size: 14px;
+	}
+
+	.line {
+		fill: none;
+		stroke-width: 1.5px;
+		display: none;
+		&.shown {
+			display: block;
+		}
+	}
+
+	/* add class 'shown' to start the animation */
+	/* get length of each .line for its offset/array */
+	/* show/hide dots as well when activated */
+
+	@keyframes dash {
+		from {
+			stroke-dashoffset: 1000;
+		}
+		to {
+			stroke-dashoffset: 0;
+		}
+	}
+
+	.dot {
+		/* consider the stroke-with the mouse detect radius? */
+		stroke: transparent;
+		stroke-width: 10px;
+		cursor: pointer;
+
+	}
+
+	/* .dot::after {
+		content: attr(data-count);
+		position: absolute;
+		width: 10px;
+		height: 10px;
+		 color: black;
+	} */
+
+	.dot:hover {
+		stroke: rgba(68, 127, 255, 0.3);
+	}
+
+	.dot-group {
+		position: relative;
+		opacity: 0;
+	}
+
+	.count {
+		display: none;
+		font-size: 13px;
+		fill: MidnightBlue;
+	}
+
+	.dot-group:hover .count {
+		display: block;
+	}
+
+	.dots {
+		z-index: -1;
+		display: none;
+
+		&.shown {
+			z-index: 99;
+			display: block;
+			.dot-group {
+				animation: showDot 200ms linear forwards;
+			}
+			//.dot-group:nth-child(1) { }
+			.dot-group.dot2 { animation-delay: .333s; }
+			.dot-group.dot3 { animation-delay: .667s; }
+			.dot-group.dot4 { animation-delay: 1s; }
+			.dot-group.dot5 { animation-delay: 1.333s; }
+			.dot-group.dot6 { animation-delay: 1.667s; }
+			.dot-group.dot7 { animation-delay: 2s; }
+			.dot-group.dot8 { animation-delay: 2.333s; }
+			.dot-group.dot9 { animation-delay: 2.667s; }
+		}
+	}
+
+	@keyframes showDot {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+	.key {
+		display: flex;
+		align-items: center;
+	}
+
+	.key ul {
+			padding-left: 0;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			width: 170px;
+			@media screen and (max-width: 1300px) {
+				width: 440px;
+				margin: 20px auto;
+			}
+			@media screen and (max-width: 480px) {
+				width: 320px;
+			}
+	}
+
+	.key li {
+		list-style: none;
+		cursor: pointer;
+		padding: 5px;
+		border-radius: 50%;
+		width: 60px;
+		background-color: rgba(0,0,0,0.5);
+		transition: all .5s ease;
+		position: relative;
+		margin: 5px;
+
+		&::before {
+			content: attr(data-tds);
+			position: absolute;
+			background-color: #fff;
+			padding: 3px;
+			border-radius: 50%;
+			top: 2px;
+			left: -4px;
+			border: 1px solid rgba(0,0,0,0.5);
+			box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+			font-size: 12px;
+			box-sizing: border-box;
+			width: 23px;
+			height: 23px;
+			text-align: center;
+		}
+		img {
+			max-width: 100%;
+			display: block;
+			border-radius: 50%;
+			margin: 0;
+		}
+		&.active {
+			&.michael {
+				background-color: darkgreen;
+			}
+			&.dwight {
+				background-color: goldenrod;
+			}
+			&.pam {
+				background-color: lightcoral;
+			}
+			&.jim {
+				background-color: darkblue;
+			}
+			&.andy {
+				background-color: cornflowerblue;
+			}
+			&.toby {
+				background-color: mediumpurple;
+			}
+			&.robert {
+				background-color: limegreen;
+			}
+			&.kevin {
+				background-color: saddlebrown;
+			}
+			&.angela {
+				background-color: darkred;
+			}
+			&.darryl {
+				background-color: olive;
+			}
+		}
+
+	}
+
 }
