@@ -493,6 +493,12 @@ header h1 {
       display: block;
       margin: 10px auto;
       width: 450px;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-align-items: center;
+      align-items: center;
 
         img {
           background: $pri-color;
@@ -513,10 +519,6 @@ header h1 {
             padding: 4px 0 4px 3px;
           }
 
-        }
-
-        img, .item-name {
-          float: left;
         }
 
         .item-name {
@@ -547,6 +549,104 @@ header h1 {
               }
 
             }
+        }
+    }
+}
+
+/* Featured section */
+
+#featured {
+  @include transform(rotate(-2deg));
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-origin: 50%  51%;
+  background-color: #fff;
+  width: 120%;
+  margin: 30px 0 10px -10%;
+
+    .featured-inside {
+      @include transform(rotate(2deg));
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      -webkit-transform-origin: 50%  51%;
+      max-width: 1100px;
+      display: block;
+      margin: 30px auto;
+    }
+
+    .featured-top {
+      font-family: $pri-font;
+      display: block;
+      margin: 40px auto 15px auto;
+      width: 500px;
+      text-align: center;
+
+    }
+
+    .featured-block {
+      display: block;
+      margin: 10px auto;
+      width: 450px;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-align-items: center;
+      align-items: center;
+
+        img {
+          background: $sec-color;
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          cursor: pointer;
+
+          &:hover {
+            background: darken($sec-color, 10%);
+          }
+
+          &.featured-left {
+            padding: 4px 3px 4px 0;
+          }
+
+          &.featured-right {
+            padding: 4px 0 4px 3px;
+          }
+
+        }
+
+        .featured-item-name {
+          font-size: 32px;
+          line-height: 32px;
+          margin: 0 20px;
+          width: 350px;
+        }
+
+        .featured-item-description {
+          font-size: 20px;
+          letter-spacing: .5px;
+          line-height: 24px;
+          font-weight: 400;
+          color: #333;
+
+            a {
+              color: $sec-color;
+              white-space: nowrap;
+              display: inline-block;
+
+              &:hover {
+                color: $sec-color-dark;
+              }
+
+              span {
+                font-size: 14px;
+              }
+
+            }
+        }
+
+        #featured-project {
+
         }
     }
 }

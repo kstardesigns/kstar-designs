@@ -99,6 +99,44 @@ $('.left').click(function(){
 	showPortfolio();
 });
 
+var featuredItems = [
+    {
+      'proj': 'millerlite',
+      'itemname': 'TEST 1',
+      'itemdescription': 'An ugly sweater instant win promotion.* <a href="/" target="_blank" title="">View site <span>&rarr;</span></a>',
+      'projlink': '/'
+    },
+    {
+      'proj': 'cheetos',
+      'itemname': 'TEST 2',
+      'itemdescription': 'A wheel spinning game with Cheetos prizes.* <a href="https://www.dgrewards.com/pepsico/" target="_blank" title="">View site <span>&rarr;</span></a>',
+      'projlink': 'https://www.dgrewards.com/pepsico/'
+    }
+	];
+
+
+var featuredNumber = 0;
+
+$('.featured-right').click(function(){
+	if (featuredNumber >= (featuredItems.length-1)) {
+		featuredNumber = 0;
+	} else {
+		featuredNumber++;
+	}
+  console.log(featuredNumber);
+	showFeatured();
+});
+
+$('.featured-left').click(function(){
+	if (featuredNumber == 0) {
+		featuredNumber = (featuredItems.length);
+	}
+
+	featuredNumber--;
+  console.log(featuredNumber);
+	showFeatured();
+});
+
 /* Scroll transition to anchor */
 
 $('.godown').click(function() {
@@ -118,10 +156,8 @@ var random = Math.floor(Math.random()*colors.length);
 
 $(document).ready(function() {
 
-   $('#project').addClass(portfolioItems[portfolioNumber].proj);
-   $('.item-name').html(portfolioItems[portfolioNumber].itemname);
-   $('.item-description').html(portfolioItems[portfolioNumber].itemdescription);
-   $('.screen a.projlink').attr('href', portfolioItems[portfolioNumber].projlink);
+   showPortfolio();
+   showFeatured();
 
    var apiString = 'https://api.darksky.net/forecast/' + key + '/33.4455,-112.0668?exclude=hourly,daily,minutely,alerts&callback=?';
 
@@ -139,4 +175,11 @@ function showPortfolio(){
 	$('.item-name').html(portfolioItems[portfolioNumber].itemname);
 	$('.item-description').html(portfolioItems[portfolioNumber].itemdescription);
     $('.screen a.projlink').attr('href', portfolioItems[portfolioNumber].projlink);
+}
+
+function showFeatured(){
+	$('#featured-project').removeClass().addClass(featuredItems[featuredNumber].proj);
+	$('.featured-item-name').html(featuredItems[featuredNumber].itemname);
+	$('.featured-item-description').html(featuredItems[featuredNumber].itemdescription);
+  $('.screen a.projlink').attr('href', featuredItems[featuredNumber].projlink);
 }
