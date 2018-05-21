@@ -99,6 +99,50 @@ $('.left').click(function(){
 	showPortfolio();
 });
 
+var featuredItems = [
+    {
+      'proj': 'digitalmonopoly',
+      'itemname': 'Digital Monopoly Properties',
+      'itemdescription': 'As part of the <a href="https://codepen.io/challenges/2018/may#cpc-details" target="_blank">Weekly CodePen Challenge</a>, my goal was to use the relatively new <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> tags in a creative way. Featured in CodePen\'s weekly roundup. From the article:<br/><em>Kyle\'s "Digital Monopoly properties" draws inspiration from the Monopoly game\'s property cards.</em>',
+      'projlink': 'https://codepen.io/kaisle/full/vjapBE/',
+      'articlelink': 'https://blog.codepen.io/2018/05/20/codepenchallenge-details-and-summary-roundup/',
+      'articlelinktitle': 'CodePenChallenge: Details and Summary Roundup',
+      'secondarylink':'https://codepen.io/kaisle/pen/vjapBE',
+      'secondarylinktitle':'View this project on CodePen'
+    },
+    {
+      'proj': 'grimmauldplace',
+      'itemname': '12 Grimmauld Place',
+      'itemdescription': 'A mini Harry Potter quiz, featuring CSS art and animations. Featured in CodePen\'s weekly <a href="https://codepen.io/spark/" target="_blank" title="">Spark</a> email. From the email:<br/><em>Answer some Harry Potter trivia and reveal Sirius Black\s secret home in Kyle Stark\'s magical Pen. And don\'t worry, there\'s a handy answer key for Muggles!</em>',
+      'projlink': 'https://codepen.io/kaisle/full/dJWMEK/',
+      'articlelink': 'https://codepen.io/spark/58',
+      'articlelinktitle': 'JANUARY 8TH: The Practical, The Magical, and the Most Hearted',
+      'secondarylink':'https://codepen.io/kaisle/pen/dJWMEK',
+      'secondarylinktitle':'View this project on CodePen'
+    }
+	];
+
+
+var featuredNumber = 0;
+
+$('.featured-right').click(function(){
+	if (featuredNumber >= (featuredItems.length-1)) {
+		featuredNumber = 0;
+	} else {
+		featuredNumber++;
+	}
+	showFeatured();
+});
+
+$('.featured-left').click(function(){
+	if (featuredNumber == 0) {
+		featuredNumber = (featuredItems.length);
+	}
+
+	featuredNumber--;
+	showFeatured();
+});
+
 /* Scroll transition to anchor */
 
 $('.godown').click(function() {
@@ -118,10 +162,8 @@ var random = Math.floor(Math.random()*colors.length);
 
 $(document).ready(function() {
 
-   $('#project').addClass(portfolioItems[portfolioNumber].proj);
-   $('.item-name').html(portfolioItems[portfolioNumber].itemname);
-   $('.item-description').html(portfolioItems[portfolioNumber].itemdescription);
-   $('.screen a.projlink').attr('href', portfolioItems[portfolioNumber].projlink);
+   showPortfolio();
+   showFeatured();
 
    var apiString = 'https://api.darksky.net/forecast/' + key + '/33.4455,-112.0668?exclude=hourly,daily,minutely,alerts&callback=?';
 
@@ -138,5 +180,15 @@ function showPortfolio(){
 	$('#project').removeClass().addClass(portfolioItems[portfolioNumber].proj);
 	$('.item-name').html(portfolioItems[portfolioNumber].itemname);
 	$('.item-description').html(portfolioItems[portfolioNumber].itemdescription);
-    $('.screen a.projlink').attr('href', portfolioItems[portfolioNumber].projlink);
+  $('.screen a.projlink').attr('href', portfolioItems[portfolioNumber].projlink);
+}
+
+function showFeatured(){
+	$('#featured-project').removeClass().addClass(featuredItems[featuredNumber].proj);
+	$('.featured-item-name').html(featuredItems[featuredNumber].itemname);
+	$('.featured-item-description').html(featuredItems[featuredNumber].itemdescription);
+  $('#featured-project a.imglink, #featured-project a.projlink2').attr('href', featuredItems[featuredNumber].projlink);
+  $('#featured-project .featured-image').attr({ 'src': 'assets/featured/' + featuredItems[featuredNumber].proj + '.jpg', 'alt': featuredItems[featuredNumber].itemname});
+  $('#featured-project .article-link').attr({ 'href': featuredItems[featuredNumber].articlelink, 'title': featuredItems[featuredNumber].articlelinktitle});
+  $('#featured-project .secondary-link').attr({ 'href': featuredItems[featuredNumber].secondarylink, 'title': featuredItems[featuredNumber].secondarylinktitle});
 }
