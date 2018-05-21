@@ -578,9 +578,8 @@ header h1 {
       font-family: $pri-font;
       display: block;
       margin: 40px auto 15px auto;
-      width: 500px;
+      width: 100%;
       text-align: center;
-
     }
 
     .featured-block {
@@ -593,6 +592,19 @@ header h1 {
       display: flex;
       -webkit-align-items: center;
       align-items: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+
+        &--two {
+          width: 920px;
+          max-width: 100%;
+          margin-top: 20px;
+
+          p em {
+            display: block;
+            margin-top: 15px;
+          }
+        }
 
         img {
           background: $sec-color;
@@ -644,9 +656,53 @@ header h1 {
 
             }
         }
+    }
 
-        #featured-project {
+    #featured-project {
+      padding-bottom: 30px;
 
+        img {
+          width: 800px;
+          max-width: 80%;
+          border: 2px solid $sec-color;
+          display: block;
+          margin: 30px auto;
+
+          &:hover {
+            border: 2px solid $sec-color-dark;
+          }
+        }
+
+        .imglink {
+          display: block;
+          width: auto;
+          height: auto;
+        }
+
+        .featured-item-links {
+          font-size: 20px;
+          letter-spacing: .5px;
+          line-height: 24px;
+          font-weight: 400;
+          color: #333;
+          text-align: center;
+          font-family: $pri-font;
+          padding-bottom: 50px;
+
+            a {
+              color: $sec-color;
+              white-space: nowrap;
+              display: inline-block;
+
+              &:hover {
+                color: $sec-color-dark;
+              }
+
+              span {
+                font-size: 14px;
+              }
+
+            }
         }
     }
 }
@@ -1063,6 +1119,10 @@ footer {
 
 /* Responsive */
 
+@media screen and (max-width: 1100px) {
+  #featured .featured-block--two { width: 500px; max-width: 90%; }
+}
+
 @media screen and (max-width: 970px) {
   .experience .svgs {
     width: 750px;
@@ -1101,13 +1161,14 @@ footer {
   //#intro { height: 420px; position: relative; }
   .down { bottom: 40px; }
   header { top: calc(50% - 80px); }
-  #portfolio { padding-bottom: 20px; }
+  #portfolio, #featured { padding-bottom: 20px; }
   #portfolio .portfolio-top { width: 300px; }
+  #featured .featured-top { width: 450px; max-width: 90%; }
   #portfolio .portfolio-block { width: 100%; }
-  #portfolio .portfolio-block .item-name { font-size: 22px; line-height: 25px; margin: 0 10px; width: 240px; }
-  #portfolio .portfolio-block img { width: 18px; height: 18px; }
-  #portfolio .portfolio-block img.left { padding: 4px 2px 4px 0; }
-  #portfolio .portfolio-block img.right { padding: 4px 0 4px 2px; }
+  #portfolio .portfolio-block .item-name, #featured .featured-block .featured-item-name { font-size: 22px; line-height: 25px; margin: 0 10px; width: 240px; }
+  #portfolio .portfolio-block img, #featured .featured-block img { width: 18px; height: 18px; }
+  #portfolio .portfolio-block img.left, #featured .featured-block img.left { padding: 4px 2px 4px 0; }
+  #portfolio .portfolio-block img.right, #featured .featured-block img.right { padding: 4px 0 4px 2px; }
   #about p { width: 70%; }
   #four04 h2.four04 { font-size: 10em; }
 }
@@ -1148,9 +1209,9 @@ footer {
 
 @media screen and (max-width: 360px) {
   .experience figure figcaption { font-size: 1.1em; }
-  #portfolio .portfolio-block { width: 90%; }
-  #portfolio .portfolio-block .item-description { font-size: 1em; }
-  #portfolio .portfolio-block .item-name { width: 210px; }
+  #portfolio .portfolio-block, #featured .featured-block { width: 90%; }
+  #portfolio .portfolio-block .item-description, #featured .featured-block .featured-item-description, #featured .featured-item-links { font-size: 1em; }
+  #portfolio .portfolio-block .item-name, #featured .featured-block .featured-item-name { width: 210px; }
   #about p { font-size: 1em; }
   .experience .svgs--companies figure {
     &.millerlite img, &.jimbeam img, img {

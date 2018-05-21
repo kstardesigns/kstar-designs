@@ -101,16 +101,24 @@ $('.left').click(function(){
 
 var featuredItems = [
     {
-      'proj': 'millerlite',
-      'itemname': 'TEST 1',
-      'itemdescription': 'An ugly sweater instant win promotion.* <a href="/" target="_blank" title="">View site <span>&rarr;</span></a>',
-      'projlink': '/'
+      'proj': 'digitalmonopoly',
+      'itemname': 'Digital Monopoly Properties',
+      'itemdescription': 'As part of the <a href="https://codepen.io/challenges/2018/may#cpc-details" target="_blank">Weekly CodePen Challenge</a>, my goal was to use the relatively new <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> tags in a creative way. Featured in CodePen\'s weekly roundup. From the article:<br/><em>Kyle\'s "Digital Monopoly properties" draws inspiration from the Monopoly game\'s property cards.</em>',
+      'projlink': 'https://codepen.io/kaisle/full/vjapBE/',
+      'articlelink': 'https://blog.codepen.io/2018/05/20/codepenchallenge-details-and-summary-roundup/',
+      'articlelinktitle': 'CodePenChallenge: Details and Summary Roundup',
+      'secondarylink':'https://codepen.io/kaisle/pen/vjapBE',
+      'secondarylinktitle':'View this project on CodePen'
     },
     {
-      'proj': 'cheetos',
-      'itemname': 'TEST 2',
-      'itemdescription': 'A wheel spinning game with Cheetos prizes.* <a href="https://www.dgrewards.com/pepsico/" target="_blank" title="">View site <span>&rarr;</span></a>',
-      'projlink': 'https://www.dgrewards.com/pepsico/'
+      'proj': 'grimmauldplace',
+      'itemname': '12 Grimmauld Place',
+      'itemdescription': 'A mini Harry Potter quiz, featuring CSS art and animations. Featured in CodePen\'s weekly <a href="https://codepen.io/spark/" target="_blank" title="">Spark</a> email. From the email:<br/><em>Answer some Harry Potter trivia and reveal Sirius Black\s secret home in Kyle Stark\'s magical Pen. And don\'t worry, there\'s a handy answer key for Muggles!</em>',
+      'projlink': 'https://codepen.io/kaisle/full/dJWMEK/',
+      'articlelink': 'https://codepen.io/spark/58',
+      'articlelinktitle': 'JANUARY 8TH: The Practical, The Magical, and the Most Hearted',
+      'secondarylink':'https://codepen.io/kaisle/pen/dJWMEK',
+      'secondarylinktitle':'View this project on CodePen'
     }
 	];
 
@@ -123,7 +131,6 @@ $('.featured-right').click(function(){
 	} else {
 		featuredNumber++;
 	}
-  console.log(featuredNumber);
 	showFeatured();
 });
 
@@ -133,7 +140,6 @@ $('.featured-left').click(function(){
 	}
 
 	featuredNumber--;
-  console.log(featuredNumber);
 	showFeatured();
 });
 
@@ -174,12 +180,15 @@ function showPortfolio(){
 	$('#project').removeClass().addClass(portfolioItems[portfolioNumber].proj);
 	$('.item-name').html(portfolioItems[portfolioNumber].itemname);
 	$('.item-description').html(portfolioItems[portfolioNumber].itemdescription);
-    $('.screen a.projlink').attr('href', portfolioItems[portfolioNumber].projlink);
+  $('.screen a.projlink').attr('href', portfolioItems[portfolioNumber].projlink);
 }
 
 function showFeatured(){
 	$('#featured-project').removeClass().addClass(featuredItems[featuredNumber].proj);
 	$('.featured-item-name').html(featuredItems[featuredNumber].itemname);
 	$('.featured-item-description').html(featuredItems[featuredNumber].itemdescription);
-  $('.screen a.projlink').attr('href', featuredItems[featuredNumber].projlink);
+  $('#featured-project a.imglink, #featured-project a.projlink2').attr('href', featuredItems[featuredNumber].projlink);
+  $('#featured-project .featured-image').attr({ 'src': 'assets/featured/' + featuredItems[featuredNumber].proj + '.jpg', 'alt': featuredItems[featuredNumber].itemname});
+  $('#featured-project .article-link').attr({ 'href': featuredItems[featuredNumber].articlelink, 'title': featuredItems[featuredNumber].articlelinktitle});
+  $('#featured-project .secondary-link').attr({ 'href': featuredItems[featuredNumber].secondarylink, 'title': featuredItems[featuredNumber].secondarylinktitle});
 }
