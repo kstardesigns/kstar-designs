@@ -322,6 +322,7 @@ header h1 {
     figure {
       width: $svg-size;
       margin: $svg-margin;
+      position: relative;
 
         figcaption {
           text-align: center;
@@ -329,19 +330,36 @@ header h1 {
           font-family: $pri-font;
           font-size: 1.2em;
           font-weight: bold;
-          font-weight: 300;
           margin-top: 5px;
           display: none;
           letter-spacing: 1px;
+          position: absolute;
+          top: -20px;
+          left: -20px;
+          width: 115px;
+          background-color: #fff;
+          padding: 5px 5px 0px 5px;
+          border: 1px solid #aaa;
         }
 
-        &.dreamweaver figcaption {
-          margin-left: -14px;
+        &:hover figcaption {
+         display: block;
+         z-index: 99;
         }
 
-        //&:hover figcaption {
-        //  display: block;
-        //}
+        &.html5, &.jquery {
+          figcaption {
+            width: 95px;
+            left: -10px;
+          }
+        }
+
+        &.css3, &.sass, &.vue {
+          figcaption {
+            width: 85px;
+            left: -5px;
+          }
+        }
 
 
     }
@@ -388,9 +406,14 @@ header h1 {
             // }
           }
 
-          &.millerlite, &.jimbeam {
+          &.millerlite, &.elmers {
             img {
               width: 100px;
+            }
+          }
+          &.mcdonalds {
+            img {
+              width: 90px;
             }
           }
           &.pepsico {
@@ -1022,10 +1045,6 @@ header h1 {
 .clayton .tablet .screen { background: $screen-color url('../assets/portfolio/clayton-tablet.jpg'); background-size: cover; }
 .clayton .mobile .screen { background: $screen-color url('../assets/portfolio/clayton-mobile.jpg'); background-size: cover; }
 
-.sandman .screen { background: url('../assets/portfolio/sandman-desktop.jpg'); background-size: cover; }
-.sandman .tablet .screen { background: $screen-color url('../assets/portfolio/sandman-tablet.jpg'); background-size: cover; }
-.sandman .mobile .screen { background: $screen-color url('../assets/portfolio/sandman-mobile.jpg'); background-size: cover; }
-
 .darwins .screen { background: url('../assets/portfolio/darwins-desktop.jpg'); background-size: cover; }
 .darwins .tablet .screen { background: $screen-color url('../assets/portfolio/darwins-tablet.jpg'); background-size: cover; }
 .darwins .mobile .screen { background: $screen-color url('../assets/portfolio/darwins-mobile.jpg'); background-size: cover; }
@@ -1042,6 +1061,9 @@ header h1 {
 .cheetos .tablet .screen { background: $screen-color url('../assets/portfolio/cheetos-tablet.jpg'); background-size: cover; }
 .cheetos .mobile .screen { background: $screen-color url('../assets/portfolio/cheetos-mobile.png'); background-size: cover; }
 
+.sprint .screen { background: url('../assets/portfolio/sprint-desktop.jpg'); background-size: cover; }
+.sprint .tablet .screen { background: $screen-color url('../assets/portfolio/sprint-tablet.jpg'); background-size: cover; }
+.sprint .mobile .screen { background: $screen-color url('../assets/portfolio/sprint-mobile.jpg'); background-size: cover; }
 
 /* footer section */
 
@@ -1198,8 +1220,42 @@ footer {
   header h1 { margin-top: -2px; margin-left: -70px; }
   header h1 span { display: none; }
   .stripe { padding-bottom: 20px; }
-  .skills .svgs { width: 320px; }
-  .skills figure { width: 60px; }
+  .skills .svgs { width: 300px; justify-content: space-around; }
+  .skills figure {
+    width: 100px;
+
+    figcaption {
+      display: block;
+      position: unset;
+      top: unset;
+      left: unset;
+      width: unset;
+      border: none;
+      font-size: 1em;
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+
+    &.html5, &.jquery {
+      figcaption {
+        width: unset;
+        left: unset;
+      }
+    }
+
+    &.css3, &.sass, &.vue {
+      figcaption {
+        width: unset;
+        left: unset;
+      }
+    }
+
+  }
+
+  .experience figure {
+    height: 120px;
+  }
+
   .experience figure img { height: 50px; }
   .experience figure.prizelogic img { height: 32px; }
   #contact .svgs { width: 300px; }
@@ -1218,7 +1274,7 @@ footer {
   #portfolio .portfolio-block .item-name, #featured .featured-block .featured-item-name { width: 210px; }
   #about p { font-size: 1em; }
   .experience .svgs--companies figure {
-    &.millerlite img, &.jimbeam img, img {
+    &.millerlite img, &.elmers img, &.mcdonalds img, img {
       width: 80px;
     }
     &.pepsico img {

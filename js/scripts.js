@@ -16,10 +16,16 @@ $('nav ul a').click(function(){
 
 var portfolioItems = [
     {
+      'proj': 'sprint',
+      'itemname': 'Sprint Back to School Sweepstakes',
+      'itemdescription': 'A sweepstakes site including instant win games and a yearbook photo upload contest.* <a href="https://schoolspirit.sprint.com/" target="_blank" title="">View site <span>&rarr;</span></a>',
+      'projlink': 'https://schoolspirit.sprint.com/'
+    },
+    {
       'proj': 'millerlite',
       'itemname': 'Miller Lite Ugly Sweater Game',
-      'itemdescription': 'An ugly sweater instant win promotion.* <a href="/" target="_blank" title="">View site <span>&rarr;</span></a>',
-      'projlink': '/'
+      'itemdescription': 'An ugly sweater instant win promotion.* <a href="https://www.millerlite.com/" target="_blank" title="">View site <span>&rarr;</span></a>',
+      'projlink': 'https://www.millerlite.com/'
     },
     {
       'proj': 'cheetos',
@@ -68,12 +74,6 @@ var portfolioItems = [
 			'itemname': 'Clayton Sullivan Portfolio',
 			'itemdescription': 'A portfolio website displaying the work of a stuntman/actor. <a href="http://claytonasullivan.com" target="_blank" title="">View site <span>&rarr;</span></a>',
 			'projlink': 'http://claytonasullivan.com'
-		},
-		{
-			'proj': 'sandman',
-			'itemname': 'Charity Golf Scramble',
-			'itemdescription': 'A single-page website giving information for a charity golf event. <a href="sandman/index.html" target="_blank" title="">View site <span>&rarr;</span></a>',
-			'projlink': 'sandman/index.html'
 		}
 	];
 

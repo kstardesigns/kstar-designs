@@ -327,19 +327,33 @@ header h1 {
   margin: 25px auto; }
 .skills figure {
   width: 70px;
-  margin: 10px; }
+  margin: 10px;
+  position: relative; }
   .skills figure figcaption {
     text-align: center;
     color: #333;
     font-family: "Josefin Sans", sans-serif;
     font-size: 1.2em;
     font-weight: bold;
-    font-weight: 300;
     margin-top: 5px;
     display: none;
-    letter-spacing: 1px; }
-  .skills figure.dreamweaver figcaption {
-    margin-left: -14px; }
+    letter-spacing: 1px;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 115px;
+    background-color: #fff;
+    padding: 5px 5px 0px 5px;
+    border: 1px solid #aaa; }
+  .skills figure:hover figcaption {
+    display: block;
+    z-index: 99; }
+  .skills figure.html5 figcaption, .skills figure.jquery figcaption {
+    width: 95px;
+    left: -10px; }
+  .skills figure.css3 figcaption, .skills figure.sass figcaption, .skills figure.vue figcaption {
+    width: 85px;
+    left: -5px; }
 
 .experience {
   height: 980px; }
@@ -369,8 +383,10 @@ header h1 {
         height: auto;
         -ms-flex-item-align: center;
         align-self: center; }
-      .experience .svgs--companies figure.millerlite img, .experience .svgs--companies figure.jimbeam img {
+      .experience .svgs--companies figure.millerlite img, .experience .svgs--companies figure.elmers img {
         width: 100px; }
+      .experience .svgs--companies figure.mcdonalds img {
+        width: 90px; }
       .experience .svgs--companies figure.pepsico img {
         width: 150px;
         margin-top: -10px; }
@@ -916,18 +932,6 @@ header h1 {
   background: Azure url("../assets/portfolio/clayton-mobile.jpg");
   background-size: cover; }
 
-.sandman .screen {
-  background: url("../assets/portfolio/sandman-desktop.jpg");
-  background-size: cover; }
-
-.sandman .tablet .screen {
-  background: Azure url("../assets/portfolio/sandman-tablet.jpg");
-  background-size: cover; }
-
-.sandman .mobile .screen {
-  background: Azure url("../assets/portfolio/sandman-mobile.jpg");
-  background-size: cover; }
-
 .darwins .screen {
   background: url("../assets/portfolio/darwins-desktop.jpg");
   background-size: cover; }
@@ -974,6 +978,18 @@ header h1 {
 
 .cheetos .mobile .screen {
   background: Azure url("../assets/portfolio/cheetos-mobile.png");
+  background-size: cover; }
+
+.sprint .screen {
+  background: url("../assets/portfolio/sprint-desktop.jpg");
+  background-size: cover; }
+
+.sprint .tablet .screen {
+  background: Azure url("../assets/portfolio/sprint-tablet.jpg");
+  background-size: cover; }
+
+.sprint .mobile .screen {
+  background: Azure url("../assets/portfolio/sprint-mobile.jpg");
   background-size: cover; }
 
 /* footer section */
@@ -1241,10 +1257,30 @@ footer p {
     padding-bottom: 20px; }
 
   .skills .svgs {
-    width: 320px; }
+    width: 300px;
+    justify-content: space-around; }
 
   .skills figure {
-    width: 60px; }
+    width: 100px; }
+    .skills figure figcaption {
+      display: block;
+      position: unset;
+      top: unset;
+      left: unset;
+      width: unset;
+      border: none;
+      font-size: 1em;
+      margin-top: 0;
+      margin-bottom: 5px; }
+    .skills figure.html5 figcaption, .skills figure.jquery figcaption {
+      width: unset;
+      left: unset; }
+    .skills figure.css3 figcaption, .skills figure.sass figcaption, .skills figure.vue figcaption {
+      width: unset;
+      left: unset; }
+
+  .experience figure {
+    height: 120px; }
 
   .experience figure img {
     height: 50px; }
@@ -1293,7 +1329,7 @@ footer p {
   #about p {
     font-size: 1em; }
 
-  .experience .svgs--companies figure.millerlite img, .experience .svgs--companies figure.jimbeam img, .experience .svgs--companies figure img {
+  .experience .svgs--companies figure.millerlite img, .experience .svgs--companies figure.elmers img, .experience .svgs--companies figure.mcdonalds img, .experience .svgs--companies figure img {
     width: 80px; }
   .experience .svgs--companies figure.pepsico img {
     width: 110px; }
