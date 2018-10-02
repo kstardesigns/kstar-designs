@@ -1,0 +1,706 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="description" content="TODO">
+
+	<title>TODO</title>
+
+	<link rel="shortcut icon" href="assets/icons/TODO.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/icons/TODO.png">
+	<style>
+	@import url("https://fonts.googleapis.com/css?family=Lato:400,700|Noto+Sans:700");
+	* {
+		box-sizing: border-box;
+	}
+
+	.normal {
+		background-color: #aa9;
+	}
+
+	.fire {
+		background-color: #f42;
+	}
+
+	.water {
+		background-color: #39f;
+	}
+
+	.electric {
+		background-color: #fc3;
+	}
+
+	.grass {
+		background-color: #7c5;
+	}
+
+	.ice {
+		background-color: #6cf;
+	}
+
+	.fighting {
+		background-color: #b54;
+	}
+
+	.poison {
+		background-color: #a59;
+	}
+
+	.ground {
+		background-color: #db5;
+	}
+
+	.flying {
+		background-color: #89f;
+	}
+
+	.psychic {
+		background-color: #f59;
+	}
+
+	.bug {
+		background-color: #ab2;
+	}
+
+	.rock {
+		background-color: #ba6;
+	}
+
+	.ghost {
+		background-color: #66b;
+	}
+
+	.dragon {
+		background-color: #76e;
+	}
+
+	.dark {
+		background-color: #754;
+	}
+
+	.steel {
+		background-color: #aab;
+	}
+
+	.fairy {
+		background-color: #e9e;
+	}
+
+	body {
+		margin: 0;
+		padding: 0;
+		font-family: 'Lato', sans-serif;
+		font-size: 12px;
+		text-transform: uppercase;
+	}
+
+	.chart {
+		display: flex;
+		text-align: center;
+		background-color: white;
+	}
+
+	.zero, .half, .one, .two {
+		font-family: 'Noto Sans', sans-serif;
+		font-size: 20px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #fff;
+		text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+	}
+
+	.zero {
+		background-color: #333;
+	}
+
+	.half {
+		background-color: #bf1b16;
+	}
+
+	.one {
+		background-color: #cdcdcd;
+		color: transparent;
+		text-shadow: none;
+	}
+
+	.two {
+		background-color: #2b963a;
+	}
+
+	.attack.shadowed {
+		position: relative;
+		box-shadow: 2px 0 30px 3px rgba(0, 0, 0, 0.3);
+		z-index: 6;
+	}
+
+	.attack .key {
+		font-size: 11px;
+		line-height: 10px;
+		background-color: #333;
+	}
+	.attack .key.fixed {
+		position: fixed;
+		top: 0;
+		left: 0;
+		border-bottom: 2px solid #000;
+		min-height: 31px;
+	}
+	.attack div {
+		border: 1px solid #000;
+		width: 80px;
+		min-height: 30px;
+		height: 5.263vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #fff;
+		font-weight: bold;
+		text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+	}
+	.attack div:first-child {
+		min-height: 30px;
+		height: 5.263vh;
+	}
+	.attack div:first-child.fixed {
+		position: fixed;
+		top: 0;
+		left: 0;
+		box-shadow: 0px 10px 55px 0px rgba(0, 0, 0, 0.3);
+	}
+	.attack div.first.adjusted {
+		margin-top: 5.263vh;
+	}
+	@media screen and (max-height: 630px) {
+		.attack div.first.adjusted {
+			margin-top: 30px;
+		}
+	}
+
+	.defense {
+		overflow-x: scroll;
+	}
+	@media screen and (max-width: 1240px) {
+		.defense.shadowed {
+			position: relative;
+			z-index: 5;
+			box-shadow: inset -10px 0 32px 3px rgba(0, 0, 0, 0.3);
+		}
+	}
+
+	.row {
+		display: flex;
+	}
+	.row.headings div {
+		min-height: 30px;
+		height: 5.263vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #fff;
+		font-weight: bold;
+		text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+		padding-bottom: 1px;
+	}
+	.row.headings.fixed {
+		position: fixed;
+		top: 0;
+		background-color: white;
+		box-shadow: 0px 10px 55px 0px rgba(0, 0, 0, 0.3);
+	}
+	.row.headings.fixed div {
+		border-bottom: 2px solid #000;
+		min-height: 31px;
+	}
+	.row--first.adjusted {
+		margin-top: 5.263vh;
+	}
+	@media screen and (max-height: 630px) {
+		.row--first.adjusted {
+			margin-top: 30px;
+		}
+	}
+	.row div {
+		border: 1px solid #000;
+		width: 70px;
+		min-height: 30px;
+		height: 5.263vh;
+		flex-shrink: 0;
+	}
+
+	</style>
+</head>
+<body>
+	<div class="chart">
+		<div class="attack headings">
+			<div class="key">Defense &rarr;<br/>Attack &darr;</div>
+			<div class="normal first">Normal</div>
+			<div class="fire">Fire</div>
+			<div class="water">Water</div>
+			<div class="electric">Electric</div>
+			<div class="grass">Grass</div>
+			<div class="ice">Ice</div>
+			<div class="fighting">Fighting</div>
+			<div class="poison">Poison</div>
+			<div class="ground">Ground</div>
+			<div class="flying">Flying</div>
+			<div class="psychic">Psychic</div>
+			<div class="bug">Bug</div>
+			<div class="rock">Rock</div>
+			<div class="ghost">Ghost</div>
+			<div class="dragon">Dragon</div>
+			<div class="dark">Dark</div>
+			<div class="steel">Steel</div>
+			<div class="fairy">Fairy</div>
+		</div>
+		<div class="defense shadowed">
+			<div class="row headings">
+				<div class="normal">Normal</div>
+				<div class="fire">Fire</div>
+				<div class="water">Water</div>
+				<div class="electric">Electric</div>
+				<div class="grass">Grass</div>
+				<div class="ice">Ice</div>
+				<div class="fighting">Fighting</div>
+				<div class="poison">Poison</div>
+				<div class="ground">Ground</div>
+				<div class="flying">Flying</div>
+				<div class="psychic">Psychic</div>
+				<div class="bug">Bug</div>
+				<div class="rock">Rock</div>
+				<div class="ghost">Ghost</div>
+				<div class="dragon">Dragon</div>
+				<div class="dark">Dark</div>
+				<div class="steel">Steel</div>
+				<div class="fairy">Fairy</div>
+			</div>
+			<div class="row row--first">
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="zero"><span>0</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+			</div>
+			<div class="row">
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+			</div>
+			<div class="row">
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+			</div>
+			<div class="row">
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="zero"><span>0</span>×</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+			</div>
+			<div class="row">
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+			</div>
+			<div class="row">
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+			</div>
+			<div class="row">
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="zero"><span>0</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="half"><span>½</span>×</div>
+			</div>
+			<div class="row">
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="zero"><span>0</span>×</div>
+				<div class="two"><span>2</span>×</div>
+			</div>
+			<div class="row">
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="zero"><span>0</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+			</div>
+			<div class="row">
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+			</div>
+			<div class="row">
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="zero"><span>0</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div></div>
+			</div>
+			<div class="row">
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="half"><span>½</span>×</div>
+			</div>
+			<div class="row">
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+			</div>
+			<div class="row">
+				<div class="zero"><span>0</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+			</div>
+			<div class="row">
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="zero"><span>0</span>×</div>
+			</div>
+			<div class="row">
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+			</div>
+			<div class="row">
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="two"><span>2</span>×</div>
+			</div>
+			<div class="row">
+				<div class="one"><span>1</span>x</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="one"><span>1</span>x</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="two"><span>2</span>×</div>
+				<div class="half"><span>½</span>×</div>
+				<div class="one"><span>1</span>x</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		var scrollLeftPrev = 0;
+
+		function stickyCheck() {
+			if (window.scrollY > 0 && document.querySelector('.defense').scrollLeft == 0) {
+					document.querySelector('.defense .row.headings').classList.add('fixed');
+					document.querySelector('.attack .key').classList.add('fixed');
+					document.querySelector('.row--first').classList.add('adjusted');
+					document.querySelector('.attack .normal').classList.add('adjusted');
+
+			} else {
+				document.querySelector('.defense .row.headings').classList.remove('fixed');
+				document.querySelector('.attack .key').classList.remove('fixed');
+				document.querySelector('.row--first').classList.remove('adjusted');
+				document.querySelector('.attack .normal').classList.remove('adjusted');
+			}
+		}
+
+		function shadowCheck() {
+			if (document.querySelector('.defense').scrollLeft == 0) {
+				document.querySelector('.attack').classList.remove('shadowed');
+			} else {
+				document.querySelector('.attack').classList.add('shadowed');
+			}
+
+			var scrollDiv = document.querySelector('.defense');
+			var newScrollLeft = scrollDiv.scrollLeft,
+					width = scrollDiv.offsetWidth,
+					scrollWidth = scrollDiv.scrollWidth;
+			var offset = 0;
+			if (scrollWidth - newScrollLeft - width == offset) {
+				scrollDiv.classList.remove('shadowed');
+			} else {
+				scrollDiv.classList.add('shadowed');
+			}
+			scrollLeftPrev = newScrollLeft;
+		}
+
+		function roundToStep() {
+			var unroundedScrollLeft = document.querySelector('.defense').scrollLeft;
+			var remainder = unroundedScrollLeft % 70;
+
+			if (remainder >= 35) {
+				var roundedScrollLeft = unroundedScrollLeft + (70 - remainder);
+				document.querySelector('.defense').scrollLeft = roundedScrollLeft;
+			}
+		}
+
+		window.addEventListener('scroll', function() {
+			stickyCheck();
+		});
+
+		document.querySelector('.defense').addEventListener('scroll', function(e) {
+			stickyCheck();
+			shadowCheck();
+			roundToStep();
+		});
+	</script>
+
+	<!-- TODO
+		set up google analytics
+	-->
+</body>
