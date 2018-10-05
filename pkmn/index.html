@@ -6,232 +6,251 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<meta name="description" content="TODO">
+	<meta name="description" content="An interactive type chart listing the strengths and weaknesses of each Pokémon type, including single and dual type Pokémon.">
 
-	<title>TODO</title>
+	<title>Pokémon Type Chart - Strengths and Weaknesses for single and dual types</title>
 
-	<link rel="shortcut icon" href="assets/icons/TODO.png">
-    <link rel="apple-touch-icon-precomposed" href="assets/icons/TODO.png">
+	<link rel="shortcut icon" href="meltan.png">
+  <link rel="apple-touch-icon-precomposed" href="meltan.png">
 	<style>
-	@import url("https://fonts.googleapis.com/css?family=Lato:400,700|Noto+Sans:700");
-	* {
-		box-sizing: border-box;
-	}
+		@import url("https://fonts.googleapis.com/css?family=Lato:400,700|Noto+Sans:700");
+		* {
+		  box-sizing: border-box;
+		}
 
-	.normal {
-		background-color: #aa9;
-	}
+		.normal {
+		  background-color: #aa9;
+		}
 
-	.fire {
-		background-color: #f42;
-	}
+		.fire {
+		  background-color: #f42;
+		}
 
-	.water {
-		background-color: #39f;
-	}
+		.water {
+		  background-color: #39f;
+		}
 
-	.electric {
-		background-color: #fc3;
-	}
+		.electric {
+		  background-color: #fc3;
+		}
 
-	.grass {
-		background-color: #7c5;
-	}
+		.grass {
+		  background-color: #7c5;
+		}
 
-	.ice {
-		background-color: #6cf;
-	}
+		.ice {
+		  background-color: #6cf;
+		}
 
-	.fighting {
-		background-color: #b54;
-	}
+		.fighting {
+		  background-color: #b54;
+		}
 
-	.poison {
-		background-color: #a59;
-	}
+		.poison {
+		  background-color: #a59;
+		}
 
-	.ground {
-		background-color: #db5;
-	}
+		.ground {
+		  background-color: #db5;
+		}
 
-	.flying {
-		background-color: #89f;
-	}
+		.flying {
+		  background-color: #89f;
+		}
 
-	.psychic {
-		background-color: #f59;
-	}
+		.psychic {
+		  background-color: #f59;
+		}
 
-	.bug {
-		background-color: #ab2;
-	}
+		.bug {
+		  background-color: #ab2;
+		}
 
-	.rock {
-		background-color: #ba6;
-	}
+		.rock {
+		  background-color: #ba6;
+		}
 
-	.ghost {
-		background-color: #66b;
-	}
+		.ghost {
+		  background-color: #66b;
+		}
 
-	.dragon {
-		background-color: #76e;
-	}
+		.dragon {
+		  background-color: #76e;
+		}
 
-	.dark {
-		background-color: #754;
-	}
+		.dark {
+		  background-color: #754;
+		}
 
-	.steel {
-		background-color: #aab;
-	}
+		.steel {
+		  background-color: #aab;
+		}
 
-	.fairy {
-		background-color: #e9e;
-	}
+		.fairy {
+		  background-color: #e9e;
+		}
 
-	body {
-		margin: 0;
-		padding: 0;
-		font-family: 'Lato', sans-serif;
-		font-size: 12px;
-		text-transform: uppercase;
-	}
+		body {
+		  margin: 0;
+		  padding: 0;
+		  font-family: 'Lato', sans-serif;
+		  font-size: 12px;
+		  text-transform: uppercase;
+		}
 
-	.chart {
-		display: flex;
-		text-align: center;
-		background-color: white;
-	}
+		.chart {
+		  display: flex;
+		  text-align: center;
+		  background-color: white;
+		}
 
-	.zero, .half, .one, .two {
-		font-family: 'Noto Sans', sans-serif;
-		font-size: 20px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		color: #fff;
-		text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-	}
+		.zero, .half, .one, .two {
+		  font-family: 'Noto Sans', sans-serif;
+		  font-size: 20px;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  color: #fff;
+		  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+		}
 
-	.zero {
-		background-color: #333;
-	}
+		.zero {
+		  background-color: #333;
+		}
 
-	.half {
-		background-color: #bf1b16;
-	}
+		.half {
+		  background-color: #bf1b16;
+		}
 
-	.one {
-		background-color: #cdcdcd;
-		color: transparent;
-		text-shadow: none;
-	}
+		.one {
+		  background-color: #dedede;
+		  color: transparent;
+		  text-shadow: none;
+		}
+		.one.chosen-defense {
+		  background-color: #bbb;
+		  color: #fff;
+		  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+		}
 
-	.two {
-		background-color: #2b963a;
-	}
+		.two {
+		  background-color: #2b963a;
+		}
 
-	.attack.shadowed {
-		position: relative;
-		box-shadow: 2px 0 30px 3px rgba(0, 0, 0, 0.3);
-		z-index: 6;
-	}
+		.dual-amt {
+		  display: none;
+		}
 
-	.attack .key {
-		font-size: 11px;
-		line-height: 10px;
-		background-color: #333;
-	}
-	.attack .key.fixed {
-		position: fixed;
-		top: 0;
-		left: 0;
-		border-bottom: 2px solid #000;
-		min-height: 31px;
-	}
-	.attack div {
-		border: 1px solid #000;
-		width: 80px;
-		min-height: 30px;
-		height: 5.263vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		color: #fff;
-		font-weight: bold;
-		text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-	}
-	.attack div:first-child {
-		min-height: 30px;
-		height: 5.263vh;
-	}
-	.attack div:first-child.fixed {
-		position: fixed;
-		top: 0;
-		left: 0;
-		box-shadow: 0px 10px 55px 0px rgba(0, 0, 0, 0.3);
-	}
-	.attack div.first.adjusted {
-		margin-top: 5.263vh;
-	}
-	@media screen and (max-height: 630px) {
+		.attack.shadowed {
+		  position: relative;
+		  box-shadow: 2px 0 30px 3px rgba(0, 0, 0, 0.3);
+		  z-index: 6;
+		}
+		.attack .key {
+		  font-size: 11px;
+		  line-height: 11px;
+		  padding-bottom: 2px;
+		  background-color: #333;
+		}
+		.attack .key.fixed {
+		  position: fixed;
+		  top: 0;
+		  left: 0;
+		  border-bottom: 2px solid #000;
+		  min-height: 31px;
+		}
+		.attack div {
+		  border: 1px solid #000;
+		  width: 80px;
+		  min-height: 30px;
+		  height: 5.263vh;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  color: #fff;
+		  font-weight: bold;
+		  text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+		}
+		.attack div:first-child {
+		  min-height: 30px;
+		  height: 5.263vh;
+		}
+		.attack div:first-child.fixed {
+		  position: fixed;
+		  top: 0;
+		  left: 0;
+		  box-shadow: 0px 10px 55px 0px rgba(0, 0, 0, 0.3);
+		}
 		.attack div.first.adjusted {
-			margin-top: 30px;
+		  margin-top: 5.263vh;
 		}
-	}
-
-	.defense {
-		overflow-x: scroll;
-	}
-	@media screen and (max-width: 1240px) {
-		.defense.shadowed {
-			position: relative;
-			z-index: 5;
-			box-shadow: inset -10px 0 32px 3px rgba(0, 0, 0, 0.3);
+		@media screen and (max-height: 630px) {
+		  .attack div.first.adjusted {
+		    margin-top: 30px;
+		  }
 		}
-	}
 
-	.row {
-		display: flex;
-	}
-	.row.headings div {
-		min-height: 30px;
-		height: 5.263vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		color: #fff;
-		font-weight: bold;
-		text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-		padding-bottom: 1px;
-	}
-	.row.headings.fixed {
-		position: fixed;
-		top: 0;
-		background-color: white;
-		box-shadow: 0px 10px 55px 0px rgba(0, 0, 0, 0.3);
-	}
-	.row.headings.fixed div {
-		border-bottom: 2px solid #000;
-		min-height: 31px;
-	}
-	.row--first.adjusted {
-		margin-top: 5.263vh;
-	}
-	@media screen and (max-height: 630px) {
+		.defense {
+		  overflow-x: scroll;
+		}
+		@media screen and (max-width: 1240px) {
+		  .defense.shadowed {
+		    position: relative;
+		    z-index: 5;
+		    box-shadow: inset -10px 0 32px 3px rgba(0, 0, 0, 0.3);
+		  }
+		}
+
+		.row {
+		  display: flex;
+		}
+		.row.headings div {
+		  min-height: 30px;
+		  height: 5.263vh;
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		  color: #fff;
+		  font-weight: bold;
+		  text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+		  padding-bottom: 1px;
+		  cursor: pointer;
+		}
+		.row.headings div.chosen-defense {
+		  border-top: 3px solid DodgerBlue;
+		}
+		.row.headings.fixed {
+		  position: fixed;
+		  top: 0;
+		  background-color: white;
+		  box-shadow: 0px 10px 55px 0px rgba(0, 0, 0, 0.3);
+		}
+		.row.headings.fixed div {
+		  border-bottom: 2px solid #000;
+		  min-height: 31px;
+		}
 		.row--first.adjusted {
-			margin-top: 30px;
+		  margin-top: 5.263vh;
 		}
-	}
-	.row div {
-		border: 1px solid #000;
-		width: 70px;
-		min-height: 30px;
-		height: 5.263vh;
-		flex-shrink: 0;
-	}
-
+		@media screen and (max-height: 630px) {
+		  .row--first.adjusted {
+		    margin-top: 30px;
+		  }
+		}
+		.row div {
+		  border: 1px solid #000;
+		  width: 70px;
+		  min-height: 30px;
+		  height: 5.263vh;
+		  flex-shrink: 0;
+		}
+		.row div.chosen-defense {
+		  border-left: 3px solid DodgerBlue;
+		  border-right: 3px solid DodgerBlue;
+		}
+		.row.fairy-x div.chosen-defense {
+		  border-bottom: 3px solid DodgerBlue;
+		}
 	</style>
 </head>
 <body>
@@ -259,390 +278,391 @@
 		</div>
 		<div class="defense shadowed">
 			<div class="row headings">
-				<div class="normal">Normal</div>
-				<div class="fire">Fire</div>
-				<div class="water">Water</div>
-				<div class="electric">Electric</div>
-				<div class="grass">Grass</div>
-				<div class="ice">Ice</div>
-				<div class="fighting">Fighting</div>
-				<div class="poison">Poison</div>
-				<div class="ground">Ground</div>
-				<div class="flying">Flying</div>
-				<div class="psychic">Psychic</div>
-				<div class="bug">Bug</div>
-				<div class="rock">Rock</div>
-				<div class="ghost">Ghost</div>
-				<div class="dragon">Dragon</div>
-				<div class="dark">Dark</div>
-				<div class="steel">Steel</div>
-				<div class="fairy">Fairy</div>
+				<div class="normal defense-type">Normal</div>
+				<div class="fire defense-type">Fire</div>
+				<div class="water defense-type">Water</div>
+				<div class="electric defense-type">Electric</div>
+				<div class="grass defense-type">Grass</div>
+				<div class="ice defense-type">Ice</div>
+				<div class="fighting defense-type">Fighting</div>
+				<div class="poison defense-type">Poison</div>
+				<div class="ground defense-type">Ground</div>
+				<div class="flying defense-type">Flying</div>
+				<div class="psychic defense-type">Psychic</div>
+				<div class="bug defense-type">Bug</div>
+				<div class="rock defense-type">Rock</div>
+				<div class="ghost defense-type">Ghost</div>
+				<div class="dragon defense-type">Dragon</div>
+				<div class="dark defense-type">Dark</div>
+				<div class="steel defense-type">Steel</div>
+				<div class="fairy defense-type">Fairy</div>
 			</div>
 			<div class="row row--first">
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="zero"><span>0</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
+				<div class="one normal-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fire-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one water-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one electric-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one grass-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ice-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fighting-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one poison-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ground-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one flying-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one psychic-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one bug-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half rock-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="zero ghost-y"><span class="amt">0</span><span class="dual-amt">1</span>×</div>
+				<div class="one dragon-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one dark-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half steel-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one fairy-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
 			</div>
 			<div class="row">
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
+				<div class="one normal-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half fire-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="half water-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one electric-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two grass-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="two ice-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one fighting-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one poison-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ground-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one flying-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one psychic-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two bug-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="half rock-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one ghost-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half dragon-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one dark-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two steel-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one fairy-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
 			</div>
 			<div class="row">
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
+				<div class="one normal-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two fire-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="half water-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one electric-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half grass-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one ice-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fighting-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one poison-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two ground-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one flying-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one psychic-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one bug-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two rock-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one ghost-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half dragon-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one dark-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one steel-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fairy-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
 			</div>
 			<div class="row">
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="zero"><span>0</span>×</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
+				<div class="one normal-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fire-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two water-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="half electric-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="half grass-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one ice-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fighting-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one poison-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="zero ground-y"><span class="amt">0</span><span class="dual-amt">1</span>×</div>
+				<div class="two flying-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one psychic-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one bug-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one rock-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ghost-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half dragon-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one dark-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one steel-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fairy-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
 			</div>
 			<div class="row">
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
+				<div class="one normal-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half fire-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="two water-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one electric-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half grass-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one ice-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fighting-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half poison-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="two ground-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="half flying-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one psychic-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half bug-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="two rock-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one ghost-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half dragon-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one dark-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half steel-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one fairy-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
 			</div>
 			<div class="row">
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
+				<div class="one normal-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half fire-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="half water-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one electric-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two grass-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="half ice-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one fighting-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one poison-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two ground-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="two flying-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one psychic-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one bug-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one rock-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ghost-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two dragon-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one dark-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half steel-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one fairy-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
 			</div>
 			<div class="row">
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="zero"><span>0</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="half"><span>½</span>×</div>
+				<div class="two normal-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one fire-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one water-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one electric-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one grass-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two ice-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one fighting-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half poison-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one ground-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half flying-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="half psychic-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="half bug-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="two rock-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="zero ghost-y"><span class="amt">0</span><span class="dual-amt">1</span>×</div>
+				<div class="one dragon-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two dark-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="two steel-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="half fairy-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
 			</div>
 			<div class="row">
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="zero"><span>0</span>×</div>
-				<div class="two"><span>2</span>×</div>
+				<div class="one normal-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fire-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one water-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one electric-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two grass-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one ice-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fighting-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half poison-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="half ground-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one flying-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one psychic-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one bug-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half rock-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="half ghost-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one dragon-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one dark-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="zero steel-y"><span class="amt">0</span><span class="dual-amt">1</span>×</div>
+				<div class="two fairy-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
 			</div>
 			<div class="row">
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="zero"><span>0</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
+				<div class="one normal-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two fire-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one water-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two electric-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="half grass-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one ice-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fighting-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two poison-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one ground-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="zero flying-y"><span class="amt">0</span><span class="dual-amt">1</span>×</div>
+				<div class="one psychic-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half bug-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="two rock-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one ghost-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one dragon-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one dark-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two steel-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one fairy-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
 			</div>
 			<div class="row">
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
+				<div class="one normal-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fire-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one water-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half electric-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="two grass-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one ice-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two fighting-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one poison-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ground-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one flying-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one psychic-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two bug-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="half rock-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one ghost-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one dragon-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one dark-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half steel-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one fairy-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
 			</div>
 			<div class="row">
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="zero"><span>0</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div></div>
+				<div class="one normal-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fire-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one water-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one electric-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one grass-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ice-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two fighting-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="two poison-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one ground-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one flying-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half psychic-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one bug-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one rock-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ghost-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one dragon-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="zero dark-y"><span class="amt">0</span><span class="dual-amt">1</span>×</div>
+				<div class="half steel-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one fairy-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
 			</div>
 			<div class="row">
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="half"><span>½</span>×</div>
+				<div class="one normal-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half fire-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one water-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one electric-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two grass-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one ice-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half fighting-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="half poison-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one ground-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half flying-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="two psychic-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one bug-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one rock-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half ghost-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one dragon-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two dark-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="half steel-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="half fairy-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
 			</div>
 			<div class="row">
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
+				<div class="one normal-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two fire-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one water-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one electric-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one grass-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two ice-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="half fighting-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one poison-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half ground-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="two flying-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one psychic-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two bug-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one rock-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ghost-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one dragon-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one dark-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half steel-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one fairy-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
 			</div>
 			<div class="row">
-				<div class="zero"><span>0</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
+				<div class="zero normal-y"><span class="amt">0</span><span class="dual-amt">1</span>×</div>
+				<div class="one fire-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one water-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one electric-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one grass-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ice-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fighting-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one poison-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ground-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one flying-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two psychic-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one bug-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one rock-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two ghost-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one dragon-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half dark-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one steel-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fairy-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
 			</div>
 			<div class="row">
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="zero"><span>0</span>×</div>
+				<div class="one normal-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fire-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one water-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one electric-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one grass-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ice-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fighting-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one poison-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ground-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one flying-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one psychic-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one bug-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one rock-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ghost-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two dragon-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one dark-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half steel-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="zero fairy-y"><span class="amt">0</span><span class="dual-amt">1</span>×</div>
 			</div>
 			<div class="row">
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
+				<div class="one normal-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one fire-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one water-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one electric-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one grass-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ice-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half fighting-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one poison-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ground-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one flying-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two psychic-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one bug-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one rock-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two ghost-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one dragon-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half dark-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one steel-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half fairy-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
 			</div>
 			<div class="row">
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="two"><span>2</span>×</div>
+				<div class="one normal-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half fire-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="half water-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="half electric-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one grass-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two ice-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one fighting-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one poison-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ground-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one flying-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one psychic-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one bug-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two rock-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="one ghost-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one dragon-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one dark-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half steel-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="two fairy-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
 			</div>
-			<div class="row">
-				<div class="one"><span>1</span>x</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="one"><span>1</span>x</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="two"><span>2</span>×</div>
-				<div class="half"><span>½</span>×</div>
-				<div class="one"><span>1</span>x</div>
+			<div class="row fairy-x">
+				<div class="one normal-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="half fire-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one water-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one electric-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one grass-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ice-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two fighting-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="half poison-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one ground-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one flying-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one psychic-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one bug-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one rock-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="one ghost-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
+				<div class="two dragon-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="two dark-y"><span class="amt">2</span><span class="dual-amt">1</span>×</div>
+				<div class="half steel-y"><span class="amt">½</span><span class="dual-amt">1</span>×</div>
+				<div class="one fairy-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
 			</div>
 		</div>
 	</div>
 
 	<script>
 		var scrollLeftPrev = 0;
+		var highlightCount = 0;
 
 		function stickyCheck() {
 			if (window.scrollY > 0 && document.querySelector('.defense').scrollLeft == 0) {
@@ -679,13 +699,10 @@
 			scrollLeftPrev = newScrollLeft;
 		}
 
-		function roundToStep() {
-			var unroundedScrollLeft = document.querySelector('.defense').scrollLeft;
-			var remainder = unroundedScrollLeft % 70;
-
-			if (remainder >= 35) {
-				var roundedScrollLeft = unroundedScrollLeft + (70 - remainder);
-				document.querySelector('.defense').scrollLeft = roundedScrollLeft;
+		function resetDivs() {
+			var allDivs = document.querySelectorAll('div');
+			for(var k = 0; k < allDivs.length; k++) {
+				allDivs[k].classList.remove('chosen-defense');
 			}
 		}
 
@@ -696,11 +713,110 @@
 		document.querySelector('.defense').addEventListener('scroll', function(e) {
 			stickyCheck();
 			shadowCheck();
-			roundToStep();
 		});
+
+		//On click of defense type, highlight row, max 2 at a time
+		var defenseHeaders = document.querySelectorAll('.defense-type');
+		for(var i = 0; i < defenseHeaders.length; i++)
+		{
+			defenseHeaders[i].addEventListener('click', function(e) {
+				if (!this.classList.contains('chosen-defense')) {
+					highlightCount++;
+					var chosenDefense = '.' + this.classList[0] + '-y';
+					var cellsOfChosen = document.querySelectorAll(chosenDefense);
+					var row1amounts = [];
+					var row2amounts = [];
+					var newAmounts = [];
+					if (highlightCount < 3) {
+						this.classList.add('chosen-defense');
+						for(var j = 0; j < cellsOfChosen.length; j++) {
+							cellsOfChosen[j].classList.add('chosen-defense');
+						}
+						if (highlightCount == 2) {
+							//push them into arrays and multiply them
+							var typesOfChosen = document.querySelectorAll('.defense-type.chosen-defense');
+							for(var l = 0; l < typesOfChosen.length; l++) {
+								var chosenTypesChildren = '.' + typesOfChosen[l].classList[0] + '-y';
+								var childrenCells = document.querySelectorAll(chosenTypesChildren);
+								for(var m = 0; m < childrenCells.length; m++) {
+									row1amounts.push(childrenCells[m].querySelector('.amt').innerHTML);
+								}
+							}
+							row2amounts = row1amounts.splice(18, 35);
+							for(var p = 0; p < 18; p++) {
+								if (row1amounts[p] == "½") {
+									row1amounts[p] = .5;
+								}
+								if (row2amounts[p] == "½") {
+									row2amounts[p] = .5;
+								}
+								var newAmount = row1amounts[p] * row2amounts[p];
+								if (newAmount == 0.5) {
+									newAmount = "½";
+								}
+								if (newAmount == 0.25) {
+									newAmount = "¼";
+								}
+								newAmounts.push(newAmount);
+								var typesOfChosenAgain = document.querySelectorAll('.defense-type.chosen-defense');
+								for(var q = 0; q < typesOfChosenAgain.length; q++) {
+									var chosenTypesChildrenAgain = '.' + typesOfChosenAgain[q].classList[0] + '-y';
+									// var amount = document.querySelectorAll(chosenTypesChildren).innerHTML;
+									var childrenCellsAgain = document.querySelectorAll(chosenTypesChildrenAgain);
+									for(var r = 0; r < childrenCellsAgain.length; r++) {
+										childrenCellsAgain[r].querySelector('.amt').style.display = 'none';
+										childrenCellsAgain[r].querySelector('.dual-amt').style.display = 'inline';
+										childrenCellsAgain[r].querySelector('.dual-amt').innerHTML = newAmounts[r];
+									}
+								}
+							}
+						}
+					} else {
+						//if there already 2 classes chosen and a 3rd is clicked,
+						//remove highlights, reset highlight count, reset arrays,
+						//and highlight new row
+						highlightCount = 0;
+						var typesOfChosenAgain = document.querySelectorAll('.defense-type.chosen-defense');
+						for(var q = 0; q < typesOfChosenAgain.length; q++) {
+							var chosenTypesChildrenAgain = '.' + typesOfChosenAgain[q].classList[0] + '-y';
+							// var amount = document.querySelectorAll(chosenTypesChildren).innerHTML;
+							var childrenCellsAgain = document.querySelectorAll(chosenTypesChildrenAgain);
+							for(var r = 0; r < childrenCellsAgain.length; r++) {
+								childrenCellsAgain[r].querySelector('.amt').style.display = 'inline';
+								childrenCellsAgain[r].querySelector('.dual-amt').innerHTML = '';
+								childrenCellsAgain[r].querySelector('.dual-amt').style.display = 'none';
+							}
+						}
+						resetDivs();
+						var row1amounts = [];
+						var row2amounts = [];
+						var newAmounts = [];
+						highlightCount++;
+						this.classList.add('chosen-defense');
+						for(var j = 0; j < cellsOfChosen.length; j++) {
+							cellsOfChosen[j].classList.add('chosen-defense');
+							var amount = cellsOfChosen[j].querySelector('.amt').innerHTML;
+							row1amounts.push(amount);
+						}
+					}
+				} else {
+					resetDivs();
+					highlightCount = 0;
+				}
+			});
+		}
+
+
 	</script>
 
-	<!-- TODO
-		set up google analytics
-	-->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127031692-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-127031692-1');
+	</script>
+
 </body>
