@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Click the button to get a random Wikipedia fact!">
+    <link rel="shortcut icon" href="assets/icons/favicon.png">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon-iphone-60x60.png">
+    <title>the wikifix - click the button to get a random Wikipedia fact!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/main.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="mobilemenu">
+    <span class="top"></span>
+    <span class="mid"></span>
+    <span class="bottom"></span>
+</div>
+<div class="mobilenav">
+    <a href="index.html" title="The WikiFix Home"><img src="assets/logo.png" class="logo logo-light" alt="The WikiFix" /></a>
+    <a href="index.html" title="The WikiFix Home"><img src="assets/logo-white.png" class="logo logo-dark" alt="The WikiFix" /></a>
+    <ul>
+        <li><a href="#top">Random fact</a></li>
+        <li><a href="#recent">Recently added facts</a></li>
+        <li><a href="#submitfact">Submit a fact</a></li>
+        <li><a href="#stats">Stats</a></li>
+    </ul>
+    <div class="links">
+            <a href="http://donate.wikimedia.org" title="Donate to Wikipedia" target="_blank"><img class="wikipedia" src="assets/wikipedia.svg" alt="Donate to Wikipedia"></a>
+            <a href="http://wikiwand.com/"  title="Download Wikiwand" target="_blank"><img class="wikiwand" src="assets/wikiwand.svg" alt="Download Wikiwand"></a>
+    </div>
+</div>
+<div class="overlay"></div>
+<div class="content">
+    <div id="top" class="header">
+        <a href="index.html" title="The WikiFix Home"><img src="assets/logo.png" class="logo-light" alt="The WikiFix"/></a>
+        <a href="index.html" title="The WikiFix Home"><img src="assets/logo-white.png" class="logo logo-dark" alt="The WikiFix" /></a>
+        <div class="links">
+            <a href="http://donate.wikimedia.org" title="Donate to Wikipedia" target="_blank"><img class="wikipedia" src="assets/wikipedia.svg" alt="Donate to Wikipedia"></a>
+            <a href="http://wikiwand.com/" title="Download Wikiwand" target="_blank"><img class="wikiwand" src="assets/wikiwand.svg" alt="Download Wikiwand"></a>
+        </div>
+        <div class="quicknav">
+          <p><a href="#recent">Recently added facts</a> &bull; <a href="#submitfact">Submit a fact</a></p>
+        </div>
+        <div class="c"></div>
+    </div>
+
+    <section class="left">
+
+        <div class="fact box">
+            <p class="main"><span class="tmi"><strong>The WikiFix</strong> is a random fact-generating web site consisting of information taken from the free content Internet encyclopedia, <a href="http://en.wikipedia.org/" title="Wikipedia" target="_blank">Wikipedia</a>.<sup><a href="#ref1">[1]</a></sup> </span>Click the button below to generate a random fact from Wikipedia.<span class="tmi"><sup><a href="#ref2">[2]</a></sup> Use the filters below to get more specific facts. Donate to Wikipedia<sup><a href="#ref3">[3]</a></sup> and check out Wikiwand at the top of the page.</span></p>
+            <div id="button" onclick="giveafactbutton()">
+                <a href="javascript:void(0);"><h1>Click!</h1></a>
+            </div>
+                <div class="populatedfact">
+                    <p id="fact">Click the button to get a fact!</p>
+                </div>
+                <div class="sharingsection">
+                    <p class="sharing"><a id="shareLinkTwitter" href="#" target="_blank">Tweet this fact</a></p>
+                </div>
+            <div class="filterbuttons">
+                <ul>
+                    <li id="filterby">Filter by:</li><span class="break"><br/></span>
+                    <li id="listfood" onclick="changeToFood()"><a href="javascript:void(0);">Food &amp; Drink</a></li>
+                    <li id="listhistory" onclick="changeToHistory()"><a href="javascript:void(0);">History</a></li>
+                    <li id="listmusic" onclick="changeToMusic()"><a href="javascript:void(0);">Music</a></li>
+                    <li id="listpopculture" onclick="changeToPop()"><a href="javascript:void(0);">Pop Culture</a></li>
+                    <li id="listsports" onclick="changeToSports()"><a href="javascript:void(0);">Sports</a></li>
+                    <li id="listtechnology" onclick="changeToTechnology()"><a href="javascript:void(0);">Technology</a></li>
+                    <li id="listtelevision" onclick="changeToTelevision()"><a href="javascript:void(0);">TV &amp; Film</a></li>
+                    <li id="resetbutton" onclick="changeToUnfiltered()"><a href="javascript:void(0);"><strong>&times;</a></strong></li>
+                </ul>
+            </div>
+            <div class="c"></div>
+        </div>
+        <div id="recent" class="recent box">
+
+            <h1>Recently added facts</h1>
+            <div class="ra filterbuttons">
+                <ul>
+                    <li id="filterby">Show:</li>
+                    <li id="ra-listfood"><a href="javascript:void(0);" class="activefilter">Food &amp; Drink</a></li>
+                    <li id="ra-listhistory"><a href="javascript:void(0);">History</a></li>
+                    <li id="ra-listmusic"><a href="javascript:void(0);">Music</a></li>
+                    <li id="ra-listpopculture"><a href="javascript:void(0);">Pop Culture</a></li>
+                    <li id="ra-listsports"><a href="javascript:void(0);">Sports</a></li>
+                    <li id="ra-listtechnology"><a href="javascript:void(0);">Technology</a></li>
+                    <li id="ra-listtelevision"><a href="javascript:void(0);">TV &amp; Film</a></li>
+                    <div class="c"></div>
+                </ul>
+            </div>
+            <div class="recentlists">
+                <ul class="ra-food recentShown">
+                </ul>
+                <ul class="ra-history recentHidden">
+                </ul>
+                <ul class="ra-music recentHidden">
+                </ul>
+                <ul class="ra-pop recentHidden">
+                </ul>
+                <ul class="ra-sports recentHidden">
+                </ul>
+                <ul class="ra-tech recentHidden">
+                </ul>
+                <ul class="ra-television recentHidden">
+                </ul>
+            </div>
+        </div>
+
+        <div id="submitfact" class="submitform box">
+            <p><strong>Submit a fact</strong> to The WikiFix below. The fact and its source will be reviewed and will likely be added to the site. Thanks for your contribution!</p>
+            <div class="form">
+                <form method="post" action="wikifix-contact.php">
+
+                        <label for="Topic">Topic</label><br/>
+                            <p class="dropdown">
+                                <select name="Topic" id="Topic">
+                                    <option value="" selected="selected">Select a topic</option>
+                                    <option value="food">Food &amp; Drink</option>
+                                    <option value="history">History</option>
+                                    <option value="music">Music</option>
+                                    <option value="pop">Pop Culture</option>
+                                    <option value="sports">Sports</option>
+                                    <option value="technology">Technology</option>
+                                    <option value="television">TV/Film</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </p>
+
+                        <label for="Fact">Fact</label><br/>
+                        <textarea name="Fact" id="Fact" required></textarea><br/>
+            <div id="sourcearea">
+                        <label for="Source">Source <span class="break"><br/></span>(Wikipedia URL)</label><br/>
+                        <input type="text" name="Source" id="Source"/></div>
+
+                        <label for="Name">Name</label><br/>
+                        <input type="text" name="Name" id="Name" /><br/>
+
+                        <p><input type="submit" name="submit" value="Submit" class="submit-button" /></p>
+                    </form>
+            </div>
+        </div>
+
+        <div class="references box">
+            <h1>References</h1>
+            <ol>
+             <li id="ref1">This website uses material from <a href="http://en.wikipedia.org/" target="_blank">Wikipedia</a>, which is released under the <a href="http://creativecommons.org/licenses/by-sa/3.0/" title="Creative Commons Attribution-ShareAlike 3.0" target="_blank">Creative Commons</a>. </li>
+             <li id="ref2">Some information referenced on this site may not necessarily be factual.</li>
+             <li id="ref3">This site is for entertainment purposes only. It is in no affiliation with Wikipedia.</li>
+             </ol>
+        </div>
+
+
+    </section>
+
+    <section class="right">
+
+        <div class="featuredfact box">
+                <figure class="featfact">
+                    <img class="ffimage" src='' alt='' />
+                    <figcaption class="ffcaption"></figcaption>
+                </figure>
+        </div>
+
+        <div id="stats" class="stats box">
+            <div class="statstext">
+                <!--<div class="chart">
+                <span class="hidden"></span> <span class="red"></span> <span class="green"></span> <span class="yellow"> </span> <span class="blue"></span>
+                </div>-->
+                <h1>Stats</h1>
+                <ul>
+                    <li><strong id="total">0</strong> facts on The WikiFix.</li>
+                    <li><strong id="usertotal">0</strong> user submitted facts.</li>
+                    <li><strong id="pictotal">0</strong> facts with pop-up pictures.</li>
+                    <!--
+                    <li>The most facts that come from the same Wikipedia page is <strong id="mosttotal">0</strong>, which come from the <a href="http://en.wikipedia.org/wiki/Hollywood_Walk_of_Fame" target="_blank">Hollywood Walk of Fame</a> page.</li>
+                    <li>There are <strong id="foodtotal">0</strong>Food  &amp; Drink facts. </li>
+                    <li>There are <strong id="historytotal">0</strong> History facts.</li>
+                    <li>There are <strong id="musictotal">0</strong> Music facts.</li>
+                    <li>There are <strong id="poptotal">0</strong> Pop Culture facts.</li>
+                    <li>There are <strong id="sportstotal">0</strong> Sports facts.</li>
+                    <li>There are <strong id="techtotal">0</strong> Tech facts.</li>
+                    <li>There are <strong id="televisiontotal">0</strong> TV &amp; Film facts.</li>
+                    -->
+
+                    <li><strong id="weeklytotal">0</strong> facts added each week since June 21, 2014.</li>
+                    <!--
+                    <li>The most recent fact was added on <strong id="lastfact"> </strong>.</li>
+                    <li>For various reasons, there are also <strong id="retiredtotal">0</strong> retired facts.</li>
+                    -->
+                    </ul>
+                    <div class="bargraph">
+                    <h3>Fact Count:</h3>
+                      <dl>
+                        <dt>Food &amp; Drink</dt><dd id="fooddrinksbar"><span id="foodtotal"></span></dd>
+                        <dt>History</dt><dd id="historybar"><span id="historytotal"></span></dd>
+                        <dt>Music</dt><dd id="musicbar"><span id="musictotal"></span></dd>
+                        <dt>Pop Culture</dt><dd id="popbar"><span id="poptotal"></span></dd>
+                        <dt>Sports</dt><dd id="sportsbar"><span id="sportstotal"></span></dd>
+                        <dt>Technology</dt> <dd id="techbar"><span id="techtotal"></span></dd>
+                        <dt>TV &amp; Film</dt><dd id="tvfilmbar"><span id="televisiontotal"></span></dd>
+                      </dl>
+                    </div>
+
+            </div>
+
+        </div>
+
+         <div class="notes box">
+            <div class="notestext">
+                <h1>Notes</h1>
+                <ul>
+                    <li>Some facts are taken from the now-defunct WikiFix Twitter account, <a href="http://twitter.com/quickwiki" target="_blank" title="QuickWiki Twitter">quickwiki</a>.</li>
+                    <li>This is v2.0 of The WikiFix. Check out v1.0 <a href="v1/index.html" target="_blank"> here</a>.</li>
+                    <li>&copy; The WikiFix 2010-2018.</li>
+                    <li>Created by <a href="http://kstardesigns.com" target="_blank" title="kstardesigns website"><img src="assets/kstar.svg" alt="Kstar Designs" />
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="backtotop box">
+            <div class="backtotoptext">
+            <a href="#top">Back to top^</a>
+            </div>
+        </div>
+
+        <div class="kstar">
+            <div class="switchblock">
+                <div class="switch">
+                    <div class="themebutton on"></div>
+                </div>
+                change theme
+            </div>
+            <a href="js/scripts.js" target="_blank">js</a>
+            <div class="c"></div>
+        </div>
+
+    </section>
+
+
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="js/cookies.js"></script>
+<script src="js/scripts.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-54559972-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+
+
+</html>
