@@ -800,8 +800,18 @@
 						}
 					}
 				} else {
-					resetDivs();
 					highlightCount = 0;
+					var typesOfChosenAgain = document.querySelectorAll('.defense-type.chosen-defense');
+						for(var q = 0; q < typesOfChosenAgain.length; q++) {
+							var chosenTypesChildrenAgain = '.' + typesOfChosenAgain[q].classList[0] + '-y';
+							var childrenCellsAgain = document.querySelectorAll(chosenTypesChildrenAgain);
+							for(var r = 0; r < childrenCellsAgain.length; r++) {
+								childrenCellsAgain[r].querySelector('.amt').style.display = 'inline';
+								childrenCellsAgain[r].querySelector('.dual-amt').innerHTML = '';
+								childrenCellsAgain[r].querySelector('.dual-amt').style.display = 'none';
+							}
+						}
+					resetDivs();
 				}
 			});
 		}
