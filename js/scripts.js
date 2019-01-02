@@ -18,8 +18,8 @@ var portfolioItems = [
     {
       'proj': 'sprint',
       'itemname': 'Sprint Back to School Sweepstakes',
-      'itemdescription': 'A sweepstakes site including instant win games and a yearbook photo upload contest.* <a href="https://schoolspirit.sprint.com/" target="_blank" title="">View site <span>&rarr;</span></a>',
-      'projlink': 'https://schoolspirit.sprint.com/'
+      'itemdescription': 'A sweepstakes site including instant win games and a yearbook photo upload contest.* <a href="https://sprint.com/" target="_blank" title="">View site <span>&rarr;</span></a>',
+      'projlink': 'https://sprint.com/'
     },
     {
       'proj': 'millerlite',
@@ -60,14 +60,14 @@ var portfolioItems = [
 		{
 			'proj': 'thewikifix',
 			'itemname': 'The WikiFix',
-			'itemdescription': 'A random fact-generating website consisting of information taken from Wikipedia. <a href="http://thewikifix.com" target="_blank" title="">View site <span>&rarr;</span></a>',
-			'projlink': 'http://thewikifix.com'
+			'itemdescription': 'A random fact-generating website consisting of information taken from Wikipedia. <a href="thewikifix/index.html" target="_blank" title="">View site <span>&rarr;</span></a>',
+			'projlink': 'thewikifix/index.html'
 		},
 		{
 			'proj': 'whogotlucilled',
 			'itemname': 'Who Got Lucille\'d?',
-			'itemdescription': 'A site where <i>The Walking Dead</i> fans can vote about the cliffhanger from the 6th season finale. <a href="wgl/index.html" target="_blank" title="">View site <span>&rarr;</span></a>',
-			'projlink': 'wgl/index.html'
+			'itemdescription': 'A site where <i>The Walking Dead</i> fans can vote about the cliffhanger from the 6th season finale. <a href="whogotlucilled/index.html" target="_blank" title="">View site <span>&rarr;</span></a>',
+			'projlink': 'whogotlucilled/index.html'
 		},
 		{
 			'proj': 'clayton',
