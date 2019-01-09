@@ -27,7 +27,7 @@
             <a href="" id="pull"><img src="assets/menu.png" alt="Menu" /></a>
         </div>
     </header>
-    
+
     <section class="main">
         <p>Thank you for contacting me! I will respond as soon as possible.</p>
 
@@ -36,7 +36,7 @@
 
     <footer>
         <h2><a href="index.html" title="Back to home page">Home</a></h2>
-        <p>&copy; <a href="http://kstardesigns.com" title="Kstar Designs" target="_blank">kstar designs</a>. Photo credit: Tiffany Brown. Video credit: Jared Jackson.</p>
+        <p>&copy; <a href="http://kylephx.com" title="Kstar Designs" target="_blank">kstar designs</a>. Photo credit: Tiffany Brown. Video credit: Jared Jackson.</p>
     </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
