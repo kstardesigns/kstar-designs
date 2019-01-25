@@ -1,0 +1,314 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,900i|Raleway:800,800i|Rubik:400,500|Changa+One:400i|Roboto+Condensed:400,700,700i");
+* {
+  box-sizing: border-box; }
+
+img {
+  max-width: 100%; }
+
+p {
+  margin: 0; }
+
+.search-box {
+  display: flex;
+  margin: 20px auto;
+  justify-content: center;
+  position: relative;
+  width: 280px; }
+  .search-box .query {
+    font-family: 'Lato';
+    width: 100%;
+    padding: 5px 25px 5px 10px; }
+  .search-box .cancel-search {
+    cursor: pointer;
+    margin-left: 8px;
+    font-size: 24px;
+    font-weight: 900;
+    font-style: italic;
+    position: absolute;
+    top: 2px;
+    right: 8px; }
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-left: 0;
+  z-index: 99; }
+
+li {
+  list-style: none; }
+
+.container {
+  position: relative; }
+  .container::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 420px;
+    top: 0;
+    left: 0;
+    background: linear-gradient(-55deg, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.06) 50%);
+    z-index: 999; }
+  .container:hover::before {
+    display: none; }
+
+/* flip the card when hovered */
+.container.back-shown .card-wrap {
+  transform: rotateY(180deg); }
+
+.container, .front, .back {
+  width: 300px;
+  height: 420px; }
+  .container .stuff, .front .stuff, .back .stuff {
+    width: 100%;
+    height: 100%; }
+
+/* flip speed goes here */
+.card-wrap {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative; }
+
+.front, .back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.front {
+  z-index: 2;
+  transform: rotateY(0deg);
+  border: 1px solid #38616f;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  background-color: #38616f;
+  padding: 16px 16px 0 16px; }
+  .front .stuff {
+    position: relative;
+    border: 2px solid #69604a;
+    box-shadow: inset 0 1px 0 #85898c, inset 2px 3px 0 #38616f, inset -2px 0 0 #38616f;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: 0 10px 0 10px;
+    height: 387px; }
+    .front .stuff::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 7px;
+      width: 2px;
+      height: 360px;
+      background-color: #38616f; }
+  .front .topps {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    width: 40px; }
+  .front .name-box {
+    background-color: #38616f;
+    border-radius: 0 0 0 10px;
+    height: 42px;
+    padding: 8px 4px 0 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: linear-gradient(to right, #38616f 145px, transparent 145px, transparent 260px, #38616f 260px), linear-gradient(to bottom, #38616f 0px, #38616f 2px, rgba(255, 255, 255, 0.35) 2px, rgba(255, 255, 255, 0.35) 7px, #38616f 7px), linear-gradient(to right, #38616f 147px, rgba(255, 255, 255, 0.35) 147px); }
+  .front h1 {
+    font-family: 'Raleway', serif;
+    font-weight: 800;
+    font-style: italic;
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin: -3px 0 0 0;
+    color: #a09479;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; }
+    .front h1 .first-name {
+      margin-top: -6px; }
+    .front h1 .last-name {
+      text-transform: uppercase;
+      font-style: normal;
+      font-size: 32px;
+      line-height: 33px;
+      margin-top: -1px;
+      margin-left: 5px; }
+  .front .player-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 350px;
+    background-repeat: no-repeat;
+    z-index: -1; }
+  .front .rookie {
+    width: 46px;
+    height: 18px;
+    position: absolute;
+    bottom: 50px;
+    right: 16px;
+    text-align: center;
+    background-color: #7f6b00;
+    background: linear-gradient(45deg, #998000, #7f6b00);
+    font-size: 8px;
+    line-height: 8px;
+    padding-top: 1px;
+    letter-spacing: 2px;
+    font-family: 'Lato', sans-serif;
+    transform: skew(-12deg);
+    border-radius: 3px; }
+    .front .rookie span {
+      color: #cdcdcd;
+      padding-left: 2px; }
+
+.back {
+  transform: rotateY(180deg);
+  border: 1px solid #38616f;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  box-sizing: border-box;
+  background-color: #38616f;
+  padding: 20px; }
+  .back .stuff {
+    background: #38616f;
+    border-radius: 20px; }
+  .back header {
+    border-radius: 0 20px 0 45px;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 9;
+    position: relative;
+    background-color: #38616f;
+    padding-bottom: 8px;
+    margin-left: 15px; }
+  .back .player-name, .back .player-position {
+    font-family: 'Rubik', sans-serif;
+    letter-spacing: 3px;
+    font-size: 16px;
+    line-height: 14px;
+    text-transform: uppercase;
+    color: #fff; }
+  .back .last-name {
+    font-weight: 500;
+    font-size: 22px;
+    margin-left: 10px; }
+  .back .player-position {
+    border: 1px solid #fff;
+    letter-spacing: 0;
+    padding: 2px 10px;
+    height: 18px;
+    margin: 20px 0 0 15px; }
+  .back .player-card-no {
+    background-color: #fff;
+    border-radius: 0 20px 0 50px;
+    width: 60px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px; }
+    .back .player-card-no span {
+      color: #38616f;
+      font-family: 'Changa One', sans-serif;
+      font-style: italic;
+      margin-left: 5px;
+      margin-top: -5px;
+      font-size: 18px; }
+  .back .stats-story {
+    height: 378px;
+    margin-top: -46px;
+    background-size: cover;
+    background-position: -34px 0;
+    position: relative;
+    border-radius: 0 20px 20px 20px;
+    font-family: 'Roboto Condensed', sans-serif; }
+    .back .stats-story::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 258px;
+      height: 378px;
+      background-color: #fff;
+      border-radius: 0 20px 20px 20px;
+      opacity: 0.8; }
+  .back .inner-box {
+    position: relative;
+    z-index: 10;
+    padding: 65px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%; }
+  .back .stats-box {
+    font-size: 13px;
+    text-transform: uppercase; }
+    .back .stats-box .row {
+      display: flex; }
+      .back .stats-box .row--headings {
+        border-bottom: 1px solid #000; }
+      .back .stats-box .row--totals {
+        border-top: 1px solid #000; }
+      .back .stats-box .row div {
+        padding: 1px 0; }
+      .back .stats-box .row div:first-child {
+        width: 40px;
+        min-width: 40px;
+        text-align: left; }
+    .back .stats-box .heading, .back .stats-box .amount {
+      width: 50px;
+      text-align: center; }
+  .back .stats-header {
+    font-size: 11px;
+    font-weight: bold; }
+  .back .story {
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: justify;
+    flex-grow: 1; }
+  .back .logos {
+    display: flex;
+    align-items: center;
+    height: 30px; }
+    .back .logos img {
+      width: 30px;
+      align-self: center; }
+      .back .logos img.mlb {
+        margin-left: 2px; }
+    .back .logos p {
+      font-size: 6px;
+      padding: 0 3px;
+      text-align: center; }
+  .back .horizontal {
+    transform: rotate(-90deg);
+    transform-origin: 180px 170px; }
+
+.container {
+  cursor: pointer;
+  margin: 10px; }
+  @media screen and (max-width: 400px) {
+    .container {
+      margin: 10px 0; } }
+  .container[data-player="Ginny Baker"] .front .player-image {
+    background-position: -75px -55px;
+    background-size: 450px auto; }
+  .container[data-player="Ginny Baker"] .front .team {
+    width: 70px;
+    position: absolute;
+    left: 10px;
+    bottom: -3px; }
+  .container[data-player="Ginny Baker"] .back .row div:nth-child(4), .container[data-player="Ginny Baker"] .back .row div:nth-child(5) {
+    width: 80px; }
+  .container[data-player="Charlie Kelly"] .front .player-image {
+    background-position: -20px -58px;
+    background-size: 350px auto; }
+  .container[data-player="Charlie Kelly"] .front .team {
+    width: 80px;
+    position: absolute;
+    left: 5px;
+    bottom: 10px;
+    transform: rotate(-11deg); }
+  .container[data-player="Charlie Kelly"] .front .name-box {
+    background: linear-gradient(to right, #38616f 153px, transparent 153px, transparent 260px, #38616f 260px), linear-gradient(to bottom, #38616f 0px, #38616f 2px, rgba(255, 255, 255, 0.35) 2px, rgba(255, 255, 255, 0.35) 7px, #38616f 7px), linear-gradient(to right, #38616f 153px, rgba(255, 255, 255, 0.35) 153px); }
+
+/*# sourceMappingURL=styles.css.map */
