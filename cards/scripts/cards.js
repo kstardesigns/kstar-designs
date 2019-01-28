@@ -44,6 +44,45 @@ new Vue({
 				totals: {
 						year: 'totals', g: 1, ab: 1, '2b': 1, avg: '1.000', beers: 71
 				}
+			},
+			{
+				name: 'Calvin',
+			  string: 'calvin',
+				media: 'Calvin and Hobbes',
+			 	story: 'Over his playing career, Calvin frequently was traded between Team Calvin and Team Hobbes, sometimes even in the middle of a play. Notably in his rookie year, he grounded into a 1-4-3 double play, where he was the second baseman on the play.',
+				team: 'Hobbes',
+				logo: 'hobbes.png',
+				position: 'LF',
+				recordsType: 'batting',
+				cardStyle: 'topps2001',
+				toppsPosition: 'top-left',
+				cardNo: 794,
+				sources: '...',
+				// isHorizontal: true,
+				statsYear1: {
+						year: 1986, g: 2, ab: 1, h: 0, '2b': 0, '3b': 0, hr: 0, rbi: 0, sb: 0, so: 0, avg: '.000'
+				},
+				statsYear2: {
+						year: 1987, g: 3, ab: 0, h: 0, '2b': 0, '3b': 0, hr: 0, rbi: 0, sb: 0, so: 0, avg: '-'
+				},
+				statsYear3: {
+						year: 1988, g: 3, ab: 2, h: 2, '2b': 0, '3b': 0, hr: 1, rbi: 1, sb: 3, so: 0, avg: '1.000'
+				},
+				statsYear4: {
+						year: 1989, g: 2, ab: 3, h: 2, '2b': 0, '3b': 0, hr: 2, rbi: 2, sb: 0, so: 1, avg: '.667'
+				},
+				statsYear5: {
+						year: 1990, g: 2, ab: 2, h: 2, '2b': 0, '3b': 1, hr: 0, rbi: 0, sb: 0, so: 0, avg: '1.000'
+				},
+				statsYear6: {
+						year: 1993, g: 1, ab: 2, h: 2, '2b': 1, '3b': 0, hr: 0, rbi: 0, sb: 0, so: 0, avg: '1.000'
+				},
+				statsYear7: {
+						year: 1995, g: 1, ab: 1, h: 0, '2b': 0, '3b': 0, hr: 0, rbi: 0, sb: 0, so: 1, avg: '.000'
+				},
+				totals: {
+						year: 'totals', g: 14, ab: 11, h: 8, '2b': 1, '3b': 1, hr: 3, rbi: 3, sb: 3, so: 2, avg: '.727'
+				}
 			}
 		]
 	},
