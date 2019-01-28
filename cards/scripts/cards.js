@@ -49,7 +49,7 @@ new Vue({
 				name: 'Calvin',
 			  string: 'calvin',
 				media: 'Calvin and Hobbes',
-			 	story: 'Over his playing career, Calvin frequently was traded between Team Calvin and Team Hobbes, sometimes even in the middle of a play. Notably in his rookie year, he grounded into a 1-4-3 double play, where he was the second baseman on the play.',
+			 	story: 'Over his playing career, Calvin frequently was traded between Team Calvin and Team Hobbes, sometimes even in the middle of a play. Notably in his rookie year, he grounded into a 1-4-3 double play, where he was the second baseman on the play. He also had a brief stint on Team 5, where he caught a flyball for the wrong team.',
 				team: 'Hobbes',
 				logo: 'hobbes.png',
 				position: 'LF',
