@@ -30,7 +30,7 @@ new Vue({
 				media: 'It\'s Always Sunny in Philadelphia',
 			 	story: 'As the legend goes, Charlie Kelly beat Wade Boggs\' beer drinking record in 2015, having finished 71 beers on a cross country flight to Los Angeles. He then drunkenly hit a line drive off the wall on the first pitch he saw. When asked after the game how he felt about his performance, he stumbled a bit and said, "That\'s baseball, baby!"',
 				team: 'Paddy\'s Pub',
-				logo: 'paddys.png',
+				logo: 'phillies.png',
 				position: 'DH',
 				recordsType: 'batting',
 				cardStyle: 'topps2001',
@@ -57,7 +57,7 @@ new Vue({
 				cardStyle: 'topps2001',
 				toppsPosition: 'top-left',
 				cardNo: 794,
-				sources: '...',
+				sources: 'The Complete Calvin and Hobbes, comics dated 6/22/86, 8/1/86, 2/10/87, 6/10/87, 8/9/87, 5/22/88, 6/9/88, 6/19/88, 7/17/88, 8/6/89, 8/24/89, 5/1/90, 6/24/90, 7/22/90, 8/8/90, 5/23/93, 12/12/93, 3/15/95',
 				// isHorizontal: true,
 				statsYear1: {
 						year: 1986, g: 2, ab: 1, h: 0, '2b': 0, '3b': 0, hr: 0, rbi: 0, sb: 0, so: 0, avg: '.000'
@@ -91,6 +91,7 @@ new Vue({
 			return this.players.filter(player => {
 				return player.name.toLowerCase().indexOf(this.query.toLowerCase()) > -1
 					|| player.media.toLowerCase().indexOf(this.query.toLowerCase()) > -1
+					|| player.string.toLowerCase().indexOf(this.query.toLowerCase()) > -1
 			})
 		}
 	},
@@ -109,10 +110,30 @@ new Vue({
 	methods: {
 		flipCard(player) {
 			let playerName = player.name;
-			document.querySelector(`[data-player="${playerName}"]`).classList.toggle('back-shown');
+			if (event.target.tagName.toLowerCase() != 'a') {
+				document.querySelector(`[data-player="${playerName}"]`).classList.toggle('back-shown');
+			}
 		},
 		cancelSearch() {
 			this.query = '';
+		},
+		goToSource(cardNo) {
+			const sources = document.querySelectorAll('.source');
+			if (document.querySelector('details').open == false) {
+				document.querySelector('summary').click();
+			}
+
+			sources.forEach(function(source) {
+				source.style.backgroundColor = 'transparent';
+			});
+
+			document.querySelector('#source' + cardNo).style.backgroundColor = '#ccff15';
+		}
+	},
+	beforeMount() {
+		let url = window.location.href;
+		if (url.indexOf('?q=') > -1) {
+			this.query = url.substr((url.indexOf('?q='))+3, url.length);
 		}
 	}
 })

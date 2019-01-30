@@ -15,7 +15,7 @@
 			<input class="query" type="text" v-model="query" placeholder="Search by character or show/book/movie">
 			<div class="cancel-search" v-if="query" @click="cancelSearch">&times;</div>
 		</div>
-		<ul>
+		<ul class="card-list">
 			<!-- card -->
 			<li class="container" v-for="player in filteredList" @click="flipCard(player)" :data-player="player.name">
 					<div class="card-wrap">
@@ -37,7 +37,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="back">
+						<div :class="{'back': true, [player.cardStyle]: true}">
 							<div :class="{'stuff': true, 'horizontal': player.isHorizontal}">
 								<header>
 									<div class="player-name">
@@ -48,34 +48,34 @@
 								<div class="stats-story"  :style="{ backgroundImage: 'url(assets/' + player.string + '.jpg)'}">
 									<div class="inner-box">
 											<div class="stats-box">
-												<p class="stats-header">Complete major league {{ player.recordsType }} records</p>
-												<div class="row row--headings">
-													<div class="heading" v-for="(value, key) in player.statsYear1">{{ key }}</div>
-												</div>
-												<div class="row row--year1">
-													<div class="amount" v-for="(value, key) in player.statsYear1">{{ value }}</div>
-												</div>
-												<div class="row row--year2" v-if="player.statsYear2">
-													<div class="amount" v-for="(value, key) in player.statsYear2">{{ value }}</div>
-												</div>
-												<div class="row row--year3" v-if="player.statsYear3">
-													<div class="amount" v-for="(value, key) in player.statsYear3">{{ value }}</div>
-												</div>
-												<div class="row row--year4" v-if="player.statsYear4">
-													<div class="amount" v-for="(value, key) in player.statsYear4">{{ value }}</div>
-												</div>
-												<div class="row row--year5" v-if="player.statsYear5">
-													<div class="amount" v-for="(value, key) in player.statsYear5">{{ value }}</div>
-												</div>
-												<div class="row row--year6" v-if="player.statsYear6">
-													<div class="amount" v-for="(value, key) in player.statsYear6">{{ value }}</div>
-												</div>
-												<div class="row row--year7" v-if="player.statsYear7">
-													<div class="amount" v-for="(value, key) in player.statsYear7">{{ value }}</div>
-												</div>
-												<div class="row row--totals">
-													<div class="amount" v-for="(value, key) in player.totals">{{ value }}</div>
-												</div>
+													<p class="stats-header"><a @click="goToSource(player.cardNo)" class="card-source" :href="'#source' + player.cardNo" title="Show sources">Complete major league {{ player.recordsType }} records*</a></p>
+													<div class="row row--headings">
+														<div class="heading" v-for="(value, key) in player.statsYear1">{{ key }}</div>
+													</div>
+													<div class="row row--year1">
+														<div class="amount" v-for="(value, key) in player.statsYear1">{{ value }}</div>
+													</div>
+													<div class="row row--year2" v-if="player.statsYear2">
+														<div class="amount" v-for="(value, key) in player.statsYear2">{{ value }}</div>
+													</div>
+													<div class="row row--year3" v-if="player.statsYear3">
+															<div class="amount" v-for="(value, key) in player.statsYear3">{{ value }}</div>
+														</div>
+													<div class="row row--year4" v-if="player.statsYear4">
+															<div class="amount" v-for="(value, key) in player.statsYear4">{{ value }}</div>
+														</div>
+													<div class="row row--year5" v-if="player.statsYear5">
+															<div class="amount" v-for="(value, key) in player.statsYear5">{{ value }}</div>
+														</div>
+													<div class="row row--year6" v-if="player.statsYear6">
+															<div class="amount" v-for="(value, key) in player.statsYear6">{{ value }}</div>
+														</div>
+													<div class="row row--year7" v-if="player.statsYear7">
+															<div class="amount" v-for="(value, key) in player.statsYear7">{{ value }}</div>
+													</div>
+													<div class="row row--totals">
+														<div class="amount" v-for="(value, key) in player.totals">{{ value }}</div>
+													</div>
 											</div>
 											<p class="story">{{ player.story }}</p>
 											<div class="logos">
@@ -86,13 +86,25 @@
 												<img class="mlbpa" src="assets/mlbpa.png" alt="MLB Players Association logo"/>
 											</div>
 										</div>
+
 								</div>
+
 							</div>
 						</div>
 					</div>
 			</li>
 			<!-- /card -->
 		</ul>
+
+		<details>
+			<summary>Sources</summary>
+			<ul>
+				<li v-for="player in filteredList" :id="'source' + player.cardNo" class="source">
+					{{ player.cardNo }} {{ player.name }} - {{ player.sources }}
+				</li>
+				<li>Card styling - &reg; &amp; &copy; THE TOPPS COMPANY. Version 1: 2001 <a href="assets/ichiro.jpg" target="_blank">front</a> and <a href="assets/ichiro-back.jpg" target="_blank">back</a>.</li>
+			</ul>
+		</details>
 	</div>
 
 
