@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="How to score an at bat in baseball">
+
+	<title>Scoring an at bat in baseball</title>
+
+	<link rel="shortcut icon" href="../assets/icons/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="../assets/icons/touchicon-152.png">
+	<link rel="stylesheet" href="main.css">
+</head>
+<body>
+	<div class="page">
+		<h1>How to score an at bat in baseball</h1>
+		<h2 id="said"></h2>
+		<div class="flexer">
+			<div class="card">
+				<div class="rbi-wrap"></div>
+				<button id="reset">Reset</button>
+				<svg class="diamond" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.73 12.73">
+
+					<path id="diamond" fill="rgba(179,179,179,0.6)" d="M26.5,64.84l5.66,5.66L26.5,76.16,20.84,70.5l5.66-5.66m0-.7L20.14,70.5l6.36,6.36,6.36-6.36L26.5,64.14Z" transform="translate(-20.14 -64.14)"/>
+
+				</svg>
+				<svg class="single baseline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.73 12.73">
+
+					<path d="M12.37,6,12,6.36,6.36,12h0L6,12.38l.35.34,6.36-6.36Z" transform="translate(-6.01 -6.01)"/>
+
+				</svg>
+				<svg class="double baseline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.73 12.73">
+
+					<path d="M12.37,6,12,6.36,6.36,12h0L6,12.38l.35.34,6.36-6.36Z" transform="translate(-6.01 -6.01)"/>
+
+				</svg>
+				<svg class="triple baseline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.73 12.73">
+
+					<path d="M12.37,6,12,6.36,6.36,12h0L6,12.38l.35.34,6.36-6.36Z" transform="translate(-6.01 -6.01)"/>
+
+				</svg>
+				<svg class="homerun baseline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.73 12.73">
+
+					<rect x="1.87" y="1.86" width="8.99" height="8.99" transform="translate(-2.64 6.36) rotate(-45)"/>
+
+				</svg>
+
+
+				<div class="center">
+					<div class="result" id="strikeout">K</div>
+					<div class="result out-result" id="double-play">DP<br/></div>
+					<div class="result out-result" id="triple-play">TP<br/></div>
+					<div class="result out-result" id="flyout">F</div>
+					<div class="result out-result" id="groundout"></div>
+					<div class="result out-result" id="fielders-choice">FC</div>
+					<div class="result out-result" id="sac-fly">SF</div>
+					<div class="result out-result" id="sac-bunt">SAC</div>
+					<div class="result out-result" id="infield-fly">IFR</div>
+					<div class="result out-result" id="line-out">L</div>
+					<div class="result out-result" id="foul-out">FO</div>
+				</div>
+				<div class="top-right">
+					<div class="result" id="double">2B</div>
+				</div>
+				<div class="top-left">
+					<div class="result" id="triple">3B</div>
+				</div>
+				<div class="bottom-right">
+					<div class="result" id="single">1B</div>
+					<div class="result" id="walk">BB</div>
+					<div class="result" id="intentional-walk">IBB</div>
+					<div class="result" id="hit-by-pitch">HBP</div>
+					<div class="result dropped" id="drop3-wp">D3WP</div>
+					<div class="result dropped" id="drop3-pb">D3PB</div>
+					<div class="result" id="error">E</div>
+				</div>
+				<div class="bottom-left">
+					<div class="result" id="homerun">HR</div>
+				</div>
+			</div>
+
+			<div class="button-container">
+			<ul class="buttons">
+				<li class="header">1) Choose play type</li>
+				<li class="button-group">
+					<button id="hit" class="play">Hit</button>
+					<ul class="button-subgroup">
+						<li><button data-stat="single" data-baselines="1" data-said="0" class="show-stat subplay">Single</button></li>
+						<li><button id="double-check" data-stat="double" data-baselines="2" data-said="1" class="show-stat subplay show-subcats">Double</button>
+							<ul class="button-subgroup-subcategory">
+								<li class="flexed"><input class="update-stat subcategory" data-said="2" type="checkbox" id="grdouble-check" name="double-type"> <label for="grdouble-check">Ground rule double</label></li>
+							</ul>
+						</li>
+						<li><button data-stat="triple" data-baselines="3" data-said="3" class="show-stat subplay">Triple</button></li>
+						<li><button id="homerun-check" data-stat="homerun" data-baselines="4" data-said="4" class="show-stat update-stat subplay">Home Run</button></li>
+					</ul>
+				</li>
+				<li class="button-group">
+					<button class="play">Out</button>
+					<ul class="button-subgroup">
+						<li><button id="k-check" data-stat="strikeout" data-said="6" class="show-stat update-stat show-subcats subplay">Strikeout</button>
+							<ul class="button-subgroup-subcategory">
+								<li class="flexed"><input data-said="7" class="update-stat subcategory" type="checkbox" name="strikeout-type" id="klooking-check"> <label for="klooking-check">Struck out looking</label></li>
+								<li class="subcategory">
+									<div class="radio flexed"><input data-stat="drop3-wp" data-baselines="1" data-said="8" class="show-stat update-stat" type="radio" name="drop-type" id="drop-type1" value="drop-wp"> <label for="drop-type1">Dropped 3rd strike, wild pitch</label></div>
+									<div class="radio flexed"><input data-stat="drop3-pb" data-baselines="1" data-said="9" class="show-stat update-stat" type="radio" name="drop-type" id="drop-type2" value="drop-pb"> <label for="drop-type2">Dropped 3rd strike, passed ball</label></div>
+								</li>
+
+							</ul>
+						</li>
+						<li><button id="flyout-check" data-stat="flyout" data-said="10" class="show-stat update-stat subplay positions-on">Flyout</button></li>
+						<li><button id="lineout-check" data-stat="line-out" data-said="11" class="show-stat update-stat subplay positions-on">Line Out</button></li>
+						<li><button id="foulout-check" data-stat="foul-out"  data-said="12" class="show-stat update-stat subplay positions-on">Foul Out</button></li>
+						<li><button data-stat="groundout" data-said="13" class="show-stat subplay positions-on">Groundout</button></li>
+						<li><button id="dp-check" data-stat="double-play" data-said="14" class="show-stat update-stat subplay positions-on">Double Play</button></li>
+						<li><button id="tp-check" data-stat="triple-play" data-said="15" class="show-stat update-stat subplay positions-on">Triple Play</button></li>
+						<li><button data-stat="fielders-choice" data-said="16" class="show-stat subplay positions-on long-play">Fielder's Choice</button></li>
+						<li><button id="sacfly-check" data-stat="sac-fly" data-said="17" class="show-stat update-stat subplay positions-on">Sacrifice Fly</button></li>
+						<li><button data-stat="sac-bunt" data-said="18" class="show-stat subplay positions-on long-play">Sacrifice Bunt</button></li>
+						<li><button data-stat="infield-fly" data-said="19" class="show-stat subplay">Infield Fly</button></li>
+
+					</ul>
+				</li>
+				<li class="button-group">
+					<button class="play">Other</button>
+					<ul class="button-subgroup">
+						<li><button id="walk-check" data-stat="walk" data-baselines="1" data-said="20" class="show-stat update-stat subplay">Walk</button></li>
+						<li><button id="iwalk-check" data-stat="intentional-walk" data-baselines="1" data-said="21" class="show-stat update-stat subplay long-play">Intentional Walk</button></li>
+						<li><button id="hbp-check" data-stat="hit-by-pitch" data-baselines="1" data-said="22" class="show-stat update-stat subplay long-play">Hit By Pitch</button></li>
+						<li><button data-stat="error" data-baselines="1" id="error-check" data-said="23" class="show-stat update-stat subplay positions-on long-play">Reached on Error</button></li>
+					</ul>
+				</li>
+				<li class="button-group rbi-group hidden">
+					<label for="rbi" class="header">2) Runs batted in</label>
+					<input type="range" id="rbi-updater" name="rbi"
+								 min="0" max="3" step="1" value="0" list="tickmarks"/>
+
+					<datalist id="tickmarks">
+						<option id="tick0" value="0" label="0">
+						<option id="tick1" value="1" label="1">
+						<option id="tick2" value="2" label="2">
+						<option id="tick3" value="3" label="3">
+						<option id="tick4" class="hidden" value="4" label="4">
+					</datalist>
+				</li>
+			</ul>
+			<ul id="positions-list" class="positions hidden">
+				<li class="header">3) Fielder<span class="at-least">s</span> involved <br/><span class="atleast hidden">In order of ball posession</span></li>
+				<li class="alert invisible">Choose <span class="at-least">at least</span> one fielder</li>
+				<li><button data-position="1" data-said="1" class="position" disabled>Pitcher</button></li>
+				<li><button data-position="2" data-said="2" class="position" disabled>Catcher</button></li>
+				<li><button data-position="3" data-said="3" class="position" disabled>First Baseman</button></li>
+				<li><button data-position="4" data-said="4" class="position long-position" disabled>Second Baseman</button></li>
+				<li><button data-position="5" data-said="5" class="position" disabled>Third Baseman</button></li>
+				<li><button data-position="6" data-said="6" class="position" disabled>Shortstop</button></li>
+				<li><button data-position="7" data-said="7" class="position" disabled>Left Fielder</button></li>
+				<li><button data-position="8" data-said="8" class="position" disabled>Center Fielder</button></li>
+				<li><button data-position="9" data-said="9" class="position" disabled>Right Fielder</button></li>
+			</ul>
+			</div>
+		</div>
+	</div>
+<script src="script.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-134199225-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-134199225-1');
+</script>
+</body>
+</html>
