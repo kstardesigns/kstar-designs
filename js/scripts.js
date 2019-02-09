@@ -100,7 +100,17 @@ $('.left').click(function(){
 });
 
 var featuredItems = [
-    {
+  {
+    'proj': 'atbat',
+    'itemname': 'Baseball Scorecard',
+    'itemdescription': 'An interactive scorecard that shows how to score an at bat in baseball.',
+    'projlink': 'http://kylephx.com/atbat',
+    'articlelink': 'http://kylephx.com/atbat',
+    'articlelinktitle': 'View live version of this project',
+    'secondarylink':'https://codepen.io/kaisle/pen/vjapBE',
+    'secondarylinktitle':'View this project on CodePen'
+  },
+  {
       'proj': 'digitalmonopoly',
       'itemname': 'Digital Monopoly Properties',
       'itemdescription': 'As part of the <a href="https://codepen.io/challenges/2018/may#cpc-details" target="_blank">Weekly CodePen Challenge</a>, my goal was to use the relatively new <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> tags in a creative way. Featured in CodePen\'s weekly roundup. From the article:<br/><em>Kyle\'s "Digital Monopoly properties" draws inspiration from the Monopoly game\'s property cards.</em>',
