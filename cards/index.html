@@ -11,6 +11,7 @@
 </head>
 <body>
 	<div id="app">
+		<h2 class="page-header">Collect all {{ players.length }}!</h2>
 		<div class="search-box">
 			<input class="query" type="text" v-model="query" placeholder="Search by character or show/book/movie">
 			<div class="cancel-search" v-if="query" @click="cancelSearch">&times;</div>
@@ -21,7 +22,7 @@
 					<div class="card-wrap">
 						<div :class="{'front': true, [player.cardStyle]: true}">
 							<div class="stuff">
-								<div :class="{'topps': true, [player.toppsPosition]: true}">
+								<div class="topps">
 									<img v-if="player.cardStyle == 'topps2001'" src="assets/topps50years.jpg" alt="TOPPS 50 YEARS"/>
 									<img v-if="player.cardStyle == 'topps2019'" src="assets/topps-silver.png" alt="TOPPS"/>
 								</div>

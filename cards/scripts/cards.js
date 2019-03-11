@@ -105,11 +105,11 @@ new Vue({
 				statsYear3: {
 						year: 2021, tm: 'sea', g: 160, ab: '<i><b>682</b></i>', r: 93, h: 186, '2b': 24, '3b': 14, hr: 33, rbi: 84, avg: '.273', obp: '.287', slg: '.494', war: '6.0', sb: '<i><b>139</b></i>', cs: 7, bb: '14', so: '77'
 				},
-				// statsYear4: {
-				// 		year: 2022, club: 'sea', g: 100, ab: 100, r: 100, h: 100, '2b': 10, '3b': 10, hr: 10, rbi: 10, sb: 100, avg: '.000', slg: '.000'
-				// },
-				totals: { //through 2021
-						year: 'totals', tm: '', g: 415, ab: 1618, h: 509, r: 270, '2b': 75, '3b': 31, hr: 85, rbi: 232, avg: '.315', obp: '.316', slg: '.557', war: '22.7', sb: 428, cs: 17, bb: '17', so: '153'
+				statsYear4: {
+						year: 2022, tm: 'sea', g: 148, ab: 624, r: 94, h: 188, '2b': 30, '3b': '<i><b>14</b></i>', hr: 26, rbi: 103, avg: '.301', obp: '.310', slg: '.519', war: '5.1', sb: '<i><b>142</b></i>', cs: 6, bb: '7', so: '54'
+				},
+				totals: {
+						year: 'totals', tm: '', g: 563, ab: 2242, r: 364, h: 697, '2b': 105, '3b': 45, hr: 111, rbi: 335, avg: '.311', obp: '.318', slg: '.546', war: '27.8', sb: 570, cs: 27, bb: 24, so: 207
 				}
 			}
 		]
