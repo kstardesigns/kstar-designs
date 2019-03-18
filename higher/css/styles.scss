@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,600,600i,700,700i,800,800i,900,900i|Lato:700i');
+
+$album-gray: #d4d8db;
+$album-red: #d12026;
+$whiskey-brown: #872c07;
+$pretty-purple: #b40dff;
+$font-size: 46px;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  font-weight: $font-size;
+  font-size: 46px;
+  height: 100vh;
+  margin: 10px;
+  background-color: $album-gray;
+}
+
+::selection {
+  background-color: $album-red;
+  color: $album-gray;
+}
+
+br {
+  display: none;
+}
+
+p {
+  margin: 0;
+}
+
+span {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  display: inline-block;
+}
+
+.player {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+@mixin animate($name, $duration, $delay) {
+  animation-name: $name;
+  animation-duration: $duration;
+  animation-delay: $delay;
+}
+
+//lyrics
+
+.animation-started {
+//line 1
+  #this, #whiskey {
+    @include animate(fromLeft, 500ms, 18s);
+    color: $whiskey-brown;
+    text-transform: uppercase;
+    font-family: 'Lato';
+    font-style: italic;
+    font-weight: bold;
+  }
+
+  #got {
+    @include animate(appear, 250ms, 18.5s);
+  }
+
+  #me {
+    @include animate(appear, 250ms, 18.75s);
+  }
+
+  #feelin {
+    @include animate(appear, 250ms, 19s);
+  }
+
+  #pretty {
+    @include animate(grow, 250ms, 19.25s);
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $pretty-purple;
+  }
+}
+
+
+//reusable animations
+@keyframes appear { 0% { opacity: 0; }; 100% { opacity: 1; } }
+@keyframes grow { 0% { opacity: 0; transform-origin: 50% 50%; transform: scale(0.3); }; 100% { opacity: 1; transform: scale(1); } }
+@keyframes fromLeft { 0% { opacity: 0; transform: translateX(-150px); }; 100% { opacity: 1; transform: translateX(0); } }
+@keyframes fromTop { 0% { opacity: 0; transform: translateY(-150px); }; 100% { opacity: 1; transform: translateY(0); } }
