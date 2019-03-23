@@ -111,6 +111,28 @@ new Vue({
 				totals: {
 						year: 'totals', tm: '', g: 563, ab: 2242, r: 364, h: 697, '2b': 105, '3b': 45, hr: 111, rbi: 335, avg: '.311', obp: '.318', slg: '.546', war: '27.8', sb: 570, cs: 27, bb: 24, so: 207
 				}
+			},
+			{
+				name: 'Gene Belcher',
+			  string: 'genebelcher',
+				media: 'Bob\'s Burgers',
+			 	story: 'Donning his baseball capris and top, Gene rode the bench for most of his rookie season with the Devils. Striking out in every at bat and committing countless errors in the field would cause his team to lose. One fly ball to left field even caused him to pull his cup out of his jockstrap to shield his head from the ball. Despite his failures, Gene remains positive in his outlook on the sport: "I love baseball! The pizza parties, the spiky shoes, the parade at the end of the season where we ride on a float."',
+				team: 'Recreation League Devils&trade;',
+				logo: 'devils.png',
+				position: 'LF',
+				recordsType: 'batting',
+				cardStyle: 'topps2019',
+				cardNo: 796,
+				info1: 'Ht: 4\'10\" Wt: 105 Bats: Right Throws: Right',
+				info2: 'Drafted: 2013. Attended The Deuce of Diamonds\' Diamonds in the Rough in the Diamond Baseball Camp',
+				sources: 'Bob\'s Burgers, episode 3x23 "The Unnatural"',
+				// isHorizontal: true,
+				statsYear1: {
+						year: 2013, tm: 'devils', g: 2, ab: 3, r: 0, h: 0, so: 2, avg: '.000'
+				},
+				totals: {
+						year: 'totals', tm: '', g: 2, ab: 3, r: 0, h: 0, so: 2, avg: '.000'
+				}
 			}
 		]
 	},

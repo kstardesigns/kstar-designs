@@ -4,6 +4,8 @@ $card-height: 420px;
 $card-main-color: #38616f;
 $mariners-blue: #185693;
 $mariners-green: #3a7d74;
+$devils-red: #e03943;
+$devils-blue: #364dfa;
 
 * {
 	box-sizing: border-box;
@@ -294,7 +296,7 @@ li {
 				line-height: 16px;
 				letter-spacing: 1px;
 				margin-top: 0;
-    		margin-bottom: -5px;
+    		margin-bottom: -6px;
 				padding-left: 24px;
 			}
 
@@ -314,7 +316,7 @@ li {
 				letter-spacing: 0;
 
 				@media screen and (max-width: 450px) {
-					margin-bottom: 3px;
+					margin-bottom: 2px;
 				}
 			}
 		}
@@ -400,11 +402,15 @@ li {
 		.team {
 			z-index: 11;
 			position: absolute;
-			bottom: -22px;
+			bottom: -21px;
 			right: 24px;
 			display: flex;
 			flex-direction: column;
 			align-items: flex-end;
+
+			@media screen and (max-width: 450px) {
+				bottom: -22px;
+			}
 
 			img {
 				width: 58px;
@@ -660,8 +666,12 @@ li {
 			font-weight: bold;
 			line-height: 10px;
 			position: absolute;
-			top: 34px;
+			top: 33px;
 			right: 12px;
+
+			@media screen and (max-width: 450px) {
+				top: 34px;
+			}
 		}
 
 		.position {
@@ -982,6 +992,12 @@ li {
     		background-size: 420px auto;
 			}
 
+			.last-name {
+				@media screen and (max-width: 450px) {
+					margin-bottom: 3px;
+				}
+			}
+			
 			.team {
 
 			}
@@ -989,6 +1005,79 @@ li {
 
 		.back {
 			.row {
+
+			}
+		}
+	}
+
+	&[data-player="Gene Belcher"] {
+		.front {
+			.player-image {
+				background-position: -67px -65px;
+    		background-size: 400px auto;
+			}
+
+			.team img {
+				margin-bottom: -6px;
+			}
+
+			.position {
+				color: $devils-blue;
+			}
+
+			.borders-2019 {
+				border-right: 5px solid $devils-red;
+				border-bottom: 12px solid $devils-red;
+
+				.border-inside-1 {
+					border-right: 2px solid $devils-blue;
+					box-shadow: 0 10px 0 0 $devils-red;
+				}
+			}
+
+			.team-name {
+				color: $devils-red;
+			}
+		}
+
+		.back {
+			.borders-2019 {
+				border-right: 5px solid $devils-red;
+				border-top: 11px solid $devils-red;
+
+				.border-inside-1 {
+					border-right: 2px solid $devils-blue;
+					box-shadow: 0 -10px 0 0 $devils-red;
+				}
+			}
+
+			.team-name {
+				color: $devils-red;
+			}
+
+			.position {
+				color: $devils-blue;
+			}
+
+			.stats-story::before {
+				background-color: desaturate($devils-blue, 35%);
+			}
+
+			.scrolling-box {
+				width: auto;
+			}
+
+			.row {
+				&--headings {
+					background-color: desaturate($devils-blue, 35%);
+				}
+				&--year1 {
+					div:nth-child(3) {
+						margin-left: -2px;
+					}
+				}
+
+
 
 			}
 		}
