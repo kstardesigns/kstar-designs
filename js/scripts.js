@@ -16,6 +16,12 @@ $('nav ul a').click(function(){
 
 var portfolioItems = [
     {
+      'proj': 'gatorade',
+      'itemname': 'Gatorade Sports Shop',
+      'itemdescription': 'A loyalty shop for people who purchase Gatorade at Dollar General.* <a href="https://gatoradesportsshop.com/" target="_blank" title="">View site <span>&rarr;</span></a>',
+      'projlink': 'https://gatoradesportsshop.com/'
+    },
+    {
       'proj': 'sprint',
       'itemname': 'Sprint Back to School Sweepstakes',
       'itemdescription': 'A sweepstakes site including instant win games and a yearbook photo upload contest.* <a href="https://sprint.com/" target="_blank" title="">View site <span>&rarr;</span></a>',
