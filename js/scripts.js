@@ -1,5 +1,4 @@
-// JavaScript Document
-
+//open and close nav menu
 $('.menu-button').click(function(){
     $('nav').toggleClass('open');
     $('nav ul').toggle();
@@ -14,6 +13,7 @@ $('nav ul a').click(function(){
 	$('.menu').toggleClass('close-icon');
 });
 
+//list of portfolio items
 var portfolioItems = [
     {
       'proj': 'gatorade',
@@ -83,7 +83,7 @@ var portfolioItems = [
 		}
 	];
 
-
+//navigate through portfolio
 var portfolioNumber = 0;
 
 $('.right').click(function(){
@@ -105,6 +105,7 @@ $('.left').click(function(){
 	showPortfolio();
 });
 
+//list of featured items
 var featuredItems = [
   {
     'proj': 'atbat',
@@ -139,6 +140,7 @@ var featuredItems = [
 	];
 
 
+//navigate through featured items
 var featuredNumber = 0;
 
 $('.featured-right').click(function(){
@@ -159,15 +161,14 @@ $('.featured-left').click(function(){
 	showFeatured();
 });
 
-/* Scroll transition to anchor */
 
+// Scroll transition to anchor
 $('.godown').click(function() {
 
 $('*').animate({
   scrollTop: $("#skills").offset().top },
   '1500'
 );
-// Prevent default behavior of link
 return false;
 });
 
@@ -176,21 +177,6 @@ var colors = ['#e08a04','#e1d605','#ff8800','#f07000','#ff7f3f','#ff6e1a','#f038
 var random = Math.floor(Math.random()*colors.length);
 
 
-$(document).ready(function() {
-
-   showPortfolio();
-   showFeatured();
-
-   var apiString = 'https://api.darksky.net/forecast/' + key + '/33.4455,-112.0668?exclude=hourly,daily,minutely,alerts&callback=?';
-
-    $.getJSON(apiString, function(getTemp) {
-      var currently = Math.round(getTemp.currently.temperature);
-      $('.currTemp').html(currently + '&deg;');
-      var shadow1 = '0 0 ' + currently*.5 + 'px #ffc109';
-      $('.sun').css('box-shadow', shadow1)
-    });
-
-});
 
 function showPortfolio(){
 	$('#project').removeClass().addClass(portfolioItems[portfolioNumber].proj);
@@ -208,3 +194,36 @@ function showFeatured(){
   $('#featured-project .article-link').attr({ 'href': featuredItems[featuredNumber].articlelink, 'title': featuredItems[featuredNumber].articlelinktitle});
   $('#featured-project .secondary-link').attr({ 'href': featuredItems[featuredNumber].secondarylink, 'title': featuredItems[featuredNumber].secondarylinktitle});
 }
+
+//page load stuff
+$(document).ready(function() {
+
+   showPortfolio();
+   showFeatured();
+
+   //dark sky weather api
+   var apiString = 'https://api.darksky.net/forecast/' + key + '/33.4455,-112.0668?exclude=hourly,daily,minutely,alerts&callback=?';
+
+   $.getJSON(apiString, function(getTemp) {
+     var currently = Math.round(getTemp.currently.temperature);
+     var shadow = '0 0 ' + currently*.5 + 'px #ffc109';
+     $('.currTemp').html(currently + '&deg;');
+     $('.sun').css('box-shadow', shadow);
+   });
+
+   var apiString2 = 'https://erikberg.com/mlb/standings.json';
+
+   $.getJSON(apiString2, function(getStandings) {
+     var standings = getStandings.standings_date;
+     $('#test').html(standings);
+   });
+
+   // function getStandingsData() {
+   //    var dataurl = 'js/data.json';
+   //    $.getJSON( dataurl, {}, function( result ) {
+   //        $('#test').html(result.standings_date);
+   //    });
+   //  }
+   //  getStandingsData();
+
+});
