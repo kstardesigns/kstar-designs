@@ -1,4 +1,10 @@
-// JavaScript Document
+//open and close nav menu
+// $('nav.open .menu-button').click(function() {
+//   console.log('test');
+//   //$('nav .navBottom').removeClass('shown');
+//   $('.mobile-standings').removeClass('open');
+//   $('nav ul').removeClass('shrunk');
+// });
 
 $('.menu-button').click(function(){
     $('nav').toggleClass('open');
@@ -14,6 +20,7 @@ $('nav ul a').click(function(){
 	$('.menu').toggleClass('close-icon');
 });
 
+//list of portfolio items
 var portfolioItems = [
     {
       'proj': 'gatorade',
@@ -83,7 +90,7 @@ var portfolioItems = [
 		}
 	];
 
-
+//navigate through portfolio
 var portfolioNumber = 0;
 
 $('.right').click(function(){
@@ -105,6 +112,7 @@ $('.left').click(function(){
 	showPortfolio();
 });
 
+//list of featured items
 var featuredItems = [
   {
     'proj': 'atbat',
@@ -139,6 +147,7 @@ var featuredItems = [
 	];
 
 
+//navigate through featured items
 var featuredNumber = 0;
 
 $('.featured-right').click(function(){
@@ -159,37 +168,15 @@ $('.featured-left').click(function(){
 	showFeatured();
 });
 
-/* Scroll transition to anchor */
 
+// Scroll transition to anchor
 $('.godown').click(function() {
 
 $('*').animate({
   scrollTop: $("#skills").offset().top },
   '1500'
 );
-// Prevent default behavior of link
 return false;
-});
-
-var key = '462c6f631e646e613d842ece6bf05a6a';
-var colors = ['#e08a04','#e1d605','#ff8800','#f07000','#ff7f3f','#ff6e1a','#f03800','#ff1a1a'];
-var random = Math.floor(Math.random()*colors.length);
-
-
-$(document).ready(function() {
-
-   showPortfolio();
-   showFeatured();
-
-   var apiString = 'https://api.darksky.net/forecast/' + key + '/33.4455,-112.0668?exclude=hourly,daily,minutely,alerts&callback=?';
-
-    $.getJSON(apiString, function(getTemp) {
-      var currently = Math.round(getTemp.currently.temperature);
-      $('.currTemp').html(currently + '&deg;');
-      var shadow1 = '0 0 ' + currently*.5 + 'px #ffc109';
-      $('.sun').css('box-shadow', shadow1)
-    });
-
 });
 
 function showPortfolio(){
@@ -208,3 +195,79 @@ function showFeatured(){
   $('#featured-project .article-link').attr({ 'href': featuredItems[featuredNumber].articlelink, 'title': featuredItems[featuredNumber].articlelinktitle});
   $('#featured-project .secondary-link').attr({ 'href': featuredItems[featuredNumber].secondarylink, 'title': featuredItems[featuredNumber].secondarylinktitle});
 }
+
+
+var key = '462c6f631e646e613d842ece6bf05a6a';
+var colors = ['#e08a04','#e1d605','#ff8800','#f07000','#ff7f3f','#ff6e1a','#f03800','#ff1a1a'];
+var random = Math.floor(Math.random()*colors.length);
+
+//page load stuff
+$(document).ready(function() {
+
+   showPortfolio();
+   showFeatured();
+
+   //dark sky weather api
+   // var apiString = 'https://api.darksky.net/forecast/' + key + '/33.4455,-112.0668?exclude=hourly,daily,minutely,alerts&callback=?';
+   //
+   // $.getJSON(apiString, function(getTemp) {
+   //   var currently = Math.round(getTemp.currently.temperature);
+   //   var shadow = '0 0 ' + currently*.5 + 'px #ffc109';
+   //   $('.currTemp').html(currently + '&deg;');
+   //   $('.sun').css('box-shadow', shadow);
+   // });
+
+   $.ajax
+    ({
+      type: "GET",
+      url: "https://api.mysportsfeeds.com/v1.0/pull/mlb/2019-regular/division_team_standings.json?team=ari,lad,sd,sf,col&teamstats=W,L,GB&sort=standings.rank.A",
+      dataType: 'json',
+      async: false,
+      headers: {
+        "Authorization": "Basic " + btoa("84e472e0-857f-4da6-b1d3-8e0cc6:1qazzaq1")
+      },
+      //data: '{ "comment" }',
+      data: '',
+      success: function (data){
+        generateStandings(data)
+      }
+    });
+
+    function generateStandings(data) {
+      console.log("last updated:" + data.divisionteamstandings.lastUpdatedOn);
+      var teams = data.divisionteamstandings.division[5].teamentry;
+      var tableInside = '<div class="row header"><div class="cell team"></div><div class="cell wins">W</div><div class="cell losses">L</div><div class="cell games-back">GB</div></div>';
+
+      for (i = 0; i < teams.length; i++) {
+        var abb = teams[i].team['Abbreviation'].toLowerCase();
+        var city = teams[i].team['City'];
+        var team = teams[i].team['Name'];
+        var wins = teams[i].stats.Wins['#text'];
+        var losses = teams[i].stats.Losses['#text'];
+        var gamesBack = teams[i].stats.GamesBack['#text'];
+        if (gamesBack == '0.0') {
+          gamesBack = '-';
+        }
+
+        tableInside += '<div class="row ' + abb + '">'; //open row
+        tableInside += '<div class="cell team"><img src="assets/' + abb + '.svg" alt="' + city + name + '" /></div>'; //team logo
+        tableInside += '<div class="cell wins">' + wins + '</div>'; //wins
+        tableInside += '<div class="cell losses">' + losses + '</div>'; //losses
+        tableInside += '<div class="cell games-back">' + gamesBack + '</div>'; //games back
+        tableInside += '</div>'; //close row
+      }
+
+      $('#nl-west').html(tableInside);
+    }
+
+    $('.mobile-standings img').click(function() {
+      $('nav ul').addClass('shrunk');
+      $('.mobile-standings').addClass('open');
+
+        setTimeout(function(){
+          $('nav .navBottom').addClass('shown');
+        }, 500);
+    });
+
+
+});
