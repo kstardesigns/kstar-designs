@@ -53,6 +53,18 @@ nav {
         width: 250px;
     		display: none;
 
+          @media screen and (max-width: 639px) {
+            &.shrunk {
+              margin-top: 25px;
+
+              li {
+                transition: all 500ms;
+                font-size: 24px;
+                margin: 6px;
+              }
+            }
+          }
+
     			li {
     				font-size: 28px;
     				text-transform: lowercase;
@@ -60,6 +72,7 @@ nav {
     				font-weight: 300;
 				    letter-spacing: 2px;
 				    margin: 12px 30px;
+            transition: all 500ms;
 
               a:hover {
                 display: inline-block;
@@ -73,18 +86,13 @@ nav {
         position: fixed;
         bottom: 40px;
         width: 250px;
-        display: none;
-      }
+        display: none !important;
 
-      .sunSpot {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
+        @media screen and (max-height: 639px) {
+          border-top: 1px solid rgba(255,255,255,0.5);
+          padding-top: 20px;
+        }
+
         p {
           color: #fff;
           font-family: 'Josefin Sans', sans-serif;
@@ -93,6 +101,20 @@ nav {
           text-align: center;
           line-height: 21px;
         }
+      }
+
+      &.open {
+        .navBottom {
+          @media screen and (min-width: 640px) {
+            display: block !important;
+          }
+        }
+      }
+
+      .sunSpot {
+        display: flex;
+        flex-direction: column;
+
       }
 
       .sun {
@@ -376,31 +398,19 @@ header h1 {
 
     .svgs {
       width: 900px;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
       display: flex;
-      -ms-flex-wrap: wrap;
-      -webkit-flex-wrap: wrap;
       flex-wrap: wrap;
-      -webkit-box-orient: horizontal;
-      -webkit-box-direction: normal;
-      -ms-flex-direction: row;
       flex-direction: row;
       margin: 35px auto;
       &--companies {
         figure {
           width: 25%;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -ms-flexbox;
           display: flex;
 
           img {
             display: block;
             width: 120px;
             height: auto;
-            -ms-flex-item-align: center;
             align-self: center;
             // -webkit-filter: grayscale(75%);
             // filter: grayscale(75%);
@@ -1089,39 +1099,75 @@ footer {
 }
 
 /* standings table */
+$base: 35px;
 
-#table {
-  width: 400px;
+#nl-west {
+  width: 175px;
   font-family: $sec-font;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0 auto;
 
-  $base: 40px;
+  img {
+    display: block;
+    margin: 0 auto;
+  }
 
   .ari img { width: $base; }
-  .lad img { width: .75*$base; }
+  .lad img { width: .72*$base; }
   .sd img { width: .75*$base; }
-  .sf img { width: .7*$base; }
+  .sf img { width: .68*$base; }
   .col img { width: .9*$base; }
 
   .row {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid red;
+    padding: 4px 0;
 
     .team {
-      width: 70%;
+      width: 25%;
     }
 
     .wins {
-      width: 10%;
+      width: 25%;
     }
 
     .losses {
-      width: 10%;
+      width: 25%;
     }
 
     .games-back {
-      width: 10%;
+      width: 25%;
+    }
+  }
+}
+
+.mobile-standings {
+  display: none;
+  margin: 0 auto;
+  width: 45px;
+  position: absolute;
+  bottom: 20px;
+  left: calc(50% - 18px);
+
+  &.open {
+    opacity: 0;
+    transition: all 500ms;
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+nav.open {
+  .mobile-standings {
+    @media screen and (max-width: 639px) {
+      display: block;
     }
   }
 }
@@ -1334,6 +1380,15 @@ footer {
    }
 }
 
-@media screen and (max-height: 639px) {
-  nav .navBottom { display: none !important; }
+@media screen and (max-width: 639px) {
+  nav.open .navBottom {
+    &.shown {
+      display: block !important;
+    }
   }
+
+  nav .navBottom {
+      display: none !important;
+  }
+
+}

@@ -1,4 +1,11 @@
 //open and close nav menu
+// $('nav.open .menu-button').click(function() {
+//   console.log('test');
+//   //$('nav .navBottom').removeClass('shown');
+//   $('.mobile-standings').removeClass('open');
+//   $('nav ul').removeClass('shrunk');
+// });
+
 $('.menu-button').click(function(){
     $('nav').toggleClass('open');
     $('nav ul').toggle();
@@ -172,12 +179,6 @@ $('*').animate({
 return false;
 });
 
-var key = '462c6f631e646e613d842ece6bf05a6a';
-var colors = ['#e08a04','#e1d605','#ff8800','#f07000','#ff7f3f','#ff6e1a','#f03800','#ff1a1a'];
-var random = Math.floor(Math.random()*colors.length);
-
-
-
 function showPortfolio(){
 	$('#project').removeClass().addClass(portfolioItems[portfolioNumber].proj);
 	$('.item-name').html(portfolioItems[portfolioNumber].itemname);
@@ -195,6 +196,11 @@ function showFeatured(){
   $('#featured-project .secondary-link').attr({ 'href': featuredItems[featuredNumber].secondarylink, 'title': featuredItems[featuredNumber].secondarylinktitle});
 }
 
+
+var key = '462c6f631e646e613d842ece6bf05a6a';
+var colors = ['#e08a04','#e1d605','#ff8800','#f07000','#ff7f3f','#ff6e1a','#f03800','#ff1a1a'];
+var random = Math.floor(Math.random()*colors.length);
+
 //page load stuff
 $(document).ready(function() {
 
@@ -202,14 +208,14 @@ $(document).ready(function() {
    showFeatured();
 
    //dark sky weather api
-   var apiString = 'https://api.darksky.net/forecast/' + key + '/33.4455,-112.0668?exclude=hourly,daily,minutely,alerts&callback=?';
-
-   $.getJSON(apiString, function(getTemp) {
-     var currently = Math.round(getTemp.currently.temperature);
-     var shadow = '0 0 ' + currently*.5 + 'px #ffc109';
-     $('.currTemp').html(currently + '&deg;');
-     $('.sun').css('box-shadow', shadow);
-   });
+   // var apiString = 'https://api.darksky.net/forecast/' + key + '/33.4455,-112.0668?exclude=hourly,daily,minutely,alerts&callback=?';
+   //
+   // $.getJSON(apiString, function(getTemp) {
+   //   var currently = Math.round(getTemp.currently.temperature);
+   //   var shadow = '0 0 ' + currently*.5 + 'px #ffc109';
+   //   $('.currTemp').html(currently + '&deg;');
+   //   $('.sun').css('box-shadow', shadow);
+   // });
 
    $.ajax
     ({
@@ -242,7 +248,7 @@ $(document).ready(function() {
         if (gamesBack == '0.0') {
           gamesBack = '-';
         }
-        
+
         tableInside += '<div class="row ' + abb + '">'; //open row
         tableInside += '<div class="cell team"><img src="assets/' + abb + '.svg" alt="' + city + name + '" /></div>'; //team logo
         tableInside += '<div class="cell wins">' + wins + '</div>'; //wins
@@ -251,8 +257,17 @@ $(document).ready(function() {
         tableInside += '</div>'; //close row
       }
 
-      $('#table').html(tableInside);
+      $('#nl-west').html(tableInside);
     }
+
+    $('.mobile-standings img').click(function() {
+      $('nav ul').addClass('shrunk');
+      $('.mobile-standings').addClass('open');
+
+        setTimeout(function(){
+          $('nav .navBottom').addClass('shown');
+        }, 500);
+    });
 
 
 });

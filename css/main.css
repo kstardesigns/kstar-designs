@@ -72,13 +72,21 @@ nav {
     color: #fff;
     width: 250px;
     display: none; }
+    @media screen and (max-width: 639px) {
+      nav ul.shrunk {
+        margin-top: 25px; }
+        nav ul.shrunk li {
+          transition: all 500ms;
+          font-size: 24px;
+          margin: 6px; } }
     nav ul li {
       font-size: 28px;
       text-transform: lowercase;
       font-family: "Josefin Sans", sans-serif;
       font-weight: 300;
       letter-spacing: 2px;
-      margin: 12px 30px; }
+      margin: 12px 30px;
+      transition: all 500ms; }
       nav ul li a:hover {
         display: inline-block;
         text-shadow: 0 0 25px rgba(255, 255, 255, 0.65); }
@@ -86,23 +94,24 @@ nav {
     position: fixed;
     bottom: 40px;
     width: 250px;
-    display: none; }
-  nav .sunSpot {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column; }
-    nav .sunSpot p {
+    display: none !important; }
+    @media screen and (max-height: 639px) {
+      nav .navBottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.5);
+        padding-top: 20px; } }
+    nav .navBottom p {
       color: #fff;
       font-family: 'Josefin Sans', sans-serif;
       font-size: 18px;
       letter-spacing: 1px;
       text-align: center;
       line-height: 21px; }
+  @media screen and (min-width: 640px) {
+    nav.open .navBottom {
+      display: block !important; } }
+  nav .sunSpot {
+    display: flex;
+    flex-direction: column; }
   nav .sun {
     background-color: #ffc109;
     border-radius: 50%;
@@ -361,29 +370,17 @@ header h1 {
   height: 980px; }
   .experience .svgs {
     width: 900px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-wrap: wrap;
-    -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
     flex-direction: row;
     margin: 35px auto; }
     .experience .svgs--companies figure {
       width: 25%;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
       display: flex; }
       .experience .svgs--companies figure img {
         display: block;
         width: 120px;
         height: auto;
-        -ms-flex-item-align: center;
         align-self: center; }
       .experience .svgs--companies figure.millerlite img, .experience .svgs--companies figure.elmers img {
         width: 100px; }
@@ -1017,32 +1014,58 @@ footer {
     font-size: 14px; }
 
 /* standings table */
-#table {
-  width: 400px;
-  font-family: "Source Sans Pro", sans-serif; }
-  #table .ari img {
-    width: 40px; }
-  #table .lad img {
-    width: 30px; }
-  #table .sd img {
-    width: 30px; }
-  #table .sf img {
-    width: 28px; }
-  #table .col img {
-    width: 36px; }
-  #table .row {
+#nl-west {
+  width: 175px;
+  font-family: "Source Sans Pro", sans-serif;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0 auto; }
+  #nl-west img {
+    display: block;
+    margin: 0 auto; }
+  #nl-west .ari img {
+    width: 35px; }
+  #nl-west .lad img {
+    width: 25.2px; }
+  #nl-west .sd img {
+    width: 26.25px; }
+  #nl-west .sf img {
+    width: 23.8px; }
+  #nl-west .col img {
+    width: 31.5px; }
+  #nl-west .row {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid red; }
-    #table .row .team {
-      width: 70%; }
-    #table .row .wins {
-      width: 10%; }
-    #table .row .losses {
-      width: 10%; }
-    #table .row .games-back {
-      width: 10%; }
+    padding: 4px 0; }
+    #nl-west .row .team {
+      width: 25%; }
+    #nl-west .row .wins {
+      width: 25%; }
+    #nl-west .row .losses {
+      width: 25%; }
+    #nl-west .row .games-back {
+      width: 25%; }
+
+.mobile-standings {
+  display: none;
+  margin: 0 auto;
+  width: 45px;
+  position: absolute;
+  bottom: 20px;
+  left: calc(50% - 18px); }
+  .mobile-standings.open {
+    opacity: 0;
+    transition: all 500ms; }
+  .mobile-standings img {
+    display: block;
+    margin: 0 auto; }
+
+@media screen and (max-width: 639px) {
+  nav.open .mobile-standings {
+    display: block; } }
 
 /* Bouncing arrow - credit to dodozhang21 */
 @-moz-keyframes bounce {
@@ -1377,7 +1400,10 @@ footer {
     width: 110px; }
   .experience .svgs--companies figure.americanexpress img {
     width: 55px; } }
-@media screen and (max-height: 639px) {
+@media screen and (max-width: 639px) {
+  nav.open .navBottom.shown {
+    display: block !important; }
+
   nav .navBottom {
     display: none !important; } }
 
