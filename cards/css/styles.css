@@ -38,7 +38,7 @@ li {
   margin: 20px auto;
   justify-content: center;
   position: relative;
-  width: 280px; }
+  width: 300px; }
   .search-box .query {
     font-family: 'Lato';
     width: 100%;
@@ -63,6 +63,7 @@ li {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   padding-left: 0;
   z-index: 99; }
 
@@ -79,10 +80,40 @@ li {
     z-index: 999; }
   .container:hover::before {
     display: none; }
+  .container.horizontal {
+    width: 420px;
+    height: 300px; }
+    @media screen and (max-width: 450px) {
+      .container.horizontal {
+        width: 300px;
+        height: 420px; } }
+    .container.horizontal:before {
+      width: 420px;
+      height: 300px; }
+      @media screen and (max-width: 450px) {
+        .container.horizontal:before {
+          width: 300px;
+          height: 420px; } }
+
+@media screen and (max-width: 450px) {
+  .container.horizontal .card-wrap {
+    transform: rotate(90deg);
+    transform-origin: 0 100%;
+    margin-left: 300px; } }
 
 /* flip the card when hovered */
 .container.back-shown .card-wrap {
   transform: rotateY(180deg); }
+
+.container.horizontal.back-shown .card-wrap {
+  transform: rotateX(0) rotateY(180deg);
+  transform-origin: 50% 50%; }
+  @media screen and (max-width: 450px) {
+    .container.horizontal.back-shown .card-wrap {
+      transform: rotateX(0) rotateY(180deg) rotateZ(90deg);
+      transform-origin: 50% 50%;
+      margin-left: -300px;
+      margin-top: 300px; } }
 
 .container, .front, .back {
   width: 300px;
@@ -326,6 +357,142 @@ li {
         color: #3a7d74; }
       .front.topps2019 .team .team-name {
         color: #185693; }
+  .front.fleer2001 {
+    width: 420px;
+    height: 300px;
+    border: 1px solid #888;
+    background-color: #fff;
+    padding: 16px 12px 0 12px; }
+    .front.fleer2001 .stuff {
+      height: 284px;
+      border: none;
+      box-shadow: none;
+      border-radius: 0; }
+      .front.fleer2001 .stuff::before {
+        display: none; }
+    .front.fleer2001 .topps {
+      position: absolute;
+      top: 1px;
+      right: 3px;
+      left: unset;
+      width: 56px; }
+    .front.fleer2001 .name-box {
+      background: #113c67;
+      border-radius: 0;
+      width: 355px;
+      justify-content: flex-end;
+      position: absolute;
+      right: -13px;
+      bottom: 12px;
+      border-top: 2px solid #3a7d74;
+      border-bottom: 2px solid #3a7d74;
+      z-index: 130;
+      padding-top: 0;
+      padding-right: 69px; }
+      .front.fleer2001 .name-box .triangles {
+        position: relative;
+        top: 0;
+        left: -83px;
+        width: 20px;
+        height: 42px; }
+        .front.fleer2001 .name-box .triangles .top {
+          width: 0;
+          height: 0;
+          position: relative;
+          border-top: 0 solid transparent;
+          border-bottom: 22px solid transparent;
+          border-right: 20px solid #3a7d74; }
+          .front.fleer2001 .name-box .triangles .top:before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 4px;
+            width: 0;
+            height: 0;
+            border-top: 0 solid transparent;
+            border-bottom: 18px solid transparent;
+            border-right: 18px solid #113c67; }
+        .front.fleer2001 .name-box .triangles .bottom {
+          width: 0;
+          height: 0;
+          bottom: 2px;
+          position: relative;
+          border-top: 22px solid transparent;
+          border-bottom: 0 solid transparent;
+          border-right: 20px solid #3a7d74; }
+          .front.fleer2001 .name-box .triangles .bottom:before {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 4px;
+            width: 0;
+            height: 0;
+            border-top: 18px solid transparent;
+            border-bottom: 0 solid transparent;
+            border-right: 18px solid #113c67; }
+          .front.fleer2001 .name-box .triangles .bottom:after {
+            content: '';
+            position: absolute;
+            bottom: 17px;
+            left: 19px;
+            width: 0;
+            height: 0;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            border-left: 4px solid #3a7d74; }
+    .front.fleer2001 h1 {
+      margin-top: -13px; }
+      .front.fleer2001 h1 .first-name {
+        color: #fff;
+        -webkit-text-stroke: 1px #3a7d74;
+        text-stroke: 1px #3a7d74;
+        font-size: 22px;
+        line-height: 27px;
+        font-style: normal;
+        text-transform: uppercase;
+        margin: 0; }
+      .front.fleer2001 h1 .last-name {
+        color: #fff;
+        -webkit-text-stroke: 1px #3a7d74;
+        text-stroke: 1px #3a7d74;
+        font-size: 22px;
+        line-height: 27px;
+        margin: 0 0 0 10px; }
+    .front.fleer2001 .player-image {
+      height: 250px;
+      border-radius: 0;
+      background-size: 110% auto;
+      background-position: top -1px right -30px; }
+    .front.fleer2001 .player-image-foreground {
+      position: absolute;
+      bottom: 0;
+      left: 0px;
+      width: 305px;
+      height: 300px;
+      z-index: 129;
+      background-size: 132% auto;
+      background-repeat: no-repeat;
+      background-position: bottom 0px left -70px; }
+    .front.fleer2001 .team {
+      z-index: 132;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      flex-direction: row-reverse;
+      position: absolute;
+      bottom: 15px;
+      right: 5px; }
+      .front.fleer2001 .team img {
+        width: 45px;
+        margin-bottom: 5px; }
+      .front.fleer2001 .team .written-team {
+        font-family: 'Raleway', serif;
+        font-weight: 800;
+        color: #3a7d74;
+        text-transform: uppercase;
+        font-size: 12px; }
+        .front.fleer2001 .team .written-team .position {
+          margin: 0 8px 0 12px; }
 
 .back {
   transform: rotateY(180deg);
@@ -450,9 +617,6 @@ li {
       font-size: 6px;
       padding: 0 3px;
       text-align: center; }
-  .back .horizontal {
-    transform: rotate(-90deg);
-    transform-origin: 180px 170px; }
   .back.topps2019 {
     padding: 0 20px 0 0;
     border: 1px solid #ddd;
@@ -637,6 +801,157 @@ li {
           margin-top: 11px; }
         .back.topps2019 .logos img.mlbpa {
           width: 26px; }
+  .back.fleer2001 {
+    width: 420px;
+    height: 300px;
+    padding: 30px 0 0;
+    background-color: #96652c;
+    border: 1px solid #96652c;
+    border-right: 1px solid #444; }
+    .back.fleer2001 .stuff {
+      background-color: #96652c; }
+    .back.fleer2001 header {
+      background-color: #113c67;
+      border-radius: 0;
+      margin-left: 0;
+      align-items: center;
+      padding: 4px 0;
+      justify-content: flex-start;
+      padding-left: 55px; }
+    .back.fleer2001 .back-logo {
+      position: absolute;
+      top: -8px;
+      left: 7px;
+      width: 40px;
+      align-self: center; }
+    .back.fleer2001 .player-name {
+      color: #96652c;
+      font-family: 'Raleway', serif;
+      font-weight: 800;
+      letter-spacing: 1px;
+      font-size: 17px; }
+    .back.fleer2001 .last-name {
+      font-family: 'Raleway', serif;
+      font-weight: 800;
+      letter-spacing: 1px;
+      font-size: 17px;
+      margin: 0 10px 0 5px; }
+    .back.fleer2001 .written-team {
+      color: #96652c;
+      font-style: italic;
+      font-family: 'Raleway', serif;
+      font-weight: 800i;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      font-size: 13px; }
+    .back.fleer2001 .position {
+      font-style: italic;
+      font-family: 'Raleway', serif;
+      font-weight: 800i;
+      text-transform: lowercase;
+      letter-spacing: 0;
+      font-size: 13px;
+      margin-right: 10px; }
+    .back.fleer2001 .player-card-no {
+      background-color: transparent;
+      position: absolute;
+      top: -26px;
+      right: 0;
+      font-size: 17px; }
+      .back.fleer2001 .player-card-no span {
+        color: #000; }
+    .back.fleer2001 .stats-story {
+      height: 282px;
+      background: none; }
+      .back.fleer2001 .stats-story::before {
+        content: '';
+        display: none; }
+    .back.fleer2001 .inner-box {
+      padding-top: 50px; }
+    .back.fleer2001 .info {
+      order: 1; }
+    .back.fleer2001 .info-paragraph {
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: bold;
+      padding-left: 40px;
+      padding-bottom: 2px; }
+    .back.fleer2001 .stats-header {
+      background: #113c67;
+      border-radius: 0;
+      width: 402px;
+      z-index: 130;
+      padding: 6px 0 4px 29px;
+      position: relative;
+      margin-bottom: 3px;
+      margin-left: 6px; }
+      .back.fleer2001 .stats-header a {
+        color: #96652c;
+        font-size: 12px;
+        letter-spacing: 1px;
+        font-family: 'Raleway', serif; }
+      .back.fleer2001 .stats-header .triangles {
+        position: absolute;
+        top: 0;
+        left: -14px;
+        width: 20px;
+        height: 25px; }
+        .back.fleer2001 .stats-header .triangles .top {
+          width: 0;
+          height: 0;
+          top: 0;
+          right: -4px;
+          position: relative;
+          border-top: 0 solid transparent;
+          border-bottom: 12px solid transparent;
+          border-right: 11px solid #113c67; }
+        .back.fleer2001 .stats-header .triangles .bottom:before {
+          content: '';
+          position: absolute;
+          bottom: 2px;
+          left: 4px;
+          width: 0;
+          height: 0;
+          border-top: 12px solid transparent;
+          border-bottom: 0 solid transparent;
+          border-right: 11px solid #113c67; }
+    .back.fleer2001 .stats-box {
+      order: 2;
+      font-size: 11px;
+      line-height: 13px;
+      font-weight: bold; }
+      .back.fleer2001 .stats-box .row--headings {
+        border-bottom: 2px solid #222; }
+      .back.fleer2001 .stats-box .row--totals {
+        border-top: 2px solid #222; }
+        .back.fleer2001 .stats-box .row--totals div:first-child {
+          width: 60px;
+          min-width: 60px; }
+        .back.fleer2001 .stats-box .row--totals div:nth-child(2) {
+          width: 21px; }
+    .back.fleer2001 .story {
+      order: 3;
+      margin: 5px 0;
+      font-size: 11px;
+      line-height: 11px; }
+    .back.fleer2001 .logos {
+      order: 4; }
+      .back.fleer2001 .logos img.fleer {
+        order: 1;
+        margin-left: 10px;
+        width: 35px; }
+      .back.fleer2001 .logos img.mlb {
+        order: 2;
+        margin-top: 5px;
+        margin-left: 5px; }
+      .back.fleer2001 .logos img.mlbpa {
+        order: 3;
+        margin-left: 5px; }
+      .back.fleer2001 .logos p {
+        order: 4;
+        text-align: left;
+        font-size: 7px;
+        line-height: 7px; }
 
 .container {
   cursor: pointer;

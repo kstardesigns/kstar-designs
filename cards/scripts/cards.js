@@ -28,14 +28,13 @@ new Vue({
 			  string: 'charliekelly',
 				media: 'It\'s Always Sunny in Philadelphia',
 			 	story: 'As the legend goes, Charlie Kelly beat Wade Boggs\' beer drinking record in 2015, having finished 71 beers on a cross country flight to Los Angeles. He then drunkenly hit a line drive off the wall on the first pitch he saw. When asked after the game how he felt about his performance, he stumbled a bit and said, "That\'s baseball, baby!"',
-				team: 'Paddy\'s Pub',
+				team: 'Phillies',
 				logo: 'phillies.png',
 				position: 'DH',
 				recordsType: 'batting',
 				cardStyle: 'topps2001',
 				cardNo: 793,
 				sources: 'It\'s Always Sunny in Philadelphia, episode 10x1 "The Gang Beats Boggs"',
-				// isHorizontal: true,
 				statsYear1: {
 						year: 2015, g: 1, ab: 1, '2b': 1, avg: '1.000', beers: 71
 				},
@@ -55,7 +54,6 @@ new Vue({
 				cardStyle: 'topps2001',
 				cardNo: 794,
 				sources: 'The Complete Calvin and Hobbes, comics dated 6/22/86, 8/1/86, 2/10/87, 6/10/87, 8/9/87, 5/22/88, 6/9/88, 6/19/88, 7/17/88, 8/6/89, 8/24/89, 5/1/90, 6/24/90, 7/22/90, 8/8/90, 5/23/93, 12/12/93, 3/15/95',
-				// isHorizontal: true,
 				statsYear1: {
 						year: 1986, g: 2, ab: 1, h: 0, '2b': 0, '3b': 0, hr: 0, rbi: 0, sb: 0, so: 0, avg: '.000'
 				},
@@ -95,7 +93,6 @@ new Vue({
 				info1: 'Ht: 5\'8\" Wt: 160 Bats: Right Throws: Right',
 				info2: 'Drafted: Marlins #26-2018. Acq. Trade w/ Marlins, 2019.',
 				sources: 'MLB The Show 18 statistics page',
-				// isHorizontal: true,
 				statsYear1: {
 						year: 2019, tm: 'mia', g: 100, ab: 318, r: 73, h: 132, '2b': 23, '3b': 8, hr: 25, rbi: 68, avg: '.415', obp: '.412', slg: '.777', war: '9.0', sb: '<i><b>125</b></i>', cs: 8, bb: '0', so: '6'
 				},
@@ -133,7 +130,43 @@ new Vue({
 				totals: {
 						year: 'totals', tm: '', g: 2, ab: 3, r: 0, h: 0, so: 2, avg: '.000'
 				}
-			}
+			},
+			{ 
+				name: 'Kenny Powers',
+			  string: 'kennypowers',
+				media: 'Eastbound & Down',
+				story: 'While playing for Seattle (his fifth ballclub in 5 seasons), Kenny gave up a grand slam to his nemesis Reg Mackworthy, which would ultimately end his MLB career. He became a free agent again in 2007 and has yet to sign with a new team.',
+			 	//story: 'include first minors stint, mlb stint, liga mexicana de beisbol stint, last milb stint, only pic on seattle has middle finger so used charros pic',
+				team: 'Seattle Mariners&trade;',		
+				logo: 'mariners2.png',
+				position: 'Pitcher',
+				recordsType: 'pitching',
+				cardStyle: 'fleer2001',
+				cardNo: 797,
+				info1: 'Height: 5\'8\"&nbsp;&nbsp;&nbsp; Weight: 210&nbsp;&nbsp;&nbsp; Bats: Right&nbsp;&nbsp;&nbsp; Throws: Right',
+				info2: 'Drafted: 1st Round, 1999.&nbsp;&nbsp;&nbsp; Acq. via Free Agency, 2006.',
+				sources: 'Eastbound & Down, episodes 1, 3, 5 (add more from seasons 2-4); <a href="https://web.archive.org/web/20120615223015/http://www.kennypowers.com/cards.html" target="_blank">HBO Archive</a>; <a href="http://www.kennypowersfanclub.com/kennypowers/stats.php" target="_blank">Kenny Powers Fan Club</a>; <a href="https://www.cardboardconnection.com/kenny-powers-baseball-card-collection-from-hbos-eastbound-down" target="_blank">Cardboard Connection</a>',
+				isHorizontal: true,
+				statsYear1: {
+						year: 2002, club: 'atl', g: 62, w: 7, l: 3, ip: 66.1, er: 21, era: 2.85, sv: 49, so: 106, bb: 30
+				},
+				statsYear2: {
+						year: 2003, club: 'nyy', g: 64, w: 7, l: 3, ip: 62.2, er: 33, era: 4.74, sv: 39, so: 79, bb: 20
+				},
+				statsYear3: {
+						year: 2004, club: 'sfg', g: 52, w: 3, l: 10, ip: 54.2, er: 40, era: 6.59, sv: 30, so: 44, bb: 27
+				},
+				statsYear4: {
+						year: 2005, club: 'bos', g: 15, w: 0, l: 6, ip: 12.2, er: 12, era: 8.53, sv: 3, so: 6, bb: 9
+				},
+				statsYear5: {
+						year: 2006, club: 'sea', g: 1, w: 0, l: 1, ip: 0, er: 1, era: 'inf', sv: 0, so: 0, bb: 0
+				},
+				totals: {
+						year: 'mlb totals', club: '', g: 194, w: 17, l: 18, ip: 196.1, er: 107, era: 4.90, sv: 121, so: 235, bb: 86
+				}
+				
+			}			
 		]
 	},
 	computed: {
@@ -142,6 +175,7 @@ new Vue({
 				return player.name.toLowerCase().indexOf(this.query.toLowerCase()) > -1
 					|| player.media.toLowerCase().indexOf(this.query.toLowerCase()) > -1
 					|| player.string.toLowerCase().indexOf(this.query.toLowerCase()) > -1
+					|| player.team.toLowerCase().indexOf(this.query.toLowerCase()) > -1
 			})
 		}
 	},

@@ -13,21 +13,23 @@
 	<div id="app">
 		<h2 class="page-header">Collect all {{ players.length }}!</h2>
 		<div class="search-box">
-			<input class="query" type="text" v-model="query" placeholder="Search by character or show/book/movie">
+			<input class="query" type="text" v-model="query" placeholder="Search by character, team, show, movie, book">
 			<div class="cancel-search" v-if="query" @click="cancelSearch">&times;</div>
 		</div>
 		<ul class="card-list">
 			<!-- card -->
-			<li class="container" v-for="player in filteredList" @click="flipCard(player, $event)" :data-player="player.name">
+			<li :class="{'container': true, 'horizontal': player.isHorizontal}" v-for="player in filteredList" @click="flipCard(player, $event)" :data-player="player.name">
 					<div class="card-wrap">
 						<div :class="{'front': true, [player.cardStyle]: true}">
+							<div v-if="player.cardStyle == 'fleer2001'" class="player-image-foreground" :style="{ backgroundImage: 'url(http://kylephx.com/cards/assets/' + player.string + '-foreground.png)'}" ></div>
 							<div class="stuff">
 								<div class="topps">
 									<img v-if="player.cardStyle == 'topps2001'" src="assets/topps50years.jpg" alt="TOPPS 50 YEARS"/>
 									<img v-if="player.cardStyle == 'topps2019'" src="assets/topps-silver.png" alt="TOPPS"/>
+									<img v-if="player.cardStyle == 'fleer2001'" src="assets/fleer-tradition.png" alt="Fleer Tradition"/>
 								</div>
 								<div class="borders-2019" v-if="player.cardStyle == 'topps2019'">
-								<div class="border-inside-1">
+									<div class="border-inside-1">
 										<div class="border-inside-2"></div>
 									</div>
 								</div>
@@ -43,35 +45,49 @@
 								<div class="team">
 									<img :src="'assets/' + player.logo" :alt="player.team"/>
 									<p v-if="player.cardStyle == 'topps2019'" class="written-team"><span class="position">{{ player.position }} | </span><span class="team-name" v-html="player.team"></span></p>
+									<p v-if="player.cardStyle == 'fleer2001'" class="written-team"><span class="team-name" v-html="player.team"></span><span class="position">{{ player.position }}</span></p>
 								</div>
 								<div class="rookie" v-if="player.rookie">
 									<span>ROOKIE<br/>CARD</span>
 								</div>
 								<div class="name-box">
+									<div class="triangles" v-if="player.cardStyle == 'fleer2001'">
+										<div class="top"></div>
+										<div class="bottom"></div>
+									</div>
 									<h1>
 										<span class="first-name">{{ player.name | trimLast }}</span> <span class="last-name">{{ player.name | trimFirst }}</span></h1>
 								</div>
 							</div>
 						</div>
 						<div :class="{'back': true, [player.cardStyle]: true}">
-							<div :class="{'stuff': true, 'horizontal': player.isHorizontal}">
+							<div :class="{'stuff': true}">
 								<div class="borders-2019" v-if="player.cardStyle == 'topps2019'">
 									<div class="border-inside-1">
 										<div class="border-inside-2"></div>
 									</div>
 								</div>
 								<header>
+									<img class="back-logo" v-if="player.cardStyle == 'fleer2001'" :src="'http://kylephx.com/cards/assets/' + player.logo" :alt="player.team"/>
 									<div class="player-name">
 										<span class="first-name">{{ player.name | trimLast }}</span><br v-if="player.cardStyle == 'topps2001'"/><span class="last-name">{{ player.name | trimFirst }}</span>
 									</div>
 									<div v-if="player.cardStyle == 'topps2001'" class="player-position">{{ player.position }}</div>
-									<p v-if="player.cardStyle == 'topps2019'" class="written-team"><span class="position">{{ player.position }} | </span><span class="team-name" v-html="player.team"></span></p>
+									<p v-if="player.cardStyle == 'topps2019' || player.cardStyle == 'fleer2001'" class="written-team"><span class="position">{{ player.position }} <span v-if="player.cardStyle == 'topps2019'">|</span> </span><span class="team-name" v-html="player.team"></span></p>
 									<div class="player-card-no"><span>{{ player.cardNo}}</span></div>
 								</header>
-								<div class="stats-story"  :style="{ backgroundImage: 'url(assets/' + player.string + '.jpg)'}">
+								<div class="stats-story" :style="[player.cardStyle == 'fleer2001' ? {'backgroundImage': 'none'} : {'backgroundImage': 'url(assets/' + player.string + '.jpg)'}]">
 									<div class="inner-box">
 											<div class="stats-box">
-													<p class="stats-header"><a @click="goToSource(player.cardNo)" class="card-source" :href="'#source' + player.cardNo" title="Show sources">Complete major league {{ player.recordsType }} records*</a></p>
+													<p class="stats-header" v-if="player.cardStyle != 'fleer2001'"><a @click="goToSource(player.cardNo)" class="card-source" :href="'#source' + player.cardNo" title="Show sources">Complete major league {{ player.recordsType }} records*</a></p>
+
+													<div class="stats-header" v-if="player.cardStyle == 'fleer2001'">
+														<div class="triangles" >
+															<div class="top"></div>
+															<div class="bottom"></div>
+														</div>
+														<a @click="goToSource(player.cardNo)" class="card-source" :href="'#source' + player.cardNo" title="Show sources">Complete major league {{ player.recordsType }} records*</a>
+													</div>
 													<div class="overflow-box">
 														<div class="scrolling-box">
 															<div class="row row--headings">
@@ -104,44 +120,44 @@
 														</div>
 													</div>
 											</div>
-											<div v-if="player.cardStyle == 'topps2019'" class="info">
-												<p class="info-paragraph">{{ player.info1 }} <br/>
-													{{ player.info2 }}</p>
+											<div v-if="player.cardStyle == 'topps2019' || player.cardStyle == 'fleer2001'" class="info">
+												<p class="info-paragraph"><span v-html="player.info1"></span> <br/>
+													<span v-html="player.info2"></span></p>
 											</div>
 											<p class="story">{{ player.story }}</p>
 											<div class="logos">
-												<img class="topps" src="assets/topps.svg" alt="Topps logo"/>
+												<img v-if="player.cardStyle == 'topps2001' || player.cardStyle == 'topps2019'" class="topps" src="assets/topps.svg" alt="Topps logo"/>
+												<img v-if="player.cardStyle == 'fleer2001'" class="fleer" src="assets/fleer-tradition.png" alt="Fleer Tradition logo"/>
 												<p v-if="player.cardStyle == 'topps2001'">&reg; &amp; &copy; 2001 THE TOPPS COMPANY, INC. ALL RIGHTS RESERVED. TOPPS AND OPENING DAY ARE TRADEMARKS OF THE TOPPS COMPANY, INC. &amp; MLB &amp; MLBPA, 2001.
 												</p>
 												<p v-if="player.cardStyle == 'topps2019'">&reg; &amp; &copy; 2019 THE TOPPS COMPANY, INC. ALL RIGHTS RESERVED. TOPPS AND OPENING DAY ARE TRADEMARKS OF THE TOPPS COMPANY, INC. &amp; MLB &amp; MLBPA, 2019.
 												</p>
+												<p v-if="player.cardStyle == 'fleer2001'">MAJOR LEAGUE BASEBALL TRADEMARKS AND COPYRIGHTS ARE USED WITH<br/> PERMISSION OF MAJOR LEAGUE BASEBALL PROPERTIES, INC. OFFICIAL LICENSEE--MLBPA<br/> &copy; 2001 FLEER/SKYBOX INTERNATIONAL LP, PRINTED IN U.S.A. TRADITION/2001</p>
 												<img class="mlb" src="assets/mlb.svg" alt="Major League Baseball logo"/>
 												<img class="mlbpa" src="assets/mlbpa.png" alt="MLB Players Association logo"/>
 											</div>
 										</div>
-
+									</div>
 								</div>
 
 							</div>
 						</div>
-					</div>
+					
 			</li>
 			<!-- /card -->
 		</ul>
 
 		<details>
+			<!-- TODO: upload image of fleer tradition card, front and back -->
 			<summary>Sources</summary>
 			<ul>
 				<li v-for="player in filteredList" :id="'source' + player.cardNo" class="source">
 					{{ player.cardNo }} {{ player.name }} - {{ player.sources }}
 				</li>
-				<li>Card styling - &reg; &amp; &copy; THE TOPPS COMPANY. Version 1: 2001 <a href="assets/ichiro.jpg" target="_blank">front</a> and <a href="assets/ichiro-back.jpg" target="_blank">back</a>. Version 2: 2019 <a href="assets/judge.jpg" target="_blank">front</a> and <a href="assets/acuna-back.jpg" target="_blank">back</a>. </li>
+				<li>Card styling - &reg; &amp; &copy; THE TOPPS COMPANY. Version 1: 2001 <a href="assets/ichiro.jpg" target="_blank">front</a> and <a href="assets/ichiro-back.jpg" target="_blank">back</a>. Version 2: 2019 <a href="assets/judge.jpg" target="_blank">front</a> and <a href="assets/acuna-back.jpg" target="_blank">back</a>. &copy; FLEER/SKYBOX INT'L, LP. Version 1: 2001 <a href="/" target="_blank">front</a> and <a href="/" target="_blank">back</a>.</li>
 			</ul>
 		</details>
 	</div>
-
-
-<!--test-->
 
 	<script src="scripts/vue.min.js"></script>
 	<script src="scripts/cards.js"></script>
