@@ -23,6 +23,12 @@ $('nav ul a').click(function(){
 //list of portfolio items
 var portfolioItems = [
     {
+      'proj': 'titledrops',
+      'itemname': 'Title Drops',
+      'itemdescription': 'A project that tells when a TV show or movie mentions its own title in its script. <a href="http://titledrops.com" target="_blank" title="">View site <span>&rarr;</span></a>',
+      'projlink': 'http://titledrops.com'
+    },
+    {
       'proj': 'gatorade',
       'itemname': 'Gatorade Sports Shop',
       'itemdescription': 'A loyalty shop for people who purchase Gatorade at Dollar General.* <a href="https://gatoradesportsshop.com/" target="_blank" title="">View site <span>&rarr;</span></a>',
@@ -59,12 +65,6 @@ var portfolioItems = [
 			'projlink': 'darwins/index.html'
 		},
 		{
-			'proj': 'titledrops',
-			'itemname': 'Title Drops',
-			'itemdescription': 'A project that tells when a TV show or movie mentions its own title in its script. <a href="http://titledrops.xyz" target="_blank" title="">View site <span>&rarr;</span></a>',
-			'projlink': 'http://titledrops.xyz'
-		},
-		{
 			'proj': 'leslie',
 			'itemname': 'Leslie Stark, Realtor',
 			'itemdescription': 'A single-page realtor website developed with a tabbed design. <a href="http://lesliestarkaz.com" target="_blank" title="">View site <span>&rarr;</span></a>',
@@ -85,8 +85,8 @@ var portfolioItems = [
 		{
 			'proj': 'clayton',
 			'itemname': 'Clayton Sullivan Portfolio',
-			'itemdescription': 'A portfolio website displaying the work of a stuntman/actor. <a href="http://claytonasullivan.com" target="_blank" title="">View site <span>&rarr;</span></a>',
-			'projlink': 'http://claytonasullivan.com'
+			'itemdescription': 'A portfolio website displaying the work of a stuntman/actor. <a href="clayton/index.html" target="_blank" title="">View site <span>&rarr;</span></a>',
+			'projlink': 'clayton/index.html'
 		}
 	];
 
