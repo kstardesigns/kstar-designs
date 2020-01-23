@@ -1,12 +1,14 @@
 <?php
 
-$EmailFrom = "kstar designs";
 $EmailTo = "kyleastark@gmail.com";
 $Subject = "Form submission";
 $Name = Trim(stripslashes($_POST['Name']));  
 $Phone = Trim(stripslashes($_POST['Phone'])); 
 $Email = Trim(stripslashes($_POST['Email']));
 $Message = Trim(stripslashes($_POST['Message'])); 
+$headers = 'From: webmaster@example.com' . "\r\n" .
+    'Reply-To: webmaster@example.com' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
 
 // validation
 $validationOK=true;
@@ -32,7 +34,7 @@ $Body .= "\n";
 
 
 // send email 
-$success = mail($EmailTo, $Subject, $Body, "From: <$EmailFrom>");
+$success = mail($EmailTo, $Subject, $Body, $headers);
 
 // redirect to success page 
 if ($success){
