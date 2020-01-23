@@ -220,14 +220,12 @@ $(document).ready(function() {
    $.ajax
     ({
       type: "GET",
-      url: "https://api.mysportsfeeds.com/v1.0/pull/mlb/2019-regular/division_team_standings.json?team=ari,lad,sd,sf,col&teamstats=W,L,GB&sort=standings.rank.A",
+      url: "https://api.mysportsfeeds.com/v1.0/pull/mlb/2020-regular/division_team_standings.json?team=ari,lad,sd,sf,col&teamstats=W,L,GB&sort=standings.rank.A",
       dataType: 'json',
       async: false,
       headers: {
         "Authorization": "Basic " + btoa("31700346-f824-4c23-9bf7-db49f5:1qazzaq1")
       },
-      //data: '{ "comment" }',
-      data: '',
       success: function (data){
         generateStandings(data)
       }
