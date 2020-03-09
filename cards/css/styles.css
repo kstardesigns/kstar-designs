@@ -79,7 +79,7 @@ li {
     background: linear-gradient(-55deg, rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.06) 50%);
     z-index: 999; }
   .container:hover::before {
-    display: none; }
+    background: transparent; }
   .container.horizontal {
     width: 420px;
     height: 300px; }
@@ -102,18 +102,24 @@ li {
     margin-left: 300px; } }
 
 /* flip the card when hovered */
-.container.back-shown .card-wrap {
+.container.back-shown .card-wrap .front {
   transform: rotateY(180deg); }
+.container.back-shown .card-wrap .back {
+  transform: rotateY(360deg); }
 
 .container.horizontal.back-shown .card-wrap {
-  transform: rotateX(0) rotateY(180deg);
   transform-origin: 50% 50%; }
+  .container.horizontal.back-shown .card-wrap .front {
+    transform: rotateX(0) rotateY(180deg); }
+  .container.horizontal.back-shown .card-wrap .back {
+    transform: rotateX(0) rotateY(360deg); }
   @media screen and (max-width: 450px) {
     .container.horizontal.back-shown .card-wrap {
-      transform: rotateX(0) rotateY(180deg) rotateZ(90deg);
-      transform-origin: 50% 50%;
-      margin-left: -300px;
-      margin-top: 300px; } }
+      transform-origin: 50% 50%; }
+      .container.horizontal.back-shown .card-wrap .front {
+        transform: rotateX(0) rotateY(180deg); }
+      .container.horizontal.back-shown .card-wrap .back {
+        transform: rotateX(0) rotateY(360deg); } }
 
 .container, .front, .back {
   width: 300px;
@@ -124,19 +130,21 @@ li {
 
 /* flip speed goes here */
 .card-wrap {
-  transition: 0.6s;
-  transform-style: preserve-3d;
   position: relative; }
 
 .front, .back {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  transition: 0.6s;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
   position: absolute;
   top: 0;
   left: 0; }
 
 .front {
   z-index: 2;
+  -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
   border: 1px solid #38616f;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
@@ -934,6 +942,9 @@ li {
       margin: 5px 0;
       font-size: 11px;
       line-height: 11px; }
+      @media screen and (max-width: 450px) {
+        .back.fleer2001 .story {
+          margin: 5px 0 13px; } }
     .back.fleer2001 .logos {
       order: 4; }
       .back.fleer2001 .logos img.fleer {
@@ -1031,6 +1042,53 @@ li {
     background-color: #5a69d6; }
   .container[data-player="Gene Belcher"] .back .row--year1 div:nth-child(3) {
     margin-left: -2px; }
+  .container[data-player="Henry Rowengartner"] .front .player-image {
+    background-position: -60px -38px;
+    background-size: 400px auto; }
+  .container[data-player="Henry Rowengartner"] .front .first-name {
+    margin-top: 6px; }
+  .container[data-player="Henry Rowengartner"] .front .last-name {
+    font-size: 24px;
+    margin-top: 3px;
+    margin-bottom: -5px; }
+  .container[data-player="Henry Rowengartner"] .front .team img {
+    width: 50px;
+    margin-bottom: -1px; }
+  .container[data-player="Henry Rowengartner"] .front .team-name sup {
+    top: 1px;
+    position: relative;
+    font-size: 6px; }
+  .container[data-player="Henry Rowengartner"] .front .position {
+    color: #bc2313; }
+  .container[data-player="Henry Rowengartner"] .front .borders-2019 {
+    border-right: 5px solid #177bdd;
+    border-bottom: 12px solid #177bdd; }
+    .container[data-player="Henry Rowengartner"] .front .borders-2019 .border-inside-1 {
+      border-right: 2px solid #bc2313;
+      box-shadow: 0 10px 0 0 #177bdd; }
+  .container[data-player="Henry Rowengartner"] .front .team-name {
+    color: #177bdd; }
+  .container[data-player="Henry Rowengartner"] .back .borders-2019 {
+    border-right: 5px solid #177bdd;
+    border-top: 11px solid #177bdd; }
+    .container[data-player="Henry Rowengartner"] .back .borders-2019 .border-inside-1 {
+      border-right: 2px solid #bc2313;
+      box-shadow: 0 -10px 0 0 #177bdd; }
+  .container[data-player="Henry Rowengartner"] .back .written-team {
+    top: 30px; }
+  .container[data-player="Henry Rowengartner"] .back .team-name {
+    color: #177bdd; }
+    .container[data-player="Henry Rowengartner"] .back .team-name sup {
+      position: relative;
+      top: 3px; }
+  .container[data-player="Henry Rowengartner"] .back .position {
+    color: #bc2313; }
+  .container[data-player="Henry Rowengartner"] .back .stats-story::before {
+    background-color: #d76b51; }
+  .container[data-player="Henry Rowengartner"] .back .scrolling-box {
+    width: auto; }
+  .container[data-player="Henry Rowengartner"] .back .row--headings {
+    background-color: #d76b51; }
 
 details {
   margin: 50px 40px;

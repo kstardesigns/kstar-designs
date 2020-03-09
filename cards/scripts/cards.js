@@ -8,7 +8,7 @@ new Vue({
 			  string: 'ginnybaker',
 				media: 'Pitch',
 			 	story: 'Given jersey number 43 as a nod to Jackie Robinson\'s 42, Ginny Baker stunned the world when she became the first woman to play in the MLB. She also played in her first All-Star game during her rookie season, but surrendered a home run to the only batter she faced, the feared Salvador Pérez.',
-				team: 'padres',
+				team: 'Padres',
 				logo: 'padres.svg',
 				position: 'P',
 				recordsType: 'pitching',
@@ -132,17 +132,39 @@ new Vue({
 				}
 			},
 			{ 
+				name: 'Henry Rowengartner',
+			  	string: 'henryrowengartner',
+				media: 'Rookie of the Year',
+			 	story: 'Known around the Cubs clubhouse as Rulingfurter, Rosinbagger, and even Gardenhoser, Henry was signed right out of junior high after a freak accident caused him to be able to throw at incredible speeds. After several successful outings with the Cubs, his agent/mom\'s boyfriend tried to get him to sign a contract to join the New York Yankees, much to his mother\'s disapproval. Rowengartner retired after striking out Mets\' feared slugger Heddo, helping the Cubs win the pennant, and eventually, the World Series.',
+				team: 'Chicago Cubs<sup>&reg;</sup>',		
+				logo: 'cubs.svg',
+				position: 'P',
+				recordsType: 'pitching',
+				cardStyle: 'topps2019',
+				cardNo: 797,	
+				orderNo: 7,
+				info1: 'Ht: 4\'11\" Wt: 88 Bats: Right Throws: Right',
+				info2: 'Signed: 1993. Retired from MLB: 1993.',
+				sources: 'Rookie of the Year film',
+				// isHorizontal: true,
+				statsYear1: {
+						year: 1993, tm: 'CHC', w: 0, l: 0, era: 1.59, ip: 5.2, sv: 3, so: 12, bb: 2, hbp: 2, hr: 1
+				},
+				totals: {
+						year: 'totals', tm: '', w: 0, l: 0, era: 1.59, ip: 5.2, sv: 3, so: 12, bb: 2, hbp: 2, hr: 1
+				}
+			},
+			{ 
 				name: 'Kenny Powers',
 			  string: 'kennypowers',
 				media: 'Eastbound & Down',
 				story: 'While playing for Seattle (his fifth ballclub in 5 seasons), Kenny gave up a grand slam to his nemesis Reg Mackworthy, which would ultimately end his MLB career. He became a free agent again in 2007 and has yet to sign with a new team.',
-			 	//story: 'include first minors stint, mlb stint, liga mexicana de beisbol stint, last milb stint, only pic on seattle has middle finger so used charros pic',
 				team: 'Seattle Mariners&trade;',		
 				logo: 'mariners2.png',
 				position: 'Pitcher',
 				recordsType: 'pitching',
 				cardStyle: 'fleer2001',
-				cardNo: 797,
+				cardNo: 798,
 				info1: 'Height: 5\'8\"&nbsp;&nbsp;&nbsp; Weight: 210&nbsp;&nbsp;&nbsp; Bats: Right&nbsp;&nbsp;&nbsp; Throws: Right',
 				info2: 'Drafted: 1st Round, 1999.&nbsp;&nbsp;&nbsp; Acq. via Free Agency, 2006.',
 				sources: 'Eastbound & Down, episodes 1, 3, 5 (add more from seasons 2-4); <a href="https://web.archive.org/web/20120615223015/http://www.kennypowers.com/cards.html" target="_blank">HBO Archive</a>; <a href="http://www.kennypowersfanclub.com/kennypowers/stats.php" target="_blank">Kenny Powers Fan Club</a>; <a href="https://www.cardboardconnection.com/kenny-powers-baseball-card-collection-from-hbos-eastbound-down" target="_blank">Cardboard Connection</a>',
