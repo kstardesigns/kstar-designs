@@ -9,6 +9,7 @@ $devils-blue: #364dfa;
 $dull-brown: #96652c;
 $cubs-blue: #177bdd;
 $cubs-red: #bc2313;
+$kekambas-green: #469750;
 
 * {
 	box-sizing: border-box;
@@ -91,6 +92,8 @@ li {
 	justify-content: center;
 	align-items: center;
 	padding-left: 0;
+	max-width: 965px;
+	margin: 0 auto;
 	z-index: 99;
 }
 
@@ -106,11 +109,17 @@ li {
 		left: 0;
 		background: linear-gradient(-55deg, rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.06) 50%);
 		z-index: 999;
+
+		@media screen and (max-width: 450px) {
+			display: none;
+		}
 	}
 
 	&:hover::before {
-		background: transparent;
+		display: none;
 	}
+
+
 
 	&.horizontal {
 		width: $card-height;
@@ -120,6 +129,10 @@ li {
 		@media screen and (max-width: 450px) {
 			width: $card-width;
 			height: $card-height;
+			
+			.back.fleer2001 .stats-header .triangles .bottom:before {
+				bottom: 1px;
+			}
 		}
 		
 		&:before {
@@ -1665,6 +1678,104 @@ li {
 	
 	&[data-player="Kenny Powers"] {
 
+		
+	}
+
+	&[data-player="G-Baby"] {
+		.front {
+			&.fleer2001 {
+				.player-image-foreground {
+					background-size: 130% auto;
+					background-position: bottom -3px left -144px; 
+				}
+				
+				.player-image {
+					background-size: 118% auto;
+					background-position: top -1px right -60px;
+				}
+				
+				.name-box {
+					background: $kekambas-green;
+					border-top-color: #444;
+					border-bottom-color: #444;
+					
+					.triangles {
+						left: -180px;
+						
+						.top {
+							border-right-color: #444; 
+							&:before {
+								border-right-color: $kekambas-green;
+							}
+						}
+
+						.bottom {
+							border-right-color: #444;
+							
+							&:before {
+								border-right-color: $kekambas-green;
+							}
+							&:after {
+								border-left-color: #444;
+							}
+						}
+					}
+					
+					
+				}
+				
+				h1 {
+					.last-name {
+						-webkit-text-stroke: 1px #444;
+					}
+				}
+				
+				.team {
+					.written-team {
+						color: #444;
+					}
+					
+					img {
+						margin-bottom: 2px;
+					}
+				}
+				
+			}
+		}
+		
+		.back {
+			&.fleer2001 {
+				header {
+					background-color: darken(#38616f, 10%);
+				}
+				
+				.stats-header {
+					background: darken(#38616f, 10%);
+					
+					.triangles {
+						.top {
+							border-right-color: darken(#38616f, 10%);
+						}
+						
+						.bottom {
+							&:before {
+								border-right-color: darken(#38616f, 10%);
+							}
+						}
+					}
+				}
+				
+				.stats-box .row--totals { 
+					div:nth-child(2) {
+							width: 17px;
+					}
+				}
+				
+				.story {
+					margin-bottom: 35px;
+				}
+			}
+		}
 		
 	}
 

@@ -167,7 +167,7 @@ new Vue({
 				cardNo: 798,
 				info1: 'Height: 5\'8\"&nbsp;&nbsp;&nbsp; Weight: 210&nbsp;&nbsp;&nbsp; Bats: Right&nbsp;&nbsp;&nbsp; Throws: Right',
 				info2: 'Drafted: 1st Round, 1999.&nbsp;&nbsp;&nbsp; Acq. via Free Agency, 2006.',
-				sources: 'Eastbound & Down, episodes 1, 3, 5 (add more from seasons 2-4); <a href="https://web.archive.org/web/20120615223015/http://www.kennypowers.com/cards.html" target="_blank">HBO Archive</a>; <a href="http://www.kennypowersfanclub.com/kennypowers/stats.php" target="_blank">Kenny Powers Fan Club</a>; <a href="https://www.cardboardconnection.com/kenny-powers-baseball-card-collection-from-hbos-eastbound-down" target="_blank">Cardboard Connection</a>',
+				sources: 'Eastbound & Down, episodes 1, 3, 5; <a href="https://web.archive.org/web/20120615223015/http://www.kennypowers.com/cards.html" target="_blank">HBO Archive</a>; <a href="http://www.kennypowersfanclub.com/kennypowers/stats.php" target="_blank">Kenny Powers Fan Club</a>; <a href="https://www.cardboardconnection.com/kenny-powers-baseball-card-collection-from-hbos-eastbound-down" target="_blank">Cardboard Connection</a>',
 				isHorizontal: true,
 				statsYear1: {
 						year: 2002, club: 'atl', g: 62, w: 7, l: 3, ip: 66.1, er: 21, era: 2.85, sv: 49, so: 106, bb: 30
@@ -186,6 +186,29 @@ new Vue({
 				},
 				totals: {
 						year: 'mlb totals', club: '', g: 194, w: 17, l: 18, ip: 196.1, er: 107, era: 4.90, sv: 121, so: 235, bb: 86
+				}
+				
+			},
+			{ 
+				name: 'G-Baby',
+			  	string: 'gbaby',
+				media: 'Hardball',
+				story: 'Jarius Evans, better known to his teammates as "G-Baby", came through in the clutch with the bases loaded in the bottom of the last inning of the semi-finals game, leading the Kekambas to the \'ship. Unfortunately, G-Baby himself would never get to play in the championship game, as he was shot dead soon after his game-winning RBI. He remains a Kekambas legend.',
+				team: 'Kekambas',		
+				logo: 'kekambas.svg',
+				position: 'Pinch Hitter',
+				recordsType: 'batting',
+				cardStyle: 'fleer2001',
+				cardNo: 799,
+				info1: 'Height: 4\'1\"&nbsp;&nbsp;&nbsp; Weight: 57&nbsp;&nbsp;&nbsp; Bats: Right&nbsp;&nbsp;&nbsp; Throws: Right',
+				info2: 'Drafted: Last Round, 2001.',
+				sources: 'Hardball film',
+				isHorizontal: true,
+				statsYear1: {
+						year: 2001, club: 'KEK', g: 1, ab: 1, r: 0, h: 1, '2b': 0, '3b': 0, 'hr': 0, 'rbi': 1, 'sb': 0, 'bb': 0, 'avg': '1.000'
+				},
+				totals: {
+						year: 'totals', club: '', g: 1, ab: 1, r: 0, h: 1, '2b': 0, '3b': 0, 'hr': 0, 'rbi': 1, 'sb': 0, 'bb': 0, 'avg': '1.000'
 				}
 				
 			}			
