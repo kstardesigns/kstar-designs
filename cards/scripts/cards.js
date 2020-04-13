@@ -239,8 +239,18 @@ new Vue({
 	methods: {
 		flipCard(player, event) {
 			let playerName = player.name;
+			let playerCard = document.querySelector(`[data-player="${playerName}"]`);
+
 			if (event.target.tagName.toLowerCase() != 'a') {
-				document.querySelector(`[data-player="${playerName}"]`).classList.toggle('back-shown');
+				if (playerCard.classList.contains('back-shown')) {
+					document.querySelector(`[data-player="${playerName}"] .back .overflow-box`).classList.remove('overflowed'); 
+				} else {
+					setTimeout(function() {
+						document.querySelector(`[data-player="${playerName}"] .back .overflow-box`).classList.add('overflowed');
+					}, 600);
+				}
+
+				playerCard.classList.toggle('back-shown');
 			}
 		},
 		cancelSearch() {
