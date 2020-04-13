@@ -94,16 +94,16 @@ new Vue({
 				info2: 'Drafted: Marlins #26-2018. Acq. Trade w/ Marlins, 2019.',
 				sources: 'MLB The Show 18 statistics page',
 				statsYear1: {
-						year: 2019, tm: 'mia', g: 100, ab: 318, r: 73, h: 132, '2b': 23, '3b': 8, hr: 25, rbi: 68, avg: '.415', obp: '.412', slg: '.777', war: '9.0', sb: '<i><b>125</b></i>', cs: 8, bb: '0', so: '6'
+						year: 2019, tm: 'mia', g: 100, ab: 318, r: 73, h: 132, '2b': 23, '3b': 8, hr: 25, rbi: 68, avg: '.415', obp: '.412', slg: '.777', war: '9.0', sb: '<i>125</i>', cs: 8, bb: '0', so: '6'
 				},
 				statsYear2: {
-						year: 2020, tm: 'sea', g: 155, ab: 618, r: 104, h: 191, '2b': 28, '3b': 9, hr: 27, rbi: 80, avg: '.309', obp: '.314', slg: '.519',  war: '7.7', sb: '<i><b>164</b></i>', cs: 6, bb: '3', so: '70'
+						year: 2020, tm: 'sea', g: 155, ab: 618, r: 104, h: 191, '2b': 28, '3b': 9, hr: 27, rbi: 80, avg: '.309', obp: '.314', slg: '.519',  war: '7.7', sb: '<i>164</i>', cs: 6, bb: '3', so: '70'
 				},
 				statsYear3: {
-						year: 2021, tm: 'sea', g: 160, ab: '<i><b>682</b></i>', r: 93, h: 186, '2b': 24, '3b': 14, hr: 33, rbi: 84, avg: '.273', obp: '.287', slg: '.494', war: '6.0', sb: '<i><b>139</b></i>', cs: 7, bb: '14', so: '77'
+						year: 2021, tm: 'sea', g: 160, ab: '<i>682</i>', r: 93, h: 186, '2b': 24, '3b': 14, hr: 33, rbi: 84, avg: '.273', obp: '.287', slg: '.494', war: '6.0', sb: '<i>139</i>', cs: 7, bb: '14', so: '77'
 				},
 				statsYear4: {
-						year: 2022, tm: 'sea', g: 148, ab: 624, r: 94, h: 188, '2b': 30, '3b': '<i><b>14</b></i>', hr: 26, rbi: 103, avg: '.301', obp: '.310', slg: '.519', war: '5.1', sb: '<i><b>142</b></i>', cs: 6, bb: '7', so: '54'
+						year: 2022, tm: 'sea', g: 148, ab: 624, r: 94, h: 188, '2b': 30, '3b': '<i>14</i>', hr: 26, rbi: 103, avg: '.301', obp: '.310', slg: '.519', war: '5.1', sb: '<i>142</i>', cs: 6, bb: '7', so: '54'
 				},
 				totals: {
 						year: 'totals', tm: '', g: 563, ab: 2242, r: 364, h: 697, '2b': 105, '3b': 45, hr: 111, rbi: 335, avg: '.311', obp: '.318', slg: '.546', war: '27.8', sb: 570, cs: 27, bb: 24, so: 207
