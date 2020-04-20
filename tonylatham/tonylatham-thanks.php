@@ -20,7 +20,8 @@
                     <li><a href="index.html" title="Home">Home</a></li>
                     <li><a href="resume.html" title="Resume">Resume</a></li>
                     <li><a href="bio.html" title="Bio">Bio</a></li>
-                    <li><a href="photos.html" title="Photos">Photos</a></li>
+<li><a href="scripts.html" title="Scripts">Scripts</a></li>
+                    <li><a href="media.html" title="Media">Media</a></li>
                     <li><a href="contact.html" title="Contact">Contact</a></li>
                 </ul>
                 
@@ -35,7 +36,8 @@
                     <li><a href="index.html" title="Home">Home</a></li>
                     <li><a href="assets/TonyLathamResume.pdf" title="Resume" target="_blank">Resume</a></li>
                     <li><a href="bio.html" title="Bio">Bio</a></li>
-                    <li><a href="photos.html" title="Photos">Photos</a></li>
+<li><a href="scripts.html" title="Scripts">Scripts</a></li>
+                    <li><a href="media.html" title="Media">Media</a></li>
                     <li><a href="contact.html" title="Contact">Contact</a></li>
                 </ul>
             </div>
