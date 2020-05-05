@@ -83,7 +83,8 @@ new Vue({
 				name: 'Kyle Stark',
 			  string: 'kylestark',
 				media: 'MLB The Show 18',
-			 	story: 'After finishing 2nd in Rookie of the Year voting with the Marlins, Stark was traded to the Mariners before his sophomore season. Known for his speed, in 2020 he broke the single season record for stolen bases with 164, finishing the year with a .965 stolen base percentage. In 2022, Stark made his 4th straight All Star appearance as the starting 3rd Baseman.',
+				 //story1: 'After finishing 2nd in Rookie of the Year voting with the Marlins, Stark was traded to the Mariners before his sophomore season. Known for his speed, in 2020 he broke the single season record for stolen bases with 164, finishing the year with a .965 stolen base percentage. In 2022, Stark made his 4th straight All Star appearance as the starting 3rd Baseman.',
+				story: 'After finishing 2nd in Rookie of the Year voting with the Marlins, Stark was traded to the Mariners before his sophomore season. Known for his speed, in 2020 he broke the single season record for stolen bases with 164, which he then broke again in 2023 with 191. His other highlights that year included hitting his first cycle on June 16th against the Red Sox, and making his 5th straight All Star appearance as the starting 3rd Baseman.',
 				team: 'Seattle Mariners&trade;',
 				logo: 'mariners.png',
 				position: '3B',
@@ -94,19 +95,28 @@ new Vue({
 				info2: 'Drafted: Marlins #26-2018. Acq. Trade w/ Marlins, 2019.',
 				sources: 'MLB The Show 18 statistics page',
 				statsYear1: {
-						year: 2019, tm: 'mia', g: 100, ab: 318, r: 73, h: 132, '2b': 23, '3b': 8, hr: 25, rbi: 68, avg: '.415', obp: '.412', slg: '.777', war: '9.0', sb: '<i>125</i>', cs: 8, bb: '0', so: '6'
+						year: 2019, tm: 'mia', g: 100, ab: 318, r: 73, h: 132, '2b': 23, '3b': 8, hr: 25, rbi: 68, avg: '.415', obp: '.412', slg: '.777', ops: '1.189', war: '9.0', sb: '<i>125</i>', cs: 8, bb: '0', so: '6'
 				},
 				statsYear2: {
-						year: 2020, tm: 'sea', g: 155, ab: 618, r: 104, h: 191, '2b': 28, '3b': 9, hr: 27, rbi: 80, avg: '.309', obp: '.314', slg: '.519',  war: '7.7', sb: '<i>164</i>', cs: 6, bb: '3', so: '70'
+						year: 2020, tm: 'sea', g: 155, ab: 618, r: 104, h: 191, '2b': 28, '3b': 9, hr: 27, rbi: 80, avg: '.309', obp: '.314', slg: '.519', ops: '.833',  war: '7.7', sb: '<i>164</i>', cs: 6, bb: '3', so: '70'
 				},
 				statsYear3: {
-						year: 2021, tm: 'sea', g: 160, ab: '<i>682</i>', r: 93, h: 186, '2b': 24, '3b': 14, hr: 33, rbi: 84, avg: '.273', obp: '.287', slg: '.494', war: '6.0', sb: '<i>139</i>', cs: 7, bb: '14', so: '77'
+						year: 2021, tm: 'sea', g: 160, ab: '<i>682</i>', r: 93, h: 186, '2b': 24, '3b': 14, hr: 33, rbi: 84, avg: '.273', obp: '.287', slg: '.494', ops: '.781', war: '6.0', sb: '<i>139</i>', cs: 7, bb: '14', so: '77'
 				},
 				statsYear4: {
-						year: 2022, tm: 'sea', g: 148, ab: 624, r: 94, h: 188, '2b': 30, '3b': '<i>14</i>', hr: 26, rbi: 103, avg: '.301', obp: '.310', slg: '.519', war: '5.1', sb: '<i>142</i>', cs: 6, bb: '7', so: '54'
+						year: 2022, tm: 'sea', g: 148, ab: 624, r: 94, h: 188, '2b': 30, '3b': '<i>14</i>', hr: 26, rbi: 103, avg: '.301', obp: '.310', slg: '.519', ops: '.829', war: '5.1', sb: '<i>142</i>', cs: 6, bb: '7', so: '54'
+				},
+				statsYear5: {
+					year: 2023, tm: 'sea', g: 149, ab: 608, r: 111, h: 204, '2b': 20, '3b': '<i>17</i>', hr: 28, rbi: 113, avg: '.336', obp: '.348', slg: '.563', ops: '.911', war: '7.9', sb: '<i>191</i>', cs: 13, bb: '11', so: '54'
 				},
 				totals: {
-						year: 'totals', tm: '', g: 563, ab: 2242, r: 364, h: 697, '2b': 105, '3b': 45, hr: 111, rbi: 335, avg: '.311', obp: '.318', slg: '.546', war: '27.8', sb: 570, cs: 27, bb: 24, so: 207
+					year: 'totals', tm: '', g: 712, ab: 2850, r: 475, h: 901, '2b': 125, '3b': 62, hr: 139, rbi: 448, avg: '.316', obp: '.325', slg: '.550', ops: '.875', war: '35.7', sb: 761, cs: 40, bb: 35, so: 261
+				},
+				playoffsYear1: {
+					year: '2023 ALDS', tm: '', g: 4, ab: 19, r: 5, h: 6, '2b': 0, '3b': '2', hr: 1, rbi: 4, avg: '.316', obp: '.350', slg: '.684', ops: '1.034', war: '-', sb: '6', cs: 0, bb: '0', so: '2'
+				},
+				playoffsTotals: {
+					year: 'totals', tm: '', g: 4, ab: 19, r: 5, h: 6, '2b': 0, '3b': '2', hr: 1, rbi: 4, avg: '.316', obp: '.350', slg: '.684', ops: '1.034', war: '-', sb: '6', cs: 0, bb: '0', so: '2'
 				}
 			},
 			{
@@ -241,7 +251,7 @@ new Vue({
 			let playerName = player.name;
 			let playerCard = document.querySelector(`[data-player="${playerName}"]`);
 
-			if (event.target.tagName.toLowerCase() != 'a') {
+			if (event.target.tagName.toLowerCase() != 'a' && !event.target.classList.contains('flip')) {
 				if (playerCard.classList.contains('back-shown')) {
 					document.querySelector(`[data-player="${playerName}"] .back .overflow-box`).classList.remove('overflowed'); 
 				} else {
@@ -267,7 +277,11 @@ new Vue({
 			});
 
 			document.querySelector('#source' + cardNo).style.backgroundColor = '#ccff15';
-		}
+		},
+		toggleStats() {
+			let playerCard = document.querySelector(`[data-player="Kyle Stark"] .stats-box`);
+			playerCard.classList.toggle('playoffs-shown');
+		},
 	},
 	beforeMount() {
 		let url = window.location.href;

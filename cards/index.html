@@ -79,8 +79,7 @@
 								<div class="stats-story" :style="[player.cardStyle == 'fleer2001' ? {'backgroundImage': 'none'} : {'backgroundImage': 'url(assets/' + player.string + '.jpg)'}]">
 									<div class="inner-box">
 											<div class="stats-box">
-													<p class="stats-header" v-if="player.cardStyle != 'fleer2001'"><a @click="goToSource(player.cardNo)" class="card-source" :href="'#source' + player.cardNo" title="Show sources">Complete major league {{ player.recordsType }} records*</a></p>
-
+													<p class="stats-header" v-if="player.cardStyle != 'fleer2001'"><a @click="goToSource(player.cardNo)" class="card-source" :href="'#source' + player.cardNo" title="Show sources">Complete major league {{ player.recordsType }} records*</a><img v-if="player.name == 'Kyle Stark'" @click="toggleStats(); [player.recordsType == 'batting' ? player.recordsType = 'playoff' : player.recordsType = 'batting'];" class="flip" src="assets/flip.svg" alt="Click to show playoffs stats"/></p>
 													<div class="stats-header" v-if="player.cardStyle == 'fleer2001'">
 														<div class="triangles" >
 															<div class="top"></div>
@@ -116,6 +115,12 @@
 															</div>
 															<div class="row row--totals">
 																<div class="amount" v-for="(value, key) in player.totals">{{ value }}</div>
+															</div>
+															<div class="row row--playoffs-year1">
+																<div class="amount" v-for="(value, key) in player.playoffsYear1"><span v-html="value"></span></div>
+															</div>
+															<div class="row row--playoffs-totals row--totals">
+																<div class="amount" v-for="(value, key) in player.playoffsTotals">{{ value }}</div>
 															</div>
 														</div>
 													</div>

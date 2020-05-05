@@ -1021,7 +1021,7 @@ li {
 
 		//left off: scrolling-box is showing when card is flipped, too early
 		.scrolling-box {
-			width: 500px;
+			width: 530px;
 			 -webkit-touch-callout: none; /* iOS Safari */
 				-webkit-user-select: none; /* Safari */
 				 -khtml-user-select: none; /* Konqueror HTML */
@@ -1029,6 +1029,12 @@ li {
 						-ms-user-select: none; /* Internet Explorer/Edge */
 								user-select: none; /* Non-prefixed version, currently
 																			supported by Chrome and Opera */
+		}
+
+		.flip {
+			width: 14px;
+			margin: 1px 0 1px 7px;
+			cursor: pointer;
 		}
 
 		.stats-box {
@@ -1078,6 +1084,21 @@ li {
 					min-width: 26px;
 				}
 
+				&--playoffs-year1 {
+					div:first-child {
+						width: 56px;
+						min-width: 56px;
+					}
+
+					div:nth-child(2) {
+						display: none;
+					}
+
+					div:nth-child(3) {
+						margin-left: -4px;
+					}
+				}
+
 				&--headings {
 					font-weight: bold;
 					border-bottom: none;
@@ -1100,8 +1121,6 @@ li {
 						border-bottom: none;
 					}
 				}
-
-
 			}
 			.heading, .amount {
 
@@ -1123,7 +1142,7 @@ li {
 
 		.story {
 			order: 2;
-			padding: 10px;
+			padding: 10px 10px 5px 10px;
 			margin-top: 5px;
 			background-color: #ddd;
 			font-size: 12px;
@@ -1513,8 +1532,32 @@ li {
 		}
 
 		.back {
-			.row {
+			.stats-box {
+				margin-bottom: 6px;
 
+				.stats-header {
+					padding-right: 0;
+					display: flex;
+					align-items: center;
+				}
+
+				[class^="row row--playoffs"] {
+					display: none;
+				}
+
+				&.playoffs-shown {
+					[class^="row row--playoffs"] {
+						display: flex;
+					}
+
+					[class^="row row--year"], [class^="row row--totals"] {
+						display: none;
+					}
+
+					.row--headings div:nth-child(2) {
+						color: transparent;
+					}
+				}
 			}
 		}
 	}
