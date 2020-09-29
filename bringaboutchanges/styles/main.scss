@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Kalam|Roboto+Slab:400,700');
-// $blue: #000088;
-// $red: #cc0000;
-// $green: green;
-//change font
+
+$dark-pink: #f43b9b;
+$light-pink: #f880bf;
+$lighter-pink: #fde6f2;
+$yellow: #fece5b;
+$black: #222;
+$white: #fff;
 
 * {
 	box-sizing: border-box;
@@ -18,6 +21,8 @@
 
 body {
 	font-family: 'Roboto Slab', sans-serif;
+	padding: 0;
+	margin: 0;
 }
 
 h1 {
@@ -41,6 +46,7 @@ h2 {
 ul {
 	list-style: none;
 	padding-left: 0;
+	margin: 0;
 }
 
 label {
@@ -49,20 +55,175 @@ label {
 
 /* global */
 header {
-	nav {
+	background-color: $light-pink;
+	border-bottom: 5px solid $lighter-pink;
+	padding: 0 15px;
+
+	@media screen and (max-width: 950px) {
+		padding: 0 40px;
+	}
+
+	@media screen and (max-width: 767px) {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 20px;
+	}
+
+	@media screen and (max-width: 413px) {
+		padding: 0 10px;
+	}
+
+	.header-nav {
 		width: 100%;
 		max-width: 900px;
 		margin: 0 auto;
+		padding: 15px 0 16px;
+		display: block;
+
+		@media screen and (max-width: 767px) {
+			display: none;
+			background-color: $light-pink;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+
+		@media screen and (max-width: 767px) {
+			&.mobile-closed {
+				display: none;
+			}
+		}
+
+		&.mobile-open {
+			display: block;
+		}
 
 		ul {
 			display: flex;
 			justify-content: space-between;
+
+			@media screen and (max-width: 767px) {
+				flex-direction: column;
+				text-align: center;
+			}
 		}
+
+		li {
+
+		}
+
+		a {
+			color: $white;
+			text-decoration: none;
+			letter-spacing: 0.5px;
+
+			&:hover {
+				text-decoration: underline;
+			}
+
+			@media screen and (max-width: 767px) {
+				font-size: 24px;
+				margin: 25px 0;
+				display: block;
+			}
+		}
+
+		
+	}
+
+	.header-logo-link {
+		display: none;
+
+		@media screen and (max-width: 767px) {
+			display: block;
+			margin: 10px 0 4px;
+		}
+
+		.header-logo {
+			max-width: 300px;
+
+			@media screen and (max-width: 413px) {
+				width: 60vw;
+    			min-width: 200px;
+			}
+		}
+	}
+
+	.menu-button {
+		display: none;
+		width: 40px;
+		height: 40px;
+		padding: 9px 7px;
+		cursor: pointer;
+		transition: background-color 500ms;
+
+		@media screen and (max-width: 767px) {
+			display: block;
+		}
+	
+		.menu {
+		  margin-top: 1px;
+		  margin-left: 1px;
+		}
+	
+		span {
+		  width: 24px;
+		  height: 3px;
+		  margin-bottom: 4px;
+		  background-color: $white;
+		  display: block;
+		  border-radius: 5px;
+		}
+	
+		&:hover {
+			transition: background-color 500ms;
+		}
+
+		.top {
+			transition: transform 500ms;
+			transform: rotate(0deg) translate(0, 0);
+		}
+	
+		.close-icon .top {
+			transition: transform 500ms;
+			transform: rotate(90deg) translate(7px, 0);
+		}
+
+		.mid {
+			transition: transform 500ms;
+		}
+
+		.close-icon .mid {
+			transition: transform 500ms;
+		}
+
+		.bot {
+			transition: opacity 500ms;
+			opacity: 1;
+		}
+	
+		.close-icon .bot {
+			transition: opacity 500ms;
+			opacity: 0;
+		}
+
+		.menu.close-icon {
+			transition: transform 500ms;
+			transform: rotate(45deg);
+		}
+	
 	}
 }
 
 main {
+	display: block;
+
 	.section-logo {
+		padding: 20px 0; 
+		background-color: $white;
 
 		.logo-inner {
 			width: 100%;
@@ -71,7 +232,7 @@ main {
 		}
 
 		.main-logo {
-			width: 300px;
+			width: 250px;
 			max-width: 100%;
 			margin: 0 auto;
 			display: block;
@@ -79,6 +240,7 @@ main {
 	}
 
 	.section-story {
+		background-color: $light-pink;
 
 		.story-inner {
 			width: 100%;
@@ -102,6 +264,7 @@ main {
 	}
 
 	.section-services {
+		background-color: $light-pink;
 
 		.services-inner {
 			width: 100%;
@@ -125,10 +288,37 @@ main {
 }
 
 footer {
+	background-color: $lighter-pink;
+	padding: 20px 15px 20px;
+
 	nav {
 		ul {
 			display: flex;
 			justify-content: space-between;
+			width: 500px;
+			max-width: 100%;
+			margin: 0 auto;
+
+			@media screen and (max-width: 413px) {
+				flex-wrap: wrap;
+			}
+		}
+
+		li {
+			@media screen and (max-width: 413px) {
+				width: 50%;
+				text-align: center;
+				margin: 10px 0;
+			}
+		}
+
+		a {
+			color: $black;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 	}
 
@@ -136,7 +326,7 @@ footer {
 		display: flex;
 		justify-content: space-between;
 		width: 140px;
-		margin: 0 auto;
+		margin: 20px auto;
 
 		a {
 
