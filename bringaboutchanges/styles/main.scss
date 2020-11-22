@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Kalam|Roboto+Slab:400,700');
+@import url('https://fonts.googleapis.com/css2?family=Piazzolla:ital,wght@0,400;0,600;1,400&display=swap');
 
 $dark-pink: #f43b9b;
 $light-pink: #f880bf;
@@ -20,27 +20,18 @@ $white: #fff;
 }
 
 body {
-	font-family: 'Roboto Slab', sans-serif;
+	font-family: 'Piazzolla', sans-serif;
 	padding: 0;
 	margin: 0;
+	width: 100%;
+
+	&.menu-open {
+		position: fixed;
+	}
 }
 
-h1 {
-	// font-size: 24px;
-	// line-height: 28px;
-	// text-align: center;
-	// letter-spacing: 1px;
-	// margin: 10px auto;
-}
-
-h2 {
-	// font-size: 16px;
-	// line-height: 19px;
-	// text-align: center;
-	// font-style: italic;
-	// color: #0a0a0a;
-	// margin: 8px auto 12px;
-	// color: gray;
+p {
+	margin: 0;
 }
 
 ul {
@@ -118,7 +109,9 @@ header {
 		a {
 			color: $white;
 			text-decoration: none;
-			letter-spacing: 0.5px;
+			letter-spacing: 1px;
+			font-size: 19px;
+			font-weight: 600;
 
 			&:hover {
 				text-decoration: underline;
@@ -221,6 +214,11 @@ header {
 main {
 	display: block;
 
+	h1 {
+		font-size: 28px;
+		margin: 5px 0;
+	}
+
 	.section-logo {
 		padding: 20px 0; 
 		background-color: $white;
@@ -236,25 +234,49 @@ main {
 			max-width: 100%;
 			margin: 0 auto;
 			display: block;
+
+			@media screen and (max-width: 500px) {
+				width: 180px;
+			}
 		}
 	}
 
 	.section-story {
 		background-color: $light-pink;
+		padding: 30px 35px;
+
+		@media screen and (max-width: 600px) {
+			padding: 20px 25px;
+		}
 
 		.story-inner {
 			width: 100%;
-			max-width: 1200px;
+			max-width: 1024px;
 			margin: 0 auto;
 		}
 
 		.story-image {
 			float: right;
+			width: 250px;
+			height: 250px;
+			border-radius: 50%;
+			margin: 0 0 25px 25px;
 
-			img {
-				width: 250px;
-				height: 250px;
-				border-radius: 50%;
+			@media screen and (max-width: 600px) {
+				margin: 15px auto 25px;
+				display: block;
+				float: none;
+			}
+		}
+
+		p {
+			margin-bottom: 10px;
+			font-size: 21px;
+			line-height: 29px;
+
+			@media screen and (max-width: 600px) {
+				font-size: 18px;
+				line-height: 25px;
 			}
 		}
 
@@ -265,24 +287,38 @@ main {
 
 	.section-services {
 		background-color: $light-pink;
+		padding: 0 30px 35px;
 
 		.services-inner {
 			width: 100%;
 			max-width: 1200px;
 			margin: 0 auto;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+		}
+
+		.services-left, .services-right {
+			width: 45%;
+
+			@media screen and (max-width: 767px) {
+				width: 100%;
+			}
 		}
 
 		ul {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-between;
-			width: 800px;
-			max-width: 100%;
+			
 			margin: 0 auto;
+			list-style: disc;
+			font-size: 21px;
+			line-height: 35px;
+			padding-left: 30px;
 
-			li {
-				width: 50%;
+			@media screen and (max-width: 600px) {
+				font-size: 18px;
+				line-height: 23px;
 			}
+
 		}
 	}
 }
@@ -315,6 +351,9 @@ footer {
 		a {
 			color: $black;
 			text-decoration: none;
+			font-size: 18px;
+			line-height: 23px;
+			font-weight: 500;
 
 			&:hover {
 				text-decoration: underline;
