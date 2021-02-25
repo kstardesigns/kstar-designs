@@ -115,6 +115,16 @@ $('.left').click(function(){
 //list of featured items
 var featuredItems = [
   {
+    'proj': 'shuffling',
+    'itemname': 'Card Shuffling',
+    'itemdescription': 'An experiment in card shuffling, showing how impossible it is to get the same order of cards.',
+    'projlink': 'http://kylephx.com/shuffling',
+    'articlelink': 'http://kylephx.com/shuffling',
+    'articlelinktitle': 'View live version of this project',
+    'secondarylink':'https://codepen.io/kaisle/pen/jOVYPgJ',
+    'secondarylinktitle':'View this project on CodePen'
+  },
+  {
     'proj': 'atbat',
     'itemname': 'Baseball Scorecard',
     'itemdescription': 'An interactive scorecard that shows how to score an at bat in baseball.',
@@ -125,26 +135,26 @@ var featuredItems = [
     'secondarylinktitle':'View this project on CodePen'
   },
   {
-      'proj': 'digitalmonopoly',
-      'itemname': 'Digital Monopoly Properties',
-      'itemdescription': 'As part of the <a href="https://codepen.io/challenges/2018/may#cpc-details" target="_blank">Weekly CodePen Challenge</a>, my goal was to use the relatively new <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> tags in a creative way. Featured in CodePen\'s weekly roundup. From the article:<br/><em>Kyle\'s "Digital Monopoly properties" draws inspiration from the Monopoly game\'s property cards.</em>',
-      'projlink': 'https://codepen.io/kaisle/full/vjapBE/',
-      'articlelink': 'https://blog.codepen.io/2018/05/20/codepenchallenge-details-and-summary-roundup/',
-      'articlelinktitle': 'CodePenChallenge: Details and Summary Roundup',
-      'secondarylink':'https://codepen.io/kaisle/pen/vjapBE',
-      'secondarylinktitle':'View this project on CodePen'
-    },
-    {
-      'proj': 'grimmauldplace',
-      'itemname': '12 Grimmauld Place',
-      'itemdescription': 'A mini Harry Potter quiz, featuring CSS art and animations. Featured in CodePen\'s weekly <a href="https://codepen.io/spark/" target="_blank" title="">Spark</a> email. From the email:<br/><em>Answer some Harry Potter trivia and reveal Sirius Black\s secret home in Kyle Stark\'s magical Pen. And don\'t worry, there\'s a handy answer key for Muggles!</em>',
-      'projlink': 'https://codepen.io/kaisle/full/dJWMEK/',
-      'articlelink': 'https://codepen.io/spark/58',
-      'articlelinktitle': 'JANUARY 8TH: The Practical, The Magical, and the Most Hearted',
-      'secondarylink':'https://codepen.io/kaisle/pen/dJWMEK',
-      'secondarylinktitle':'View this project on CodePen'
-    }
-	];
+    'proj': 'digitalmonopoly',
+    'itemname': 'Digital Monopoly Properties',
+    'itemdescription': 'As part of the <a href="https://codepen.io/challenges/2018/may#cpc-details" target="_blank">Weekly CodePen Challenge</a>, my goal was to use the relatively new <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> tags in a creative way. Featured in CodePen\'s weekly roundup. From the article:<br/><em>Kyle\'s "Digital Monopoly properties" draws inspiration from the Monopoly game\'s property cards.</em>',
+    'projlink': 'https://codepen.io/kaisle/full/vjapBE/',
+    'articlelink': 'https://blog.codepen.io/2018/05/20/codepenchallenge-details-and-summary-roundup/',
+    'articlelinktitle': 'CodePenChallenge: Details and Summary Roundup',
+    'secondarylink':'https://codepen.io/kaisle/pen/vjapBE',
+    'secondarylinktitle':'View this project on CodePen'
+  },
+  {
+    'proj': 'grimmauldplace',
+    'itemname': '12 Grimmauld Place',
+    'itemdescription': 'A mini Harry Potter quiz, featuring CSS art and animations. Featured in CodePen\'s weekly <a href="https://codepen.io/spark/" target="_blank" title="">Spark</a> email. From the email:<br/><em>Answer some Harry Potter trivia and reveal Sirius Black\s secret home in Kyle Stark\'s magical Pen. And don\'t worry, there\'s a handy answer key for Muggles!</em>',
+    'projlink': 'https://codepen.io/kaisle/full/dJWMEK/',
+    'articlelink': 'https://codepen.io/spark/58',
+    'articlelinktitle': 'JANUARY 8TH: The Practical, The Magical, and the Most Hearted',
+    'secondarylink':'https://codepen.io/kaisle/pen/dJWMEK',
+    'secondarylinktitle':'View this project on CodePen'
+  }
+];
 
 
 //navigate through featured items
