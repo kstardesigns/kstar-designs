@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A searchable listing of all Pokémon and their types">
+	<title>Pokémon Type List - Search for a Pokémon to find its type(s)</title>
+	<link rel="shortcut icon" href="assets/favicon.png">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+	<div id="app">
+		<h2 class="page-header">Pokémon type list</h2>
+		<div class="search-box">
+			<input class="query" type="text" v-model="query" placeholder="Search by Pokémon name or type">
+			<div class="cancel-search" v-if="query" @click="cancelSearch">&times;</div>
+		</div>
+		<ul class="pokemon-list">
+			<li class="pokemon-row" v-for="pokemon in filteredList" :data-pokemon="pokemon.name"> 
+				<span class="number">{{ pokemon.number}}</span>
+				<span class="icon"><img :src="'assets/icons/' + pokemon.stringname + '.png'" :alt="pokemon.name"/></span>
+				<span class="name">{{ pokemon.name}}</span>
+				<a class="type-link type-link-1" :href="'?q=' + pokemon.type1"><span :class="{'type': true, [pokemon.type1]: true}">{{ pokemon.type1}}</span></a>
+				<a class="type-link type-link-2" v-if="pokemon.type2" :href="'?q=' + pokemon.type2">
+					<span  :class="{'type': true, [pokemon.type2]: true}">{{ pokemon.type2}}</span>
+				</a>
+				<span v-else :class="{'no-type-2': true}"></span>
+			</li>
+		</ul>
+	</div>
+
+	<script src="scripts/vue.min.js"></script>
+	<script src="scripts/pokemon.js"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-7ZYWC7NNHB"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-7ZYWC7NNHB');
+	</script>
+
+</body>
+</html>
