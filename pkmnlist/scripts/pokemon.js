@@ -1048,8 +1048,8 @@ new Vue({
 			{ number: '896', name: 'Glastrier', stringname: '896', type1: 'ice', type2: '' },
 			{ number: '897', name: 'Spectrier', stringname: '897', type1: 'ghost', type2: '' },
 			{ number: '898', name: 'Calyrex', stringname: '898', type1: 'psychic', type2: 'grass' },
-			{ number: '898', name: 'Ice Rider Calyrex', stringname: '898i', type1: 'psychic', type2: 'ice' },
-			{ number: '898', name: 'Shadow Rider Calyrex', stringname: '898s', type1: 'psychic', type2: 'ghost' },
+			{ number: '898', name: 'Calyrex (Ice Rider)', stringname: '898i', type1: 'psychic', type2: 'ice' },
+			{ number: '898', name: 'Calyrex (Shadow Rider)', stringname: '898s', type1: 'psychic', type2: 'ghost' },
 		]
 	},
 	computed: {
@@ -1068,6 +1068,21 @@ new Vue({
 	methods: {
 		cancelSearch() {
 			this.query = '';
+		},
+		createPkmnLink(number, name, stringname) {
+			var href = '';
+
+			// using this for gen 1-7 since they all aren't in gen 8 dex - use just the first 3 digits of stringname so it works for megaevos, regionals, etc.
+			if (parseInt(number) < 809) {
+				href = `https://www.serebii.net/pokedex-sm/${stringname.substring(0,3)}.shtml`;
+			} else { //gen 8 - use the name of the pokemon, remove the spaces, cut out the extra stuff in parentheses, make it lowercase
+				href = `https://www.serebii.net/pokedex-swsh/${name.replace(' ', '').toLowerCase()}`;
+
+				if (href.indexOf('(') > -1) {
+					href = href.substring(0, href.indexOf('(')); //trim the url here
+				}
+			}
+			return href;
 		}
 	},
 	beforeMount() {
