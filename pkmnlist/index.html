@@ -20,8 +20,16 @@
 		<ul class="pokemon-list">
 			<li class="pokemon-row" v-for="pokemon in filteredList" :data-pokemon="pokemon.name"> 
 				<span class="number">{{ pokemon.number}}</span>
-				<span class="icon"><img :src="'assets/icons/' + pokemon.stringname + '.png'" :alt="pokemon.name"/></span>
-				<span class="name">{{ pokemon.name}}</span>
+				<a :href="(parseInt(pokemon.number) < 809) ? 'https://www.serebii.net/pokedex-sm/' + pokemon.stringname.substring(0,3) + '.shtml' : 'https://www.serebii.net/pokedex-swsh/' + pokemon.name.toLowerCase()" target="_blank">
+					<span class="icon"><img :src="'assets/icons/' + pokemon.stringname + '.png'" :alt="pokemon.name"/></span>
+					<span class="name">{{ pokemon.name}}</span>
+				</a>
+				<!-- left off:
+						- fix styles of list now that a link is wrapping these 2 spans
+						- check links for 1-809, 844+
+						- move url creator above to a function in pokemon.js
+						- add more fixes to url above based on removing things that break the url
+				-->
 				<a class="type-link type-link-1" :href="'?q=' + pokemon.type1"><span :class="{'type': true, [pokemon.type1]: true}">{{ pokemon.type1}}</span></a>
 				<a class="type-link type-link-2" v-if="pokemon.type2" :href="'?q=' + pokemon.type2">
 					<span  :class="{'type': true, [pokemon.type2]: true}">{{ pokemon.type2}}</span>
