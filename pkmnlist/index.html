@@ -17,11 +17,14 @@
 			<input class="query" type="text" v-model="query" placeholder="Search by Pokémon name or type" autocomplete="off" autocorrect="off" spellcheck="false" autofocus>
 			<div class="cancel-search" v-if="query" @click="cancelSearch">&times;</div>
 		</div>
+		<div class="result-count">{{ filteredList.length }} Pokémon shown</div>
 		<ul class="pokemon-list">
 			<li class="pokemon-row" v-for="pokemon in filteredList" :data-pokemon="pokemon.name"> 
 				<span class="number">{{ pokemon.number}}</span>
-				<span class="icon"><img :src="'assets/icons/' + pokemon.stringname + '.png'" :alt="pokemon.name"/></span>
-				<span class="name">{{ pokemon.name}}</span>
+				<a class="link" :href="createPkmnLink(pokemon.number, pokemon.name, pokemon.stringname)" target="_blank">
+					<span class="icon"><img :src="'assets/icons/' + pokemon.stringname + '.png'" :alt="pokemon.name"/></span>
+					<span class="name">{{ pokemon.name}}</span>
+				</a>
 				<a class="type-link type-link-1" :href="'?q=' + pokemon.type1"><span :class="{'type': true, [pokemon.type1]: true}">{{ pokemon.type1}}</span></a>
 				<a class="type-link type-link-2" v-if="pokemon.type2" :href="'?q=' + pokemon.type2">
 					<span  :class="{'type': true, [pokemon.type2]: true}">{{ pokemon.type2}}</span>
@@ -29,7 +32,7 @@
 				<span v-else :class="{'no-type-2': true}"></span>
 			</li>
 		</ul>
-		<div class="credit">Credit to <a href="https://www.serebii.net/" target="_blank">Serebii</a> for all Pokémon images</div>
+		<div class="credit">Credit to <a href="https://www.serebii.net/" target="_blank">Serebii</a> for all Pokémon images and links</div>
 	</div>
 
 	<script src="scripts/vue.min.js"></script>
