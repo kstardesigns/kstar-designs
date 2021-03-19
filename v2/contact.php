@@ -6,8 +6,8 @@ $Name = Trim(stripslashes($_POST['Name']));
 $Phone = Trim(stripslashes($_POST['Phone'])); 
 $Email = Trim(stripslashes($_POST['Email']));
 $Message = Trim(stripslashes($_POST['Message'])); 
-$headers = 'From: webmaster@example.com' . "\r\n" .
-    'Reply-To: webmaster@example.com' . "\r\n" .
+$headers = 'From:' . $Email . "\r\n" .
+    'Reply-To:' . $Email . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
 // validation
