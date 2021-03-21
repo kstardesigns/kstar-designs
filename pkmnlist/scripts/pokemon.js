@@ -1052,11 +1052,16 @@ new Vue({
 		]
 	},
 	computed: {
-		//filter list based on whether query appears in name, alt, type1, type2, or fits the format type1+type2 or type2+type1
+		//filter list based on whether query appears in name, alt, type1, type2, or fits the format type1+type2, type2+type1, or 'type1 only'
 		filteredList () {
 			if (this.query == 'all') {
 				return this.pokemon.filter(pokemon => {
 					return pokemon.number > 0
+				})
+			} else if (this.query.includes('only')) {
+				return this.pokemon.filter(pokemon => {
+					return pokemon.type1.indexOf(this.query.toLowerCase().substring(0, this.query.indexOf(' '))) > -1
+						&& pokemon.type2 == ''
 				})
 			} else if (this.query !== '') {
 				return this.pokemon.filter(pokemon => {
@@ -1101,6 +1106,8 @@ new Vue({
 		createTypeQuery(typeClicked) {
 			if (this.pokemonTypes.includes(this.query) && this.query !== typeClicked) {
 				this.query = this.query + '+' + typeClicked;
+			} else if (this.query == typeClicked) {
+				this.query = this.query + ' only';
 			} else {
 				this.query = typeClicked;
 			}
