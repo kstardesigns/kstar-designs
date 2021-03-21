@@ -40,10 +40,14 @@
 					<span class="icon"><img :src="'assets/icons/' + pokemon.stringname + '.png'" :alt="pokemon.name"/></span>
 					<span class="name">{{ pokemon.name}}</span>
 				</a>
-				<a class="type-link type-link-1" :href="'?q=' + pokemon.type1"><span :class="{'type': true, [pokemon.type1]: true}">{{ pokemon.type1}}</span></a>
-				<a class="type-link type-link-2" v-if="pokemon.type2" :href="'?q=' + pokemon.type2">
-					<span  :class="{'type': true, [pokemon.type2]: true}">{{ pokemon.type2}}</span>
+				<!-- <a class="type-button type-button-1" :href="'?q=' + pokemon.type1">
+					<span :class="{'type': true, [pokemon.type1]: true}">{{ pokemon.type1}}</span>
 				</a>
+				<a class="type-button type-button-2" v-if="pokemon.type2" :href="'?q=' + pokemon.type2">
+					<span  :class="{'type': true, [pokemon.type2]: true}">{{ pokemon.type2}}</span>
+				</a> -->
+				<button :class="{'type': true, 'type-1': true, [pokemon.type1]: true}" v-click="createTypeLink(pokemon.type1)">{{ pokemon.type1}}</button>
+				<button :class="{'type': true, [pokemon.type2]: true}" v-if="pokemon.type2" v-click="createTypeLink(pokemon.type2)">{{ pokemon.type2}}</button>
 				<span v-else :class="{'no-type-2': true}"></span>
 			</li>
 		</ul>

@@ -247,7 +247,7 @@ new Vue({
 			{ number: '197', name: 'Umbreon', stringname: '197', type1: 'dark', type2: '' },
 			{ number: '198', name: 'Murkrow', stringname: '198', type1: 'dark', type2: 'flying' },
 			{ number: '199', name: 'Slowking', stringname: '199', type1: 'water', type2: 'psychic' },
-			{ number: '199', name: 'Galarian Slowking', stringname: '199g', type1: 'water', type2: 'psychic' },
+			{ number: '199', name: 'Galarian Slowking', stringname: '199g', type1: 'poison', type2: 'psychic' },
 			{ number: '200', name: 'Misdreavus', stringname: '200', type1: 'ghost', type2: '' },
 			{ number: '201', name: 'Unown (all forms)', stringname: '201', type1: 'psychic', type2: '' },
 			{ number: '202', name: 'Wobbuffet', stringname: '202', type1: 'psychic', type2: '' },
@@ -1055,13 +1055,12 @@ new Vue({
 			return this.pokemon.filter(pokemon => {
 				return pokemon.name.toLowerCase().indexOf(this.query.toLowerCase()) > -1
 					|| (pokemon.alt ? pokemon.alt.toLowerCase().indexOf(this.query.toLowerCase()) > -1 : '')
-					|| pokemon.type1.toLowerCase().indexOf(this.query.toLowerCase()) > -1
-					|| pokemon.type2.toLowerCase().indexOf(this.query.toLowerCase()) > -1
+					|| pokemon.type1.indexOf(this.query.toLowerCase()) > -1
+					|| pokemon.type2.indexOf(this.query.toLowerCase()) > -1
+					|| (pokemon.type1 + '+' + pokemon.type2).toString().indexOf(this.query.toLowerCase()) > -1
+					|| (pokemon.type2 + '+' + pokemon.type1).toString().indexOf(this.query.toLowerCase()) > -1
 			})
 		}
-	},
-	filters: {
-	
 	},
 	methods: {
 		cancelSearch() {
@@ -1081,6 +1080,16 @@ new Vue({
 				}
 			}
 			return href;
+		},
+		createTypeLink(typeClicked) {
+			console.log('typeClicked :>> ', typeClicked);
+			//left off:
+			//define array of all types
+			//if query already contains one of those types, then add a + to the query, and the type that was clicked (which should show dual types)
+			//if not, then just change the query to the type that was clicked
+			//test so it doesn't do something like grass+grass
+
+			//style the button focus states
 		}
 	},
 	beforeMount() {
