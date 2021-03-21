@@ -2,6 +2,7 @@ new Vue({
 	el: '#app',
 	data: {
 		query: '',
+		pokemonTypes: ['bug', 'dark', 'dragon', 'electric', 'fairy', 'fighting', 'fire', 'flying', 'ghost', 'grass', 'ground', 'ice', 'normal', 'poison', 'psychic', 'rock', 'steel', 'water'],
 		pokemon: [
 			{ number: '1', name: 'Bulbasaur', stringname: '001', type1: 'grass', type2: 'poison' },
 			{ number: '2', name: 'Ivysaur', stringname: '002', type1: 'grass', type2: 'poison' },
@@ -247,7 +248,7 @@ new Vue({
 			{ number: '197', name: 'Umbreon', stringname: '197', type1: 'dark', type2: '' },
 			{ number: '198', name: 'Murkrow', stringname: '198', type1: 'dark', type2: 'flying' },
 			{ number: '199', name: 'Slowking', stringname: '199', type1: 'water', type2: 'psychic' },
-			{ number: '199', name: 'Galarian Slowking', stringname: '199g', type1: 'water', type2: 'psychic' },
+			{ number: '199', name: 'Galarian Slowking', stringname: '199g', type1: 'poison', type2: 'psychic' },
 			{ number: '200', name: 'Misdreavus', stringname: '200', type1: 'ghost', type2: '' },
 			{ number: '201', name: 'Unown (all forms)', stringname: '201', type1: 'psychic', type2: '' },
 			{ number: '202', name: 'Wobbuffet', stringname: '202', type1: 'psychic', type2: '' },
@@ -1051,21 +1052,35 @@ new Vue({
 		]
 	},
 	computed: {
+		//filter list based on whether query appears in name, alt, type1, type2, or fits the format type1+type2 or type2+type1
 		filteredList () {
-			return this.pokemon.filter(pokemon => {
-				return pokemon.name.toLowerCase().indexOf(this.query.toLowerCase()) > -1
-					|| (pokemon.alt ? pokemon.alt.toLowerCase().indexOf(this.query.toLowerCase()) > -1 : '')
-					|| pokemon.type1.toLowerCase().indexOf(this.query.toLowerCase()) > -1
-					|| pokemon.type2.toLowerCase().indexOf(this.query.toLowerCase()) > -1
-			})
+			if (this.query == 'all') {
+				return this.pokemon.filter(pokemon => {
+					return pokemon.number > 0
+				})
+			} else if (this.query !== '') {
+				return this.pokemon.filter(pokemon => {
+					return pokemon.name.toLowerCase().indexOf(this.query.toLowerCase()) > -1
+						|| (pokemon.alt ? pokemon.alt.toLowerCase().indexOf(this.query.toLowerCase()) > -1 : '')
+						|| pokemon.type1.indexOf(this.query.toLowerCase()) > -1
+						|| pokemon.type2.indexOf(this.query.toLowerCase()) > -1
+						|| (pokemon.type1 + '+' + pokemon.type2).toString().indexOf(this.query.toLowerCase()) > -1
+						|| (pokemon.type2 + '+' + pokemon.type1).toString().indexOf(this.query.toLowerCase()) > -1
+				})
+			} else {
+				//if there's no query, only show first generation so page doesn't take forever to load all pokemon
+				return this.pokemon.filter(pokemon => {
+					return pokemon.number <= 151
+				})
+			}
 		}
-	},
-	filters: {
-	
 	},
 	methods: {
 		cancelSearch() {
 			this.query = '';
+		},
+		showAll() {
+			this.query = 'all';
 		},
 		createPkmnLink(number, name, stringname) {
 			var href = '';
@@ -1081,9 +1096,18 @@ new Vue({
 				}
 			}
 			return href;
+		},
+		//if a pokemon type is clicked, filter by that type. if there's already a type in the filter, add it to the query (to search for dual types)
+		createTypeQuery(typeClicked) {
+			if (this.pokemonTypes.includes(this.query) && this.query !== typeClicked) {
+				this.query = this.query + '+' + typeClicked;
+			} else {
+				this.query = typeClicked;
+			}
 		}
 	},
 	beforeMount() {
+		//if there's a query string in the url, filter with that query
 		let url = window.location.href;
 		if (url.indexOf('?q=') > -1) {
 			this.query = url.substr((url.indexOf('?q='))+3, url.length);

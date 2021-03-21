@@ -32,7 +32,7 @@
 			<input class="query" type="text" v-model="query" placeholder="Search by Pokémon name or type" autocomplete="off" autocorrect="off" spellcheck="false" autofocus>
 			<div class="cancel-search" v-if="query" @click="cancelSearch">&times;</div>
 		</div>
-		<div class="result-count">{{ filteredList.length }} Pokémon shown</div>
+		<div class="result-count">{{ filteredList.length }} Pokémon shown<span v-if="query !== 'all'"> <span class="separator">|</span> <button @click="showAll">Show all</button></div>
 		<ul class="pokemon-list">
 			<li class="pokemon-row" v-for="pokemon in filteredList" :data-pokemon="pokemon.name"> 
 				<span class="number">{{ pokemon.number}}</span>
@@ -40,13 +40,12 @@
 					<span class="icon"><img :src="'assets/icons/' + pokemon.stringname + '.png'" :alt="pokemon.name"/></span>
 					<span class="name">{{ pokemon.name}}</span>
 				</a>
-				<a class="type-link type-link-1" :href="'?q=' + pokemon.type1"><span :class="{'type': true, [pokemon.type1]: true}">{{ pokemon.type1}}</span></a>
-				<a class="type-link type-link-2" v-if="pokemon.type2" :href="'?q=' + pokemon.type2">
-					<span  :class="{'type': true, [pokemon.type2]: true}">{{ pokemon.type2}}</span>
-				</a>
+				<button :class="{'type': true, 'type-1': true, [pokemon.type1]: true}" @click="createTypeQuery(pokemon.type1)">{{ pokemon.type1}}</button>
+				<button :class="{'type': true, [pokemon.type2]: true}" v-if="pokemon.type2" @click="createTypeQuery(pokemon.type2)">{{ pokemon.type2}}</button>
 				<span v-else :class="{'no-type-2': true}"></span>
 			</li>
 		</ul>
+		<button class="show-all-bottom" v-if="query !== 'all'" @click="showAll">Show all</button>
 		<div class="credit">Credit to <a href="https://www.serebii.net/" target="_blank">Serebii</a> for all Pokémon images and links</div>
 	</div>
 
