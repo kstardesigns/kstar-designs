@@ -5,31 +5,33 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="A searchable list of all Pokémon and their types">
-	<title>Pokémon Type Checker - Search for a Pokémon to find its type(s)</title>
+	<title>Pokémon List - A searchable list of all Pokémon, their types, and anything else you need to know</title>
 	<link rel="shortcut icon" href="assets/favicon.png?d=3821">
-	<link rel="apple-touch-icon-precomposed" href="assets/touch-icon.png?d=22821a">
-	<meta itemprop="name" content="Pokémon Type Checker">
-    <meta itemprop="description" content="A searchable list of all Pokémon and their types">
+	<link rel="apple-touch-icon-precomposed" href="assets/touch-icon.jpg?d=32521">
+	<meta itemprop="name" content="Pokémon list">
+    <meta itemprop="description" content="A searchable list of all Pokémon, their types, and anything else you need to know">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Pokémon Type Checker">
-    <meta name="twitter:description" content="A searchable list of all Pokémon and their types">
+    <meta name="twitter:title" content="Pokémon Liost">
+    <meta name="twitter:description" content="A searchable list of all Pokémon, their types, and anything else you need to know">
     <meta name="twitter:site" content="@kstardesigns">
     <meta name="twitter:creator" content="@kstardesigns">
-    <meta name="twitter:image" content="https://kylephx.com/pkmnlist/assets/twitter-card.jpg?d=31121" class="twitter-image">
-    <meta name="twitter:image:alt" content="Pokémon Type Checker - 80 Pokémon from Generation 4 are shown">
-    <meta property="og:title" content="Pokémon Type Checker">
-    <meta propertyname="og:description" content="A searchable list of all Pokémon and their types">
+    <meta name="twitter:image" content="https://kylephx.com/pkmnlist/assets/twitter-card.jpg?d=32521" class="twitter-image">
+    <meta name="twitter:image:alt" content="Pokémon List - 80 Pokémon from Generation 4 are shown">
+    <meta property="og:title" content="Pokémon Type List">
+    <meta propertyname="og:description" content="A searchable list of all Pokémon, their types, and anything else you need to know">
     <meta property="og:url" content="https://kylephx.com/pkmnlist">
-    <meta property="og:image" content="https://kylephx.com/pkmnlist/assets/facebook-share.jpg?d=31121">
-    <meta property="og:site_name" content="Pokémon Type Checker">
+    <meta property="og:image" content="https://kylephx.com/pkmnlist/assets/facebook-share.jpg?d=32521">
+    <meta property="og:site_name" content="Pokémon List">
     <meta property="og:type" content="website">
 	<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 	<div id="app">
-		<h2 class="page-header">Pokémon type checker</h2>
+		<header>
+			<h2 class="page-header" @click="cancelSearch">Pokémon list</h2>
+		</header>
 		<div class="search-box">
-			<input class="query" type="text" v-model="query" placeholder="Search by Pokémon name or type" autocomplete="off" autocorrect="off" spellcheck="false" autofocus>
+			<input class="query" type="text" v-model="query" placeholder="Search by Pokémon name or type" autocomplete="off" autocorrect="off" spellcheck="false">
 			<div class="cancel-search" v-if="query" @click="cancelSearch">&times;</div>
 		</div>
 		<div class="result-count">{{ filteredList.length }} Pokémon shown<span v-if="query !== 'all'"> <span class="separator">|</span> <button @click="showAll">Show all</button></div>
