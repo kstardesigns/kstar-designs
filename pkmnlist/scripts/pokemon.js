@@ -2,6 +2,7 @@ new Vue({
 	el: '#app',
 	data: {
 		query: '',
+		showTypeEffectivenessLink: false,
 		pokemonTypes: ['bug', 'dark', 'dragon', 'electric', 'fairy', 'fighting', 'fire', 'flying', 'ghost', 'grass', 'ground', 'ice', 'normal', 'poison', 'psychic', 'rock', 'steel', 'water'],
 		pokemon: [
 			{ number: '1', name: 'Bulbasaur', stringname: '001', type1: 'grass', type2: 'poison' },
@@ -1036,7 +1037,7 @@ new Vue({
 			{ number: '888', name: 'Zacian', stringname: '888', type1: 'fairy', type2: '' },
 			{ number: '888', name: 'Zacian', suffix: '(Crowned Sword)', stringname: '888c', type1: 'fairy', type2: 'steel' },
 			{ number: '889', name: 'Zamazenta', stringname: '889', type1: 'fighting', type2: '' },
-			{ number: '889', name: 'Zamazenta', suffix: '(Crowned Sword)', stringname: '889c', type1: 'fighting', type2: 'steel' },
+			{ number: '889', name: 'Zamazenta', suffix: '(Crowned Shield)', stringname: '889c', type1: 'fighting', type2: 'steel' },
 			{ number: '890', name: 'Eternatus', suffix: '(all forms)', stringname: '890', type1: 'poison', type2: 'dragon' },
 			{ number: '891', name: 'Kubfu', stringname: '891', type1: 'fighting', type2: '' },
 			{ number: '892', name: 'Urshifu', suffix: '(Single Strike Style)', stringname: '892', type1: 'fighting', type2: 'dark' },
@@ -1055,6 +1056,8 @@ new Vue({
 		//filter list based on query entered
 		filteredList () {
 			if (this.query == 'all') { //shows all pokemon
+				this.showTypeEffectivenessLink = false;
+
 				return this.pokemon.filter(pokemon => {
 					return pokemon.number > 0
 				})
@@ -1064,6 +1067,13 @@ new Vue({
 						&& pokemon.type2 == ''
 				})
 			} else if (this.query !== '') { //if there is query, see if it matches one of the many cases below
+
+				if (this.query.includes('+') || this.pokemonTypes.includes(this.query)) {
+					this.showTypeEffectivenessLink = true;
+				} else {
+					this.showTypeEffectivenessLink = false;
+				}
+
 				return this.pokemon.filter(pokemon => {
 						//matches the format 'prefix name suffix'
 					return ((pokemon.prefix ? pokemon.prefix.toLowerCase() + ' ' : '') + pokemon.name.toLowerCase() + (pokemon.suffix ? ' ' + pokemon.suffix.toLowerCase() : '')).indexOf(this.query.toLowerCase()) > -1 
@@ -1080,6 +1090,7 @@ new Vue({
 				})
 			} else {
 				//if there's no query, only show first generation so page doesn't take too long to load all pokemon
+				this.showTypeEffectivenessLink = false;
 				return this.pokemon.filter(pokemon => {
 					return pokemon.number <= 151
 				})
