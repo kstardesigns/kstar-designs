@@ -3,6 +3,7 @@ new Vue({
 	data: {
 		query: '',
 		showTypeEffectivenessLink: false,
+		linkPreference: 'bulbapedia',
 		pokemonTypes: ['bug', 'dark', 'dragon', 'electric', 'fairy', 'fighting', 'fire', 'flying', 'ghost', 'grass', 'ground', 'ice', 'normal', 'poison', 'psychic', 'rock', 'steel', 'water'],
 		pokemon: [
 			{ number: '1', name: 'Bulbasaur', stringname: '001', type1: 'grass', type2: 'poison' },
@@ -1104,18 +1105,27 @@ new Vue({
 		showAll() {
 			this.query = 'all';
 		},
+		changeLinkPreference() {
+			var linkPrefValue = document.querySelector('[name="link-preference"]:checked').value.toLowerCase();
+			this.linkPreference = linkPrefValue;
+			//TODO: set LinkPreference cookie to this.linkPreference
+		},
 		createPkmnLink(number, name, stringname) {
 			var href = '';
 
+			if (this.linkPreference == 'serebii') {
 			// using this for gen 1-7 since they all aren't in gen 8 dex - use just the first 3 digits of stringname so it works for megaevos, regionals, etc.
-			if (parseInt(number) < 809) {
-				href = `https://www.serebii.net/pokedex-sm/${stringname.substring(0,3)}.shtml`;
-			} else { //gen 8 - use the name of the pokemon, remove the spaces, cut out the extra stuff in parentheses, make it lowercase
-				href = `https://www.serebii.net/pokedex-swsh/${name.replace(' ', '').toLowerCase()}`;
+				if (parseInt(number) < 809) {
+					href = `https://www.serebii.net/pokedex-sm/${stringname.substring(0,3)}.shtml`;
+				} else { //gen 8 - use the name of the pokemon, remove the spaces, cut out the extra stuff in parentheses, make it lowercase
+					href = `https://www.serebii.net/pokedex-swsh/${name.replace(' ', '').toLowerCase()}`;
 
-				if (href.indexOf('(') > -1) {
-					href = href.substring(0, href.indexOf('(')); //trim the url here
+					if (href.indexOf('(') > -1) {
+						href = href.substring(0, href.indexOf('(')); //trim the url here
+					}
 				}
+			} else { //default is bulbapedia
+				href = `https://bulbapedia.bulbagarden.net/wiki/${name}_(Pokémon)`;
 			}
 			return href;
 		},
@@ -1136,5 +1146,6 @@ new Vue({
 		if (url.indexOf('?q=') > -1) {
 			this.query = url.substr((url.indexOf('?q='))+3, url.length);
 		}
+		//TODO: left off - check if LinkPreference cookie exists, if it doesn't, set it to this.linkPreference
 	}
 })
