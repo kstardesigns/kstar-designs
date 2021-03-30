@@ -1130,7 +1130,7 @@ new Vue({
 		changeLinkPreference() {
 			var linkPrefValue = document.querySelector('[name="link-preference"]:checked').value.toLowerCase();
 			this.linkPreference = linkPrefValue;
-			//TODO: set LinkPreference cookie to this.linkPreference
+			this.setCookie('linkPreference', this.linkPreference, 1095);
 		},
 		createPkmnLink(number, name, stringname) {
 			var href = '';
@@ -1168,6 +1168,10 @@ new Vue({
 		if (url.indexOf('?q=') > -1) {
 			this.query = url.substr((url.indexOf('?q='))+3, url.length);
 		}
-		//TODO: left off - check if LinkPreference cookie exists, if it doesn't, set it to this.linkPreference
+		//check if link preference cookie exists, if not, set it
+		this.getCookie('linkPreference') !== '' ? this.linkPreference = this.getCookie('linkPreference') : this.setCookie('linkPreference', this.linkPreference, 1095);
+	},
+	mounted() {
+		document.getElementById(this.linkPreference).checked = true;
 	}
 })
