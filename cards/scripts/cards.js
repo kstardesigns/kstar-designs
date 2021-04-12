@@ -83,8 +83,9 @@ new Vue({
 				name: 'Kyle Stark',
 			  string: 'kylestark',
 				media: 'MLB The Show 18',
-				 //story1: 'After finishing 2nd in Rookie of the Year voting with the Marlins, Stark was traded to the Mariners before his sophomore season. Known for his speed, in 2020 he broke the single season record for stolen bases with 164, finishing the year with a .965 stolen base percentage. In 2022, Stark made his 4th straight All Star appearance as the starting 3rd Baseman.',
-				story: 'After finishing 2nd in Rookie of the Year voting with the Marlins, Stark was traded to the Mariners before his sophomore season. Known for his speed, in 2020 he broke the single season record for stolen bases with 164, which he then broke again in 2023 with 191. His other highlights that year included hitting his first cycle on June 16th against the Red Sox, and making his 5th straight All Star appearance as the starting 3rd Baseman.',
+				//story1: 'After finishing 2nd in Rookie of the Year voting with the Marlins, Stark was traded to the Mariners before his sophomore season. Known for his speed, in 2020 he broke the single season record for stolen bases with 164, finishing the year with a .965 stolen base percentage. In 2022, Stark made his 4th straight All Star appearance as the starting 3rd Baseman.',
+				// story2: 'After finishing 2nd in Rookie of the Year voting with the Marlins, Stark was traded to the Mariners before his sophomore season. Known for his speed, in 2020 he broke the single season record for stolen bases with 164, which he then broke again in 2023 with 191. His other highlights that year included hitting his first cycle on June 16th against the Red Sox, and making his 5th straight All Star appearance as the starting 3rd Baseman.',
+				story: 'Single season stolen bases record. AL Player of the Month in July. Silver Slugger Award at third base. Personal highs in runs, RBI, BA, OBP, SLG, OPS, hits, doubles, triples, steals, and walks. Led the league in several categories. His second cycle. Those are just some of Stark\'s accomplishments in 2024. He then became a free agent and returned to Seattle to sign a team-friendly deal - $150 million over 13 years.', 
 				team: 'Seattle Mariners&trade;',
 				logo: 'mariners.png',
 				position: '3B',
@@ -107,16 +108,22 @@ new Vue({
 						year: 2022, tm: 'sea', g: 148, ab: 624, r: 94, h: 188, '2b': 30, '3b': '<i>14</i>', hr: 26, rbi: 103, avg: '.301', obp: '.310', slg: '.519', ops: '.829', war: '5.1', sb: '<i>142</i>', cs: 6, bb: '7', so: '54'
 				},
 				statsYear5: {
-					year: 2023, tm: 'sea', g: 149, ab: 608, r: 111, h: 204, '2b': 20, '3b': '<i>17</i>', hr: 28, rbi: 113, avg: '.336', obp: '.348', slg: '.563', ops: '.911', war: '7.9', sb: '<i>191</i>', cs: 13, bb: '11', so: '54'
+						year: 2023, tm: 'sea', g: 149, ab: 608, r: 111, h: 204, '2b': 20, '3b': '<i>17</i>', hr: 28, rbi: 113, avg: '.336', obp: '.348', slg: '.563', ops: '.911', war: '7.9', sb: '<i>191</i>', cs: 13, bb: '11', so: '54'
+				},
+				statsYear6: {
+						year: 2024, tm: 'sea', g: 154, ab: 631, r: '<i>142</i>', h: '<i>227</i>', '2b': 31, '3b': '<i>18</i>', hr: 32, rbi: 116, avg: '<i>.360</i>', obp: '.394', slg: '.618', ops: '1.012', war: '<i>12.5</i>', sb: '<i>245</i>', cs: 9, bb: '35', so: '66'
 				},
 				totals: {
-					year: 'totals', tm: '', g: 712, ab: 2850, r: 475, h: 901, '2b': 125, '3b': 62, hr: 139, rbi: 448, avg: '.316', obp: '.325', slg: '.550', ops: '.875', war: '35.7', sb: 761, cs: 40, bb: 35, so: 261
+					year: 'totals', tm: '', g: 866, ab: 3481, r: 617, h: 1128, '2b': 156, '3b': 80, hr: 171, rbi: 564, avg: '.324', obp: '.338', slg: '.562', ops: '.900', war: '48.2', sb: 1006, cs: 49, bb: 70, so: 327
 				},
 				playoffsYear1: {
 					year: '2023 ALDS', tm: '', g: 4, ab: 19, r: 5, h: 6, '2b': 0, '3b': '2', hr: 1, rbi: 4, avg: '.316', obp: '.350', slg: '.684', ops: '1.034', war: '-', sb: '6', cs: 0, bb: '0', so: '2'
 				},
+				playoffsYear2: {
+					year: '2024 ALWC', tm: '', g: 1, ab: 4, r: 0, h: 1, '2b': 0, '3b': '1', hr: 0, rbi: 0, avg: '.250', obp: '.250', slg: '.750', ops: '1.000', war: '-', sb: 0, cs: 0, bb: 0, so: 0
+				},
 				playoffsTotals: {
-					year: 'totals', tm: '', g: 4, ab: 19, r: 5, h: 6, '2b': 0, '3b': '2', hr: 1, rbi: 4, avg: '.316', obp: '.350', slg: '.684', ops: '1.034', war: '-', sb: '6', cs: 0, bb: '0', so: '2'
+					year: 'totals', tm: '', g: 5, ab: 23, r: 5, h: 7, '2b': 0, '3b': '3', hr: 1, rbi: 4, avg: '.304', obp: '.333', slg: '.696', ops: '1.029', war: '-', sb: '6', cs: 0, bb: '0', so: '2'
 				}
 			},
 			{
