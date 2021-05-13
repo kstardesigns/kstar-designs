@@ -20,143 +20,135 @@ let playerTeam = 109,
     month = `${date.getMonth() + 1}`.padStart(2, '0'),
     day = `${date.getDate()}`.padStart(2, '0'),
     year = date.getFullYear(),
-    fullDate = `${month}/${day}/${year}`;
+    fullDate = `${month}/${day}/${year}`,
+    todaysAB, todaysH, todaysK, todaysBB, todaysSB;
 
     
 window.addEventListener('DOMContentLoaded', (event) => {
 
-    //get id of current game
+    //fetch id of current game
     fetch(`https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&date=${fullDate}&teamId=${playerTeam}`).then(function (response) {
         return response.json();
     }).then(function (data) {
         const todaysGameId = data.dates[0].games[0].gamePk;
 
+        //fetch player's stats from current game
+        return fetch(`https://statsapi.mlb.com/api/v1/people/${playerId}/stats/game/${todaysGameId}`);
+    }).then(function (response) {
+        return response.json();
+    }).then(function (data) {
         //to get player's stats from current game
-        fetch(`https://statsapi.mlb.com/api/v1/people/${playerId}/stats/game/${todaysGameId}`).then(function (response) {
-            return response.json();
-        }).then(function (data) {
-            console.log(data.stats[0].splits[2].stat); // all stats for game
-            const todaysAB = data.stats[0].splits[2].stat.atBats,
-                todaysH = data.stats[0].splits[2].stat.hits,
-                todaysPA = data.stats[0].splits[2].stat.plateAppearances,
-                todaysK = data.stats[0].splits[2].stat.strikeOuts,
-                todaysBB = data.stats[0].splits[2].stat.baseOnBalls,
-                todays2B = data.stats[0].splits[2].stat.doubles,
-                todays3B = data.stats[0].splits[2].stat.triples,
-                todaysHR = data.stats[0].splits[2].stat.homeRuns,
-                todaysGO = data.stats[0].splits[2].stat.groundOuts,
-                todaysFO = data.stats[0].splits[2].stat.flyOuts,
-                todaysSB = data.stats[0].splits[2].stat.sacBunts;
+        // console.log(data.stats[0].splits[2].stat); // all stats for game
+        todaysAB = data.stats[0].splits[2].stat.atBats;
+        todaysH = data.stats[0].splits[2].stat.hits;
+        todaysPA = data.stats[0].splits[2].stat.plateAppearances;
+        todaysK = data.stats[0].splits[2].stat.strikeOuts;
+        todaysBB = data.stats[0].splits[2].stat.baseOnBalls;
+        todaysSB = data.stats[0].splits[2].stat.sacBunts;
 
-            const createOutputText = function() {
-                outputText += `𝚃𝚘𝚍𝚊𝚢<br>${todaysH}-${todaysAB}`;
+        const todays2B = data.stats[0].splits[2].stat.doubles,
+              todays3B = data.stats[0].splits[2].stat.triples,
+              todaysHR = data.stats[0].splits[2].stat.homeRuns,
+              todaysGO = data.stats[0].splits[2].stat.groundOuts,
+              todaysFO = data.stats[0].splits[2].stat.flyOuts;
 
-                const optionalStats = [todaysPA, todaysK, todaysBB, todays2B, todays3B, todaysHR, todaysGO, todaysFO, todaysSB],
-                      optionalStatAliases = ['PA', 'K', 'BB', '2B', '3B', 'HR', 
-                                            todaysGO == 1 ? 'groundout' : 'groundouts', 
-                                            todaysFO == 1 ? 'flyout' : 'flyouts', 
-                                            todaysSB == 1 ? 'sac bunt' : 'sac bunts'];
+        const createOutputText = function() {
+            outputText += `𝚃𝚘𝚍𝚊𝚢<br>${todaysH}-${todaysAB}`;
 
-                optionalStats.forEach(function (optionalStat, i) {
-                    if (optionalStat > 0) {
-                        outputText += `, ${optionalStat} ${optionalStatAliases[i]}`;
-                    }
-                });
+            const optionalStats = [todaysPA, todaysK, todaysBB, todays2B, todays3B, todaysHR, todaysGO, todaysFO, todaysSB],
+                  optionalStatAliases = ['PA', 'K', 'BB', '2B', '3B', 'HR', 
+                                        todaysGO == 1 ? 'groundout' : 'groundouts', 
+                                        todaysFO == 1 ? 'flyout' : 'flyouts', 
+                                        todaysSB == 1 ? 'sac bunt' : 'sac bunts'];
 
-                document.getElementById('output').innerHTML = outputText;
-            }
+            optionalStats.forEach(function (optionalStat, i) {
+                if (optionalStat > 0) {
+                    outputText += `, ${optionalStat} ${optionalStatAliases[i]}`;
+                }
+            });
 
-            createOutputText();
+            document.getElementById('output').innerHTML = outputText;
+        }
 
-                //to get player's season stats
-                fetch(`https://statsapi.mlb.com/api/v1/people/${playerId}/stats?stats=season&year=${year}&group=hitting`).then(function (response) {
-                    return response.json();
-                }).then(function (data) {
-                    console.log(data.stats[0].splits[0].stat) // all stats for season
-                    const seasonAB = data.stats[0].splits[0].stat.atBats + todaysAB,
-                          seasonH = data.stats[0].splits[0].stat.hits + todaysH,
-                          seasonPA = data.stats[0].splits[0].stat.plateAppearances + todaysPA,
-                          seasonK = data.stats[0].splits[0].stat.strikeOuts + todaysK,
-                          seasonBB = data.stats[0].splits[0].stat.baseOnBalls + todaysBB,
-                          seasonSB = data.stats[0].splits[0].stat.sacBunts + todaysSB,
-                          seasonAVG = (seasonH / seasonAB).toFixed(3).substring(1); // to be more precise
+        createOutputText();
+        //fetch player's season stats
+        return fetch(`https://statsapi.mlb.com/api/v1/people/${playerId}/stats?stats=season&year=${year}&group=hitting`);
+    }).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        //to get player's season stats
+        // console.log(data.stats[0].splits[0].stat) // all stats for season
+        const seasonAB = data.stats[0].splits[0].stat.atBats + todaysAB,
+              seasonH = data.stats[0].splits[0].stat.hits + todaysH,
+              seasonPA = data.stats[0].splits[0].stat.plateAppearances + todaysPA,
+              seasonK = data.stats[0].splits[0].stat.strikeOuts + todaysK,
+              seasonBB = data.stats[0].splits[0].stat.baseOnBalls + todaysBB,
+              seasonSB = data.stats[0].splits[0].stat.sacBunts + todaysSB,
+              seasonAVG = (seasonH / seasonAB).toFixed(3).substring(1); // to be more precise
 
-                    const addSeasonToOutputText = function() {
-                        outputText += `<br><br>𝟸𝟶𝟸𝟷<br>${seasonH}-${seasonAB}`;
-                        outputText += `, ${seasonPA} PA`;
-                        outputText += `, ${seasonAVG} AVG`;
-        
-                        const optionalStats = [seasonK, seasonBB, seasonSB],
-                              optionalStatAliases = ['K', 'BB', 
-                                                    seasonSB == 1 ? 'sac bunt' : 'sac bunts'];
-        
-                        optionalStats.forEach(function (optionalStat, i) {
-                            if (optionalStat > 0) {
-                                outputText += `, ${optionalStat} ${optionalStatAliases[i]}`;
-                            }
-                        });
+        const addSeasonToOutputText = function() {
+            outputText += `<br><br>𝟸𝟶𝟸𝟷<br>${seasonH}-${seasonAB}`;
+            outputText += `, ${seasonPA} PA`;
 
-                        document.getElementById('output').innerHTML = outputText;
-                    }
-                    addSeasonToOutputText();
+            const optionalStats = [seasonK, seasonBB, seasonSB],
+                  optionalStatAliases = ['K', 'BB', 
+                                        seasonSB == 1 ? 'sac bunt' : 'sac bunts'];
 
-                        //to get player's career stats
-                        fetch(`https://statsapi.mlb.com/api/v1/people/${playerId}/stats?stats=career&group=hitting`).then(function (response) {
-                            return response.json();
-                        }).then(function (data) {
-                            console.log(data.stats[0].splits[0].stat); // all stats for career
-                            const careerAB = data.stats[0].splits[0].stat.atBats,
-                                  careerH = data.stats[0].splits[0].stat.hits,
-                                  careerPA = data.stats[0].splits[0].stat.plateAppearances,
-                                  careerK = data.stats[0].splits[0].stat.strikeOuts,
-                                  careerBB = data.stats[0].splits[0].stat.baseOnBalls,
-                                  careerSB = data.stats[0].splits[0].stat.sacBunts,
-                                  careerAVG = data.stats[0].splits[0].stat.avg,
-                                  careerAVGprecise = (careerH / careerAB).toFixed(5).substring(1), // to be more precise
-                                  careerOBP = data.stats[0].splits[0].stat.obp,
-                                  careerSLG = data.stats[0].splits[0].stat.slg,
-                                  careerOPS = data.stats[0].splits[0].stat.ops;
+            optionalStats.forEach(function (optionalStat, i) {
+                if (optionalStat > 0) {
+                    outputText += `, ${optionalStat} ${optionalStatAliases[i]}`;
+                }
+            });
 
-                            const addCareerToOutputText = function() {
-                                outputText += `<br><br>𝙲𝚊𝚛𝚎𝚎𝚛<br>${careerH}-${careerAB}`;
-                                outputText += `, ${careerPA} PA`;
-                                
-                                const optionalStats = [careerK, careerBB, careerSB],
-                                    optionalStatAliases = ['K', 'BB', 'sac bunts'];
+            outputText += `, ${seasonAVG} AVG`;
+            document.getElementById('output').innerHTML = outputText;
+        }
+        addSeasonToOutputText();
 
-                                optionalStats.forEach(function (optionalStat, i) {
-                                    if (optionalStat > 0) {
-                                        outputText += `, ${optionalStat} ${optionalStatAliases[i]}`;
-                                    }
-                                });
+        //fetch player's career stats
+        return fetch(`https://statsapi.mlb.com/api/v1/people/${playerId}/stats?stats=career&group=hitting`);
 
-                                outputText += `<br>${careerAVG}/${careerOBP}/${careerSLG}/${careerOPS}`;
-                                outputText += `<br>Precise AVG: ${careerAVGprecise}`
+    }).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        //to get player's career stats
+        // console.log(data.stats[0].splits[0].stat); // all stats for career
+        const careerAB = data.stats[0].splits[0].stat.atBats,
+              careerH = data.stats[0].splits[0].stat.hits,
+              careerPA = data.stats[0].splits[0].stat.plateAppearances,
+              careerK = data.stats[0].splits[0].stat.strikeOuts,
+              careerBB = data.stats[0].splits[0].stat.baseOnBalls,
+              careerSB = data.stats[0].splits[0].stat.sacBunts,
+              careerAVG = data.stats[0].splits[0].stat.avg,
+              careerAVGprecise = (careerH / careerAB).toFixed(5).substring(1), // to be more precise
+              careerOBP = data.stats[0].splits[0].stat.obp,
+              careerSLG = data.stats[0].splits[0].stat.slg,
+              careerOPS = data.stats[0].splits[0].stat.ops;
 
-                                document.getElementById('output').innerHTML = outputText;
-                            }
-                            addCareerToOutputText();
+        const addCareerToOutputText = function() {
+            outputText += `<br><br>𝙲𝚊𝚛𝚎𝚎𝚛<br>${careerH}-${careerAB}`;
+            outputText += `, ${careerPA} PA`;
+            
+            const optionalStats = [careerK, careerBB, careerSB],
+                optionalStatAliases = ['K', 'BB', 'sac bunts'];
 
-                            const twitterText = `https://twitter.com/intent/tweet?text=${outputText}`;//here
-                            document.getElementById('twitter-share').setAttribute('href', twitterText.replace(/<br\s*[\/]?>/gi, '%0a'));
+            optionalStats.forEach(function (optionalStat, i) {
+                if (optionalStat > 0) {
+                    outputText += `, ${optionalStat} ${optionalStatAliases[i]}`;
+                }
+            });
 
-                        }).catch(function (err) {
-                            // There was an error
-                            console.warn('Something went wrong getting career stats.', err);
-                        }); 
-                    
-                }).catch(function (err) {
-                    // There was an error
-                    console.warn('Something went wrong getting or updating season stats.', err);
-                }); 
+            outputText += `<br>${careerAVG}/${careerOBP}/${careerSLG}/${careerOPS}`;
+            outputText += `<br>Precise AVG: ${careerAVGprecise}`
 
-        }).catch(function (err) {
-            // There was an error
-            console.warn('Something went wrong getting players stats from current game.', err);
-        });
+            document.getElementById('output').innerHTML = outputText;
+        }
+        addCareerToOutputText();
 
+        const twitterText = `https://twitter.com/intent/tweet?text=${outputText}`;//here
+        document.getElementById('twitter-share').setAttribute('href', twitterText.replace(/<br\s*[\/]?>/gi, '%0a'));
     }).catch(function (err) {
         // There was an error
-        console.warn('Something went wrong getting ID of current game.', err);
-    });
+        console.warn('Something went wrong.', err);
+    });               
 });
