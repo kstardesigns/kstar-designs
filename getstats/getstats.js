@@ -152,3 +152,31 @@ window.addEventListener('DOMContentLoaded', (event) => {
         console.warn('Something went wrong.', err);
     });               
 });
+
+//[input] *player games played*
+//[input] *team games played*
+//[input] *current stat* to multiply to get pace
+//[button] get pace results
+
+//get *team games remaining*:  162 -  (*team games played*)
+    // (118)
+//get *pace multiplier*: *player games played* / *current stat* 
+    // (45 / 32)
+//get *pace results* = (*teams game remaining* / *pace multiplier*) + *current stat*  
+    //(118 / 1.4063) + 32 = 115.91
+
+const getPaceButton = document.getElementById('get-pace')
+      playerGames = document.getElementById('player-games'),
+      teamGames = document.getElementById('team-games'),
+      currentStat = document.getElementById('current-stat'),
+      paceResult = document.getElementById('pace-result');
+
+getPaceButton.addEventListener('click', function() {
+    const teamGamesRemaining = 162 - parseInt(teamGames.value);
+    console.log(teamGamesRemaining);
+    const paceMultiplier = (parseInt(playerGames.value) / parseInt(currentStat.value)).toFixed(3);
+    console.log('paceMultiplier :>> ', paceMultiplier);
+    const paceResults = ((teamGamesRemaining / paceMultiplier) + parseInt(currentStat.value)).toFixed(2);
+    console.log(paceResults);
+    paceResult.innerHTML = `On pace for... <strong>${paceResults}</strong>`;
+});
