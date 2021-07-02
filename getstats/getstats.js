@@ -57,7 +57,7 @@ const fetchStats = function(playerId) {
         } 
 
         const createOutputText = function() {
-            outputText += `<h2>${playerName} stat tracker:</h2>𝚃𝚘𝚍𝚊𝚢<br>${todaysH}-${todaysAB}`;
+            outputText += `${playerName} stat tracker:<br><br>𝚃𝚘𝚍𝚊𝚢<br>${todaysH}-${todaysAB}`;
 
             const optionalStats = [todaysPA, todaysK, todaysBB, todays2B, todays3B, todaysHR, todaysGO, todaysFO, todaysSB],
                   optionalStatAliases = ['PA', 'K', 'BB', '2B', '3B', 'HR', 
