@@ -15,17 +15,17 @@
     
 let playerTeam = 109,
     playerId = 518876,
-    outputText = 'Merrill Kelly batting average tracker:<br><br>',
+    playerName = 'Merrill Kelly',
+    outputText = '',
     date = new Date(),
     month = `${date.getMonth() + 1}`.padStart(2, '0'),
     day = `${date.getDate()}`.padStart(2, '0'),
     year = date.getFullYear(),
     fullDate = `${month}/${day}/${year}`,
-    todaysAB, todaysH, todaysK, todaysBB, todaysSB;
+    todaysPA = 0, todaysAB = 0, todaysH = 0, todaysK = 0, todaysBB = 0, todaysSB = 0, todays2B = 0, todays3B = 0, todaysHR = 0, todaysGO = 0, todaysFO = 0,
+    playerButtons = document.querySelectorAll('.player-button');
 
-    
-window.addEventListener('DOMContentLoaded', (event) => {
-
+const fetchStats = function(playerId) {
     //fetch id of current game
     fetch(`https://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&date=${fullDate}&teamId=${playerTeam}`).then(function (response) {
         return response.json();
@@ -37,23 +37,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }).then(function (response) {
         return response.json();
     }).then(function (data) {
+
         //to get player's stats from current game
         // console.log(data.stats[0].splits[2].stat); // all stats for game
-        todaysAB = data.stats[0].splits[2].stat.atBats;
-        todaysH = data.stats[0].splits[2].stat.hits;
-        todaysPA = data.stats[0].splits[2].stat.plateAppearances;
-        todaysK = data.stats[0].splits[2].stat.strikeOuts;
-        todaysBB = data.stats[0].splits[2].stat.baseOnBalls;
-        todaysSB = data.stats[0].splits[2].stat.sacBunts;
 
-        const todays2B = data.stats[0].splits[2].stat.doubles,
-              todays3B = data.stats[0].splits[2].stat.triples,
-              todaysHR = data.stats[0].splits[2].stat.homeRuns,
-              todaysGO = data.stats[0].splits[2].stat.groundOuts,
-              todaysFO = data.stats[0].splits[2].stat.flyOuts;
+        if (data.stats[0].splits[2] !== undefined && data.stats[0].splits[2].stat.plateAppearances ) {
+            console.log('undefined?');
+            todaysAB = data.stats[0].splits[2].stat.atBats;
+            todaysH = data.stats[0].splits[2].stat.hits;
+            todaysPA = data.stats[0].splits[2].stat.plateAppearances;
+            todaysK = data.stats[0].splits[2].stat.strikeOuts;
+            todaysBB = data.stats[0].splits[2].stat.baseOnBalls;
+            todaysSB = data.stats[0].splits[2].stat.sacBunts;
+            todays2B = data.stats[0].splits[2].stat.doubles;
+            todays3B = data.stats[0].splits[2].stat.triples;
+            todaysHR = data.stats[0].splits[2].stat.homeRuns;
+            todaysGO = data.stats[0].splits[2].stat.groundOuts;
+            todaysFO = data.stats[0].splits[2].stat.flyOuts;
+        } 
 
         const createOutputText = function() {
-            outputText += `𝚃𝚘𝚍𝚊𝚢<br>${todaysH}-${todaysAB}`;
+            outputText += `<h2>${playerName} stat tracker:</h2>𝚃𝚘𝚍𝚊𝚢<br>${todaysH}-${todaysAB}`;
 
             const optionalStats = [todaysPA, todaysK, todaysBB, todays2B, todays3B, todaysHR, todaysGO, todaysFO, todaysSB],
                   optionalStatAliases = ['PA', 'K', 'BB', '2B', '3B', 'HR', 
@@ -78,6 +82,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }).then(function (data) {
         //to get player's season stats
         // console.log(data.stats[0].splits[0].stat) // all stats for season
+        
         const seasonAB = data.stats[0].splits[0].stat.atBats + todaysAB,
               seasonH = data.stats[0].splits[0].stat.hits + todaysH,
               seasonPA = data.stats[0].splits[0].stat.plateAppearances + todaysPA,
@@ -151,6 +156,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
         // There was an error
         console.warn('Something went wrong.', err);
     });               
+}
+window.addEventListener('DOMContentLoaded', (event) => {
+    fetchStats(playerId, playerTeam);
+});
+
+playerButtons.forEach(async function(playerButton) {
+    playerButton.addEventListener('click', (event) => {
+        outputText = '';
+        playerId = playerButton.getAttribute('data-playerid');
+        playerTeam = playerButton.getAttribute('data-playerteam');
+        playerName = playerButton.innerHTML;
+        fetchStats(playerId, playerTeam);
+    });
 });
 
 //[input] *player games played*
