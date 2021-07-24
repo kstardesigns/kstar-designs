@@ -83,20 +83,21 @@ const fetchStats = function(playerId) {
         //to get player's season stats
         // console.log(data.stats[0].splits[0].stat) // all stats for season
         
-        const seasonAB = data.stats[0].splits[0].stat.atBats + todaysAB,
-              seasonH = data.stats[0].splits[0].stat.hits + todaysH,
-              seasonPA = data.stats[0].splits[0].stat.plateAppearances + todaysPA,
-              seasonK = data.stats[0].splits[0].stat.strikeOuts + todaysK,
-              seasonBB = data.stats[0].splits[0].stat.baseOnBalls + todaysBB,
-              seasonSB = data.stats[0].splits[0].stat.sacBunts + todaysSB,
+        const seasonAB = data.stats[0].splits[0].stat.atBats,
+              seasonH = data.stats[0].splits[0].stat.hits,
+              seasonPA = data.stats[0].splits[0].stat.plateAppearances,
+              seasonK = data.stats[0].splits[0].stat.strikeOuts,
+              seasonBB = data.stats[0].splits[0].stat.baseOnBalls,
+              seasonSB = data.stats[0].splits[0].stat.sacBunts,
+              season2B = data.stats[0].splits[0].stat.doubles,
               seasonAVG = (seasonH / seasonAB).toFixed(3).substring(1); // to be more precise
 
         const addSeasonToOutputText = function() {
             outputText += `<br><br>𝟸𝟶𝟸𝟷<br>${seasonH}-${seasonAB}`;
             outputText += `, ${seasonPA} PA`;
 
-            const optionalStats = [seasonK, seasonBB, seasonSB],
-                  optionalStatAliases = ['K', 'BB', 
+            const optionalStats = [season2B, seasonK, seasonBB, seasonSB],
+                  optionalStatAliases = ['2B','K', 'BB', 
                                         seasonSB == 1 ? 'sac bunt' : 'sac bunts'];
 
             optionalStats.forEach(function (optionalStat, i) {
@@ -124,6 +125,7 @@ const fetchStats = function(playerId) {
               careerK = data.stats[0].splits[0].stat.strikeOuts,
               careerBB = data.stats[0].splits[0].stat.baseOnBalls,
               careerSB = data.stats[0].splits[0].stat.sacBunts,
+              career2B = data.stats[0].splits[0].stat.doubles,
               careerAVG = data.stats[0].splits[0].stat.avg,
               careerAVGprecise = (careerH / careerAB).toFixed(5).substring(1), // to be more precise
               careerOBP = data.stats[0].splits[0].stat.obp,
@@ -134,8 +136,8 @@ const fetchStats = function(playerId) {
             outputText += `<br><br>𝙲𝚊𝚛𝚎𝚎𝚛<br>${careerH}-${careerAB}`;
             outputText += `, ${careerPA} PA`;
             
-            const optionalStats = [careerK, careerBB, careerSB],
-                optionalStatAliases = ['K', 'BB', 'sac bunts'];
+            const optionalStats = [careerK, careerBB, careerSB, career2B],
+                optionalStatAliases = ['2B','K', 'BB', 'sac bunts'];
 
             optionalStats.forEach(function (optionalStat, i) {
                 if (optionalStat > 0) {
