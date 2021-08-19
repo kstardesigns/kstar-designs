@@ -82,6 +82,7 @@ new Vue({
 			{ number: '56', name: 'Mankey', stringname: '056', type1: 'fighting', type2: '' },
 			{ number: '57', name: 'Primeape', stringname: '057', type1: 'fighting', type2: '' },
 			{ number: '58', name: 'Growlithe', stringname: '058', type1: 'fire', type2: '' },
+			{ number: '58', prefix: 'Hisuian', name: 'Growlithe', stringname: '058h', type1: 'fire', type2: 'rock' },
 			{ number: '59', name: 'Arcanine', stringname: '059', type1: 'fire', type2: '' },
 			{ number: '60', name: 'Poliwag', stringname: '060', type1: 'water', type2: '' },
 			{ number: '61', name: 'Poliwhirl', stringname: '061', type1: 'water', type2: '' },
@@ -750,6 +751,7 @@ new Vue({
 			{ number: '626', name: 'Bouffalant', stringname: '626', type1: 'normal', type2: '' },
 			{ number: '627', name: 'Rufflet', stringname: '627', type1: 'normal', type2: 'flying' },
 			{ number: '628', name: 'Braviary', stringname: '628', type1: 'normal', type2: 'flying' },
+			{ number: '628', prefix: 'Hisuian', name: 'Braviary', stringname: '628h', type1: 'psychic', type2: 'flying' },
 			{ number: '629', name: 'Vullaby', stringname: '629', type1: 'dark', type2: 'flying' },
 			{ number: '630', name: 'Mandibuzz', stringname: '630', type1: 'dark', type2: 'flying' },
 			{ number: '631', name: 'Heatmor', stringname: '631', type1: 'fire', type2: '' },
@@ -1051,6 +1053,8 @@ new Vue({
 			{ number: '898', name: 'Calyrex', stringname: '898', type1: 'psychic', type2: 'grass' },
 			{ number: '898', prefix: 'Ice Rider', name: 'Calyrex', stringname: '898i', type1: 'psychic', type2: 'ice' },
 			{ number: '898', prefix: 'Shadow Rider', name: 'Calyrex', stringname: '898s', type1: 'psychic', type2: 'ghost' },
+			{ number: '9999', name: 'Wyrdeer', stringname: '9998', type1: 'normal', type2: 'psychic' },
+			{ number: '9999', name: 'Basculegion', stringname: '9999', type1: 'water', type2: 'ghost' },
 		]
 	},
 	computed: {
