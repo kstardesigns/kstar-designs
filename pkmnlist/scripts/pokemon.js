@@ -3,6 +3,7 @@ new Vue({
 	data: {
 		query: '',
 		showTypeEffectivenessLink: false,
+		typeEffectivenessLink: 'https://kylephx.com/pkmnchart',
 		linkPreference: 'bulbapedia',
 		pokemonTypes: ['bug', 'dark', 'dragon', 'electric', 'fairy', 'fighting', 'fire', 'flying', 'ghost', 'grass', 'ground', 'ice', 'normal', 'poison', 'psychic', 'rock', 'steel', 'water'],
 		pokemon: [
@@ -1060,39 +1061,55 @@ new Vue({
 	computed: {
 		//filter list based on query entered
 		filteredList () {
-			if (this.query == 'all') { //shows all pokemon
+			//shows all pokemon
+			if (this.query == 'all') {
 				this.showTypeEffectivenessLink = false;
 
 				return this.pokemon.filter(pokemon => {
 					return pokemon.number > 0
 				})
-			} else if (this.query.includes('only')) { //shows only pokemon where type 1 equals '(type) only'
-				return this.pokemon.filter(pokemon => {
-					return pokemon.type1.indexOf(this.query.toLowerCase().substring(0, this.query.indexOf(' '))) > -1
-						&& pokemon.type2 == ''
-				})
-			} else if (this.query !== '') { //if there is query, see if it matches one of the many cases below
 
-				if (this.query.includes('+') || this.pokemonTypes.includes(this.query)) {
+			//if there is query, see if it matches one of the many cases below
+			} else if (this.query !== '') { 
+
+				//if the query has a pokemon type in it, show and create the type effectiveness link
+				if (this.query.includes('+') || this.pokemonTypes.includes(this.query) || this.query.includes('only')) {
 					this.showTypeEffectivenessLink = true;
+
+					if (this.query.includes('+')) {
+						this.typeEffectivenessLink = `https://kylephx.com/pkmnchart?t1=${this.query.substring(0, this.query.indexOf('+'))}&t2=${this.query.substring(this.query.indexOf('+')+1, this.query.length)}`;
+					} else {
+						this.typeEffectivenessLink = `https://kylephx.com/pkmnchart?t1=${this.query.indexOf(' ') > -1 ? this.query.substring(0, this.query.indexOf(' ')) : this.query}`;
+					}
 				} else {
 					this.showTypeEffectivenessLink = false;
 				}
 
-				return this.pokemon.filter(pokemon => {
-						//matches the format 'prefix name suffix'
-					return ((pokemon.prefix ? pokemon.prefix.toLowerCase() + ' ' : '') + pokemon.name.toLowerCase() + (pokemon.suffix ? ' ' + pokemon.suffix.toLowerCase() : '')).indexOf(this.query.toLowerCase()) > -1 
-						//matches term found in 'altname'
-						|| (pokemon.alt ? pokemon.alt.toLowerCase().indexOf(this.query.toLowerCase()) > -1 : '') 
-						//matches type searched in type1
-						|| pokemon.type1.indexOf(this.query.toLowerCase()) > -1 
-						//matches type searched in type2
-						|| pokemon.type2.indexOf(this.query.toLowerCase()) > -1 
-						//matches both types searched in order
-						|| (pokemon.type1 + '+' + pokemon.type2).toString().indexOf(this.query.toLowerCase()) > -1
-						//matches both types searched, swapped
-						|| (pokemon.type2 + '+' + pokemon.type1).toString().indexOf(this.query.toLowerCase()) > -1
-				})
+				//shows only pokemon where type 1 equals '(type) only'
+				if (this.query.includes('only')) {
+					return this.pokemon.filter(pokemon => {
+						return pokemon.type1.indexOf(this.query.toLowerCase().substring(0, this.query.indexOf(' '))) > -1
+							&& pokemon.type2 == ''
+					})
+
+				//if query is not 'all' or a pokemon type, filter regularly
+				} else {
+					return this.pokemon.filter(pokemon => {
+							//matches the format 'prefix name suffix'
+						return ((pokemon.prefix ? pokemon.prefix.toLowerCase() + ' ' : '') + pokemon.name.toLowerCase() + (pokemon.suffix ? ' ' + pokemon.suffix.toLowerCase() : '')).indexOf(this.query.toLowerCase()) > -1 
+							//matches term found in 'altname'
+							|| (pokemon.alt ? pokemon.alt.toLowerCase().indexOf(this.query.toLowerCase()) > -1 : '') 
+							//matches type searched in type1
+							|| pokemon.type1.indexOf(this.query.toLowerCase()) > -1 
+							//matches type searched in type2
+							|| pokemon.type2.indexOf(this.query.toLowerCase()) > -1 
+							//matches both types searched in order
+							|| (pokemon.type1 + '+' + pokemon.type2).toString().indexOf(this.query.toLowerCase()) > -1
+							//matches both types searched, swapped
+							|| (pokemon.type2 + '+' + pokemon.type1).toString().indexOf(this.query.toLowerCase()) > -1
+					})
+				}
+
 			} else {
 				//if there's no query, only show first generation so page doesn't take too long to load all pokemon
 				this.showTypeEffectivenessLink = false;
