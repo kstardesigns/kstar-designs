@@ -137,6 +137,24 @@
 		  background-color: #2b963a;
 		}
 
+		.chosen-defense.product-0 {
+			background-color: #333;
+		}
+
+		.chosen-defense.product-½, .chosen-defense.product-¼ {
+			background-color: #bf1b16;
+		} 
+
+		.chosen-defense.product-1 {
+			background-color: #bbb;
+			color: #fff;
+			text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+		}
+
+		.chosen-defense.product-2, .chosen-defense.product-4 {
+		  background-color: #2b963a;
+		}
+
 		.dual-amt {
 		  display: none;
 		}
@@ -767,9 +785,11 @@
 										childrenCellsAgain[r].querySelector('.amt').style.display = 'none';
 										childrenCellsAgain[r].querySelector('.dual-amt').style.display = 'inline';
 										childrenCellsAgain[r].querySelector('.dual-amt').innerHTML = newAmounts[r];
+										childrenCellsAgain[r].classList.add(`product-${newAmounts[r]}`);
 									}
 								}
 							}
+
 						}
 					} else {
 						//if there already 2 classes chosen and a 3rd is clicked,
@@ -785,6 +805,7 @@
 								childrenCellsAgain[r].querySelector('.amt').style.display = 'inline';
 								childrenCellsAgain[r].querySelector('.dual-amt').innerHTML = '';
 								childrenCellsAgain[r].querySelector('.dual-amt').style.display = 'none';
+								childrenCellsAgain[r].classList.remove('product-0', 'product-½', 'product-1', 'product-2');
 							}
 						}
 						resetDivs();
@@ -809,6 +830,7 @@
 								childrenCellsAgain[r].querySelector('.amt').style.display = 'inline';
 								childrenCellsAgain[r].querySelector('.dual-amt').innerHTML = '';
 								childrenCellsAgain[r].querySelector('.dual-amt').style.display = 'none';
+								childrenCellsAgain[r].classList.remove('product-0', 'product-½', 'product-1', 'product-2');
 							}
 						}
 					resetDivs();
