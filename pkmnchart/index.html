@@ -278,24 +278,24 @@
 		</div>
 		<div class="defense shadowed">
 			<div class="row headings">
-				<div class="normal defense-type">Normal</div>
-				<div class="fire defense-type">Fire</div>
-				<div class="water defense-type">Water</div>
-				<div class="electric defense-type">Electric</div>
-				<div class="grass defense-type">Grass</div>
-				<div class="ice defense-type">Ice</div>
-				<div class="fighting defense-type">Fighting</div>
-				<div class="poison defense-type">Poison</div>
-				<div class="ground defense-type">Ground</div>
-				<div class="flying defense-type">Flying</div>
-				<div class="psychic defense-type">Psychic</div>
-				<div class="bug defense-type">Bug</div>
-				<div class="rock defense-type">Rock</div>
-				<div class="ghost defense-type">Ghost</div>
-				<div class="dragon defense-type">Dragon</div>
-				<div class="dark defense-type">Dark</div>
-				<div class="steel defense-type">Steel</div>
-				<div class="fairy defense-type">Fairy</div>
+				<div id="normal" class="normal defense-type">Normal</div>
+				<div id="fire" class="fire defense-type">Fire</div>
+				<div id="water" class="water defense-type">Water</div>
+				<div id="electric" class="electric defense-type">Electric</div>
+				<div id="grass" class="grass defense-type">Grass</div>
+				<div id="ice" class="ice defense-type">Ice</div>
+				<div id="fighting" class="fighting defense-type">Fighting</div>
+				<div id="poison" class="poison defense-type">Poison</div>
+				<div id="ground" class="ground defense-type">Ground</div>
+				<div id="flying" class="flying defense-type">Flying</div>
+				<div id="psychic" class="psychic defense-type">Psychic</div>
+				<div id="bug" class="bug defense-type">Bug</div>
+				<div id="rock" class="rock defense-type">Rock</div>
+				<div id="ghost" class="ghost defense-type">Ghost</div>
+				<div id="dragon" class="dragon defense-type">Dragon</div>
+				<div id="dark" class="dark defense-type">Dark</div>
+				<div id="steel" class="steel defense-type">Steel</div>
+				<div id="fairy" class="fairy defense-type">Fairy</div>
 			</div>
 			<div class="row row--first">
 				<div class="one normal-y"><span class="amt">1</span><span class="dual-amt">1</span>×</div>
@@ -816,6 +816,22 @@
 			});
 		}
 
+		window.addEventListener('DOMContentLoaded', (event) => {
+			let url = window.location.href;
+
+			if (url.indexOf('?t1=') > -1 && url.indexOf('t2=') == -1) {
+				let type1 = url.substring((url.indexOf('?t1='))+4);
+				document.getElementById(type1).click();
+			}
+			else if (url.indexOf('?t1=') > -1 && url.indexOf('t2=') > -1) {
+				console.log(url.indexOf('&t2='));
+				console.log(url.length);
+				let type1 = url.substring((url.indexOf('?t1='))+4, url.indexOf('&t2='));
+				let type2 = url.substring((url.indexOf('&t2='))+4);
+				document.getElementById(type1).click();
+				document.getElementById(type2).click();
+			}
+		});
 
 	</script>
 
