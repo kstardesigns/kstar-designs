@@ -1133,10 +1133,10 @@ new Vue({
 				date.setTime(date.getTime() + (days*24*60*60*1000));
 				expires = '; expires=' + date.toUTCString();
 			}
-			document.cookie = cookieName + '+' + (value || '')  + expires + '; path=/';
+			document.cookie = cookieName + '=' + (value || '')  + expires + '; path=/';
 		},
 		getCookie(cookieName) {
-			var nameEQ = cookieName + '+';
+			var nameEQ = cookieName + '=';
 			var ca = document.cookie.split(';');
 			for(var i=0;i < ca.length;i++) {
 				var c = ca[i];
@@ -1193,6 +1193,16 @@ new Vue({
 		this.getCookie('linkPreference') !== '' ? this.linkPreference = this.getCookie('linkPreference') : this.setCookie('linkPreference', this.linkPreference, 1095);
 	},
 	mounted() {
-		document.getElementById(this.linkPreference).checked = true;
+		console.log(this.linkPreference);
+		let url = window.location.href;
+		if (url.indexOf('?linkPref=') > -1) {
+			var linkPref = url.substr((url.indexOf('?linkPref='))+10, url.length);
+			console.log(linkPref);
+			this.linkPreference = linkPref;
+			document.getElementById(this.linkPreference).checked = true;
+			this.setCookie('linkPreference', this.linkPreference, 1095);
+		} else {
+			document.getElementById(this.getCookie('linkPreference')).checked = true;
+		}
 	}
 })
