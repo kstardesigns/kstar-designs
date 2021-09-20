@@ -1097,6 +1097,8 @@ new Vue({
 					return this.pokemon.filter(pokemon => {
 							//matches the format 'prefix name suffix'
 						return ((pokemon.prefix ? pokemon.prefix.toLowerCase() + ' ' : '') + pokemon.name.toLowerCase() + (pokemon.suffix ? ' ' + pokemon.suffix.toLowerCase() : '')).indexOf(this.query.toLowerCase()) > -1 
+							//matches the format 'name prefix' ex. 'raichu alolan'
+							|| (pokemon.name.toLowerCase() + ' ' + (pokemon.prefix ? pokemon.prefix.toLowerCase() : '')).indexOf(this.query.toLowerCase()) > -1 
 							//matches term found in 'altname'
 							|| (pokemon.alt ? pokemon.alt.toLowerCase().indexOf(this.query.toLowerCase()) > -1 : '') 
 							//matches type searched in type1
