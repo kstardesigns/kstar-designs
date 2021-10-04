@@ -1124,10 +1124,13 @@ new Vue({
 		}
 	},
 	methods: {
-		cancelSearch() {
-			this.query = '';
+		focusSearchBar() {
 			var searchBar = document.querySelector('.query');
 			searchBar.focus();
+		},
+		cancelSearch() {
+			this.query = '';
+			this.focusSearchBar();
 		},
 		showAll() {
 			this.query = 'all';
@@ -1187,6 +1190,7 @@ new Vue({
 			} else {
 				this.query = typeClicked;
 			}
+			this.focusSearchBar();
 		}
 	},
 	beforeMount() {

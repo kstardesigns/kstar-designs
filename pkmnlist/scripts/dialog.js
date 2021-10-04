@@ -75,3 +75,20 @@ for (var i = 0; i < dialogs.length; i++) {
         closeDialog(this.id, e);
     });
 }
+
+
+var toTopButton = document.querySelector('.scroll-to-search');
+var prevScrollpos = window.pageYOffset;
+
+window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+
+    if (currentScrollPos > 100) {
+        toTopButton.style.display = 'flex';
+    } else {
+        toTopButton.style.display = 'none';
+    }
+    
+    prevScrollpos = currentScrollPos;
+}
+	
