@@ -1056,6 +1056,8 @@ new Vue({
 			{ number: '898', prefix: 'Shadow Rider', name: 'Calyrex', stringname: '898s', type1: 'psychic', type2: 'ghost' },
 			{ number: '9999', name: 'Wyrdeer', stringname: '9998', type1: 'normal', type2: 'psychic' },
 			{ number: '9999', name: 'Basculegion', stringname: '9999', type1: 'water', type2: 'ghost' },
+			{ number: '9999', name: 'Kleavor', stringname: '9997', type1: 'bug', type2: 'rock' },
+
 		]
 	},
 	computed: {
@@ -1124,6 +1126,8 @@ new Vue({
 	methods: {
 		cancelSearch() {
 			this.query = '';
+			var searchBar = document.querySelector('.query');
+			searchBar.focus();
 		},
 		showAll() {
 			this.query = 'all';
