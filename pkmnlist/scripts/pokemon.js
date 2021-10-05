@@ -1190,7 +1190,8 @@ new Vue({
 			} else {
 				this.query = typeClicked;
 			}
-			this.focusSearchBar();
+
+			document.querySelector('.page-header').scrollIntoView();
 		}
 	},
 	beforeMount() {
