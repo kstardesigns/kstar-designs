@@ -15,3 +15,11 @@ menuButton.addEventListener('click', function(){
         body.classList.add('menu-open');
     }
 });
+
+$(document).ready(function(){
+    $('.global-slideshow').slick({
+        autoplay: true,
+        autoplaySpeed: 3000,
+        arrows: false
+    });
+});
