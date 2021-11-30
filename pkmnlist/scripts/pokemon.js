@@ -1168,8 +1168,8 @@ new Vue({
 			var href = '';
 
 			if (this.linkPreference == 'serebii') {
-			// using this for gen 1-7 since they all aren't in gen 8 dex - use just the first 3 digits of stringname so it works for megaevos, regionals, etc.
-				if (parseInt(number) < 809) {
+			// using this for gen 5-7 since they all aren't in gen 8 dex - use just the first 3 digits of stringname so it works for megaevos, regionals, etc.
+				if (parseInt(number) > 493 && parseInt(number) < 809) {
 					href = `https://www.serebii.net/pokedex-sm/${stringname.substring(0,3)}.shtml`;
 				} else { //gen 8 - use the name of the pokemon, remove the spaces, cut out the extra stuff in parentheses, make it lowercase
 					href = `https://www.serebii.net/pokedex-swsh/${name.replace(' ', '').toLowerCase()}`;
