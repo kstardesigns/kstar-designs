@@ -139,6 +139,7 @@ new Vue({
 			{ number: '98', name: 'Krabby', stringname: '098', type1: 'water', type2: '' },
 			{ number: '99', name: 'Kingler', stringname: '099', type1: 'water', type2: '' },
 			{ number: '100', name: 'Voltorb', stringname: '100', type1: 'electric', type2: '' },
+			{ number: '100', name: 'Hisuian Voltorb', stringname: '100h', type1: 'electric', type2: 'grass' },
 			{ number: '101', name: 'Electrode', stringname: '101', type1: 'electric', type2: '' },
 			{ number: '102', name: 'Exeggcute', stringname: '102', type1: 'grass', type2: 'psychic' },
 			{ number: '103', name: 'Exeggutor', stringname: '103', type1: 'grass', type2: 'psychic' },
