@@ -66,6 +66,66 @@
 				<svg bh-dialog-close xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path bh-dialog-close fill="#222" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg>
 			</button>
 
+			<label for="gen-filter" class="preference-header">Show Pokémon introduced in:</label>
+			<div class="radio-group-flex radio-group-flex--gens">
+		
+				<!--here-->
+				<!-- <div  :key="index">{{ item }}</div> -->
+
+				<div v-for="(n, i) in 9">
+					<input class="radio-group-input" type="radio" name="gen-filter" :id="'gen' + n" :value="'gen ' + n" v-on:change="changeGenFilter()" />
+					<label class="radio-group-label type steel" :for="'gen' + n">
+						Gen {{ n }}
+					</label>
+				</div>
+
+				<!-- <input class="radio-group-input" type="radio" name="gen-filter" id="gen1" value="gen 1" v-on:change="changeGenFilter()" />
+				<label class="radio-group-label type steel" for="gen1">
+					Gen 1 {{ }}
+				</label> -->
+
+
+				<!-- <input class="radio-group-input" type="radio" name="gen-filter" id="gen2" value="gen 2" v-on:change="changeGenFilter()"/>
+				<label class="radio-group-label type steel" for="gen2">
+					Gen 2
+				</label>
+
+				<input class="radio-group-input" type="radio" name="gen-filter" id="gen3" value="gen 3" v-on:change="changeGenFilter()"/>
+				<label class="radio-group-label type steel" for="gen3">
+					Gen 3
+				</label>
+
+				<input class="radio-group-input" type="radio" name="gen-filter" id="gen4" value="gen 4" v-on:change="changeGenFilter()"/>
+				<label class="radio-group-label type steel" for="gen4">
+					Gen 4
+				</label>
+
+				<input class="radio-group-input" type="radio" name="gen-filter" id="gen5" value="gen 5" v-on:change="changeGenFilter()"/>
+				<label class="radio-group-label type steel" for="gen5">
+					Gen 5
+				</label>
+
+				<input class="radio-group-input" type="radio" name="gen-filter" id="gen6" value="gen 6" v-on:change="changeGenFilter()"/>
+				<label class="radio-group-label type steel" for="gen6">
+					Gen 6
+				</label>
+
+				<input class="radio-group-input" type="radio" name="gen-filter" id="gen7" value="gen 7" v-on:change="changeGenFilter()"/>
+				<label class="radio-group-label type steel" for="gen7">
+					Gen 7
+				</label>
+
+				<input class="radio-group-input" type="radio" name="gen-filter" id="gen8" value="gen 8" v-on:change="changeGenFilter()"/>
+				<label class="radio-group-label type steel" for="gen8">
+					Gen 8
+				</label>
+
+				<input class="radio-group-input" type="radio" name="gen-filter" id="gen9" value="gen 9" v-on:change="changeGenFilter()"/>
+				<label class="radio-group-label type steel" for="gen9">
+					Gen 9
+				</label> -->
+			</div>
+
 			<label for="link-preference" class="preference-header">Link preference</label>
 			<div class="radio-group-flex">
 				<input class="radio-group-input" type="radio" name="link-preference" id="bulbapedia" checked value="Bulbapedia" v-on:change="changeLinkPreference()" />

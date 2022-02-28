@@ -471,14 +471,52 @@ header {
 		display: flex;
 		justify-content: center;
 		margin-bottom: 20px;
+
+		.radio-group-input {
+			display: none;
+		}
+
+		label {
+			height: 40px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 		
 		label:first-of-type {
 			border-radius: 2px 0 0 2px;
-			border-right: 0;
 		}
 
 		label:last-of-type {
 			border-radius: 0 2px 2px 0;
+		}
+
+		&--gens {
+			flex-wrap: wrap;
+			width: 240px;
+
+			label, label:first-of-type, label:last-of-type {
+				border-radius: 0;
+				border-right-width: 1px;
+				font-size: 16px;
+				width: 80px;
+
+				&[for="gen1"] {
+					border-top-left-radius: 2px;
+				}
+
+				&[for="gen3"] {
+					border-top-right-radius: 2px;
+				}
+
+				&[for="gen7"] {
+					border-bottom-left-radius: 2px;
+				}
+
+				&[for="gen9"] {
+					border-bottom-right-radius: 2px;
+				}
+			}
 		}
 	}
 
@@ -501,7 +539,7 @@ header {
 	}
 
 	label {
-		min-width: 100px;
+		min-width: 80px;
 		display: inline-block;
 		line-height: 23px;
 		text-align: center;
