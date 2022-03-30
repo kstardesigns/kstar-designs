@@ -1,5 +1,6 @@
 var dialogTriggers = document.getElementsByClassName('bh-dialog-trigger'),
-    dialogs = document.getElementsByClassName('bh-dialog');
+    dialogs = document.getElementsByClassName('bh-dialog'),
+    root = document.getElementsByTagName('html')[0];;
 
 var openDialog = function(dialogID, e) {
     var dialog = document.querySelector('#' + dialogID),
@@ -30,6 +31,7 @@ var openDialog = function(dialogID, e) {
 
     //prevent page scrolling
     document.body.classList.add('bh-dialog-fixed-page');
+    root.classList.add('bh-dialog-fixed-page');
     
     //open clicked dialog
     dialog.classList.add('open');
@@ -67,6 +69,7 @@ var closeDialog = function(dialogID, e) {
     dialog.parentNode.style.display = 'none';
     dialog.style.top = 'initial';
     document.body.classList.remove('bh-dialog-fixed-page');
+    root.classList.remove('bh-dialog-fixed-page');
 }
  
 for (var i = 0; i < dialogs.length; i++) {
