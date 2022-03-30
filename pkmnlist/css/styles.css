@@ -33,7 +33,7 @@ header {
   font-size: 18px;
   font-family: 'Lato', sans-serif; }
 
-.bh-dialog-trigger, .bh-dialog-close {
+.settings-button, .search-jump-button, .close-button {
   position: absolute;
   top: -9px;
   right: 0;
@@ -46,7 +46,7 @@ header {
   border: 0;
   padding: 0;
   cursor: pointer; }
-  .bh-dialog-trigger svg, .bh-dialog-close svg {
+  .settings-button svg, .search-jump-button svg, .close-button svg {
     width: 24px;
     height: 24px;
     flex: 0 0 24px; }
@@ -54,11 +54,23 @@ header {
 .bh-dialog-close {
   top: 0; }
 
+.search-jump-button {
+  right: 40px; }
+  .search-jump-button svg {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px; }
+
+.search-box-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3px; }
+
 .search-box {
   position: relative;
   width: 100%;
   max-width: 480px;
-  margin: 0 auto 3px;
+  margin: 0;
   display: block; }
 
 .helper-text {
@@ -110,7 +122,11 @@ header {
   display: inline-block;
   padding: 8px 0; }
 
-.query {
+.query-label {
+  display: block;
+  margin-bottom: 4px; }
+
+.query, .number-query {
   width: 100%;
   height: 36px;
   padding: 0 36px 0 6px;
@@ -343,6 +359,7 @@ header {
       .bh-dialog.open {
         width: calc(100% - 20px);
         left: 10px; } }
+
 @keyframes animOpacity {
   0% {
     opacity: 0; }
@@ -430,5 +447,22 @@ header {
     text-align: center; }
     .bh-dialog p svg {
       margin: 0 4px -2px; }
-
-/*# sourceMappingURL=styles.css.map */
+  .bh-dialog--number.open .number-input-wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 130px; }
+  .bh-dialog--number.open .number-query {
+    width: calc(100% - 48px);
+    padding-right: 6px; }
+  .bh-dialog--number.open .number-close {
+    width: 40px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
+    flex: 0 0 40px; }
+  .bh-dialog--number.open .number-error {
+    margin-top: 4px;
+    color: #da291c; }

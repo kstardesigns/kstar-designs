@@ -2,6 +2,8 @@ new Vue({
 	el: '#app',
 	data: {
 		query: '',
+		nquery: '',
+		numberError: '',
 		showTypeEffectivenessLink: false,
 		typeEffectivenessLink: 'https://kylephx.com/pkmnchart',
 		linkPreference: 'bulbapedia',
@@ -1085,16 +1087,17 @@ new Vue({
 	computed: {
 		//filter list based on query entered
 		filteredList () {
-			//shows all pokemon
+			//filter to show all pokemon
 			if (this.query == 'all') {
 				this.showTypeEffectivenessLink = false;
 
 				return this.pokemon.filter(pokemon => {
 					return pokemon.number > 0
 				})
+			}
 
 			//if there is query, see if it matches one of the many cases below
-			} else if (this.query !== '') { 
+			else if (this.query !== '') { 
 
 				//if the query has a pokemon type in it, show and create the type effectiveness link
 				if (this.query.includes('+') || this.pokemonTypes.includes(this.query) || this.query.includes('only')) {
@@ -1117,6 +1120,7 @@ new Vue({
 					})
 
 				}
+
 				//query for generation filtering: 'gen (#)' / 'generation (number)'
 				if (this.query.includes('gen ') || this.query.includes('generation ')) {
 					return this.pokemon.filter(pokemon => {
@@ -1157,6 +1161,12 @@ new Vue({
 			var searchBar = document.querySelector('.query');
 			searchBar.focus();
 		},
+		focusNumberInput() {
+			setTimeout(function() {
+				var numberSearchBar = document.querySelector('.number-query');
+				numberSearchBar.focus();
+			}, 250)
+		},
 		cancelSearch() {
 			this.query = '';
 			this.focusSearchBar();
@@ -1196,6 +1206,22 @@ new Vue({
 			this.query = selectedGen.value;
 			document.querySelector('.bh-dialog-close').click();
 		},
+		jumpToNumber(nquery) { //show all Pokemon and go to hash of number query
+			if (nquery !== '' && !isNaN(nquery) && nquery < 10000) {
+				this.query = 'all';
+				this.numberError = '';
+				closeDialog('bh-dialog-number');
+
+				setTimeout(function() {
+					location.hash = "#n" + nquery;
+				}, 250);
+
+				this.nquery = '';
+			} else {
+				this.numberError = 'Number should be between 1 and 9999';
+			}
+
+		},
 		createPkmnLink(number, name, stringname) {
 			var href = '';
 
@@ -1232,7 +1258,7 @@ new Vue({
 		//if there's a query string in the url, filter with that query
 		let url = window.location.href;
 		if (url.indexOf('?q=') > -1) {
-			this.query = url.substr((url.indexOf('?q='))+3, url.length);
+			this.query = url.substring((url.indexOf('?q='))+3, url.length);
 		}
 		//check if link preference cookie exists, if not, set it
 		this.getCookie('linkPreference') !== '' ? this.linkPreference = this.getCookie('linkPreference') : this.setCookie('linkPreference', this.linkPreference, 1095);
@@ -1241,7 +1267,7 @@ new Vue({
 		console.log(this.linkPreference);
 		let url = window.location.href;
 		if (url.indexOf('?linkPref=') > -1) {
-			var linkPref = url.substr((url.indexOf('?linkPref='))+10, url.length);
+			var linkPref = url.substring((url.indexOf('?linkPref='))+10, url.length);
 			console.log(linkPref);
 			this.linkPreference = linkPref;
 			document.getElementById(this.linkPreference).checked = true;
