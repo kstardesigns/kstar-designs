@@ -8,6 +8,7 @@ new Vue({
 		typeEffectivenessLink: 'https://kylephx.com/pkmnchart',
 		linkPreference: 'bulbapedia',
 		generations: 9,
+		totalPkmn: 905,
 		pokemonTypes: ['bug', 'dark', 'dragon', 'electric', 'fairy', 'fighting', 'fire', 'flying', 'ghost', 'grass', 'ground', 'ice', 'normal', 'poison', 'psychic', 'rock', 'steel', 'water'],
 		pokemon: [
 			{ number: '1', name: 'Bulbasaur', stringname: '001', type1: 'grass', type2: 'poison', gen: '1' },
@@ -1212,9 +1213,21 @@ new Vue({
 				this.numberError = '';
 				closeDialog('bh-dialog-number');
 
-				setTimeout(function() {
-					location.hash = "#n" + nquery;
-				}, 250);
+				//if there is a pokemon with that number, scroll to it. Otherwise, scroll to the last numbered pokemon
+				if (nquery <= this.totalPkmn) {
+					location.hash = "#";
+
+					setTimeout(function() {
+						location.hash = "#n" + nquery;
+					}, 250);
+				} else {
+					location.hash = "#";
+
+					const pkmnCount = this.totalPkmn;
+					setTimeout(function() {
+						location.hash = "#n" + pkmnCount;
+					}, 250);
+				}
 
 				this.nquery = '';
 			} else {
