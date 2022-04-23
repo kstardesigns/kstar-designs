@@ -1205,7 +1205,7 @@ new Vue({
 		changeGenFilter() {
 			var selectedGen = document.querySelector('[name="gen-filter"]:checked');
 			this.query = selectedGen.value;
-			document.querySelector('.bh-dialog-close').click();
+			closeDialog('bh-dialog');
 		},
 		jumpToNumber(nquery) { //show all Pokemon and go to hash of number query
 			if (nquery !== '' && !isNaN(nquery) && nquery < 10000) {
