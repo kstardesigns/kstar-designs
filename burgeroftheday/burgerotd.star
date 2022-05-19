@@ -3,7 +3,7 @@ Applet: Burger of the Day
 Summary: Shows Burger of the Day
 Description: Display the set Burger of the Day, show a random burger every time, or enter your own custom burger. Burgers courtesy of Bob's Burgers. Use the "Show logo" and "Scroll speed" options to fit your Tidbyt.
 Author: Kyle Stark @kaisle51
-Thanks: @whyamihere @dinotash @inxi @J.R.
+Thanks: @whyamihere @dinotash @inxi @J.R. @Milx
 """
 
 load("encoding/base64.star", "base64")
