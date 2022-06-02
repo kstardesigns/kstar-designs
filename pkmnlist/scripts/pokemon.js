@@ -1079,9 +1079,16 @@ new Vue({
 			{ number: '903', name: 'Sneasler', stringname: '903', type1: 'fighting', type2: 'poison', gen: '8' },
 			{ number: '904', name: 'Overqwil', stringname: '904', type1: 'dark', type2: 'poison', gen: '8' },
 			{ number: '905', name: 'Enamorus', stringname: '905', type1: 'fairy', type2: 'flying', gen: '8' },
+
 			{ number: '9999', name: 'Sprigatito', stringname: '997', type1: 'grass', type2: '', gen: '9' },
 			{ number: '9999', name: 'Fuecoco', stringname: '998', type1: 'fire', type2: '', gen: '9' },
 			{ number: '9999', name: 'Quaxly', stringname: '999', type1: 'water', type2: '', gen: '9' },
+
+			{ number: '9999', name: 'Pawmi', stringname: '996', type1: 'electric', type2: '', gen: '9' },
+			{ number: '9999', name: 'Lechonk', stringname: '995', type1: 'normal', type2: '', gen: '9' },
+			{ number: '9999', name: 'Smoliv', stringname: '994', type1: 'grass', type2: 'normal', gen: '9' },
+			{ number: '9999', name: 'Koraidon', stringname: '993', type1: '???', type2: '', gen: '9' },
+			{ number: '9999', name: 'Miraidon', stringname: '992', type1: '???', type2: '', gen: '9' },
 
 		]
 	},
