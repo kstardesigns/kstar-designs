@@ -12,6 +12,7 @@ load("schema.star", "schema")
 load("math.star", "math")
 load("time.star", "time")
 load("random.star", "random")
+load("encoding/json.star", "json")
 
 #64 x 19
 BOBS_LOGO = base64.decode("""
@@ -33,6 +34,7 @@ DEFAULT_BURGER_PAR = "(Comes with bacon)"
 BURGER_NAME = ""
 BURGER_PAR = ""
 YEAR = time.now().year
+DEFAULT_TIME_ZONE = "America/New_York"
 
 #remove leap day burger from lists if it's not a leap year
 def checkIfNotLeapYear():
@@ -43,6 +45,7 @@ def checkIfNotLeapYear():
 checkIfNotLeapYear()
 
 def main(config):
+
     def showBobsLogo():
         if config.bool("show_logo", True):
             return render.Padding(
@@ -56,9 +59,15 @@ def main(config):
         else:
             return
 
-    TIME_ZONE = config.get("$tz", "America/New_York")
+    LOCATION = config.get("location")
+    LOCATION = json.decode(LOCATION) if LOCATION else {}
+    TIME_ZONE = LOCATION.get(
+        "timezone",
+        config.get("$tz", DEFAULT_TIME_ZONE),
+    )
+    YEAR = time.now().in_location(TIME_ZONE).year
     DEFAULT_TIME = time.now().in_location(TIME_ZONE).format("2006-01-02T15:04:05Z07:00")
-    CURRENT_YEAR = str(time.now().year)
+    CURRENT_YEAR = str(time.now().in_location(TIME_ZONE).year)
     FIRST_DAY = time.parse_time(CURRENT_YEAR + "-01-01T01:01:01Z")
     DAYS_SINCE_JAN1 = time.now().in_location(TIME_ZONE) - FIRST_DAY
     DAYS_NUMBER = math.floor(DAYS_SINCE_JAN1.hours / 24)
@@ -177,6 +186,12 @@ def get_schema():
     return schema.Schema(
         version = "1",
         fields = [
+            schema.Location(
+                id = "location",
+                name = "Location",
+                desc = "So your daily burger changes each day",
+                icon = "place",
+            ),
             schema.Toggle(
                 id = "show_logo",
                 name = "Show logo",
