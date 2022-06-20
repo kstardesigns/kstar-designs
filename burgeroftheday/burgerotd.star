@@ -65,11 +65,10 @@ def main(config):
         "timezone",
         config.get("$tz", DEFAULT_TIME_ZONE),
     )
-    YEAR = time.now().in_location(TIME_ZONE).year
-    DEFAULT_TIME = time.now().in_location(TIME_ZONE).format("2006-01-02T15:04:05Z07:00")
-    CURRENT_YEAR = str(time.now().in_location(TIME_ZONE).year)
-    FIRST_DAY = time.parse_time(CURRENT_YEAR + "-01-01T01:01:01Z")
-    DAYS_SINCE_JAN1 = time.now().in_location(TIME_ZONE) - FIRST_DAY
+    TIME_NOW = time.now().in_location(TIME_ZONE)
+    CURRENT_YEAR = int(TIME_NOW.year)
+    FIRST_DAY = time.time(year = CURRENT_YEAR, month = 1, day = 1, location = TIME_ZONE)
+    DAYS_SINCE_JAN1 = TIME_NOW - FIRST_DAY
     DAYS_NUMBER = math.floor(DAYS_SINCE_JAN1.hours / 24)
     RANDOM_NUMBER = random.number(0, 365)
     BURGER_SHOWN = config.get("burger_shown", "daily")
