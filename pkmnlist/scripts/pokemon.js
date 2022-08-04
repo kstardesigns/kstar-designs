@@ -255,6 +255,7 @@ new Vue({
 			{ number: '192', name: 'Sunflora', stringname: '192', type1: 'grass', type2: '', gen: '2' },
 			{ number: '193', name: 'Yanma', stringname: '193', type1: 'bug', type2: 'flying', gen: '2' },
 			{ number: '194', name: 'Wooper', stringname: '194', type1: 'water', type2: 'ground', gen: '2' },
+			{ number: '194', prefix: 'Paldean', name: 'Wooper', stringname: '194p', type1: 'poison', type2: 'ground', gen: '2' },
 			{ number: '195', name: 'Quagsire', stringname: '195', type1: 'water', type2: 'ground', gen: '2' },
 			{ number: '196', name: 'Espeon', stringname: '196', type1: 'psychic', type2: '', gen: '2' },
 			{ number: '197', name: 'Umbreon', stringname: '197', type1: 'dark', type2: '', gen: '2' },
@@ -1087,6 +1088,8 @@ new Vue({
 			{ number: '9999', name: 'Pawmi', stringname: '996', type1: 'electric', type2: '', gen: '9' },
 			{ number: '9999', name: 'Lechonk', stringname: '995', type1: 'normal', type2: '', gen: '9' },
 			{ number: '9999', name: 'Smoliv', stringname: '994', type1: 'grass', type2: 'normal', gen: '9' },
+			{ number: '9999', name: 'Fidough', stringname: '991', type1: 'fairy', type2: '', gen: '9' },
+			{ number: '9999', name: 'Cetitan', stringname: '990', type1: 'ice', type2: '', gen: '9' },
 			{ number: '9999', name: 'Koraidon', stringname: '993', type1: '???', type2: '', gen: '9' },
 			{ number: '9999', name: 'Miraidon', stringname: '992', type1: '???', type2: '', gen: '9' },
 
