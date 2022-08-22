@@ -1090,6 +1090,7 @@ new Vue({
 			{ number: '9999', name: 'Smoliv', stringname: '994', type1: 'grass', type2: 'normal', gen: '9' },
 			{ number: '9999', name: 'Fidough', stringname: '991', type1: 'fairy', type2: '', gen: '9' },
 			{ number: '9999', name: 'Cetitan', stringname: '990', type1: 'ice', type2: '', gen: '9' },
+			{ number: '9999', name: 'Cyclizar', stringname: '991', type1: 'dragon', type2: 'normal', gen: '9' },
 			{ number: '9999', name: 'Koraidon', stringname: '993', type1: '???', type2: '', gen: '9' },
 			{ number: '9999', name: 'Miraidon', stringname: '992', type1: '???', type2: '', gen: '9' },
 
