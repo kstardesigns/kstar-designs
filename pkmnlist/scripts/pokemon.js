@@ -1280,8 +1280,11 @@ new Vue({
 			} else {
 				this.query = typeClicked;
 			}
-			closeDialog('bh-dialog');
-			document.querySelector('.page-header').scrollIntoView();
+
+			if (document.querySelectorAll('.bh-dialog.open').length) {
+				closeDialog('bh-dialog');
+				document.querySelector('.page-header').scrollIntoView();
+			}
 		}
 	},
 	beforeMount() {
