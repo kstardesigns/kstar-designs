@@ -1096,6 +1096,7 @@ new Vue({
 			{ number: '9999', name: 'Klawf', stringname: '985', type1: 'rock', type2: '', evos: '', gen: '9' },
 			{ number: '9999', name: 'Wiglett', stringname: '984', type1: 'water', type2: '', evos: '', gen: '9' },
 			{ number: '9999', name: 'Farigiraf', stringname: '983', type1: 'normal', type2: 'psychic', evos: '203-line', gen: '9' },
+			{ number: '9999', name: 'Bellibolt', stringname: '982', type1: 'electric', type2: '', evos: '', gen: '9' },
 			{ number: '9999', name: 'Armarouge', stringname: '987', type1: 'fire', type2: 'psychic', evos: '', gen: '9' },
 			{ number: '9999', name: 'Ceruledge', stringname: '986', type1: 'fire', type2: 'ghost', evos: '', gen: '9' },
 			{ number: '9999', name: 'Koraidon', stringname: '993', type1: '???', type2: '', evos: '', gen: '9' },
