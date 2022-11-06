@@ -55,7 +55,7 @@
 				<button type="button" class="number" v-else disabled>{{ pokemon.number}}</button>
 				<a class="link" :href="createPkmnLink(pokemon.number, pokemon.name, pokemon.stringname)" target="_blank">
 					<span class="icon"><img :src="'assets/icons/' + pokemon.stringname + '.png'" :alt="pokemon.name"/></span>
-					<span class="name"><span v-if="pokemon.prefix">{{pokemon.prefix}} </span>{{ pokemon.name}}<span v-if="pokemon.suffix"> {{pokemon.suffix}}</span></span>
+					<span class="name"><span v-if="pokemon.prefix">{{pokemon.prefix}} </span><span v-html="pokemon.name"></span><span v-if="pokemon.suffix"> {{pokemon.suffix}}</span></span>
 				</a>
 				<button :class="{'type': true, 'type-1': true, [pokemon.type1]: true}" @click="createTypeQuery(pokemon.type1)">{{ pokemon.type1}}</button>
 				<button :class="{'type': true, [pokemon.type2]: true}" v-if="pokemon.type2" @click="createTypeQuery(pokemon.type2)">{{ pokemon.type2}}</button>
