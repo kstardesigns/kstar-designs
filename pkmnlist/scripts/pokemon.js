@@ -53,10 +53,10 @@ new Vue({
 			{ number: '27', prefix: 'Alolan', name: 'Sandshrew', stringname: '027a', type1: 'ice', type2: 'steel', evos: '027-line', gen: '7' },
 			{ number: '28', name: 'Sandslash', stringname: '028', type1: 'ground', type2: '', evos: '027-line', gen: '1' },
 			{ number: '28', prefix: 'Alolan', name: 'Sandslash', stringname: '028a', type1: 'ice', type2: 'steel', evos: '027-line', gen: '7' },
-			{ number: '29', name: 'Nidoran<span class="gender">♀</span>', stringname: '029', type1: 'poison', type2: '', evos: '029-line', gen: '1' },
+			{ number: '29', name: 'Nidoran♀', stringname: '029', type1: 'poison', type2: '', evos: '029-line', gen: '1' },
 			{ number: '30', name: 'Nidorina', stringname: '030', type1: 'poison', type2: '', evos: '029-line', gen: '1' },
 			{ number: '31', name: 'Nidoqueen', stringname: '031', type1: 'poison', type2: 'ground', evos: '029-line', gen: '1' },
-			{ number: '32', name: 'Nidoran<span class="gender">♂</span>', stringname: '032', type1: 'poison', type2: '', evos: '032-line', gen: '1' },
+			{ number: '32', name: 'Nidoran♂', stringname: '032', type1: 'poison', type2: '', evos: '032-line', gen: '1' },
 			{ number: '33', name: 'Nidorino', stringname: '033', type1: 'poison', type2: '', evos: '032-line', gen: '1' },
 			{ number: '34', name: 'Nidoking', stringname: '034', type1: 'poison', type2: 'ground', evos: '032-line', gen: '1' },
 			{ number: '35', name: 'Clefairy', stringname: '035', type1: 'fairy', type2: '', evos: '035-line', gen: '1' },
@@ -1352,21 +1352,28 @@ new Vue({
 			var href = '';
 
 			if (this.linkPreference == 'serebii') {
-			// using this for gen 5-7 since they all aren't in gen 8 dex - use just the first 3 digits of stringname so it works for megaevos, regionals, etc.
-				if (parseInt(number) > 493 && parseInt(number) < 809) {
-					href = `https://www.serebii.net/pokedex-sm/${stringname.substring(0,3)}.shtml`;
-				} else { //gen 8 and 9 - use the name of the pokemon, remove the spaces, cut out the extra stuff in parentheses, make it lowercase
+			// since all pokemon aren't in all games yet, Serebii href will be different for each depending on their latest game
 
-					if (parseInt(number) > 905) {
-						href = `https://www.serebii.net/pokedex-sv/${name.replace(' ', '').toLowerCase()}`;
-					} else {
-						href = `https://www.serebii.net/pokedex-swsh/${name.replace(' ', '').toLowerCase()}`;
-					}
+				let num = parseInt(number);
 
-					if (href.indexOf('(') > -1) {
-						href = href.substring(0, href.indexOf('(')); //trim the url here
-					}
+				//fix names as needed
+				switch(num) {
+					case (29): //Nidoran♀
+						name = name.replace('♀','f');
+					case (32): //Nidoran♂
+						name = name.replace('♂','m');
 				}
+
+				if (this.genAvailable9.includes(num)) { //latest game is Scarlet/Violet
+					href = `https://www.serebii.net/pokedex-sv/${name.replace(' ', '').toLowerCase()}`;
+				} else if (this.genAvailable8.includes(num)) { //latest game is Sword/Shield/Arceus/BD/SP
+					href = `https://www.serebii.net/pokedex-swsh/${name.replace(' ', '').toLowerCase()}`;
+				} else if (this.genAvailable7.includes(num)) { //latest game is Sun/Moon/US/UM
+					href = `https://www.serebii.net/pokedex-sm/${stringname.substring(0,3)}.shtml`;
+				} else {
+					href = 'https://www.serebii.net/pokemon/';
+				}
+
 			} else { //default is bulbapedia
 				href = `https://bulbapedia.bulbagarden.net/wiki/${name}_(Pokémon)`;
 			}
