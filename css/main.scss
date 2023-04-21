@@ -1,5 +1,10 @@
 @charset "utf-8";
 
+:root {
+  --tip-color: rgba(0,0,0,0.8);
+  --left-arrow: 0;
+  --right-arrow: 0; 
+}
 /* Fonts */
 
 @import url(https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700);
@@ -151,7 +156,7 @@ nav {
 }
 
 .menu-button {
-	@include border-radius(50%);
+  border-radius: 50%;
 	background-color: $pri-color;
 	width: 40px;
     height: 40px;
@@ -173,7 +178,7 @@ nav {
       margin-bottom: 4px;
       background-color: #fff;
       display: block;
-      @include border-radius(5px);
+      border-radius: 5px;
     }
 
   	&:hover {
@@ -338,57 +343,44 @@ header h1 {
 .skills {
 
     .svgs {
-      width: $svg-div;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
       display: flex;
       margin: 25px auto;
+      justify-content: center;
+      align-items: center;
+      width: 850px;
+      max-width: 100%;
+      gap: 40px;
+
+      @media screen and (max-width: 900px) {
+        width: 425px;
+        flex-wrap: wrap;
+      }
     }
 
     figure {
-      width: $svg-size;
-      margin: $svg-margin;
       position: relative;
+    }
 
-        figcaption {
-          text-align: center;
-          color: #333;
-          font-family: $pri-font;
-          font-size: 1.2em;
-          font-weight: bold;
-          margin-top: 5px;
-          display: none;
-          letter-spacing: 1px;
-          position: absolute;
-          top: -20px;
-          left: -20px;
-          width: 115px;
-          background-color: #fff;
-          padding: 5px 5px 0px 5px;
-          border: 1px solid #aaa;
-        }
+    img {
+      width: 70px;
+    }
 
-        &:hover figcaption {
-         display: block;
-         z-index: 99;
-        }
+    .html5 {
+      img {
+        width: 80px;
+      }
+    }
 
-        &.html5, &.jquery {
-          figcaption {
-            width: 95px;
-            left: -10px;
-          }
-        }
+    .css3 {
+      img {
+        width: 57px;
+      }
+    }
 
-        &.css3, &.sass, &.vue {
-          figcaption {
-            width: 85px;
-            left: -5px;
-          }
-        }
-
-
+    .javascript {
+      img {
+        width: 66px;
+      }
     }
 
 }
@@ -799,7 +791,7 @@ header h1 {
       display: block;
       margin: 0 auto;
       width: 220px;
-      @include border-radius(50%);
+      border-radius: 50%;
     }
 }
 
@@ -924,7 +916,7 @@ header h1 {
   height: $sb-height;
   background: $device-color;
   box-shadow: 0 0 $screen-padding-tb*.5 rgba(0,0,0,.33) inset;
-  @include border-radius(8px);
+  border-radius: 8px;
 }
 
 .screen {
@@ -932,7 +924,7 @@ header h1 {
   height: 100%;
   overflow: hidden;
   box-shadow: 0 0 $screen-padding-tb*.25 rgba(0,0,0,.5) inset;
-  @include border-radius(2px);
+  border-radius: 2px;
 }
 
 .projlink {
@@ -947,7 +939,7 @@ header h1 {
   background-color: darken($device-color, 5%);
   display: block;
   margin: 0 auto;
-  @include border-radius(50%);
+  border-radius: 50%;
   box-shadow: 0px 0px 1px rgba(0,0,0,.2) inset;
 }
 
@@ -983,7 +975,7 @@ header h1 {
   height: $bottom-height;
   background: $device-color;
   box-shadow: 0 0 $screen-padding-tb*.2 rgba(0,0,0,.33) inset;;
-  @include border-radius(3px 3px 0 0);
+  border-radius: 3px 3px 0 0;
 }
 
 .tablet {
@@ -1038,7 +1030,7 @@ header h1 {
     .button {
       height: $button*1.1;
       width: $button*1.1;
-      margin: ($screen-padding-tb-mobile - $button*1.1) / 2 auto;
+      margin: calc($screen-padding-tb-mobile - $button*1.1) / 2 auto;
     }
 
 }
@@ -1266,8 +1258,6 @@ nav.open {
   .kstardesigns-logo { width: 400px; }
   header h1 {  font-size: .8em; margin-top: -3px; margin-left: -100px; @include transform(rotate(-11deg)); -webkit-transform-origin: 50%  51%; }
   .stripe { height: auto; padding-bottom: 30px; }
-  .skills .svgs { width: $svg-div / 2; -ms-flex-wrap: wrap; -webkit-flex-wrap: wrap; flex-wrap: wrap; }
-  .skills figure { margin: ($svg-margin / 2) $svg-margin; }
   .experience .svgs { width: 100%; margin: 40px auto 20px auto; }
   .experience .svgs--companies { width: 80%; }
   .experience figure { width: 100%; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
@@ -1320,37 +1310,6 @@ nav.open {
   header h1 { margin-top: -2px; margin-left: -70px; }
   header h1 span { display: none; }
   .stripe { padding-bottom: 20px; }
-  .skills .svgs { width: 300px; justify-content: space-around; }
-  .skills figure {
-    width: 100px;
-
-    figcaption {
-      display: block;
-      position: unset;
-      top: unset;
-      left: unset;
-      width: unset;
-      border: none;
-      font-size: 1em;
-      margin-top: 0;
-      margin-bottom: 5px;
-    }
-
-    &.html5, &.jquery {
-      figcaption {
-        width: unset;
-        left: unset;
-      }
-    }
-
-    &.css3, &.sass, &.vue {
-      figcaption {
-        width: unset;
-        left: unset;
-      }
-    }
-
-  }
 
   .experience figure {
     height: 120px;
@@ -1385,4 +1344,66 @@ nav.open {
       width: 55px;
     }
    }
+}
+
+[data-kooltip] {
+	text-decoration: none;
+	cursor: pointer;
+	white-space: nowrap;
+	box-sizing: border-box;
+}
+
+.kooltip {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: var(--tip-color);
+	border-radius: 4px;
+	color: #fff;
+	padding: 3px 8px;
+	font-size: 16px;
+	line-height: 19px;
+	white-space: nowrap;
+	text-align: center;
+	box-sizing: border-box;
+	
+	&.multiline {
+		max-width: 100%;
+		white-space: normal;
+	}
+	
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: -8px;
+    left: calc(50% - 8px);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid var(--tip-color);
+	}
+	
+	&--left-aligned {
+		&::after {
+			left: var(--left-arrow);
+		}
+	}
+	
+	&--right-aligned {
+		&::after {
+			left: var(--right-arrow);
+		}
+	}
+	
+	&--top-aligned {
+		&::after {
+			border-left: 8px solid transparent;
+			border-right: 8px solid transparent;
+			border-top: 0;
+			border-bottom: 8px solid var(--tip-color);
+			top: -8px;
+			bottom: initial;
+		}
+	}
 }

@@ -1,11 +1,3 @@
-//open and close nav menu
-// $('nav.open .menu-button').click(function() {
-//   console.log('test');
-//   //$('nav .navBottom').removeClass('shown');
-//   $('.mobile-standings').removeClass('open');
-//   $('nav ul').removeClass('shrunk');
-// });
-
 $('.menu-button').click(function(){
     $('nav').toggleClass('open');
     $('nav ul').toggle();
