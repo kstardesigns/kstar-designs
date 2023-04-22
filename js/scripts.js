@@ -123,7 +123,7 @@ var featuredItems = [
     'projlink': 'http://kylephx.com/atbat',
     'articlelink': 'http://kylephx.com/atbat',
     'articlelinktitle': 'View live version of this project',
-    'secondarylink':'https://codepen.io/kaisle/pen/vjapBE',
+    'secondarylink':'https://codepen.io/kaisle/pen/QJpRwz',
     'secondarylinktitle':'View this project on CodePen'
   },
   {
@@ -209,67 +209,15 @@ $(document).ready(function() {
    showPortfolio();
    showFeatured();
 
-   //dark sky weather api
-   var apiString = 'https://api.darksky.net/forecast/' + key + '/33.4455,-112.0668?exclude=hourly,daily,minutely,alerts&callback=?';
+   //weather api
+   var api = 'https://api.weather.gov/gridpoints/PSR/158,58/forecast/hourly';
    
-   $.getJSON(apiString, function(getTemp) {
-     var currently = Math.round(getTemp.currently.temperature);
+   $.getJSON(api, function(getTemp) {
+     var currently = Math.round(getTemp["properties"]["periods"][0]["temperature"]);
      var shadow = '0 0 ' + currently*.5 + 'px #ffc109';
      $('.currTemp').html(currently + '&deg;');
      $('.sun').css('box-shadow', shadow);
    });
-
-   //mlb api - only works when season is in session 
-//    $.ajax
-//     ({
-//       type: "GET",
-//       url: "https://api.mysportsfeeds.com/v1.0/pull/mlb/2021-regular/division_team_standings.json?team=ari,lad,sd,sf,col&teamstats=W,L,GB&sort=standings.rank.A",
-//       dataType: 'json',
-//       async: true,
-//       headers: {
-//         "Authorization": "Basic " + btoa("31700346-f824-4c23-9bf7-db49f5:1qazzaq1")
-//       },
-//       success: function (data){
-//         generateStandings(data)
-//       }
-//     });
-
-//     function generateStandings(data) {
-//       console.log("last updated:" + data.divisionteamstandings.lastUpdatedOn);
-//       var teams = data.divisionteamstandings.division[5].teamentry;
-//       var tableInside = '<div class="row header"><div class="cell team"></div><div class="cell wins">W</div><div class="cell losses">L</div><div class="cell games-back">GB</div></div>';
-
-//       for (i = 0; i < teams.length; i++) {
-//         var abb = teams[i].team['Abbreviation'].toLowerCase();
-//         var city = teams[i].team['City'];
-//         var team = teams[i].team['Name'];
-//         var wins = teams[i].stats.Wins['#text'];
-//         var losses = teams[i].stats.Losses['#text'];
-//         var gamesBack = teams[i].stats.GamesBack['#text'];
-//         if (gamesBack == '0.0') {
-//           gamesBack = '-';
-//         }
-
-//         tableInside += '<div class="row ' + abb + '">'; //open row
-//         tableInside += '<div class="cell team"><img src="assets/' + abb + '.svg" alt="' + city + name + '" /></div>'; //team logo
-//         tableInside += '<div class="cell wins">' + wins + '</div>'; //wins
-//         tableInside += '<div class="cell losses">' + losses + '</div>'; //losses
-//         tableInside += '<div class="cell games-back">' + gamesBack + '</div>'; //games back
-//         tableInside += '</div>'; //close row
-//       }
-
-//       $('#nl-west').html(tableInside);
-//     }
-
-// });
-
-// $('.mobile-standings img').click(function() {
-//   $('nav ul').addClass('shrunk');
-//   $('.mobile-standings').addClass('open');
-
-//     setTimeout(function(){
-//       $('nav .navBottom').addClass('shown');
-//     }, 500);
 
 
 });
