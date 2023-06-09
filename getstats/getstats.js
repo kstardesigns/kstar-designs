@@ -22,21 +22,23 @@ let playerTeam = 109,
     date = new Date(),
     month = `${date.getMonth() + 1}`.padStart(2, '0'),
     day = `${date.getDate()}`.padStart(2, '0'),
+    today = new Date(),
     year = date.getFullYear(),
-    fullDate = `${month}/${day-1}/${year}`,
-    todaysPA = 0, todaysAB = 0, todaysH = 0, todaysK = 0, todaysBB = 0, todaysSB = 0, todays2B = 0, todays3B = 0, todaysHR = 0, todaysGO = 0, todaysFO = 0,
+    fullDate = `${month}/${day}/${year}`,
+    todaysPA = 0, todaysAB = 0, todaysH = 0, todaysK = 0, todaysBB = 0, todaysSB = 0, todays2B = 0, todays3B = 0, todaysHR = 0, todaysGO = 0, todaysFO = 0, todaysRBI = 0, todaysStB = 0, todaysR = 0, todaysIBB = 0, todaysHBP = 0, todaysSF = 0, todays1B = 0,
     playerButtons = document.querySelectorAll('.player-button'),
     teamGamesPlayed,
     multiplier,
-    whichDay = '𝚈𝚎𝚜𝚝𝚎𝚛𝚍𝚊𝚢';
-
-document.getElementById('today-button').addEventListener('click', function() {
-    outputText = '';
-    day = `${date.getDate()}`.padStart(2, '0'),
-    year = date.getFullYear(),
-    fullDate = `${month}/${day}/${year}`,
     whichDay = '𝚃𝚘𝚍𝚊𝚢';
-    fetchStats(playerId);
+
+document.getElementById('yesterday-button').addEventListener('click', function() {
+    // outputText = '';
+    // day = `${date.getDate()}`.padStart(2, '0'),
+    // year = date.getFullYear(),
+    // fullDate = `${month}/${day}/${year}`,
+    // whichDay = '𝚈𝚎𝚜𝚝𝚎𝚛𝚍𝚊𝚢';
+    // fetchStats(playerId);
+    //TODO: 
 });
 
 const fetchStats = function(playerId) {
@@ -93,6 +95,7 @@ const fetchStats = function(playerId) {
             todays2B = data.stats[0].splits[2].stat.doubles;
             todays3B = data.stats[0].splits[2].stat.triples;
             todaysHR = data.stats[0].splits[2].stat.homeRuns;
+            todays1B = todaysH - todays2B - todays3B - todaysHR;
             todaysHBP = data.stats[0].splits[2].stat.hitByPitch;
             todaysIBB = data.stats[0].splits[2].stat.intentionalWalks;
             todaysRBI = data.stats[0].splits[2].stat.rbi;
@@ -112,8 +115,8 @@ const fetchStats = function(playerId) {
             //todaysStB, todaysR, todaysBB, todaysIBB, todaysHBP, todaysK, todaysSB, todaysSF 
 
             const optionalStats = [
-                todaysHR, todays3B, todays2B, todaysRBI],
-            optionalStatAliases = ['HR', '3B', '2B', 'RBI'];
+                todaysHR, todays3B, todays2B, todays1B, todaysRBI],
+            optionalStatAliases = ['HR', '3B', '2B', '1B', 'RBI'];
 
             optionalStats.forEach(function (optionalStat, i) {
                 if (optionalStat > 0) {
@@ -171,6 +174,8 @@ const fetchStats = function(playerId) {
               seasonOBP = data.stats[0].splits[0].stat.obp,
               seasonSLG = data.stats[0].splits[0].stat.slg,
               seasonOPS = data.stats[0].splits[0].stat.ops;
+              seasonBBP = (seasonBB / seasonPA * 100).toFixed(1);
+              seasonKP = (seasonK / seasonPA * 100).toFixed(1);
 
               //atBats, baseOnBalls, doubles, hitByPitch, hits, homeRuns, intentionalWalks, plateAppearances, rbi, runs, sacBunts, sacFlies, stolenBases, strikeOuts, totalBases, triples
               //avg, babip, gamesPlayed, obp, ops, slg, stolenBasePercentage, 
@@ -211,8 +216,8 @@ const fetchStats = function(playerId) {
             //todaysHR, todays3B, todays2B, todaysRBI, todaysTB
             //todaysStB, todaysR, todaysBB, todaysIBB, todaysHBP, todaysK, todaysSB, todaysSF 
 
-            const optionalStats = [seasonHR, seasonStB],
-                  optionalStatAliases = ['HR', 'SB'];
+            const optionalStats = [seasonBBP, seasonKP],
+                  optionalStatAliases = ['BB%', 'K%'];
 
                 //atBats, baseOnBalls, doubles, hitByPitch, hits, homeRuns, intentionalWalks, plateAppearances, rbi, runs, sacBunts, sacFlies, stolenBases, strikeOuts, totalBases, triples
               //avg, babip, gamesPlayed, obp, ops, slg, stolenBasePercentage,
