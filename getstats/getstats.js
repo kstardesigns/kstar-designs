@@ -32,12 +32,12 @@ let playerTeam = 109,
     whichDay = '𝚃𝚘𝚍𝚊𝚢';
 
 document.getElementById('yesterday-button').addEventListener('click', function() {
-    // outputText = '';
+    outputText = '';
     // day = `${date.getDate()}`.padStart(2, '0'),
     // year = date.getFullYear(),
     // fullDate = `${month}/${day}/${year}`,
-    // whichDay = '𝚈𝚎𝚜𝚝𝚎𝚛𝚍𝚊𝚢';
-    // fetchStats(playerId);
+    whichDay = '𝚈𝚎𝚜𝚝𝚎𝚛𝚍𝚊𝚢';
+    fetchStats(playerId);
     //TODO: 
 });
 
@@ -184,28 +184,43 @@ const fetchStats = function(playerId) {
             console.log(year);
             switch(year) {
                 case 2023:
-                    year = '𝟤𝟢𝟤𝟥';
+                    year = '𝟸𝟶𝟸𝟹';
                     break;
                 case 2024:
-                    year = '𝟤𝟢𝟤𝟦';
+                    year = '𝟸𝟶𝟸𝟺';
                     break;
                 case 2025:
-                    year = '𝟤𝟢𝟤𝟧';
+                    year = '𝟸𝟶𝟸𝟻';
                     break;
                 case 2026:
-                    year = '𝟤𝟢𝟤𝟨';
+                    year = '𝟸𝟶𝟸𝟼';
                     break;
                 case 2027:
-                    year = '𝟤𝟢𝟤𝟩';
+                    year = '𝟸𝟶𝟸𝟽';
                     break;
                 case 2028:
-                    year = '𝟤𝟢𝟤𝟪';
+                    year = '𝟸𝟶𝟸𝟾';
                     break;
                 case 2029:
-                    year = '𝟤𝟢𝟤𝟫';
+                    year = '𝟸𝟶𝟸𝟿';
                     break;
                 case 2030:
-                    year = '𝟤𝟢𝟥𝟢';
+                    year = '𝟸𝟶𝟹𝟶';
+                    break;
+                case 2031:
+                    year = '𝟸𝟶𝟹𝟷';
+                    break;
+                case 2032:
+                    year = '𝟸𝟶𝟹𝟸';
+                    break;
+                case 2033:
+                    year = '𝟸𝟶𝟹𝟹';
+                    break;
+                case 2034:
+                    year = '𝟸𝟶𝟹𝟺';
+                    break;
+                case 2035:
+                    year = '𝟸𝟶𝟹𝟻';
                     break;
                 default:
                     break;
