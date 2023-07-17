@@ -8,19 +8,39 @@ const roll = document.querySelector('.roll'),
       hold4 = document.querySelector('.hold--4'),
       hold5 = document.querySelector('.hold--5'),
       hold6 = document.querySelector('.hold--6'),
+      helds = document.querySelectorAll('.held'),
       held1 = document.querySelector('.held--1'),
       held2 = document.querySelector('.held--2'),
       held3 = document.querySelector('.held--3'),
       held4 = document.querySelector('.held--4'),
       held5 = document.querySelector('.held--5'),
-      held6 = document.querySelector('.held--6');
+      held6 = document.querySelector('.held--6'),
+      rollNumber = document.querySelector('#roll-no'),
+      turnNumber = document.querySelector('#turn-no');
 
 let results = [],
-    turn = 1, //out of 13
-    rollNo = 1; //out of 3
+    turnNo = 1, //out of 13
+    rollNo = 0; //out of 3
 
 const rollDice = function() {
     holdRow.style.display = 'none';
+    roll.disabled = true;
+
+    rollNo++;
+
+    if (rollNo == 2 || rollNo == 3) {
+        rollNumber.textContent = rollNo;
+    }
+
+    if (rollNo == 4) {
+        helds.forEach(function(held){
+            held.classList.remove('yes');
+        });
+        rollNo = 1;
+        rollNumber.textContent = rollNo;
+        turnNo++;
+        turnNumber.textContent = turnNo;
+    }
 
     let baseCount = 8,
         countDelay = 100,
@@ -98,13 +118,16 @@ const rollDice = function() {
             if (0 < die5Count) {
                 rollDie5();
             } else {
-                holdRow.style.display = 'flex';
+                if (rollNo < 3) {
+                    holdRow.style.display = 'flex';
+                }
             };
         }, countDelay);
     }
 
-    //disable rollDice button here. re-enable it after score is chosen
     
+    // TODO: re-enable roll button after score is chosen
+    roll.disabled = false;
 }
 
 roll.addEventListener('click', rollDice);
