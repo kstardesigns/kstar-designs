@@ -16,7 +16,36 @@ const roll = document.querySelector('.roll'),
       held5 = document.querySelector('.held--5'),
       held6 = document.querySelector('.held--6'),
       rollNumber = document.querySelector('#roll-no'),
-      turnNumber = document.querySelector('#turn-no');
+      turnNumber = document.querySelector('#turn-no'),
+      score1 = document.querySelector('#score-1'),
+      score2 = document.querySelector('#score-2'),
+      score3 = document.querySelector('#score-3'),
+      score4 = document.querySelector('#score-4'),
+      score5 = document.querySelector('#score-5'),
+      score6 = document.querySelector('#score-6'),
+      score3OfAKind = document.querySelector('#score-3-kind'),
+      score4OfAKind = document.querySelector('#score-4-kind'),
+      scoreFullHouse = document.querySelector('#score-full-house'),
+      scoreSmallStraight = document.querySelector('#score-sm-straight'),
+      scoreLargeStraight = document.querySelector('#score-lg-straight'),
+      scoreChance = document.querySelector('#score-chance'),
+      scoreYahtzee = document.querySelector('#score-lg-yahtzee');
+
+let scoreCard = {
+    ones: 0,
+    twos: 0,
+    threes: 0,
+    fours: 0,
+    fives: 0,
+    sixes: 0,
+    threeOfAKind: 0,
+    fourOfAKind: 0,
+    fullHouse: 0,
+    smallStraight: 0,
+    largeStraight: 0,
+    chance: 0,
+    yahtzee: 0
+}
 
 let results = [],
     turnNo = 1, //out of 13
