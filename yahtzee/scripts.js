@@ -17,7 +17,10 @@ const roll = document.querySelector('.roll'),
       held6 = document.querySelector('.held--6'),
       rollNumber = document.querySelector('#roll-no'),
       turnNumber = document.querySelector('#turn-no'),
-      chooseScoreButtons = document.querySelectorAll('.choose-score');
+      chooseMessage = document.querySelector('#choose-message'),
+      currentScore = document.querySelector('#current-score'),
+      chooseScoreButtons = document.querySelectorAll('.choose-score'),
+      notChosenButtons = document.querySelectorAll('.choose-score:not(.already-chosen)');
 
 let scoreCard = {
     ones: 0,
@@ -56,13 +59,32 @@ let results = [],
     rollNo = 0; //out of 3
 
 const rollDice = function() {
+
+    //if there's results from previous roll, change non-held results to 0
+    if (results.length) {
+        helds.forEach(function(held, i){
+            if (!held.classList.contains('yes')) {
+                results[i] = 0;
+            }
+        });
+    }
+
+    //hide hold buttons
     holdRow.style.display = 'none';
     roll.disabled = true;
 
+    //increase roll number and do roll-related checks
     rollNo++;
 
     if (rollNo == 2 || rollNo == 3) {
         rollNumber.textContent = rollNo;
+    }
+
+    if (rollNo == 3) {
+        chooseMessage.style.display = 'block';
+        roll.style.display = 'none';
+    } else {
+        chooseMessage.style.display = 'none';
     }
 
     if (rollNo == 4) {
@@ -75,6 +97,7 @@ const rollDice = function() {
         turnNumber.textContent = turnNo;
     }
 
+    //how many times to shuffle dice before showing actual result
     let baseCount = 8,
         countDelay = 100,
         die1Count = baseCount,
@@ -83,6 +106,7 @@ const rollDice = function() {
         die4Count = baseCount + 6,
         die5Count = baseCount + 8;
 
+    //roll non-held dice
     if (!held1.classList.contains('yes')) {
         rollDie1();
     }
@@ -100,22 +124,34 @@ const rollDice = function() {
     }
 
     function rollDie1() {
+        chooseScoreButtons.forEach(function(button) {
+            button.style.display = 'none';
+        });
+
         setTimeout(function() {
             let tempResults = Math.floor(Math.random() * (7 - 1)) + 1;
             document.querySelector('.die--one').textContent = tempResults;
             die1Count--;
+
             if (0 < die1Count) {
                 rollDie1();
             } else {
                 results[0] = tempResults;
                 console.log(`all 5 dice: ${results}`);
-                showPossibleScores(results);
             }
-        }, countDelay);
-        
+
+            if (die1Count == 0 && !results.includes(0)) {
+                showPossibleScores(results);
+                roll.disabled = false;
+            }
+        }, countDelay); 
     }
 
     function rollDie2() {
+        chooseScoreButtons.forEach(function(button) {
+            button.style.display = 'none';
+        });
+
         setTimeout(function() {
             let tempResults = Math.floor(Math.random() * (7 - 1)) + 1;
             document.querySelector('.die--two').textContent = tempResults;
@@ -125,12 +161,20 @@ const rollDice = function() {
             } else {
                 results[1] = tempResults;
                 console.log(`all 5 dice: ${results}`);
+            }
+
+            if (die2Count == 0 && !results.includes(0)) {
                 showPossibleScores(results);
+                roll.disabled = false;
             }
         }, countDelay);
     }
 
     function rollDie3() {
+        chooseScoreButtons.forEach(function(button) {
+            button.style.display = 'none';
+        });
+
         setTimeout(function() {
             let tempResults = Math.floor(Math.random() * (7 - 1)) + 1;
             document.querySelector('.die--three').textContent = tempResults;
@@ -140,12 +184,21 @@ const rollDice = function() {
             } else {
                 results[2] = tempResults;
                 console.log(`all 5 dice: ${results}`);
+            }
+
+            if (die3Count == 0 && !results.includes(0)) {
                 showPossibleScores(results);
+                roll.disabled = false;
+                
             }
         }, countDelay);
     }
 
     function rollDie4() {
+        chooseScoreButtons.forEach(function(button) {
+            button.style.display = 'none';
+        });
+
         setTimeout(function() {
             let tempResults = Math.floor(Math.random() * (7 - 1)) + 1;
             document.querySelector('.die--four').textContent = tempResults;
@@ -155,12 +208,20 @@ const rollDice = function() {
             } else {
                 results[3] = tempResults;
                 console.log(`all 5 dice: ${results}`);
+            }
+
+            if (die4Count == 0 && !results.includes(0)) {
                 showPossibleScores(results);
+                roll.disabled = false;
             }
         }, countDelay);
     }
 
     function rollDie5() {
+        chooseScoreButtons.forEach(function(button) {
+            button.style.display = 'none';
+        });
+
         setTimeout(function() {
             let tempResults = Math.floor(Math.random() * (7 - 1)) + 1;
             document.querySelector('.die--five').textContent = tempResults;
@@ -171,18 +232,25 @@ const rollDice = function() {
             } else {
                 results[4] = tempResults;
                 console.log(`all 5 dice: ${results}`);
+            }
+
+            if (die5Count == 0 && !results.includes(0)) {
                 showPossibleScores(results);
+                roll.disabled = false;
             }
         }, countDelay);
-    }
-        
-    // TODO: re-enable roll button after score is chosen
-    roll.disabled = false;
+    }    
 }
 
 roll.addEventListener('click', rollDice);
 
 const showPossibleScores = function(results) {
+    chooseScoreButtons.forEach(function(button) {
+        button.style.display = 'block';
+    });
+
+    //here ^ instead of chooseScoreButtons, it should be availableScoreButtons (add a class to buttons already picked)
+
     if (rollNo < 3) {
         holdRow.style.display = 'flex';
     }
@@ -240,11 +308,37 @@ const showPossibleScores = function(results) {
 
 chooseScoreButtons.forEach(function(button) {
     button.addEventListener('click', function() {
-        const chosenScore = button.getAttribute('id').split('-').pop();
-        console.log(`button clicked: ${chosenScore}`);
 
-        //update final score box
-        //clear out all buttons for next turn
+        //hide hold buttons, other choose buttons, choose message
+        holdRow.style.display = 'none';
+        chooseMessage.style.display = 'none';
+        chooseScoreButtons.forEach(function(button) {
+            button.style.display = 'none';
+        });
+
+        //update score with chosen score, display it
+        const chosenScore = button.getAttribute('id').split('-').pop();
+        scoreCard[chosenScore] = possibleScores[chosenScore];
+        button.classList.add('already-chosen');
+        button.disabled = true;
+        document.querySelector(`#final-score-${chosenScore}`).textContent = scoreCard[chosenScore];
+
+        //update current total score
+        const currScore = Object.values(scoreCard).reduce((a, b) => a + b, 0);
+        currentScore.textContent = currScore;
+
+        //ending turn early if they didn't use all 3 rolls
+        rollNo = 3;
+
+        //empty current dice results
+        results = []
+
+        //don't show roll after last turn
+        if (turnNo < 13) {
+            roll.style.display = 'block';
+        } else {
+            roll.style.display = 'none';
+        }
     });
 });
 
@@ -256,9 +350,7 @@ holds.forEach(function(hold) {
 });
 
 //todo:
-//- force user to choose a score to keep after 3rd roll of each turn
 //- cache all values every time results array updates and scoreCard
-//- stop at turn 13
 //- joker calculations and scoring
 //- top and bottom bonus calculations
 //- yahtzee animation across the letters like the video: https://www.youtube.com/watch?v=U5G88KPJ6iY&ab_channel=UKKRAUTGAMING
@@ -266,4 +358,4 @@ holds.forEach(function(hold) {
 //- optional sound? rip it from youtube video (8 mins)
 
 //bugs:
-//- dont show possible scores until dice are done rolling
+// incrementing turn and roll numbers may display incorrectly
