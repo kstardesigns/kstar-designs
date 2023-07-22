@@ -22,6 +22,9 @@ const roll = document.querySelector('.roll'),
       chooseScoreButtons = document.querySelectorAll('.choose-score'),
       notChosenButtons = document.querySelectorAll('.choose-score:not(.already-chosen)');
 
+const cookieLength = 7; //change this
+
+//tracks current score for each category
 let scoreCard = {
     ones: 0,
     twos: 0,
@@ -38,6 +41,7 @@ let scoreCard = {
     yahtzee: 0
 }
 
+//to show possible scores to choose after each roll
 let possibleScores = {
     ones: 0,
     twos: 0,
@@ -54,9 +58,16 @@ let possibleScores = {
     yahtzee: 0
 }
 
+//track dice, turn number, roll number, current score
 let results = [],
     turnNo = 1, //out of 13
-    rollNo = 0; //out of 3
+    rollNo = 0, //out of 3
+    currScore = 0;
+
+//reload current game from cookies
+window.addEventListener('DOMContentLoaded', (event) => {
+    resetScoreboard();
+});
 
 const rollDice = function() {
 
@@ -140,7 +151,7 @@ const rollDice = function() {
                 console.log(`all 5 dice: ${results}`);
             }
 
-            if (die1Count == 0 && !results.includes(0)) {
+            if (die1Count == 0 && results.length == 5 && !results.includes(0)) {
                 showPossibleScores(results);
                 roll.disabled = false;
             }
@@ -163,7 +174,7 @@ const rollDice = function() {
                 console.log(`all 5 dice: ${results}`);
             }
 
-            if (die2Count == 0 && !results.includes(0)) {
+            if (die2Count == 0 && results.length == 5 && !results.includes(0)) {
                 showPossibleScores(results);
                 roll.disabled = false;
             }
@@ -186,10 +197,9 @@ const rollDice = function() {
                 console.log(`all 5 dice: ${results}`);
             }
 
-            if (die3Count == 0 && !results.includes(0)) {
+            if (die3Count == 0 && results.length == 5 && !results.includes(0)) {
                 showPossibleScores(results);
                 roll.disabled = false;
-                
             }
         }, countDelay);
     }
@@ -210,7 +220,7 @@ const rollDice = function() {
                 console.log(`all 5 dice: ${results}`);
             }
 
-            if (die4Count == 0 && !results.includes(0)) {
+            if (die4Count == 0 && results.length == 5 && !results.includes(0)) {
                 showPossibleScores(results);
                 roll.disabled = false;
             }
@@ -234,7 +244,7 @@ const rollDice = function() {
                 console.log(`all 5 dice: ${results}`);
             }
 
-            if (die5Count == 0 && !results.includes(0)) {
+            if (die5Count == 0 && results.length == 5 && !results.includes(0)) {
                 showPossibleScores(results);
                 roll.disabled = false;
             }
@@ -248,8 +258,6 @@ const showPossibleScores = function(results) {
     chooseScoreButtons.forEach(function(button) {
         button.style.display = 'block';
     });
-
-    //here ^ instead of chooseScoreButtons, it should be availableScoreButtons (add a class to buttons already picked)
 
     if (rollNo < 3) {
         holdRow.style.display = 'flex';
@@ -294,14 +302,12 @@ const showPossibleScores = function(results) {
     possibleScores.largeStraight = isLgStraight ? 40 : 0;
     possibleScores.chance = results.reduce((partialSum, a) => partialSum + a, 0);
 
+    //yahtzee
     const isYahtzee = results.every( (val, i, arr) => val === arr[0]);
     possibleScores.yahtzee = isYahtzee ? 50 : 0;
 
-
     //log current possible scores, display them in scorecard
-    // console.log('scores:');
     for (const [key, value] of Object.entries(possibleScores)) {
-        // console.log(`${key}: ${value}`);
         document.querySelector(`#score-${key}`).textContent = value;
     }
 }
@@ -324,11 +330,13 @@ chooseScoreButtons.forEach(function(button) {
         document.querySelector(`#final-score-${chosenScore}`).textContent = scoreCard[chosenScore];
 
         //update current total score
-        const currScore = Object.values(scoreCard).reduce((a, b) => a + b, 0);
-        currentScore.textContent = currScore;
+        updateCurrentScore();
 
         //ending turn early if they didn't use all 3 rolls
         rollNo = 3;
+
+        //set cookies:
+        updateCookies();
 
         //empty current dice results
         results = []
@@ -349,13 +357,92 @@ holds.forEach(function(hold) {
     });
 });
 
+const setCookie = function(cookieName, value, days) {
+    let expires = '';
+    if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = '; expires=' + date.toUTCString();
+    }
+    document.cookie = cookieName + '=' + (value || '')  + expires + '; path=/';
+}
+
+const updateCookies = function(currScore) {
+    setCookie('turnNumber', turnNo, cookieLength);
+    
+    for (const [key, value] of Object.entries(scoreCard)) {
+        setCookie(`${key}`, value, cookieLength);
+    }
+}
+
+const resetScoreboard = function() {
+    //get and update turn number
+    if (getCookie('turnNumber') !== null) {
+        turnNo = getCookie('turnNumber');
+        turnNumber.textContent = turnNo;
+    } else {
+        turnNumber.textContent = turnNo;
+    }
+
+    //reset to beginning of turn
+    rollNo = 0;
+    categoriesFilled = 0;
+
+    //update scorecard with individual categories chosen, or set score to 0 and allow it to be picked
+    for (const key in scoreCard) {
+        if (getCookie(key)) {
+            scoreCard[key] = Number(getCookie(key));
+            document.querySelector(`#final-score-${key}`).textContent = scoreCard[key];
+            document.querySelector(`#score-${key}`).classList.add('already-chosen');
+            categoriesFilled++;
+        } else {
+            scoreCard[key] = 0;
+            document.querySelector(`#score-${key}`).classList.remove('already-chosen');
+        }
+    }
+
+    //check if category was chosen for a turn but the turnNo hadn't incremented yet
+    if (turnNo == categoriesFilled) {
+        turnNo++;
+        turnNumber.textContent = turnNo;
+    }
+
+    updateCurrentScore();
+    
+    console.log('scoreCard:'); 
+    console.log(scoreCard); //not showing updated score from cookie
+}
+
+const updateCurrentScore = function() {
+    currScore = Object.values(scoreCard).reduce((a, b) => a + b, 0);
+    currentScore.textContent = currScore;
+}
+
+const getCookie = function(cookieName) {
+    var nameEQ = cookieName + '=';
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+const eraseCookie = function(cookieName) {   
+    document.cookie = cookieName +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
 //todo:
-//- cache all values every time results array updates and scoreCard
+//reset cookies at midnight (cookieLength)
 //- joker calculations and scoring
 //- top and bottom bonus calculations
 //- yahtzee animation across the letters like the video: https://www.youtube.com/watch?v=U5G88KPJ6iY&ab_channel=UKKRAUTGAMING
 //- in modal: same scoring rules as on back of electronic game like in youtube link above (~6 mins)
 //- optional sound? rip it from youtube video (8 mins)
+//add new google analytics
 
 //bugs:
-// incrementing turn and roll numbers may display incorrectly
+
+//to test:
+//refreshing the page, score being kept and everything working well
