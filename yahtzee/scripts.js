@@ -63,6 +63,7 @@ let results = [],
     turnNo = 1, //out of 13
     rollNo = 0, //out of 3
     currScore = 0,
+    topScore = 0,
     topBonus = false;
 
 //reload current game from cookies
@@ -331,12 +332,7 @@ chooseScoreButtons.forEach(function(button) {
         document.querySelector(`#final-score-${chosenScore}`).textContent = scoreCard[chosenScore];
         
         //check for top bonus
-        if (scoreCard['ones'] 
-          + scoreCard['twos'] 
-          + scoreCard['threes'] 
-          + scoreCard['fours'] 
-          + scoreCard['fives'] 
-          + scoreCard['sixes'] >= 63) {
+        if (updateTopScore() >= 63) {
             document.querySelector('#top-bonus').textContent = '35!';
             topBonus = true;
         }
@@ -421,12 +417,25 @@ const resetScoreboard = function() {
     }
 
     topBonus = getCookie('topBonus');
-    document.querySelector('#top-bonus').textContent = '35!';
+    if (topBonus) {
+        document.querySelector('#top-bonus').textContent = '35!';
+    }
 
     updateCurrentScore();
     
     console.log('scoreCard:'); 
     console.log(scoreCard); //not showing updated score from cookie
+}
+
+const updateTopScore = function() {
+    topScore = scoreCard['ones'] 
+             + scoreCard['twos'] 
+             + scoreCard['threes'] 
+             + scoreCard['fours'] 
+             + scoreCard['fives'] 
+             + scoreCard['sixes'];
+    document.querySelector('#current-top').textContent = topScore;
+    return topScore;
 }
 
 const updateCurrentScore = function() {
@@ -454,10 +463,9 @@ const eraseCookie = function(cookieName) {
 
 //todo:
 //- add cookies for rollNo and each die. so if they refresh on turn 3 before choosing a score, they cant cheat and start over]
-//add top subtotal somewherer
+// add top subtotal somewhere
 //- reset cookies at midnight (cookieLength)
 //- joker calculations and scoring
-//- top and 
 // bottom bonus calculations
 //- yahtzee animation across the letters like the video: https://www.youtube.com/watch?v=U5G88KPJ6iY&ab_channel=UKKRAUTGAMING
 //- in modal: same scoring rules as on back of electronic game like in youtube link above (~6 mins)
@@ -468,3 +476,4 @@ const eraseCookie = function(cookieName) {
 
 //to test:
 //refreshing the page, score being kept and everything working well
+//top bonus
