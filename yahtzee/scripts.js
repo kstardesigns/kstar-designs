@@ -19,8 +19,7 @@ const roll = document.querySelector('.roll'),
       turnNumber = document.querySelector('#turn-no'),
       chooseMessage = document.querySelector('#choose-message'),
       currentScore = document.querySelector('#current-score'),
-      chooseScoreButtons = document.querySelectorAll('.choose-score'),
-      notChosenButtons = document.querySelectorAll('.choose-score:not(.already-chosen)');
+      chooseScoreButtons = document.querySelectorAll('.choose-score');
 
 const cookieLength = 7; //change this
 
@@ -312,6 +311,9 @@ const showPossibleScores = function(results) {
     for (const [key, value] of Object.entries(possibleScores)) {
         document.querySelector(`#score-${key}`).textContent = value;
     }
+
+    //set cookies:
+    updateCookies();
 }
 
 chooseScoreButtons.forEach(function(button) {
@@ -342,9 +344,6 @@ chooseScoreButtons.forEach(function(button) {
 
         //ending turn early if they didn't use all 3 rolls
         rollNo = 3;
-
-        //set cookies:
-        updateCookies();
 
         //empty current dice results
         results = []
@@ -377,7 +376,12 @@ const setCookie = function(cookieName, value, days) {
 
 const updateCookies = function(currScore) {
     setCookie('turnNumber', turnNo, cookieLength);
+    setCookie('rollNumber', rollNo, cookieLength);
     setCookie('topBonus', topBonus, cookieLength);
+    setCookie('currentRollResults', results, cookieLength);
+    console.log('current roll:');
+    console.log(getCookie('currentRollResults'));
+    //todo: get cookie on reload, save held results?
 
     for (const [key, value] of Object.entries(scoreCard)) {
         setCookie(`${key}`, value, cookieLength);
@@ -393,9 +397,15 @@ const resetScoreboard = function() {
         turnNumber.textContent = turnNo;
     }
 
-    //reset to beginning of turn
-    rollNo = 0;
-    categoriesFilled = 0;
+    //get and update roll number
+    if (getCookie('rollNumber') !== null) {
+        rollNo = getCookie('rollNumber');
+        rollNumber.textContent = rollNo;
+    } else {
+        rollNumber.textContent = rollNo;
+    }
+
+    let categoriesFilled = 0;
 
     //update scorecard with individual categories chosen, or set score to 0 and allow it to be picked
     for (const key in scoreCard) {
@@ -411,9 +421,31 @@ const resetScoreboard = function() {
     }
 
     //check if category was chosen for a turn but the turnNo hadn't incremented yet
-    if (turnNo == categoriesFilled) {
+    if (rollNo == 3 && turnNo == categoriesFilled) {
         turnNo++;
         turnNumber.textContent = turnNo;
+    }
+
+    //if at least 1 roll has been done, get it from cookies and display it.
+    if (getCookie('currentRollResults') !== null) {
+        resultsStrings = getCookie('currentRollResults').split(','); 
+        results = resultsStrings.map(Number);
+        console.log(results);
+        document.querySelector('.die--one').textContent = results[0];
+        document.querySelector('.die--two').textContent = results[1];
+        document.querySelector('.die--three').textContent = results[2];
+        document.querySelector('.die--four').textContent = results[3];
+        document.querySelector('.die--five').textContent = results[4];
+
+        //check if at least 1 roll was made this turn and a score was not yet chosen
+        if (rollNo > 0 && turnNo != categoriesFilled) {
+            showPossibleScores(results);
+
+            if (rollNo == 3) {
+                chooseMessage.style.display = 'block';
+                roll.style.display = 'none';
+            }
+        }
     }
 
     topBonus = getCookie('topBonus');
@@ -463,10 +495,9 @@ const eraseCookie = function(cookieName) {
 
 //todo:
 //- add cookies for rollNo and each die. so if they refresh on turn 3 before choosing a score, they cant cheat and start over]
-// add top subtotal somewhere
-//- reset cookies at midnight (cookieLength)
 //- joker calculations and scoring
 // bottom bonus calculations
+//- reset cookies at midnight (cookieLength)
 //- yahtzee animation across the letters like the video: https://www.youtube.com/watch?v=U5G88KPJ6iY&ab_channel=UKKRAUTGAMING
 //- in modal: same scoring rules as on back of electronic game like in youtube link above (~6 mins)
 //- optional sound? rip it from youtube video (8 mins)
