@@ -62,7 +62,8 @@ let possibleScores = {
 let results = [],
     turnNo = 1, //out of 13
     rollNo = 0, //out of 3
-    currScore = 0;
+    currScore = 0,
+    topBonus = false;
 
 //reload current game from cookies
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -328,6 +329,17 @@ chooseScoreButtons.forEach(function(button) {
         button.classList.add('already-chosen');
         button.disabled = true;
         document.querySelector(`#final-score-${chosenScore}`).textContent = scoreCard[chosenScore];
+        
+        //check for top bonus
+        if (scoreCard['ones'] 
+          + scoreCard['twos'] 
+          + scoreCard['threes'] 
+          + scoreCard['fours'] 
+          + scoreCard['fives'] 
+          + scoreCard['sixes'] >= 63) {
+            document.querySelector('#top-bonus').textContent = '35!';
+            topBonus = true;
+        }
 
         //update current total score
         updateCurrentScore();
@@ -369,7 +381,8 @@ const setCookie = function(cookieName, value, days) {
 
 const updateCookies = function(currScore) {
     setCookie('turnNumber', turnNo, cookieLength);
-    
+    setCookie('topBonus', topBonus, cookieLength);
+
     for (const [key, value] of Object.entries(scoreCard)) {
         setCookie(`${key}`, value, cookieLength);
     }
@@ -407,6 +420,9 @@ const resetScoreboard = function() {
         turnNumber.textContent = turnNo;
     }
 
+    topBonus = getCookie('topBonus');
+    document.querySelector('#top-bonus').textContent = '35!';
+
     updateCurrentScore();
     
     console.log('scoreCard:'); 
@@ -415,6 +431,9 @@ const resetScoreboard = function() {
 
 const updateCurrentScore = function() {
     currScore = Object.values(scoreCard).reduce((a, b) => a + b, 0);
+    if (topBonus) {
+        currScore = currScore + 35;
+    }
     currentScore.textContent = currScore;
 }
 
@@ -434,9 +453,12 @@ const eraseCookie = function(cookieName) {
 }
 
 //todo:
-//reset cookies at midnight (cookieLength)
+//- add cookies for rollNo and each die. so if they refresh on turn 3 before choosing a score, they cant cheat and start over]
+//add top subtotal somewherer
+//- reset cookies at midnight (cookieLength)
 //- joker calculations and scoring
-//- top and bottom bonus calculations
+//- top and 
+// bottom bonus calculations
 //- yahtzee animation across the letters like the video: https://www.youtube.com/watch?v=U5G88KPJ6iY&ab_channel=UKKRAUTGAMING
 //- in modal: same scoring rules as on back of electronic game like in youtube link above (~6 mins)
 //- optional sound? rip it from youtube video (8 mins)
