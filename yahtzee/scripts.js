@@ -392,6 +392,7 @@ const updateCookies = function(currScore) {
 
     for (const [key, value] of Object.entries(scoreCard)) {
         setCookie(`${key}`, value, cookieLength);
+        console.log(`cookie ${key} updated and its value is ${value}`);
     }
 }
 
@@ -427,9 +428,12 @@ const resetScoreboard = function() {
         }
     }
 
-    //
+    //update checkmarks from yahtzee bonuses
     if (getCookie('yahtzeeBonus') !== null) {
-        //here 
+        yahtzeeBonus = (getCookie('yahtzeeBonus') / 100);
+        for (let i = 0; i < yahtzeeBonus; i++ ) {
+            document.querySelector('#yahtzee-bonus').textContent += '✓';
+        }
     }
 
     //check if category was chosen for a turn but the turnNo hadn't incremented yet
@@ -495,6 +499,7 @@ const calcBonusYahtzeeScore = function() {
     document.querySelector('#yahtzee-bonus').textContent += '✓';
     scoreCard.yahtzeeBonus = 100 * yahtzeeBonus;
     updateCurrentScore();
+    updateCookies();
     document.querySelector('#joker-text').style.display = 'block';
 }
 
@@ -520,14 +525,22 @@ const eraseCookie = function(cookieName) {
 
 //TESTING
 const testYahtzee = function() {
-    fakeResults = [5, 5, 5, 5, 5];
-    document.querySelector('.die--one').textContent = 5;
-    document.querySelector('.die--two').textContent = 5;
-    document.querySelector('.die--three').textContent = 5;
-    document.querySelector('.die--four').textContent = 5;
-    document.querySelector('.die--five').textContent = 5;
-    showPossibleScores(fakeResults);
-    updateCurrentScore();
+    rollDice();
+
+    setTimeout(function() {
+        fakeResults = [5, 5, 5, 5, 5];
+        document.querySelector('.die--one').textContent = 5;
+        document.querySelector('.die--two').textContent = 5;
+        document.querySelector('.die--three').textContent = 5;
+        document.querySelector('.die--four').textContent = 5;
+        document.querySelector('.die--five').textContent = 5;
+        showPossibleScores(fakeResults);
+        if (scoreCard.yahtzeeBonus == 50) {
+            calcBonusYahtzeeScore();
+            updateCurrentScore();
+            updateCookies();
+        }
+    }, 3000);
 }
 
 
@@ -549,6 +562,7 @@ const testYahtzee = function() {
 //store previous scores? or just yesterday's score, since we are clearing those stats
 //add new google analytics
 //minify CSS and JS files since they will be huge (or do I need gulp for the min js?)
+//remove test yahtzee button
 
 //bugs:
 //if on turn 3 and you choose a score, then refresh, it makes you choose a score again
