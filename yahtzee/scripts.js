@@ -37,7 +37,8 @@ let scoreCard = {
     smallStraight: 0,
     largeStraight: 0,
     chance: 0,
-    yahtzee: 0
+    yahtzee: 0,
+    yahtzeeBonus: 0
 }
 
 //to show possible scores to choose after each roll
@@ -63,7 +64,8 @@ let results = [],
     rollNo = 0, //out of 3
     currScore = 0,
     topScore = 0,
-    topBonus = false;
+    topBonus = false,
+    yahtzeeBonus = 0;
 
 //reload current game from cookies
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -307,6 +309,11 @@ const showPossibleScores = function(results) {
     const isYahtzee = results.every( (val, i, arr) => val === arr[0]);
     possibleScores.yahtzee = isYahtzee ? 50 : 0;
 
+    //if they roll another yahtzee when they already have at least one
+    if (isYahtzee && scoreCard.yahtzee == 50) {
+        calcBonusYahtzeeScore();
+    }
+
     //log current possible scores, display them in scorecard
     for (const [key, value] of Object.entries(possibleScores)) {
         document.querySelector(`#score-${key}`).textContent = value;
@@ -381,7 +388,7 @@ const updateCookies = function(currScore) {
     setCookie('currentRollResults', results, cookieLength);
     console.log('current roll:');
     console.log(getCookie('currentRollResults'));
-    //todo: get cookie on reload, save held results?
+    //todo: get cookie on reload, save held results? 
 
     for (const [key, value] of Object.entries(scoreCard)) {
         setCookie(`${key}`, value, cookieLength);
@@ -418,6 +425,11 @@ const resetScoreboard = function() {
             scoreCard[key] = 0;
             document.querySelector(`#score-${key}`).classList.remove('already-chosen');
         }
+    }
+
+    //
+    if (getCookie('yahtzeeBonus') !== null) {
+        //here 
     }
 
     //check if category was chosen for a turn but the turnNo hadn't incremented yet
@@ -478,6 +490,14 @@ const updateCurrentScore = function() {
     currentScore.textContent = currScore;
 }
 
+const calcBonusYahtzeeScore = function() {
+    yahtzeeBonus++;
+    document.querySelector('#yahtzee-bonus').textContent += '✓';
+    scoreCard.yahtzeeBonus = 100 * yahtzeeBonus;
+    updateCurrentScore();
+    document.querySelector('#joker-text').style.display = 'block';
+}
+
 const getCookie = function(cookieName) {
     var nameEQ = cookieName + '=';
     var ca = document.cookie.split(';');
@@ -493,17 +513,49 @@ const eraseCookie = function(cookieName) {
     document.cookie = cookieName +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
+
+
+
+
+
+//TESTING
+const testYahtzee = function() {
+    fakeResults = [5, 5, 5, 5, 5];
+    document.querySelector('.die--one').textContent = 5;
+    document.querySelector('.die--two').textContent = 5;
+    document.querySelector('.die--three').textContent = 5;
+    document.querySelector('.die--four').textContent = 5;
+    document.querySelector('.die--five').textContent = 5;
+    showPossibleScores(fakeResults);
+    updateCurrentScore();
+}
+
+
+//currently:
+//100 point yahtzee bonuses +    DONE, TO TEST
+// joker calculations and scoring    DONE, TO TEST
+//reset scoreboard needs to show the yahtzee bonus checkmarks on page refresh
+//on page refresh, updateCurrentScore doesn't work well (probably because of testYahtzee)
+
+
 //todo:
+//forgot about this: store which dice are currently held and update those with getcookie
 //- add cookies for rollNo and each die. so if they refresh on turn 3 before choosing a score, they cant cheat and start over]
-//- joker calculations and scoring
 // bottom bonus calculations
 //- reset cookies at midnight (cookieLength)
 //- yahtzee animation across the letters like the video: https://www.youtube.com/watch?v=U5G88KPJ6iY&ab_channel=UKKRAUTGAMING
 //- in modal: same scoring rules as on back of electronic game like in youtube link above (~6 mins)
 //- optional sound? rip it from youtube video (8 mins)
+//store previous scores? or just yesterday's score, since we are clearing those stats
 //add new google analytics
+//minify CSS and JS files since they will be huge (or do I need gulp for the min js?)
 
 //bugs:
+//if on turn 3 and you choose a score, then refresh, it makes you choose a score again
+
+//styling:
+//- style all the variations of the code above
+//- maybe some subtle animations?
 
 //to test:
 //refreshing the page, score being kept and everything working well
