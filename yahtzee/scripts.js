@@ -284,7 +284,7 @@ const showPossibleScores = function(results) {
     possibleScores.threeOfAKind = is3OfAKind ? results.reduce((partialSum, a) => partialSum + a, 0) : 0;
 
     //4 of a kind
-    const is4OfAKind = find3and4.length == 2 ? true : false;
+    const is4OfAKind = (find3and4.length == 2 || find3and4.length == 3) ? true : false;
     possibleScores.fourOfAKind = is4OfAKind ? results.reduce((partialSum, a) => partialSum + a, 0) : 0; //TODO
 
     //full house
@@ -500,7 +500,15 @@ const calcBonusYahtzeeScore = function() {
     scoreCard.yahtzeeBonus = 100 * yahtzeeBonus;
     updateCurrentScore();
     updateCookies();
+
+    //joker scoring which allows for a bonus yahtzee to count as other categories
     document.querySelector('#joker-text').style.display = 'block';
+    possibleScores.fullHouse = 25;
+    possibleScores.smallStraight = 30;
+    possibleScores.largeStraight = 40;
+    document.querySelector('#score-fullHouse').textContent = possibleScores.fullHouse;
+    document.querySelector(`#score-smallStraight`).textContent = possibleScores.smallStraight;
+    document.querySelector(`#score-largeStraight`).textContent = possibleScores.largeStraight;
 }
 
 const getCookie = function(cookieName) {
@@ -547,8 +555,9 @@ const testYahtzee = function() {
 //currently:
 //100 point yahtzee bonuses +    DONE, TO TEST
 // joker calculations and scoring    DONE, TO TEST
-//reset scoreboard needs to show the yahtzee bonus checkmarks on page refresh
-//on page refresh, updateCurrentScore doesn't work well (probably because of testYahtzee)
+//reset scoreboard needs to show the yahtzee bonus checkmarks on page refresh DONE
+//JOKER to do:
+//hide ROLL button/show pick category message, so user is forced to pick a categor (and since 100 is auto-awarded)
 
 
 //todo:
