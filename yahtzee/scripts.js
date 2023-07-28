@@ -144,7 +144,7 @@ const rollDice = function() {
 
         setTimeout(function() {
             let tempResults = Math.floor(Math.random() * (7 - 1)) + 1;
-            document.querySelector('.die--one').textContent = tempResults;
+            document.querySelector('.die--one').classList = `die die--one r${tempResults}`;
             die1Count--;
 
             if (0 < die1Count) {
@@ -168,7 +168,8 @@ const rollDice = function() {
 
         setTimeout(function() {
             let tempResults = Math.floor(Math.random() * (7 - 1)) + 1;
-            document.querySelector('.die--two').textContent = tempResults;
+            document.querySelector('.die--two').classList = `die die--two r${tempResults}`;
+
             die2Count--;
             if (0 < die2Count) {
                 rollDie2();
@@ -191,7 +192,8 @@ const rollDice = function() {
 
         setTimeout(function() {
             let tempResults = Math.floor(Math.random() * (7 - 1)) + 1;
-            document.querySelector('.die--three').textContent = tempResults;
+            document.querySelector('.die--three').classList = `die die--three r${tempResults}`;
+
             die3Count--;
             if (0 < die3Count) {
                 rollDie3();
@@ -214,7 +216,8 @@ const rollDice = function() {
 
         setTimeout(function() {
             let tempResults = Math.floor(Math.random() * (7 - 1)) + 1;
-            document.querySelector('.die--four').textContent = tempResults;
+            document.querySelector('.die--four').classList = `die die--four r${tempResults}`;
+
             die4Count--;
             if (0 < die4Count) {
                 rollDie4();
@@ -237,7 +240,8 @@ const rollDice = function() {
 
         setTimeout(function() {
             let tempResults = Math.floor(Math.random() * (7 - 1)) + 1;
-            document.querySelector('.die--five').textContent = tempResults;
+            document.querySelector('.die--five').classList = `die die--five r${tempResults}`;
+
             die5Count--;
 
             if (0 < die5Count) {
@@ -447,11 +451,31 @@ const resetScoreboard = function() {
         resultsStrings = getCookie('currentRollResults').split(','); 
         results = resultsStrings.map(Number);
         console.log(results);
-        document.querySelector('.die--one').textContent = results[0];
-        document.querySelector('.die--two').textContent = results[1];
-        document.querySelector('.die--three').textContent = results[2];
-        document.querySelector('.die--four').textContent = results[3];
-        document.querySelector('.die--five').textContent = results[4];
+
+        dice.forEach(function(die) {
+            die.classList.remove('r1');
+            die.classList.remove('r2');
+            die.classList.remove('r3');
+            die.classList.remove('r4');
+            die.classList.remove('r5');
+            die.classList.remove('r6');
+        });
+
+        document.querySelector('#die--one-text').textContent = results[0];
+        document.querySelector('.die--one').classList.add(`r-${results[0]}`);
+
+        document.querySelector('#die--two-text').textContent = results[1];
+        document.querySelector('.die--two').classList.add(`r-${results[1]}`);
+
+        document.querySelector('#die--three-text').textContent = results[2];
+        document.querySelector('.die--three').classList.add(`r-${results[2]}`);
+
+        document.querySelector('#die--four-text').textContent = results[3];
+        document.querySelector('.die--four').classList.add(`r-${results[3]}`);
+
+        document.querySelector('#die--five-text').textContent = results[4];
+        document.querySelector('.die--five').classList.add(`r-${results[4]}`);
+
 
         //check if at least 1 roll was made this turn and a score was not yet chosen
         if (rollNo > 0 && turnNo != categoriesFilled) {
