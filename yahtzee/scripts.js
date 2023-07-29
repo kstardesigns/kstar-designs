@@ -14,7 +14,6 @@ const roll = document.querySelector('.roll'),
       held3 = document.querySelector('.held--3'),
       held4 = document.querySelector('.held--4'),
       held5 = document.querySelector('.held--5'),
-      held6 = document.querySelector('.held--6'),
       rollNumber = document.querySelector('#roll-no'),
       turnNumber = document.querySelector('#turn-no'),
       chooseMessage = document.querySelector('#choose-message'),
@@ -60,6 +59,7 @@ let possibleScores = {
 
 //track dice, turn number, roll number, current score
 let results = [],
+    diceHeld = ['false', 'false', 'false', 'false', 'false'],
     turnNo = 1, //out of 13
     rollNo = 0, //out of 3
     currScore = 0,
@@ -102,8 +102,10 @@ const rollDice = function() {
     }
 
     if (rollNo == 4) {
-        helds.forEach(function(held){
+        helds.forEach(function(held, i){
             held.classList.remove('yes');
+            diceHeld[i] = 'false';
+            setCookie(`held${i+1}`, diceHeld[i], cookieLength);
         });
         rollNo = 1;
         rollNumber.textContent = rollNo;
@@ -151,7 +153,7 @@ const rollDice = function() {
                 rollDie1();
             } else {
                 results[0] = tempResults;
-                console.log(`all 5 dice: ${results}`);
+                // console.log(`all 5 dice: ${results}`);
             }
 
             if (die1Count == 0 && results.length == 5 && !results.includes(0)) {
@@ -175,7 +177,7 @@ const rollDice = function() {
                 rollDie2();
             } else {
                 results[1] = tempResults;
-                console.log(`all 5 dice: ${results}`);
+                // console.log(`all 5 dice: ${results}`);
             }
 
             if (die2Count == 0 && results.length == 5 && !results.includes(0)) {
@@ -199,7 +201,7 @@ const rollDice = function() {
                 rollDie3();
             } else {
                 results[2] = tempResults;
-                console.log(`all 5 dice: ${results}`);
+                // console.log(`all 5 dice: ${results}`);
             }
 
             if (die3Count == 0 && results.length == 5 && !results.includes(0)) {
@@ -223,7 +225,7 @@ const rollDice = function() {
                 rollDie4();
             } else {
                 results[3] = tempResults;
-                console.log(`all 5 dice: ${results}`);
+                // console.log(`all 5 dice: ${results}`);
             }
 
             if (die4Count == 0 && results.length == 5 && !results.includes(0)) {
@@ -248,7 +250,7 @@ const rollDice = function() {
                 rollDie5();
             } else {
                 results[4] = tempResults;
-                console.log(`all 5 dice: ${results}`);
+                // console.log(`all 5 dice: ${results}`);
             }
 
             if (die5Count == 0 && results.length == 5 && !results.includes(0)) {
@@ -371,7 +373,17 @@ chooseScoreButtons.forEach(function(button) {
 
 holds.forEach(function(hold) {
     hold.addEventListener('click', function() {
-        document.querySelector(`.held--${hold.dataset.holdDie}`).classList.toggle('yes');
+        let heldDie = hold.dataset.holdDie;
+        console.log(`clicked & held: ${heldDie}`);
+        document.querySelector(`.held--${heldDie}`).classList.toggle('yes');
+        if (document.querySelector(`.held--${heldDie}`).classList.contains('yes')) {
+            diceHeld[(heldDie-1)] = 'true';
+        } else {
+            diceHeld[(heldDie-1)] = 'false';
+        }
+        setCookie(`held${heldDie}`, diceHeld[(heldDie-1)], cookieLength);
+        console.log('diceHeld:');
+        console.log(diceHeld);
     });
 });
 
@@ -390,13 +402,13 @@ const updateCookies = function(currScore) {
     setCookie('rollNumber', rollNo, cookieLength);
     setCookie('topBonus', topBonus, cookieLength);
     setCookie('currentRollResults', results, cookieLength);
-    console.log('current roll:');
+    console.log('current roll just set to cookies:');
     console.log(getCookie('currentRollResults'));
     //todo: get cookie on reload, save held results? 
 
     for (const [key, value] of Object.entries(scoreCard)) {
         setCookie(`${key}`, value, cookieLength);
-        console.log(`cookie ${key} updated and its value is ${value}`);
+        // console.log(`cookie ${key} updated and its value is ${value}`);
     }
 }
 
@@ -415,6 +427,19 @@ const resetScoreboard = function() {
         rollNumber.textContent = rollNo;
     } else {
         rollNumber.textContent = rollNo;
+    }
+
+    //get and update each die's held status
+    for (let i = 1; i <= diceHeld.length; i++) { 
+        if (getCookie(`held${i}`)) {
+            diceHeld[(i-1)] = getCookie(`held${i}`);
+            
+            if (getCookie(`held${i}`) == 'true') {
+                document.querySelector(`.held--${i}`).classList.add('yes');
+            } else {
+                document.querySelector(`.held--${i}`).classList.remove('yes');
+            }
+        } 
     }
 
     let categoriesFilled = 0;
@@ -450,7 +475,7 @@ const resetScoreboard = function() {
     if (getCookie('currentRollResults') !== null) {
         resultsStrings = getCookie('currentRollResults').split(','); 
         results = resultsStrings.map(Number);
-        console.log(results);
+        // console.log(results);
 
         dice.forEach(function(die) {
             die.classList.remove('r1');
@@ -461,21 +486,11 @@ const resetScoreboard = function() {
             die.classList.remove('r6');
         });
 
-        document.querySelector('#die--one-text').textContent = results[0];
-        document.querySelector('.die--one').classList.add(`r-${results[0]}`);
-
-        document.querySelector('#die--two-text').textContent = results[1];
-        document.querySelector('.die--two').classList.add(`r-${results[1]}`);
-
-        document.querySelector('#die--three-text').textContent = results[2];
-        document.querySelector('.die--three').classList.add(`r-${results[2]}`);
-
-        document.querySelector('#die--four-text').textContent = results[3];
-        document.querySelector('.die--four').classList.add(`r-${results[3]}`);
-
-        document.querySelector('#die--five-text').textContent = results[4];
-        document.querySelector('.die--five').classList.add(`r-${results[4]}`);
-
+        document.querySelector('.die--one').classList.add(`r${results[0]}`);
+        document.querySelector('.die--two').classList.add(`r${results[1]}`);
+        document.querySelector('.die--three').classList.add(`r${results[2]}`);
+        document.querySelector('.die--four').classList.add(`r${results[3]}`);
+        document.querySelector('.die--five').classList.add(`r${results[4]}`);
 
         //check if at least 1 roll was made this turn and a score was not yet chosen
         if (rollNo > 0 && turnNo != categoriesFilled) {
@@ -495,8 +510,8 @@ const resetScoreboard = function() {
 
     updateCurrentScore();
     
-    console.log('scoreCard:'); 
-    console.log(scoreCard); //not showing updated score from cookie
+    // console.log('scoreCard:'); 
+    // console.log(scoreCard); 
 }
 
 const updateTopScore = function() {
@@ -580,7 +595,7 @@ const testYahtzee = function() {
 
 
 //currently:
-
+//BUG: die number 5 not being held STILL
 
 
 
