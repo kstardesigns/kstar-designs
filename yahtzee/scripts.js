@@ -527,6 +527,9 @@ const calcBonusYahtzeeScore = function() {
 
     //joker scoring which allows for a bonus yahtzee to count as other categories
     document.querySelector('#joker-text').style.display = 'block';
+    roll.style.display = 'none';
+    chooseMessage.style.display = 'block';
+    holdRow.style.display = 'none';
     possibleScores.fullHouse = 25;
     possibleScores.smallStraight = 30;
     possibleScores.largeStraight = 40;
@@ -577,11 +580,8 @@ const testYahtzee = function() {
 
 
 //currently:
-//100 point yahtzee bonuses +    DONE, TO TEST
-// joker calculations and scoring    DONE, TO TEST
-//reset scoreboard needs to show the yahtzee bonus checkmarks on page refresh DONE
-//JOKER to do:
-//hide ROLL button/show pick category message, so user is forced to pick a categor (and since 100 is auto-awarded)
+
+
 
 
 //todo:
@@ -596,6 +596,7 @@ const testYahtzee = function() {
 //add new google analytics
 //minify CSS and JS files since they will be huge (or do I need gulp for the min js?)
 //remove test yahtzee button
+//animate yahtzee, like flash die 1, then 2, etc. repeatedly after the last is done
 
 //bugs:
 //if on turn 3 and you choose a score, then refresh, it makes you choose a score again
@@ -607,3 +608,5 @@ const testYahtzee = function() {
 //to test:
 //refreshing the page, score being kept and everything working well
 //top bonus
+//100 point yahtzee bonuses 
+// joker calculations and scoring   
