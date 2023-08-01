@@ -22,7 +22,8 @@
         <span>top subtotal:</span> <span id="current-top">0</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
         <span>Top bonus:</span> <span id="top-bonus"></span><br>
         <span>Yahtzee bonus:</span> <span id="yahtzee-bonus"></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-        <span id="joker-text" class="hidden">JOKER!!!!</span>
+        <span id="joker-text" class="hidden">JOKER!!!!</span><br>
+        <span>High score:</span><span id="high-score"></span>
     </header>
     <main>
         <section class="scores">
@@ -72,7 +73,17 @@
                     <th>sm straight</th>
                     <th>lg straight</th>
                     <th>chance</th>
-                    <th>YAHTZEE!!</th>
+                    <th>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="158.1" height="60.3">
+                            <polygon points="77.61,9.209 85.555,7.451 85.555,14.2 87.943,13.708 87.943,20.246 85.555,20.808 85.555,44.357 77.61,46.115 77.61,22.566 75.29,23.058 75.29,16.449 77.61,15.958"/>
+                            <polygon points="12.583,41.055 0,22.425 10.474,20.176 16.801,29.595 22.777,17.434 33.251,15.184 21.089,39.156 21.089,58.418 12.583,60.316"/>
+                            <path d="M52 11.1l8-1.7v10.4l6.4-1.4c5.8-1.2 8 2.2 8 6.8v21.6l-8 1.8V29c0-2.5-1-3.8-3.3-3.3l-3.1.7V50l-8 1.7V11.1z"/>
+                            <path d="M36.3 25L50 22v30l-8 1.8v-2.5c-2.4 3.1-4 4.2-7.2 4.9C28.2 57.6 24 51 24 44.4c0-11.6 6-18.1 12.3-19.4zm1.9 6c-4.5 1-5.8 5.3-5.8 11.5 0 4.7 2.3 6.8 4.7 6.4 2-.3 4-2 5-5V30.2l-4 .9z"/>
+                            <path d="M89 13.4l21.3-4.6c0 11-11.4 20.4-13 26.3l13-2.8v6.6l-22.1 4.9c0-10 9-19 13.5-26.6L89 20v-6.6z"/>
+                            <path d="M122.1 12.4c2.5-.5 4 1.4 4.3 3.6l-8.8 2c.6-3.4 2.3-5 4.5-5.6zm1-7c-6.7 0-13 7.5-13.6 16.7-.8 9.5 3.8 15.2 10.5 15.2 6.8 0 12-5.7 13.5-13.1l-7.5 1.5c-.7 2.6-2.3 4.2-4.3 4.5-2 .5-4.2-.8-4.2-6l16.3-3.6c.4-9.3-3.3-15.3-10.7-15.3z"/>
+                            <path d="M146.4 7.2c2.4-.6 3.8 1.3 4.2 3.5l-8.7 1.9c.5-3.4 2.3-5 4.5-5.4zm1-7.2c-6.7 0-13 7.5-13.8 16.9-.7 9.4 4 15.2 10.7 15.2 6.8 0 11.8-5.8 13.5-13.3l-7.5 1.7c-.8 2.4-2.4 4-4.4 4.5-2 .4-4.2-1-4.2-6.2l16.3-3.5C158.5 6 154.8 0 147.3 0z"/>
+                        </svg>
+                    </th>
                     <th>yahtzee bonus</th>
                 </tr>
                 <tr>
@@ -233,7 +244,21 @@
 
 	
 
-
+    <div id="yz-scores" class="yz-dialog" role="dialog" aria-labelledby="yz-dialog-title" aria-describedby="yz-dialog-description" aria-hidden="true">
+        <svg class="yz-svg-alert" width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false">
+            <title>Alert</title>
+            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <path d="M32,0 C49.673112,0 64,14.326888 64,32 C64,49.673112 49.673112,64 32,64 C14.326888,64 0,49.673112 0,32 C0,14.326888 14.326888,0 32,0 Z M32,3 C15.9837423,3 3,15.9837423 3,32 C3,48.0162577 15.9837423,61 32,61 C48.0162577,61 61,48.0162577 61,32 C61,15.9837423 48.0162577,3 32,3 Z M33.9775,40.08 L33.9775,44 L30.0225,44 L30.0225,40.08 L33.9775,40.08 Z M33.7325,20.655 L33.6625,37.28 L30.3375,37.28 L30.2325,20.655 L33.7325,20.655 Z" fill="#0077c8"></path>
+            </g>
+        </svg>
+        <h3 id="yz-dialog-title">FINAL SCORE:</h3>
+        <h4 id="yz-dialog-final-score"></h4>
+        <h3 id="yz-dialog-title">HIGH SCORE:</h3>
+        <h4 id="yz-dialog-high-score"></h4>
+        <p id="yz-dialog-description">Supporting text that explains what confirmation action will do.</p>
+        <button class="yz-primary-button yz-primary-button--large">Confirm</button>
+        <button class="yz-text-button yz-text-button--large yz-dialog-close" aria-label="Close dialog">Cancel</button>
+    </div>
 
 
 	<script src="scripts.js"></script>

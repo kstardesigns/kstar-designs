@@ -18,9 +18,11 @@ const roll = document.querySelector('.roll'),
       turnNumber = document.querySelector('#turn-no'),
       chooseMessage = document.querySelector('#choose-message'),
       currentScore = document.querySelector('#current-score'),
-      chooseScoreButtons = document.querySelectorAll('.choose-score');
+      chooseScoreButtons = document.querySelectorAll('.choose-score'),
+      highScoreText = document.querySelector('#high-score');
 
-const cookieLength = 7; //change this
+const cookieLength = 7,
+      cookieLengthYear = 365; //change this
 
 //tracks current score for each category
 let scoreCard = {
@@ -65,18 +67,19 @@ let results = [],
     currScore = 0,
     topScore = 0,
     topBonus = false,
-    yahtzeeBonus = 0;
+    yahtzeeBonus = 0,
+    highScore = 0;
 
 //reload current game from cookies
 window.addEventListener('DOMContentLoaded', (event) => {
     resetScoreboard();
 });
 
-const rollDice = function() {
+const rollDice = () => {
 
     //if there's results from previous roll, change non-held results to 0
     if (results.length) {
-        helds.forEach(function(held, i){
+        helds.forEach((held, i) => {
             if (!held.classList.contains('yes')) {
                 results[i] = 0;
             }
@@ -102,7 +105,7 @@ const rollDice = function() {
     }
 
     if (rollNo == 4) {
-        helds.forEach(function(held, i){
+        helds.forEach((held, i) =>{
             held.classList.remove('yes');
             diceHeld[i] = 'false';
             setCookie(`held${i+1}`, diceHeld[i], cookieLength);
@@ -140,11 +143,11 @@ const rollDice = function() {
     }
 
     function rollDie1() {
-        chooseScoreButtons.forEach(function(button) {
+        chooseScoreButtons.forEach((button) => {
             button.style.display = 'none';
         });
 
-        setTimeout(function() {
+        setTimeout(() => {
             let tempResults = Math.floor(Math.random() * (7 - 1)) + 1;
             document.querySelector('.die--one').classList = `die die--one r${tempResults}`;
             die1Count--;
@@ -164,11 +167,11 @@ const rollDice = function() {
     }
 
     function rollDie2() {
-        chooseScoreButtons.forEach(function(button) {
+        chooseScoreButtons.forEach((button) => {
             button.style.display = 'none';
         });
 
-        setTimeout(function() {
+        setTimeout(() => {
             let tempResults = Math.floor(Math.random() * (7 - 1)) + 1;
             document.querySelector('.die--two').classList = `die die--two r${tempResults}`;
 
@@ -188,11 +191,11 @@ const rollDice = function() {
     }
 
     function rollDie3() {
-        chooseScoreButtons.forEach(function(button) {
+        chooseScoreButtons.forEach((button) => {
             button.style.display = 'none';
         });
 
-        setTimeout(function() {
+        setTimeout(() => {
             let tempResults = Math.floor(Math.random() * (7 - 1)) + 1;
             document.querySelector('.die--three').classList = `die die--three r${tempResults}`;
 
@@ -212,11 +215,11 @@ const rollDice = function() {
     }
 
     function rollDie4() {
-        chooseScoreButtons.forEach(function(button) {
+        chooseScoreButtons.forEach((button) => {
             button.style.display = 'none';
         });
 
-        setTimeout(function() {
+        setTimeout(() => {
             let tempResults = Math.floor(Math.random() * (7 - 1)) + 1;
             document.querySelector('.die--four').classList = `die die--four r${tempResults}`;
 
@@ -236,11 +239,11 @@ const rollDice = function() {
     }
 
     function rollDie5() {
-        chooseScoreButtons.forEach(function(button) {
+        chooseScoreButtons.forEach((button) => {
             button.style.display = 'none';
         });
 
-        setTimeout(function() {
+        setTimeout(() => {
             let tempResults = Math.floor(Math.random() * (7 - 1)) + 1;
             document.querySelector('.die--five').classList = `die die--five r${tempResults}`;
 
@@ -263,8 +266,8 @@ const rollDice = function() {
 
 roll.addEventListener('click', rollDice);
 
-const showPossibleScores = function(results) {
-    chooseScoreButtons.forEach(function(button) {
+const showPossibleScores = (results) => {
+    chooseScoreButtons.forEach((button) => {
         button.style.display = 'block';
     });
 
@@ -329,13 +332,14 @@ const showPossibleScores = function(results) {
     updateCookies();
 }
 
-chooseScoreButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
+//choosing a score category
+chooseScoreButtons.forEach((button) => {
+    button.addEventListener('click', () => {
 
         //hide hold buttons, other choose buttons, choose message
         holdRow.style.display = 'none';
         chooseMessage.style.display = 'none';
-        chooseScoreButtons.forEach(function(button) {
+        chooseScoreButtons.forEach((button) => {
             button.style.display = 'none';
         });
 
@@ -358,21 +362,25 @@ chooseScoreButtons.forEach(function(button) {
         //ending turn early if they didn't use all 3 rolls
         rollNo = 3;
 
+        updateCookies();
+
         //empty current dice results
-        results = []
+        results = [];
+
 
         //don't show roll after last turn
         if (turnNo < 13) {
             roll.style.display = 'block';
         } else {
             roll.style.display = 'none';
+            endGame();
         }
     });
 });
 
 
-holds.forEach(function(hold) {
-    hold.addEventListener('click', function() {
+holds.forEach((hold) => {
+    hold.addEventListener('click', () => {
         let heldDie = hold.dataset.holdDie;
         console.log(`clicked & held: ${heldDie}`);
         document.querySelector(`.held--${heldDie}`).classList.toggle('yes');
@@ -387,7 +395,7 @@ holds.forEach(function(hold) {
     });
 });
 
-const setCookie = function(cookieName, value, days) {
+const setCookie = (cookieName, value, days) => {
     let expires = '';
     if (days) {
         const date = new Date();
@@ -397,7 +405,7 @@ const setCookie = function(cookieName, value, days) {
     document.cookie = cookieName + '=' + (value || '')  + expires + '; path=/';
 }
 
-const updateCookies = function(currScore) {
+const updateCookies = () => {
     setCookie('turnNumber', turnNo, cookieLength);
     setCookie('rollNumber', rollNo, cookieLength);
     setCookie('topBonus', topBonus, cookieLength);
@@ -412,7 +420,18 @@ const updateCookies = function(currScore) {
     }
 }
 
-const resetScoreboard = function() {
+const resetScoreboard = () => {
+    //get and update high score
+    if (getCookie('highScore') !== null) {
+        highScore = getCookie('highScore');
+        highScoreText.textContent = highScore;
+        console.log(`highscore from cookie: ${highScore}`);
+    } else {
+        highScoreText.textContent = highScore;
+        setCookie('highScore', '0', cookieLengthYear);
+        console.log(`highscore NOT from cookie: ${highScore}`);
+    }
+
     //get and update turn number
     if (getCookie('turnNumber') !== null) {
         turnNo = getCookie('turnNumber');
@@ -426,7 +445,7 @@ const resetScoreboard = function() {
         rollNo = getCookie('rollNumber');
         rollNumber.textContent = rollNo;
     } else {
-        rollNumber.textContent = rollNo;
+        rollNumber.textContent = 1;
     }
 
     //get and update each die's held status
@@ -466,24 +485,20 @@ const resetScoreboard = function() {
     }
 
     //check if category was chosen for a turn but the turnNo hadn't incremented yet
-    if (rollNo == 3 && turnNo == categoriesFilled) {
-        turnNo++;
-        turnNumber.textContent = turnNo;
-    }
+    // if (rollNo == 3 && turnNo == categoriesFilled) {
+    //     turnNo++;
+    //     turnNumber.textContent = turnNo;
+    // }
 
     //if at least 1 roll has been done, get it from cookies and display it.
     if (getCookie('currentRollResults') !== null) {
         resultsStrings = getCookie('currentRollResults').split(','); 
         results = resultsStrings.map(Number);
-        // console.log(results);
+        console.log('currentRollResults');
+        console.log(results);
 
-        dice.forEach(function(die) {
-            die.classList.remove('r1');
-            die.classList.remove('r2');
-            die.classList.remove('r3');
-            die.classList.remove('r4');
-            die.classList.remove('r5');
-            die.classList.remove('r6');
+        dice.forEach((die) => {
+            die.classList.remove('r1', 'r2', 'r3', 'r4', 'r5', 'r6');
         });
 
         document.querySelector('.die--one').classList.add(`r${results[0]}`);
@@ -501,7 +516,15 @@ const resetScoreboard = function() {
                 roll.style.display = 'none';
             }
         }
+
+        //if category score was chosen and next turn hasn't been started 
+        if (turnNo == categoriesFilled) {
+            chooseMessage.style.display = 'none';
+            roll.style.display = 'block';
+        }
     }
+
+    updateTopScore();
 
     topBonus = getCookie('topBonus');
     if (topBonus) {
@@ -514,7 +537,7 @@ const resetScoreboard = function() {
     // console.log(scoreCard); 
 }
 
-const updateTopScore = function() {
+const updateTopScore = () => {
     topScore = scoreCard['ones'] 
              + scoreCard['twos'] 
              + scoreCard['threes'] 
@@ -525,7 +548,7 @@ const updateTopScore = function() {
     return topScore;
 }
 
-const updateCurrentScore = function() {
+const updateCurrentScore = () => {
     currScore = Object.values(scoreCard).reduce((a, b) => a + b, 0);
     if (topBonus) {
         currScore = currScore + 35;
@@ -533,7 +556,7 @@ const updateCurrentScore = function() {
     currentScore.textContent = currScore;
 }
 
-const calcBonusYahtzeeScore = function() {
+const calcBonusYahtzeeScore = () => {
     yahtzeeBonus++;
     document.querySelector('#yahtzee-bonus').textContent += '✓';
     scoreCard.yahtzeeBonus = 100 * yahtzeeBonus;
@@ -549,11 +572,28 @@ const calcBonusYahtzeeScore = function() {
     possibleScores.smallStraight = 30;
     possibleScores.largeStraight = 40;
     document.querySelector('#score-fullHouse').textContent = possibleScores.fullHouse;
-    document.querySelector(`#score-smallStraight`).textContent = possibleScores.smallStraight;
-    document.querySelector(`#score-largeStraight`).textContent = possibleScores.largeStraight;
+    document.querySelector('#score-smallStraight').textContent = possibleScores.smallStraight;
+    document.querySelector('#score-largeStraight').textContent = possibleScores.largeStraight;
 }
 
-const getCookie = function(cookieName) {
+const endGame = () => {
+    //show final score, high score, and yesterday's score
+    document.querySelector('#yz-dialog-final-score').textContent = currScore;
+
+    if (currScore > highScore) {
+        highScore = currScore;
+    }
+    document.querySelector('#yz-dialog-high-score').textContent = highScore;
+    setCookie('highScore', highScore, cookieLengthYear);
+
+    //TODO: Yesterday's score:
+    //214
+    
+    //show scores modal
+    openDialog('yz-scores');
+}
+
+const getCookie = (cookieName) => {
     var nameEQ = cookieName + '=';
     var ca = document.cookie.split(';');
     for(var i=0;i < ca.length;i++) {
@@ -564,7 +604,7 @@ const getCookie = function(cookieName) {
     return null;
 }
 
-const eraseCookie = function(cookieName) {   
+const eraseCookie = (cookieName) => {   
     document.cookie = cookieName +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
@@ -574,10 +614,10 @@ const eraseCookie = function(cookieName) {
 
 
 //TESTING
-const testYahtzee = function() {
+const testYahtzee = () => {
     rollDice();
 
-    setTimeout(function() {
+    setTimeout(() => {
         fakeResults = [5, 5, 5, 5, 5];
         document.querySelector('.die--one').textContent = 5;
         document.querySelector('.die--two').textContent = 5;
@@ -594,34 +634,215 @@ const testYahtzee = function() {
 }
 
 
+//modal
+//Credit:
+//Modified version of accessible dialog by Ire Aderinokun:
+//https://raw.githubusercontent.com/ireade/accessible-modal-dialog/gh-pages/Dialog.js
+
+function Dialog(dialogEl) {
+	this.dialogEl = document.querySelector(`#${dialogEl}`);
+	this.focusedElBeforeOpen;
+
+	var focusableEls = this.dialogEl.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex="0"]');
+	this.focusableEls = Array.prototype.slice.call(focusableEls);
+
+	this.firstFocusableEl = this.focusableEls[0];
+	this.lastFocusableEl = this.focusableEls[ this.focusableEls.length - 1 ];
+
+	this.close();
+}
+
+Dialog.prototype.open = function(dialogId) {
+	var Dialog = this,
+        dialogOverlay, 
+        openDialogs = document.querySelectorAll('.yz-dialog[aria-hidden="false"]');
+
+    this.dialogEl = dialogId ? document.querySelector(`#${dialogId}`) : this.dialogEl;
+	this.focusedElBeforeOpen = document.activeElement;
+
+    //check for data attributes
+    if (this.dialogEl.hasAttribute('data-yz-dialog-top')) {
+        var topAmt = this.dialogEl.getAttribute('data-yz-dialog-top');
+        this.dialogEl.style.top = topAmt + 'px';
+    }
+
+    //prevent page scrolling
+    document.body.classList.add('yz-dialog-fixed-page');
+
+    //create the background div that covers the rest of the content, append the dialog to it
+    if (document.getElementsByClassName('yz-dialog-overlay').length == 0) {
+        dialogOverlay = document.createElement('div');
+        dialogOverlay.classList.add('yz-dialog-overlay');
+        document.body.appendChild(dialogOverlay);
+    } else {
+        dialogOverlay = document.querySelector('.yz-dialog-overlay');
+        dialogOverlay.style.display = '';
+    }
+
+    //different styles for full mobile variation
+    if (this.dialogEl.classList.contains('yz-dialog--mobile-full')) {
+        dialogOverlay.classList.add('yz-dialog-overlay--mobile-full');
+    } else {
+        dialogOverlay.classList.remove('yz-dialog-overlay--mobile-full');
+    }
+
+    //close other open dialogs
+    for (var i = 0; i < openDialogs.length; i++) {
+        openDialogs[i].setAttribute('aria-hidden', true);
+    }
+
+    //show dialog
+    dialogOverlay.appendChild(this.dialogEl);
+    this.dialogEl.setAttribute('aria-hidden', false);
+    dialogOverlay.setAttribute('aria-hidden', false);
+    dialogOverlay.scrollTop = 0;
+
+	this.dialogEl.addEventListener('keydown', function(e) {
+		Dialog._handleKeyDown(e);
+	});
+
+	dialogOverlay.addEventListener('click', function(event) {
+        if (dialogOverlay !== event.target) return;
+		Dialog.close();
+	});
+
+	if (this.firstFocusableEl) {
+        this.firstFocusableEl.focus();
+    }
+};
+
+Dialog.prototype.close = function(dialogId) {
+    var dialogOverlay = document.getElementsByClassName('yz-dialog-overlay')[0];
+
+    document.body.classList.remove('yz-dialog-fixed-page');
+
+    if (dialogId) {
+        if (document.querySelector(`#${dialogId}`).getAttribute('aria-hidden') === 'false') {
+            document.querySelector(`#${dialogId}`).setAttribute('aria-hidden', true);
+        } else {
+            return;
+        }
+    } else {
+        this.dialogEl.setAttribute('aria-hidden', true);
+    }
+
+    if (dialogOverlay) {
+        dialogOverlay.setAttribute('aria-hidden', true);
+    }
+
+	if (this.focusedElBeforeOpen) {
+		this.focusedElBeforeOpen.focus();
+	}
+};
+
+Dialog.prototype._handleKeyDown = function(e) {
+	var Dialog = this;
+	var KEY_TAB = 9;
+	var KEY_ESC = 27;
+
+	function handleBackwardTab() {
+		if (document.activeElement === Dialog.firstFocusableEl) {
+			e.preventDefault();
+			Dialog.lastFocusableEl.focus();
+		}
+	}
+	function handleForwardTab() {
+		if (document.activeElement === Dialog.lastFocusableEl) {
+			e.preventDefault();
+			Dialog.firstFocusableEl.focus();
+		}
+	}
+
+	switch(e.keyCode) {
+	case KEY_TAB:
+		if (Dialog.focusableEls.length === 1) {
+			e.preventDefault();
+			break;
+		} 
+		if (e.shiftKey) {
+			handleBackwardTab();
+		} else {
+			handleForwardTab();
+		}
+		break;
+	case KEY_ESC:
+		Dialog.close();
+		break;
+	default:
+		break;
+	}
+};
+
+Dialog.prototype.addEventListeners = function(/*openDialogSel, */closeDialogSel) {
+	var Dialog = this,
+        // openDialogEl = document.querySelector(`[data-dialog-trigger="${openDialogSel}"]`),
+        closeDialogEls = document.querySelectorAll(`${closeDialogSel}`);
+
+    // openDialogEl.addEventListener('click', function(e) { 
+    //     Dialog.open();
+    // });
+
+	for (var i = 0; i < closeDialogEls.length; i++) {
+		closeDialogEls[i].addEventListener('click', function() {
+            Dialog.close();
+		});
+	}
+};
+
+var openDialog = function(dialogId) {
+    Dialog.prototype.open(dialogId);
+}
+
+var closeDialog = function(dialogId) {
+    Dialog.prototype.close(dialogId);
+}
+
+var dialogs = document.getElementsByClassName('yz-dialog');
+
+window.addEventListener('DOMContentLoaded', () => {
+    for (var i = 0; i < dialogs.length; i++) {
+        var myDialog = new Dialog(dialogs[i].id);
+        myDialog.addEventListeners(dialogs[i].id, '.yz-dialog-close');
+    }
+});
+
+
 //currently:
-//BUG: die number 5 not being held STILL
+// bugs: 
+//last 2 turns didn't save when playing til game over. then game over happened after choosing 1 (so 1 was still empty)
 
 
-
-//todo:
-//forgot about this: store which dice are currently held and update those with getcookie
-//- add cookies for rollNo and each die. so if they refresh on turn 3 before choosing a score, they cant cheat and start over]
-// bottom bonus calculations
+//todo
+    
+//END GAME:
+    //turnNo == 13, check that all boxes are filled in
+    
 //- reset cookies at midnight (cookieLength)
+    //when cookies are reset, currentScore will equal zero so:
+        //set previousScore to equal currentScore
+        //keep high score
+        //delete all other cookies (check names of all cookies)
 //- yahtzee animation across the letters like the video: https://www.youtube.com/watch?v=U5G88KPJ6iY&ab_channel=UKKRAUTGAMING
 //- in modal: same scoring rules as on back of electronic game like in youtube link above (~6 mins)
 //- optional sound? rip it from youtube video (8 mins)
-//store previous scores? or just yesterday's score, since we are clearing those stats
 //add new google analytics
 //minify CSS and JS files since they will be huge (or do I need gulp for the min js?)
 //remove test yahtzee button
 //animate yahtzee, like flash die 1, then 2, etc. repeatedly after the last is done
 
-//bugs:
-//if on turn 3 and you choose a score, then refresh, it makes you choose a score again
+
 
 //styling:
 //- style all the variations of the code above
 //- maybe some subtle animations?
 
 //to test:
+//seeing if high score carried over next day
 //refreshing the page, score being kept and everything working well
+    //helds
+    //dice
+    //scores
 //top bonus
 //100 point yahtzee bonuses 
-// joker calculations and scoring   
+//joker calculations and scoring   
+//high score testing
