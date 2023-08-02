@@ -812,17 +812,22 @@ window.addEventListener('DOMContentLoaded', () => {
 //last 2 turns didn't save when playing til game over. then game over happened after choosing 1 (so 1 was still empty)
 
 
-//todo
+
+//todo:
     
+//styling:
+//- style all the variations of the code above
+//- maybe some subtle animations?
+//- yahtzee animation across the letters like the video: https://www.youtube.com/watch?v=U5G88KPJ6iY&ab_channel=UKKRAUTGAMING
+
 //END GAME:
     //turnNo == 13, check that all boxes are filled in
-    
 //- reset cookies at midnight (cookieLength)
     //when cookies are reset, currentScore will equal zero so:
         //set previousScore to equal currentScore
         //keep high score
         //delete all other cookies (check names of all cookies)
-//- yahtzee animation across the letters like the video: https://www.youtube.com/watch?v=U5G88KPJ6iY&ab_channel=UKKRAUTGAMING
+
 //- in modal: same scoring rules as on back of electronic game like in youtube link above (~6 mins)
 //- optional sound? rip it from youtube video (8 mins)
 //add new google analytics
@@ -831,10 +836,6 @@ window.addEventListener('DOMContentLoaded', () => {
 //animate yahtzee, like flash die 1, then 2, etc. repeatedly after the last is done
 
 
-
-//styling:
-//- style all the variations of the code above
-//- maybe some subtle animations?
 
 //to test:
 //seeing if high score carried over next day
