@@ -814,7 +814,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 //todo:
-    
+//default dice on turn 1: 1, 2, 3, 4, 5
+
 //styling:
 //- style all the variations of the code above
 //- maybe some subtle animations?
@@ -835,7 +836,8 @@ window.addEventListener('DOMContentLoaded', () => {
 //remove test yahtzee button
 //animate yahtzee, like flash die 1, then 2, etc. repeatedly after the last is done
 
-
+//browser test:
+//mobile edge labels are falling outside of score category box
 
 //to test:
 //seeing if high score carried over next day

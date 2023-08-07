@@ -14,94 +14,247 @@
 	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <button type="button" onclick="testYahtzee();">Test a yahtzee</button>
-    <header>
-        <span>turn #:</span> <span id="turn-no">1</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-        <span>roll #:</span> <span id="roll-no">1</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-        <span>score:</span> <span id="current-score">0</span><br>
-        <span>top subtotal:</span> <span id="current-top">0</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-        <span>Top bonus:</span> <span id="top-bonus"></span><br>
-        <span>Yahtzee bonus:</span> <span id="yahtzee-bonus"></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-        <span id="joker-text" class="hidden">JOKER!!!!</span><br>
-        <span>High score:</span><span id="high-score"></span>
-        <!-- <span id="final-score-yahtzeeBonus"></span> -->
-    </header>
-    <main>
-        <section class="scores">
-            <table class="upper-scores">
-                <tr>
-                    <th>
-                        <div class="upper-scores-die">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
-                                <style type="text/css">
-                                    .pip{fill:#3a3a3a;}
-                                </style>
-                                <g>
-                                    <circle class="pip one three five" cx="48.2" cy="48.82" r="14.14"/>
-                                </g>
-                            </svg>
-                        </div>   
-                    </th>
-                    <th>
-                        <div class="upper-scores-die">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
-                                <style type="text/css">
-                                    .pip{fill:#3a3a3a;}
-                                </style>
-                                <g>
-                                <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
-                                <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
-                                </g>
-                            </svg>
-                        </div>   
-                    </th>
-                    <th>
-                        <div class="upper-scores-die">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
-                                <style type="text/css">
-                                    .pip{fill:#3a3a3a;}
-                                </style>
-                                <g>
-                                    <circle class="pip one three five" cx="48.2" cy="48.82" r="14.14"/>
+    <div class="wrap">
+        <button type="button" onclick="testYahtzee();">Test a yahtzee</button>
+        <header>
+            <span>turn #:</span> <span id="turn-no">1</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+            <span>roll #:</span> <span id="roll-no">1</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+            <span>score:</span> <span id="current-score">0</span><br>
+            <span>top subtotal:</span> <span id="current-top">0</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+            <span>Top bonus:</span> <span id="top-bonus"></span><br>
+            <span>Yahtzee bonus:</span> <span id="yahtzee-bonus"></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+            <span id="joker-text" class="hidden">JOKER!!!!</span><br>
+            <span>High score:</span><span id="high-score"></span>
+            <!-- <span id="final-score-yahtzeeBonus"></span> -->
+        </header>
+        <main>
+            <section class="scores">
+                <table class="yahtzee-scores">
+                    <tr>
+                        <th class="lower-scores-yahtzee">
+                            <div class="lower-scores-die lower-scores-die--yahtzee">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 158.1 60.3">
+                                    <polygon points="77.61,9.209 85.555,7.451 85.555,14.2 87.943,13.708 87.943,20.246 85.555,20.808 85.555,44.357 77.61,46.115 77.61,22.566 75.29,23.058 75.29,16.449 77.61,15.958"/>
+                                    <polygon points="12.583,41.055 0,22.425 10.474,20.176 16.801,29.595 22.777,17.434 33.251,15.184 21.089,39.156 21.089,58.418 12.583,60.316"/>
+                                    <path d="M52 11.1l8-1.7v10.4l6.4-1.4c5.8-1.2 8 2.2 8 6.8v21.6l-8 1.8V29c0-2.5-1-3.8-3.3-3.3l-3.1.7V50l-8 1.7V11.1z"/>
+                                    <path d="M36.3 25L50 22v30l-8 1.8v-2.5c-2.4 3.1-4 4.2-7.2 4.9C28.2 57.6 24 51 24 44.4c0-11.6 6-18.1 12.3-19.4zm1.9 6c-4.5 1-5.8 5.3-5.8 11.5 0 4.7 2.3 6.8 4.7 6.4 2-.3 4-2 5-5V30.2l-4 .9z"/>
+                                    <path d="M89 13.4l21.3-4.6c0 11-11.4 20.4-13 26.3l13-2.8v6.6l-22.1 4.9c0-10 9-19 13.5-26.6L89 20v-6.6z"/>
+                                    <path d="M122.1 12.4c2.5-.5 4 1.4 4.3 3.6l-8.8 2c.6-3.4 2.3-5 4.5-5.6zm1-7c-6.7 0-13 7.5-13.6 16.7-.8 9.5 3.8 15.2 10.5 15.2 6.8 0 12-5.7 13.5-13.1l-7.5 1.5c-.7 2.6-2.3 4.2-4.3 4.5-2 .5-4.2-.8-4.2-6l16.3-3.6c.4-9.3-3.3-15.3-10.7-15.3z"/>
+                                    <path d="M146.4 7.2c2.4-.6 3.8 1.3 4.2 3.5l-8.7 1.9c.5-3.4 2.3-5 4.5-5.4zm1-7.2c-6.7 0-13 7.5-13.8 16.9-.7 9.4 4 15.2 10.7 15.2 6.8 0 11.8-5.8 13.5-13.3l-7.5 1.7c-.8 2.4-2.4 4-4.4 4.5-2 .4-4.2-1-4.2-6.2l16.3-3.5C158.5 6 154.8 0 147.3 0z"/>
+                                </svg>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td id="final-score-yahtzee" class="lower-scores-yahtzee"></td>
+                    </tr>
+                    <tr>
+                        <td class="lower-scores-yahtzee">
+                            <button type="button" id="score-yahtzee" class="choose-score"></button>
+                        </td>
+                    </tr>
+                </table>
+                <table class="upper-scores">
+                    <tr>
+                        <th>
+                            <div class="upper-scores-die">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
+                                    <style type="text/css">
+                                        .pip{fill:#3a3a3a;}
+                                    </style>
+                                    <g>
+                                        <circle class="pip one three five" cx="48.2" cy="48.82" r="14.14"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="upper-scores-die">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
+                                    <style type="text/css">
+                                        .pip{fill:#3a3a3a;}
+                                    </style>
+                                    <g>
                                     <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
                                     <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
-                                </g>
-                            </svg>
-                        </div>
-                    </th>
-                    <th>
-                        <div class="upper-scores-die">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
-                                <style type="text/css">
-                                    .pip{fill:#3a3a3a;}
-                                </style>
-                                <g>
-                                    <circle class="pip four five six" cx="14.73" cy="14.81" r="14.14"/>
-                                    <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
-                                    <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
-                                    <circle class="pip four five six" cx="81.73" cy="81.93" r="14.14"/>
-                                </g>
-                            </svg>
-                        </div>
-                    </th>
-                    <th>
-                        <div class="upper-scores-die">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
-                                <style type="text/css">
-                                    .pip{fill:#3a3a3a;}
-                                </style>
-                                <g>
-                                    <circle class="pip four five six" cx="14.73" cy="14.81" r="14.14"/>
-                                    <circle class="pip one three five" cx="48.2" cy="48.82" r="14.14"/>
-                                    <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
-                                    <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
-                                    <circle class="pip four five six" cx="81.73" cy="81.93" r="14.14"/>
-                                </g>
-                            </svg>
-                        </div>
-                    </th>
-                    <th>
-                        <div class="upper-scores-die">
+                                    </g>
+                                </svg>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="upper-scores-die">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
+                                    <style type="text/css">
+                                        .pip{fill:#3a3a3a;}
+                                    </style>
+                                    <g>
+                                        <circle class="pip one three five" cx="48.2" cy="48.82" r="14.14"/>
+                                        <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
+                                        <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="upper-scores-die">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
+                                    <style type="text/css">
+                                        .pip{fill:#3a3a3a;}
+                                    </style>
+                                    <g>
+                                        <circle class="pip four five six" cx="14.73" cy="14.81" r="14.14"/>
+                                        <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
+                                        <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
+                                        <circle class="pip four five six" cx="81.73" cy="81.93" r="14.14"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="upper-scores-die">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
+                                    <style type="text/css">
+                                        .pip{fill:#3a3a3a;}
+                                    </style>
+                                    <g>
+                                        <circle class="pip four five six" cx="14.73" cy="14.81" r="14.14"/>
+                                        <circle class="pip one three five" cx="48.2" cy="48.82" r="14.14"/>
+                                        <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
+                                        <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
+                                        <circle class="pip four five six" cx="81.73" cy="81.93" r="14.14"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="upper-scores-die">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
+                                    <style type="text/css">
+                                        .pip{fill:#3a3a3a;}
+                                    </style>
+                                    <g>
+                                        <circle class="pip four five six" cx="14.73" cy="14.81" r="14.14"/>
+                                        <circle class="pip six" cx="14.73" cy="48.82" r="14.14"/>
+                                        <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
+                                        <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
+                                        <circle class="pip six" cx="81.73" cy="48.82" r="14.14"/>
+                                        <circle class="pip four five six" cx="81.73" cy="81.93" r="14.14"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td id="final-score-ones"></td>
+                        <td id="final-score-twos"></td>
+                        <td id="final-score-threes"></td>
+                        <td id="final-score-fours"></td>
+                        <td id="final-score-fives"></td>
+                        <td id="final-score-sixes"></td>
+                    </tr>
+        
+                    <tr>
+                        <td>
+                            <button type="button" id="score-ones" class="choose-score"></button>
+                        </td>
+                        <td>
+                            <button type="button" id="score-twos" class="choose-score"></button>
+                        </td>
+                        <td>
+                            <button type="button" id="score-threes" class="choose-score"></button>
+                        </td>
+                        <td>
+                            <button type="button" id="score-fours" class="choose-score"></button>
+                        </td>
+                        <td>
+                            <button type="button" id="score-fives" class="choose-score"></button>
+                        </td>
+                        <td>
+                            <button type="button" id="score-sixes" class="choose-score"></button>
+                        </td>
+                    </tr>
+                </table>
+                <table class="lower-scores">
+                    <tr>
+                        <th>
+                            <div class="lower-scores-wrap">
+                                <div class="lower-scores-die">
+                                    <img src="3ofakind.svg" alt="3 of a kind" />
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="lower-scores-die">
+                                <img src="4ofakind.svg" alt="4 of a kind" />
+                            </div>
+                        </th>
+                        <th>
+                            <div class="lower-scores-die">
+                                <img src="fullhouse.svg" alt="full house" />
+                            </div>
+                        </th>
+                        <th>
+                            <div class="lower-scores-die">
+                                <img src="smallstraight.svg" alt="small straight" />
+                            </div>
+                        </th>
+                        <th>
+                            <div class="lower-scores-die">
+                                <img src="largestraight.svg" alt="large straight" />
+                            </div>
+                        </th>
+                        <th>
+                            <div class="lower-scores-die">
+                                <img src="chance.svg" alt="chance" />
+                            </div>
+                        </th>
+        
+                        <!-- <th style="display: none;">yahtzee bonus</th> -->
+                    </tr>
+                    <tr>
+                        <td id="final-score-threeOfAKind"></td>
+                        <td id="final-score-fourOfAKind"></td>
+                        <td id="final-score-fullHouse"></td>
+                        <td id="final-score-smallStraight"></td>
+                        <td id="final-score-largeStraight"></td>
+                        <td id="final-score-chance"></td>
+                        <!-- <td id="final-score-yahtzeeBonus"></td> -->
+                    </tr>
+                    <!-- <tr>
+                        <td colspan="3">&nbsp;</td>
+                        <td colspan="2" class="lower-scores-straight"><div >straight</div></td>
+                        <td>&nbsp;</td>
+
+                    </tr> -->
+                    <tr>
+                        <td>
+                            <button type="button" id="score-threeOfAKind" class="choose-score"></button>
+                        </td>
+                        <td>
+                            <button type="button" id="score-fourOfAKind" class="choose-score"></button>
+                        </td>
+                        <td>
+                            <button type="button" id="score-fullHouse" class="choose-score"></button>
+                        </td>
+                        <td>
+                            <button type="button" id="score-smallStraight" class="choose-score"></button>
+                        </td>
+                        <td>
+                            <button type="button" id="score-largeStraight" class="choose-score"></button>
+                        </td>
+                        <td>
+                            <button type="button" id="score-chance" class="choose-score"></button>
+                        </td>
+                        <td style="display: none;">
+                            <button type="button" id="score-yahtzeeBonus" class="choose-score already-chosen"></button>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            <section class="dice">
+                <div class="dice-flex">
+                    <div class="die-group">
+                        <div class="die die--one">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
                                 <style type="text/css">
                                     .pip{fill:#3a3a3a;}
@@ -109,6 +262,7 @@
                                 <g>
                                     <circle class="pip four five six" cx="14.73" cy="14.81" r="14.14"/>
                                     <circle class="pip six" cx="14.73" cy="48.82" r="14.14"/>
+                                    <circle class="pip one three five" cx="48.2" cy="48.82" r="14.14"/>
                                     <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
                                     <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
                                     <circle class="pip six" cx="81.73" cy="48.82" r="14.14"/>
@@ -116,246 +270,119 @@
                                 </g>
                             </svg>
                         </div>
-                    </th>
-                </tr>
-                <tr>
-                    <td id="final-score-ones"></td>
-                    <td id="final-score-twos"></td>
-                    <td id="final-score-threes"></td>
-                    <td id="final-score-fours"></td>
-                    <td id="final-score-fives"></td>
-                    <td id="final-score-sixes"></td>
-                </tr>
-
-                
-                <tr>
-                    <td>
-                        <button type="button" id="score-ones" class="choose-score"></button>
-                    </td>
-                    <td>
-                        <button type="button" id="score-twos" class="choose-score"></button>
-                    </td>
-                    <td>
-                        <button type="button" id="score-threes" class="choose-score"></button>
-                    </td>
-                    <td>
-                        <button type="button" id="score-fours" class="choose-score"></button>
-                    </td>
-                    <td>
-                        <button type="button" id="score-fives" class="choose-score"></button>
-                    </td>
-                    <td>
-                        <button type="button" id="score-sixes" class="choose-score"></button>
-                    </td>
-                </tr>
-            </table>
-            <table class="lower-scores">
-                <tr>
-                    <th>
-                        <div class="lower-scores-wrap">
-                            <div class="lower-scores-die">
-                                <img src="3ofakind.svg" alt="3 of a kind" />
-                            </div>
-                        </div>
-                    </th>
-                    <th>
-                        <div class="lower-scores-die">
-                            <img src="4ofakind.svg" alt="4 of a kind" />
-                        </div>
-                    </th>
-                    <th>
-                        <div class="lower-scores-die">
-                            <img src="fullhouse.svg" alt="full house" />
-                        </div>
-                    </th>
-                    <th>
-                        <div class="lower-scores-die">
-                            <div class="lower-scores-straight">straight</div>
-                            <img src="smallstraight.svg" alt="small straight" />
-                        </div>
-                    </th>
-                    <th>
-                        <div class="lower-scores-die">
-                            <img src="largestraight.svg" alt="large straight" />
-                        </div>
-                    </th>
-                    <th>
-                        <div class="lower-scores-die">
-                            <img src="chance.svg" alt="chance" />
-                        </div>
-                    </th>
-                    <th class="lower-scores-yahtzee">
-                        <div class="lower-scores-die lower-scores-die--yahtzee">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 158.1 60.3">
-                                <polygon points="77.61,9.209 85.555,7.451 85.555,14.2 87.943,13.708 87.943,20.246 85.555,20.808 85.555,44.357 77.61,46.115 77.61,22.566 75.29,23.058 75.29,16.449 77.61,15.958"/>
-                                <polygon points="12.583,41.055 0,22.425 10.474,20.176 16.801,29.595 22.777,17.434 33.251,15.184 21.089,39.156 21.089,58.418 12.583,60.316"/>
-                                <path d="M52 11.1l8-1.7v10.4l6.4-1.4c5.8-1.2 8 2.2 8 6.8v21.6l-8 1.8V29c0-2.5-1-3.8-3.3-3.3l-3.1.7V50l-8 1.7V11.1z"/>
-                                <path d="M36.3 25L50 22v30l-8 1.8v-2.5c-2.4 3.1-4 4.2-7.2 4.9C28.2 57.6 24 51 24 44.4c0-11.6 6-18.1 12.3-19.4zm1.9 6c-4.5 1-5.8 5.3-5.8 11.5 0 4.7 2.3 6.8 4.7 6.4 2-.3 4-2 5-5V30.2l-4 .9z"/>
-                                <path d="M89 13.4l21.3-4.6c0 11-11.4 20.4-13 26.3l13-2.8v6.6l-22.1 4.9c0-10 9-19 13.5-26.6L89 20v-6.6z"/>
-                                <path d="M122.1 12.4c2.5-.5 4 1.4 4.3 3.6l-8.8 2c.6-3.4 2.3-5 4.5-5.6zm1-7c-6.7 0-13 7.5-13.6 16.7-.8 9.5 3.8 15.2 10.5 15.2 6.8 0 12-5.7 13.5-13.1l-7.5 1.5c-.7 2.6-2.3 4.2-4.3 4.5-2 .5-4.2-.8-4.2-6l16.3-3.6c.4-9.3-3.3-15.3-10.7-15.3z"/>
-                                <path d="M146.4 7.2c2.4-.6 3.8 1.3 4.2 3.5l-8.7 1.9c.5-3.4 2.3-5 4.5-5.4zm1-7.2c-6.7 0-13 7.5-13.8 16.9-.7 9.4 4 15.2 10.7 15.2 6.8 0 11.8-5.8 13.5-13.3l-7.5 1.7c-.8 2.4-2.4 4-4.4 4.5-2 .4-4.2-1-4.2-6.2l16.3-3.5C158.5 6 154.8 0 147.3 0z"/>
+                        <div class="held held--1">held</div>
+                    </div>
+                    <div class="die-group">
+                        <div class="die die--two">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
+                                <style type="text/css">
+                                    .pip{fill:#3a3a3a;}
+                                </style>
+                                <g>
+                                    <circle class="pip four five six" cx="14.73" cy="14.81" r="14.14"/>
+                                    <circle class="pip six" cx="14.73" cy="48.82" r="14.14"/>
+                                    <circle class="pip one three five" cx="48.2" cy="48.82" r="14.14"/>
+                                    <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
+                                    <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
+                                    <circle class="pip six" cx="81.73" cy="48.82" r="14.14"/>
+                                    <circle class="pip four five six" cx="81.73" cy="81.93" r="14.14"/>
+                                </g>
                             </svg>
                         </div>
-                    </th>
-                    <!-- <th style="display: none;">yahtzee bonus</th> -->
-                </tr>
-                <tr>
-                    <td id="final-score-threeOfAKind"></td>
-                    <td id="final-score-fourOfAKind"></td>
-                    <td id="final-score-fullHouse"></td>
-                    <td id="final-score-smallStraight"></td>
-                    <td id="final-score-largeStraight"></td>
-                    <td id="final-score-chance"></td>
-                    <td id="final-score-yahtzee" class="lower-scores-yahtzee"></td>
-                    <!-- <td id="final-score-yahtzeeBonus"></td> -->
-                </tr>
-                <tr>
-                    <td>
-                        <button type="button" id="score-threeOfAKind" class="choose-score"></button>
-                    </td>
-                    <td>
-                        <button type="button" id="score-fourOfAKind" class="choose-score"></button>
-                    </td>
-                    <td>
-                        <button type="button" id="score-fullHouse" class="choose-score"></button>
-                    </td>
-                    <td>
-                        <button type="button" id="score-smallStraight" class="choose-score"></button>
-                    </td>
-                    <td>
-                        <button type="button" id="score-largeStraight" class="choose-score"></button>
-                    </td>
-                    <td>
-                        <button type="button" id="score-chance" class="choose-score"></button>
-                    </td>
-                    <td class="lower-scores-yahtzee">
-                        <button type="button" id="score-yahtzee" class="choose-score"></button>
-                    </td>
-
-                    <td style="display: none;">
-                        <button type="button" id="score-yahtzeeBonus" class="choose-score already-chosen"></button>
-                    </td>
-                </tr>
-            </table>
-        </section>
-        <section class="dice">
-            <div class="dice-flex">
-                <div class="die-group">
-                    <div class="die die--one">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
-                            <style type="text/css">
-                                .pip{fill:#3a3a3a;}
-                            </style>
-                            <g>
-                                <circle class="pip four five six" cx="14.73" cy="14.81" r="14.14"/>
-                                <circle class="pip six" cx="14.73" cy="48.82" r="14.14"/>
-                                <circle class="pip one three five" cx="48.2" cy="48.82" r="14.14"/>
-                                <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
-                                <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
-                                <circle class="pip six" cx="81.73" cy="48.82" r="14.14"/>
-                                <circle class="pip four five six" cx="81.73" cy="81.93" r="14.14"/>
-                            </g>
-                        </svg>        
+                        <div class="held held--2">held</div>
                     </div>
-                    <div class="held held--1">held</div>
-                </div>
-                <div class="die-group">
-                    <div class="die die--two">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
-                            <style type="text/css">
-                                .pip{fill:#3a3a3a;}
-                            </style>
-                            <g>
-                                <circle class="pip four five six" cx="14.73" cy="14.81" r="14.14"/>
-                                <circle class="pip six" cx="14.73" cy="48.82" r="14.14"/>
-                                <circle class="pip one three five" cx="48.2" cy="48.82" r="14.14"/>
-                                <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
-                                <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
-                                <circle class="pip six" cx="81.73" cy="48.82" r="14.14"/>
-                                <circle class="pip four five six" cx="81.73" cy="81.93" r="14.14"/>
-                            </g>
-                        </svg>
+                    <div class="die-group">
+                        <div class="die die--three">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
+                                <style type="text/css">
+                                    .pip{fill:#3a3a3a;}
+                                </style>
+                                <g>
+                                    <circle class="pip four five six" cx="14.73" cy="14.81" r="14.14"/>
+                                    <circle class="pip six" cx="14.73" cy="48.82" r="14.14"/>
+                                    <circle class="pip one three five" cx="48.2" cy="48.82" r="14.14"/>
+                                    <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
+                                    <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
+                                    <circle class="pip six" cx="81.73" cy="48.82" r="14.14"/>
+                                    <circle class="pip four five six" cx="81.73" cy="81.93" r="14.14"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="held held--3">held</div>
                     </div>
-                    <div class="held held--2">held</div>
-                </div>
-                <div class="die-group">
-                    <div class="die die--three">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
-                            <style type="text/css">
-                                .pip{fill:#3a3a3a;}
-                            </style>
-                            <g>
-                                <circle class="pip four five six" cx="14.73" cy="14.81" r="14.14"/>
-                                <circle class="pip six" cx="14.73" cy="48.82" r="14.14"/>
-                                <circle class="pip one three five" cx="48.2" cy="48.82" r="14.14"/>
-                                <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
-                                <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
-                                <circle class="pip six" cx="81.73" cy="48.82" r="14.14"/>
-                                <circle class="pip four five six" cx="81.73" cy="81.93" r="14.14"/>
-                            </g>
-                        </svg>
+                    <div class="die-group">
+                        <div class="die die--four">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
+                                <style type="text/css">
+                                    .pip{fill:#3a3a3a;}
+                                </style>
+                                <g>
+                                    <circle class="pip four five six" cx="14.73" cy="14.81" r="14.14"/>
+                                    <circle class="pip six" cx="14.73" cy="48.82" r="14.14"/>
+                                    <circle class="pip one three five" cx="48.2" cy="48.82" r="14.14"/>
+                                    <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
+                                    <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
+                                    <circle class="pip six" cx="81.73" cy="48.82" r="14.14"/>
+                                    <circle class="pip four five six" cx="81.73" cy="81.93" r="14.14"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="held held--4">held</div>
                     </div>
-                    <div class="held held--3">held</div>
-                </div>
-                <div class="die-group">
-                    <div class="die die--four">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
-                            <style type="text/css">
-                                .pip{fill:#3a3a3a;}
-                            </style>
-                            <g>
-                                <circle class="pip four five six" cx="14.73" cy="14.81" r="14.14"/>
-                                <circle class="pip six" cx="14.73" cy="48.82" r="14.14"/>
-                                <circle class="pip one three five" cx="48.2" cy="48.82" r="14.14"/>
-                                <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
-                                <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
-                                <circle class="pip six" cx="81.73" cy="48.82" r="14.14"/>
-                                <circle class="pip four five six" cx="81.73" cy="81.93" r="14.14"/>
-                            </g>
-                        </svg>
+                    <div class="die-group">
+                        <div class="die die--five">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
+                                <style type="text/css">
+                                    .pip{fill:#3a3a3a;}
+                                </style>
+                                <g>
+                                    <circle class="pip four five six" cx="14.73" cy="14.81" r="14.14"/>
+                                    <circle class="pip six" cx="14.73" cy="48.82" r="14.14"/>
+                                    <circle class="pip one three five" cx="48.2" cy="48.82" r="14.14"/>
+                                    <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
+                                    <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
+                                    <circle class="pip six" cx="81.73" cy="48.82" r="14.14"/>
+                                    <circle class="pip four five six" cx="81.73" cy="81.93" r="14.14"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="held held--5">held</div>
                     </div>
-                    <div class="held held--4">held</div>
                 </div>
-                <div class="die-group">
-                    <div class="die die--five">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96.49 96.76" xml:space="preserve">
-                            <style type="text/css">
-                                .pip{fill:#3a3a3a;}
-                            </style>
-                            <g>
-                                <circle class="pip four five six" cx="14.73" cy="14.81" r="14.14"/>
-                                <circle class="pip six" cx="14.73" cy="48.82" r="14.14"/>
-                                <circle class="pip one three five" cx="48.2" cy="48.82" r="14.14"/>
-                                <circle class="pip two three four five six" cx="14.73" cy="81.93" r="14.14"/>
-                                <circle class="pip two three four five six" cx="81.73" cy="14.81" r="14.14"/>
-                                <circle class="pip six" cx="81.73" cy="48.82" r="14.14"/>
-                                <circle class="pip four five six" cx="81.73" cy="81.93" r="14.14"/>
-                            </g>   
-                        </svg>
+            </section>
+            <section class="buttons">
+                <div class="hold-buttons">
+                    <div class="hold-button-group">
+                        <div class="hold-title">hold</div>
+                        <button type="button" class="hold hold--1" data-hold-die="1">Hold</button>
                     </div>
-                    <div class="held held--5">held</div>
+                    <div class="hold-button-group">
+                        <div class="hold-title">hold</div>
+                        <button type="button" class="hold hold--2" data-hold-die="2">Hold</button>
+                    </div>
+                    <div class="hold-button-group">
+                        <div class="hold-title">hold</div>
+                        <button type="button" class="hold hold--3" data-hold-die="3">Hold</button>
+                    </div>
+                    <div class="hold-button-group">
+                        <div class="hold-title">hold</div>
+                        <button type="button" class="hold hold--4" data-hold-die="4">Hold</button>
+                    </div>
+                    <div class="hold-button-group">
+                        <div class="hold-title">hold</div>
+                        <button type="button" class="hold hold--5" data-hold-die="5">Hold</button>
+                    </div>
                 </div>
-            </div>
-        </section>
-        <section class="buttons">
-            <div class="hold-buttons">
-                <button type="button" class="hold hold--1" data-hold-die="1">Hold</button>
-                <button type="button" class="hold hold--2" data-hold-die="2">Hold</button>
-                <button type="button" class="hold hold--3" data-hold-die="3">Hold</button>
-                <button type="button" class="hold hold--4" data-hold-die="4">Hold</button>
-                <button type="button" class="hold hold--5" data-hold-die="5">Hold</button>
-            </div>
-            <button type="button" class="roll">Roll</button>
-            <p id="choose-message">Choose a category</p>
-            
-        </section>
-    </main>
-    <footer>
+                <button type="button" class="roll">Roll</button>
+                <p id="choose-message">Choose a category</p>
         
-    </footer>
+            </section>
+        </main>
+        <footer>
+        
+        </footer>
+    </div>
 
-
-	
 
     <div id="yz-scores" class="yz-dialog" role="dialog" aria-labelledby="yz-dialog-title" aria-describedby="yz-dialog-description" aria-hidden="true">
         <svg class="yz-svg-alert" width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false">

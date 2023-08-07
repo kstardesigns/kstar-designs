@@ -1,6 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
 :root {
   --score-bg-color: #faf9da;
+  --score-shadow-color: #efa55e;
+  --poppins: "Poppins", sans-serif;
 }
 
 * {
@@ -16,38 +18,42 @@ body {
   display: none;
 }
 
+.wrap {
+  width: 480px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
 main .scores {
   width: 100%;
-  max-width: 850px;
   margin: 0 auto 10px;
 }
 main .scores .upper-scores {
-  width: 75%;
-  max-width: 640px;
+  width: 100%;
 }
 main .scores .upper-scores tr {
   display: flex;
 }
 main .scores .upper-scores th {
-  width: 16.667%;
-  flex: 0 0 16.667%;
+  width: 16.666%;
+  height: 16.666%;
+  flex: 0 0 16.666%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 8px 10px 5px 5px;
 }
 main .scores .upper-scores td {
-  width: 16.667%;
-  flex: 0 0 16.667%;
+  width: 16.666%;
+  flex: 0 0 16.666%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5px;
 }
 main .scores .upper-scores-die {
-  width: 100%;
-  max-width: 50px;
-  aspect-ratio: 1/1;
+  width: 40px;
+  height: 40px;
   border: 1px solid black;
   border-radius: 6px;
   background-color: var(--score-bg-color);
@@ -63,36 +69,27 @@ main .scores .upper-scores-die svg {
 }
 main .scores .lower-scores {
   width: 100%;
-  max-width: 850px;
 }
 main .scores .lower-scores tr {
   display: flex;
 }
 main .scores .lower-scores th {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--poppins);
   text-transform: uppercase;
-  width: 12.55%;
-  flex: 0 0 12.55%;
+  width: 16.666%;
+  flex: 0 0 16.666%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5px;
-}
-main .scores .lower-scores th.lower-scores-yahtzee {
-  width: 24.7%;
-  flex: 0 0 24.7%;
 }
 main .scores .lower-scores td {
-  width: 12.55%;
-  flex: 0 0 12.55%;
+  width: 16.666%;
+  flex: 0 0 16.666%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5px;
-}
-main .scores .lower-scores td.lower-scores-yahtzee {
-  width: 24.7%;
-  flex: 0 0 24.7%;
 }
 main .scores .lower-scores .lower-scores-wrap {
   display: flex;
@@ -102,9 +99,8 @@ main .scores .lower-scores .lower-scores-wrap {
   height: 100%;
 }
 main .scores .lower-scores .lower-scores-die {
-  width: 100%;
-  max-width: 50px;
-  aspect-ratio: 1/1;
+  width: 40px;
+  height: 40px;
   border: 1px solid #222;
   border-radius: 6px;
   background-color: var(--score-bg-color);
@@ -115,8 +111,8 @@ main .scores .lower-scores .lower-scores-die {
 }
 @media screen and (min-width: 550px) {
   main .scores .lower-scores .lower-scores-die {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
   }
 }
 main .scores .lower-scores .lower-scores-die img {
@@ -125,54 +121,31 @@ main .scores .lower-scores .lower-scores-die img {
   flex: 0 0 100%;
 }
 main .scores .lower-scores .lower-scores-die .lower-scores-straight {
-  position: absolute;
   border: 1px solid #222;
   border-radius: 6px;
   background-color: var(--score-bg-color);
-  top: 27px;
-  width: 21vw;
   padding: 2px 0 1.5px;
   font-size: 3.5vw;
   z-index: 99;
 }
+@media screen and (min-width: 480px) {
+  main .scores .lower-scores .lower-scores-die .lower-scores-straight {
+    width: 115px;
+  }
+}
 main .scores .lower-scores .lower-scores-die--yahtzee {
   padding: 5px;
   max-width: 100%;
-  aspect-ratio: initial;
 }
 main .scores .lower-scores .lower-scores-die--yahtzee svg {
   width: 92%;
   height: 100%;
-  aspect-ratio: 2.6/1;
 }
 @media screen and (min-width: 550px) {
   main .scores .lower-scores .lower-scores-die--yahtzee {
     width: 100%;
     height: 50px;
   }
-}
-main .scores .lower-scores .lower-scores-top-kind {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 5vw;
-  line-height: 4.58vw;
-  gap: 0.48vw;
-  margin-top: -0.24vw;
-  margin-left: -0.48vw;
-}
-@media screen and (min-width: 550px) {
-  main .scores .lower-scores .lower-scores-top-kind {
-    font-size: 27px;
-    line-height: 24.5px;
-    gap: 2.5px;
-    margin-top: -1.3px;
-    margin-left: -2.6px;
-  }
-}
-main .scores .lower-scores .lower-scores-of {
-  font-size: 10px;
-  letter-spacing: -0.5px;
 }
 main .scores table {
   border-collapse: collapse;
@@ -195,11 +168,12 @@ main .scores .choose-score.already-chosen {
 main .dice .dice-flex {
   display: flex;
   justify-content: space-between;
-  width: 400px;
+  width: 100%;
 }
 main .dice .die {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
+  background-color: var(--score-bg-color);
   border: 1px solid black;
   border-radius: 6px;
   display: flex;
@@ -236,7 +210,19 @@ main .dice .held {
   color: transparent;
 }
 main .dice .held.yes {
-  color: black;
+  color: #222;
+  background: var(--score-shadow-color);
+  border-radius: 0 0 6px 6px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: -4px;
+  position: relative;
+  z-index: -1;
+  font-family: var(--poppins);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 12px;
+  padding: 5px 0 1px;
 }
 main .buttons button {
   cursor: pointer;
@@ -247,7 +233,28 @@ main .buttons button:disabled {
 main .buttons .hold-buttons {
   display: none;
   justify-content: space-between;
-  width: 400px;
+  width: 100%;
+}
+main .buttons .hold-button-group {
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main .buttons .hold {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f7dc6f;
+  background: radial-gradient(#f7dc6f 0%, #f1c40f 85%, #f1c40f 100%);
+  border: 0;
+  color: transparent;
+}
+main .buttons .hold-title {
+  font-family: var(--poppins);
+  font-family: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 main .buttons .roll {
   margin: 40px 0;
