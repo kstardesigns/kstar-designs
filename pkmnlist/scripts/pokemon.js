@@ -1061,7 +1061,7 @@ new Vue({
 			{ number: 881, name: 'Arctozolt', stringname: '881', type1: 'electric', type2: 'ice', evos: '', pronunciation: 'ARK-toh-zohlt', gen: '8' },
 			{ number: 882, name: 'Dracovish', stringname: '882', type1: 'water', type2: 'dragon', evos: '', pronunciation: 'DRAK-oh-vish', gen: '8' },
 			{ number: 883, name: 'Arctovish', stringname: '883', type1: 'water', type2: 'ice', evos: '', pronunciation: 'ARK-toh-vish', gen: '8' },
-			{ number: 884, name: 'Duraludon', stringname: '884', type1: 'steel', type2: 'dragon', evos: '', pronunciation: 'duh-RAL-uh-dahn', gen: '8' },
+			{ number: 884, name: 'Duraludon', stringname: '884', type1: 'steel', type2: 'dragon', evos: '0884-line', pronunciation: 'duh-RAL-uh-dahn', gen: '8' },
 			{ number: 885, name: 'Dreepy', stringname: '885', type1: 'dragon', type2: 'ghost', evos: '0885-line', pronunciation: 'DREE-pee', gen: '8' },
 			{ number: 886, name: 'Drakloak', stringname: '886', type1: 'dragon', type2: 'ghost', evos: '0885-line', pronunciation: 'DRAK-klohkk', gen: '8' },
 			{ number: 887, name: 'Dragapult', stringname: '887', type1: 'dragon', type2: 'ghost', evos: '0885-line', pronunciation: 'DRAG-uh-pult', gen: '8' },
@@ -1196,6 +1196,10 @@ new Vue({
 			{ number: 9999, name: 'Okidogi', stringname: '9999a', type1: '???', type2: '', evos: '', pronunciation: 'oh-kee-DOH-gee', gen: '9' },
 			{ number: 9999, name: 'Munkidori', stringname: '9999b', type1: '???', type2: '', evos: '', pronunciation: 'munk-ee-DOHR-ee', gen: '9' },
 			{ number: 9999, name: 'Fezandipiti', stringname: '9999c', type1: '???', type2: '', evos: '', pronunciation: 'fez-un-DIP-ih-tee', gen: '9' },
+			{ number: 9999, name: 'Dipplin', stringname: '9999f', type1: 'grass', type2: 'dragon', evos: '0840-line', pronunciation: 'DIPP-lin', gen: '9' },
+			{ number: 9999, name: 'Archaludon', stringname: '9999g', type1: 'steel', type2: 'dragon', evos: '0884-line', pronunciation: '???', gen: '9' },
+			{ number: 9999, name: 'Raging Bolt', stringname: '9999h', type1: '???', type2: '', evos: '', pronunciation: '???', gen: '9' },
+			{ number: 9999, name: 'Iron Crown', stringname: '9999i', type1: '???', type2: '', evos: '', pronunciation: '???', gen: '9' },
 			{ number: 9999, name: 'Ogerpon', stringname: '9999d', type1: '???', type2: '', evos: '', pronunciation: 'OH-gurr-pahn', gen: '9' },
 			{ number: 9999, name: 'Terapagos', stringname: '9999e', type1: '???', type2: '', evos: '', pronunciation: 'turr-AHP-uh-gohs', gen: '9' }
 		]
