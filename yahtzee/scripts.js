@@ -68,7 +68,8 @@ let results = [],
     topScore = 0,
     topBonus = false,
     yahtzeeBonus = 0,
-    highScore = 0;
+    highScore = 0,
+    bonusMessage = '+ 35!';
 
 //reload current game from cookies
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -361,7 +362,7 @@ chooseScoreButtons.forEach((button) => {
         
         //check for top bonus
         if (updateTopScore() >= 63) {
-            document.querySelector('#top-bonus').textContent = '35!';
+            document.querySelector('#top-bonus').textContent = bonusMessage;
             topBonus = true;
         }
 
@@ -543,7 +544,7 @@ const resetScoreboard = () => {
 
     topBonus = getCookie('topBonus');
     if (topBonus) {
-        document.querySelector('#top-bonus').textContent = '35!';
+        document.querySelector('#top-bonus').textContent = bonusMessage;
     }
 
     updateCurrentScore();
@@ -823,50 +824,3 @@ window.addEventListener('DOMContentLoaded', () => {
         myDialog.addEventListeners(dialogs[i].id, '.yz-dialog-close');
     }
 });
-
-
-//currently:
-// bugs: 
-//last 2 turns didn't save when playing til game over. then game over happened after choosing 1 (so 1 was still empty)
-//if all 5 dice are held and it's not turn 3, hide roll button and show "choose a category" until a score is chosen or a dice is un-held
-
-
-//todo:
-//default dice on turn 1: 1, 2, 3, 4, 5
-//share button at end of game:
-    //how to get all share options? like copy to messages, twitter, etc.
-
-//styling:
-//- style all the variations of the code above
-//- maybe some subtle animations?
-//- yahtzee animation across the letters like the video: https://www.youtube.com/watch?v=U5G88KPJ6iY&ab_channel=UKKRAUTGAMING
-// dark mode? maybe not... people can live without it
-
-//END GAME:
-    //turnNo == 13, check that all boxes are filled in
-//- reset cookies at midnight (cookieLength)
-    //when cookies are reset, currentScore will equal zero so:
-        //set previousScore to equal currentScore
-        //keep high score
-        //delete all other cookies (check names of all cookies)
-
-//- in modal: same scoring rules as on back of electronic game like in youtube link above (~6 mins)
-//- optional sound? rip it from youtube video (8 mins)
-//add new google analytics
-//minify CSS and JS files since they will be huge (or do I need gulp for the min js?)
-//remove test yahtzee button
-//animate yahtzee, like flash die 1, then 2, etc. repeatedly after the last is done
-
-//browser test:
-//mobile edge labels are falling outside of score category box
-
-//to test:
-//seeing if high score carried over next day
-//refreshing the page, score being kept and everything working well
-    //helds
-    //dice
-    //scores
-//top bonus
-//100 point yahtzee bonuses 
-//joker calculations and scoring   
-//high score testing

@@ -6,6 +6,7 @@
     --poppins: 'Poppins', sans-serif;
     --handwriting: 'Edu SA Beginner', cursive;
     --scoresheet-border: #555;
+    --pen-blue: #0f72ff;
 }
 
 * {
@@ -14,7 +15,7 @@
 
 body {
     margin: 0;
-    padding: 10px;
+    padding: 10px 10px 50px;
 }
 
 .hidden {
@@ -29,33 +30,61 @@ body {
 }
 
 header {
+    display: flex;
+    justify-content: space-between;
+
+    .yahtzee-logo {
+        width: 158px;
+        height: 60px;
+        flex: 0 0 158px;
+    }
     
+    .high-score-area {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        height: 20px;
+        font-family: 'Poppins';
+        text-transform: uppercase;
+        font-size: 13px;
+        line-height: 20px;
+        font-weight: 600;
+
+        .high-score-flex {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        #high-score {
+            font-size: 17px;
+        }
+    }
 }
 
 main {
-   
-
     .scores {
         width: 100%;
         margin: 0 auto 10px;
 
         .yahtzee-score-wrap {
             display: flex;
-            justify-content: flex-start;
+            justify-content: space-between;
+            align-items: flex-end;
         }
 
         .yahtzee-scores {
             width: calc(33.332% + 1px);
             border: 0;
 
-            &-yahtzee {
-                width: 100%;
-                border: 0;
-            }
+            // &-yahtzee {
+            //     width: 100%;
+            //     border: 0;
+            // }
 
-            &-die {
-                width: 100%;
-            }
+            // &-die {
+            //     width: 100%;
+            // }
 
             th {
                 width: 100%;
@@ -86,6 +115,7 @@ main {
                 padding-top: 1px;
                 border: 2px solid var(--scoresheet-border);
                 border-bottom: 0;
+                color: var(--pen-blue);
             }
 
             #yahtzee-bonus {
@@ -100,6 +130,27 @@ main {
                 border: 0;
                 padding: 0;
                 height: 0;
+            }
+        }
+
+        .top-scores {
+            font-family: var(--poppins);
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 15px;
+            padding-right: 0px;
+            align-self: flex-end;
+            padding-bottom: 2px;
+            gap: 6px;
+            display: flex;
+            align-items: center;
+
+            #current-top, #top-bonus {
+                font-family: var(--handwriting);
+                color: var(--pen-blue);
+                font-size: 30px;
+                font-weight: 400;
+                padding-bottom: 2px;
             }
         }
 
@@ -256,6 +307,7 @@ main {
                 font-size: 30px;
                 font-family: var(--handwriting);
                 padding-top: 1px;
+                color: var(--pen-blue);
             }
 
             .choose-score-row {
@@ -464,7 +516,7 @@ main {
 .roll-section {
     .roll {
         display: block;
-        margin: 30px auto;
+        margin: 30px auto 0;
         width: 200px;
         height: 45px;
         background: linear-gradient(to right, tomato 0%, rgb(200, 61, 37) 100%);
@@ -490,7 +542,7 @@ main {
         text-align: center;
         font-family: var(--poppins);
         font-size: 18px;
-        margin: 25px auto 0;
+        margin: 25px auto 22.5px;
     }
 }
 

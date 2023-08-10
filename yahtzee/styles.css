@@ -5,6 +5,7 @@
   --poppins: "Poppins", sans-serif;
   --handwriting: "Edu SA Beginner", cursive;
   --scoresheet-border: #555;
+  --pen-blue: #0f72ff;
 }
 
 * {
@@ -13,7 +14,7 @@
 
 body {
   margin: 0;
-  padding: 10px;
+  padding: 10px 10px 50px;
 }
 
 .hidden {
@@ -26,24 +27,47 @@ body {
   margin: 0 auto;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+}
+header .yahtzee-logo {
+  width: 158px;
+  height: 60px;
+  flex: 0 0 158px;
+}
+header .high-score-area {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  height: 20px;
+  font-family: "Poppins";
+  text-transform: uppercase;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 600;
+}
+header .high-score-area .high-score-flex {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+header .high-score-area #high-score {
+  font-size: 17px;
+}
+
 main .scores {
   width: 100%;
   margin: 0 auto 10px;
 }
 main .scores .yahtzee-score-wrap {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 main .scores .yahtzee-scores {
   width: calc(33.332% + 1px);
   border: 0;
-}
-main .scores .yahtzee-scores-yahtzee {
-  width: 100%;
-  border: 0;
-}
-main .scores .yahtzee-scores-die {
-  width: 100%;
 }
 main .scores .yahtzee-scores th {
   width: 100%;
@@ -72,6 +96,7 @@ main .scores .yahtzee-scores .final-scores {
   padding-top: 1px;
   border: 2px solid var(--scoresheet-border);
   border-bottom: 0;
+  color: var(--pen-blue);
 }
 main .scores .yahtzee-scores #yahtzee-bonus {
   font-size: 22px;
@@ -84,6 +109,25 @@ main .scores .yahtzee-scores .choose-score-row, main .scores .yahtzee-scores .ch
   border: 0;
   padding: 0;
   height: 0;
+}
+main .scores .top-scores {
+  font-family: var(--poppins);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 15px;
+  padding-right: 0px;
+  align-self: flex-end;
+  padding-bottom: 2px;
+  gap: 6px;
+  display: flex;
+  align-items: center;
+}
+main .scores .top-scores #current-top, main .scores .top-scores #top-bonus {
+  font-family: var(--handwriting);
+  color: var(--pen-blue);
+  font-size: 30px;
+  font-weight: 400;
+  padding-bottom: 2px;
 }
 main .scores .upper-scores {
   width: 100%;
@@ -220,6 +264,7 @@ main .scores .upper-scores .final-scores, main .scores .lower-scores .final-scor
   font-size: 30px;
   font-family: var(--handwriting);
   padding-top: 1px;
+  color: var(--pen-blue);
 }
 main .scores .upper-scores .choose-score-row, main .scores .lower-scores .choose-score-row {
   height: 0;
@@ -383,7 +428,7 @@ main .buttons .hold-title {
 
 .roll-section .roll {
   display: block;
-  margin: 30px auto;
+  margin: 30px auto 0;
   width: 200px;
   height: 45px;
   background: linear-gradient(to right, tomato 0%, rgb(200, 61, 37) 100%);
@@ -407,7 +452,7 @@ main .buttons .hold-title {
   text-align: center;
   font-family: var(--poppins);
   font-size: 18px;
-  margin: 25px auto 0;
+  margin: 25px auto 22.5px;
 }
 
 .yz-dialog {
