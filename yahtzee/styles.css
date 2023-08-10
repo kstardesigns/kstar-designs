@@ -1,8 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400;500&family=Poppins:wght@300;400;600&display=swap");
 :root {
   --score-bg-color: #faf9da;
   --score-shadow-color: #efa55e;
   --poppins: "Poppins", sans-serif;
+  --handwriting: "Edu SA Beginner", cursive;
+  --scoresheet-border: #555;
 }
 
 * {
@@ -11,7 +13,7 @@
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 10px;
 }
 
 .hidden {
@@ -28,8 +30,65 @@ main .scores {
   width: 100%;
   margin: 0 auto 10px;
 }
+main .scores .yahtzee-score-wrap {
+  display: flex;
+  justify-content: flex-start;
+}
+main .scores .yahtzee-scores {
+  width: calc(33.332% + 1px);
+  border: 0;
+}
+main .scores .yahtzee-scores-yahtzee {
+  width: 100%;
+  border: 0;
+}
+main .scores .yahtzee-scores-die {
+  width: 100%;
+}
+main .scores .yahtzee-scores th {
+  width: 100%;
+  height: 100%;
+  flex: 0 0 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 5px 5px 5px;
+  border: 0;
+}
+main .scores .yahtzee-scores td {
+  width: 100%;
+  flex: 0 0 100%;
+  height: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  position: relative;
+}
+main .scores .yahtzee-scores .final-scores {
+  height: 40px;
+  font-size: 30px;
+  font-family: var(--handwriting);
+  padding-top: 1px;
+  border: 2px solid var(--scoresheet-border);
+  border-bottom: 0;
+}
+main .scores .yahtzee-scores #yahtzee-bonus {
+  font-size: 22px;
+  padding-left: 5px;
+  max-width: 86px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+main .scores .yahtzee-scores .choose-score-row, main .scores .yahtzee-scores .choose-score-row td {
+  border: 0;
+  padding: 0;
+  height: 0;
+}
 main .scores .upper-scores {
   width: 100%;
+  border: 1px solid var(--scoresheet-border);
+  border-bottom: 0;
 }
 main .scores .upper-scores tr {
   display: flex;
@@ -41,20 +100,23 @@ main .scores .upper-scores th {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 10px 5px 5px;
+  padding: 8px 5px 5px 5px;
+  border: 1px solid var(--scoresheet-border);
 }
 main .scores .upper-scores td {
   width: 16.666%;
   flex: 0 0 16.666%;
+  height: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5px;
+  position: relative;
 }
 main .scores .upper-scores-die {
   width: 40px;
   height: 40px;
-  border: 1px solid black;
+  border: 1px solid #222;
   border-radius: 6px;
   background-color: var(--score-bg-color);
   display: flex;
@@ -69,6 +131,8 @@ main .scores .upper-scores-die svg {
 }
 main .scores .lower-scores {
   width: 100%;
+  border: 1px solid var(--scoresheet-border);
+  border-top: 0;
 }
 main .scores .lower-scores tr {
   display: flex;
@@ -81,15 +145,18 @@ main .scores .lower-scores th {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px;
+  padding: 8px 5px 5px 5px;
+  border: 1px solid var(--scoresheet-border);
 }
 main .scores .lower-scores td {
   width: 16.666%;
   flex: 0 0 16.666%;
+  height: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5px;
+  position: relative;
 }
 main .scores .lower-scores .lower-scores-wrap {
   display: flex;
@@ -108,6 +175,7 @@ main .scores .lower-scores .lower-scores-die {
   font-size: 16px;
   line-height: 16px;
   position: relative;
+  box-shadow: 5px -3px 0 0 #efa55e;
 }
 @media screen and (min-width: 550px) {
   main .scores .lower-scores .lower-scores-die {
@@ -121,7 +189,7 @@ main .scores .lower-scores .lower-scores-die img {
   flex: 0 0 100%;
 }
 main .scores .lower-scores .lower-scores-die .lower-scores-straight {
-  border: 1px solid #222;
+  border: 1px solid var(--scoresheet-border);
   border-radius: 6px;
   background-color: var(--score-bg-color);
   padding: 2px 0 1.5px;
@@ -147,11 +215,20 @@ main .scores .lower-scores .lower-scores-die--yahtzee svg {
     height: 50px;
   }
 }
+main .scores .upper-scores .final-scores, main .scores .lower-scores .final-scores {
+  height: 40px;
+  font-size: 30px;
+  font-family: var(--handwriting);
+  padding-top: 1px;
+}
+main .scores .upper-scores .choose-score-row, main .scores .lower-scores .choose-score-row {
+  height: 0;
+}
 main .scores table {
   border-collapse: collapse;
 }
 main .scores td {
-  border: 1px solid black;
+  border: 1px solid var(--scoresheet-border);
   width: 40px;
   font-size: 8px;
   padding: 5px;
@@ -168,24 +245,34 @@ main .scores .choose-score {
   border-radius: 50%;
   width: 30px;
   height: 30px;
+  font-size: 16px;
   font-weight: 600;
-  position: relative;
+  position: absolute;
+  top: -36px;
   z-index: 1;
+  cursor: pointer;
+  padding: 0;
 }
 main .scores .choose-score::before {
   content: "";
   position: absolute;
-  top: -18px;
-  left: 0;
+  top: -8px;
+  left: 5px;
   width: 0;
   height: 0;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-bottom: 30px solid tomato;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid tomato;
   z-index: -1;
 }
 main .scores .choose-score.already-chosen {
   display: none !important;
+}
+main .scores .choose-score-row td {
+  border: 0;
+}
+main .dice {
+  margin-top: 40px;
 }
 main .dice .dice-flex {
   display: flex;
@@ -196,7 +283,7 @@ main .dice .die {
   width: 60px;
   height: 60px;
   background-color: var(--score-bg-color);
-  border: 1px solid black;
+  border: 2px solid #555;
   border-radius: 6px;
   display: flex;
   justify-content: center;
@@ -230,10 +317,7 @@ main .dice .die.r6 .six {
 }
 main .dice .held {
   color: transparent;
-}
-main .dice .held.yes {
-  color: #222;
-  background: var(--score-shadow-color);
+  background-color: transparent;
   border-radius: 0 0 6px 6px;
   text-align: center;
   text-transform: uppercase;
@@ -246,6 +330,13 @@ main .dice .held.yes {
   line-height: 12px;
   padding: 5px 0 1px;
 }
+main .dice .held.yes {
+  color: #222;
+  background-color: var(--score-shadow-color);
+}
+main .buttons {
+  height: 64px;
+}
 main .buttons button {
   cursor: pointer;
 }
@@ -253,9 +344,15 @@ main .buttons button:disabled {
   cursor: not-allowed;
 }
 main .buttons .hold-buttons {
-  display: none;
+  display: flex;
   justify-content: space-between;
   width: 100%;
+}
+main .buttons .hold-buttons.disabled {
+  opacity: 0.3;
+}
+main .buttons .hold-buttons.enabled {
+  opacity: 1;
 }
 main .buttons .hold-button-group {
   width: 60px;
@@ -269,8 +366,13 @@ main .buttons .hold {
   border-radius: 50%;
   background-color: #f7dc6f;
   background: radial-gradient(#f7dc6f 0%, #f1c40f 85%, #f1c40f 100%);
-  border: 0;
+  border: 2px solid #e6b905;
+  border-bottom-width: 3px;
   color: transparent;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.15);
+}
+main .buttons .hold:active {
+  box-shadow: none;
 }
 main .buttons .hold-title {
   font-family: var(--poppins);
@@ -278,11 +380,34 @@ main .buttons .hold-title {
   font-weight: 600;
   text-transform: uppercase;
 }
-main .buttons .roll {
-  margin: 40px 0;
+
+.roll-section .roll {
+  display: block;
+  margin: 30px auto;
+  width: 200px;
+  height: 45px;
+  background: linear-gradient(to right, tomato 0%, rgb(200, 61, 37) 100%);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgb(200, 61, 37);
+  border-bottom-width: 2px;
+  border-radius: 15px;
+  font-family: var(--poppins);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px rgb(200, 61, 37);
 }
-main .buttons #choose-message {
+.roll-section .roll:active {
+  box-shadow: none;
+}
+.roll-section #choose-message {
   display: none;
+  text-align: center;
+  font-family: var(--poppins);
+  font-size: 18px;
+  margin: 25px auto 0;
 }
 
 .yz-dialog {

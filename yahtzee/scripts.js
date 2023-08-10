@@ -86,8 +86,11 @@ const rollDice = () => {
         });
     }
 
-    //hide hold buttons
-    holdRow.style.display = 'none';
+    //disable hold & roll buttons
+    holdRow.classList = 'hold-buttons disabled';
+    holds.forEach((hold) => {
+        hold.disabled = true;
+    });
     roll.disabled = true;
 
     //increase roll number and do roll-related checks
@@ -272,7 +275,10 @@ const showPossibleScores = (results) => {
     });
 
     if (rollNo < 3) {
-        holdRow.style.display = 'flex';
+        holdRow.classList = 'hold-buttons enabled';
+        holds.forEach((hold) => {
+            hold.disabled = false;
+        });
     }
 
     //get all of each number and add them together
@@ -337,7 +343,10 @@ chooseScoreButtons.forEach((button) => {
     button.addEventListener('click', () => {
 
         //hide hold buttons, other choose buttons, choose message
-        holdRow.style.display = 'none';
+        holdRow.classList = 'hold-buttons disabled';
+        holds.forEach((hold) => {
+            hold.disabled = true;
+        });
         chooseMessage.style.display = 'none';
         chooseScoreButtons.forEach((button) => {
             button.style.display = 'none';
@@ -458,7 +467,7 @@ const resetScoreboard = () => {
             } else {
                 document.querySelector(`.held--${i}`).classList.remove('yes');
             }
-        } 
+        }
     }
 
     let categoriesFilled = 0;
@@ -522,6 +531,12 @@ const resetScoreboard = () => {
             chooseMessage.style.display = 'none';
             roll.style.display = 'block';
         }
+    } else {
+        document.querySelector('.die--one').classList.add('r1');
+        document.querySelector('.die--two').classList.add('r2');
+        document.querySelector('.die--three').classList.add('r3');
+        document.querySelector('.die--four').classList.add('r4');
+        document.querySelector('.die--five').classList.add('r5');
     }
 
     updateTopScore();
@@ -567,7 +582,10 @@ const calcBonusYahtzeeScore = () => {
     document.querySelector('#joker-text').style.display = 'block';
     roll.style.display = 'none';
     chooseMessage.style.display = 'block';
-    holdRow.style.display = 'none';
+    holdRow.classList = 'hold-buttons disabled';
+    holds.forEach((hold) => {
+        hold.disabled = true;
+    });
     possibleScores.fullHouse = 25;
     possibleScores.smallStraight = 30;
     possibleScores.largeStraight = 40;
@@ -810,16 +828,19 @@ window.addEventListener('DOMContentLoaded', () => {
 //currently:
 // bugs: 
 //last 2 turns didn't save when playing til game over. then game over happened after choosing 1 (so 1 was still empty)
-
+//if all 5 dice are held and it's not turn 3, hide roll button and show "choose a category" until a score is chosen or a dice is un-held
 
 
 //todo:
 //default dice on turn 1: 1, 2, 3, 4, 5
+//share button at end of game:
+    //how to get all share options? like copy to messages, twitter, etc.
 
 //styling:
 //- style all the variations of the code above
 //- maybe some subtle animations?
 //- yahtzee animation across the letters like the video: https://www.youtube.com/watch?v=U5G88KPJ6iY&ab_channel=UKKRAUTGAMING
+// dark mode? maybe not... people can live without it
 
 //END GAME:
     //turnNo == 13, check that all boxes are filled in
