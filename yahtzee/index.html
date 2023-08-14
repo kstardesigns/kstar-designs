@@ -26,27 +26,22 @@
                     <path d="M122.1 12.4c2.5-.5 4 1.4 4.3 3.6l-8.8 2c.6-3.4 2.3-5 4.5-5.6zm1-7c-6.7 0-13 7.5-13.6 16.7-.8 9.5 3.8 15.2 10.5 15.2 6.8 0 12-5.7 13.5-13.1l-7.5 1.5c-.7 2.6-2.3 4.2-4.3 4.5-2 .5-4.2-.8-4.2-6l16.3-3.6c.4-9.3-3.3-15.3-10.7-15.3z"/>
                     <path d="M146.4 7.2c2.4-.6 3.8 1.3 4.2 3.5l-8.7 1.9c.5-3.4 2.3-5 4.5-5.4zm1-7.2c-6.7 0-13 7.5-13.8 16.9-.7 9.4 4 15.2 10.7 15.2 6.8 0 11.8-5.8 13.5-13.3l-7.5 1.7c-.8 2.4-2.4 4-4.4 4.5-2 .4-4.2-1-4.2-6.2l16.3-3.5C158.5 6 154.8 0 147.3 0z"/>
                 </svg>
+                <span id="joker-text" class="hidden">joker!</span>
             </div>
 
-            <div class="high-score-area">
-                <svg class="trophy" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
-                    <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                    <path fill="#e6b905" d="M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63 142.3z"/>
-                </svg>
-                <div class="high-score-flex">
-                    <span>High score:</span> <span id="high-score"></span>
+            <div>
+                <div class="score-area">
+                    <div class="score-flex">
+                        <span>Score:</span> <span id="current-score">0</span>
+                    </div>
                 </div>
             </div>
+
+            <button type="button" class="yz-dialog-trigger rules-trigger" aria-label="Open dialog" data-dialog-trigger="yz-rules">
+                <span>?</span>
+            </button>
+
         </header>
-        <button type="button" onclick="testYahtzee();">Test a yahtzee</button>
-        <div>
-            <span>turn #:</span> <span id="turn-no">1</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-            <span>roll #:</span> <span id="roll-no">1</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-            <span>score:</span> <span id="current-score">0</span><br>
-            
-            <span id="joker-text" class="hidden">JOKER!!!!</span><br>
-            
-        </div>
         <main>
             <section class="scores">
                 <div class="yahtzee-score-wrap">
@@ -70,7 +65,11 @@
                         </tr>
                     </table>
                     <div class="top-scores">
-                        <span>top subtotal:</span> <span id="current-top">0</span><span id="top-bonus"></span>
+                        <div class="top-scores-right">
+                            <span id="top-bonus"></span><br>
+                            <span>top subtotal:</span>
+                            <div id="current-top">0</div>
+                        </div>
                     </div>
                 </div>
                 <table class="upper-scores">
@@ -370,39 +369,47 @@
             <section class="buttons">
                 <div class="hold-buttons disabled">
                     <div class="hold-button-group">
-                        <div class="hold-title">hold</div>
                         <button disabled type="button" class="hold hold--1" data-hold-die="1">Hold</button>
+                        <div class="hold-title hold hold--1" data-hold-die="1">hold</div>
                     </div>
                     <div class="hold-button-group">
-                        <div class="hold-title">hold</div>
                         <button disabled type="button" class="hold hold--2" data-hold-die="2">Hold</button>
+                        <div class="hold-title hold hold--2" data-hold-die="2">hold</div>
                     </div>
                     <div class="hold-button-group">
-                        <div class="hold-title">hold</div>
                         <button disabled type="button" class="hold hold--3" data-hold-die="3">Hold</button>
+                        <div class="hold-title hold hold--3" data-hold-die="3">hold</div>
                     </div>
                     <div class="hold-button-group">
-                        <div class="hold-title">hold</div>
                         <button disabled type="button" class="hold hold--4" data-hold-die="4">Hold</button>
+                        <div class="hold-title hold hold--4" data-hold-die="4">hold</div>
                     </div>
                     <div class="hold-button-group">
-                        <div class="hold-title">hold</div>
                         <button disabled type="button" class="hold hold--5" data-hold-die="5">Hold</button>
+                        <div class="hold-title hold hold--5" data-hold-die="5">hold</div>
                     </div>
                 </div>
             </section>
             <section class="roll-section">
                 <button type="button" class="roll">Roll</button>
                 <p id="choose-message">Choose a category</p>
+                <div class="roll-no">
+                    <span>roll #</span><span id="roll-no">1</span>
+                </div> 
             </section>
         </main>
-        <footer>
-        
-        </footer>
     </div>
-
-
+    
     <div id="yz-scores" class="yz-dialog" role="dialog" aria-labelledby="yz-dialog-title" aria-describedby="yz-dialog-description" aria-hidden="true">
+        <div class="high-score-area">
+            <svg class="trophy" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path fill="#e6b905" d="M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63 142.3z"/>
+            </svg>
+            <div class="high-score-flex">
+                <span>High score:</span> <span id="high-score"></span>
+            </div>
+        </div>
         <svg class="yz-svg-alert" width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false">
             <title>Alert</title>
             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -417,6 +424,26 @@
         <button class="yz-primary-button yz-primary-button--large">Confirm</button>
         <button class="yz-text-button yz-text-button--large yz-dialog-close" aria-label="Close dialog">Cancel</button>
     </div>
+
+    <div id="yz-rules" class="yz-dialog" role="dialog" aria-labelledby="yz-dialog-title-2" aria-describedby="yz-dialog-description-2" aria-hidden="true">
+        <p id="yz-dialog-title-2">rules will go here</p>
+        <p id="yz-dialog-description-2">subtitle</p>
+        <button class="yz-primary-button yz-primary-button--large">Confirm</button>
+        <button class="yz-text-button yz-text-button--large yz-dialog-close" aria-label="Close dialog">Cancel</button>
+    </div>
+
+    <footer>
+        <strong>testing area</strong><br>
+        <button type="button" onclick="testYahtzee();">Test a yahtzee</button>
+        <button type="button" onclick="testBonus();">Test top bonus text</button>
+        <div>
+            <span>turn #:</span> <span id="turn-no">1</span>
+        </div>
+        <button type="button" onclick="newGame();">new game</button>
+        <button type="button" class="yz-dialog-trigger scores-trigger" aria-label="Open dialog" data-dialog-trigger="yz-scores">
+            open endgame modal
+        </button>
+    </footer>
 
 
 	<script src="scripts.js"></script>

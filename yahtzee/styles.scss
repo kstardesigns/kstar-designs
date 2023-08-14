@@ -33,13 +33,37 @@ header {
     display: flex;
     justify-content: space-between;
 
+
+    .logo-area {
+        width: 33.333%;
+        flex: 0 0 33.333%;
+        padding-bottom: 8px;
+        max-width: 160px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
     .yahtzee-logo {
-        width: 158px;
-        height: 60px;
-        flex: 0 0 158px;
+        width: 90%;
+        flex: 0 0 90%;
+    }
+
+    #joker-text {
+        font-family: var(--handwriting);
+        color: var(--pen-blue);
+        font-size: 17px;
+        line-height: 21px;
+        font-weight: 600;
+        text-transform: uppercase;
+        transform: rotate(-12deg);
+        position: absolute;
+        right: 0;
+        bottom: 4px;
     }
     
-    .high-score-area {
+    .high-score-area, .score-area {
         display: flex;
         gap: 5px;
         align-items: center;
@@ -49,15 +73,73 @@ header {
         font-size: 13px;
         line-height: 20px;
         font-weight: 600;
+        justify-content: flex-end;
 
-        .high-score-flex {
+        .trophy {
+            width: 15px;
+            flex: 0 0 15px;
+            margin-top: -1px;
+        }
+
+        .high-score-flex, .score-flex {
             display: flex;
             align-items: center;
             gap: 5px;
+            margin-top: 1px;
         }
 
         #high-score {
             font-size: 17px;
+            margin-top: -1px;
+        }
+
+        #current-score {
+            font-size: 32px;
+            letter-spacing: 0.5px;
+            margin-top: -4px;
+            color: var(--pen-blue);
+            font-family: var(--handwriting);
+        }
+
+        .score-flex {
+            font-size: 20px;
+            gap: 8px;
+        }
+    }
+
+    .score-area {
+        display: flex;
+        align-items: center;
+        height: auto;
+    }
+
+    .rules-trigger {
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        flex: 0 0 40px;
+        border: 0;
+        background: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: -10px -9px 0 0;
+
+        span {
+            width: 22px;
+            height: 22px;
+            flex: 0 0 22px; 
+            border: 2px solid var(--scoresheet-border);
+            border-radius: 50%;
+            background: transparent;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--scoresheet-border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--poppins);
+            padding-left: 1px;
         }
     }
 }
@@ -76,15 +158,6 @@ main {
         .yahtzee-scores {
             width: calc(33.332% + 1px);
             border: 0;
-
-            // &-yahtzee {
-            //     width: 100%;
-            //     border: 0;
-            // }
-
-            // &-die {
-            //     width: 100%;
-            // }
 
             th {
                 width: 100%;
@@ -138,19 +211,49 @@ main {
             text-transform: uppercase;
             font-weight: 600;
             font-size: 15px;
+            line-height: 16px;
             padding-right: 0px;
             align-self: flex-end;
+            padding-left: 5px;
             padding-bottom: 2px;
             gap: 6px;
             display: flex;
-            align-items: center;
+            justify-content: space-between;
+            align-items: flex-end;
+            width: calc(100% - 33.332% - 1px);
+
+            @media screen and (max-width: 374px) {
+                font-size: 13px;
+            }
+
+            .top-scores-right {
+                text-align: right;
+                margin-top: -6px;
+                width: 100%;
+            }
 
             #current-top, #top-bonus {
                 font-family: var(--handwriting);
                 color: var(--pen-blue);
-                font-size: 30px;
-                font-weight: 400;
-                padding-bottom: 2px;
+                font-size: 22px;
+                line-height: 21px;
+                font-weight: 600;
+            }
+
+            #current-top {
+                font-size: 25px;
+                margin-left: 1px;
+                transform: translateY(1px);
+                display: inline-block;
+            }
+
+            #top-bonus {
+                font-family: var(--handwriting);
+                color: var(--pen-blue);
+                font-size: 17px;
+                line-height: 21px;
+                display: inline-block;
+                transform: rotate(-12deg);
             }
         }
 
@@ -196,6 +299,11 @@ main {
             justify-content: center;
             align-items: center;
             box-shadow: 5px -3px 0 0 #efa55e;
+
+            @media screen and (max-width: 374px) {
+                width: 32px;
+                height: 32px;
+            }
 
             svg {
                 width: 90%;
@@ -256,9 +364,9 @@ main {
                 position: relative;
                 box-shadow: 5px -3px 0 0 #efa55e;
 
-                @media screen and (min-width: 550px) {
-                    width: 40px;
-                    height: 40px;
+                @media screen and (max-width: 374px) {
+                    width: 32px;
+                    height: 32px;
                 }
     
                 img {
@@ -377,7 +485,7 @@ main {
     }
 
     .dice {
-        margin-top: 40px;
+        margin-top: 60px;
 
         .dice-flex {
             display: flex;
@@ -458,6 +566,7 @@ main {
 
     .buttons {
         height: 64px;
+        margin-top: 8px;
 
         button {
             cursor: pointer;
@@ -488,7 +597,7 @@ main {
             align-items: center;
         }
 
-        .hold {
+        button.hold {
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -531,10 +640,26 @@ main {
         color: #fff;
         text-transform: uppercase;
         text-shadow: 1px 1px 2px rgb(200, 61, 37);
+        cursor: pointer;
 
         &:active {
             box-shadow: none;
         }
+    }
+
+    .roll-no {
+        font-family: var(--poppins);
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 16px;
+        padding-right: 0px;
+        text-align: center;
+        margin-top: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3px;
     }
 
     #choose-message {
@@ -542,7 +667,7 @@ main {
         text-align: center;
         font-family: var(--poppins);
         font-size: 18px;
-        margin: 25px auto 22.5px;
+        margin: 25px auto 28.5px;
     }
 }
 
@@ -630,4 +755,10 @@ main {
 }
 
 footer {
+    border: 2px dotted var(--scoresheet-border);
+    margin-top: 20px;
+
+    * {
+        margin: 5px;
+    }
 }

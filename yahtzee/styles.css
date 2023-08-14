@@ -31,12 +31,33 @@ header {
   display: flex;
   justify-content: space-between;
 }
-header .yahtzee-logo {
-  width: 158px;
-  height: 60px;
-  flex: 0 0 158px;
+header .logo-area {
+  width: 33.333%;
+  flex: 0 0 33.333%;
+  padding-bottom: 8px;
+  max-width: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
-header .high-score-area {
+header .yahtzee-logo {
+  width: 90%;
+  flex: 0 0 90%;
+}
+header #joker-text {
+  font-family: var(--handwriting);
+  color: var(--pen-blue);
+  font-size: 17px;
+  line-height: 21px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transform: rotate(-12deg);
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+}
+header .high-score-area, header .score-area {
   display: flex;
   gap: 5px;
   align-items: center;
@@ -46,14 +67,66 @@ header .high-score-area {
   font-size: 13px;
   line-height: 20px;
   font-weight: 600;
+  justify-content: flex-end;
 }
-header .high-score-area .high-score-flex {
+header .high-score-area .trophy, header .score-area .trophy {
+  width: 15px;
+  flex: 0 0 15px;
+  margin-top: -1px;
+}
+header .high-score-area .high-score-flex, header .high-score-area .score-flex, header .score-area .high-score-flex, header .score-area .score-flex {
   display: flex;
   align-items: center;
   gap: 5px;
+  margin-top: 1px;
 }
-header .high-score-area #high-score {
+header .high-score-area #high-score, header .score-area #high-score {
   font-size: 17px;
+  margin-top: -1px;
+}
+header .high-score-area #current-score, header .score-area #current-score {
+  font-size: 32px;
+  letter-spacing: 0.5px;
+  margin-top: -4px;
+  color: var(--pen-blue);
+  font-family: var(--handwriting);
+}
+header .high-score-area .score-flex, header .score-area .score-flex {
+  font-size: 20px;
+  gap: 8px;
+}
+header .score-area {
+  display: flex;
+  align-items: center;
+  height: auto;
+}
+header .rules-trigger {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  border: 0;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -10px -9px 0 0;
+}
+header .rules-trigger span {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  border: 2px solid var(--scoresheet-border);
+  border-radius: 50%;
+  background: transparent;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--scoresheet-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--poppins);
+  padding-left: 1px;
 }
 
 main .scores {
@@ -115,19 +188,47 @@ main .scores .top-scores {
   text-transform: uppercase;
   font-weight: 600;
   font-size: 15px;
+  line-height: 16px;
   padding-right: 0px;
   align-self: flex-end;
+  padding-left: 5px;
   padding-bottom: 2px;
   gap: 6px;
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: calc(66.668% - 1px);
+}
+@media screen and (max-width: 374px) {
+  main .scores .top-scores {
+    font-size: 13px;
+  }
+}
+main .scores .top-scores .top-scores-right {
+  text-align: right;
+  margin-top: -6px;
+  width: 100%;
 }
 main .scores .top-scores #current-top, main .scores .top-scores #top-bonus {
   font-family: var(--handwriting);
   color: var(--pen-blue);
-  font-size: 30px;
-  font-weight: 400;
-  padding-bottom: 2px;
+  font-size: 22px;
+  line-height: 21px;
+  font-weight: 600;
+}
+main .scores .top-scores #current-top {
+  font-size: 25px;
+  margin-left: 1px;
+  transform: translateY(1px);
+  display: inline-block;
+}
+main .scores .top-scores #top-bonus {
+  font-family: var(--handwriting);
+  color: var(--pen-blue);
+  font-size: 17px;
+  line-height: 21px;
+  display: inline-block;
+  transform: rotate(-12deg);
 }
 main .scores .upper-scores {
   width: 100%;
@@ -167,6 +268,12 @@ main .scores .upper-scores-die {
   justify-content: center;
   align-items: center;
   box-shadow: 5px -3px 0 0 #efa55e;
+}
+@media screen and (max-width: 374px) {
+  main .scores .upper-scores-die {
+    width: 32px;
+    height: 32px;
+  }
 }
 main .scores .upper-scores-die svg {
   width: 90%;
@@ -221,10 +328,10 @@ main .scores .lower-scores .lower-scores-die {
   position: relative;
   box-shadow: 5px -3px 0 0 #efa55e;
 }
-@media screen and (min-width: 550px) {
+@media screen and (max-width: 374px) {
   main .scores .lower-scores .lower-scores-die {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
   }
 }
 main .scores .lower-scores .lower-scores-die img {
@@ -317,7 +424,7 @@ main .scores .choose-score-row td {
   border: 0;
 }
 main .dice {
-  margin-top: 40px;
+  margin-top: 60px;
 }
 main .dice .dice-flex {
   display: flex;
@@ -381,6 +488,7 @@ main .dice .held.yes {
 }
 main .buttons {
   height: 64px;
+  margin-top: 8px;
 }
 main .buttons button {
   cursor: pointer;
@@ -405,7 +513,7 @@ main .buttons .hold-button-group {
   flex-direction: column;
   align-items: center;
 }
-main .buttons .hold {
+main .buttons button.hold {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -416,7 +524,7 @@ main .buttons .hold {
   color: transparent;
   box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.15);
 }
-main .buttons .hold:active {
+main .buttons button.hold:active {
   box-shadow: none;
 }
 main .buttons .hold-title {
@@ -443,16 +551,31 @@ main .buttons .hold-title {
   color: #fff;
   text-transform: uppercase;
   text-shadow: 1px 1px 2px rgb(200, 61, 37);
+  cursor: pointer;
 }
 .roll-section .roll:active {
   box-shadow: none;
+}
+.roll-section .roll-no {
+  font-family: var(--poppins);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 16px;
+  padding-right: 0px;
+  text-align: center;
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
 }
 .roll-section #choose-message {
   display: none;
   text-align: center;
   font-family: var(--poppins);
   font-size: 18px;
-  margin: 25px auto 22.5px;
+  margin: 25px auto 28.5px;
 }
 
 .yz-dialog {
@@ -531,6 +654,14 @@ main .buttons .hold-title {
   position: absolute;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
+}
+
+footer {
+  border: 2px dotted var(--scoresheet-border);
+  margin-top: 20px;
+}
+footer * {
+  margin: 5px;
 }
 
 /*# sourceMappingURL=styles.css.map */

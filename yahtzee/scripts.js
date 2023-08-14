@@ -69,7 +69,7 @@ let results = [],
     topBonus = false,
     yahtzeeBonus = 0,
     highScore = 0,
-    bonusMessage = '+ 35!';
+    bonusMessage = 'bonus!';
 
 //reload current game from cookies
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -560,6 +560,10 @@ const updateTopScore = () => {
              + scoreCard['fours'] 
              + scoreCard['fives'] 
              + scoreCard['sixes'];
+    
+    if (topBonus) {
+        topScore += 35;
+    }
     document.querySelector('#current-top').textContent = topScore;
     return topScore;
 }
@@ -627,11 +631,6 @@ const eraseCookie = (cookieName) => {
     document.cookie = cookieName +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
-
-
-
-
-
 //TESTING
 const testYahtzee = () => {
     rollDice();
@@ -652,6 +651,18 @@ const testYahtzee = () => {
     }, 3000);
 }
 
+const testBonus = () => {
+    document.querySelector('#top-bonus').textContent = bonusMessage;
+    topBonus = true;
+}
+
+const newGame = () => {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      eraseCookie(cookies[i].split("=")[0]);
+    }
+    location.reload();
+}
 
 //modal
 //Credit:
@@ -792,14 +803,14 @@ Dialog.prototype._handleKeyDown = function(e) {
 	}
 };
 
-Dialog.prototype.addEventListeners = function(/*openDialogSel, */closeDialogSel) {
+Dialog.prototype.addEventListeners = function(openDialogSel, closeDialogSel) {
 	var Dialog = this,
-        // openDialogEl = document.querySelector(`[data-dialog-trigger="${openDialogSel}"]`),
+        openDialogEl = document.querySelector(`[data-dialog-trigger="${openDialogSel}"]`),
         closeDialogEls = document.querySelectorAll(`${closeDialogSel}`);
 
-    // openDialogEl.addEventListener('click', function(e) { 
-    //     Dialog.open();
-    // });
+    openDialogEl.addEventListener('click', function(e) { 
+        Dialog.open();
+    });
 
 	for (var i = 0; i < closeDialogEls.length; i++) {
 		closeDialogEls[i].addEventListener('click', function() {
