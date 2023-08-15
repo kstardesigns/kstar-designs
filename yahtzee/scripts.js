@@ -273,6 +273,12 @@ roll.addEventListener('click', rollDice);
 const showPossibleScores = (results) => {
     chooseScoreButtons.forEach((button) => {
         button.style.display = 'block';
+
+        if (rollNo == 3) {
+            button.style.opacity = '1';
+        } else {
+            button.style.opacity = '0.8';
+        }
     });
 
     if (rollNo < 3) {

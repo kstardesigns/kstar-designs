@@ -364,23 +364,6 @@ main {
                     flex: 0 0 100%;
                 }
 
-                .lower-scores-straight {
-                    // position: absolute;
-                    border: 1px solid var(--scoresheet-border);
-                    border-radius: 6px;
-                    background-color: var(--score-bg-color);
-                    // top: 27px;
-                    // left: 2px;
-                    // width: 21vw;
-                    padding: 2px 0 1.5px;
-                    font-size: 3.5vw;
-                    z-index: 99;
-
-                    @media screen and (min-width: 480px) {
-                        width: 115px;
-                    }
-                }
-
                 &--yahtzee {
                     padding: 5px;
                     max-width: 100%;
@@ -447,6 +430,7 @@ main {
             z-index: 1;
             cursor: pointer;
             padding: 0;
+            opacity: 0.8;
 
             &::before {
                 content: '';
@@ -470,6 +454,46 @@ main {
             td {
                 border: 0;
             }
+        }
+    }
+
+    .straight-wrap {
+        width: 100%;
+        position: relative;
+    }
+    .straight {
+        border: 1px solid var(--scoresheet-border);
+        border-radius: 6px;
+        background-color: var(--score-bg-color);
+        font-size: 12px;
+        line-height: 14px;
+        z-index: 99;
+        position: absolute;
+        top: -61px;
+        left: 50%;
+        width: calc(33.333% - 30px);
+        display: flex;
+        justify-content: center;
+        margin-left: 15px;
+        text-transform: uppercase;
+        padding: 0 5px;
+        font-family: "Poppins";
+        letter-spacing: 1px;
+
+        @media screen and (min-width: 480px) {
+           // width: 115px;
+        }
+
+        @media screen and (min-width: 375px) {
+            font-size: 14px;
+            line-height: 16px;
+            top: -63px;
+        }
+
+        @media screen and (min-width: 415px) {
+            width: calc(33.333% - 50px);
+            margin-left: 25px;
+            letter-spacing: 0.5px;
         }
     }
 
@@ -702,7 +726,7 @@ main {
 
     &[data-bh-dialog-top] {
         position: absolute;
-        top: initial !important;
+        top: 0 !important;
         margin-bottom: 50px;
     }
 
@@ -796,7 +820,7 @@ main {
         height: 40px;
         line-height: 0;
         position: absolute;
-        top: 2px;
+        top: -8px;
         right: -4px;
         -webkit-tap-highlight-color: rgba(0,0,0,0);
 
@@ -812,8 +836,8 @@ main {
         }
 
         @media screen and (max-width: 600px) {
-            margin-top: -8px;
-            margin-right: -10px;
+            top: -4px;
+            right: -8px;
         }
     }
 
