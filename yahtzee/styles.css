@@ -57,7 +57,7 @@ header #joker-text {
   right: 0;
   bottom: 4px;
 }
-header .high-score-area, header .score-area {
+header .score-area {
   display: flex;
   gap: 5px;
   align-items: center;
@@ -69,29 +69,20 @@ header .high-score-area, header .score-area {
   font-weight: 600;
   justify-content: flex-end;
 }
-header .high-score-area .trophy, header .score-area .trophy {
-  width: 15px;
-  flex: 0 0 15px;
-  margin-top: -1px;
-}
-header .high-score-area .high-score-flex, header .high-score-area .score-flex, header .score-area .high-score-flex, header .score-area .score-flex {
+header .score-area .score-flex {
   display: flex;
   align-items: center;
   gap: 5px;
   margin-top: 1px;
 }
-header .high-score-area #high-score, header .score-area #high-score {
-  font-size: 17px;
-  margin-top: -1px;
-}
-header .high-score-area #current-score, header .score-area #current-score {
+header .score-area #current-score {
   font-size: 32px;
   letter-spacing: 0.5px;
   margin-top: -4px;
   color: var(--pen-blue);
   font-family: var(--handwriting);
 }
-header .high-score-area .score-flex, header .score-area .score-flex {
+header .score-area .score-flex {
   font-size: 20px;
   gap: 8px;
 }
@@ -116,12 +107,12 @@ header .rules-trigger span {
   width: 22px;
   height: 22px;
   flex: 0 0 22px;
-  border: 2px solid var(--scoresheet-border);
+  border: 2px solid #222;
   border-radius: 50%;
   background: transparent;
   font-weight: 600;
   font-size: 14px;
-  color: var(--scoresheet-border);
+  color: #222;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -581,7 +572,7 @@ main .buttons .hold-title {
 .yz-dialog {
   display: block;
   z-index: 3;
-  padding: 32px 48px 35px;
+  padding: 20px 30px 30px;
   margin: 0;
   text-align: center;
   border-radius: 4px;
@@ -592,7 +583,7 @@ main .buttons .hold-title {
 }
 @media screen and (max-width: 600px) {
   .yz-dialog {
-    padding: 24px;
+    padding: 10px 15px;
   }
 }
 @media screen and (max-width: 480px) {
@@ -621,6 +612,7 @@ main .buttons .hold-title {
 }
 .yz-dialog[data-bh-dialog-top] {
   position: absolute;
+  top: initial !important;
   margin-bottom: 50px;
 }
 .yz-dialog-overlay {
@@ -646,6 +638,11 @@ main .buttons .hold-title {
     padding: 0;
   }
 }
+@media screen and (max-height: 650px) {
+  .yz-dialog-overlay {
+    align-items: flex-start;
+  }
+}
 .yz-dialog-fixed-page {
   overflow: hidden;
 }
@@ -654,6 +651,123 @@ main .buttons .hold-title {
   position: absolute;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
+}
+.yz-dialog-header {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.yz-dialog .high-score-area {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  height: 20px;
+  font-family: "Poppins";
+  text-transform: uppercase;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 600;
+  justify-content: flex-end;
+}
+.yz-dialog .high-score-area .trophy {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  margin-top: -1px;
+}
+.yz-dialog .high-score-flex {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 1px;
+}
+.yz-dialog #high-score {
+  font-size: 17px;
+  margin-top: -1px;
+}
+.yz-dialog-close {
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  font-family: var(--handwriting);
+  font-size: 54px;
+  color: #222;
+  width: 40px;
+  height: 40px;
+  line-height: 0;
+  position: absolute;
+  top: 2px;
+  right: -4px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.yz-dialog-close:focus, .yz-dialog-close:active {
+  outline: 0;
+  background: none;
+}
+.yz-dialog-close span {
+  position: absolute;
+  top: 9px;
+  right: 7px;
+}
+@media screen and (max-width: 600px) {
+  .yz-dialog-close {
+    margin-top: -8px;
+    margin-right: -10px;
+  }
+}
+.yz-dialog h1 {
+  display: flex;
+  justify-content: center;
+  font-family: var(--poppins);
+  color: #222;
+  gap: 10px;
+  font-size: 23px;
+  margin: 10px 0 0;
+}
+.yz-dialog p {
+  color: #222;
+  font-family: var(--poppins);
+  font-size: 13px;
+  line-height: 17px;
+  text-align: center;
+  margin: 0 0 5px;
+}
+.yz-dialog .disclaimer {
+  font-size: 10px;
+  line-height: 12px;
+  margin-top: 10px;
+}
+.yz-dialog a, .yz-dialog a:visited {
+  color: var(--pen-blue);
+}
+.yz-dialog-yahtzee-logo {
+  width: 85px;
+  flex: 0 0 85px;
+  transform: rotate(12deg) translateY(1px);
+}
+.yz-dialog-yahtzee-logo path, .yz-dialog-yahtzee-logo polygon {
+  fill: #222;
+}
+.yz-dialog table {
+  border: 1px solid var(--scoresheet-border);
+  font-family: var(--poppins);
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.yz-dialog table th {
+  width: 50%;
+  background-color: var(--scoresheet-border);
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+}
+.yz-dialog table td {
+  width: 50%;
+  color: #222;
+  border: 1px solid var(--scoresheet-border);
+  text-align: left;
+  padding: 5px 10px;
 }
 
 footer {

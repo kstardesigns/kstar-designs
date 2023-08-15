@@ -63,7 +63,7 @@ header {
         bottom: 4px;
     }
     
-    .high-score-area, .score-area {
+    .score-area {
         display: flex;
         gap: 5px;
         align-items: center;
@@ -75,22 +75,11 @@ header {
         font-weight: 600;
         justify-content: flex-end;
 
-        .trophy {
-            width: 15px;
-            flex: 0 0 15px;
-            margin-top: -1px;
-        }
-
-        .high-score-flex, .score-flex {
+        .score-flex {
             display: flex;
             align-items: center;
             gap: 5px;
             margin-top: 1px;
-        }
-
-        #high-score {
-            font-size: 17px;
-            margin-top: -1px;
         }
 
         #current-score {
@@ -129,12 +118,12 @@ header {
             width: 22px;
             height: 22px;
             flex: 0 0 22px; 
-            border: 2px solid var(--scoresheet-border);
+            border: 2px solid #222;
             border-radius: 50%;
             background: transparent;
             font-weight: 600;
             font-size: 14px;
-            color: var(--scoresheet-border);
+            color: #222;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -674,7 +663,7 @@ main {
 .yz-dialog {
     display: block;
     z-index: 3;
-    padding: 32px 48px 35px;
+    padding: 20px 30px 30px;
     margin: 0;
     text-align: center;
     border-radius: 4px;
@@ -684,7 +673,7 @@ main {
     max-width: 100%;
 
     @media screen and (max-width: 600px) {
-        padding: 24px;
+        padding: 10px 15px;
     }
 
     @media screen and (max-width: 480px) {
@@ -713,6 +702,7 @@ main {
 
     &[data-bh-dialog-top] {
         position: absolute;
+        top: initial !important;
         margin-bottom: 50px;
     }
 
@@ -740,6 +730,10 @@ main {
                 padding: 0;
             }
         }
+
+        @media screen and (max-height: 650px) {
+            align-items: flex-start;
+        }
     }
 
     &-fixed-page {
@@ -751,6 +745,143 @@ main {
         position: absolute;
         clip: rect(1px 1px 1px 1px);
         clip: rect(1px, 1px, 1px, 1px);
+    }
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    .high-score-area {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        height: 20px;
+        font-family: 'Poppins';
+        text-transform: uppercase;
+        font-size: 13px;
+        line-height: 20px;
+        font-weight: 600;
+        justify-content: flex-end;
+
+        .trophy {
+            width: 20px;
+            height: 20px;
+            flex: 0 0 20px;
+            margin-top: -1px;
+        }
+    }
+
+    .high-score-flex {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 1px;
+    }
+
+    #high-score {
+        font-size: 17px;
+        margin-top: -1px;
+    }
+
+    &-close {
+        cursor: pointer;
+        background: transparent;
+        border: 0;
+        font-family: var(--handwriting);
+        font-size: 54px;
+        color: #222;
+        width: 40px;
+        height: 40px;
+        line-height: 0;
+        position: absolute;
+        top: 2px;
+        right: -4px;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+        &:focus, &:active {
+            outline: 0;
+            background: none;
+        }
+
+        span {
+            position: absolute;
+            top: 9px;
+            right: 7px;
+        }
+
+        @media screen and (max-width: 600px) {
+            margin-top: -8px;
+            margin-right: -10px;
+        }
+    }
+
+    h1 {
+        display: flex;
+        justify-content: center;
+        font-family: var(--poppins);
+        color: #222;
+        gap: 10px;
+        font-size: 23px;
+        margin: 10px 0 0;
+    }
+
+    p {
+        color: #222;
+        font-family: var(--poppins);
+        font-size: 13px;
+        line-height: 17px;
+        text-align: center;
+        margin: 0 0 5px; 
+    }
+
+    .disclaimer {
+        font-size: 10px;
+        line-height: 12px;
+        margin-top: 10px;
+    }
+
+    a, a:visited {
+        color: var(--pen-blue);
+    }
+
+    &-yahtzee-logo {
+        width: 85px;
+        flex: 0 0 85px;
+        transform: rotate(12deg) translateY(1px);
+
+        path, polygon {
+            fill: #222;
+        }
+    }
+
+    table {
+        border: 1px solid var(--scoresheet-border);
+        font-family: var(--poppins);
+        border-collapse: collapse;
+        font-size: 14px;
+        margin-top: 10px;
+
+        tr {
+
+        }
+
+        th {  
+            width: 50%;
+            background-color: var(--scoresheet-border);
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+        }
+
+        td {
+            width: 50%;
+            color: #222;
+            border: 1px solid var(--scoresheet-border);
+            text-align: left;
+            padding: 5px 10px;;
+        }
     }
 }
 
