@@ -273,12 +273,6 @@ roll.addEventListener('click', rollDice);
 const showPossibleScores = (results) => {
     chooseScoreButtons.forEach((button) => {
         button.style.display = 'block';
-
-        if (rollNo == 3) {
-            button.style.opacity = '1';
-        } else {
-            button.style.opacity = '0.8';
-        }
     });
 
     if (rollNo < 3) {
@@ -367,10 +361,7 @@ chooseScoreButtons.forEach((button) => {
         document.querySelector(`#final-score-${chosenScore}`).textContent = scoreCard[chosenScore];
         
         //check for top bonus
-        if (updateTopScore() >= 63) {
-            document.querySelector('#top-bonus').textContent = bonusMessage;
-            topBonus = true;
-        }
+        updateTopScore();
 
         //update current total score
         updateCurrentScore();
@@ -424,7 +415,6 @@ const setCookie = (cookieName, value, days) => {
 const updateCookies = () => {
     setCookie('turnNumber', turnNo, cookieLength);
     setCookie('rollNumber', rollNo, cookieLength);
-    setCookie('topBonus', topBonus, cookieLength);
     setCookie('currentRollResults', results, cookieLength);
     console.log('current roll just set to cookies:');
     console.log(getCookie('currentRollResults'));
@@ -547,12 +537,6 @@ const resetScoreboard = () => {
     }
 
     updateTopScore();
-
-    topBonus = getCookie('topBonus');
-    if (topBonus) {
-        document.querySelector('#top-bonus').textContent = bonusMessage;
-    }
-
     updateCurrentScore();
     
     // console.log('scoreCard:'); 
@@ -567,9 +551,12 @@ const updateTopScore = () => {
              + scoreCard['fives'] 
              + scoreCard['sixes'];
     
-    if (topBonus) {
+    if (topScore >= 63) {
+        document.querySelector('#top-bonus').textContent = bonusMessage;
+        topBonus = true;
         topScore += 35;
     }
+
     document.querySelector('#current-top').textContent = topScore;
     return topScore;
 }
