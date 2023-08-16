@@ -26,20 +26,20 @@ const cookieLength = 7,
 
 //tracks current score for each category
 let scoreCard = {
-    ones: 0,
-    twos: 0,
-    threes: 0,
-    fours: 0,
-    fives: 0,
-    sixes: 0,
-    threeOfAKind: 0,
-    fourOfAKind: 0,
-    fullHouse: 0,
-    smallStraight: 0,
-    largeStraight: 0,
-    chance: 0,
-    yahtzee: 0,
-    yahtzeeBonus: 0
+    ones: null,
+    twos: null,
+    threes: null,
+    fours: null,
+    fives: null,
+    sixes: null,
+    threeOfAKind: null,
+    fourOfAKind: null,
+    fullHouse: null,
+    smallStraight: null,
+    largeStraight: null,
+    chance: null,
+    yahtzee: null,
+    yahtzeeBonus: null
 }
 
 //to show possible scores to choose after each roll
@@ -58,6 +58,25 @@ let possibleScores = {
     chance: 0,
     yahtzee: 0
 }
+
+//set these to true when chosen
+let scorePicked = {
+    ones: 'false',
+    twos: 'false',
+    threes: 'false',
+    fours: 'false',
+    fives: 'false',
+    sixes: 'false',
+    threeOfAKind: 'false',
+    fourOfAKind: 'false',
+    fullHouse: 'false',
+    smallStraight: 'false',
+    largeStraight: 'false',
+    chance: 'false',
+    yahtzee: 'false',
+    yahtzeeBonus: 'false'
+}
+
 
 //track dice, turn number, roll number, current score
 let results = [],
@@ -355,7 +374,8 @@ chooseScoreButtons.forEach((button) => {
 
         //update score with chosen score, display it
         const chosenScore = button.getAttribute('id').split('-').pop();
-        scoreCard[chosenScore] = possibleScores[chosenScore];
+        scoreCard[chosenScore] = possibleScores[chosenScore].toString();
+        scorePicked[chosenScore] = 'true';
         button.classList.add('already-chosen');
         button.disabled = true;
         document.querySelector(`#final-score-${chosenScore}`).textContent = scoreCard[chosenScore];
@@ -420,9 +440,15 @@ const updateCookies = () => {
     console.log(getCookie('currentRollResults'));
     //todo: get cookie on reload, save held results? 
 
+    for (const [key, value] of Object.entries(scorePicked)) {
+        setCookie(`picked${key}`, `${value}`, cookieLength);
+    }
+
     for (const [key, value] of Object.entries(scoreCard)) {
-        setCookie(`${key}`, value, cookieLength);
-        // console.log(`cookie ${key} updated and its value is ${value}`);
+        if (scorePicked[key] == 'true') {
+            setCookie(`${key}`, `${value}`, cookieLength);
+            console.log(`cookie ${key} updated and its value is ${value}`);
+        }
     }
 }
 
@@ -469,16 +495,16 @@ const resetScoreboard = () => {
 
     let categoriesFilled = 0;
 
-    //update scorecard with individual categories chosen, or set score to 0 and allow it to be picked
-    for (const key in scoreCard) {
-        if (getCookie(key)) {
-            scoreCard[key] = Number(getCookie(key));
+    //update which scores have been kept
+    for (const key in scorePicked) {
+        if (getCookie(`picked${key}`) == 'true') {
+            scoreCard[key] = getCookie(key);
+            scorePicked[key] = 'true';
             document.querySelector(`#final-score-${key}`).textContent = scoreCard[key];
             document.querySelector(`#score-${key}`).classList.add('already-chosen');
             categoriesFilled++;
         } else {
-            scoreCard[key] = 0;
-            document.querySelector(`#score-${key}`).classList.remove('already-chosen');
+            
         }
     }
 
@@ -544,12 +570,12 @@ const resetScoreboard = () => {
 }
 
 const updateTopScore = () => {
-    topScore = scoreCard['ones'] 
-             + scoreCard['twos'] 
-             + scoreCard['threes'] 
-             + scoreCard['fours'] 
-             + scoreCard['fives'] 
-             + scoreCard['sixes'];
+    topScore = Number(scoreCard['ones'])
+             + Number(scoreCard['twos'])
+             + Number(scoreCard['threes'])
+             + Number(scoreCard['fours']) 
+             + Number(scoreCard['fives']) 
+             + Number(scoreCard['sixes']);
     
     if (topScore >= 63) {
         document.querySelector('#top-bonus').textContent = bonusMessage;
@@ -562,7 +588,7 @@ const updateTopScore = () => {
 }
 
 const updateCurrentScore = () => {
-    currScore = Object.values(scoreCard).reduce((a, b) => a + b, 0);
+    currScore = Object.values(scoreCard).reduce((a, b) => Number(a) + Number(b), 0);
     if (topBonus) {
         currScore = currScore + 35;
     }
@@ -573,6 +599,7 @@ const calcBonusYahtzeeScore = () => {
     yahtzeeBonus++;
     document.querySelector('#yahtzee-bonus').textContent += '✓';
     scoreCard.yahtzeeBonus = 100 * yahtzeeBonus;
+    scorePicked.yahtzeeBonus = 'true';
     updateCurrentScore();
     updateCookies();
 
