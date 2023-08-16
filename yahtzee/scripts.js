@@ -367,8 +367,9 @@ const showPossibleScores = (results) => {
 chooseScoreButtons.forEach((button) => {
     button.addEventListener('click', () => {
 
-        //stop yahtzee animation
+        //stop yahtzee animation & hide joker text
         document.querySelector('.yahtzee-logo-header').classList.remove('active');
+        document.querySelector('#joker-text').style.display = 'none';
 
         //hide hold buttons, other choose buttons, choose message
         holdRow.classList = 'hold-buttons disabled';
