@@ -48,6 +48,48 @@ header {
     .yahtzee-logo {
         width: 90%;
         flex: 0 0 90%;
+        
+        $anim-length: 800;
+        $letter-length: calc($anim-length / 7);
+
+        &.active {
+            .y-letter {
+                animation: blink $anim-length+ms linear 0ms infinite forwards;
+            }
+
+            .a-letter {
+                animation: blink $anim-length+ms linear $letter-length+ms infinite forwards;
+            }
+
+            .h-letter {
+                animation: blink $anim-length+ms linear calc($letter-length*2)+ms infinite forwards;
+            }
+
+            .t-letter {
+                animation: blink $anim-length+ms linear calc($letter-length*3)+ms infinite forwards;
+            }
+
+            .z-letter {
+                animation: blink $anim-length+ms linear calc($letter-length*4)+ms infinite forwards;
+            }
+
+            .e-letter {
+                animation: blink $anim-length+ms linear calc($letter-length*5)+ms infinite forwards;
+            }
+
+            .e-letter-2 {
+                animation: blink $anim-length+ms linear calc($letter-length*6)+ms infinite forwards;
+            }
+        }
+
+        @keyframes blink {
+            0%   { opacity: 1; }
+            14.3% { opacity: 1; }
+            14.31%  { opacity: 0; }
+            28.6% { opacity: 0; }
+            28.61% { opacity: 1; }
+            100% { opacity: 1; }
+        }
     }
 
     #joker-text {
@@ -847,7 +889,7 @@ main {
         color: #222;
         gap: 10px;
         font-size: 23px;
-        margin: 10px 0 0;
+        margin: 15px 0 0;
     }
 
     p {
@@ -884,7 +926,7 @@ main {
         font-family: var(--poppins);
         border-collapse: collapse;
         font-size: 14px;
-        margin-top: 10px;
+        margin-top: 20px;
 
         tr {
 

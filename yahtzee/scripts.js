@@ -344,6 +344,11 @@ const showPossibleScores = (results) => {
     const isYahtzee = results.every( (val, i, arr) => val === arr[0]);
     possibleScores.yahtzee = isYahtzee ? 50 : 0;
 
+    //show yahtzee animation
+    if (isYahtzee) {
+        document.querySelector('.yahtzee-logo-header').classList.add('active');
+    }
+
     //if they roll another yahtzee when they already have at least one
     if (isYahtzee && scoreCard.yahtzee == 50) {
         calcBonusYahtzeeScore();
@@ -361,6 +366,9 @@ const showPossibleScores = (results) => {
 //choosing a score category
 chooseScoreButtons.forEach((button) => {
     button.addEventListener('click', () => {
+
+        //stop yahtzee animation
+        document.querySelector('.yahtzee-logo-header').classList.remove('active');
 
         //hide hold buttons, other choose buttons, choose message
         holdRow.classList = 'hold-buttons disabled';
