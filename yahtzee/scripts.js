@@ -417,17 +417,31 @@ chooseScoreButtons.forEach((button) => {
 
 holds.forEach((hold) => {
     hold.addEventListener('click', () => {
+        //add hold class
         let heldDie = hold.dataset.holdDie;
-        console.log(`clicked & held: ${heldDie}`);
         document.querySelector(`.held--${heldDie}`).classList.toggle('yes');
+
+        //store held dice and save them to a cookie
         if (document.querySelector(`.held--${heldDie}`).classList.contains('yes')) {
             diceHeld[(heldDie-1)] = 'true';
         } else {
             diceHeld[(heldDie-1)] = 'false';
         }
         setCookie(`held${heldDie}`, diceHeld[(heldDie-1)], cookieLength);
-        console.log('diceHeld:');
-        console.log(diceHeld);
+
+        //check if all dice are held
+        const firstDieHeld = diceHeld[0] == 'true';
+        const allEqual = diceHeld => diceHeld.every(val => val === diceHeld[0]);
+
+        if (firstDieHeld && allEqual(diceHeld)) {
+            console.log('all dice are held');
+            chooseMessage.style.display = 'block';
+            roll.style.display = 'none';
+        } else {
+            console.log('at least 1 die isnt held');
+            chooseMessage.style.display = 'none';
+            roll.style.display = 'block';
+        }
     });
 });
 
