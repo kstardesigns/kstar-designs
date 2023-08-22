@@ -18,7 +18,7 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .wrap {
@@ -612,7 +612,7 @@ main .buttons .hold-title {
 .roll-section .roll:active {
   box-shadow: none;
 }
-.roll-section .roll-no {
+.roll-section .roll-no, .roll-section .next-turn {
   font-family: var(--poppins);
   text-transform: uppercase;
   font-weight: 600;
@@ -717,6 +717,11 @@ main .buttons .hold-title {
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
 }
+.yz-dialog--scores {
+  width: 450px;
+  max-width: 100%;
+  padding-bottom: 50px;
+}
 .yz-dialog-header {
   display: flex;
   justify-content: space-between;
@@ -750,7 +755,7 @@ main .buttons .hold-title {
   font-size: 17px;
   margin-top: -1px;
 }
-.yz-dialog-close {
+.yz-dialog-close--top-right {
   cursor: pointer;
   background: transparent;
   border: 0;
@@ -765,20 +770,52 @@ main .buttons .hold-title {
   right: -4px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-.yz-dialog-close:focus, .yz-dialog-close:active {
+.yz-dialog-close--top-right:focus, .yz-dialog-close--top-right:active {
   outline: 0;
   background: none;
 }
-.yz-dialog-close span {
+.yz-dialog-close--top-right span {
   position: absolute;
   top: 9px;
   right: 7px;
 }
 @media screen and (max-width: 600px) {
-  .yz-dialog-close {
+  .yz-dialog-close--top-right {
     top: -4px;
     right: -8px;
   }
+}
+.yz-dialog-close--text {
+  background: transparent;
+  border: 0;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #222;
+  font-family: var(--poppins);
+  text-transform: uppercase;
+  display: block;
+  margin: 15px auto 0;
+  cursor: pointer;
+}
+.yz-dialog .new-game {
+  background: linear-gradient(to right, tomato 0%, rgb(200, 61, 37) 100%);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgb(200, 61, 37);
+  border-bottom-width: 2px;
+  border-radius: 10px;
+  font-family: var(--poppins);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px rgb(200, 61, 37);
+  cursor: pointer;
+  padding: 3px 14px;
+}
+.yz-dialog .new-game:active {
+  box-shadow: none;
 }
 .yz-dialog h1 {
   display: flex;
@@ -833,6 +870,48 @@ main .buttons .hold-title {
   border: 1px solid var(--scoresheet-border);
   text-align: left;
   padding: 5px 10px;
+}
+.yz-dialog .yz-score-card {
+  font-family: var(--poppins);
+  width: 220px;
+  max-width: 100%;
+  margin: 0 auto 30px;
+  padding: 50px 0 0;
+}
+.yz-dialog .yz-score-card .yz-flex-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.yz-dialog .yz-score-card .yz-flex-group--first {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 27px;
+  margin-bottom: 20px;
+}
+.yz-dialog .yz-score-card .yz-flex-group--subtotal, .yz-dialog .yz-score-card .yz-flex-group--high {
+  position: relative;
+}
+.yz-dialog .yz-score-card .finals {
+  font-family: var(--handwriting);
+  color: var(--pen-blue);
+  font-size: 16px;
+  line-height: 21px;
+  display: inline-block;
+  position: absolute;
+  top: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.yz-dialog .yz-score-card #top-bonus-final {
+  right: -41px;
+  top: -12px;
+  transform: rotate(15deg);
+}
+.yz-dialog .yz-score-card #yz-new-high {
+  left: -43px;
+  transform: rotate(-14deg);
 }
 
 footer {

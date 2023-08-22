@@ -21,8 +21,8 @@ const roll = document.querySelector('.roll'),
       chooseScoreButtons = document.querySelectorAll('.choose-score'),
       highScoreText = document.querySelector('#high-score');
 
-const cookieLength = 7,
-      cookieLengthYear = 365; //change this
+const cookieLength = 365,
+      cookieLengthYear = 365;
 
 //tracks current score for each category
 let scoreCard = {
@@ -88,7 +88,8 @@ let results = [],
     topBonus = false,
     yahtzeeBonus = 0,
     highScore = 0,
-    bonusMessage = 'bonus!';
+    bonusMessage = 'bonus!',
+    newHighMessage = 'new!';
 
 //reload current game from cookies
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -118,6 +119,8 @@ const rollDice = () => {
 
     if (rollNo == 2 || rollNo == 3) {
         rollNumber.textContent = rollNo;
+        document.querySelector('.roll-no').classList.remove('hidden');
+        document.querySelector('.next-turn').classList.add('hidden');
     }
 
     if (rollNo == 3) {
@@ -135,6 +138,8 @@ const rollDice = () => {
         });
         rollNo = 1;
         rollNumber.textContent = rollNo;
+        document.querySelector('.roll-no').classList.remove('hidden');
+        document.querySelector('.next-turn').classList.add('hidden');
         turnNo++;
         turnNumber.textContent = turnNo;
     }
@@ -380,6 +385,10 @@ chooseScoreButtons.forEach((button) => {
         chooseScoreButtons.forEach((button) => {
             button.style.display = 'none';
         });
+        
+        document.querySelector('.roll-no').classList.add('hidden');
+        document.querySelector('.next-turn').classList.remove('hidden');
+
 
         //update score with chosen score, display it
         const chosenScore = button.getAttribute('id').split('-').pop();
@@ -499,6 +508,8 @@ const resetScoreboard = () => {
     if (getCookie('rollNumber') !== null) {
         rollNo = getCookie('rollNumber');
         rollNumber.textContent = rollNo;
+        document.querySelector('.roll-no').classList.remove('hidden');
+        document.querySelector('.next-turn').classList.add('hidden');
     } else {
         rollNumber.textContent = 1;
     }
@@ -536,6 +547,7 @@ const resetScoreboard = () => {
         yahtzeeBonus = (getCookie('yahtzeeBonus') / 100);
         for (let i = 0; i < yahtzeeBonus; i++ ) {
             document.querySelector('#yahtzee-bonus').textContent += '✓';
+            document.querySelector('#yz-dialog-yahtzees').textContent += '✓';
         }
     }
 
@@ -576,6 +588,8 @@ const resetScoreboard = () => {
         if (turnNo == categoriesFilled) {
             chooseMessage.style.display = 'none';
             roll.style.display = 'block';
+            document.querySelector('.roll-no').classList.add('hidden');
+            document.querySelector('.next-turn').classList.remove('hidden');
         }
     } else {
         document.querySelector('.die--one').classList.add('r1');
@@ -602,6 +616,7 @@ const updateTopScore = () => {
     
     if (topScore >= 63) {
         document.querySelector('#top-bonus').textContent = bonusMessage;
+        document.querySelector('#top-bonus-final').textContent = bonusMessage;
         topBonus = true;
         topScore += 35;
     }
@@ -621,6 +636,7 @@ const updateCurrentScore = () => {
 const calcBonusYahtzeeScore = () => {
     yahtzeeBonus++;
     document.querySelector('#yahtzee-bonus').textContent += '✓';
+    document.querySelector('#yz-dialog-yahtzees').textContent += '✓';
     scoreCard.yahtzeeBonus = 100 * yahtzeeBonus;
     scorePicked.yahtzeeBonus = 'true';
     updateCurrentScore();
@@ -643,17 +659,30 @@ const calcBonusYahtzeeScore = () => {
 }
 
 const endGame = () => {
-    //show final score, high score, and yesterday's score
+    //show final score & high score
     document.querySelector('#yz-dialog-final-score').textContent = currScore;
+    document.querySelector('#yz-dialog-subtotal-score').textContent = topScore;
 
+    //check for new high score
     if (currScore > highScore) {
         highScore = currScore;
+        document.querySelector('#yz-new-high').textContent = newHighMessage;
+        highScoreText.textContent = highScore;
     }
     document.querySelector('#yz-dialog-high-score').textContent = highScore;
+
+    console.log(`highScore was saved in cookies as ${highScore}`);
+
     setCookie('highScore', highScore, cookieLengthYear);
 
-    //TODO: Yesterday's score:
-    //214
+    //add 1st yahtzee as a checkmark
+    if (scoreCard.yahtzee == '50') {
+        document.querySelector('#yz-dialog-yahtzees').textContent += '✓';
+    } else {
+        document.querySelector('#yz-dialog-yahtzees').textContent += '0';
+    }
+
+    updateCookies();
     
     //show scores modal
     openDialog('yz-scores');
@@ -696,13 +725,23 @@ const testYahtzee = () => {
 
 const testBonus = () => {
     document.querySelector('#top-bonus').textContent = bonusMessage;
+    document.querySelector('#top-bonus-final').textContent = bonusMessage;
     topBonus = true;
 }
 
 const newGame = () => {
     var cookies = document.cookie.split(";");
+    console.log(cookies);
     for (var i = 0; i < cookies.length; i++) {
-      eraseCookie(cookies[i].split("=")[0]);
+
+        let cookieToDelete = cookies[i].split("=")[0];
+        
+        if (!cookieToDelete.includes('highScore')) {
+            console.log('cookie to delete: ' + cookieToDelete);
+            eraseCookie(cookieToDelete);
+        } else {
+            console.log('HIGH SCORE NOT DELETED');
+        }
     }
     location.reload();
 }
