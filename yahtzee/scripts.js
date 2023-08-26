@@ -7,7 +7,6 @@ const roll = document.querySelector('.roll'),
       hold3 = document.querySelector('.hold--3'),
       hold4 = document.querySelector('.hold--4'),
       hold5 = document.querySelector('.hold--5'),
-      hold6 = document.querySelector('.hold--6'),
       helds = document.querySelectorAll('.held'),
       held1 = document.querySelector('.held--1'),
       held2 = document.querySelector('.held--2'),
@@ -110,7 +109,7 @@ const rollDice = () => {
     //disable hold & roll buttons
     holdRow.classList = 'hold-buttons disabled';
     holds.forEach((hold) => {
-        hold.disabled = true;
+        hold.querySelector('.hold-button').disabled = true;
     });
     roll.disabled = true;
 
@@ -302,7 +301,7 @@ const showPossibleScores = (results) => {
     if (rollNo < 3) {
         holdRow.classList = 'hold-buttons enabled';
         holds.forEach((hold) => {
-            hold.disabled = false;
+            hold.querySelector('.hold-button').disabled = false;
         });
     }
 
@@ -379,7 +378,7 @@ chooseScoreButtons.forEach((button) => {
         //hide hold buttons, other choose buttons, choose message
         holdRow.classList = 'hold-buttons disabled';
         holds.forEach((hold) => {
-            hold.disabled = true;
+            hold.querySelector('.hold-button').disabled = true;
         });
         chooseMessage.style.display = 'none';
         chooseScoreButtons.forEach((button) => {
@@ -426,30 +425,32 @@ chooseScoreButtons.forEach((button) => {
 
 holds.forEach((hold) => {
     hold.addEventListener('click', () => {
-        //add hold class
-        let heldDie = hold.dataset.holdDie;
-        document.querySelector(`.held--${heldDie}`).classList.toggle('yes');
+        if (holdRow.classList.contains('enabled')) {
+            //add hold class
+            let heldDie = hold.dataset.holdDie;
+            document.querySelector(`.held--${heldDie}`).classList.toggle('yes');
 
-        //store held dice and save them to a cookie
-        if (document.querySelector(`.held--${heldDie}`).classList.contains('yes')) {
-            diceHeld[(heldDie-1)] = 'true';
-        } else {
-            diceHeld[(heldDie-1)] = 'false';
-        }
-        setCookie(`held${heldDie}`, diceHeld[(heldDie-1)], cookieLength);
+            //store held dice and save them to a cookie
+            if (document.querySelector(`.held--${heldDie}`).classList.contains('yes')) {
+                diceHeld[(heldDie-1)] = 'true';
+            } else {
+                diceHeld[(heldDie-1)] = 'false';
+            }
+            setCookie(`held${heldDie}`, diceHeld[(heldDie-1)], cookieLength);
 
-        //check if all dice are held
-        const firstDieHeld = diceHeld[0] == 'true';
-        const allEqual = diceHeld => diceHeld.every(val => val === diceHeld[0]);
+            //check if all dice are held
+            const firstDieHeld = diceHeld[0] == 'true';
+            const allEqual = diceHeld => diceHeld.every(val => val === diceHeld[0]);
 
-        if (firstDieHeld && allEqual(diceHeld)) {
-            console.log('all dice are held');
-            chooseMessage.style.display = 'block';
-            roll.style.display = 'none';
-        } else {
-            console.log('at least 1 die isnt held');
-            chooseMessage.style.display = 'none';
-            roll.style.display = 'block';
+            if (firstDieHeld && allEqual(diceHeld)) {
+                console.log('all dice are held');
+                chooseMessage.style.display = 'block';
+                roll.style.display = 'none';
+            } else {
+                console.log('at least 1 die isnt held');
+                chooseMessage.style.display = 'none';
+                roll.style.display = 'block';
+            }
         }
     });
 });
@@ -648,7 +649,7 @@ const calcBonusYahtzeeScore = () => {
     chooseMessage.style.display = 'block';
     holdRow.classList = 'hold-buttons disabled';
     holds.forEach((hold) => {
-        hold.disabled = true;
+        hold.querySelector('.hold-button').disabled = true;
     });
     possibleScores.fullHouse = 25;
     possibleScores.smallStraight = 30;

@@ -541,16 +541,6 @@ main {
     .dice {
         margin-top: 60px;
 
-        .dice-flex {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        .die-group {
-            
-        }
-
         .die {
             width: 60px;
             height: 60px;
@@ -619,8 +609,6 @@ main {
     }
 
     .buttons {
-        height: 64px;
-        margin-top: 8px;
 
         button {
             cursor: pointer;
@@ -636,22 +624,38 @@ main {
             width: 100%;
 
             &.disabled {
-                opacity: 0.3;
+                .hold-button, .hold-title {
+                    opacity: 0.3;
+                }
+
+                .hold-button-group {
+                    cursor: default;
+                }
             }
 
             &.enabled {
-                opacity: 1;
+                .hold-button, .hold-title {
+                    opacity: 1;
+                }
+
+                .hold-button-group {
+                    cursor: pointer;
+                }
             }
         }
 
         .hold-button-group {
+            padding-top: 8px;
             width: 60px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        button.hold {
+        button.hold-button {
+            margin-top: 8px;
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -669,7 +673,6 @@ main {
 
         .hold-title {
             font-family: var(--poppins);
-            font-family: 12px;
             font-weight: 600;
             text-transform: uppercase;
         }
