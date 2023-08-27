@@ -97,6 +97,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 const rollDice = () => {
 
+    //remove lower opacity style from first roll
+    document.querySelector('.dice').classList.remove('first-roll');
+
     //if there's results from previous roll, change non-held results to 0
     if (results.length) {
         helds.forEach((held, i) => {
@@ -745,6 +748,8 @@ const newGame = () => {
         }
     }
     location.reload();
+    document.querySelector('.dice').classList.add('first-roll');
+
 }
 
 //modal
