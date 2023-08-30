@@ -1279,12 +1279,12 @@ new Vue({
 	},
 	methods: {
 		focusSearchBar() {
-			var searchBar = document.querySelector('.query');
+			var searchBar = document.querySelector('#query');
 			searchBar.focus();
 		},
 		focusNumberInput() {
 			setTimeout(function() {
-				var numberSearchBar = document.querySelector('.number-query');
+				var numberSearchBar = document.querySelector('#number-jump');
 				numberSearchBar.focus();
 			}, 250)
 		},
@@ -1404,7 +1404,7 @@ new Vue({
 
 			if (document.querySelectorAll('.bh-dialog.open').length) {
 				closeDialog('bh-dialog');
-				document.querySelector('.page-header').scrollIntoView();
+				document.querySelector('#page-header').scrollIntoView();
 			}
 		}
 	},
