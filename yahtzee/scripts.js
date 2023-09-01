@@ -18,7 +18,9 @@ const roll = document.querySelector('.roll'),
       chooseMessage = document.querySelector('#choose-message'),
       currentScore = document.querySelector('#current-score'),
       chooseScoreButtons = document.querySelectorAll('.choose-score'),
-      highScoreText = document.querySelector('#high-score');
+      highScoreText = document.querySelector('#high-score'),
+      shareAndCopyButton = document.querySelector('#share'),
+      shareCopy = document.querySelector('#share-copy');
 
 const cookieLength = 365,
       cookieLengthYear = 365;
@@ -88,7 +90,8 @@ let results = [],
     yahtzeeBonus = 0,
     highScore = 0,
     bonusMessage = 'bonus!',
-    newHighMessage = 'new!';
+    newHighMessage = 'new!',
+    textToCopy = '';
 
 //reload current game from cookies
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -551,7 +554,7 @@ const resetScoreboard = () => {
         yahtzeeBonus = (getCookie('yahtzeeBonus') / 100);
         for (let i = 0; i < yahtzeeBonus; i++ ) {
             document.querySelector('#yahtzee-bonus').textContent += '✓';
-            document.querySelector('#yz-dialog-yahtzees').textContent += '✓';
+            document.querySelector('#yz-dialog-yahtzees').textContent += '✅';
         }
     }
 
@@ -645,7 +648,7 @@ const updateCurrentScore = () => {
 const calcBonusYahtzeeScore = () => {
     yahtzeeBonus++;
     document.querySelector('#yahtzee-bonus').textContent += '✓';
-    document.querySelector('#yz-dialog-yahtzees').textContent += '✓';
+    document.querySelector('#yz-dialog-yahtzees').textContent += '✅';
     scoreCard.yahtzeeBonus = 100 * yahtzeeBonus;
     scorePicked.yahtzeeBonus = 'true';
     updateCurrentScore();
@@ -673,7 +676,8 @@ const endGame = () => {
     roll.style.display = 'none';
     rollNumber.style.display = 'none';
     document.querySelector('.next-turn').style.display = 'none';
-    document.querySelector('.score-summary-button').style.display = 'block';
+    document.querySelector('#show-message').style.display = 'block';
+    document.querySelector('.new-game-2').style.display = 'block';
 
     //show final score & high score
     document.querySelector('#yz-dialog-final-score').textContent = currScore;
@@ -693,10 +697,12 @@ const endGame = () => {
 
     //add 1st yahtzee as a checkmark
     if (scoreCard.yahtzee == '50') {
-        document.querySelector('#yz-dialog-yahtzees').textContent += '✓';
+        document.querySelector('#yz-dialog-yahtzees').textContent += '✅';
     } else {
         document.querySelector('#yz-dialog-yahtzees').textContent = '0';
     }
+
+    createShareData();
     
     //show scores modal
     openDialog('yz-scores');
@@ -718,7 +724,6 @@ const eraseCookie = (cookieName) => {
 }
 
 const newGame = () => {
-
     //delete all cookies except high score
     var cookies = document.cookie.split(";");
     for (var i = 0; i < cookies.length; i++) {
@@ -730,34 +735,70 @@ const newGame = () => {
     //reload the page and make the dice transparent
     location.reload();
     document.querySelector('.dice').classList.add('first-roll');
-
 }
+
+
+
+const createShareData = () => {
+    textToCopy = `🎲 ${currScore}\nYahtzees: ${document.querySelector('#yz-dialog-yahtzees').textContent}${document.querySelector('#yz-new-high').textContent == newHighMessage ? ' (new high score!)' : ''}\nTop bonus: ${topBonus ? '✅' : '❌'}\nPlay @ kylephx.com/yahtzee`;
+    const el = document.createElement('textarea');
+    el.setAttribute('id', 'share-text');
+    el.style.display = 'none';
+    document.body.appendChild(el);
+    document.getElementById('share-text').value = textToCopy;
+}
+
+//share score, etc.
+shareAndCopyButton.addEventListener('click', async () => {
+    const shareData = {
+        title: "Yahtzee",
+        text: textToCopy,
+        url: "https://kylephx.com/yahtzee",
+    };
+
+    try {
+        await navigator.clipboard.writeText(textToCopy);
+        console.log('Content copied to clipboard');
+    } catch (err) {
+        console.error('Failed to copy: ', err);
+    }
+    
+    try {
+        await navigator.share(shareData);
+        shareCopy.textContent = 'Copied to clipboard';
+    } catch (err) {
+        console.error(`Error: ${err}`);
+    }
+});
+
+
 
 //TESTING
-const testYahtzee = () => {
-    rollDice();
 
-    setTimeout(() => {
-        fakeResults = [5, 5, 5, 5, 5];
-        document.querySelector('.die--one').textContent = 5;
-        document.querySelector('.die--two').textContent = 5;
-        document.querySelector('.die--three').textContent = 5;
-        document.querySelector('.die--four').textContent = 5;
-        document.querySelector('.die--five').textContent = 5;
-        showPossibleScores(fakeResults);
-        if (scoreCard.yahtzeeBonus == 50) {
-            calcBonusYahtzeeScore();
-            updateCurrentScore();
-            updateCookies();
-        }
-    }, 3000);
-}
+// const testYahtzee = () => {
+//     rollDice();
 
-const testBonus = () => {
-    document.querySelector('#top-bonus').textContent = bonusMessage;
-    document.querySelector('#top-bonus-final').textContent = bonusMessage;
-    topBonus = true;
-}
+//     setTimeout(() => {
+//         fakeResults = [5, 5, 5, 5, 5];
+//         document.querySelector('.die--one').textContent = 5;
+//         document.querySelector('.die--two').textContent = 5;
+//         document.querySelector('.die--three').textContent = 5;
+//         document.querySelector('.die--four').textContent = 5;
+//         document.querySelector('.die--five').textContent = 5;
+//         showPossibleScores(fakeResults);
+//         if (scoreCard.yahtzeeBonus == 50) {
+//             calcBonusYahtzeeScore();
+//             updateCurrentScore();
+//             updateCookies();
+//         }
+//     }, 3000);
+// }
+
+// const testBonus = () => {
+//     document.querySelector('#top-bonus').textContent = bonusMessage;
+//     document.querySelector('#top-bonus-final').textContent = bonusMessage;
+//     topBonus = true;
+// }
 
 //modal
 //Credit:

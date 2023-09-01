@@ -14,7 +14,7 @@
 
 body {
   margin: 0;
-  padding: 10px 10px 50px;
+  padding: 10px 10px 20px;
 }
 
 p {
@@ -600,7 +600,7 @@ main .buttons .hold-title {
   text-transform: uppercase;
 }
 
-.roll-section .roll {
+.roll-section .roll, .roll-section .new-game-2 {
   display: block;
   margin: 30px auto 0;
   width: 200px;
@@ -619,10 +619,13 @@ main .buttons .hold-title {
   text-shadow: 1px 1px 2px rgb(200, 61, 37);
   cursor: pointer;
 }
-.roll-section .roll:active {
+.roll-section .roll:active, .roll-section .new-game-2:active {
   box-shadow: none;
 }
-.roll-section .roll-no, .roll-section .next-turn {
+.roll-section .new-game-2 {
+  display: none;
+}
+.roll-section .roll-no, .roll-section .next-turn, .roll-section #show-message {
   font-family: var(--poppins);
   text-transform: uppercase;
   font-weight: 600;
@@ -643,22 +646,15 @@ main .buttons .hold-title {
   font-size: 18px;
   margin: 25px auto 28.5px;
 }
-.roll-section .score-summary-button {
-  text-align: center;
-  font-family: var(--poppins);
-  font-size: 18px;
-  margin: 25px auto 28.5px;
-  border: 0;
+.roll-section #show-message {
+  display: none;
+  margin: 20px auto;
   background: transparent;
-  padding: 0;
-  display: block;
+  border: 0;
   color: var(--pen-blue);
   text-decoration: underline;
   cursor: pointer;
-  display: none;
-}
-.roll-section .score-summary-button:hover {
-  color: #005adb;
+  padding: 0;
 }
 
 .yz-dialog {
@@ -822,6 +818,12 @@ main .buttons .hold-title {
     right: -8px;
   }
 }
+.yz-dialog .modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px 0;
+}
 .yz-dialog-close--text {
   background: transparent;
   border: 0;
@@ -832,8 +834,57 @@ main .buttons .hold-title {
   font-family: var(--poppins);
   text-transform: uppercase;
   display: block;
-  margin: 15px auto 0;
+  margin: 0;
   cursor: pointer;
+}
+.yz-dialog #share {
+  font-family: var(--poppins);
+  color: #222;
+  text-transform: uppercase;
+  font-size: 16px;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  font-weight: 400;
+  margin: 0 auto 0px;
+  padding: 10px 0;
+}
+.yz-dialog #share:hover {
+  text-decoration: underline;
+}
+.yz-dialog #share .share, .yz-dialog #share .copy {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.yz-dialog #share .share svg path, .yz-dialog #share .copy svg path {
+  fill: #222;
+}
+.yz-dialog #share .share svg {
+  width: 16px;
+  flex: 0 0 16px;
+  margin-top: -1px;
+}
+.yz-dialog #share .copy svg {
+  width: 14px;
+  flex: 0 0 14px;
+  margin-top: -2px;
+}
+@media screen and (max-width: 549px) {
+  .yz-dialog #share .copy {
+    display: none;
+  }
+  .yz-dialog #share .share {
+    display: flex;
+  }
+}
+@media screen and (min-width: 550px) {
+  .yz-dialog #share .copy {
+    display: flex;
+  }
+  .yz-dialog #share .share {
+    display: none;
+  }
 }
 .yz-dialog .new-game {
   background: linear-gradient(to right, tomato 0%, rgb(200, 61, 37) 100%);
