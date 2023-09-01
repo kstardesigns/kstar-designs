@@ -1197,11 +1197,13 @@ new Vue({
 			{ number: 9999, name: 'Munkidori', stringname: '9999b', type1: '???', type2: '', evos: '', pronunciation: 'munk-ee-DOHR-ee', gen: '9' },
 			{ number: 9999, name: 'Fezandipiti', stringname: '9999c', type1: '???', type2: '', evos: '', pronunciation: 'fez-un-DIP-ih-tee', gen: '9' },
 			{ number: 9999, name: 'Dipplin', stringname: '9999f', type1: 'grass', type2: 'dragon', evos: '0840-line', pronunciation: 'DIPP-lin', gen: '9' },
+			{ number: 9999, name: 'Poltchageist', stringname: '9999j', type1: 'grass', type2: 'ghost', evos: '0854-line', pronunciation: '???', gen: '9' },
 			{ number: 9999, name: 'Archaludon', stringname: '9999g', type1: 'steel', type2: 'dragon', evos: '0884-line', pronunciation: '???', gen: '9' },
 			{ number: 9999, name: 'Raging Bolt', stringname: '9999h', type1: '???', type2: '', evos: '', pronunciation: '???', gen: '9' },
 			{ number: 9999, name: 'Iron Crown', stringname: '9999i', type1: '???', type2: '', evos: '', pronunciation: '???', gen: '9' },
 			{ number: 9999, name: 'Ogerpon', stringname: '9999d', type1: '???', type2: '', evos: '', pronunciation: 'OH-gurr-pahn', gen: '9' },
-			{ number: 9999, name: 'Terapagos', stringname: '9999e', type1: '???', type2: '', evos: '', pronunciation: 'turr-AHP-uh-gohs', gen: '9' }
+			{ number: 9999, name: 'Terapagos', suffix: '(Normal Form)', stringname: '9999k', type1: '???', type2: '', evos: '', pronunciation: 'turr-AHP-uh-gohs', gen: '9' },
+			{ number: 9999, name: 'Terapagos', suffix: '(Terastal Form)', stringname: '9999e', type1: '???', type2: '', evos: '', pronunciation: 'turr-AHP-uh-gohs', gen: '9' }
 		]
 	},
 	computed: {
@@ -1404,8 +1406,9 @@ new Vue({
 
 			if (document.querySelectorAll('.bh-dialog.open').length) {
 				closeDialog('bh-dialog');
-				document.querySelector('#page-header').scrollIntoView();
 			}
+
+			document.querySelector('#page-header').scrollIntoView();
 		}
 	},
 	beforeMount() {

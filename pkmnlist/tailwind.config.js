@@ -34,8 +34,8 @@ module.exports = {
       fairy: '#e9e'
     },
     screens: {
-      'iphone': '393px',
-      // => @media (min-width: 393px) { ... }
+      'iphone': '390px',
+      // => @media (min-width: 390px) { ... }
       'tablet': '601px',
       // => @media (min-width: 601px) { ... }
     },
