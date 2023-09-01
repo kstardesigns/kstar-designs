@@ -563,6 +563,7 @@ const resetScoreboard = () => {
 
     //if at least 1 roll has been done, get it from cookies and display it.
     if (getCookie('currentRollResults') !== null) {
+        document.querySelector('.dice').classList.remove('first-roll');
         resultsStrings = getCookie('currentRollResults').split(','); 
         results = resultsStrings.map(Number);
         console.log('currentRollResults');
@@ -605,6 +606,10 @@ const resetScoreboard = () => {
 
     updateTopScore();
     updateCurrentScore();
+
+    if (turnNo == 13 && categoriesFilled == 13) {
+        endGame();
+    }
     
     // console.log('scoreCard:'); 
     // console.log(scoreCard); 
@@ -663,6 +668,13 @@ const calcBonusYahtzeeScore = () => {
 }
 
 const endGame = () => {
+    
+    //hide roll button and roll number, show modal trigger
+    roll.style.display = 'none';
+    rollNumber.style.display = 'none';
+    document.querySelector('.next-turn').style.display = 'none';
+    document.querySelector('.score-summary-button').style.display = 'block';
+
     //show final score & high score
     document.querySelector('#yz-dialog-final-score').textContent = currScore;
     document.querySelector('#yz-dialog-subtotal-score').textContent = topScore;
@@ -683,10 +695,8 @@ const endGame = () => {
     if (scoreCard.yahtzee == '50') {
         document.querySelector('#yz-dialog-yahtzees').textContent += '✓';
     } else {
-        document.querySelector('#yz-dialog-yahtzees').textContent += '0';
+        document.querySelector('#yz-dialog-yahtzees').textContent = '0';
     }
-
-    updateCookies();
     
     //show scores modal
     openDialog('yz-scores');
@@ -705,6 +715,22 @@ const getCookie = (cookieName) => {
 
 const eraseCookie = (cookieName) => {   
     document.cookie = cookieName +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
+const newGame = () => {
+
+    //delete all cookies except high score
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+        let cookieToDelete = cookies[i].split("=")[0];
+        if (!cookieToDelete.includes('highScore')) {
+            eraseCookie(cookieToDelete);
+        }
+    }
+    //reload the page and make the dice transparent
+    location.reload();
+    document.querySelector('.dice').classList.add('first-roll');
+
 }
 
 //TESTING
@@ -731,25 +757,6 @@ const testBonus = () => {
     document.querySelector('#top-bonus').textContent = bonusMessage;
     document.querySelector('#top-bonus-final').textContent = bonusMessage;
     topBonus = true;
-}
-
-const newGame = () => {
-    var cookies = document.cookie.split(";");
-    console.log(cookies);
-    for (var i = 0; i < cookies.length; i++) {
-
-        let cookieToDelete = cookies[i].split("=")[0];
-        
-        if (!cookieToDelete.includes('highScore')) {
-            console.log('cookie to delete: ' + cookieToDelete);
-            eraseCookie(cookieToDelete);
-        } else {
-            console.log('HIGH SCORE NOT DELETED');
-        }
-    }
-    location.reload();
-    document.querySelector('.dice').classList.add('first-roll');
-
 }
 
 //modal
