@@ -758,8 +758,7 @@ const createShareData = () => {
 shareAndCopyButton.addEventListener('click', async () => {
     const shareData = {
         title: "Yahtzee",
-        text: textToCopy,
-        url: "https://kylephx.com/yahtzee",
+        text: textToCopy
     };
 
     try {
