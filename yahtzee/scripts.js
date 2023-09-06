@@ -356,7 +356,13 @@ const showPossibleScores = (results) => {
 
     //show yahtzee animation
     if (isYahtzee) {
-        document.querySelector('.yahtzee-logo-header').classList.add('active');
+        if (scoreCard.yahtzee == '0') {
+            const emojiList = ['😒', '🤦‍♀️', '😢', '😣', '🙄', '😭', '😕', '😟', '💔'];
+            const randomEmoji = emojiList[Math.floor(Math.random()*emojiList.length)];
+            document.querySelector('#final-score-yahtzee').innerHTML += `<span class="emoji"> ${randomEmoji}</span>`;
+        } else {
+            document.querySelector('.yahtzee-logo-header').classList.add('active');
+        }
     }
 
     //if they roll another yahtzee when they already have at least one
