@@ -22,7 +22,7 @@ const roll = document.querySelector('.roll'),
       shareAndCopyButton = document.querySelector('#share'),
       shareCopy = document.querySelector('#share-copy');
 
-const cookieLength = 365,
+const cookieLength = 2,
       cookieLengthYear = 365;
 
 //tracks current score for each category
@@ -746,7 +746,7 @@ const newGame = () => {
 
 
 const createShareData = () => {
-    textToCopy = `🎲 ${currScore}\nYahtzees: ${document.querySelector('#yz-dialog-yahtzees').textContent}${document.querySelector('#yz-new-high').textContent == newHighMessage ? ' (new high score!)' : ''}\nTop bonus: ${topBonus ? '✅' : '❌'}\nPlay @ kylephx.com/yahtzee`;
+    textToCopy = `🎲 ${currScore}${document.querySelector('#yz-new-high').textContent == newHighMessage ? ' (new high score!)' : ''}\nYahtzees: ${document.querySelector('#yz-dialog-yahtzees').textContent}\nTop bonus: ${topBonus ? '✅' : '❌'}\nPlay @ kylephx.com/yahtzee`;
     const el = document.createElement('textarea');
     el.setAttribute('id', 'share-text');
     el.style.display = 'none';
@@ -764,13 +764,13 @@ shareAndCopyButton.addEventListener('click', async () => {
     try {
         await navigator.clipboard.writeText(textToCopy);
         console.log('Content copied to clipboard');
+        shareCopy.textContent = 'Copied to clipboard';
     } catch (err) {
         console.error('Failed to copy: ', err);
     }
     
     try {
         await navigator.share(shareData);
-        shareCopy.textContent = 'Copied to clipboard';
     } catch (err) {
         console.error(`Error: ${err}`);
     }
@@ -780,24 +780,24 @@ shareAndCopyButton.addEventListener('click', async () => {
 
 //TESTING
 
-// const testYahtzee = () => {
-//     rollDice();
+const testYahtzee = () => {
+    rollDice();
 
-//     setTimeout(() => {
-//         fakeResults = [5, 5, 5, 5, 5];
-//         document.querySelector('.die--one').textContent = 5;
-//         document.querySelector('.die--two').textContent = 5;
-//         document.querySelector('.die--three').textContent = 5;
-//         document.querySelector('.die--four').textContent = 5;
-//         document.querySelector('.die--five').textContent = 5;
-//         showPossibleScores(fakeResults);
-//         if (scoreCard.yahtzeeBonus == 50) {
-//             calcBonusYahtzeeScore();
-//             updateCurrentScore();
-//             updateCookies();
-//         }
-//     }, 3000);
-// }
+    setTimeout(() => {
+        fakeResults = [5, 5, 5, 5, 5];
+        document.querySelector('.die--one').textContent = 5;
+        document.querySelector('.die--two').textContent = 5;
+        document.querySelector('.die--three').textContent = 5;
+        document.querySelector('.die--four').textContent = 5;
+        document.querySelector('.die--five').textContent = 5;
+        showPossibleScores(fakeResults);
+        if (scoreCard.yahtzeeBonus == 50) {
+            calcBonusYahtzeeScore();
+            updateCurrentScore();
+            updateCookies();
+        }
+    }, 3000);
+}
 
 // const testBonus = () => {
 //     document.querySelector('#top-bonus').textContent = bonusMessage;
