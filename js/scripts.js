@@ -107,12 +107,24 @@ $('.left').click(function(){
 //list of featured items
 var featuredItems = [
   {
+    'proj': 'yahtzee',
+    'itemname': 'Yahtzee',
+    'itemdescription': 'A digital recreation of the classic dice game, built in Vanilla JS.',
+    'projlink': 'http://kylephx.com/yahtzee',
+    'secondarylink':'https://codepen.io/kaisle/',
+    'secondarylinktitle':'View this project on CodePen'
+  },
+  {
+    'proj': 'pokemonlist',
+    'itemname': 'Pokémon List',
+    'itemdescription': 'A filterable list of all 1000+ Pokémon and their types, evolutions, and more. <br>Built in Vue + Tailwind.',
+    'projlink': 'http://kylephx.com/pkmnlist'
+  },
+  {
     'proj': 'shuffling',
     'itemname': 'Card Shuffling',
     'itemdescription': 'An experiment in card shuffling, showing how impossible it is to get the same order of cards.',
     'projlink': 'http://kylephx.com/shuffling',
-    'articlelink': 'http://kylephx.com/shuffling',
-    'articlelinktitle': 'View live version of this project',
     'secondarylink':'https://codepen.io/kaisle/pen/jOVYPgJ',
     'secondarylinktitle':'View this project on CodePen'
   },
@@ -121,8 +133,6 @@ var featuredItems = [
     'itemname': 'Baseball Scorecard',
     'itemdescription': 'An interactive scorecard that shows how to score an at bat in baseball.',
     'projlink': 'http://kylephx.com/atbat',
-    'articlelink': 'http://kylephx.com/atbat',
-    'articlelinktitle': 'View live version of this project',
     'secondarylink':'https://codepen.io/kaisle/pen/QJpRwz',
     'secondarylinktitle':'View this project on CodePen'
   },
@@ -194,8 +204,20 @@ function showFeatured(){
 	$('.featured-item-description').html(featuredItems[featuredNumber].itemdescription);
   $('#featured-project a.imglink, #featured-project a.projlink2').attr('href', featuredItems[featuredNumber].projlink);
   $('#featured-project .featured-image').attr({ 'src': 'assets/featured/' + featuredItems[featuredNumber].proj + '.jpg', 'alt': featuredItems[featuredNumber].itemname});
-  $('#featured-project .article-link').attr({ 'href': featuredItems[featuredNumber].articlelink, 'title': featuredItems[featuredNumber].articlelinktitle});
-  $('#featured-project .secondary-link').attr({ 'href': featuredItems[featuredNumber].secondarylink, 'title': featuredItems[featuredNumber].secondarylinktitle});
+
+  if (featuredItems[featuredNumber].articlelink) {
+    $('#featured-project .article-link').attr({ 'href': featuredItems[featuredNumber].articlelink, 'title': featuredItems[featuredNumber].articlelinktitle});
+    $('#featured-project .article-link').show();
+  } else {
+    $('#featured-project .article-link').hide();
+  }
+
+  if (featuredItems[featuredNumber].secondarylink) {
+    $('#featured-project .secondary-link').attr({ 'href': featuredItems[featuredNumber].secondarylink, 'title': featuredItems[featuredNumber].secondarylinktitle});
+    $('#featured-project .secondary-link').show();
+  } else {
+    $('#featured-project .secondary-link').hide();
+  }
 }
 
 
