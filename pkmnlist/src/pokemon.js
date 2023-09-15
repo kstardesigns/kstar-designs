@@ -1193,15 +1193,20 @@ new Vue({
 			{ number: 1008, name: 'Miraidon', stringname: '999', type1: 'electric', type2: 'dragon', evos: '', pronunciation: 'meer-EYE-dahn', gen: '9' },
 			{ number: 1009, name: 'Walking Wake', stringname: '1009real', type1: 'water', type2: 'dragon', evos: '', pronunciation: 'wah-king-WAKE', gen: '9' },
 			{ number: 1010, name: 'Iron Leaves', stringname: '1010real', type1: 'grass', type2: 'psychic', evos: '', pronunciation: 'eye-urn-LEEVZ', gen: '9' },
-			{ number: 9999, name: 'Okidogi', stringname: '9999a', type1: '???', type2: '', evos: '', pronunciation: 'oh-kee-DOH-gee', gen: '9' },
-			{ number: 9999, name: 'Munkidori', stringname: '9999b', type1: '???', type2: '', evos: '', pronunciation: 'munk-ee-DOHR-ee', gen: '9' },
-			{ number: 9999, name: 'Fezandipiti', stringname: '9999c', type1: '???', type2: '', evos: '', pronunciation: 'fez-un-DIP-ih-tee', gen: '9' },
-			{ number: 9999, name: 'Dipplin', stringname: '9999f', type1: 'grass', type2: 'dragon', evos: '0840-line', pronunciation: 'DIPP-lin', gen: '9' },
-			{ number: 9999, name: 'Poltchageist', stringname: '9999j', type1: 'grass', type2: 'ghost', evos: '0854-line', pronunciation: '???', gen: '9' },
+			{ number: 1011, name: 'Dipplin', stringname: '1011', type1: 'grass', type2: 'dragon', evos: '0840-line', pronunciation: 'DIP-lin', gen: '9' },
+			{ number: 1012, name: 'Poltchageist', stringname: '1012', type1: 'grass', type2: 'ghost', evos: '1012-line', pronunciation: 'POHL-chuh-geist', gen: '9' },
+			{ number: 1013, name: 'Sinistcha', stringname: '1013', type1: 'grass', type2: 'ghost', evos: '1012-line', pronunciation: 'SIN-iss-chuh', gen: '9' },	
+			{ number: 1014, name: 'Okidogi', stringname: '1014', type1: 'poison', type2: 'fighting', evos: '', pronunciation: 'oh-kee-DOH-gee', gen: '9' },
+			{ number: 1015, name: 'Munkidori', stringname: '1015', type1: 'poison', type2: 'psychic', evos: '', pronunciation: 'munk-ee-DOHR-ee', gen: '9' },
+			{ number: 1016, name: 'Fezandipiti', stringname: '1016', type1: 'poison', type2: 'fairy', evos: '', pronunciation: 'fez-un-DIP-ih-tee', gen: '9' },
+			{ number: 1017, name: 'Ogerpon', stringname: '1017', type1: 'grass', type2: '', evos: '', pronunciation: 'OH-gurr-pahn', gen: '9' },
+			{ number: 1017, name: 'Ogerpon', suffix: '(w/Hearthflame Mask)', stringname: '1017b', type1: 'grass', type2: 'fire', evos: '', pronunciation: 'OH-gurr-pahn', gen: '9' },
+			{ number: 1017, name: 'Ogerpon', suffix: '(w/Wellspring Mask)', stringname: '1017c', type1: 'grass', type2: 'water', evos: '', pronunciation: 'OH-gurr-pahn', gen: '9' },
+			{ number: 1017, name: 'Ogerpon', suffix: '(w/Cornerstone Mask)', stringname: '1017d', type1: 'grass', type2: 'rock', evos: '', pronunciation: 'OH-gurr-pahn', gen: '9' },
+			
 			{ number: 9999, name: 'Archaludon', stringname: '9999g', type1: 'steel', type2: 'dragon', evos: '0884-line', pronunciation: '???', gen: '9' },
-			{ number: 9999, name: 'Raging Bolt', stringname: '9999h', type1: '???', type2: '', evos: '', pronunciation: '???', gen: '9' },
-			{ number: 9999, name: 'Iron Crown', stringname: '9999i', type1: '???', type2: '', evos: '', pronunciation: '???', gen: '9' },
-			{ number: 9999, name: 'Ogerpon', stringname: '9999d', type1: '???', type2: '', evos: '', pronunciation: 'OH-gurr-pahn', gen: '9' },
+			{ number: 9999, name: 'Raging Bolt', stringname: '9999h', type1: 'electric', type2: 'dragon', evos: '', pronunciation: '???', gen: '9' },
+			{ number: 9999, name: 'Iron Crown', stringname: '9999i', type1: 'psychic', type2: 'steel', evos: '', pronunciation: '???', gen: '9' },
 			{ number: 9999, name: 'Terapagos', suffix: '(Normal Form)', stringname: '9999k', type1: '???', type2: '', evos: '', pronunciation: 'turr-AHP-uh-gohs', gen: '9' },
 			{ number: 9999, name: 'Terapagos', suffix: '(Terastal Form)', stringname: '9999e', type1: '???', type2: '', evos: '', pronunciation: 'turr-AHP-uh-gohs', gen: '9' }
 		]
@@ -1327,7 +1332,6 @@ new Vue({
 		changePronunciationPreference() {
 			var pronPrefValue = document.querySelector('[name="pronunciation-preference"]:checked').value.toLowerCase();
 			this.pronPreference = pronPrefValue;
-			console.log(this.pronPreference);
 			this.setCookie('pronPreference', this.pronPreference, 1095);
 		},
 		changeGenFilter() {
@@ -1420,8 +1424,17 @@ new Vue({
 
 		//check if link & pronunciation preference cookies exist, if not, set them
 		if (url.indexOf('https') > -1) { //if on live site
-			this.getCookie('linkPreference') !== '' ? this.linkPreference = this.getCookie('linkPreference') : this.setCookie('linkPreference', this.linkPreference, 1095);
-			this.getCookie('pronPreference') !== '' ? this.pronPreference = this.getCookie('pronPreference') : this.setCookie('pronPreference', this.pronPreference, 1095);
+			if (this.getCookie('linkPreference')) {
+				this.linkPreference = this.getCookie('linkPreference');
+			} else {
+				this.setCookie('linkPreference', this.linkPreference, 1095);
+			}
+
+			if (this.getCookie('pronPreference')) {
+				this.pronPreference = this.getCookie('pronPreference');
+			} else {
+				this.setCookie('pronPreference', this.pronPreference, 1095);
+			}
 		}
 	},
 	mounted() {
@@ -1433,8 +1446,10 @@ new Vue({
 			this.linkPreference = linkPref;
 			document.getElementById(this.linkPreference).checked = true;
 			this.setCookie('linkPreference', this.linkPreference, 1095);
-		} else {
-			document.getElementById(this.getCookie('linkPreference')).checked = true;
 		}
+
+		//choose radio buttons based on preference cookies
+		document.getElementById(this.linkPreference).checked = true;
+		document.getElementById(`pron-${this.pronPreference}`).checked = true;
 	}
 })

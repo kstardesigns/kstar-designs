@@ -74,7 +74,7 @@
 				<a class="no-underline flex items-center flex-1 hover:text-ghost hover:underline" :href="createPkmnLink(pokemon.number, pokemon.name, pokemon.stringname)" target="_blank">
 					<span class="w-10 h-12 flex justify-center items-center basis-10 min-w-[40px]"><img :src="'assets/icons/' + pokemon.stringname + '.png'" :alt="pokemon.name"/></span>
 					<span v-if="pronPreference != 'yes'" class="name py-0 px-1.5 text-[14px] grow iphone:text-[15px] iphone:px-2.5"><span v-if="pokemon.prefix">{{pokemon.prefix}} </span><span v-html="pokemon.name"></span><span v-if="pokemon.suffix"> {{pokemon.suffix}}</span></span>
-					<span v-if="pronPreference == 'yes'" class="name">{{ pokemon.pronunciation }}</span>
+					<span v-if="pronPreference == 'yes'" class="name py-0 px-1.5 text-[14px] grow iphone:text-[15px] iphone:px-2.5">{{ pokemon.pronunciation }}</span>
 				</a>
 				<button :class="{'m-0 mr-1 text-[10px] shadow-none flex items-center justify-center text-white font-bold uppercase py-0 px-1.5 border border-black rounded-sm w-[60px] basis-[60px] min-w-[60px] leading-[13px] focus:outline-offset-[5px] iphone:w-16 iphone:basis-16 iphone:text-xs': true, [`bg-${pokemon.type1}`]: true}" style="text-shadow: 0 0 4px rgba(0,0,0,0.5);" @click="createTypeQuery(pokemon.type1)">{{ pokemon.type1}}</button>
 				<button :class="{'m-0 mr-1 text-[10px] shadow-none flex items-center justify-center text-white font-bold uppercase py-0 px-1.5 border border-black rounded-sm w-[60px] basis-[60px] min-w-[60px] leading-[13px] focus:outline-offset-[5px] iphone:w-16 iphone:basis-16 iphone:text-xs': true, [`bg-${pokemon.type2}`]: true}" v-if="pokemon.type2" style="text-shadow: 0 0 4px rgba(0,0,0,0.5);" @click="createTypeQuery(pokemon.type2)">{{ pokemon.type2}}</button>
