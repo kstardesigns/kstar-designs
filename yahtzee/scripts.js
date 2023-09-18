@@ -189,7 +189,6 @@ const rollDice = () => {
                 rollDie1();
             } else {
                 results[0] = tempResults;
-                // console.log(`all 5 dice: ${results}`);
             }
 
             if (die1Count == 0 && results.length == 5 && !results.includes(0)) {
@@ -213,7 +212,6 @@ const rollDice = () => {
                 rollDie2();
             } else {
                 results[1] = tempResults;
-                // console.log(`all 5 dice: ${results}`);
             }
 
             if (die2Count == 0 && results.length == 5 && !results.includes(0)) {
@@ -237,7 +235,6 @@ const rollDice = () => {
                 rollDie3();
             } else {
                 results[2] = tempResults;
-                // console.log(`all 5 dice: ${results}`);
             }
 
             if (die3Count == 0 && results.length == 5 && !results.includes(0)) {
@@ -261,7 +258,6 @@ const rollDice = () => {
                 rollDie4();
             } else {
                 results[3] = tempResults;
-                // console.log(`all 5 dice: ${results}`);
             }
 
             if (die4Count == 0 && results.length == 5 && !results.includes(0)) {
@@ -286,7 +282,6 @@ const rollDice = () => {
                 rollDie5();
             } else {
                 results[4] = tempResults;
-                // console.log(`all 5 dice: ${results}`);
             }
 
             if (die5Count == 0 && results.length == 5 && !results.includes(0)) {
@@ -423,7 +418,6 @@ chooseScoreButtons.forEach((button) => {
         //empty current dice results
         results = [];
 
-
         //don't show roll after last turn
         if (turnNo < 13) {
             roll.style.display = 'block';
@@ -483,7 +477,6 @@ const updateCookies = () => {
     setCookie('currentRollResults', results, cookieLength);
     console.log('current roll just set to cookies:');
     console.log(getCookie('currentRollResults'));
-    //todo: get cookie on reload, save held results? 
 
     for (const [key, value] of Object.entries(scorePicked)) {
         setCookie(`picked${key}`, `${value}`, cookieLength);
@@ -564,12 +557,6 @@ const resetScoreboard = () => {
         }
     }
 
-    //check if category was chosen for a turn but the turnNo hadn't incremented yet
-    // if (rollNo == 3 && turnNo == categoriesFilled) {
-    //     turnNo++;
-    //     turnNumber.textContent = turnNo;
-    // }
-
     //if at least 1 roll has been done, get it from cookies and display it.
     if (getCookie('currentRollResults') !== null) {
         document.querySelector('.dice').classList.remove('first-roll');
@@ -619,9 +606,6 @@ const resetScoreboard = () => {
     if (turnNo == 13 && categoriesFilled == 13) {
         endGame();
     }
-    
-    // console.log('scoreCard:'); 
-    // console.log(scoreCard); 
 }
 
 const updateTopScore = () => {
@@ -776,10 +760,7 @@ shareAndCopyButton.addEventListener('click', async () => {
     }
 });
 
-
-
 //TESTING
-
 const testYahtzee = () => {
     rollDice();
 
@@ -798,12 +779,6 @@ const testYahtzee = () => {
         }
     }, 3000);
 }
-
-// const testBonus = () => {
-//     document.querySelector('#top-bonus').textContent = bonusMessage;
-//     document.querySelector('#top-bonus-final').textContent = bonusMessage;
-//     topBonus = true;
-// }
 
 //modal
 //Credit:
