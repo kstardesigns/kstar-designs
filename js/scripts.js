@@ -111,7 +111,7 @@ var featuredItems = [
     'itemname': 'Yahtzee',
     'itemdescription': 'A digital recreation of the classic dice game, built in Vanilla JS.',
     'projlink': 'http://kylephx.com/yahtzee',
-    'secondarylink':'https://codepen.io/kaisle/',
+    'secondarylink':'https://codepen.io/kaisle/pen/xxmXPOQ',
     'secondarylinktitle':'View this project on CodePen'
   },
   {
