@@ -17,8 +17,8 @@ var portfolioItems = [
     {
       'proj': 'titledrops',
       'itemname': 'Title Drops',
-      'itemdescription': 'A project that tells when a TV show or movie mentions its own title in its script. <a href="http://titledrops.com" target="_blank" title="">View site <span>&rarr;</span></a>',
-      'projlink': 'http://titledrops.com'
+      'itemdescription': 'A project that tells when a TV show or movie mentions its own title in its script. <a href="/titledrops" target="_blank" title="">View site <span>&rarr;</span></a>',
+      'projlink': '/titledrops'
     },
     {
       'proj': 'gatorade',
