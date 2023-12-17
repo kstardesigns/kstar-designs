@@ -1204,11 +1204,14 @@ new Vue({
 			{ number: 1017, name: 'Ogerpon', suffix: '(w/ Wellspring Mask)', stringname: '1017c', type1: 'grass', type2: 'water', evos: '', pronunciation: 'OH-gurr-pahn', gen: '9' },
 			{ number: 1017, name: 'Ogerpon', suffix: '(w/ Cornerstone Mask)', stringname: '1017d', type1: 'grass', type2: 'rock', evos: '', pronunciation: 'OH-gurr-pahn', gen: '9' },
 			
-			{ number: 9999, name: 'Archaludon', stringname: '9999g', type1: 'steel', type2: 'dragon', evos: '0884-line', pronunciation: '???', gen: '9' },
-			{ number: 9999, name: 'Raging Bolt', stringname: '9999h', type1: 'electric', type2: 'dragon', evos: '', pronunciation: '???', gen: '9' },
-			{ number: 9999, name: 'Iron Crown', stringname: '9999i', type1: 'psychic', type2: 'steel', evos: '', pronunciation: '???', gen: '9' },
-			{ number: 9999, name: 'Terapagos', suffix: '(Normal Form)', stringname: '9999k', type1: '???', type2: '', evos: '', pronunciation: 'turr-AHP-uh-gohs', gen: '9' },
-			{ number: 9999, name: 'Terapagos', suffix: '(Terastal Form)', stringname: '9999e', type1: '???', type2: '', evos: '', pronunciation: 'turr-AHP-uh-gohs', gen: '9' }
+			{ number: 1018, name: 'Archaludon', stringname: '9999g', type1: 'steel', type2: 'dragon', evos: '0884-line', pronunciation: 'ahr-CHAL-uh-dahn', gen: '9' },
+			{ number: 1019, name: 'Hydrapple', stringname: '1019', type1: 'grass', type2: 'dragon', evos: '0840-line', pronunciation: 'hie-DRAP-ull', gen: '9' },
+			{ number: 1020, name: 'Raging Bolt', stringname: '1020', type1: 'fire', type2: 'dragon', evos: '', pronunciation: 'GOW-jeeng-FIRE', gen: '9' },
+			{ number: 1021, name: 'Raging Bolt', stringname: '9999h', type1: 'electric', type2: 'dragon', evos: '', pronunciation: 'ray-jeeng-BOHLT', gen: '9' },
+			{ number: 1022, name: 'Iron Boulder', stringname: '1022', type1: 'rock', type2: 'psychic', evos: '', pronunciation: 'eye-urn-BOHL-durr', gen: '9' },
+			{ number: 1023, name: 'Iron Crown', stringname: '9999i', type1: 'psychic', type2: 'steel', evos: '', pronunciation: 'eye-urn-CROWN', gen: '9' },
+			{ number: 1024, name: 'Terapagos', suffix: '(all forms)', stringname: '9999k', type1: 'normal', type2: '', evos: '', pronunciation: 'turr-AHP-uh-gohs', gen: '9' },
+			{ number: 1025, name: 'Pecharunt', stringname: '1025', type1: 'poison', type2: 'ghost', evos: '', pronunciation: 'PECH-uh-runt', gen: '9' }
 		]
 	},
 	computed: {
