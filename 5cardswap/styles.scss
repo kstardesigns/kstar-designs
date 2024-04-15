@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&family=Nunito:wght@700;800&display=swap');
+
+:root {
+	--green: #2ed2c9;
+	--dark-green: #12c5bb;
+	--yellow: #f1c40f;
+    --dark-yellow: #e6b905;
+	--red: #d12d36;
+	--black: #222;
+	--white: #fff;
+}
+
+.test-buttons {
+	position: fixed;
+	top: 0;
+	right: 0;
+	border: 1px solid black;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+    background-color: var(--white);
+
+    @media (width <= 640px) {
+        top: initial;
+        right: initial;
+        bottom: 0;
+        left: 0;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+	font-weight: 500;
+	padding: 0 0.625rem;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.wrap {
+    // width: 480px; TODO:
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.game {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
+}
+
+.flex {
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+}
+
+ul.hand {
+	display: flex;
+	padding-left: 0;
+	gap: 0.375rem;
+	margin: 0 0 0.625rem 0;
+	position: relative;
+	
+	.hand-result-wrap, .hand-confirm-wrap {
+		position: absolute;
+    top: 0;
+    left: calc(100% + 0.375rem);
+		display: flex;
+		align-items: center;
+		width: auto;
+		height: 4.2rem;
+	}
+	
+	.hand-result, .hand-confirm {
+    text-align: center;
+    border-radius: 5px;
+    text-transform: uppercase;
+		background-color: var(--yellow);
+    border: 1px solid var(--dark-yellow);
+    color: var(--black);
+    padding: 1px 7px 0;
+    font-size: 13px;
+    line-height: 14px;
+    font-weight: 700;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-width: 3.75rem;
+		font-family: 'Nunito', sans-serif;
+	}
+	
+	.hand-confirm {
+		background-color: var(--green);
+		border: 2px solid var(--dark-green);
+		box-shadow: 0 1px 1px 0 rgb(0 0 0 / 0.15);
+    padding-bottom: 0;
+    min-width: 90px;
+    font-weight: 800;
+    padding: 5px 2px;
+		cursor: pointer;
+		
+		&:hover {
+			background-color: var(--dark-green);
+		}
+	}
+}
+
+li.card {
+	width: 3rem;
+	height: 4.2rem;
+	background-color: var(--white);
+	text-align: center;
+	border: 1px solid var(--black);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	border-radius: 0.1875rem;
+	font-size: 0.8rem;
+	line-height: 1rem;
+	padding: 0.125rem 0.25rem 0.125rem;
+	
+	&.spade, &.club {
+		color: var(--black);
+	}
+	
+	&.diamond, &.heart {
+		color: var(--red);
+	}
+	
+	.card-first-no {
+		width: 100%;
+		text-align: left;
+		font-weight: bold;
+	}
+	
+	.card-suit {
+		font-size: 1.7rem;
+    line-height: 1.7rem;
+		margin-top: -4px;
+	}
+	
+	.card-second-no {
+		width: 100%;
+		text-align: right;
+		font-weight: bold;
+		transform: rotate(180deg);
+		text-align: left;
+	}
+}
