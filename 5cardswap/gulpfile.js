@@ -2,7 +2,7 @@ const gulp = require('gulp');
 const { watch, series } = require('gulp');
 const cleanCSS = require('gulp-clean-css');
 const sass = require('gulp-sass')(require('sass'));
-const uglify = require('gulp-uglify');
+const terser = require('gulp-terser');
 
 async function minifycss() {
   return gulp.src('./*.scss')
@@ -13,7 +13,7 @@ async function minifycss() {
 
 async function minifyjs() {
   return gulp.src('./scripts.js')
-    .pipe(uglify())
+    .pipe(terser())
     .pipe(gulp.dest('dist'));
 }
 
