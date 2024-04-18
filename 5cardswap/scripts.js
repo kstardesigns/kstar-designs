@@ -305,7 +305,177 @@ window.addEventListener('DOMContentLoaded', () => {
     deal();
 });
 
+//modal
+//Credit:
+//Modified version of accessible dialog by Ire Aderinokun:
+//https://raw.githubusercontent.com/ireade/accessible-modal-dialog/gh-pages/Dialog.js
 
+function Dialog(dialogEl) {
+	this.dialogEl = document.querySelector(`#${dialogEl}`);
+	this.focusedElBeforeOpen;
+
+	var focusableEls = this.dialogEl.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex="0"]');
+	this.focusableEls = Array.prototype.slice.call(focusableEls);
+
+	this.firstFocusableEl = this.focusableEls[0];
+	this.lastFocusableEl = this.focusableEls[ this.focusableEls.length - 1 ];
+
+	this.close();
+}
+
+Dialog.prototype.open = function(dialogId) {
+	var Dialog = this,
+        dialogOverlay, 
+        openDialogs = document.querySelectorAll('.yz-dialog[aria-hidden="false"]');
+
+    this.dialogEl = dialogId ? document.querySelector(`#${dialogId}`) : this.dialogEl;
+	this.focusedElBeforeOpen = document.activeElement;
+
+    //check for data attributes
+    if (this.dialogEl.hasAttribute('data-yz-dialog-top')) {
+        var topAmt = this.dialogEl.getAttribute('data-yz-dialog-top');
+        this.dialogEl.style.top = topAmt + 'px';
+    }
+
+    //prevent page scrolling
+    document.body.classList.add('yz-dialog-fixed-page');
+
+    //create the background div that covers the rest of the content, append the dialog to it
+    if (document.getElementsByClassName('yz-dialog-overlay').length == 0) {
+        dialogOverlay = document.createElement('div');
+        dialogOverlay.classList.add('yz-dialog-overlay');
+        document.body.appendChild(dialogOverlay);
+    } else {
+        dialogOverlay = document.querySelector('.yz-dialog-overlay');
+        dialogOverlay.style.display = '';
+    }
+
+    //different styles for full mobile variation
+    if (this.dialogEl.classList.contains('yz-dialog--mobile-full')) {
+        dialogOverlay.classList.add('yz-dialog-overlay--mobile-full');
+    } else {
+        dialogOverlay.classList.remove('yz-dialog-overlay--mobile-full');
+    }
+
+    //close other open dialogs
+    for (var i = 0; i < openDialogs.length; i++) {
+        openDialogs[i].setAttribute('aria-hidden', true);
+    }
+
+    //show dialog
+    dialogOverlay.appendChild(this.dialogEl);
+    this.dialogEl.setAttribute('aria-hidden', false);
+    dialogOverlay.setAttribute('aria-hidden', false);
+    dialogOverlay.scrollTop = 0;
+
+	this.dialogEl.addEventListener('keydown', function(e) {
+		Dialog._handleKeyDown(e);
+	});
+
+	dialogOverlay.addEventListener('click', function(event) {
+        if (dialogOverlay !== event.target) return;
+		Dialog.close();
+	});
+
+	if (this.firstFocusableEl) {
+        this.firstFocusableEl.focus();
+    }
+};
+
+Dialog.prototype.close = function(dialogId) {
+    var dialogOverlay = document.getElementsByClassName('yz-dialog-overlay')[0];
+
+    document.body.classList.remove('yz-dialog-fixed-page');
+
+    if (dialogId) {
+        if (document.querySelector(`#${dialogId}`).getAttribute('aria-hidden') === 'false') {
+            document.querySelector(`#${dialogId}`).setAttribute('aria-hidden', true);
+        } else {
+            return;
+        }
+    } else {
+        this.dialogEl.setAttribute('aria-hidden', true);
+    }
+
+    if (dialogOverlay) {
+        dialogOverlay.setAttribute('aria-hidden', true);
+    }
+
+	if (this.focusedElBeforeOpen) {
+		this.focusedElBeforeOpen.focus();
+	}
+};
+
+Dialog.prototype._handleKeyDown = function(e) {
+	var Dialog = this;
+	var KEY_TAB = 9;
+	var KEY_ESC = 27;
+
+	function handleBackwardTab() {
+		if (document.activeElement === Dialog.firstFocusableEl) {
+			e.preventDefault();
+			Dialog.lastFocusableEl.focus();
+		}
+	}
+	function handleForwardTab() {
+		if (document.activeElement === Dialog.lastFocusableEl) {
+			e.preventDefault();
+			Dialog.firstFocusableEl.focus();
+		}
+	}
+
+	switch(e.keyCode) {
+	case KEY_TAB:
+		if (Dialog.focusableEls.length === 1) {
+			e.preventDefault();
+			break;
+		} 
+		if (e.shiftKey) {
+			handleBackwardTab();
+		} else {
+			handleForwardTab();
+		}
+		break;
+	case KEY_ESC:
+		Dialog.close();
+		break;
+	default:
+		break;
+	}
+};
+
+Dialog.prototype.addEventListeners = function(openDialogSel, closeDialogSel) {
+	var Dialog = this,
+        openDialogEl = document.querySelector(`[data-dialog-trigger="${openDialogSel}"]`),
+        closeDialogEls = document.querySelectorAll(`${closeDialogSel}`);
+
+    openDialogEl.addEventListener('click', function(e) { 
+        Dialog.open();
+    });
+
+	for (var i = 0; i < closeDialogEls.length; i++) {
+		closeDialogEls[i].addEventListener('click', function() {
+            Dialog.close();
+		});
+	}
+};
+
+var openDialog = function(dialogId) {
+    Dialog.prototype.open(dialogId);
+}
+
+var closeDialog = function(dialogId) {
+    Dialog.prototype.close(dialogId);
+}
+
+var dialogs = document.getElementsByClassName('yz-dialog');
+
+window.addEventListener('DOMContentLoaded', () => {
+    for (var i = 0; i < dialogs.length; i++) {
+        var myDialog = new Dialog(dialogs[i].id);
+        myDialog.addEventListeners(dialogs[i].id, '.yz-dialog-close');
+    }
+});
 
 
 
@@ -362,3 +532,4 @@ const teststraightflush = () => {
 	hands['hand1'] = ['♦5','♦6','♦9','♦8','♦7'];
 	createCards(['♦5','♦6','♦9','♦8','♦7']);
 }
+
