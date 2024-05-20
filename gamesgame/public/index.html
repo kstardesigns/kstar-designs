@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A game made by Kyle Stark.">
+    <!-- TODO: Favicons -->
+    <link id="bh-apple-touch-icon" rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+    <link rel="apple-touch-icon-precomposed" href="favicons/touchicon-152.png">
+    <link id="bh-favicon-32" rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link id="bh-favicon-16" rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link id="bh-favicon" rel="shortcut icon" href="favicons/favicon.png">
+    <meta id="bh-theme-color" name="theme-color" content="#faf9dd">
+    <!-- / Favicons -->
+	<title>Games Game</title>
+
+	<link rel="stylesheet" href="../dist/styles.css">
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            
+           
+
+        </header>
+        <main>
+            <h1>Game List</h1>
+            <ul id="game-list"></ul>
+            
+        </main>
+    </div>
+    
+    
+
+	<!-- <script src="../dist/server.js"></script> -->
+    <script>
+        async function fetchGames() {
+          try {
+            const response = await fetch('/games');
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const games = await response.json();
+            console.log('Games data:', games);
+            const gameList = document.getElementById('game-list');
+            gameList.innerHTML = '';
+    
+            games.forEach(game => {
+              const li = document.createElement('li');
+              const name = game.name || 'Unknown name';
+              const genres = game.genres ? game.genres.map(g => g.name).join(', ') : 'Unknown genres';
+              const releaseDate = game.first_release_date ? new Date(game.first_release_date * 1000).toDateString() : 'Unknown release date';
+              const summary = game.summary || 'No summary available';
+              li.textContent = `${name} - Genres: ${genres} - Release Date: ${releaseDate} - Summary: ${summary}`;
+              gameList.appendChild(li);
+            });
+          } catch (error) {
+            console.error('Error fetching games:', error);
+          }
+        }
+        fetchGames();
+    </script>
+</body>
+</html>
