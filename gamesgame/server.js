@@ -57,7 +57,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/games', async (req, res) => {
     if (!accessToken) await getAccessToken();
     try {
-      const query = 'fields id, name, genres.name, first_release_date, summary; limit 10;';
+      const query = 'search "Banjo"; where rating > 1; fields *; limit 100;';
       const games = await fetchData(query);
         res.json(games);
     } catch (error) {

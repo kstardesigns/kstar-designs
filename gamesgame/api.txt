@@ -1,0 +1,12 @@
+
+to search a word in game titles: (rating > 1 shows actual games with ratings)
+    - query games url: https://api.igdb.com/v4/games
+    - const query = 'search "Banjo"; where rating > 1; fields *; limit 100;';
+
+to get a game cover:
+    - query games url: https://api.igdb.com/v4/games
+    - const query = 'search "Banjo"; where rating > 1; fields *; limit 100;';
+    - game.cover to get cover id
+    - query covers url: https://api.igdb.com/v4/covers
+    - const query = 'where id = 93043; fields *;';
+    - output example: li.innerHTML = `<img src="${game.url}" />`;

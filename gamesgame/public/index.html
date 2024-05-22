@@ -50,10 +50,13 @@
             games.forEach(game => {
               const li = document.createElement('li');
               const name = game.name || 'Unknown name';
-              const genres = game.genres ? game.genres.map(g => g.name).join(', ') : 'Unknown genres';
-              const releaseDate = game.first_release_date ? new Date(game.first_release_date * 1000).toDateString() : 'Unknown release date';
+            //   const genres = game.genres ? game.genres.map(g => g.name).join(', ') : 'Unknown genres';
+            //   const releaseDate = game.first_release_date ? new Date(game.first_release_date * 1000).toDateString() : 'Unknown release date';
               const summary = game.summary || 'No summary available';
-              li.textContent = `${name} - Genres: ${genres} - Release Date: ${releaseDate} - Summary: ${summary}`;
+              const cover = game.cover || 'No cover available';
+            //   li.textContent = `${name} - Genres: ${genres} - Release Date: ${releaseDate} - Summary: ${summary}`;
+              li.textContent = `${name} - ${cover}`;
+            //   li.textContent = `${name}`;
               gameList.appendChild(li);
             });
           } catch (error) {
