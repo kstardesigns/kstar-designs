@@ -48,7 +48,7 @@ async function fetchData(query) {
         return data;
     } catch (error) {
         console.error('Error fetching data from IGDB:', error);
-        throw error;
+        throw error; 
     }
 }
 
@@ -56,8 +56,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/games', async (req, res) => {
     if (!accessToken) await getAccessToken();
+    const searchQuery = req.query.search;
     try {
-      const query = 'search "Banjo"; where rating > 1; fields *; limit 100;';
+      // const query = 'search "Banjo"; where rating > 1; fields *; limit 100;';
+      const query = `search "${searchQuery}"; where rating > 1; fields *; limit 10;`;
       const games = await fetchData(query);
         res.json(games);
     } catch (error) {

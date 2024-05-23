@@ -8,13 +8,13 @@ async function minifycss() {
   return gulp.src('./*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(cleanCSS())
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('public'));
 }
 
 async function minifyjs() {
   return gulp.src('./server.js')
     .pipe(terser())
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('public'));
 }
 
 gulp.task('minifyjs', function(){
