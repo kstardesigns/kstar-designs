@@ -27,22 +27,40 @@
         </header>
         <main>
             <h1>Super Grid 64</h1>
-            <input type="text" id="search" placeholder="Type to search...">
+            <input disabled type="text" id="search" placeholder="Type to search...">
             <ul id="results"></ul>
             <!-- <ul id="game-list"></ul> -->
             <div class="categories categories--top">platformer (genre)</div>
             <div class="row">
                 <div class="categories categories--left">n64</div>
                 <div class="grid">
-                    <div class="grid-box grid-box--1">a</div>
-                    <div class="grid-box grid-box--2">b</div>
-                    <div class="grid-box grid-box--3">c</div>
-                    <div class="grid-box grid-box--4">d</div>
-                    <div class="grid-box grid-box--5">e</div>
-                    <div class="grid-box grid-box--6">f</div>
-                    <div class="grid-box grid-box--7">g</div>
-                    <div class="grid-box grid-box--8">h</div>
-                    <div class="grid-box grid-box--9">i</div>
+                    <div class="grid-box grid-box--1">
+                        <button type="button" class="grid-button" data-first="first" data-second="second"></button>
+                    </div>
+                    <div class="grid-box grid-box--2">
+                        <button type="button" class="grid-button"></button>
+                    </div>
+                    <div class="grid-box grid-box--3">
+                        <button type="button" class="grid-button"></button>
+                    </div>
+                    <div class="grid-box grid-box--4">
+                        <button type="button" class="grid-button"></button>
+                    </div>
+                    <div class="grid-box grid-box--5">
+                        <button type="button" class="grid-button"></button>
+                    </div>
+                    <div class="grid-box grid-box--6">
+                        <button type="button" class="grid-button"></button>
+                    </div>
+                    <div class="grid-box grid-box--7">
+                        <button type="button" class="grid-button"></button>
+                    </div>
+                    <div class="grid-box grid-box--8">
+                        <button type="button" class="grid-button"></button>
+                    </div>
+                    <div class="grid-box grid-box--9">
+                        <button type="button" class="grid-button"></button>
+                    </div>
                 </div>
             </div>
             
@@ -92,6 +110,20 @@
                 }
             }, 300); // Adjust the delay as needed
         });
+
+        const gridButtons = document.querySelectorAll('.grid-button');
+
+        gridButtons.forEach((button) => {
+            button.addEventListener('click', (event) => {
+                startSearch('first', 'second');
+            });
+        });
+
+        function startSearch(category1, category2) {
+            document.querySelector(`.grid-button[data-first="${category1}"][data-second="${category2}"]`).classList.add('active');
+            document.getElementById('search').removeAttribute('disabled');
+            document.getElementById('search').focus();
+        }
     </script>
     
 

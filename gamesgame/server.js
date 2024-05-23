@@ -8,6 +8,8 @@ const clientSecret = 'ewmh7s6p58wok1zrn3p23yfbreb2wc';
 //TODO: dont hard code these 2^
 let accessToken = '';
 
+
+
 async function getAccessToken() {
     try {
         const response = await fetch('https://id.twitch.tv/oauth2/token', {
