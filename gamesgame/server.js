@@ -69,6 +69,18 @@ app.get('/games', async (req, res) => {
     }
 });
 
+app.get('/game', async (req, res) => {
+  if (!accessToken) await getAccessToken();
+  const gameId = req.query.id;
+  try {
+    const query = `where id = ${gameId}; fields *;`;
+    const game = await fetchData(query);
+      res.json(game);
+  } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch data from IGDB' });
+  }
+});
+
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
