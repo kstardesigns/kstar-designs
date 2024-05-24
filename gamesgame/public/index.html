@@ -35,7 +35,7 @@
                 <div class="categories categories--left">n64</div>
                 <div class="grid">
                     <div class="grid-box grid-box--1">
-                        <button type="button" class="grid-button" data-first="first" data-second="second"></button>
+                        <button type="button" class="grid-button" data-cat1="first" data-cat2="second"></button>
                     </div>
                     <div class="grid-box grid-box--2">
                         <button type="button" class="grid-button"></button>
@@ -68,9 +68,12 @@
     </div>
     
     <script>
-        let timeout = null;
+        let timeout = null,
+            activeCat1 = '',
+            activeCat2 = '',
+            chosenGame = {};
 
-        async function fetchGames(query) {
+        async function fetchGamesList(query) {
             try {
                 const response = await fetch(`/games?search=${query}`);
                 if (!response.ok) {
@@ -84,16 +87,20 @@
             }
         }
 
-        function displayGames(games) {
-            const results = document.getElementById('results');
-            results.innerHTML = '';
-
-            games.forEach(game => {
-                const li = document.createElement('li');
-                const name = game.name || 'Unknown name';
-                li.textContent = name;
-                results.appendChild(li);
-            });
+        async function fetchGameDetails(gameId) {
+            try {
+                const response = await fetch(`/game?id=${gameId}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const game = await response.json();
+                // checkAnswer(game);
+                console.log(game);
+                // return game;
+            } catch (error) {
+                console.error('Error fetching game details:', error);
+                return [];
+            }
         }
 
         document.getElementById('search').addEventListener('input', (event) => {
@@ -103,7 +110,7 @@
 
             timeout = setTimeout(async () => {
                 if (query.length > 0) {
-                    const games = await fetchGames(query);
+                    const games = await fetchGamesList(query);
                     displayGames(games);
                 } else {
                     displayGames([]);
@@ -111,19 +118,46 @@
             }, 300); // Adjust the delay as needed
         });
 
-        const gridButtons = document.querySelectorAll('.grid-button');
+        function displayGames(games) {
+            const results = document.getElementById('results');
+            results.innerHTML = '';
 
+            games.forEach(game => {
+                const li = document.createElement('li');
+                const gameName = game.name || 'Unknown name';
+                const gameId = game.id || 'Unknown id';
+                const button = document.createElement('button');
+                button.classList.add('select-game');
+                button.dataset.id = gameId;
+                button.textContent = gameName;
+                button.addEventListener('click', () => fetchGameDetails(gameId));
+                li.append(button);
+                //`<button type="button" class="select-game" data-id="${id}">${name}</button>`;
+                results.appendChild(li);
+            });
+        }
+
+        //when a grid box is chosen to solve, store values and go to search
+        const gridButtons = document.querySelectorAll('.grid-button');
         gridButtons.forEach((button) => {
             button.addEventListener('click', (event) => {
-                startSearch('first', 'second');
+                console.log(`cat1: ${button.dataset.cat1}`);
+                console.log(`cat2: ${button.dataset.cat2}`);
+                button.classList.add('active');
+                activeCat1 = button.dataset.cat1;
+                activeCat2 = button.dataset.cat2;
+
+                //enable & focus search field
+                document.getElementById('search').removeAttribute('disabled');
+                document.getElementById('search').focus();
             });
         });
 
-        function startSearch(category1, category2) {
-            document.querySelector(`.grid-button[data-first="${category1}"][data-second="${category2}"]`).classList.add('active');
-            document.getElementById('search').removeAttribute('disabled');
-            document.getElementById('search').focus();
-        }
+     
+
+        // async function checkAnswer(game) {
+        //     console.log(game.name);
+        // }   
     </script>
     
 
