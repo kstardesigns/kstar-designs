@@ -30,12 +30,16 @@
             <input disabled type="text" id="search" placeholder="Type to search..."/>
             <ul id="results"></ul>
             <!-- <ul id="game-list"></ul> -->
-            <div class="categories categories--top">platformer (genre)</div>
+            <div class="categories categories--top">
+                <div>platformer (genre)</div>
+                <div>abc</div>
+                <div>zzz</div>
+            </div>
             <div class="row">
                 <div class="categories categories--left">n64</div>
                 <div class="grid">
                     <div class="grid-box grid-box--1">
-                        <button type="button" class="grid-button" data-cat1="first" data-cat2="second"></button>
+                        <button type="button" class="grid-button" data-cat1="genres" data-subcat1="8" data-cat2="second" data-subcat2=""></button>
                     </div>
                     <div class="grid-box grid-box--2">
                         <button type="button" class="grid-button"></button>
@@ -70,7 +74,9 @@
     <script>
         let timeout = null,
             activeCat1 = '',
+            activeSubcat1 = '',
             activeCat2 = '',
+            activeSubcat2 = '',
             chosenGame = {};
 
         async function fetchGamesList(query) {
@@ -94,7 +100,7 @@
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 const game = await response.json();
-                // checkAnswer(game);
+                checkAnswer(game);
                 console.log(game);
                 // return game;
             } catch (error) {
@@ -144,7 +150,10 @@
                 console.log(`cat2: ${button.dataset.cat2}`);
                 button.classList.add('active');
                 activeCat1 = button.dataset.cat1;
+                activeSubcat1 = button.dataset.subcat1;
                 activeCat2 = button.dataset.cat2;
+                activeSubcat2 = button.dataset.subcat2;
+
 
                 //enable & focus search field
                 document.getElementById('search').removeAttribute('disabled');
@@ -152,16 +161,32 @@
             });
         });
 
-     
+        async function checkAnswer(game) {
+            console.log('game\:');
+            
+            console.log(activeCat1);
+            console.log(activeSubcat1);
 
-        // async function checkAnswer(game) {
-        //     console.log(game.name);
-        // }   
+            console.log(activeCat2);
+            console.log(activeSubcat2);
+
+            console.log(game[0].genres);
+
+            console.log(game[0].genres.includes(8));
+
+            //left off: need to make that ^ dynamic like this \/
+            console.log(game[0][activeCat1].includes(activeSubcat1));
+
+            //then do the same for cat2
+
+
+
+        }   
     </script>
     
 
 	<!-- <script src="../dist/server.js"></script> -->
-    <!-- <script>
+   
         async function fetchGames() {
           try {
             const response = await fetch('/games');
