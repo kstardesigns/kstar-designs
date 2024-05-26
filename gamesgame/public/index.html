@@ -39,7 +39,7 @@
                 <div class="categories categories--left">n64</div>
                 <div class="grid">
                     <div class="grid-box grid-box--1">
-                        <button type="button" class="grid-button" data-cat1="genres" data-subcat1="8" data-cat2="second" data-subcat2=""></button>
+                        <button type="button" class="grid-button" data-cat1="genres" data-subcat1="8" data-cat2="platforms" data-subcat2="4"></button>
                     </div>
                     <div class="grid-box grid-box--2">
                         <button type="button" class="grid-button"></button>
@@ -162,21 +162,18 @@
         });
 
         async function checkAnswer(game) {
-            console.log('game\:');
-            
-            console.log(activeCat1);
-            console.log(activeSubcat1);
+            //check if each category matches
+            const cat1matches = game[0][activeCat1].includes(Number(activeSubcat1));
+            const cat2matches = game[0][activeCat2].includes(Number(activeSubcat2));
 
-            console.log(activeCat2);
-            console.log(activeSubcat2);
+            console.log(cat1matches);
+            console.log(cat2matches);
 
-            console.log(game[0].genres);
-
-            console.log(game[0].genres.includes(8));
-
-            //left off: need to make that ^ dynamic like this \/
-            console.log(game[0][activeCat1].includes(activeSubcat1));
-
+            if (cat1matches && cat2matches) {
+                alert('matching!!');
+            } else {
+                alert('1 or both of them didnt match');
+            }
             //then do the same for cat2
 
 
