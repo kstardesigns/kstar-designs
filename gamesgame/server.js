@@ -73,7 +73,7 @@ app.get('/game', async (req, res) => {
   if (!accessToken) await getAccessToken();
   const gameId = req.query.id;
   try {
-    const query = `where id = ${gameId}; fields *;`;
+    const query = `where id = ${gameId}; fields *, cover.url, release_dates.y;`;
     const game = await fetchData(query);
       res.json(game);
   } catch (error) {
