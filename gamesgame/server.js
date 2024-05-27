@@ -60,7 +60,6 @@ app.get('/games', async (req, res) => {
     if (!accessToken) await getAccessToken();
     const searchQuery = req.query.search;
     try {
-      // const query = 'search "Banjo"; where rating > 1; fields *; limit 100;';
       const query = `search "${searchQuery}"; where rating > 1; fields *; limit 10;`;
       const games = await fetchData(query);
         res.json(games);
