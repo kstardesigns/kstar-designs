@@ -39,7 +39,7 @@
                 <div class="categories categories--left">
                     <div>n64</div>
                     <div>switch</div>
-                    <div>ps2</div>
+                    <div>rating > 90</div>
                 </div>
                 <div class="grid">
                     <div class="grid-box grid-box--1">
@@ -58,16 +58,16 @@
                         <button type="button" class="grid-button" data-cat1="game_modes" data-subcat1="2" data-cat2="platforms" data-subcat2="130"></button>
                     </div>
                     <div class="grid-box grid-box--6">
-                        <button type="button" class="grid-button"></button>
+                        <button type="button" class="grid-button" data-cat1="release_dates" data-subcat1="1996, 1997, 1998, 1999, 2000" data-cat2="platforms" data-subcat2="130"></button>
                     </div>
                     <div class="grid-box grid-box--7">
-                        <button type="button" class="grid-button"></button>
+                        <button type="button" class="grid-button" data-cat1="genres" data-subcat1="8" data-cat2="aggregated_rating" data-subcat2="90"></button>
                     </div>
                     <div class="grid-box grid-box--8">
-                        <button type="button" class="grid-button"></button>
+                        <button type="button" class="grid-button" data-cat1="game_modes" data-subcat1="2" data-cat2="aggregated_rating" data-subcat2="90"></button>
                     </div>
                     <div class="grid-box grid-box--9">
-                        <button type="button" class="grid-button"></button>
+                        <button type="button" class="grid-button" data-cat1="release_dates" data-subcat1="1996, 1997, 1998, 1999, 2000" data-cat2="aggregated_rating" data-subcat2="90"></button>
                     </div>
                 </div>
             </div>
@@ -174,24 +174,34 @@
             let cat1matches, cat2matches;
             
 
-            if (activeCat1 != 'release_dates') { //check if id matches id of given category
-                cat1matches = game[0][activeCat1].includes(Number(activeSubcat1));
-            } else { //see if release dates match one of our given release dates
+            if (activeCat1 == 'release_dates') { 
+                //see if release dates match one of our given release dates
                 subcat1array = activeSubcat1.split(',').map(Number);
 
                 cat1matches = subcat1array.some(y =>
                     game[0][activeCat1].some(date => date.y === y)
                 );
+            } else if (activeCat1 == 'aggregated_rating') {
+                // aggregated_rating
+                cat1matches = game[0][activeCat1] >= Number(activeSubcat1);
+            }
+            else { //check if id matches id of given category
+                cat1matches = game[0][activeCat1].includes(Number(activeSubcat1));
             }
 
-            if (activeCat2 != 'release_dates') { //check if id matches id of given category
-                cat2matches = game[0][activeCat2].includes(Number(activeSubcat2));
-            } else { //see if release dates match one of our given release dates
+            if (activeCat2 == 'release_dates') { 
+                //see if release dates match one of our given release dates
                 subcat2array = activeSubcat2.split(',').map(Number);
 
                 cat2matches = subcat2array.some(y =>
                     game[0][activeCat2].some(date => date.y === y)
                 );
+            } else if (activeCat2 == 'aggregated_rating') {
+                // aggregated_rating
+                cat2matches = game[0][activeCat2] >= Number(activeSubcat2);
+            }
+            else { //check if id matches id of given category
+                cat2matches = game[0][activeCat2].includes(Number(activeSubcat2));
             }
 
             console.log(cat1matches);
