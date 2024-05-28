@@ -31,7 +31,7 @@
             <ul id="results"></ul>
             <!-- <ul id="game-list"></ul> -->
             <div class="categories categories--top">
-                <div>historical theme</div>
+                <div>legend of zelda series</div>
                 <div>multiplayer</div>
                 <div>1996-2000</div>
             </div>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="grid">
                     <div class="grid-box grid-box--1">
-                        <button type="button" class="grid-button" data-cat1="themes" data-subcat1="38" data-cat2="platforms" data-subcat2="4"></button>
+                        <button type="button" class="grid-button" data-cat1="franchises" data-subcat1="596" data-cat2="platforms" data-subcat2="4"></button>
                     </div>
                     <div class="grid-box grid-box--2">
                         <button type="button" class="grid-button" data-cat1="game_modes" data-subcat1="2" data-cat2="platforms" data-subcat2="4"></button>
@@ -52,7 +52,7 @@
                         <button type="button" class="grid-button" data-cat1="release_dates" data-subcat1="1996, 1997, 1998, 1999, 2000" data-cat2="platforms" data-subcat2="4"></button>
                     </div>
                     <div class="grid-box grid-box--4">
-                        <button type="button" class="grid-button" data-cat1="themes" data-subcat1="38" data-cat2="platforms" data-subcat2="130"></button>
+                        <button type="button" class="grid-button" data-cat1="franchises" data-subcat1="596" data-cat2="platforms" data-subcat2="130"></button>
                     </div>
                     <div class="grid-box grid-box--5">
                         <button type="button" class="grid-button" data-cat1="game_modes" data-subcat1="2" data-cat2="platforms" data-subcat2="130"></button>
@@ -61,7 +61,7 @@
                         <button type="button" class="grid-button" data-cat1="release_dates" data-subcat1="1996, 1997, 1998, 1999, 2000" data-cat2="platforms" data-subcat2="130"></button>
                     </div>
                     <div class="grid-box grid-box--7">
-                        <button type="button" class="grid-button" data-cat1="themes" data-subcat1="38" data-cat2="aggregated_rating" data-subcat2="90"></button>
+                        <button type="button" class="grid-button" data-cat1="franchises" data-subcat1="596" data-cat2="aggregated_rating" data-subcat2="90"></button>
                     </div>
                     <div class="grid-box grid-box--8">
                         <button type="button" class="grid-button" data-cat1="game_modes" data-subcat1="2" data-cat2="aggregated_rating" data-subcat2="90"></button>
@@ -108,6 +108,26 @@
                 const game = await response.json();
                 checkAnswer(game);
                 console.log(game);
+                // return game;
+            } catch (error) {
+                console.error('Error fetching game details:', error);
+                return [];
+            }
+        }
+
+        //TODO: left off - need chatgpt help wit this error : 
+        //ratingsIds is given in checkAnswer
+
+        async function fetchGameRatings(ratingIds) {
+            try {
+                const response = await fetch(`/age_ratings?id=${ratingIds[0]}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const ratings = await response.json();
+                // checkAnswer(game);
+                console.log('ratings:');
+                console.log(ratings);
                 // return game;
             } catch (error) {
                 console.error('Error fetching game details:', error);
@@ -172,7 +192,11 @@
             //check if each category matches
             
             let cat1matches, cat2matches;
-            
+
+            console.log('age rating list, then the results from that array');
+            console.log(game[0].age_ratings);
+
+            fetchGameRatings(game[0].age_ratings);
 
             if (activeCat1 == 'release_dates') { 
                 //see if release dates match one of our given release dates
