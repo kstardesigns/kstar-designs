@@ -35,6 +35,8 @@ async function getAccessToken() {
 async function fetchData(query) {
     try {
         console.log('Sending request with query:', query);
+        console.log('access:' + accessToken);
+
         const response = await fetch('https://api.igdb.com/v4/games', {
             method: 'POST',
             headers: {
@@ -50,6 +52,26 @@ async function fetchData(query) {
         return data;
     } catch (error) {
         console.error('Error fetching data from IGDB:', error);
+        throw error; 
+    }
+}
+
+async function fetchAgeRatings(ageRatingIds) {
+    try {
+        const query = `fields rating; where id = (${ageRatingIds.join(',')});`;
+        const response = await fetch('https://api.igdb.com/v4/age_ratings', {
+            method: 'POST',
+            headers: {
+                'Client-ID': clientId,
+                'Authorization': `Bearer ${accessToken}`,
+                'Accept': 'application/json'
+            },
+            body: query
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching age ratings from IGDB:', error);
         throw error; 
     }
 }
@@ -72,12 +94,24 @@ app.get('/game', async (req, res) => {
   if (!accessToken) await getAccessToken();
   const gameId = req.query.id;
   try {
-    const query = `where id = ${gameId}; fields *, cover.url, release_dates.y;`;
+    const query = `where id = ${gameId}; fields *, cover.url, release_dates.y; age_ratings.content_descriptions;`;
     const game = await fetchData(query);
       res.json(game);
   } catch (error) {
       res.status(500).json({ error: 'Failed to fetch data from IGDB' });
   }
+});
+
+app.get('/age_ratings', async (req, res) => {
+    if (!accessToken) await getAccessToken();
+    const ratingIds = req.query.ids.split(',').map(id => parseInt(id, 10));
+    try {
+      //const query = `where id = (${ratingIds.join(',')}); fields rating;`;
+      const ratings = await fetchAgeRatings(ratingIds);
+        res.json(ratings);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch data from IGDB' });
+    }
 });
 
 app.get('*', (req, res) => {
