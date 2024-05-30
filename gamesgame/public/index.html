@@ -155,7 +155,7 @@
                 // checkAnswer(game);
                 console.log('ratings:');
                 console.log(ratings);
-                
+
                 const ratingsOnly = ratings.map(entry => entry.rating);
                 console.log('ratingsOnly: ', ratingsOnly);
                 return ratingsOnly;
@@ -238,6 +238,8 @@
                 cat1matches = game[0][activeCat1] >= Number(activeSubcat1);
             } else if (activeCat1 == 'age_ratings') {
                 cat1matches = ratings.includes(Number(activeSubcat1));
+            } else if (activeCat1 == 'dlcs') {
+                cat1matches = (game[0][activeCat1] || game[0]['expansions']);
             } else { //check if id matches id of given category
                 cat1matches = game[0][activeCat1].includes(Number(activeSubcat1));
             }
@@ -254,6 +256,8 @@
                 cat2matches = game[0][activeCat2] >= Number(activeSubcat2);
             } else if (activeCat2 == 'age_ratings') {
                 cat2matches = ratings.includes(Number(activeSubcat2));
+            } else if (activeCat2 == 'dlcs') {
+                cat2matches = (game[0][activeCat2] || game[0]['expansions'] || game[0]['parent_game']);
             } else { //check if id matches id of given category
                 cat2matches = game[0][activeCat2].includes(Number(activeSubcat2));
             }
@@ -284,7 +288,6 @@
 
 
         //testing
-        // class="change-cat" data-change-cat="1"
 
         const testButtons = document.querySelectorAll('.change-cat');
         testButtons.forEach((button) => {
