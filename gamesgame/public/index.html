@@ -127,7 +127,7 @@
                 }
                 const game = await response.json();
 
-                if (game[0] && game[0].age_ratings) {
+                if (game[0] && game[0].age_ratings && (activeCat1 == 'age_ratings' || activeCat2 == 'age_ratings')) {
                     const ratingIds = game[0].age_ratings.map(ratingObj => ratingObj.id);
                     console.log('ratingIds', ratingIds);
                     const ratings = await fetchGameRatings(ratingIds);
@@ -202,9 +202,18 @@
         //when a grid box is chosen to solve, store values and go to search
         const gridButtons = document.querySelectorAll('.grid-button');
         gridButtons.forEach((button) => {
+            button.classList.remove('wrong');
+            button.classList.remove('active');
+
             button.addEventListener('click', (event) => {
                 console.log(`cat1: ${button.dataset.cat1}`);
                 console.log(`cat2: ${button.dataset.cat2}`);
+
+                gridButtons.forEach((otherButton) => {
+                    otherButton.classList.remove('wrong');
+                    otherButton.classList.remove('active');
+                });
+
                 button.classList.add('active');
                 activeCat1 = button.dataset.cat1;
                 activeSubcat1 = button.dataset.subcat1;
@@ -221,10 +230,7 @@
 
         async function checkAnswer(game, ratings) {
             //check if each category matches
-            
             let cat1matches, cat2matches;
-
-            
 
             if (activeCat1 == 'release_dates') { 
                 //see if release dates match one of our given release dates
@@ -234,12 +240,13 @@
                     game[0][activeCat1].some(date => date.y === y)
                 );
             } else if (activeCat1 == 'aggregated_rating') {
-                // aggregated_rating
                 cat1matches = game[0][activeCat1] >= Number(activeSubcat1);
             } else if (activeCat1 == 'age_ratings') {
                 cat1matches = ratings.includes(Number(activeSubcat1));
             } else if (activeCat1 == 'dlcs') {
-                cat1matches = (game[0][activeCat1] || game[0]['expansions']);
+                cat1matches = (game[0][activeCat1] || game[0]['expansions'] || game[0]['parent_game']);
+            } else if (activeCat1 == 'remakes') {
+                cat1matches = (game[0][activeCat1] || game[0]['remasters'] || game[0]['ports']);
             } else { //check if id matches id of given category
                 cat1matches = game[0][activeCat1].includes(Number(activeSubcat1));
             }
@@ -252,12 +259,13 @@
                     game[0][activeCat2].some(date => date.y === y)
                 );
             } else if (activeCat2 == 'aggregated_rating') {
-                // aggregated_rating
                 cat2matches = game[0][activeCat2] >= Number(activeSubcat2);
             } else if (activeCat2 == 'age_ratings') {
                 cat2matches = ratings.includes(Number(activeSubcat2));
             } else if (activeCat2 == 'dlcs') {
                 cat2matches = (game[0][activeCat2] || game[0]['expansions'] || game[0]['parent_game']);
+            } else if (activeCat2 == 'remakes') {
+                cat2matches = (game[0][activeCat2] || game[0]['remasters'] || game[0]['ports']);
             } else { //check if id matches id of given category
                 cat2matches = game[0][activeCat2].includes(Number(activeSubcat2));
             }
@@ -274,6 +282,8 @@
             } else {
                 // alert('1 or both of them didnt match');
                 //TODO: show red box around box or something to indicate it was incorrect
+                activeButton.classList.remove('active');
+                activeButton.classList.add('wrong');
             }
 
             //TODO: decrement allowed guesses
