@@ -58,7 +58,8 @@ async function fetchData(query) {
 
 async function fetchAgeRatings(ageRatingIds) {
     try {
-        const query = `fields rating; where id = (${ageRatingIds.join(',')});`;
+        const query = `fields rating, content_descriptions; where id = (${ageRatingIds.join(',')});`;
+        console.log('Age Ratings Query:', query);
         const response = await fetch('https://api.igdb.com/v4/age_ratings', {
             method: 'POST',
             headers: {
@@ -69,6 +70,7 @@ async function fetchAgeRatings(ageRatingIds) {
             body: query
         });
         const data = await response.json();
+        console.log('Age Ratings Data:', data);
         return data;
     } catch (error) {
         console.error('Error fetching age ratings from IGDB:', error);
@@ -94,7 +96,7 @@ app.get('/game', async (req, res) => {
   if (!accessToken) await getAccessToken();
   const gameId = req.query.id;
   try {
-    const query = `where id = ${gameId}; fields *, cover.url, release_dates.y; age_ratings.content_descriptions;`;
+    const query = `where id = ${gameId}; fields *, cover.url, release_dates.y, age_ratings.content_descriptions;`;
     const game = await fetchData(query);
       res.json(game);
   } catch (error) {
@@ -105,6 +107,8 @@ app.get('/game', async (req, res) => {
 app.get('/age_ratings', async (req, res) => {
     if (!accessToken) await getAccessToken();
     const ratingIds = req.query.ids.split(',').map(id => parseInt(id, 10));
+    console.log('Rating IDs from Request:', ratingIds);
+    
     try {
       //const query = `where id = (${ratingIds.join(',')}); fields rating;`;
       const ratings = await fetchAgeRatings(ratingIds);

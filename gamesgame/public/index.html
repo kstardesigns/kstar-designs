@@ -128,7 +128,8 @@
                 const game = await response.json();
 
                 if (game[0] && game[0].age_ratings) {
-                    const ratingIds = game[0].age_ratings;
+                    const ratingIds = game[0].age_ratings.map(ratingObj => ratingObj.id);
+                    console.log('ratingIds', ratingIds);
                     const ratings = await fetchGameRatings(ratingIds);
                     checkAnswer(game, ratings);
                 } else {
@@ -143,6 +144,8 @@
         }
 
         async function fetchGameRatings(ratingIds) {
+            console.log('ratingIds:', ratingIds);
+
             try {
                 const response = await fetch(`/age_ratings?ids=${ratingIds.join(',')}`);
                 if (!response.ok) {
@@ -152,10 +155,11 @@
                 // checkAnswer(game);
                 console.log('ratings:');
                 console.log(ratings);
-
+                
                 const ratingsOnly = ratings.map(entry => entry.rating);
                 console.log('ratingsOnly: ', ratingsOnly);
                 return ratingsOnly;
+                
             } catch (error) {
                 console.error('Error fetching game ratings:', error);
                 return [];
