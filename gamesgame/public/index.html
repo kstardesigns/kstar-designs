@@ -138,8 +138,15 @@
                 }
 
                 if (activeCat1 == 'publisher' || activeCat1 == 'developer' || activeCat2 == 'publisher' || activeCat2 == 'developer') {
-                    const companyIds = game[0].involved_companies.map(companyObj => companyObj.id);
-                    console.log('companyIds', companyIds);
+                    let companyIds;
+
+                    if (activeCat1 == 'publisher' || activeCat2 == 'publisher') {
+                        companyIds = game[0].involved_companies.filter(companyObj => companyObj.publisher).map(companyObj => companyObj.id);
+                        console.log('companyIds', companyIds);
+                    } else if (activeCat1 == 'developer' || activeCat2 == 'developer') {
+                        companyIds = game[0].involved_companies.filter(companyObj => companyObj.developer).map(companyObj => companyObj.id);
+                        console.log('companyIds', companyIds);
+                    }
                     const companies = await fetchCompanies(companyIds);
                     companiesArray = companies;
                 } 
@@ -278,7 +285,8 @@
             } else if (activeCat1 == 'remakes') {
                 cat1matches = (game[0][activeCat1] || game[0]['remasters'] || game[0]['ports']);
             } else if (activeCat1 == 'publisher' || activeCat1 == 'developer') {
-                cat1matches = companies.some(element => element.includes(activeSubcat1));
+                const activeSubcat1Lower = activeSubcat1.toLowerCase();
+                cat1matches = companies.some(element => element.toLowerCase().includes(activeSubcat1));
             } else { //check if id matches id of given category
                 cat1matches = game[0][activeCat1].includes(Number(activeSubcat1));
             }
@@ -299,7 +307,8 @@
             } else if (activeCat2 == 'remakes') {
                 cat2matches = (game[0][activeCat2] || game[0]['remasters'] || game[0]['ports']);
             } else if (activeCat2 == 'publisher' || activeCat2 == 'developer') {
-                cat2matches = companies.some(element => element.includes(activeSubcat2));
+                const activeSubcat2Lower = activeSubcat2.toLowerCase();
+                cat2matches = companies.some(element => element.toLowerCase().includes(activeSubcat2));
             } else { //check if id matches id of given category
                 cat2matches = game[0][activeCat2].includes(Number(activeSubcat2));
             }
