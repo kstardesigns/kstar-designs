@@ -51,7 +51,7 @@
             <ul id="results"></ul>
             <!-- <ul id="game-list"></ul> -->
             <div class="categories categories--top">
-                <div id="cat-text-1">E Everyone</div>
+                <div id="cat-text-1">publisher is nintendo</div>
                 <div id="cat-text-2">multiplayer</div>
                 <div id="cat-text-3">1996-2000</div>
             </div>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="grid">
                     <div class="grid-box grid-box--1">
-                        <button type="button" class="grid-button" data-button-hori="1" data-button-vert="1" data-cat1="age_ratings" data-subcat1="8" data-cat2="platforms" data-subcat2="4"></button>
+                        <button type="button" class="grid-button" data-button-hori="1" data-button-vert="1" data-cat1="publisher" data-subcat1="Nintendo" data-cat2="platforms" data-subcat2="4"></button>
                     </div>
                     <div class="grid-box grid-box--2">
                         <button type="button" class="grid-button" data-button-hori="2" data-button-vert="1" data-cat1="game_modes" data-subcat1="2" data-cat2="platforms" data-subcat2="4"></button>
@@ -72,7 +72,7 @@
                         <button type="button" class="grid-button" data-button-hori="3" data-button-vert="1" data-cat1="release_dates" data-subcat1="1996, 1997, 1998, 1999, 2000" data-cat2="platforms" data-subcat2="4"></button>
                     </div>
                     <div class="grid-box grid-box--4">
-                        <button type="button" class="grid-button" data-button-hori="1" data-button-vert="2" data-cat1="age_ratings" data-subcat1="8" data-cat2="platforms" data-subcat2="130"></button>
+                        <button type="button" class="grid-button" data-button-hori="1" data-button-vert="2" data-cat1="publisher" data-subcat1="Nintendo" data-cat2="platforms" data-subcat2="130"></button>
                     </div>
                     <div class="grid-box grid-box--5">
                         <button type="button" class="grid-button" data-button-hori="2" data-button-vert="2" data-cat1="game_modes" data-subcat1="2" data-cat2="platforms" data-subcat2="130"></button>
@@ -81,7 +81,7 @@
                         <button type="button" class="grid-button" data-button-hori="3" data-button-vert="2" data-cat1="release_dates" data-subcat1="1996, 1997, 1998, 1999, 2000" data-cat2="platforms" data-subcat2="130"></button>
                     </div>
                     <div class="grid-box grid-box--7">
-                        <button type="button" class="grid-button" data-button-hori="1" data-button-vert="3" data-cat1="age_ratings" data-subcat1="8" data-cat2="franchises" data-subcat2="596"></button>
+                        <button type="button" class="grid-button" data-button-hori="1" data-button-vert="3" data-cat1="publisher" data-subcat1="Nintendo" data-cat2="franchises" data-subcat2="596"></button>
                     </div>
                     <div class="grid-box grid-box--8">
                         <button type="button" class="grid-button" data-button-hori="2" data-button-vert="3" data-cat1="game_modes" data-subcat1="2" data-cat2="franchises" data-subcat2="596"></button>
@@ -126,15 +126,26 @@
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 const game = await response.json();
+                
+                let ratingsArray = [];
+                let companiesArray = [];
 
-                if (game[0] && game[0].age_ratings && (activeCat1 == 'age_ratings' || activeCat2 == 'age_ratings')) {
+                if (activeCat1 == 'age_ratings' || activeCat2 == 'age_ratings') {
                     const ratingIds = game[0].age_ratings.map(ratingObj => ratingObj.id);
                     console.log('ratingIds', ratingIds);
                     const ratings = await fetchGameRatings(ratingIds);
-                    checkAnswer(game, ratings);
-                } else {
-                    checkAnswer(game, []);
+                    ratingsArray = ratings;
                 }
+
+                if (activeCat1 == 'publisher' || activeCat1 == 'developer' || activeCat2 == 'publisher' || activeCat2 == 'developer') {
+                    const companyIds = game[0].involved_companies.map(companyObj => companyObj.id);
+                    console.log('companyIds', companyIds);
+                    const companies = await fetchCompanies(companyIds);
+                    companiesArray = companies;
+                } 
+
+                checkAnswer(game, ratingsArray, companiesArray);
+
                 console.log(game);
                 // return game;
             } catch (error) {
@@ -152,7 +163,6 @@
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 const ratings = await response.json();
-                // checkAnswer(game);
                 console.log('ratings:');
                 console.log(ratings);
 
@@ -162,6 +172,26 @@
                 
             } catch (error) {
                 console.error('Error fetching game ratings:', error);
+                return [];
+            }
+        }
+
+        async function fetchCompanies(companyIds) {
+            try {
+                const response = await fetch(`/involved_companies?ids=${companyIds.join(',')}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const companies = await response.json();
+                console.log('companies:');
+                console.log(companies);
+
+                const namesOnly = companies.map(entry => entry.company.name);
+                console.log('namesOnly: ', namesOnly);
+                return namesOnly;
+                
+            } catch (error) {
+                console.error('Error fetching companies:', error);
                 return [];
             }
         }
@@ -228,7 +258,7 @@
             });
         });
 
-        async function checkAnswer(game, ratings) {
+        async function checkAnswer(game, ratings, companies) {
             //check if each category matches
             let cat1matches, cat2matches;
 
@@ -247,6 +277,8 @@
                 cat1matches = (game[0][activeCat1] || game[0]['expansions'] || game[0]['parent_game']);
             } else if (activeCat1 == 'remakes') {
                 cat1matches = (game[0][activeCat1] || game[0]['remasters'] || game[0]['ports']);
+            } else if (activeCat1 == 'publisher' || activeCat1 == 'developer') {
+                cat1matches = companies.some(element => element.includes(activeSubcat1));
             } else { //check if id matches id of given category
                 cat1matches = game[0][activeCat1].includes(Number(activeSubcat1));
             }
@@ -266,6 +298,8 @@
                 cat2matches = (game[0][activeCat2] || game[0]['expansions'] || game[0]['parent_game']);
             } else if (activeCat2 == 'remakes') {
                 cat2matches = (game[0][activeCat2] || game[0]['remasters'] || game[0]['ports']);
+            } else if (activeCat2 == 'publisher' || activeCat2 == 'developer') {
+                cat2matches = companies.some(element => element.includes(activeSubcat2));
             } else { //check if id matches id of given category
                 cat2matches = game[0][activeCat2].includes(Number(activeSubcat2));
             }
@@ -292,8 +326,6 @@
             document.getElementById('search').value = '';
             document.getElementById('search').setAttribute('disabled', true);
             document.getElementById('results').innerHTML = '';
-
-
         }   
 
 
@@ -302,7 +334,6 @@
         const testButtons = document.querySelectorAll('.change-cat');
         testButtons.forEach((button) => {
             button.addEventListener('click', (event) => {
-                // data-change-cat="1"
                 const catToChange = button.getAttribute('data-change-cat'),
                       newCat = document.getElementById('change-cat1').value,
                       newSubcat = document.getElementById('change-subcat1').value,

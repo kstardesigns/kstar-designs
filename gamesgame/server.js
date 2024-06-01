@@ -78,6 +78,29 @@ async function fetchAgeRatings(ageRatingIds) {
     }
 }
 
+async function fetchInvolvedCompanies(companyIds) {
+    try {
+        const query = `fields company.*; where id = (${companyIds.join(',')});`;
+        // * where (id = (98353,148028,224520,224521) & company.published = (1074)); fields company.*; sort id asc; limit 50;
+        console.log('Company list Query:', query);
+        const response = await fetch('https://api.igdb.com/v4/involved_companies', {
+            method: 'POST',
+            headers: {
+                'Client-ID': clientId,
+                'Authorization': `Bearer ${accessToken}`,
+                'Accept': 'application/json'
+            },
+            body: query
+        });
+        const data = await response.json();
+        console.log('Involved companies Data:', data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching age ratings from IGDB:', error);
+        throw error; 
+    }
+}
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/games', async (req, res) => {
@@ -96,7 +119,7 @@ app.get('/game', async (req, res) => {
   if (!accessToken) await getAccessToken();
   const gameId = req.query.id;
   try {
-    const query = `where id = ${gameId}; fields *, cover.url, release_dates.y, age_ratings.content_descriptions;`;
+    const query = `where id = ${gameId}; fields *, cover.url, release_dates.y, age_ratings.content_descriptions, involved_companies.*;`;
     const game = await fetchData(query);
       res.json(game);
   } catch (error) {
@@ -113,6 +136,19 @@ app.get('/age_ratings', async (req, res) => {
       //const query = `where id = (${ratingIds.join(',')}); fields rating;`;
       const ratings = await fetchAgeRatings(ratingIds);
         res.json(ratings);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch data from IGDB' });
+    }
+});
+
+app.get('/involved_companies', async (req, res) => {
+    if (!accessToken) await getAccessToken();
+    const companyIds = req.query.ids.split(',').map(id => parseInt(id, 10));
+    console.log('Company IDs from Request:', companyIds);
+    
+    try {
+      const companies = await fetchInvolvedCompanies(companyIds);
+        res.json(companies);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch data from IGDB' });
     }
