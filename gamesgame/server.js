@@ -101,6 +101,39 @@ async function fetchInvolvedCompanies(companyIds) {
     }
 }
 
+async function fetchCharacters(searchTerms) {
+    try {
+        const searchConditions = searchTerms.map(term => 
+            `name ~ *"${term}"*`
+        ).join(' | '); // Join with OR condition
+
+        const query = `fields id, name, akas; where ${searchConditions};`;
+        console.log('Character query:', query); // For debugging purposes
+
+        const response = await fetch('https://api.igdb.com/v4/characters', {
+            method: 'POST',
+            headers: {
+                'Client-ID': clientId,
+                'Authorization': `Bearer ${accessToken}`,
+                'Accept': 'application/json'
+            },
+            body: query
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('characters:', data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching characters from IGDB:', error);
+        throw error;
+    }
+}
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/games', async (req, res) => {
@@ -149,6 +182,19 @@ app.get('/involved_companies', async (req, res) => {
     try {
       const companies = await fetchInvolvedCompanies(companyIds);
         res.json(companies);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch data from IGDB' });
+    }
+});
+
+app.get('/characters', async (req, res) => {
+    if (!accessToken) await getAccessToken();
+    const searchTerms = req.query.searchTerms.split(',');
+    console.log('Search Terms from Request:', searchTerms);
+
+    try {
+        const characters = await fetchCharacters(searchTerms);
+        res.json(characters);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch data from IGDB' });
     }
