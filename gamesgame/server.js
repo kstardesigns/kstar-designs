@@ -5,12 +5,10 @@ const fetch = require('node-fetch');
 const path = require('path');
 const app = express();
 
-const clientId = 'cwy5ta7roxwn4rvpsyiou8bhz2ggbg';
-const clientSecret = 'ewmh7s6p58wok1zrn3p23yfbreb2wc';
-//TODO: dont hard code these 2^
+const clientId = process.env.CLIENT_ID;
+const clientSecret = process.env.CLIENT_SECRET;
+
 let accessToken = '';
-
-
 
 async function getAccessToken() {
     try {
@@ -142,7 +140,7 @@ app.get('/games', async (req, res) => {
     if (!accessToken) await getAccessToken();
     const searchQuery = req.query.search;
     try {
-      const query = `search "${searchQuery}"; where rating > 1; fields *; limit 10;`;
+      const query = `search "${searchQuery}"; where rating > 1; fields name, cover.url, release_dates.date; limit 10;`;
       const games = await fetchData(query);
         res.json(games);
     } catch (error) {

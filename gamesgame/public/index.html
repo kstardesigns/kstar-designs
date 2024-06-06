@@ -48,7 +48,7 @@
         <main>
             <h1>Super Grid 64</h1>
             <input disabled type="text" id="search" placeholder="Type to search..."/>
-            <ul id="results"></ul>
+            <ul id="results" class="results"></ul>
             <!-- <ul id="game-list"></ul> -->
             <div class="categories categories--top">
                 <div id="cat-text-1">character name in title</div>
@@ -250,12 +250,22 @@
 
             games.forEach(game => {
                 const li = document.createElement('li');
+                li.classList.add('results-list-item');
                 const gameName = game.name || 'Unknown name';
                 const gameId = game.id || 'Unknown id';
+                const gameCover = game.cover.url.replace('thumb', 'cover_small_2x') || '';
+                const img = document.createElement('img');
+                img.src = gameCover;
+                img.alt = gameName;
+                img.classList.add('results-cover');
+                const span = document.createElement('span');
+                span.classList.add('results-title');
+                span.textContent = gameName;
                 const button = document.createElement('button');
-                button.classList.add('select-game');
+                button.classList.add('results-button');
                 button.dataset.id = gameId;
-                button.textContent = gameName;
+                button.append(img);
+                button.append(span);
                 button.addEventListener('click', () => fetchGameDetails(gameId));
                 li.append(button);
                 results.appendChild(li);
