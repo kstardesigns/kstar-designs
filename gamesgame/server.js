@@ -140,8 +140,8 @@ app.get('/games', async (req, res) => {
     if (!accessToken) await getAccessToken();
     const searchQuery = req.query.search;
     try {
-      const query = `search "${searchQuery}"; where rating > 1; fields name, cover.url, release_dates.date; limit 10;`;
-      const games = await fetchData(query);
+      const query = `search "${searchQuery}"; where rating > 1 & keywords != (27216); fields name, cover.url, release_dates.date; limit 10;`;
+      const games = await fetchData(query); 
         res.json(games);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch data from IGDB' });
