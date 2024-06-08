@@ -209,8 +209,39 @@ gridButtons.forEach((button) => {
         activeSubcat1 = button.dataset.subcat1;
         activeCat2 = button.dataset.cat2;
         activeSubcat2 = button.dataset.subcat2;
+        activeHori = button.dataset.buttonHori;
+        activeVert = button.dataset.buttonVert;
         activeBox = button.closest('.grid-box');
         activeButton = button;
+
+        //show category names in search modal
+        switch (activeHori) {
+            case '1':
+                document.getElementById('active-category-1').innerHTML = document.getElementById('cat-text-1').innerHTML;
+                break;
+            case '2':
+                document.getElementById('active-category-1').innerHTML = document.getElementById('cat-text-2').innerHTML;
+                break;
+            case '3':
+                document.getElementById('active-category-1').innerHTML = document.getElementById('cat-text-3').innerHTML;
+                break;
+            default:
+                console.log(`nah.`);
+        }
+
+        switch (activeVert) {
+            case '1':
+                document.getElementById('active-category-2').innerHTML = document.getElementById('cat-text-4').innerHTML;
+                break;
+            case '2':
+                document.getElementById('active-category-2').innerHTML = document.getElementById('cat-text-5').innerHTML;
+                break;
+            case '3':
+                document.getElementById('active-category-2').innerHTML = document.getElementById('cat-text-6').innerHTML;
+                break;
+            default:
+                console.log(`nah.`);
+        }
 
         //enable & focus search field
         document.getElementById('search').removeAttribute('disabled');
@@ -335,56 +366,56 @@ testButtons.forEach((button) => {
         let gridButtons;
 
         switch (catToChange) {
-        case '1':
-            gridButtons = document.querySelectorAll('[data-button-hori="1"]');
-            gridButtons.forEach(button => {
-                button.setAttribute('data-cat1', newCat);
-                button.setAttribute('data-subcat1', newSubcat);
-            });
-            document.getElementById('cat-text-1').textContent = newText;
-            break;
-        case '2':
-            gridButtons = document.querySelectorAll('[data-button-hori="2"]');
-            gridButtons.forEach(button => {
-                button.setAttribute('data-cat1', newCat);
-                button.setAttribute('data-subcat1', newSubcat);
-            });
-            document.getElementById('cat-text-2').textContent = newText;
-            break;
-        case '3':
-            gridButtons = document.querySelectorAll('[data-button-hori="3"]');
-            gridButtons.forEach(button => {
-                button.setAttribute('data-cat1', newCat);
-                button.setAttribute('data-subcat1', newSubcat);
-            });
-            document.getElementById('cat-text-3').textContent = newText;
-            break;
-        case '4':
-            gridButtons = document.querySelectorAll('[data-button-vert="1"]');
-            gridButtons.forEach(button => {
-                button.setAttribute('data-cat2', newCat);
-                button.setAttribute('data-subcat2', newSubcat);
-            });
-            document.getElementById('cat-text-4').textContent = newText;
-            break;
-        case '5':
-            gridButtons = document.querySelectorAll('[data-button-vert="2"]');
-            gridButtons.forEach(button => {
-                button.setAttribute('data-cat2', newCat);
-                button.setAttribute('data-subcat2', newSubcat);
-            });
-            document.getElementById('cat-text-5').textContent = newText;
-            break;
-        case '6':
-            gridButtons = document.querySelectorAll('[data-button-vert="3"]');
-            gridButtons.forEach(button => {
-                button.setAttribute('data-cat2', newCat);
-                button.setAttribute('data-subcat2', newSubcat);
-            });
-            document.getElementById('cat-text-6').textContent = newText;
-            break;
-        default:
-            console.log(`nah.`);
+            case '1':
+                gridButtons = document.querySelectorAll('[data-button-hori="1"]');
+                gridButtons.forEach(button => {
+                    button.setAttribute('data-cat1', newCat);
+                    button.setAttribute('data-subcat1', newSubcat);
+                });
+                document.getElementById('cat-text-1').textContent = newText;
+                break;
+            case '2':
+                gridButtons = document.querySelectorAll('[data-button-hori="2"]');
+                gridButtons.forEach(button => {
+                    button.setAttribute('data-cat1', newCat);
+                    button.setAttribute('data-subcat1', newSubcat);
+                });
+                document.getElementById('cat-text-2').textContent = newText;
+                break;
+            case '3':
+                gridButtons = document.querySelectorAll('[data-button-hori="3"]');
+                gridButtons.forEach(button => {
+                    button.setAttribute('data-cat1', newCat);
+                    button.setAttribute('data-subcat1', newSubcat);
+                });
+                document.getElementById('cat-text-3').textContent = newText;
+                break;
+            case '4':
+                gridButtons = document.querySelectorAll('[data-button-vert="1"]');
+                gridButtons.forEach(button => {
+                    button.setAttribute('data-cat2', newCat);
+                    button.setAttribute('data-subcat2', newSubcat);
+                });
+                document.getElementById('cat-text-4').textContent = newText;
+                break;
+            case '5':
+                gridButtons = document.querySelectorAll('[data-button-vert="2"]');
+                gridButtons.forEach(button => {
+                    button.setAttribute('data-cat2', newCat);
+                    button.setAttribute('data-subcat2', newSubcat);
+                });
+                document.getElementById('cat-text-5').textContent = newText;
+                break;
+            case '6':
+                gridButtons = document.querySelectorAll('[data-button-vert="3"]');
+                gridButtons.forEach(button => {
+                    button.setAttribute('data-cat2', newCat);
+                    button.setAttribute('data-subcat2', newSubcat);
+                });
+                document.getElementById('cat-text-6').textContent = newText;
+                break;
+            default:
+                console.log(`nah.`);
         }
 
     });

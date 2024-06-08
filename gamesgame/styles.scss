@@ -1,12 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&family=Nunito:wght@700;800&display=swap');
-
 :root {
     --mid-gray: #d2d4dc;
-    --gray: #afafaf;
+    --steel: #a9a9ba;
     --white: #f8f8fa;
     --light-gray: #e5e6eb;
     --gray-lav: #c0c2ce;
-    --black: #555;
+    --black: #666666;
     --blacker: #222;
 }
 
@@ -14,9 +12,12 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 16px;
+}
+
 body {
-    font-family: 'Noto Sans JP', sans-serif;
-	font-weight: 500; 
+    font-family: 'Lato', sans-serif;
 	padding: 0 0.625rem 200px;
     margin: 0;
 }
@@ -36,7 +37,7 @@ p {
     background-color: var(--white);
     margin: 0;
     padding: 5px 0;
-    height: 400px;
+    max-height: calc(100vh - 160px);
     overflow: scroll;
 
     &-list-item {
@@ -190,7 +191,7 @@ p {
 
     @media screen and (max-width: 480px) {
         width: 100%;
-        max-width: 375px;
+        max-width: calc(100% - 20px);
     }
 
     &[aria-hidden="true"] {
@@ -221,17 +222,31 @@ p {
         padding: 10px 10px 0;
     }
 
+    &-title {
+        font-weight: bold;
+        font-size: 1rem;
+        line-height: 1.25rem;
+        text-align: center;
+        display: block;
+        padding: 0 20px;
+    }
+
     &-search {
         width: 100%;
-        border: 2px solid var(--mid-gray);
-        font-size: 18px;
-        height: 36px;
-        padding: 0 5px;
-        border-radius: 4px;
-        border: 2px solid var(--black);
-        font-family: 'Nunito', sans-serif;
+        font-size: 1rem;
+        line-height: 1rem;
+        padding: 0 0.375rem;
+        border-radius: 0.25rem;
+        height: 2.25rem;
+        border: 1px solid var(--black);
+        font-family: 'Lato', sans-serif;
         color: var(--blacker);
         margin-top: 10px;
+
+        &::placeholder {
+            color: var(--steel);
+            opacity: 1;
+        }
     }
 
     &-close {
