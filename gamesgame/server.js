@@ -139,7 +139,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/games', async (req, res) => {
     if (!accessToken) await getAccessToken();
     const searchQuery = req.query.search;
-    try {
+    try { //show games that have a critic rating and do not have "fanmade" keyword
       const query = `search "${searchQuery}"; where rating > 1 & keywords != (27216); fields name, cover.url, release_dates.date; limit 10;`;
       const games = await fetchData(query); 
         res.json(games);
