@@ -134,21 +134,25 @@ const fetchCharacters = async (searchTerms) => {
 };
 
 document.getElementById('search').addEventListener('input', (event) => {
+    loader('show');
+
     const query = event.target.value.trim();
 
     if (timeout) clearTimeout(timeout);
 
     timeout = setTimeout(async () => {
-        if (query.length > 0) {
+        if (query.length > 2) {
             const games = await fetchGamesList(query);
             displayGames(games);
         } else {
             displayGames([]);
+            loader('show');
         }
     }, 300); // Adjust the delay as needed
 });
 
 function displayGames(games) {
+    loader('hide');
     const results = document.getElementById('results');
     results.innerHTML = '';
 
@@ -187,6 +191,10 @@ function displayGames(games) {
         const li = button.closest('li');
         results.appendChild(li);
     });
+
+    if (gameButtons.length == 0) {
+        loader('show');
+    }
 }
 
 //when a grid box is chosen to solve, store values and go to search
@@ -287,7 +295,11 @@ async function checkAnswer(game, ratings, companies, characters) {
             )
         );
     } else { //check if id matches id of given category
-        cat1matches = game[0][activeCat1].includes(Number(activeSubcat1));
+        if (game[0][activeCat1]) {
+            cat1matches = game[0][activeCat1].includes(Number(activeSubcat1));
+        } else {
+            cat1matches = false;
+        }
     }
 
     if (activeCat2 == 'release_dates') { 
@@ -324,7 +336,11 @@ async function checkAnswer(game, ratings, companies, characters) {
             )
         );
     } else { //check if id matches id of given category
-        cat2matches = game[0][activeCat2].includes(Number(activeSubcat2));
+        if (game[0][activeCat2]) {
+            cat2matches = game[0][activeCat2].includes(Number(activeSubcat2));
+        } else {
+            cat2matches = false;
+        }
     }
 
     console.log(cat1matches);
@@ -350,6 +366,8 @@ async function checkAnswer(game, ratings, companies, characters) {
     document.getElementById('search').setAttribute('disabled', true);
     document.getElementById('results').innerHTML = '';
 }   
+
+
 
 
 //testing
@@ -421,6 +439,14 @@ testButtons.forEach((button) => {
     });
 });
 
+const loader = (toggle) => {
+    const loader = document.getElementById('waiting');
+    if (toggle == 'hide') {
+        loader.style.display = 'none';
+    } else if (toggle == 'show') {
+        loader.style.display = 'block';
+    }
+}
 
 //Credit:
 //Modified version of accessible dialog by Ire Aderinokun:
