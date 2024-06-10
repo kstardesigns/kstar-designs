@@ -4,8 +4,93 @@ let timeout = null,
     activeCat2 = '',
     activeSubcat2 = '',
     activeBox,
-    activeButton,
-    active = {};
+    activeButton;
+
+let categoryList = [
+    { 
+        'cat': 'characters', 
+        'subcat': 1, 
+        'description': 'Character name in title' 
+    },
+    { 
+        'cat': 'game_modes', 
+        'subcat': 2, 
+        'description': 'Multiplayer' 
+    },
+    { 
+        'cat': 'release_dates', 
+        'subcat': '1996, 1997, 1998, 1999, 2000', 
+        'description': 'Released 1996-2000' 
+    },
+    { 
+        'cat': 'platforms', 
+        'subcat': 4, 
+        'description': 'Nintendo 64' 
+    },
+    { 
+        'cat': 'platforms', 
+        'subcat': 29, 
+        'description': 'Sega Genesis' 
+    },
+    { 
+        'cat': 'franchises', 
+        'subcat': 596, 
+        'description': 'Legend of Zelda franchise' 
+    }
+];
+
+window.addEventListener('load', (event) => {
+    setCategories();
+});
+
+function setCategories() {
+
+    //set category attributes on buttons
+    const horiRow1 = document.querySelectorAll('[data-button-hori="1"]'),
+          horiRow2 = document.querySelectorAll('[data-button-hori="2"]'),
+          horiRow3 = document.querySelectorAll('[data-button-hori="3"]'),
+          vertCol1 = document.querySelectorAll('[data-button-vert="1"]'),
+          vertCol2 = document.querySelectorAll('[data-button-vert="2"]'),
+          vertCol3 = document.querySelectorAll('[data-button-vert="3"]');
+
+    horiRow1.forEach(box => {
+        box.setAttribute('data-cat1', categoryList[0].cat);
+        box.setAttribute('data-subcat1', categoryList[0].subcat);
+    });
+
+    horiRow2.forEach(box => {
+        box.setAttribute('data-cat1', categoryList[1].cat);
+        box.setAttribute('data-subcat1', categoryList[1].subcat);
+    });
+
+    horiRow3.forEach(box => {
+        box.setAttribute('data-cat1', categoryList[2].cat);
+        box.setAttribute('data-subcat1', categoryList[2].subcat);
+    });
+
+    vertCol1.forEach(box => {
+        box.setAttribute('data-cat2', categoryList[3].cat);
+        box.setAttribute('data-subcat2', categoryList[3].subcat);
+    });
+
+    vertCol2.forEach(box => {
+        box.setAttribute('data-cat2', categoryList[4].cat);
+        box.setAttribute('data-subcat2', categoryList[4].subcat);
+    });
+
+    vertCol3.forEach(box => {
+        box.setAttribute('data-cat2', categoryList[5].cat);
+        box.setAttribute('data-subcat2', categoryList[5].subcat);
+    });
+
+    //set labels
+    const categoryLabels = document.querySelectorAll('.categories-label');
+    categoryLabels.forEach((label, i) => {
+        document.getElementById(`cat-text-${i+1}`).innerHTML = categoryList[i].description;
+    });
+}
+
+
 
 async function fetchGamesList(query) {
     try {
@@ -58,7 +143,7 @@ async function fetchGameDetails(gameId) {
 
         if (activeCat1 === 'characters' || activeCat2 === 'characters') {
             const searchTerms = game[0].name
-                .replace(/[^a-z]/g, ' ')
+                .replace(/[^a-zA-Z]/g, ' ')
                 .trim()
                 .split(/\s+/)
                 .map(term => term.trim().toLowerCase())
@@ -126,6 +211,7 @@ const fetchCharacters = async (searchTerms) => {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
+        
         return await response.json();
     } catch (error) {
         console.error('Error fetching characters:', error);
@@ -283,7 +369,7 @@ async function checkAnswer(game, ratings, companies, characters) {
     } else if (activeCat1 === 'characters') {
         const gameNameArray = game[0].name
                                 .toLowerCase()  // Convert to lowercase
-                                .replace(/[^a-z]/g, ' ') // Replace non-letters with spaces
+                                .replace(/[^a-zA-Z]/g, ' ') // Replace non-letters with spaces
                                 .trim() // Trim leading and trailing whitespace
                                 .split(/\s+/) // Split by one or more whitespace characters
                                 .filter(word => word.length >= 3 && word !== 'the'); // Filter out words less than 3 characters and 'the'
@@ -323,7 +409,7 @@ async function checkAnswer(game, ratings, companies, characters) {
     } else if (activeCat2 === 'characters') {
         const gameNameArray = game[0].name
                                 .toLowerCase()  // Convert to lowercase
-                                .replace(/[^a-z]/g, ' ') // Replace non-letters with spaces
+                                .replace(/[^a-zA-Z]/g, ' ') // Replace non-letters with spaces
                                 .trim() // Trim leading and trailing whitespace
                                 .split(/\s+/) // Split by one or more whitespace characters
                                 .filter(word => word.length >= 3 && word !== 'the'); // Filter out words less than 3 characters and 'the'

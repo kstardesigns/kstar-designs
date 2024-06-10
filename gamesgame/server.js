@@ -107,7 +107,7 @@ async function fetchCharacters(searchTerms) {
             `name ~ *"${term}"*`
         ).join(' | '); // Join with OR condition
 
-        const query = `fields id, name, akas; where ${searchConditions};`;
+        const query = `fields id, name, akas; where ${searchConditions}; limit 500;`;
         console.log('Character query:', query); // For debugging purposes
 
         const response = await fetch('https://api.igdb.com/v4/characters', {
