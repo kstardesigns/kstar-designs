@@ -6,6 +6,12 @@
     --gray-lav: #c0c2ce;
     --black: #666666;
     --blacker: #222;
+
+    //kooltips:
+    --tip-color: rgba(0,0,0,0.8);
+	//these are updated in javascript
+  	--left-arrow: 0;
+	--right-arrow: 0;
 }
 
 * {
@@ -328,4 +334,85 @@ p {
         margin-bottom: 14px;
         max-width: 100%;
     }
+}
+
+[data-kooltip] {
+	text-decoration: none;
+	border-bottom: 1px dashed #000;
+	cursor: pointer;
+	white-space: nowrap;
+	box-sizing: border-box;
+}
+
+.kooltip {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: var(--tip-color);
+	border-radius: 4px;
+	color: #fff;
+	padding: 3px 8px;
+	font-size: 16px;
+	line-height: 19px;
+	white-space: nowrap;
+	text-align: center;
+	box-sizing: border-box;
+	
+	&.multiline {
+		max-width: 100%;
+		white-space: normal;
+	}
+	
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: -8px;
+		left: calc(50% - 8px);
+		width: 0;
+		height: 0;
+		border-left: 8px solid transparent;
+		border-right: 8px solid transparent;
+		border-top: 8px solid var(--tip-color);
+	}
+	
+	&--left-aligned {
+		&::after {
+			left: var(--left-arrow);
+		}
+	}
+	
+	&--right-aligned {
+		&::after {
+			left: var(--right-arrow);
+		}
+	}
+	
+	&--top-aligned {
+		&::after {
+			border-left: 8px solid transparent;
+			border-right: 8px solid transparent;
+			border-top: 0;
+			border-bottom: 8px solid var(--tip-color);
+			top: -8px;
+			bottom: initial;
+		}
+	}
+}
+
+//TODO: update these styles as needed
+[data-kooltip] {
+	border-bottom: 1px dashed #00ff33;
+	color: #00ff33;
+	font-weight: 500;
+	letter-spacing: 0.5px;
+	
+	&:focus {
+		outline: 2px solid #00ff33;
+		outline-offset: 2px;
+		border-bottom: 0;
+	}
+}
+
+.kooltip { 
+	--tip-color: #ff0099;
 }

@@ -4,38 +4,45 @@ let timeout = null,
     activeCat2 = '',
     activeSubcat2 = '',
     activeBox,
-    activeButton;
+    activeButton,
+    guessesRemaining = 9;
 
 let categoryList = [
     { 
         'cat': 'characters', 
         'subcat': 1, 
-        'description': 'Character name in title' 
+        'description': 'Character name in title',
+        'helper': 'The title of the game contains a character name'
     },
     { 
         'cat': 'game_modes', 
         'subcat': 2, 
-        'description': 'Multiplayer' 
+        'description': 'Multiplayer',
+        'helper': '2 or more players can play the game'
     },
     { 
         'cat': 'release_dates', 
         'subcat': '1996, 1997, 1998, 1999, 2000', 
-        'description': 'Released 1996-2000' 
+        'description': 'Released 1996-2000',
+        'helper': 'Originally released between 1996-2000'
     },
     { 
         'cat': 'platforms', 
         'subcat': 4, 
-        'description': 'Nintendo 64' 
+        'description': 'Nintendo 64',
+        'helper': ''
     },
     { 
         'cat': 'platforms', 
         'subcat': 29, 
-        'description': 'Sega Genesis' 
+        'description': 'Sega Genesis',
+        'helper': '' 
     },
     { 
         'cat': 'franchises', 
         'subcat': 596, 
-        'description': 'Legend of Zelda franchise' 
+        'description': 'Legend of Zelda franchise',
+        'helper': ''
     }
 ];
 
@@ -86,7 +93,15 @@ function setCategories() {
     //set labels
     const categoryLabels = document.querySelectorAll('.categories-label');
     categoryLabels.forEach((label, i) => {
-        document.getElementById(`cat-text-${i+1}`).innerHTML = categoryList[i].description;
+        const innerLabel = document.querySelector(`#cat-text-${i+1} span`);
+
+        //set up tooltip if there is one, otherwise just add in the description
+        if (categoryList[i].helper) {
+            innerLabel.innerHTML = categoryList[i].description;
+            innerLabel.setAttribute('data-kooltip', categoryList[i].helper);
+        } else {
+            document.getElementById(`cat-text-${i+1}`).innerHTML = categoryList[i].description;
+        }
     });
 }
 
@@ -114,7 +129,7 @@ async function fetchGameDetails(gameId) {
         }
         const game = await response.json();
 
-        closeDialog('bh-dialog');
+        closeDialog('bh-dialog-guess');
         
         let ratingsArray = [];
         let companiesArray = [];
@@ -337,10 +352,20 @@ gridButtons.forEach((button) => {
                 console.log(`nah.`);
         }
 
+        if (document.querySelector('#active-category-1 .categories-label-span')) {
+            document.querySelector('#active-category-1 .categories-label-span').removeAttribute('data-kooltip');
+            document.querySelector('#active-category-1 .categories-label-span').removeAttribute('tabindex');
+        }
+
+        if (document.querySelector('#active-category-2 .categories-label-span')) {
+            document.querySelector('#active-category-2 .categories-label-span').removeAttribute('data-kooltip');
+            document.querySelector('#active-category-2 .categories-label-span').removeAttribute('tabindex');
+        }
+
         //enable & focus search field
         document.getElementById('search').removeAttribute('disabled');
         document.getElementById('search').focus();
-        openDialog('bh-dialog');
+        openDialog('bh-dialog-guess');
     });
 });
 
@@ -433,97 +458,36 @@ async function checkAnswer(game, ratings, companies, characters) {
     console.log(cat2matches);
     
 
-    if (cat1matches && cat2matches) {
+    if (cat1matches && cat2matches) { //guess is correct!
         const gameCover = game[0].cover.url.replace('thumb', 'cover_small_2x');
         activeBox.style.backgroundImage = `url(${gameCover})`;
         activeButton.remove();
 
-    } else {
-        // alert('1 or both of them didnt match');
-        //TODO: show red box around box or something to indicate it was incorrect
+
+    } else { //guess is incorrect
         activeButton.classList.remove('active');
         activeButton.classList.add('wrong');
     }
 
-    //TODO: decrement allowed guesses
+    //update remaining guesses
+    guessesRemaining--;
+    document.getElementById('guesses-remaining').textContent = guessesRemaining;
+    console.log(typeof(guessesRemaining));
+
+    if (guessesRemaining == 0) {
+        //TODO:
+        //display end game modal here
+        const gridButtons = document.querySelectorAll('.grid-button');
+        gridButtons.forEach((button) => {
+            button.remove();
+        });
+    }
     
     //disable search again until next box is chosen
     document.getElementById('search').value = '';
     document.getElementById('search').setAttribute('disabled', true);
     document.getElementById('results').innerHTML = '';
 }   
-
-
-
-
-//testing
-
-const testButtons = document.querySelectorAll('.change-cat');
-testButtons.forEach((button) => {
-    button.addEventListener('click', (event) => {
-        const catToChange = button.getAttribute('data-change-cat'),
-                newCat = document.getElementById('change-cat1').value,
-                newSubcat = document.getElementById('change-subcat1').value,
-                newText = document.getElementById('change-text').value;
-        console.log(catToChange);
-
-        let gridButtons;
-
-        switch (catToChange) {
-            case '1':
-                gridButtons = document.querySelectorAll('[data-button-hori="1"]');
-                gridButtons.forEach(button => {
-                    button.setAttribute('data-cat1', newCat);
-                    button.setAttribute('data-subcat1', newSubcat);
-                });
-                document.getElementById('cat-text-1').textContent = newText;
-                break;
-            case '2':
-                gridButtons = document.querySelectorAll('[data-button-hori="2"]');
-                gridButtons.forEach(button => {
-                    button.setAttribute('data-cat1', newCat);
-                    button.setAttribute('data-subcat1', newSubcat);
-                });
-                document.getElementById('cat-text-2').textContent = newText;
-                break;
-            case '3':
-                gridButtons = document.querySelectorAll('[data-button-hori="3"]');
-                gridButtons.forEach(button => {
-                    button.setAttribute('data-cat1', newCat);
-                    button.setAttribute('data-subcat1', newSubcat);
-                });
-                document.getElementById('cat-text-3').textContent = newText;
-                break;
-            case '4':
-                gridButtons = document.querySelectorAll('[data-button-vert="1"]');
-                gridButtons.forEach(button => {
-                    button.setAttribute('data-cat2', newCat);
-                    button.setAttribute('data-subcat2', newSubcat);
-                });
-                document.getElementById('cat-text-4').textContent = newText;
-                break;
-            case '5':
-                gridButtons = document.querySelectorAll('[data-button-vert="2"]');
-                gridButtons.forEach(button => {
-                    button.setAttribute('data-cat2', newCat);
-                    button.setAttribute('data-subcat2', newSubcat);
-                });
-                document.getElementById('cat-text-5').textContent = newText;
-                break;
-            case '6':
-                gridButtons = document.querySelectorAll('[data-button-vert="3"]');
-                gridButtons.forEach(button => {
-                    button.setAttribute('data-cat2', newCat);
-                    button.setAttribute('data-subcat2', newSubcat);
-                });
-                document.getElementById('cat-text-6').textContent = newText;
-                break;
-            default:
-                console.log(`nah.`);
-        }
-
-    });
-});
 
 const loader = (toggle) => {
     const loader = document.getElementById('waiting');
@@ -703,4 +667,172 @@ window.addEventListener('DOMContentLoaded', () => {
         var myDialog = new Dialog(dialogs[i].id);
         myDialog.addEventListeners(dialogs[i].id, '.bh-dialog-close');
     }
+});
+
+const kooltip = {},
+      toolTipTriggers = document.querySelectorAll('[data-kooltip]');
+
+//step 1 - on mouseenter/touchstart/focus - get tooltip copy from trigger data attribute, append it to bottom of the page
+//step 2 - get trigger x, y, w, h to prep for positioning
+kooltip.createTooltip = function() {
+	//remove a tip that's currently shown (ie. if user is focused on one tip, then hovers over another trigger)
+	kooltip.removeTooltip();
+	
+	let tipContent = this.dataset.kooltip,
+			tipTriggerW = this.getBoundingClientRect().width,
+			tipTriggerH = this.getBoundingClientRect().height,
+			tipTriggerX = this.getBoundingClientRect().left + window.scrollX,
+			tipTriggerY = this.getBoundingClientRect().top + window.scrollY,
+			tipId = this.getAttribute('aria-describedby'),
+			tip = document.createElement('span');
+	
+	tip.classList.add('kooltip');
+	tip.setAttribute('id', tipId);
+	tip.setAttribute('aria-hidden', false);
+	
+	document.body.appendChild(tip);
+	document.querySelector('.kooltip').textContent = tipContent;
+	kooltip.triggerWidth = tipTriggerW;
+	kooltip.triggerHeight = tipTriggerH;
+	kooltip.triggerX = tipTriggerX;
+	kooltip.triggerY = tipTriggerY;
+	kooltip.positionTooltip(tip);
+}
+
+//step 3 - position tooltip centered above the trigger, check for instances where the tooltip flows off the page
+kooltip.positionTooltip = function(tip) {
+	
+	tip.style.left = (kooltip.triggerX + //position tip at left side of trigger
+									 (kooltip.triggerWidth / 2)) //center it at middle of trigger
+									 + 'px';
+	
+	let tipW = tip.getBoundingClientRect().width,
+			tipH = tip.getBoundingClientRect().height;
+	
+	kooltip.tipWidth = tipW;
+	kooltip.tipHeight = tipH;
+	
+	tip.style.top = (kooltip.triggerY - kooltip.tipHeight - 5) + 'px';
+
+	let tipX = tip.getBoundingClientRect().left + window.scrollX,
+			tipY = tip.getBoundingClientRect().top + window.scrollY;
+	
+	tip.style.left = tipX - (kooltip.tipWidth / 2) + 'px'; //shift tip to left so the tip arrow is centered over center of trigger
+	
+	tip.style.top = (kooltip.triggerY - kooltip.tipHeight - 5) + 'px';
+	kooltip.tipHeight = tipH;
+	
+	kooltip.tipX = tipX - (kooltip.tipWidth / 2);
+	kooltip.tipY = tipY;
+	
+	//checks if tooltip is within 5px of edge of viewport, if so, runs repositionTooltip function
+	if (kooltip.tipX < 5 || (kooltip.tipX + kooltip.tipWidth) > (window.innerWidth - 5) 
+			|| kooltip.tipY < 5 || (kooltip.tipY + kooltip.tipHeight) > (window.innerHeight - 5)) 
+	{
+		kooltip.repositionTooltip(tip);
+	}
+}
+
+//step 4 - reposition tooltip if it flows off the page
+kooltip.repositionTooltip = function(tip) {
+	
+	//helper function to make a tip that is flowing off the page multiple lines so it fits on the page
+	kooltip.makeMultiline = function(tip) {
+		tip.classList.add('multiline');
+		kooltip.tipHeight = tip.getBoundingClientRect().height;
+		kooltip.tipWidth = tip.getBoundingClientRect().width;
+		
+		//now that text is multiline, adjust its width to better fit its text
+		const textNode = tip.firstChild,
+					range = document.createRange();
+		range.selectNodeContents(textNode);
+		
+		const rects = range.getClientRects();
+		if (rects.length > 0) {
+				let sidePadding = window.getComputedStyle(tip,null).getPropertyValue('padding-left').match(/\d+/);
+				tip.style.width = rects[0].width + (sidePadding * 2) + 'px';
+				kooltip.tipWidth = tip.getBoundingClientRect().width;
+		}
+	}
+	
+	//overflows on left
+	if (kooltip.tipX < 5) {
+		kooltip.tipX = parseInt(5);
+		tip.style.left = '5px';
+		tip.classList.add('kooltip--left-aligned');
+		let centerOfTrigger = (parseInt(kooltip.triggerX) - 5) + (parseInt(kooltip.triggerWidth / 2)) - 8; //8 is the width of the triangle itself
+		tip.style.setProperty('--left-arrow', centerOfTrigger + 'px');
+	}
+	
+	//overflows on right
+	if ((kooltip.tipX + kooltip.tipWidth) > (window.innerWidth - 5)) {
+		
+		if (tip.classList.contains('kooltip--left-aligned')) {
+			kooltip.makeMultiline(tip);
+		} else {
+			kooltip.tipX = window.innerWidth - kooltip.tipWidth + 5; 
+			tip.style.left = `calc(100% - ${kooltip.tipWidth + 5}px`;
+			tip.classList.add('kooltip--right-aligned');
+			let centerOfTrigger = (parseInt(kooltip.triggerX) - parseInt(kooltip.tipX)) + (parseInt(kooltip.triggerWidth / 2));
+			tip.style.setProperty('--right-arrow', centerOfTrigger + 'px');
+			
+			//overflows on left
+			if (kooltip.tipX < 5) {
+				kooltip.makeMultiline(tip);
+				tip.style.left = '5px';
+				
+				centerOfTrigger = (parseInt(kooltip.triggerX) + 8);
+				tip.style.setProperty('--right-arrow', centerOfTrigger + 'px');
+				kooltip.tipHeight = tip.getBoundingClientRect().height;
+			}
+		}
+	}
+		
+	//helper function to check if the tip is flowing off the top of the page
+	kooltip.checkTopOverflow = function() {
+		kooltip.tipY = kooltip.triggerY + kooltip.triggerHeight + 8;
+		tip.style.top = kooltip.triggerY + kooltip.triggerHeight + 8 + 'px';
+		tip.classList.add('kooltip--top-aligned');
+	}
+	
+	//overflow on top
+	if (kooltip.tipY < 5) {
+		kooltip.checkTopOverflow();
+	}
+	
+	//if it's now a multiline tip and not top aligned, it will need to be shifted up according to its new multiline height
+	if (tip.classList.contains('multiline') && !tip.classList.contains('kooltip--top-aligned')) {
+		kooltip.tipY = kooltip.tipY - kooltip.tipHeight + 21;
+		tip.style.top = kooltip.tipY + 'px';
+		
+		if (kooltip.tipY < 5) {
+			kooltip.checkTopOverflow();
+		}
+	}
+}
+
+//step 4 - on mouseleave/touchleave/blur - remove tooltip from page completely, reset object data
+kooltip.removeTooltip = function() {
+	const tip = document.querySelector('.kooltip');
+	if (tip) {
+		document.body.removeChild(tip);
+	}
+	kooltip.triggerWidth = '';
+	kooltip.triggerHeight = '';
+	kooltip.triggerX = '';
+	kooltip.triggerY = '';
+	kooltip.tipWidth = '';
+	kooltip.tipHeight = '';
+	kooltip.tipX = '';
+	kooltip.tipY = '';
+}
+
+//event listeners
+toolTipTriggers.forEach((toolTipTrigger, i) => {
+	toolTipTrigger.setAttribute('aria-describedby', `kooltip-${i}`);
+	toolTipTrigger.setAttribute('tabindex', '0');
+	toolTipTrigger.addEventListener('mouseenter', kooltip.createTooltip, false);
+	toolTipTrigger.addEventListener('focus', kooltip.createTooltip, false);
+	toolTipTrigger.addEventListener('mouseleave', kooltip.removeTooltip, false);
+	toolTipTrigger.addEventListener('blur', kooltip.removeTooltip, false);
 });
