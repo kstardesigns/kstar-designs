@@ -5,7 +5,8 @@ let timeout = null,
     activeSubcat2 = '',
     activeBox,
     activeButton,
-    guessesRemaining = 9;
+    guessesRemaining = 9,
+    correctAnswers = 0;
 
 let categoryList = [
     { 
@@ -462,8 +463,8 @@ async function checkAnswer(game, ratings, companies, characters) {
         const gameCover = game[0].cover.url.replace('thumb', 'cover_small_2x');
         activeBox.style.backgroundImage = `url(${gameCover})`;
         activeButton.remove();
-
-
+        correctAnswers++;
+        document.getElementById('correct-answers').textContent = correctAnswers;
     } else { //guess is incorrect
         activeButton.classList.remove('active');
         activeButton.classList.add('wrong');
