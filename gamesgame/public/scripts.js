@@ -23,9 +23,9 @@ let categoryList = [
     },
     { 
         'cat': 'release_dates', 
-        'subcat': '1996, 1997, 1998, 1999, 2000', 
-        'description': 'Released 1996-2000',
-        'helper': 'Originally released between 1996-2000'
+        'subcat': '1991, 1992, 1993, 1994, 1995', 
+        'description': 'Released 1991-1995',
+        'helper': 'Originally released between 1991-1995'
     },
     { 
         'cat': 'platforms', 
@@ -461,6 +461,10 @@ async function checkAnswer(game, ratings, companies, characters) {
 
     if (cat1matches && cat2matches) { //guess is correct!
         const gameCover = game[0].cover.url.replace('thumb', 'cover_small_2x');
+        const gameTitle = document.createElement('div');
+        gameTitle.classList.add('grid-box-title');
+        gameTitle.textContent = game[0].name;
+        activeBox.append(gameTitle);
         activeBox.style.backgroundImage = `url(${gameCover})`;
         activeButton.remove();
         correctAnswers++;
