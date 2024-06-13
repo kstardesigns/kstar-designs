@@ -10,10 +10,10 @@ let timeout = null,
 
 let categoryList = [
     { 
-        'cat': 'characters', 
-        'subcat': 1, 
-        'description': 'Character name in title',
-        'helper': 'The title of the game contains a character name'
+        'cat': 'age_rating_content_descriptions', 
+        'subcat': 31, 
+        'description': 'Animated blood',
+        'helper': 'ESRB rating content descriptors include animated blood'
     },
     { 
         'cat': 'game_modes', 
@@ -135,7 +135,9 @@ async function fetchGameDetails(gameId) {
         let ratingsArray = [];
         let companiesArray = [];
         let charactersArray = [];
+        let contentDescriptionsArray = [];
 
+        //if a category is age_ratings, call age_ratings endpoint
         if (activeCat1 == 'age_ratings' || activeCat2 == 'age_ratings') {
             const ratingIds = game[0].age_ratings.map(ratingObj => ratingObj.id);
             console.log('ratingIds', ratingIds);
@@ -143,6 +145,30 @@ async function fetchGameDetails(gameId) {
             ratingsArray = ratings;
         }
 
+        //if a category is age_rating_content_descriptions, call that endpoint
+        if (activeCat1 == 'age_rating_content_descriptions' || activeCat2 == 'age_rating_content_descriptions') {
+
+            const ageRatings = game[0].age_ratings || [];
+            let contentDescriptionIds = [];
+            ageRatings.forEach(rating => {
+                if (rating.content_descriptions) {
+                    console.log("Found content description:", rating.content_descriptions);
+                    contentDescriptionIds.push(rating.content_descriptions);
+                    console.log(contentDescriptionIds);
+                } else {
+                    console.log("No content description for this rating.");
+                }
+            });
+
+            console.log('contentDescriptionIds', contentDescriptionIds);
+
+            if (contentDescriptionIds.length > 0) {
+                const contentDescriptions = await fetchContentDescriptions(contentDescriptionIds);
+                contentDescriptionsArray = contentDescriptions;
+            }
+        }
+
+        //if a category has publisher or developer, filter and check involved_companies
         if (activeCat1 == 'publisher' || activeCat1 == 'developer' || activeCat2 == 'publisher' || activeCat2 == 'developer') {
             let companyIds;
 
@@ -157,6 +183,7 @@ async function fetchGameDetails(gameId) {
             companiesArray = companies;
         } 
 
+        //if a category is characters, call the characters endpoint to see if a character is in the title
         if (activeCat1 === 'characters' || activeCat2 === 'characters') {
             const searchTerms = game[0].name
                 .replace(/[^a-zA-Z]/g, ' ')
@@ -168,7 +195,7 @@ async function fetchGameDetails(gameId) {
             charactersArray = characters;
         }
 
-        checkAnswer(game, ratingsArray, companiesArray, charactersArray);
+        checkAnswer(game, ratingsArray, companiesArray, charactersArray, contentDescriptionsArray);
 
         console.log(game);
         // return game;
@@ -196,6 +223,28 @@ async function fetchGameRatings(ratingIds) {
         
     } catch (error) {
         console.error('Error fetching game ratings:', error);
+        return [];
+    }
+}
+
+async function fetchContentDescriptions(contentDescriptionIds) {
+    console.log('contentDescriptionIds:', contentDescriptionIds);
+
+    try {
+        const response = await fetch(`/age_rating_content_descriptions?ids=${contentDescriptionIds.join(',')}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const contentDescriptions = await response.json();
+        console.log('contentDescriptions:');
+        console.log(contentDescriptions);
+
+        const categoriesOnly = contentDescriptions.map(entry => entry.category);
+        console.log('categoriesOnly: ', categoriesOnly);
+        return categoriesOnly;
+        
+    } catch (error) {
+        console.error('Error fetching content descriptions:', error);
         return [];
     }
 }
@@ -370,7 +419,7 @@ gridButtons.forEach((button) => {
     });
 });
 
-async function checkAnswer(game, ratings, companies, characters) {
+async function checkAnswer(game, ratings, companies, characters, contentDescriptions) {
     //check if each category matches
     let cat1matches, cat2matches;
 
@@ -383,12 +432,14 @@ async function checkAnswer(game, ratings, companies, characters) {
         );
     } else if (activeCat1 == 'aggregated_rating') {
         cat1matches = game[0][activeCat1] >= Number(activeSubcat1);
-    } else if (activeCat1 == 'age_ratings') {
+    } else if (activeCat1 == 'age_ratings') { 
         cat1matches = ratings.includes(Number(activeSubcat1));
+    } else if (activeCat1 == 'age_rating_content_descriptions') { 
+        cat1matches = contentDescriptions.includes(Number(activeSubcat1));
     } else if (activeCat1 == 'dlcs') {
         cat1matches = (game[0][activeCat1] || game[0]['expansions'] || game[0]['parent_game']);
     } else if (activeCat1 == 'remakes') {
-        cat1matches = (game[0][activeCat1] || game[0]['remasters'] || game[0]['ports']);
+        cat1matches = (game[0][activeCat1] || game[0]['remasters']);
     } else if (activeCat1 == 'publisher' || activeCat1 == 'developer') {
         const activeSubcat1Lower = activeSubcat1.toLowerCase();
         cat1matches = companies.some(element => element.toLowerCase().includes(activeSubcat1));
@@ -425,10 +476,12 @@ async function checkAnswer(game, ratings, companies, characters) {
         cat2matches = game[0][activeCat2] >= Number(activeSubcat2);
     } else if (activeCat2 == 'age_ratings') {
         cat2matches = ratings.includes(Number(activeSubcat2));
+    } else if (activeCat2 == 'age_rating_content_descriptions') { 
+        cat2matches = contentDescriptions.includes(Number(activeSubcat2));
     } else if (activeCat2 == 'dlcs') {
         cat2matches = (game[0][activeCat2] || game[0]['expansions'] || game[0]['parent_game']);
     } else if (activeCat2 == 'remakes') {
-        cat2matches = (game[0][activeCat2] || game[0]['remasters'] || game[0]['ports']);
+        cat2matches = (game[0][activeCat2] || game[0]['remasters']);
     } else if (activeCat2 == 'publisher' || activeCat2 == 'developer') {
         const activeSubcat2Lower = activeSubcat2.toLowerCase();
         cat2matches = companies.some(element => element.toLowerCase().includes(activeSubcat2));

@@ -78,6 +78,28 @@ async function fetchAgeRatings(ageRatingIds) {
     }
 }
 
+async function fetchContentDescriptions(ageRatingCDIds) {
+    try {
+        const query = `fields category; where id = (${ageRatingCDIds.join(',')});`;
+        console.log('Age Ratings content description Query:', query);
+        const response = await fetch('https://api.igdb.com/v4/age_rating_content_descriptions', {
+            method: 'POST',
+            headers: {
+                'Client-ID': clientId,
+                'Authorization': `Bearer ${accessToken}`,
+                'Accept': 'application/json'
+            },
+            body: query
+        });
+        const data = await response.json();
+        console.log('Age Ratings content description Data:', data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching content descriptions from IGDB:', error);
+        throw error; 
+    }
+}
+
 async function fetchInvolvedCompanies(companyIds) {
     try {
         const query = `fields company.*; where id = (${companyIds.join(',')});`;
@@ -139,8 +161,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/games', async (req, res) => {
     if (!accessToken) await getAccessToken();
     const searchQuery = req.query.search;
-    try { //show games that do not have "fanmade, unofficial, fangame, canceled games" keyword or "mod, episode, season, fork, pack, update" categories
-      const query = `search "${searchQuery}"; where keywords != (27216, 2004, 24124, 5340) & category != (5, 6, 7, 12, 13, 14); fields name, cover.url, first_release_date; limit 10;`;
+    try { //show games that do not have "fanmade, unofficial, fangame, canceled games" keyword or "mod, episode, season, port, fork, pack, update" categories
+      const query = `search "${searchQuery}"; where keywords != (27216, 2004, 24124, 5340) & category != (5, 6, 7, 11, 12, 13, 14); fields name, cover.url, first_release_date; limit 10;`;
       const games = await fetchData(query); 
         res.json(games);
     } catch (error) {
@@ -169,6 +191,19 @@ app.get('/age_ratings', async (req, res) => {
       //const query = `where id = (${ratingIds.join(',')}); fields rating;`;
       const ratings = await fetchAgeRatings(ratingIds);
         res.json(ratings);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch data from IGDB' });
+    }
+});
+
+app.get('/age_rating_content_descriptions', async (req, res) => {
+    if (!accessToken) await getAccessToken();
+    const contentDescriptionIds = req.query.ids.split(',').map(id => parseInt(id, 10));
+    console.log('Content description IDs from Request:', contentDescriptionIds);
+    
+    try {
+      const contentDescriptions = await fetchContentDescriptions(contentDescriptionIds);
+        res.json(contentDescriptions);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch data from IGDB' });
     }
