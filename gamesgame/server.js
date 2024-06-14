@@ -161,8 +161,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/games', async (req, res) => {
     if (!accessToken) await getAccessToken();
     const searchQuery = req.query.search;
-    try { //show games that do not have "fanmade, unofficial, fangame, canceled games" keyword or "mod, episode, season, port, fork, pack, update" categories
-      const query = `search "${searchQuery}"; where keywords != (27216, 2004, 24124, 5340) & category != (5, 6, 7, 11, 12, 13, 14); fields name, cover.url, first_release_date; limit 10;`;
+    try { //show games that do not have "fanmade, unofficial, fangame, canceled games, handheld electronic games" keyword or "mod, episode, season, port, fork, pack, update" categories
+        //possible keywords to remove: 32424 (games released for unsupported platforms)
+      const query = `search "${searchQuery}"; where keywords != (27216, 2004, 24124, 5340, 30750) & category != (5, 6, 7, 11, 12, 13, 14); fields name, cover.url, first_release_date; limit 10;`;
       const games = await fetchData(query); 
         res.json(games);
     } catch (error) {

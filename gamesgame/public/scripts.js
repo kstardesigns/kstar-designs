@@ -11,38 +11,38 @@ let timeout = null,
 let categoryList = [
     { 
         'cat': 'age_rating_content_descriptions', 
-        'subcat': 31, 
-        'description': 'Animated blood',
-        'helper': 'ESRB rating content descriptors include animated blood'
+        'subcat': 10, 
+        'description': 'Intense violence',
+        'helper': `ESRB rating content descriptors include intense violence`
     },
     { 
-        'cat': 'game_modes', 
-        'subcat': 2, 
-        'description': 'Multiplayer',
-        'helper': '2 or more players can play the game'
+        'cat': 'genres', 
+        'subcat': 14, 
+        'description': 'Genre: Sports',
+        'helper': ''
     },
     { 
         'cat': 'release_dates', 
-        'subcat': '1991, 1992, 1993, 1994, 1995', 
-        'description': 'Released 1991-1995',
-        'helper': 'Originally released between 1991-1995'
+        'subcat': '2020, 2021, 2022, 2023, 2024', 
+        'description': 'Released 2020-2024',
+        'helper': 'Originally released between 2020-2024'
     },
     { 
         'cat': 'platforms', 
-        'subcat': 4, 
-        'description': 'Nintendo 64',
+        'subcat': 130, 
+        'description': 'Nintendo Switch',
         'helper': ''
     },
     { 
         'cat': 'platforms', 
-        'subcat': 29, 
-        'description': 'Sega Genesis',
+        'subcat': 19, 
+        'description': 'SNES',
         'helper': '' 
     },
     { 
-        'cat': 'franchises', 
-        'subcat': 596, 
-        'description': 'Legend of Zelda franchise',
+        'cat': 'developer', 
+        'subcat': 'Rockstar', 
+        'description': 'Developer: Rockstar',
         'helper': ''
     }
 ];
@@ -64,31 +64,46 @@ function setCategories() {
     horiRow1.forEach(box => {
         box.setAttribute('data-cat1', categoryList[0].cat);
         box.setAttribute('data-subcat1', categoryList[0].subcat);
+        box.setAttribute('data-description1', categoryList[0].description);
     });
 
     horiRow2.forEach(box => {
         box.setAttribute('data-cat1', categoryList[1].cat);
         box.setAttribute('data-subcat1', categoryList[1].subcat);
+        box.setAttribute('data-description1', categoryList[1].description);
+
     });
 
     horiRow3.forEach(box => {
         box.setAttribute('data-cat1', categoryList[2].cat);
         box.setAttribute('data-subcat1', categoryList[2].subcat);
+        box.setAttribute('data-description1', categoryList[2].description);
     });
 
     vertCol1.forEach(box => {
         box.setAttribute('data-cat2', categoryList[3].cat);
         box.setAttribute('data-subcat2', categoryList[3].subcat);
+        box.setAttribute('data-description2', categoryList[3].description);
+
     });
 
     vertCol2.forEach(box => {
         box.setAttribute('data-cat2', categoryList[4].cat);
         box.setAttribute('data-subcat2', categoryList[4].subcat);
+        box.setAttribute('data-description2', categoryList[4].description);
     });
 
     vertCol3.forEach(box => {
         box.setAttribute('data-cat2', categoryList[5].cat);
         box.setAttribute('data-subcat2', categoryList[5].subcat);
+        box.setAttribute('data-description2', categoryList[5].description);
+    });
+
+    const gridButtons = document.querySelectorAll('.grid-button');
+    gridButtons.forEach((button) => {
+        button.setAttribute('aria-label', `${button.dataset.description1} + ${button.dataset.description2}`);
+        button.removeAttribute('data-description1');
+        button.removeAttribute('data-description2');
     });
 
     //set labels
@@ -103,6 +118,7 @@ function setCategories() {
         } else {
             document.getElementById(`cat-text-${i+1}`).innerHTML = categoryList[i].description;
         }
+
     });
 }
 
@@ -312,7 +328,7 @@ function displayGames(games) {
         li.classList.add('results-list-item');
         const gameName = game.name || 'Unknown name';
         const gameId = game.id || 'Unknown id';
-        const gameCover = game.cover ? game.cover.url.replace('thumb', 'cover_small_2x') : 'assets/default-cover.jpg';
+        const gameCover = game.cover ? game.cover.url.replace('thumb', 'cover_med_2x') : 'assets/default-cover.jpg';
         const gameFirstRelease = game.first_release_date || 0;
         const img = document.createElement('img');
         img.src = gameCover;
@@ -532,6 +548,16 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
     document.getElementById('guesses-remaining').textContent = guessesRemaining;
     console.log(typeof(guessesRemaining));
 
+    //TODO: FOR TESTING ONLY
+    if (game[0].url) {
+        //guessed-links
+        const newLink = document.createElement('li');
+        newLink.innerHTML = `<a href="${game[0].url}" target="_blank">${game[0].name}</a>`;
+        document.getElementById('guessed-links').append(newLink);
+    }
+    
+    //TODO: FOR TESTING ONLY
+
     if (guessesRemaining == 0) {
         //TODO:
         //display end game modal here
@@ -635,6 +661,8 @@ Dialog.prototype.close = function(dialogId) {
 
     document.body.classList.remove('bh-dialog-fixed-page');
 
+
+
     if (dialogId) {
         if (document.querySelector(`#${dialogId}`).getAttribute('aria-hidden') === 'false') {
             document.querySelector(`#${dialogId}`).setAttribute('aria-hidden', true);
@@ -647,6 +675,12 @@ Dialog.prototype.close = function(dialogId) {
 
     if (dialogOverlay) {
         dialogOverlay.setAttribute('aria-hidden', true);
+    }
+
+    if (document.querySelector('.grid-button.active')) {
+        const activeButton = document.querySelector('.grid-button.active');
+        console.log(activeButton);
+        activeButton.classList.remove('active');
     }
 
 	if (this.focusedElBeforeOpen) {
