@@ -1,4 +1,6 @@
 :root {
+
+    //colors:
     --mid-gray: #d2d4dc;
     --steel: #a9a9ba;
     --white: #f8f8fa;
@@ -7,11 +9,26 @@
     --black: #666666;
     --blacker: #222;
 
+    //sizes:
+    --grid-width: 71vw;
+    --grid-height: calc(var(--grid-width) * 1.333);
+    --grid-max-width: 550px;
+    --grid-max-height: calc(var(--grid-max-width) * 1.333);
+    --box-width: calc(var(--grid-width) / 3);
+    --box-height: calc(var(--grid-height) / 3);
+    --left-label-width: 130px;
+
     //kooltips:
     --tip-color: rgba(0,0,0,0.8);
 	//these are updated in javascript
   	--left-arrow: 0;
 	--right-arrow: 0;
+}
+
+@media (width < 550px) {
+    :root {
+        --left-label-width: 90px;
+    }
 }
 
 * {
@@ -24,7 +41,7 @@ html {
 
 body {
     font-family: 'Lato', sans-serif;
-	padding: 0 0.625rem 200px; //temp bottom padding
+	padding: 0 0.5rem 200px; //temp bottom padding
     margin: 0;
 }
 
@@ -90,13 +107,18 @@ p {
     }
 }
 
+main {
+    display: flex;
+    justify-content: center;
+}
+
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    width: 71vw;
-    height: 94vw;
-    max-width: 450px;
-    max-height: 585px;
+    width: var(--grid-width);
+    height: var(--grid-height);
+    max-width: var(--grid-max-width);
+    max-height: var(--grid-max-height);
     background-color: var(--light-gray);
  
     &-box {
@@ -105,6 +127,13 @@ p {
         background-position: center;
         display: flex;
         justify-content: center;
+        width: var(--box-width);
+        height: var(--box-height);
+
+        @media (width > 775px) {
+            --box-width: calc(var(--max-grid-width) / 3);
+            --box-height: calc(var(--max-grid-height) / 3);
+        }
 
         &--1 {
             border-left-width: 2px;
@@ -204,18 +233,59 @@ p {
 
 .categories {
     &--top {
-        padding: 0 0 15px 100px;
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        max-width: 670px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        max-width: var(--grid-max-width);
+        margin-left: var(--left-label-width);
+        
+        .categories-label {
+            display: flex;
+            justify-content: center;
+            padding: 0 10px 10px;
+            width: var(--box-width);
+            text-transform: uppercase;
+            font-weight: bold;
+            text-align: center;
+            align-items: flex-end;
+
+            @media (width > 775px) {
+                --box-width: calc(var(--max-grid-width) / 3);
+                --box-height: calc(var(--max-grid-height) / 3);
+            }
+
+            @media (width < 550px) {
+                font-size: 0.75rem;
+                padding: 0 10px 5px;
+            }
+        }
     }
 
     &--left {
-        padding: 20px 15px 0 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;
+        width: var(--left-label-width);
+        height: var(--grid-height);
+        max-height: var(--grid-max-height);
+
+        @media (width > 775px) {
+            --box-width: calc(var(--max-grid-width) / 3);
+            --box-height: calc(var(--max-grid-height) / 3);
+        }
+
+        .categories-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 15px;
+            text-transform: uppercase;
+            font-weight: bold;
+
+            @media (width < 550px) {
+                font-size: 0.75rem;
+                padding: 0 10px 5px;
+            }
+        }
     }
 }
 
@@ -232,7 +302,7 @@ p {
     max-width: 100%;
     position: relative;
 
-    @media screen and (max-width: 480px) {
+    @media (width <= 480px) {
         width: 100%;
         max-width: calc(100% - 20px);
     }
@@ -242,7 +312,7 @@ p {
     }
 
     &--mobile-full {
-        @media screen and (max-width: 480px) {
+        @media (width <= 480px) {
             width: 100%;
             top: 0 !important; //needed to overwrite the inline declaration from JS
             left: 0;
@@ -337,7 +407,7 @@ p {
         padding: 10px;
         overflow-y: auto;
 
-        @media screen and (max-width: 480px) {
+        @media (width <= 480px) {
             &--mobile-full {
                 display: block;
                 padding: 0;
@@ -375,9 +445,7 @@ p {
 
 [data-kooltip] {
 	text-decoration: none;
-	border-bottom: 1px dashed #000;
 	cursor: pointer;
-	white-space: nowrap;
 	box-sizing: border-box;
 }
 
@@ -388,12 +456,12 @@ p {
 	background-color: var(--tip-color);
 	border-radius: 4px;
 	color: #fff;
-	padding: 3px 8px;
+	padding: 4px 8px 5px;
 	font-size: 16px;
 	line-height: 19px;
-	white-space: nowrap;
 	text-align: center;
 	box-sizing: border-box;
+    max-width: 180px;
 	
 	&.multiline {
 		max-width: 100%;
@@ -438,18 +506,22 @@ p {
 
 //TODO: update these styles as needed
 [data-kooltip] {
-	border-bottom: 1px dashed #00ff33;
-	color: #00ff33;
-	font-weight: 500;
-	letter-spacing: 0.5px;
-	
 	&:focus {
 		outline: 2px solid #00ff33;
 		outline-offset: 2px;
-		border-bottom: 0;
 	}
 }
 
 .kooltip { 
-	--tip-color: #ff0099;
+	--tip-color: #222;
+    color: var(--white);
+}
+
+.testing-area {
+    input {
+        width: 200px;
+        margin-bottom: 8px;
+        height: 28px;
+
+    }
 }

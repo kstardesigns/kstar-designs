@@ -10,10 +10,10 @@ let timeout = null,
 
 let categoryList = [
     { 
-        'cat': 'age_rating_content_descriptions', 
-        'subcat': 10, 
-        'description': 'Intense violence',
-        'helper': `ESRB rating content descriptors include intense violence`
+        'cat': 'characters', 
+        'subcat': 1, 
+        'description': 'Character name in title',
+        'helper': `The title of the game has a character's name in it`
     },
     { 
         'cat': 'genres', 
@@ -37,12 +37,12 @@ let categoryList = [
         'cat': 'platforms', 
         'subcat': 19, 
         'description': 'SNES',
-        'helper': '' 
+        'helper': 'This is a long test description for the Super Nintendo Entertainment System' 
     },
     { 
-        'cat': 'developer', 
-        'subcat': 'Rockstar', 
-        'description': 'Developer: Rockstar',
+        'cat': 'genres', 
+        'subcat': 12, 
+        'description': 'RPG',
         'helper': ''
     }
 ];
@@ -113,8 +113,14 @@ function setCategories() {
 
         //set up tooltip if there is one, otherwise just add in the description
         if (categoryList[i].helper) {
-            innerLabel.innerHTML = categoryList[i].description;
-            innerLabel.setAttribute('data-kooltip', categoryList[i].helper);
+
+            if (innerLabel) {
+                innerLabel.innerHTML = categoryList[i].description;
+                innerLabel.setAttribute('data-kooltip', categoryList[i].helper);
+            } else {
+                document.querySelector(`#cat-text-${i+1}`).innerHTML = categoryList[i].description;
+            }
+            
         } else {
             document.getElementById(`cat-text-${i+1}`).innerHTML = categoryList[i].description;
         }
@@ -927,4 +933,21 @@ toolTipTriggers.forEach((toolTipTrigger, i) => {
 	toolTipTrigger.addEventListener('focus', kooltip.createTooltip, false);
 	toolTipTrigger.addEventListener('mouseleave', kooltip.removeTooltip, false);
 	toolTipTrigger.addEventListener('blur', kooltip.removeTooltip, false);
+});
+
+//test buttons
+const testButtons = document.querySelectorAll('.change-cat');
+testButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+        const catToChange = button.getAttribute('data-change-cat'),
+                newCat = document.getElementById('change-cat1').value,
+                newSubcat = document.getElementById('change-subcat1').value,
+                newText = document.getElementById('change-text').value;
+        console.log(catToChange);
+
+        categoryList[`${catToChange-1}`]['cat'] = newCat;
+        categoryList[`${catToChange-1}`]['subcat'] = newSubcat;
+        categoryList[`${catToChange-1}`]['description'] = newText;
+        setCategories();
+    });
 });
