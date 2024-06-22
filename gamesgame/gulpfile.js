@@ -14,7 +14,8 @@ async function minifycss() {
 async function minifyjs() {
   return gulp.src('./server.js')
     .pipe(terser())
-    .pipe(gulp.dest('public'));
+    .pipe(gulp.dest('public'))
+    .pipe(gulp.dest('dist'));
 }
 
 gulp.task('minifyjs', function(){

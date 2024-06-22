@@ -1,12 +1,56 @@
 require('dotenv').config();
 
+
+//uncomment for local development
+// const clientId = process.env.CLIENT_ID;
+// const clientSecret = process.env.CLIENT_SECRET;
+//uncomment for local development
+
+//uncomment for PROD development
+
+let clientId, clientSecret;
+
+const AWS = require('aws-sdk');
+const secretsManager = new AWS.SecretsManager({
+    region: 'us-east-2' 
+});
+
+async function getSecretValue(secretName) {
+    try {
+        const data = await secretsManager.getSecretValue({ SecretId: secretName }).promise();
+        if ('SecretString' in data) {
+            return JSON.parse(data.SecretString);
+        } else {
+            let buff = new Buffer(data.SecretBinary, 'base64');
+            return JSON.parse(buff.toString('ascii'));
+        }
+    } catch (err) {
+        console.error(`Error retrieving secret ${secretName}:`, err);
+        throw err;
+    }
+}
+
+async function main() {
+    try {
+        const secrets = await getSecretValue('MyAppSecrets');  
+        clientId = secrets.CLIENT_ID;
+        clientSecret = secrets.CLIENT_SECRET;
+
+        // Now you can use process.env.CLIENT_ID and process.env.CLIENT_SECRET in your application
+        console.log(`Client ID: ${clientId}`);
+        console.log(`Client Secret: ${clientSecret}`);
+    } catch (err) {
+        console.error('Error loading secrets:', err);
+    }
+}
+
+main();
+//uncomment for PROD development
+
 const express = require('express');
 const fetch = require('node-fetch');
 const path = require('path');
 const app = express();
-
-const clientId = process.env.CLIENT_ID;
-const clientSecret = process.env.CLIENT_SECRET;
 
 let accessToken = '';
 
@@ -156,7 +200,8 @@ async function fetchCharacters(searchTerms) {
 }
 
 
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));//local
+app.use(express.static(path.join('/var/www/html', 'public')));//prod
 
 app.get('/games', async (req, res) => {
     if (!accessToken) await getAccessToken();
@@ -237,7 +282,8 @@ app.get('/characters', async (req, res) => {
 });
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    // res.sendFile(path.join(__dirname, 'public', 'index.html'));//local
+    res.sendFile(path.join('/var/www/html', 'public', 'index.html'));//prod
 });
 
 app.listen(3000, () => {
