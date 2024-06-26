@@ -49,6 +49,7 @@ let categoryList = [
 
 window.addEventListener('load', (event) => {
     setCategories();
+    setAvailableTests();
 });
 
 function setCategories() {
@@ -128,6 +129,33 @@ function setCategories() {
     });
 }
 
+function setAvailableTests() {
+    const categoriesToTest = [
+        { optionText: 'Genre', optionVal: 'genres'},
+        { optionText: 'Platform/console', optionVal: 'platforms'},
+        { optionText: '# of players', optionVal: 'game_modes'},
+        { optionText: 'Release date', optionVal: 'release_dates'},
+        { optionText: 'Themes', optionVal: 'themes'},
+        { optionText: 'Player perspective', optionVal: 'player_perspectives'},
+        { optionText: 'Franchise', optionVal: 'franchises'},
+        { optionText: 'ESRB rating', optionVal: 'age_ratings'},
+        { optionText: 'Has DLC/expansion', optionVal: 'dlcs'},
+        { optionText: 'Is a remake/remaster', optionVal: 'remakes'},
+        { optionText: 'Publisher', optionVal: 'publisher'},
+        { optionText: 'Developer', optionVal: 'developer'},
+        { optionText: 'Character name in title', optionVal: 'characters'},
+        { optionText: 'Age rating descriptions', optionVal: 'age_rating_content_descriptions'},
+    ]
+    var selectEl = document.getElementById('change-cat1');
+
+    categoriesToTest.forEach((category, i) => {
+        var option = document.createElement('option');
+        option.text = categoriesToTest[i].optionText;
+        option.value = categoriesToTest[i].optionVal;
+        selectEl.add(option);
+    });
+    
+}
 
 
 async function fetchGamesList(query) {
