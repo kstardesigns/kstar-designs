@@ -473,89 +473,89 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
     //check if each category matches
     let cat1matches, cat2matches;
 
-    if (activeCat1 == 'release_dates') { 
-        //see if release dates match one of our given release dates
-        subcat1array = activeSubcat1.split(',').map(Number);
+    if (game[0][activeCat1]) {
+        if (activeCat1 == 'release_dates') { 
+            //see if release dates match one of our given release dates
+            subcat1array = activeSubcat1.split(',').map(Number);
 
-        cat1matches = subcat1array.some(y =>
-            game[0][activeCat1].some(date => date.y === y)
-        );
-    } else if (activeCat1 == 'aggregated_rating') {
-        cat1matches = game[0][activeCat1] >= Number(activeSubcat1);
-    } else if (activeCat1 == 'age_ratings') { 
-        cat1matches = ratings.includes(Number(activeSubcat1));
-    } else if (activeCat1 == 'age_rating_content_descriptions') { 
-        cat1matches = contentDescriptions.includes(Number(activeSubcat1));
-    } else if (activeCat1 == 'dlcs') {
-        cat1matches = (game[0][activeCat1] || game[0]['expansions'] || game[0]['parent_game']);
-    } else if (activeCat1 == 'remakes') {
-        cat1matches = (game[0][activeCat1] || game[0]['remasters']);
-    } else if (activeCat1 == 'publisher' || activeCat1 == 'developer') {
-        const activeSubcat1Lower = activeSubcat1.toLowerCase();
-        cat1matches = companies.some(element => element.toLowerCase().includes(activeSubcat1));
-    } else if (activeCat1 === 'characters') {
-        const gameNameArray = game[0].name
-                                .toLowerCase()  // Convert to lowercase
-                                .replace(/[^a-zA-Z]/g, ' ') // Replace non-letters with spaces
-                                .trim() // Trim leading and trailing whitespace
-                                .split(/\s+/) // Split by one or more whitespace characters
-                                .filter(word => word.length >= 3 && word !== 'the'); // Filter out words less than 3 characters and 'the'
-        console.log('gameNameArray', gameNameArray);
-        cat1matches = characters.some(character =>
-        gameNameArray.some(term =>
-                character.name.toLowerCase().includes(term) ||
-                (character.akas || []).some(aka => aka.toLowerCase().includes(term))
-            )
-        );
-    } else { //check if id matches id of given category
-        if (game[0][activeCat1]) {
+            cat1matches = subcat1array.some(y =>
+                game[0][activeCat1].some(date => date.y === y)
+            );
+        } else if (activeCat1 == 'aggregated_rating') {
+            cat1matches = game[0][activeCat1] >= Number(activeSubcat1);
+        } else if (activeCat1 == 'age_ratings') { 
+            cat1matches = ratings.includes(Number(activeSubcat1));
+        } else if (activeCat1 == 'age_rating_content_descriptions') { 
+            cat1matches = contentDescriptions.includes(Number(activeSubcat1));
+        } else if (activeCat1 == 'dlcs') {
+            cat1matches = (game[0][activeCat1] || game[0]['expansions'] || game[0]['parent_game']);
+        } else if (activeCat1 == 'remakes') {
+            cat1matches = (game[0][activeCat1] || game[0]['remasters']);
+        } else if (activeCat1 == 'publisher' || activeCat1 == 'developer') {
+            const activeSubcat1Lower = activeSubcat1.toLowerCase();
+            cat1matches = companies.some(element => element.toLowerCase().includes(activeSubcat1));
+        } else if (activeCat1 === 'characters') {
+            const gameNameArray = game[0].name
+                                    .toLowerCase()  // Convert to lowercase
+                                    .replace(/[^a-zA-Z]/g, ' ') // Replace non-letters with spaces
+                                    .trim() // Trim leading and trailing whitespace
+                                    .split(/\s+/) // Split by one or more whitespace characters
+                                    .filter(word => word.length >= 3 && word !== 'the'); // Filter out words less than 3 characters and 'the'
+            console.log('gameNameArray', gameNameArray);
+            cat1matches = characters.some(character =>
+            gameNameArray.some(term =>
+                    character.name.toLowerCase().includes(term) ||
+                    (character.akas || []).some(aka => aka.toLowerCase().includes(term))
+                )
+            );
+        } else { //check if id matches id of given category
             cat1matches = game[0][activeCat1].includes(Number(activeSubcat1));
-        } else {
-            cat1matches = false;
         }
+    } else {
+        cat1matches = false;
     }
 
-    if (activeCat2 == 'release_dates') { 
-        //see if release dates match one of our given release dates
-        subcat2array = activeSubcat2.split(',').map(Number);
+    if (game[0][activeCat2]) {
+        if (activeCat2 == 'release_dates') { 
+            //see if release dates match one of our given release dates
+            subcat2array = activeSubcat2.split(',').map(Number);
 
-        cat2matches = subcat2array.some(y =>
-            game[0][activeCat2].some(date => date.y === y)
-        );
-    } else if (activeCat2 == 'aggregated_rating') {
-        cat2matches = game[0][activeCat2] >= Number(activeSubcat2);
-    } else if (activeCat2 == 'age_ratings') {
-        cat2matches = ratings.includes(Number(activeSubcat2));
-    } else if (activeCat2 == 'age_rating_content_descriptions') { 
-        cat2matches = contentDescriptions.includes(Number(activeSubcat2));
-    } else if (activeCat2 == 'dlcs') {
-        cat2matches = (game[0][activeCat2] || game[0]['expansions'] || game[0]['parent_game']);
-    } else if (activeCat2 == 'remakes') {
-        cat2matches = (game[0][activeCat2] || game[0]['remasters']);
-    } else if (activeCat2 == 'publisher' || activeCat2 == 'developer') {
-        const activeSubcat2Lower = activeSubcat2.toLowerCase();
-        cat2matches = companies.some(element => element.toLowerCase().includes(activeSubcat2));
-    } else if (activeCat2 === 'characters') {
-        const gameNameArray = game[0].name
-                                .toLowerCase()  // Convert to lowercase
-                                .replace(/[^a-zA-Z]/g, ' ') // Replace non-letters with spaces
-                                .trim() // Trim leading and trailing whitespace
-                                .split(/\s+/) // Split by one or more whitespace characters
-                                .filter(word => word.length >= 3 && word !== 'the'); // Filter out words less than 3 characters and 'the'
+            cat2matches = subcat2array.some(y =>
+                game[0][activeCat2].some(date => date.y === y)
+            );
+        } else if (activeCat2 == 'aggregated_rating') {
+            cat2matches = game[0][activeCat2] >= Number(activeSubcat2);
+        } else if (activeCat2 == 'age_ratings') {
+            cat2matches = ratings.includes(Number(activeSubcat2));
+        } else if (activeCat2 == 'age_rating_content_descriptions') { 
+            cat2matches = contentDescriptions.includes(Number(activeSubcat2));
+        } else if (activeCat2 == 'dlcs') {
+            cat2matches = (game[0][activeCat2] || game[0]['expansions'] || game[0]['parent_game']);
+        } else if (activeCat2 == 'remakes') {
+            cat2matches = (game[0][activeCat2] || game[0]['remasters']);
+        } else if (activeCat2 == 'publisher' || activeCat2 == 'developer') {
+            const activeSubcat2Lower = activeSubcat2.toLowerCase();
+            cat2matches = companies.some(element => element.toLowerCase().includes(activeSubcat2));
+        } else if (activeCat2 === 'characters') {
+            const gameNameArray = game[0].name
+                                    .toLowerCase()  // Convert to lowercase
+                                    .replace(/[^a-zA-Z]/g, ' ') // Replace non-letters with spaces
+                                    .trim() // Trim leading and trailing whitespace
+                                    .split(/\s+/) // Split by one or more whitespace characters
+                                    .filter(word => word.length >= 3 && word !== 'the'); // Filter out words less than 3 characters and 'the'
 
-        console.log('gameNameArray', gameNameArray);
-        cat1matches = characters.some(character =>
-        gameNameArray.some(term =>
-                character.name.toLowerCase().includes(term) ||
-                (character.akas || []).some(aka => aka.toLowerCase().includes(term))
-            )
-        );
-    } else { //check if id matches id of given category
-        if (game[0][activeCat2]) {
+            console.log('gameNameArray', gameNameArray);
+            cat1matches = characters.some(character =>
+            gameNameArray.some(term =>
+                    character.name.toLowerCase().includes(term) ||
+                    (character.akas || []).some(aka => aka.toLowerCase().includes(term))
+                )
+            );
+        } else { //check if id matches id of given category
             cat2matches = game[0][activeCat2].includes(Number(activeSubcat2));
-        } else {
-            cat2matches = false;
         }
+    } else {
+        cat2matches = false;
     }
 
     console.log(cat1matches);
@@ -977,5 +977,6 @@ testButtons.forEach((button) => {
         categoryList[`${catToChange-1}`]['subcat'] = newSubcat;
         categoryList[`${catToChange-1}`]['description'] = newText;
         setCategories();
+        alert(`changed category #${catToChange}!`);
     });
 });
