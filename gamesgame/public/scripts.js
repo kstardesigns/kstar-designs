@@ -473,7 +473,7 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
     //check if each category matches
     let cat1matches, cat2matches;
 
-    if (game[0][activeCat1]) {
+    if (game[0][activeCat1] || activeCat1 == 'publisher' || activeCat1 == 'developer' || activeCat1 == 'characters') { 
         if (activeCat1 == 'release_dates') { 
             //see if release dates match one of our given release dates
             subcat1array = activeSubcat1.split(',').map(Number);
@@ -515,7 +515,7 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
         cat1matches = false;
     }
 
-    if (game[0][activeCat2]) {
+    if (game[0][activeCat2] || activeCat2 == 'publisher' || activeCat2 == 'developer' || activeCat2 == 'characters') { 
         if (activeCat2 == 'release_dates') { 
             //see if release dates match one of our given release dates
             subcat2array = activeSubcat2.split(',').map(Number);
@@ -977,6 +977,6 @@ testButtons.forEach((button) => {
         categoryList[`${catToChange-1}`]['subcat'] = newSubcat;
         categoryList[`${catToChange-1}`]['description'] = newText;
         setCategories();
-        alert(`changed category #${catToChange}!`);
+        alert(`changed category #${catToChange}!\nthe category is now ${newCat}, looking for games matching value ${newSubcat} (${newText})`);
     });
 });
