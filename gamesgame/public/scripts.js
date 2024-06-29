@@ -10,10 +10,10 @@ let timeout = null,
 
 let categoryList = [
     { 
-        'cat': 'characters', 
+        'cat': 'one_word', 
         'subcat': 1, 
-        'description': 'Character name in title',
-        'helper': `The title of the game has a character's name in it`
+        'description': 'One word title',
+        'helper': `The title of the game has only one word`
     },
     { 
         'cat': 'genres', 
@@ -35,9 +35,9 @@ let categoryList = [
     },
     { 
         'cat': 'platforms', 
-        'subcat': 19, 
-        'description': 'SNES',
-        'helper': 'This is a long test description for the Super Nintendo Entertainment System' 
+        'subcat': 167, 
+        'description': 'Playstation 5',
+        'helper': 'This is a long test description to test the styles' 
     },
     { 
         'cat': 'genres', 
@@ -145,6 +145,7 @@ function setAvailableTests() {
         { optionText: 'Developer', optionVal: 'developer'},
         { optionText: 'Character name in title', optionVal: 'characters'},
         { optionText: 'Age rating descriptions', optionVal: 'age_rating_content_descriptions'},
+        { optionText: 'One word title', optionVal: 'one_word'}
     ]
     var selectEl = document.getElementById('change-cat1');
 
@@ -202,11 +203,11 @@ async function fetchGameDetails(gameId) {
             let contentDescriptionIds = [];
             ageRatings.forEach(rating => {
                 if (rating.content_descriptions) {
-                    console.log("Found content description:", rating.content_descriptions);
+                    console.log('Found content description:', rating.content_descriptions);
                     contentDescriptionIds.push(rating.content_descriptions);
                     console.log(contentDescriptionIds);
                 } else {
-                    console.log("No content description for this rating.");
+                    console.log('No content description for this rating.');
                 }
             });
 
@@ -336,6 +337,7 @@ const fetchCharacters = async (searchTerms) => {
 
 document.getElementById('search').addEventListener('input', (event) => {
     loader('show');
+    results.innerHTML = '';
 
     const query = event.target.value.trim();
 
@@ -347,7 +349,7 @@ document.getElementById('search').addEventListener('input', (event) => {
             displayGames(games);
         } else {
             displayGames([]);
-            loader('show');
+            loader('show'); 
         }
     }, 300); // Adjust the delay as needed
 });
@@ -357,44 +359,50 @@ function displayGames(games) {
     const results = document.getElementById('results');
     results.innerHTML = '';
 
-    games.forEach(game => {
-        const li = document.createElement('li');
-        li.classList.add('results-list-item');
-        const gameName = game.name || 'Unknown name';
-        const gameId = game.id || 'Unknown id';
-        const gameCover = game.cover ? game.cover.url.replace('thumb', 'cover_med_2x') : 'assets/default-cover.jpg';
-        const gameFirstRelease = game.first_release_date || 0;
-        const img = document.createElement('img');
-        img.src = gameCover;
-        img.alt = gameName;
-        img.classList.add('results-cover');
-        const span = document.createElement('span');
-        span.classList.add('results-title');
-        span.textContent = gameName;
-        const button = document.createElement('button');
-        button.classList.add('results-button');
-        button.dataset.id = gameId;
-        button.dataset.release = gameFirstRelease;
-        button.append(img);
-        button.append(span);
-        button.addEventListener('click', () => fetchGameDetails(gameId));
-        li.append(button);
-        results.appendChild(li);
-    });
+    if (games.length > 0) {
 
-    //sorts the game results by first release date
-    let gameButtons = Array.from(document.querySelectorAll('.results-button'));
-    gameButtons.sort(function(a, b) {
-        return parseInt(a.dataset.release) - parseInt(b.dataset.release);
-    });
-    document.getElementById('results').innerHTML = '';
-    gameButtons.forEach(button => {
-        const li = button.closest('li');
-        results.appendChild(li);
-    });
+        games.forEach(game => {
+            const li = document.createElement('li');
+            li.classList.add('results-list-item');
+            const gameName = game.name || 'Unknown name';
+            const gameId = game.id || 'Unknown id';
+            const gameCover = game.cover ? game.cover.url.replace('thumb', 'cover_med_2x') : 'assets/default-cover.jpg';
+            const gameFirstRelease = game.first_release_date || 0;
+            const img = document.createElement('img');
+            img.src = gameCover;
+            img.alt = gameName;
+            img.classList.add('results-cover');
+            const span = document.createElement('span');
+            span.classList.add('results-title');
+            span.textContent = gameName;
+            const button = document.createElement('button');
+            button.classList.add('results-button');
+            button.dataset.id = gameId;
+            button.dataset.release = gameFirstRelease;
+            button.append(img);
+            button.append(span);
+            button.addEventListener('click', () => fetchGameDetails(gameId));
+            li.append(button);
+            results.appendChild(li);
+        });
 
-    if (gameButtons.length == 0) {
-        loader('show');
+        //sorts the game results by first release date
+        let gameButtons = Array.from(document.querySelectorAll('.results-button'));
+        gameButtons.sort(function(a, b) {
+            return parseInt(a.dataset.release) - parseInt(b.dataset.release);
+        });
+        document.getElementById('results').innerHTML = '';
+        gameButtons.forEach(button => {
+            const li = button.closest('li');
+            results.appendChild(li);
+        });
+
+        if (gameButtons.length == 0) {
+            loader('show');
+        }
+    } else {
+        loader('hide');
+        results.innerHTML = '0 results found.<br>dying sonic gif coming soon';
     }
 }
 
@@ -473,7 +481,9 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
     //check if each category matches
     let cat1matches, cat2matches;
 
-    if (game[0][activeCat1] || activeCat1 == 'publisher' || activeCat1 == 'developer' || activeCat1 == 'characters') { 
+    const catsNotInAPI = ['publisher', 'developer', 'characters', 'one_word', 'two_words'];
+
+    if (game[0][activeCat1] || catsNotInAPI.includes(activeCat1)) { 
         if (activeCat1 == 'release_dates') { 
             //see if release dates match one of our given release dates
             subcat1array = activeSubcat1.split(',').map(Number);
@@ -508,6 +518,8 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
                     (character.akas || []).some(aka => aka.toLowerCase().includes(term))
                 )
             );
+        } else if (activeCat1 === 'one_word') {
+            cat1matches = game[0].name.indexOf(' ') == -1;
         } else { //check if id matches id of given category
             cat1matches = game[0][activeCat1].includes(Number(activeSubcat1));
         }
@@ -515,7 +527,7 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
         cat1matches = false;
     }
 
-    if (game[0][activeCat2] || activeCat2 == 'publisher' || activeCat2 == 'developer' || activeCat2 == 'characters') { 
+    if (game[0][activeCat2] || catsNotInAPI.includes(activeCat2)) { 
         if (activeCat2 == 'release_dates') { 
             //see if release dates match one of our given release dates
             subcat2array = activeSubcat2.split(',').map(Number);
@@ -551,6 +563,8 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
                     (character.akas || []).some(aka => aka.toLowerCase().includes(term))
                 )
             );
+        } else if (activeCat2 === 'one_word') {
+            cat2matches = game[0].name.indexOf(' ') == -1;
         } else { //check if id matches id of given category
             cat2matches = game[0][activeCat2].includes(Number(activeSubcat2));
         }

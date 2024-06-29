@@ -18,12 +18,6 @@ async function minifyjs() {
     .pipe(gulp.dest('dist'));
 }
 
-gulp.task('minifyjs', function(){
-  return gulp.src('src/js/*.js')
-  .pipe(uglify())
-  .pipe(gulp.dest('public/js'))
-});
-
 exports.default = function() {
   watch('*.scss', minifycss);
   watch('*.js', minifyjs);
