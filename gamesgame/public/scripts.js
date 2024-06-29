@@ -10,10 +10,10 @@ let timeout = null,
 
 let categoryList = [
     { 
-        'cat': 'one_word', 
+        'cat': 'two_words', 
         'subcat': 1, 
-        'description': 'One word title',
-        'helper': `The title of the game has only one word`
+        'description': '2+ word title',
+        'helper': `The title of the game has only 2+ words`
     },
     { 
         'cat': 'genres', 
@@ -145,7 +145,8 @@ function setAvailableTests() {
         { optionText: 'Developer', optionVal: 'developer'},
         { optionText: 'Character name in title', optionVal: 'characters'},
         { optionText: 'Age rating descriptions', optionVal: 'age_rating_content_descriptions'},
-        { optionText: 'One word title', optionVal: 'one_word'}
+        { optionText: '1 word title', optionVal: 'one_word'},
+        { optionText: '2+ word title', optionVal: 'two_words'}
     ]
     var selectEl = document.getElementById('change-cat1');
 
@@ -520,6 +521,8 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
             );
         } else if (activeCat1 === 'one_word') {
             cat1matches = game[0].name.indexOf(' ') == -1;
+        } else if (activeCat1 === 'two_words') {
+            cat1matches = game[0].name.indexOf(' ') >= 0;
         } else { //check if id matches id of given category
             cat1matches = game[0][activeCat1].includes(Number(activeSubcat1));
         }
@@ -565,6 +568,8 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
             );
         } else if (activeCat2 === 'one_word') {
             cat2matches = game[0].name.indexOf(' ') == -1;
+        } else if (activeCat2 === 'two_words') {
+            cat2matches = game[0].name.indexOf(' ') >= 0;
         } else { //check if id matches id of given category
             cat2matches = game[0][activeCat2].includes(Number(activeSubcat2));
         }
