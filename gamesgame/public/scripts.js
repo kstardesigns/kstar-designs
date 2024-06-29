@@ -10,10 +10,10 @@ let timeout = null,
 
 let categoryList = [
     { 
-        'cat': 'one_word', 
+        'cat': 'number_in_title', 
         'subcat': 1, 
-        'description': '1-word title',
-        'helper': `The title of the game has only 1 word`
+        'description': 'Number in title',
+        'helper': `The title of the game has a number in it`
     },
     { 
         'cat': 'age_rating_content_descriptions', 
@@ -146,7 +146,8 @@ function setAvailableTests() {
         { optionText: 'Character name in title', optionVal: 'characters'},
         { optionText: 'Age rating descriptions', optionVal: 'age_rating_content_descriptions'},
         { optionText: '1 word title', optionVal: 'one_word'},
-        { optionText: '2+ word title', optionVal: 'two_words'}
+        { optionText: '2+ word title', optionVal: 'two_words'},
+        { optionText: 'Number in title', optionVal: 'number_in_title'}
     ]
     var selectEl = document.getElementById('change-cat1');
 
@@ -482,7 +483,7 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
     //check if each category matches
     let cat1matches, cat2matches;
 
-    const catsNotInAPI = ['publisher', 'developer', 'characters', 'one_word', 'two_words', 'age_rating_content_descriptions'];
+    const catsNotInAPI = ['publisher', 'developer', 'characters', 'one_word', 'two_words', 'age_rating_content_descriptions', 'number_in_title'];
 
     if (game[0][activeCat1] || catsNotInAPI.includes(activeCat1)) { 
         if (activeCat1 == 'release_dates') { 
@@ -523,6 +524,8 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
             cat1matches = game[0].name.indexOf(' ') == -1;
         } else if (activeCat1 === 'two_words') {
             cat1matches = game[0].name.indexOf(' ') >= 0;
+        } else if (activeCat1 === 'number_in_title') {
+            cat1matches = /\d/.test(game[0].name);
         } else { //check if id matches id of given category
             cat1matches = game[0][activeCat1].includes(Number(activeSubcat1));
         }
@@ -570,6 +573,8 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
             cat2matches = game[0].name.indexOf(' ') == -1;
         } else if (activeCat2 === 'two_words') {
             cat2matches = game[0].name.indexOf(' ') >= 0;
+        } else if (activeCat2 === 'number_in_title') {
+            cat2matches = /\d/.test(game[0].name);
         } else { //check if id matches id of given category
             cat2matches = game[0][activeCat2].includes(Number(activeSubcat2));
         }
@@ -612,7 +617,6 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
         newLink.innerHTML = `<a href="${game[0].url}" target="_blank">${game[0].name}</a>`;
         document.getElementById('guessed-links').append(newLink);
     }
-    
     //TODO: FOR TESTING ONLY
 
     if (guessesRemaining == 0) {
