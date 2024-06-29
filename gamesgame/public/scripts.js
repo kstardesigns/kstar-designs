@@ -616,12 +616,11 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
     //TODO: FOR TESTING ONLY
 
     if (guessesRemaining == 0) {
-        //TODO:
-        //display end game modal here
         const gridButtons = document.querySelectorAll('.grid-button');
         gridButtons.forEach((button) => {
             button.remove();
         });
+        openDialog('bh-dialog-endgame');
     }
     
     //disable search again until next box is chosen
