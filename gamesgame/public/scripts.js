@@ -10,39 +10,39 @@ let timeout = null,
 
 let categoryList = [
     { 
-        'cat': 'two_words', 
+        'cat': 'one_word', 
         'subcat': 1, 
-        'description': '2+ word title',
-        'helper': `The title of the game has only 2+ words`
+        'description': '1-word title',
+        'helper': `The title of the game has only 1 word`
     },
     { 
-        'cat': 'genres', 
-        'subcat': 14, 
-        'description': 'Genre: Sports',
+        'cat': 'age_rating_content_descriptions', 
+        'subcat': 21, 
+        'description': 'Strong language',
+        'helper': 'ESRB rating: includes strong language'
+    },
+    { 
+        'cat': 'game_modes', 
+        'subcat': '2', 
+        'description': 'Multiplayer',
+        'helper': ''
+    },
+    { 
+        'cat': 'platforms', 
+        'subcat': 4, 
+        'description': 'Nintendo 64',
         'helper': ''
     },
     { 
         'cat': 'release_dates', 
-        'subcat': '2020, 2021, 2022, 2023, 2024', 
-        'description': 'Released 2020-2024',
-        'helper': 'Originally released between 2020-2024'
-    },
-    { 
-        'cat': 'platforms', 
-        'subcat': 130, 
-        'description': 'Nintendo Switch',
-        'helper': ''
-    },
-    { 
-        'cat': 'platforms', 
-        'subcat': 167, 
-        'description': 'Playstation 5',
-        'helper': 'This is a long test description to test the styles' 
+        'subcat': '2015, 2016, 2017, 2018, 2019', 
+        'description': 'Released 2015-2019',
+        'helper': 'Originally released between 2015-2019'
     },
     { 
         'cat': 'genres', 
-        'subcat': 12, 
-        'description': 'RPG',
+        'subcat': 32, 
+        'description': 'Indie',
         'helper': ''
     }
 ];
