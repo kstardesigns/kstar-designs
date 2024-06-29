@@ -482,7 +482,7 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
     //check if each category matches
     let cat1matches, cat2matches;
 
-    const catsNotInAPI = ['publisher', 'developer', 'characters', 'one_word', 'two_words'];
+    const catsNotInAPI = ['publisher', 'developer', 'characters', 'one_word', 'two_words', 'age_rating_content_descriptions'];
 
     if (game[0][activeCat1] || catsNotInAPI.includes(activeCat1)) { 
         if (activeCat1 == 'release_dates') { 
@@ -594,6 +594,10 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
     } else { //guess is incorrect
         activeButton.classList.remove('active');
         activeButton.classList.add('wrong');
+
+        setTimeout(function() {
+            activeButton.classList.remove('wrong');
+        }, 2000);
     }
 
     //update remaining guesses
