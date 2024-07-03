@@ -479,6 +479,25 @@ gridButtons.forEach((button) => {
     });
 });
 
+function containsNumberOrRomanNumeral(name) {
+    // Regex to match standalone numbers or numbers followed by a colon
+    const numberRegex = /^\d+:?$/;
+
+    // Regex to match standalone Roman numerals or Roman numerals followed by a colon
+    const romanNumeralRegex = /^(M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})):?$/;
+
+    // Split the string into words
+    const words = name.split(/\s+/);
+
+    // Check each word
+    for (const word of words) {
+        if (numberRegex.test(word) || romanNumeralRegex.test(word)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 async function checkAnswer(game, ratings, companies, characters, contentDescriptions) {
     //check if each category matches
     let cat1matches, cat2matches;
@@ -525,7 +544,7 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
         } else if (activeCat1 === 'two_words') {
             cat1matches = game[0].name.indexOf(' ') >= 0;
         } else if (activeCat1 === 'number_in_title') {
-            cat1matches = /\d/.test(game[0].name);
+            cat1matches = containsNumberOrRomanNumeral(game[0].name);
         } else { //check if id matches id of given category
             cat1matches = game[0][activeCat1].includes(Number(activeSubcat1));
         }
@@ -574,7 +593,7 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
         } else if (activeCat2 === 'two_words') {
             cat2matches = game[0].name.indexOf(' ') >= 0;
         } else if (activeCat2 === 'number_in_title') {
-            cat2matches = /\d/.test(game[0].name);
+            cat2matches = containsNumberOrRomanNumeral(game[0].name);
         } else { //check if id matches id of given category
             cat2matches = game[0][activeCat2].includes(Number(activeSubcat2));
         }
