@@ -157,10 +157,8 @@ function setAvailableTests() {
         option.text = categoriesToTest[i].optionText;
         option.value = categoriesToTest[i].optionVal;
         selectEl.add(option);
-    });
-    
+    });   
 }
-
 
 async function fetchGamesList(query) {
     try {
