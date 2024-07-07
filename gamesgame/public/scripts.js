@@ -16,10 +16,10 @@ let categoryList = [
         'helper': `The title of the game has a number in it`
     },
     { 
-        'cat': 'age_rating_content_descriptions', 
-        'subcat': 21, 
-        'description': 'Strong language',
-        'helper': 'ESRB rating: includes strong language'
+        'cat': 'age_ratings', 
+        'subcat': 8, 
+        'description': 'ESRB rating E for Everyone',
+        'helper': 'ESRB rating: E for Everyone'
     },
     { 
         'cat': 'game_modes', 
@@ -72,7 +72,6 @@ function setCategories() {
         box.setAttribute('data-cat1', categoryList[1].cat);
         box.setAttribute('data-subcat1', categoryList[1].subcat);
         box.setAttribute('data-description1', categoryList[1].description);
-
     });
 
     horiRow3.forEach(box => {
@@ -85,7 +84,6 @@ function setCategories() {
         box.setAttribute('data-cat2', categoryList[3].cat);
         box.setAttribute('data-subcat2', categoryList[3].subcat);
         box.setAttribute('data-description2', categoryList[3].description);
-
     });
 
     vertCol2.forEach(box => {
@@ -110,22 +108,25 @@ function setCategories() {
     //set labels
     const categoryLabels = document.querySelectorAll('.categories-label');
     categoryLabels.forEach((label, i) => {
-        const innerLabel = document.querySelector(`#cat-text-${i+1} span`);
+        const innerLabel = document.querySelector(`#cat-text-${i+1} div`);
+        const categoriesWithImages = ['age_ratings'];
 
         //set up tooltip if there is one, otherwise just add in the description
-        if (categoryList[i].helper) {
+        if (categoryList[i].helper && innerLabel) {
 
-            if (innerLabel) {
-                innerLabel.innerHTML = categoryList[i].description;
-                innerLabel.setAttribute('data-kooltip', categoryList[i].helper);
+            //if category should display an image instead
+            if (categoriesWithImages.includes(categoryList[i].cat)) {
+                innerLabel.innerHTML = `<img class="categories-label-image categories-label-image--${categoryList[i].cat}-${categoryList[i].subcat}" src="assets/${categoryList[i].cat}-${categoryList[i].subcat}.svg" alt="${categoryList[i].description}" />`;
             } else {
-                document.querySelector(`#cat-text-${i+1}`).innerHTML = categoryList[i].description;
+                innerLabel.innerHTML = categoryList[i].description;
             }
+            innerLabel.setAttribute('data-kooltip', categoryList[i].helper);
             
         } else {
             document.getElementById(`cat-text-${i+1}`).innerHTML = categoryList[i].description;
         }
 
+        document.getElementById(`cat-text-${i+1}`).setAttribute('data-description', categoryList[i].description);
     });
 }
 
@@ -436,13 +437,13 @@ gridButtons.forEach((button) => {
         //show category names in search modal
         switch (activeHori) {
             case '1':
-                document.getElementById('active-category-1').innerHTML = document.getElementById('cat-text-1').innerHTML;
+                document.getElementById('active-category-1').innerHTML = document.getElementById('cat-text-1').getAttribute('data-description');
                 break;
-            case '2':
-                document.getElementById('active-category-1').innerHTML = document.getElementById('cat-text-2').innerHTML;
+            case '2'://here
+                document.getElementById('active-category-1').innerHTML = document.getElementById('cat-text-2').getAttribute('data-description');
                 break;
             case '3':
-                document.getElementById('active-category-1').innerHTML = document.getElementById('cat-text-3').innerHTML;
+                document.getElementById('active-category-1').innerHTML = document.getElementById('cat-text-3').getAttribute('data-description');
                 break;
             default:
                 console.log(`nah.`);
@@ -450,26 +451,26 @@ gridButtons.forEach((button) => {
 
         switch (activeVert) {
             case '1':
-                document.getElementById('active-category-2').innerHTML = document.getElementById('cat-text-4').innerHTML;
+                document.getElementById('active-category-2').innerHTML = document.getElementById('cat-text-4').getAttribute('data-description');
                 break;
             case '2':
-                document.getElementById('active-category-2').innerHTML = document.getElementById('cat-text-5').innerHTML;
+                document.getElementById('active-category-2').innerHTML = document.getElementById('cat-text-5').getAttribute('data-description');
                 break;
             case '3':
-                document.getElementById('active-category-2').innerHTML = document.getElementById('cat-text-6').innerHTML;
+                document.getElementById('active-category-2').innerHTML = document.getElementById('cat-text-6').getAttribute('data-description');
                 break;
             default:
                 console.log(`nah.`);
         }
 
-        if (document.querySelector('#active-category-1 .categories-label-span')) {
-            document.querySelector('#active-category-1 .categories-label-span').removeAttribute('data-kooltip');
-            document.querySelector('#active-category-1 .categories-label-span').removeAttribute('tabindex');
+        if (document.querySelector('#active-category-1 .categories-label-div')) {
+            document.querySelector('#active-category-1 .categories-label-div').removeAttribute('data-kooltip');
+            document.querySelector('#active-category-1 .categories-label-div').removeAttribute('tabindex');
         }
 
-        if (document.querySelector('#active-category-2 .categories-label-span')) {
-            document.querySelector('#active-category-2 .categories-label-span').removeAttribute('data-kooltip');
-            document.querySelector('#active-category-2 .categories-label-span').removeAttribute('tabindex');
+        if (document.querySelector('#active-category-2 .categories-label-div')) {
+            document.querySelector('#active-category-2 .categories-label-div').removeAttribute('data-kooltip');
+            document.querySelector('#active-category-2 .categories-label-div').removeAttribute('tabindex');
         }
 
         //enable & focus search field
