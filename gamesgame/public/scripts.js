@@ -29,9 +29,9 @@ let categoryList = [
     },
     { 
         'cat': 'platforms', 
-        'subcat': 4, 
-        'description': 'Nintendo 64',
-        'helper': ''
+        'subcat': 19, 
+        'description': 'SNES',
+        'helper': 'Released on Super Nintendo Entertainment System'
     },
     { 
         'cat': 'release_dates', 
@@ -109,7 +109,7 @@ function setCategories() {
     const categoryLabels = document.querySelectorAll('.categories-label');
     categoryLabels.forEach((label, i) => {
         const innerLabel = document.querySelector(`#cat-text-${i+1} div`);
-        const categoriesWithImages = ['age_ratings'];
+        const categoriesWithImages = ['age_ratings', 'platforms'];
 
         //set up tooltip if there is one, otherwise just add in the description
         if (categoryList[i].helper && innerLabel) {
