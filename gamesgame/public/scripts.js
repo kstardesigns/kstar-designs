@@ -50,6 +50,7 @@ let categoryList = [
 window.addEventListener('load', (event) => {
     setCategories();
     setAvailableTests();
+    setLogo();
 });
 
 function setCategories() {
@@ -158,6 +159,27 @@ function setAvailableTests() {
         option.value = categoriesToTest[i].optionVal;
         selectEl.add(option);
     });   
+}
+
+function setLogo() {
+    const date = new Date();
+    const todaysDate = date.getDate();
+    const dateString = todaysDate.toString();
+    let lastDigit;
+    const logoVars = [4, 12, 19, 22, 35, 41, 59, 87, 137, 307];
+
+    //set logo class based on last digit of date
+    if (dateString.length == 2) {
+        lastDigit = dateString[1];
+    } else {
+        lastDigit = dateString[0];
+    }
+
+    if (todaysDate == 31) {
+        document.querySelector('.header-title').classList.add('var-special');
+    } else {
+        document.querySelector('.header-title').classList.add(`var-${logoVars[lastDigit]}`);
+    }
 }
 
 async function fetchGamesList(query) {
