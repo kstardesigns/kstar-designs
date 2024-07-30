@@ -51,7 +51,7 @@ let handNames = {
 	hand10: ''
 }
 
-const baseValues = { //TODO: change these values
+const baseValues = {
 	'high card': 5,
 	'pair': 10,
 	'2 pair': 20,
@@ -91,7 +91,8 @@ const deal = () => {
 	
 	//show 1st hand
 	createCards(hands["hand1"]);
-	
+	calcHandScore(currentHand);
+	// confirmHand();
 }
 
 const createCards = (array) => {
@@ -141,14 +142,12 @@ const createCards = (array) => {
 	
 	const handConfirm = document.createElement('div');
 	handConfirm.classList.add('hand-confirm-wrap');
-	handConfirm.innerHTML = `<button type="button" class="hand-confirm" onclick="confirmHand()">Play hand</button>`;
+	// handConfirm.innerHTML = `<button type="button" class="hand-confirm" onclick="confirmHand()">Play hand</button>`;
 	document.querySelector(`.hand[data-hand="${currentHand}"]`).append(handConfirm);
 	
 }
 
 const confirmHand = () => {
-	calcHandScore(currentHand);
-	
 	if (currentHand < 10) {
 		currentHand++;
 		console.log(`current hand: ${currentHand}`);
@@ -156,6 +155,8 @@ const confirmHand = () => {
 	} else {
 		//TODO: disable or hide confirm & score button
 	}
+
+	calcHandScore(currentHand);
 }
 
 const moveInHand = () => {
