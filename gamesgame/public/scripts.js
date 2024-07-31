@@ -29,21 +29,21 @@ let categoryList = [
     },
     { 
         'cat': 'platforms', 
-        'subcat': 19, 
-        'description': 'SNES',
-        'helper': 'Released on Super Nintendo Entertainment System'
+        'subcat': 4, 
+        'description': 'Nintendo 64',
+        'helper': 'Released on Nintendo 64'
     },
     { 
-        'cat': 'release_dates', 
-        'subcat': '2015, 2016, 2017, 2018, 2019', 
-        'description': 'Released 2015-2019',
-        'helper': 'Originally released between 2015-2019'
+        'cat': 'platforms', 
+        'subcat': '35', 
+        'description': 'Sega Game Gear',
+        'helper': 'Released on Sega Game Gear'
     },
     { 
-        'cat': 'genres', 
-        'subcat': 32, 
-        'description': 'Indie',
-        'helper': ''
+        'cat': 'platforms', 
+        'subcat': 38, 
+        'description': 'PSP',
+        'helper': 'Released on PlayStation Portable'
     }
 ];
 
@@ -425,7 +425,7 @@ function displayGames(games) {
         }
     } else {
         loader('hide');
-        results.innerHTML = '0 results found.<br>dying sonic gif coming soon';
+        results.innerHTML = '0 results found.';
     }
 }
 
@@ -664,7 +664,7 @@ async function checkAnswer(game, ratings, companies, characters, contentDescript
         gridButtons.forEach((button) => {
             button.remove();
         });
-        openDialog('bh-dialog-endgame');
+        //openDialog('bh-dialog-endgame');
     }
     
     //disable search again until next box is chosen
