@@ -49,7 +49,7 @@ function App() {
           wordValue.split("").map((letter, index) => (
             <div key={index} className="tile">
               <span className="letter">{letter}</span>
-              <span className="value">{getLetterScore(letter)}</span>
+              <span className="value">{getLetterScore(letter) == 0 ? '' : getLetterScore(letter)}</span>
             </div>
           ))
           }
