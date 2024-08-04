@@ -41,9 +41,9 @@ let categoryList = [
     },
     { 
         'cat': 'platforms', 
-        'subcat': 38, 
-        'description': 'PSP',
-        'helper': 'Released on PlayStation Portable'
+        'subcat': 48, 
+        'description': 'Playstation 4',
+        'helper': 'Released on PlayStation 4'
     }
 ];
 
