@@ -1,3 +1,61 @@
 .tile {
-     
+    --text: #1c150f;
+    --bg-darkest: #8b604a;
+    --bg-darker: #a47c5c;
+    --bg-dark: #ba9576;
+    --bg-mid: #c19b73;
+    --bg-light: #d7ba99;
+    --bg-lighter: #ebc7a3;
+    --bg-lightest: #f1dcb7;
+
+    position: relative;
+    border: 1px solid var(--bg-dark);
+    box-shadow: 1px 1px 2px 0 rgba(0 0 0 / 0.45);
+    width: 70px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    padding-top: 2px;
+    transform-origin: 50% 50%;
+
+    &:nth-child(5n + 1) { //1, 6, 11
+        background: linear-gradient(to right, 
+                        var(--bg-mid) 0%, 
+                        var(--bg-lighter) 55%, 
+                        var(--bg-lighter) 85%,
+                        var(--bg-mid) 100%
+                    );
+    }
+
+    &:nth-child(5n + 2) { //2, 7, 12
+        background: blue;
+    }
+
+    &:nth-child(5n + 3) { //3, 8, 13
+        background-color: var(--bg-darker);
+    }
+
+    &:nth-child(5n + 4) { //4, 9, 14
+        background: orange
+    }
+
+    &:nth-child(5n + 5) { //5, 10, 15
+        background: pink
+    }
+
+    .letter {
+        font-size: 48px;
+        color: var(--text);
+    }
+
+    .value {
+        position: absolute;
+        bottom: 2px;
+        right: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--text);
+    }
 }
