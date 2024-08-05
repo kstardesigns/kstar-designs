@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import BonusCheckbox from './components/Bonus';
+import BonusCheckbox from './components/bonus/Bonus';
+import Tile from './components/tile/Tile';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
-import './styles.scss'; 
+import './_styles.scss'; 
 
 const App = () => {
   const [wordValue, setWordValue] = useState('');
@@ -93,12 +94,15 @@ const App = () => {
       <div className="wrap">
         <div className="output">
           {
-          wordValue.split("").map((letter, index) => (
-            <div key={index} className="tile">
-              <span className="letter">{letter}</span>
-              <span className="value">{getLetterScore(letter) == 0 ? '' : getLetterScore(letter)}</span>
-            </div>
-          ))
+            wordValue.split("").map((letter, index) => (
+              
+              <Tile 
+                letter={letter}
+                key={index}
+                number={getLetterScore(letter)}
+              />
+
+            ))
           }
         </div>
         <input type="text" className="word" autoFocus value={wordValue.replace(/[^a-zA-Z\s]/g, '')} onChange={handleWordChange} />

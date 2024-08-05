@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './../styles.scss'; 
+import './_bonus.scss'; 
 
 const BonusCheckbox = ({bonus, onStateChange}) => {
 
