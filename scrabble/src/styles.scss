@@ -1,8 +1,14 @@
+*, *::before, *::after {
+   box-sizing: border-box; 
+    
+}
+
 #root {
     max-width: 1280px;
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
+    font-family: 'Overpass', sans-serif;
 }
 
 .reactstuff {
@@ -37,26 +43,34 @@
     }
 }
 
-.card {
-    padding: 2em;
+.header {
+    font-size: 32px;
+    text-align: center;
 }
 
-.read-the-docs {
-    color: #888;
+.subheader {
+    font-size: 14px;
+    display: block;
+    text-transform: uppercase;
 }
 
 
 .wrap {
     position: relative;
-    height: 300px;
+    height: 75px;
 }
 
 .output, .word {
     position: absolute;
     top: 0;
     left: 0;
-    min-width: 300px;
-    height: 50px;
+    min-width: 490px;
+    height: 75px;
+
+    @media (width < 640px) {
+        min-width: 0;
+        width: 100%;
+    }
 }
 
 .output {
@@ -65,20 +79,47 @@
 }
 
 .word {
-    font-size: 24px;
     color: transparent;
     background-color: transparent;
+    font-size: 48px;
+    text-transform: uppercase;
+    letter-spacing: 39px;
+    padding-left: 16px;
+    font-family: 'Overpass', sans-serif;
 }
 
 .tile {
+    position: relative;
     border: 1px solid black;
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 75px;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-transform: uppercase;
+    padding-top: 2px;
+
+    .letter {
+        font-size: 48px;
+    }
+
+    .value {
+        position: absolute;
+        bottom: 2px;
+        right: 8px;
+        font-size: 16px;
+        font-weight: 500;
+    }
+}
+
+.bonus {
+    display: flex;
 }
 
 .total {
     font-size: 32px;
+}
+
+.bonus {
+    border: 1px solid red;
 }

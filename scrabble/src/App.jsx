@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
+import BonusCheckbox from './components/Bonus';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './styles.scss'; 
 
-function App() {
-  const [count, setCount] = useState(0);
+const App = () => {
   const [wordValue, setWordValue] = useState('');
   let [total, setTotal] = useState(0);
+  const [bonus, setBonus] = useState(false);
+  const [showBonus, setShowBonus] = useState(false);
+
   const letterScores = {
     letters1: 'eaionrtlsu',
     letters2: 'dg',
@@ -19,7 +22,7 @@ function App() {
   };
 
   const handleWordChange = (event) => {
-    setWordValue(event.target.value.toLowerCase());
+    setWordValue(event.target.value.replace(/[^a-zA-Z\s]/g, '').toLowerCase());
   }
 
   const getLetterScore = (letter) => {
@@ -31,18 +34,62 @@ function App() {
     return 0;
   }
 
-  useEffect(() => {
+  const handleBonusStateChange = (newValue) => {
+    setBonus(newValue);
+  };
+
+  const getNewTotal = (bonus) => {
+    const wordLength = wordValue.length;
     let newTotal = 0;
+
+    //if 7 tiles or more, show the optional bonus checkbox
+    wordLength >= 7 ? setShowBonus(true) : setShowBonus(false);
+
+    //add up score
     wordValue.split('').forEach((letter) => {
       newTotal += getLetterScore(letter);
     });
-    setTotal(newTotal);
 
+    //add on bonus
+    if (bonus) {
+      newTotal += 50;
+    }
+
+    setTotal(newTotal);
+  }
+
+  //after word is updated, show bonus checkbox if applicable and update score
+  useEffect(() => {
+    getNewTotal(bonus);
   },[wordValue]);
 
-  return (
-    <div>
+  //if bonus checkbox is changed, recalculate total score to include (or don't include) 50 point bonus
+  useEffect(() => {
+    if (showBonus) {
+      if (bonus) {
+        getNewTotal(true);
+      } else {
+        getNewTotal(false);
+      }
+    }
+  },[bonus]);
 
+  //if word length changes and drops below 7, remove the bonus and recalculate score
+  useEffect(() => {
+    const wordLength = wordValue.length;
+
+    if (wordLength < 7) {
+      setBonus(false);
+      getNewTotal(false);
+    }
+  },[showBonus]);
+
+  return (
+    <>
+      <h1 className="header">
+        Type a word below to see its Scrabble score
+        <span className="subheader">Spacebar = blank tile</span>
+      </h1>
       <div className="wrap">
         <div className="output">
           {
@@ -54,9 +101,19 @@ function App() {
           ))
           }
         </div>
-        <input type="text" className="word" autoFocus value={wordValue} onChange={handleWordChange} />
+        <input type="text" className="word" autoFocus value={wordValue.replace(/[^a-zA-Z\s]/g, '')} onChange={handleWordChange} />
       </div>
-      <div className="total">total: {total}</div>
+
+      { showBonus === true && 
+        <BonusCheckbox 
+          bonus={bonus}
+          onStateChange={handleBonusStateChange}
+        />
+      }
+
+      <div className="total">Word score: {total}</div>
+
+
 
 
       <div className="reactstuff">
@@ -68,18 +125,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    </>
   )
 }
 
