@@ -106,8 +106,14 @@ const App = () => {
             ))
           }
         </div>
-        <input type="text" className="word" autoFocus value={wordValue.replace(/[^a-zA-Z\s]/g, '')} onChange={handleWordChange} />
+
       </div>
+
+      { wordValue.length > 0 &&
+      
+        <p className="bonus-square-description">Click to toggle bonus squares</p>
+      }
+
 
       { showBonus === true && 
         <BonusCheckbox 
