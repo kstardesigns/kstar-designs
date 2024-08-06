@@ -1,4 +1,4 @@
-.tile {
+.tile-wrap {
     --text: #1c150f;
     --bg-darkest: #8b604a;
     --bg-darker: #a47c5c;
@@ -7,80 +7,137 @@
     --bg-light: #d7ba99;
     --bg-lighter: #ebc7a3;
     --bg-lightest: #f1dcb7;
+    --bg-dl: #dbecf0;
+    --bg-tl: #53b6e2;
+    --bg-dw: #ecd9dc;
+    --bg-tw: #eb5a6b;
+    --board: #d4d7c4;
 
-    position: relative;
-    border: 2px solid var(--bg-dark);
-    border-left: 0;
-    border-top: 0;
-    box-shadow: 1px 1px 2px 0 rgba(0 0 0 / 0.45);
     width: 70px;
-    height: 75px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-    padding-top: 2px;
-    transform-origin: 50% 50%;
 
-    &:nth-child(5n + 1) { //1, 6, 11
-        background: linear-gradient(to right, 
-                        var(--bg-lighter) 0%, 
-                        var(--bg-lightest) 55%, 
-                        var(--bg-lightest) 85%,
-                        var(--bg-lighter) 100%
-                    );
+    .tile {
+        position: relative;
+        border: 2px solid var(--bg-dark);
+        border-left: 0;
+        border-top: 0;
+        box-shadow: 1px 1px 2px 0 rgba(0 0 0 / 0.45);
+        width: 70px;
+        height: 75px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-transform: uppercase;
+        padding-top: 2px;
+        transform-origin: 50% 50%;
+    
+        &:nth-child(5n + 1) { //1, 6, 11
+            background: linear-gradient(to right, 
+                            var(--bg-lighter) 0%, 
+                            var(--bg-lightest) 55%, 
+                            var(--bg-lightest) 85%,
+                            var(--bg-lighter) 100%
+                        );
+        }
+    
+        &:nth-child(5n + 2) { //2, 7, 12
+            background: linear-gradient(to bottom right, 
+                            var(--bg-mid) 0%, 
+                            var(--bg-mid) 25%,
+                            var(--bg-lighter) 75%,
+                            var(--bg-lightest) 85%,
+                            var(--bg-light) 100%
+                        );
+        }
+    
+        &:nth-child(5n + 3) { //3, 8, 13
+            background: linear-gradient(95deg, 
+                            var(--bg-light) 0%, 
+                            var(--bg-light) 40%,
+                            var(--bg-lighter) 70%, 
+                            var(--bg-lightest) 85%,
+                            var(--bg-light) 100%
+                        );
+        }
+    
+        &:nth-child(5n + 4) { //4, 9, 14
+            background: linear-gradient(55deg, 
+                            var(--bg-lighter) 0%, 
+                            var(--bg-lighter) 30%, 
+                            var(--bg-light) 50%, 
+                            var(--bg-lighter) 80%, 
+                            var(--bg-lighter) 100%
+                        );
+        }
+    
+        &:nth-child(5n + 5) { //5, 10, 15
+            background: linear-gradient(to right, 
+                            var(--bg-mid) 0%, 
+                            var(--bg-lightest) 15%, 
+                            var(--bg-lightest) 45%,
+                            var(--bg-mid) 100%
+                        );
+        }
+    
+        .letter {
+            font-size: 48px;
+            color: var(--text);
+        }
+    
+        .value {
+            position: absolute;
+            bottom: 2px;
+            right: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text);
+        }
     }
+    
+    .bonus-square {
+        background-color: #fff;
+        
+        &-button {
+            max-width: 100%;
+            margin-top: 4px;
+            padding: 0;
+            text-transform: uppercase;
+            font-size: 12px;
+            line-height: 13px;
+            font-weight: bold;
+            padding: 4px 4px 2px;
+            color: var(--text);
+            background-color: var(--board);
+            border-radius: 0;
 
-    &:nth-child(5n + 2) { //2, 7, 12
-        background: linear-gradient(to bottom right, 
-                        var(--bg-mid) 0%, 
-                        var(--bg-mid) 25%,
-                        var(--bg-lighter) 75%,
-                        var(--bg-lightest) 85%,
-                        var(--bg-light) 100%
-                    );
-    }
+            &:hover {
+                border: 1px solid transparent;
+            }
 
-    &:nth-child(5n + 3) { //3, 8, 13
-        background: linear-gradient(95deg, 
-                        var(--bg-light) 0%, 
-                        var(--bg-light) 40%,
-                        var(--bg-lighter) 70%, 
-                        var(--bg-lightest) 85%,
-                        var(--bg-light) 100%
-                    );
-    }
-
-    &:nth-child(5n + 4) { //4, 9, 14
-        background: linear-gradient(55deg, 
-                        var(--bg-lighter) 0%, 
-                        var(--bg-lighter) 30%, 
-                        var(--bg-light) 50%, 
-                        var(--bg-lighter) 80%, 
-                        var(--bg-lighter) 100%
-                    );
-    }
-
-    &:nth-child(5n + 5) { //5, 10, 15
-        background: linear-gradient(to right, 
-                        var(--bg-mid) 0%, 
-                        var(--bg-lightest) 15%, 
-                        var(--bg-lightest) 45%,
-                        var(--bg-mid) 100%
-                    );
-    }
-
-    .letter {
-        font-size: 48px;
-        color: var(--text);
-    }
-
-    .value {
-        position: absolute;
-        bottom: 2px;
-        right: 8px;
-        font-size: 16px;
-        font-weight: 500;
-        color: var(--text);
+            &:focus {
+                border-radius: 0;
+            }
+    
+            &--none {
+    
+            }
+    
+            &--dl {
+                background-color: var(--bg-dl);
+            }
+    
+            &--tl {
+                background-color: var(--bg-tl);
+            }
+    
+            &--dw {
+                background-color: var(--bg-dw);
+            }
+    
+            &--tw {
+                background-color: var(--bg-tw);
+            }
+        }
+        
     }
 }
+

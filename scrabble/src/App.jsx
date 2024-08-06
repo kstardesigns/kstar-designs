@@ -92,6 +92,7 @@ const App = () => {
         <span className="subheader">Spacebar = blank tile</span>
       </h1>
       <div className="wrap">
+        <input type="text" className="word" autoFocus value={wordValue.replace(/[^a-zA-Z\s]/g, '')} onChange={handleWordChange} />
         <div className="output">
           {
             wordValue.split("").map((letter, index) => (
