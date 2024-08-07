@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import useScreenSize from '../../hooks/Resize';
 import './_tile.scss'; 
 
 const Tile = ({letter, number, index, onBonusSquareChange}) => {
     let [bonusSquare, setBonusSquare] = useState(0);
+    const isBelow800 = useScreenSize(800);
 
     const bonusSquares = [
         { 'type': 'none', 'text': 'no bonus', 'mult': '1', 'wordmult': '1' },

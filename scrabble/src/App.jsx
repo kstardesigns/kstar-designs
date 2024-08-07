@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import BonusCheckbox from './components/bonus/Bonus';
 import Tile from './components/tile/Tile';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+import useScreenSize from './hooks/Resize';
 import './_styles.scss'; 
 
 const App = () => {
@@ -13,6 +12,7 @@ const App = () => {
   const [letterMults, setLetterMults] = useState({});
   const [wordMults, setWordMults] = useState({});
   let [boardWidth, setBoardWidth] = useState('539');
+  const isBelow800 = useScreenSize(800);
 
   const letterScores = {
     letters1: 'eaionrtlsu',
@@ -72,8 +72,9 @@ const App = () => {
   useEffect(() => {
     getNewTotal(bonus);
 
-    if (wordValue.length > 7) {
-      setBoardWidth(76.5 * wordValue.length); 
+    //on larger screens, make the "input" expand to fit the word
+    if (wordValue.length > 7 && !isBelow800) {
+      setBoardWidth(76.5 * wordValue.length);
     }
 
   },[wordValue, wordMults]);
