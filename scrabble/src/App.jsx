@@ -12,6 +12,7 @@ const App = () => {
   const [showBonus, setShowBonus] = useState(false);
   const [letterMults, setLetterMults] = useState({});
   const [wordMults, setWordMults] = useState({});
+  let [boardWidth, setBoardWidth] = useState('539');
 
   const letterScores = {
     letters1: 'eaionrtlsu',
@@ -70,6 +71,11 @@ const App = () => {
   //after word is updated, show bonus checkbox if applicable and update score
   useEffect(() => {
     getNewTotal(bonus);
+
+    if (wordValue.length > 7) {
+      setBoardWidth(76.5 * wordValue.length); 
+    }
+
   },[wordValue, wordMults]);
 
   //if bonus checkbox is changed, recalculate total score to include (or don't include) 50 point bonus
@@ -105,8 +111,9 @@ const App = () => {
         Type a word below to see its Scrabble score
         <span className="subheader">Spacebar = blank tile</span>
       </h1>
-      <div className="wrap">
-        <input type="text" className="word" autoFocus value={wordValue.replace(/[^a-zA-Z\s]/g, '')} onChange={handleWordChange} />
+      <div className="total">Word score: <span className="total-number">{total}</span></div>
+      <div className="wrap" style={{ '--board-width': boardWidth + 'px' }}>
+        <input type="text" className="word" autoFocus value={wordValue.replace(/[^a-zA-Z\s]/g, '')} onChange={handleWordChange} maxLength="10"/>
         <div className="output">
           {
             wordValue.split("").map((letter, index) => (
@@ -126,7 +133,7 @@ const App = () => {
       </div>
 
       { wordValue.length > 0 &&
-        <p className="bonus-square-description">⌃ Click to toggle bonus squares</p>
+        <p className="bonus-square-description">⌃ <span id="click">Click</span> <span id="tap">Tap</span> to toggle bonus squares</p>
       }
 
 
@@ -136,20 +143,6 @@ const App = () => {
           onStateChange={handleBonusStateChange}
         />
       }
-
-      <div className="total">Word score: {total}</div>
-
-
-
-
-      <div className="reactstuff">
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
     </>
   )
 }

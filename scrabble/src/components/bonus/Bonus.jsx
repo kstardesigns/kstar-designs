@@ -9,8 +9,8 @@ const BonusCheckbox = ({bonus, onStateChange}) => {
 
     return (
         <div className="bonus">
-            <input type="checkbox" id="bonus50" checked={bonus} onChange={handleBonusChange} />
-            <label htmlFor="bonus50">50 point bonus?</label> 
+            <input type="checkbox" className="bonus-checkbox" id="bonus50" checked={bonus} onChange={handleBonusChange} />
+            <label htmlFor="bonus50" className="bonus-label">50 point bonus?</label> 
         </div>
     )
 
