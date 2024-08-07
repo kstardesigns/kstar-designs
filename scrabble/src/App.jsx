@@ -10,6 +10,8 @@ const App = () => {
   let [total, setTotal] = useState(0);
   const [bonus, setBonus] = useState(false);
   const [showBonus, setShowBonus] = useState(false);
+  const [letterMults, setLetterMults] = useState({});
+  const [wordMults, setWordMults] = useState({});
 
   const letterScores = {
     letters1: 'eaionrtlsu',
@@ -47,8 +49,10 @@ const App = () => {
     wordLength >= 7 ? setShowBonus(true) : setShowBonus(false);
 
     //add up score
-    wordValue.split('').forEach((letter) => {
-      newTotal += getLetterScore(letter);
+    wordValue.split('').forEach((letter, index) => {
+      const letterScore = getLetterScore(letter);
+      const letterMult = letterMults[index] || 1;
+      newTotal += letterScore * letterMult;
     });
 
     //add on bonus
@@ -56,13 +60,17 @@ const App = () => {
       newTotal += 50;
     }
 
+    // Combine word multipliers
+    const combinedWordMult = Object.values(wordMults).reduce((acc, mult) => acc * mult, 1);
+    newTotal *= combinedWordMult;
+
     setTotal(newTotal);
   }
 
   //after word is updated, show bonus checkbox if applicable and update score
   useEffect(() => {
     getNewTotal(bonus);
-  },[wordValue]);
+  },[wordValue, wordMults]);
 
   //if bonus checkbox is changed, recalculate total score to include (or don't include) 50 point bonus
   useEffect(() => {
@@ -85,6 +93,12 @@ const App = () => {
     }
   },[showBonus]);
 
+  //callback function to handle word multiplier changes from Tile component
+  const handleBonusSquareChange = (index, newLetterMult, newWordMult) => {
+    setLetterMults(prev => ({ ...prev, [index]: newLetterMult }));
+    setWordMults(prev => ({ ...prev, [index]: newWordMult }));
+  };
+
   return (
     <>
       <h1 className="header">
@@ -100,7 +114,9 @@ const App = () => {
               <Tile 
                 letter={letter}
                 key={index}
+                index={index}
                 number={getLetterScore(letter)}
+                onBonusSquareChange={handleBonusSquareChange}
               />
 
             ))
@@ -110,8 +126,7 @@ const App = () => {
       </div>
 
       { wordValue.length > 0 &&
-      
-        <p className="bonus-square-description">Click to toggle bonus squares</p>
+        <p className="bonus-square-description">⌃ Click to toggle bonus squares</p>
       }
 
 

@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './_tile.scss'; 
 
-const Tile = ({letter, number}) => {
+const Tile = ({letter, number, index, onBonusSquareChange}) => {
     let [bonusSquare, setBonusSquare] = useState(0);
 
     const bonusSquares = [
@@ -11,10 +11,19 @@ const Tile = ({letter, number}) => {
         { 'type': 'dw', 'text': 'double word', 'mult': '1', 'wordmult': '2' },
         { 'type': 'tw', 'text': 'triple word', 'mult': '1', 'wordmult': '3' }
     ]
+
+    useEffect(() => {
+        // Send initial bonus values to parent
+        onBonusSquareChange(index, bonusSquares[bonusSquare].mult, bonusSquares[bonusSquare].wordmult);
+    }, []);
     
     const handleBonusSquareChange = () => {
         //change to next bonus square type
-        setBonusSquare((prevBonusSquare) => (prevBonusSquare + 1) % bonusSquares.length);
+        const newBonusSquare = (bonusSquare + 1) % bonusSquares.length;
+        setBonusSquare(newBonusSquare);
+
+        //pass the word multipliers
+        onBonusSquareChange(index, bonusSquares[newBonusSquare].mult, bonusSquares[newBonusSquare].wordmult);
     }
 
     const tiltTile = () => {
