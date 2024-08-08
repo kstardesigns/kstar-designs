@@ -133,7 +133,7 @@ const App = () => {
       </h1>
       <div className="total">Word score: <span className="total-number">{total}</span></div>
       <div className="wrap" style={{ '--board-width': boardWidth + 'px' }}>
-        <input type="text" className="word" autoFocus value={wordValue.replace(/[^a-zA-Z\s]/g, '')} onChange={handleWordChange} maxLength={maxLength}/>
+        <input type="text" className="word" value={wordValue.replace(/[^a-zA-Z\s]/g, '')} onChange={handleWordChange} maxLength={maxLength}/>
         <div className="output">
           {
             wordValue.split("").map((letter, index) => (
