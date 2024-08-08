@@ -75,6 +75,8 @@ const App = () => {
     //on larger screens, make the "input" expand to fit the word
     if (wordValue.length > 7 && !isBelow800) {
       setBoardWidth(76.5 * wordValue.length);
+    } else if (isBelow800) {
+      // setBoardWidth('100%'); //TODO:
     }
 
   },[wordValue, wordMults]);
@@ -125,6 +127,7 @@ const App = () => {
                 index={index}
                 number={getLetterScore(letter)}
                 onBonusSquareChange={handleBonusSquareChange}
+                wordLength={wordValue.length}
               />
 
             ))

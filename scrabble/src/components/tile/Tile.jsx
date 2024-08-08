@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import useScreenSize from '../../hooks/Resize';
 import './_tile.scss'; 
 
-const Tile = ({letter, number, index, onBonusSquareChange}) => {
+const Tile = ({letter, number, index, onBonusSquareChange, wordLength}) => {
     let [bonusSquare, setBonusSquare] = useState(0);
     const isBelow800 = useScreenSize(800);
 
@@ -41,8 +41,11 @@ const Tile = ({letter, number, index, onBonusSquareChange}) => {
         }
     }
 
+    // set styles based on screen size
+    const tileWrapStyle = `word-length-${wordLength}`;
+
     return (
-        <div className="tile-wrap">
+        <div className={`tile-wrap ${tileWrapStyle}`}>
             <div className="tile" style={{ transform: `rotate(${tiltTile()})`}}>
                 <span className="letter">{letter}</span>
                 <span className="value">{number == 0 ? '' : number}</span>
