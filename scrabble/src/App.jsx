@@ -13,6 +13,9 @@ const App = () => {
   const [wordMults, setWordMults] = useState({});
   let [boardWidth, setBoardWidth] = useState('539');
   const isBelow800 = useScreenSize(800);
+  const isBelow720 = useScreenSize(720);
+  const isBelow640 = useScreenSize(640);
+  const isBelow400 = useScreenSize(400);
 
   const letterScores = {
     letters1: 'eaionrtlsu',
@@ -73,7 +76,7 @@ const App = () => {
     getNewTotal(bonus);
 
     //on larger screens, make the "input" expand to fit the word
-    if (wordValue.length > 7 && !isBelow800) {
+    if (wordValue.length > 7) {
       setBoardWidth(76.5 * wordValue.length);
     } else if (isBelow800) {
       // setBoardWidth('100%'); //TODO:
@@ -108,6 +111,20 @@ const App = () => {
     setWordMults(prev => ({ ...prev, [index]: newWordMult }));
   };
 
+  let maxLength = 10;
+
+  // if (isBelow800) {
+  //   maxLength = 9;
+  // }
+  
+  // if (isBelow720) {
+  //   maxLength = 8;
+  // }
+
+  // if (isBelow640) {
+  //   maxLength = 7;
+  // }
+
   return (
     <>
       <h1 className="header">
@@ -116,7 +133,7 @@ const App = () => {
       </h1>
       <div className="total">Word score: <span className="total-number">{total}</span></div>
       <div className="wrap" style={{ '--board-width': boardWidth + 'px' }}>
-        <input type="text" className="word" autoFocus value={wordValue.replace(/[^a-zA-Z\s]/g, '')} onChange={handleWordChange} maxLength="10"/>
+        <input type="text" className="word" autoFocus value={wordValue.replace(/[^a-zA-Z\s]/g, '')} onChange={handleWordChange} maxLength={maxLength}/>
         <div className="output">
           {
             wordValue.split("").map((letter, index) => (
