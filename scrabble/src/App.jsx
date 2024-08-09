@@ -133,7 +133,7 @@ const App = () => {
       </h1>
       <div className="total">Word score: <span className="total-number">{total}</span></div>
       <div className="wrap" style={{ '--board-width': boardWidth + 'px' }}>
-        <input type="text" className="word" value={wordValue.replace(/[^a-zA-Z\s]/g, '')} onChange={handleWordChange} maxLength={maxLength}/>
+        <input type="text" className="word" value={wordValue.replace(/[^a-zA-Z\s]/g, '')} onChange={handleWordChange} maxLength={maxLength} spellCheck={false}/>
         <div className="output">
           {
             wordValue.split("").map((letter, index) => (
@@ -164,6 +164,8 @@ const App = () => {
           onStateChange={handleBonusStateChange}
         />
       }
+
+      <p className="disclaimer">SCRABBLE® is a registered trademark. All intellectual property rights in and to the game are owned in the U.S.A. and Canada by Hasbro Inc., and otherwise by Mattel Inc.</p>
     </>
   )
 }

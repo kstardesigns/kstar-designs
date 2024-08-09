@@ -130,25 +130,86 @@
             &:focus {
                 border-radius: 0;
             }
-    
+
             &--none {
     
+            }
+
+            &--dl, &--tl, &--dw, &--tw {
+                position: relative;
+
+                &::before, &::after {
+                    content: '';
+                    position: absolute;
+                    border-left: 8px solid transparent;
+                    border-right: 8px solid transparent;
+                }
+            }
+
+            &--tl, &--tw {
+                .bonus-square-triangle {
+                    content: '';
+                    position: absolute;
+                    top: -7px;
+                    left: 26px;
+                    border-left: 8px solid transparent;
+                    border-right: 8px solid transparent;
+                    border-bottom: 12px solid var(--bg-tl);
+                }
+
+                &::before {
+                    top: -7px;
+                    left: 13px;
+                }
+
+                &::after {
+                    top: -7px;
+                    left: 39px;
+                }
+            }
+
+            &--dl, &--dw {
+                &::before {
+                    top: -7px;
+                    left: 19px;
+                }
+
+                &::after {
+                    top: -7px;
+                    left: 32px;
+                }
             }
     
             &--dl {
                 background-color: var(--bg-dl);
+
+                &::before, &::after {
+                    border-bottom: 12px solid var(--bg-dl);
+                }
             }
     
             &--tl {
                 background-color: var(--bg-tl);
+
+                .bonus-square-triangle, &::before, &::after {
+                    border-bottom: 12px solid var(--bg-tl);
+                }
             }
     
             &--dw {
                 background-color: var(--bg-dw);
+
+                &::before, &::after {
+                    border-bottom: 12px solid var(--bg-dw);
+                }
             }
     
             &--tw {
                 background-color: var(--bg-tw);
+
+                .bonus-square-triangle, &::before, &::after {
+                    border-bottom: 12px solid var(--bg-tw);
+                }
             }
         }
         

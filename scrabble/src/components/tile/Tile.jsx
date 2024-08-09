@@ -54,6 +54,7 @@ const Tile = ({letter, number, index, onBonusSquareChange, wordLength}) => {
                 <button type="button" 
                         className={`bonus-square-button bonus-square-button--${bonusSquares[bonusSquare].type}`} 
                         onClick={handleBonusSquareChange}>
+                            <span className="bonus-square-triangle"></span>
                         {bonusSquares[bonusSquare].text}
                 </button>
             </div>
