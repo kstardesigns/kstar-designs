@@ -40,6 +40,13 @@
     }
 }
 
+.controls {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: var(--board-width);
+}
+
 .total {
     display: flex;
     gap: 8px;
@@ -56,12 +63,139 @@
     }
 }
 
+.clear {
+    position: absolute;
+    bottom: 1px;
+    right: 2px;
+    background: transparent;
+    border: 0;
+    padding: 3px 3px 2px;
+    font-size: 14px;
+    color: #f42;
+}
+
+.resp380, .resp450, .resp640 {
+    .clear {
+        font-size: 12px;
+    }
+}
+
 .wrap {
     position: relative;
     width: var(--board-width);
     height: 132px;
     max-width: 100%;
     overflow: auto;
+
+    &.resp380, &.resp450, &.resp640 {
+        height: 95px;
+        margin-bottom: -5px;
+
+        .output {
+            gap: 3px;
+            background: repeating-linear-gradient(to right, #fff 0px, #fff 4px, var(--board) 4px, var(--board) 43px, var(--board) 43px);
+        }
+
+        .tile-wrap {
+            width: 40px;
+
+            .bonus-square-button {
+                font-size: 8px;
+                line-height: 8px;
+                padding: 3px 4px 1.5px;
+            }
+        }
+
+        .tile {
+            width: 40px;
+            height: 44px;
+
+            .letter {
+                font-size: 30px;
+                margin-left: -2px;
+            }
+
+            .value {
+                font-size: 10px;
+                bottom: 1px;
+                right: 5px;
+                letter-spacing: -1px;
+            }
+        }
+
+        .word {
+            font-size: 30px;
+            letter-spacing: 25px;
+            padding-left: 19px;
+        }
+
+        .output, .word {
+           height: 63px;
+        }
+        
+        .bonus-square-triangle, .bonus-square-button::before, .bonus-square-button::after {
+            display: none;
+        }
+
+        .bonus-square-description {
+            margin-top: 0;
+        }
+    }
+
+    &.resp800 {
+        height: 114px;
+        margin-bottom: 0;
+
+        .output {
+            gap: 4px;
+            background: repeating-linear-gradient(to right, #fff 0px, #fff 4px, var(--board) 4px, var(--board) 61px, var(--board) 61px);
+        }
+
+        .tile-wrap {
+            width: 57px;
+
+            .bonus-square-button {
+                font-size: 10px;
+                line-height: 11px;
+                padding: 3px 4px 1.5px;
+            }
+        }
+
+        .tile {
+            width: 57px;
+            height: 61px;
+
+            .letter {
+                font-size: 39px;
+                margin-left: -1px;
+            }
+
+            .value {
+                font-size: 13px;
+                bottom: 2px;
+                right: 6px;
+                letter-spacing: 0;
+            }
+        }
+
+        .word {
+            font-size: 38px;
+            letter-spacing: 38px;
+            padding-left: 26px;
+        }
+
+        .output, .word {
+           height: 79px;
+        }
+        
+        .bonus-square-triangle, .bonus-square-button::before, .bonus-square-button::after {
+            display: none;
+        }
+
+        .bonus-square-description {
+            margin-top: 0;
+        }
+    }
 }
 
 .output, .word {
@@ -70,11 +204,6 @@
     left: 0;
     width: var(--board-width);
     height: 93px;
-
-    // @media (width < 640px) {
-    //     min-width: 0;
-    //     width: 100%;
-    // }
 }
 
 .output {
@@ -136,7 +265,7 @@
     font-size: 10px;
     text-align: center;
     line-height: 12px;
-    width: 400px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 300px;
     margin-top: 30px;
 }

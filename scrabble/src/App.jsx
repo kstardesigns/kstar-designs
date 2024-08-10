@@ -11,11 +11,12 @@ const App = () => {
   const [showBonus, setShowBonus] = useState(false);
   const [letterMults, setLetterMults] = useState({});
   const [wordMults, setWordMults] = useState({});
-  let [boardWidth, setBoardWidth] = useState('539');
+  let [boardWidth, setBoardWidth] = useState('765');
   const isBelow800 = useScreenSize(800);
-  const isBelow720 = useScreenSize(720);
   const isBelow640 = useScreenSize(640);
-  const isBelow400 = useScreenSize(400);
+  const isBelow450 = useScreenSize(450);
+  const isBelow380 = useScreenSize(380);
+  let [respClass, setRespClass] = useState('resp-default');
 
   const letterScores = {
     letters1: 'eaionrtlsu',
@@ -30,6 +31,10 @@ const App = () => {
 
   const handleWordChange = (event) => {
     setWordValue(event.target.value.replace(/[^a-zA-Z\s]/g, '').toLowerCase());
+  }
+
+  const clearWord = (event) => {
+    setWordValue('');
   }
 
   const getLetterScore = (letter) => {
@@ -74,14 +79,6 @@ const App = () => {
   //after word is updated, show bonus checkbox if applicable and update score
   useEffect(() => {
     getNewTotal(bonus);
-
-    //on larger screens, make the "input" expand to fit the word
-    if (wordValue.length > 7) {
-      setBoardWidth(76.5 * wordValue.length);
-    } else if (isBelow800) {
-      // setBoardWidth('100%'); //TODO:
-    }
-
   },[wordValue, wordMults]);
 
   //if bonus checkbox is changed, recalculate total score to include (or don't include) 50 point bonus
@@ -105,6 +102,25 @@ const App = () => {
     }
   },[showBonus]);
 
+  // set respClass based on screen size
+  useEffect(() => {
+    if (isBelow380) {
+      setRespClass('resp380');
+      setBoardWidth(316);
+    } else if (isBelow450) {
+      setRespClass('resp450');
+      setBoardWidth(360);
+    } else if (isBelow640) {
+      setRespClass('resp640');
+      setBoardWidth(402);
+    } else if (isBelow800) {
+      setRespClass('resp800');
+      setBoardWidth(564);
+    } else {
+      setRespClass('resp-default');
+    }
+  }, [isBelow800, isBelow640, isBelow450, isBelow380]);
+
   //callback function to handle word multiplier changes from Tile component
   const handleBonusSquareChange = (index, newLetterMult, newWordMult) => {
     setLetterMults(prev => ({ ...prev, [index]: newLetterMult }));
@@ -113,26 +129,30 @@ const App = () => {
 
   let maxLength = 10;
 
-  // if (isBelow800) {
-  //   maxLength = 9;
-  // }
-  
-  // if (isBelow720) {
-  //   maxLength = 8;
-  // }
-
-  // if (isBelow640) {
-  //   maxLength = 7;
-  // }
+  if (isBelow380) {
+    maxLength = 7;
+  } else if (isBelow450) {
+    maxLength = 8;
+  } else if (isBelow640) {
+    maxLength = 9;
+  } else if (isBelow800) {
+    maxLength = 9;
+  }
 
   return (
     <>
       <h1 className="header">
         Type a word below to see its Scrabble score
-        <span className="subheader">Spacebar = blank tile</span>
+        <span className="subheader">Space = blank tile</span>
       </h1>
-      <div className="total">Word score: <span className="total-number">{total}</span></div>
-      <div className="wrap" style={{ '--board-width': boardWidth + 'px' }}>
+      <div className={`controls ${respClass}`} style={{ '--board-width': boardWidth + 'px' }}>
+        <div className="total">Word score: <span className="total-number">{total}</span></div>
+
+        { wordValue.length >= 1 &&
+          <button type="button" className="clear" onClick={clearWord}>Clear word</button>
+        }
+      </div>
+      <div className={`wrap ${respClass}`} style={{ '--board-width': boardWidth + 'px' }}>
         <input type="text" className="word" value={wordValue.replace(/[^a-zA-Z\s]/g, '')} onChange={handleWordChange} maxLength={maxLength} spellCheck={false}/>
         <div className="output">
           {
