@@ -163,8 +163,22 @@ const App = () => {
         } else if (Array.isArray(data)) {
 
           if (data[0].shortdef && data[0].shortdef.length > 0) {
-            const firstShortDefinition = data[0].shortdef[0].replace(': such as', '');
-            setDefinition(firstShortDefinition);
+            let def = data[0].shortdef[0];
+
+            //cleanup
+            if (def.endsWith(':')) {
+              def = def.substring(0, def.length - 1);
+            }
+
+            if (def.includes(': such as')) {
+              def = def.replace(': such as', '');
+            }
+
+            if (def.startsWith('—')) {
+              def = def.substring(1, def.length);
+            }
+
+            setDefinition(def);
           }
 
           setValidityMessage(`✓ ${wordValue} is a valid word.`);
