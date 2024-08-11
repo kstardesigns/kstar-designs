@@ -150,7 +150,7 @@ const App = () => {
   const validityCheck = useCallback(async () => {
     try {
 
-      if (wordValue.length > 1) {
+      if (wordValue.length > 1 && !wordValue.includes(' ')) {
         const response = await fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${wordValue}?key=${apiKey}`);
         const data = await response.json();
         console.log('Response data:', data);
@@ -206,7 +206,7 @@ const App = () => {
     setDefinition('');
     setChecking(true);
 
-    if (wordValue.length > 0) {
+    if (wordValue.length > 0 && !wordValue.includes(' ')) {
       setValidityMessage('Checking word validity...');
     }
 
