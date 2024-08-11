@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import BonusCheckbox from './components/bonus/Bonus';
 import Tile from './components/tile/Tile';
 import useScreenSize from './hooks/Resize';
@@ -17,6 +17,13 @@ const App = () => {
   const isBelow450 = useScreenSize(450);
   const isBelow380 = useScreenSize(380);
   let [respClass, setRespClass] = useState('resp-default');
+  const apiKey = import.meta.env.VITE_API_KEY;
+  const [checking, setChecking] = useState(false);
+  const [validityMessage, setValidityMessage] = useState('');
+  const [valid, setValid] = useState(false);
+  const [definition, setDefinition] = useState('');
+  const [debounceTimer, setDebounceTimer] = useState(null);
+  const searchDelay = 1000;
 
   const letterScores = {
     letters1: 'eaionrtlsu',
@@ -64,31 +71,31 @@ const App = () => {
       newTotal += letterScore * letterMult;
     });
 
+    // Combine word multipliers
+    const combinedWordMult = Object.values(wordMults).reduce((acc, mult) => acc * mult, 1);
+    newTotal *= combinedWordMult;
+
     //add on bonus
     if (bonus) {
       newTotal += 50;
     }
 
-    // Combine word multipliers
-    const combinedWordMult = Object.values(wordMults).reduce((acc, mult) => acc * mult, 1);
-    newTotal *= combinedWordMult;
-
-    setTotal(newTotal);
+    if (valid) {
+      setTotal(newTotal);
+    } else {
+      setTotal(0);
+    }
   }
 
   //after word is updated, show bonus checkbox if applicable and update score
   useEffect(() => {
     getNewTotal(bonus);
-  },[wordValue, wordMults]);
+  }, [valid, wordMults]);
 
   //if bonus checkbox is changed, recalculate total score to include (or don't include) 50 point bonus
   useEffect(() => {
     if (showBonus) {
-      if (bonus) {
-        getNewTotal(true);
-      } else {
-        getNewTotal(false);
-      }
+      getNewTotal(bonus);
     }
   },[bonus]);
 
@@ -127,8 +134,8 @@ const App = () => {
     setWordMults(prev => ({ ...prev, [index]: newWordMult }));
   };
 
+  //allow fewer letters in word on smaller screens for ui simplicity
   let maxLength = 10;
-
   if (isBelow380) {
     maxLength = 7;
   } else if (isBelow450) {
@@ -138,6 +145,58 @@ const App = () => {
   } else if (isBelow800) {
     maxLength = 9;
   }
+
+// Debounced validity check
+const validityCheck = useCallback(async () => {
+  try {
+    const response = await fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${wordValue}?key=${apiKey}`);
+    const data = await response.json();
+    console.log('Response data:', data);
+    setChecking(false);
+
+    if (data.length === 0 || typeof data[0] === 'string') {
+      setValidityMessage(`${wordValue} is not a valid word.`);
+      setDefinition('');
+      setValid(false);
+    } else if (Array.isArray(data) && data[0].shortdef) {
+      const firstShortDefinition = data[0].shortdef[0].replace(': such as', '');
+      setValidityMessage(`✓ ${wordValue} is a valid word.`);
+      setDefinition(firstShortDefinition);
+      setValid(true);
+    } else {
+      setDefinition('Unexpected response structure');
+    }
+
+  } catch (err) {
+    setDefinition('');
+    console.error('Fetch error:', err);
+  }
+}, [wordValue, apiKey]);
+
+//effect to handle debounce and call validityCheck
+useEffect(() => {
+  setValidityMessage('');
+  setDefinition('');
+    
+  if (wordValue.length > 1) {
+    setChecking(true);
+    setValidityMessage('Checking word validity...');
+
+    //clear previous timer if it exists
+    if (debounceTimer) {
+      clearTimeout(debounceTimer);
+    }
+
+    //set up a new timer
+    const timer = setTimeout(() => {
+      validityCheck();
+    }, searchDelay);
+
+    setDebounceTimer(timer); // Save the new timer ID
+  }
+}, [wordValue]);
+
+  
 
   return (
     <>
@@ -184,6 +243,22 @@ const App = () => {
           onStateChange={handleBonusStateChange}
         />
       }
+
+    { validityMessage && 
+      <div className="validity">
+        { checking ? 
+          <p className="validity-message">
+            <span className="progress-indicator progress-indicator-circular"></span> {validityMessage}
+          </p> :
+          <p className="validity-message">
+            {validityMessage}
+          </p>
+        } 
+
+        { definition && <p className="validity-definition"><em>{definition}</em></p> }
+      </div>
+    }
+      
 
       <p className="disclaimer">SCRABBLE® is a registered trademark. All intellectual property rights in and to the game are owned in the U.S.A. and Canada by Hasbro Inc., and otherwise by Mattel Inc.</p>
     </>

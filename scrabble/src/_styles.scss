@@ -8,6 +8,9 @@
     --board-width: 539px;
     --handwriting: 'Edu SA Beginner', cursive;
     --pen-blue: #0f72ff;
+    --bg-mid: #c19b73;
+    --bg-lightest: papayawhip;
+    --light-text: #333;
 
     width: 100%;
     max-width: 1280px;
@@ -258,6 +261,54 @@
         #tap {
             display: inline;
         }
+    }
+}
+
+.validity {
+    width: 100%;
+    max-width: 350px;
+    display: block;
+    margin: 20px auto;
+    padding: 8px 12px;
+    background-color: var(--bg-lightest);
+    border: 1px solid var(--bg-mid);
+    border-radius: 3px;
+
+    &-message, &-definition {
+        margin: 0;
+        color: var(--light-text);
+    }
+
+    &-message {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &-definition {
+        font-size: 14px;
+        line-height: 16px;
+        margin-top: 8px;
+    }
+}
+
+.progress-indicator {
+    display: inline-flex;
+    margin: -3px 12px 0 0;
+  
+    &-circular {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      border: 2px solid var(--light-text);
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: rotate 1.5s infinite linear;
+    }
+
+    @keyframes rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
 }
 
