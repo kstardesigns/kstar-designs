@@ -158,10 +158,14 @@ const validityCheck = useCallback(async () => {
       setValidityMessage(`${wordValue} is not a valid word.`);
       setDefinition('');
       setValid(false);
-    } else if (Array.isArray(data) && data[0].shortdef) {
-      const firstShortDefinition = data[0].shortdef[0].replace(': such as', '');
+    } else if (Array.isArray(data)) {
+
+      if (data[0].shortdef && data[0].shortdef.length > 0) {
+        const firstShortDefinition = data[0].shortdef[0].replace(': such as', '');
+        setDefinition(firstShortDefinition);
+      }
+
       setValidityMessage(`✓ ${wordValue} is a valid word.`);
-      setDefinition(firstShortDefinition);
       setValid(true);
     } else {
       setDefinition('Unexpected response structure');
