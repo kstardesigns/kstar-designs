@@ -146,45 +146,55 @@ const App = () => {
     maxLength = 9;
   }
 
-// Debounced validity check
-const validityCheck = useCallback(async () => {
-  try {
-    const response = await fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${wordValue}?key=${apiKey}`);
-    const data = await response.json();
-    console.log('Response data:', data);
-    setChecking(false);
+  // debounced validity check
+  const validityCheck = useCallback(async () => {
+    try {
 
-    if (data.length === 0 || typeof data[0] === 'string') {
-      setValidityMessage(`${wordValue} is not a valid word.`);
-      setDefinition('');
-      setValid(false);
-    } else if (Array.isArray(data)) {
+      if (wordValue.length > 1) {
+        const response = await fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${wordValue}?key=${apiKey}`);
+        const data = await response.json();
+        console.log('Response data:', data);
+        setChecking(false);
 
-      if (data[0].shortdef && data[0].shortdef.length > 0) {
-        const firstShortDefinition = data[0].shortdef[0].replace(': such as', '');
-        setDefinition(firstShortDefinition);
+        if (data.length === 0 || typeof data[0] === 'string') {
+          setValidityMessage(`${wordValue} is not a valid word.`);
+          setDefinition('');
+          setValid(false);
+        } else if (Array.isArray(data)) {
+
+          if (data[0].shortdef && data[0].shortdef.length > 0) {
+            const firstShortDefinition = data[0].shortdef[0].replace(': such as', '');
+            setDefinition(firstShortDefinition);
+          }
+
+          setValidityMessage(`✓ ${wordValue} is a valid word.`);
+          setValid(true);
+        } else {
+          setDefinition('Unexpected response structure');
+        }
+      } else if (wordValue.length == 1) {
+        setChecking(false);
+        setValid(false);
+        setValidityMessage('Word must be at least 2 letters long.')
+      } else {
+        setValidityMessage('');
       }
 
-      setValidityMessage(`✓ ${wordValue} is a valid word.`);
-      setValid(true);
-    } else {
-      setDefinition('Unexpected response structure');
+    } catch (err) {
+      setDefinition('');
+      console.error('Fetch error:', err);
     }
+  }, [wordValue, apiKey]);
 
-  } catch (err) {
+  //effect to handle debounce and call validityCheck
+  useEffect(() => {
+    setValidityMessage('');
     setDefinition('');
-    console.error('Fetch error:', err);
-  }
-}, [wordValue, apiKey]);
-
-//effect to handle debounce and call validityCheck
-useEffect(() => {
-  setValidityMessage('');
-  setDefinition('');
-    
-  if (wordValue.length > 1) {
     setChecking(true);
-    setValidityMessage('Checking word validity...');
+
+    if (wordValue.length > 0) {
+      setValidityMessage('Checking word validity...');
+    }
 
     //clear previous timer if it exists
     if (debounceTimer) {
@@ -196,11 +206,8 @@ useEffect(() => {
       validityCheck();
     }, searchDelay);
 
-    setDebounceTimer(timer); // Save the new timer ID
-  }
-}, [wordValue]);
-
-  
+    setDebounceTimer(timer); //save the new timer ID
+  }, [wordValue]);
 
   return (
     <>
