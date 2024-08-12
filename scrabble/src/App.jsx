@@ -191,6 +191,8 @@ const App = () => {
         setValid(false);
         setValidityMessage('Word must be at least 2 letters long.')
       } else {
+        setChecking(false);
+        setValid(false);
         setValidityMessage('');
       }
 
