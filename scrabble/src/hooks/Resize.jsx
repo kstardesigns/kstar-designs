@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
 const useScreenSize = (threshold) => {
-  const [isBelowThreshold, setIsBelowThreshold] = useState(window.innerWidth < threshold);
+  const [isBelowThreshold, setIsBelowThreshold] = useState(window.screen.width < threshold);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsBelowThreshold(window.innerWidth < threshold);
+      setIsBelowThreshold(window.screen.width < threshold);
     };
 
     //set initial value on page load
