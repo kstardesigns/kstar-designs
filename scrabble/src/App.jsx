@@ -287,7 +287,7 @@ const App = () => {
     }
       
 
-      <p className="disclaimer">SCRABBLE® is a registered trademark. All intellectual property rights in and to the game are owned in the U.S.A. and Canada by Hasbro Inc., and otherwise by Mattel Inc.</p>
+      <p className="disclaimer">SCRABBLE® is a registered trademark. All intellectual property rights in and to the game are owned in the U.S.A. and Canada by Hasbro Inc., and otherwise by Mattel Inc. Word validation thanks to dictionaryapi.com.</p>
     </>
   )
 }
