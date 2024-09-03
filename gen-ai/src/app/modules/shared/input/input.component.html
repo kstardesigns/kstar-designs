@@ -1,0 +1,52 @@
+<div class="bh-shared-input">
+    <form (ngSubmit)="onSubmit()" class="bh-text-input-field bh-text-input-textarea bh-shared-input-group">
+        <label class="bh-text-input-field-label" for="chat-input">How can Company AI assist you?</label>
+        <div class="bh-text-input-textarea-wrap bh-shared-input-textarea-wrap">
+
+            <!-- uploaded file output -->
+            @if (selectedFile) {
+                <div>
+                    @if (isImage) {
+                        <div class="bh-shared-input-image-group">
+                            <img [src]="fileUrl" alt="selectedFile.name" class="bh-shared-input-image" />
+                            <button type="button" (click)="deleteFile()" class="bh-shared-input-delete">&times;</button>
+                        </div>
+                    } @else {
+                        <div class="bh-shared-input-file-group">
+                            <div class="bh-shared-input-file-type bh-overline">{{ fileExt }}</div>
+                            <div class="bh-shared-input-file-name bh-body-2-main">{{ fileNameShort }}</div>
+                            <button type="button" (click)="deleteFile()" class="bh-shared-input-delete">&times;</button>
+                        </div>
+                    }
+                </div>
+            }
+            
+            <!-- chat input field -->
+            <textarea (keydown)="onEnterKey($event)" [(ngModel)]="inputText" autofocus autocomplete="off" bhTextareaAutoresize id="chat-input" name="chat-input" aria-invalid="false" class="bh-text-input-field-input bh-text-input-textarea-input bh-shared-input-textarea" [ngClass]="{'bh-shared-input-textarea--with-prompt': router.url === '/chat'}" required></textarea>
+
+            <!-- buttons -->
+            <div class="bh-shared-input-button-group">
+                @if (router.url.includes('/chat')) {
+                    <div class="bh-shared-input-prompt">
+                        <bh-prompt-button [smallVariant]="true"></bh-prompt-button>
+                    </div>
+                }
+                <div class="bh-shared-input-upload-group">
+                    <input type="file" (change)="onFileSelected($event)" class="bh-shared-input-upload" #fileUpload>
+                    <button type="button" (click)="fileUpload.click()" class="bh-shared-input-upload-button">
+                        <mat-icon class="bh-shared-input-upload-icon" aria-hidden="false" aria-label="Help me create a prompt" fontIcon="attach_file"></mat-icon>
+                    </button>
+                </div>
+                <div class="bh-shared-input-submit-group">
+                    <button type="submit" [disabled]="inputText.length === 0 && !selectedFile" aria-label="Submit" class="bh-shared-input-submit bh-primary-button bh-primary-button--icon-l"><svg class="bh-shared-input-send-icon" aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <title>Submit</title>
+                        <g>
+                            <path d="M4 12L5.41 13.41L11 7.83V20H13V7.83L18.58 13.42L20 12L12 4L4 12Z" fill="#37393d" />
+                        </g>
+                    </svg></button>
+                </div>
+            </div>
+        </div>
+        <div class="bh-text-input-field-error"></div>
+    </form>
+</div>

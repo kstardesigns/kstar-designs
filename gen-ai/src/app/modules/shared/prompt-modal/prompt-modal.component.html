@@ -1,0 +1,77 @@
+<h1 mat-dialog-title class="bh-heading-h1b">Prompt Creator (WIP)</h1>
+<mat-dialog-content>
+
+  <div class="bh-dialog-row">
+    <div class="bh-select">
+      <label class="bh-select-label" for="prompt-scope">Scope</label>
+      <select class="bh-select-field" id="prompt-scope" aria-invalid="false" aria-describedby="prompt-scope-helper" required>
+        <option selected disabled>Choose one...</option>
+        <option value="1">IT: ServiceNow</option>
+        <option value="2">Item #2</option>
+        <option value="3">Item #3</option>
+      </select>
+      <div class="bh-select-helper" id="prompt-scope-helper">Knowledge base for Company AI to search</div>
+      <div class="bh-select-error"></div>
+    </div>
+
+    <div class="bh-text-input-field">
+      <label class="bh-text-input-field-label" for="prompt-audience">Audience</label>
+      <input class="bh-text-input-field-input" type="text" id="prompt-audience" placeholder="e.g., Banner IT administrator" name="audience" aria-invalid="false" aria-describedby="prompt-audience-helper" required />
+      <div class="bh-text-input-field-helper" id="prompt-audience-helper">Individual(s) who will be using the output</div>
+      <div class="bh-text-input-field-error"></div>
+    </div>
+  </div>
+
+  <div class="bh-dialog-row">
+    <div class="bh-text-input-field">
+      <label class="bh-text-input-field-label" for="prompt-description">Brief description of task</label>
+      <input class="bh-text-input-field-input" type="text" id="prompt-description" placeholder="e.g., Software issue" name="description" aria-invalid="false" aria-describedby="prompt-description-helper" />
+      <div class="bh-text-input-field-helper" id="prompt-description-helper">Keywords describing the focus area</div>
+      <div class="bh-text-input-field-error"></div>
+    </div>
+
+    <div class="bh-text-input-field">
+      <label class="bh-text-input-field-label" for="prompt-goal">End goal</label>
+      <input class="bh-text-input-field-input" type="text" id="prompt-goal" placeholder="e.g., Fix a Microsoft Power BI application that keeps crashing" name="label" aria-invalid="false" aria-describedby="prompt-goal-helper" required/>
+      <div class="bh-text-input-field-helper" id="prompt-goal-helper">Statement that describes what you'd like Company AI to help you do</div>
+      <div class="bh-text-input-field-error"></div>
+    </div>
+  </div>
+
+  <div class="bh-dialog-row">
+    <div class="bh-text-input-field bh-text-input-textarea">
+      <label class="bh-text-input-field-label" for="prompt-instructions">Specific instructions</label>
+      <div class="bh-text-input-textarea-wrap">
+        <textarea class="bh-text-input-field-input bh-text-input-textarea-input" id="prompt-instructions" placeholder="e.g., First diagnose the problem, then suggest the most likely cause, and lastly provide specific options for resolution" name="instructions" aria-invalid="false"></textarea>
+      </div>
+      <div class="bh-text-input-field-helper">Task broken down by steps for Banner AI to take in order to solve the end goal</div>
+      <div class="bh-text-input-field-error"></div>
+    </div>
+  </div>
+
+  <div class="bh-dialog-row">
+    <div class="bh-text-input-field">
+      <label class="bh-text-input-field-label" for="textbox">Label</label>
+      <input class="bh-text-input-field-input" type="text" id="textbox" placeholder="Placeholder" name="label" aria-invalid="false" aria-describedby="textbox-helper" />
+      <div class="bh-text-input-field-helper" id="textbox-helper">Helper text (optional).</div>
+      <div class="bh-text-input-field-error"></div>
+    </div>
+  </div>
+
+
+
+
+  @if (data.prompt === 'prompt1') {
+    <p>example for prompt 1</p>
+  }
+
+  @if (data.prompt === 'prompt2') {
+      <p>example for prompt 2</p>
+      
+  }
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <button type="button">Submit</button>
+</mat-dialog-actions>

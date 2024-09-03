@@ -1,0 +1,165 @@
+@import '../../../../scss/styles.scss';
+
+.bh-shared-input {
+    width: 100%;
+
+    &-group {
+        position: relative;
+    }
+
+    &-textarea-wrap {
+        border: 1px solid var(--bh-black-07);
+        border-radius: 4px;
+        height: auto;
+    }
+
+    &-textarea {
+        width: 100%;
+        min-height: 48px;
+        height: 48px;
+        line-height: 25px;
+        resize: none;
+        overflow: hidden;
+        padding-right: 105px;
+        border: 0;
+
+        &--with-prompt {
+            padding-right: 145px;
+        }
+    }
+
+    &-image-group {
+        width: 70px;
+        position: relative;
+        padding: 10px 10px 0;
+    }
+
+    &-image {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    &-delete {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid var(--bh-black-03);
+        background-color: white;
+        font-size: 22px;
+        padding-bottom: 2px;
+    }
+
+    &-file-group {
+        position: relative;
+        padding: 10px 10px 0;
+        display: flex;
+        gap: 8px;
+        width: fit-content;
+    }
+
+    &-file-type {
+        border: 1px solid var(--bh-black-07);
+        border-radius: 4px;
+        padding: 3px 4px;
+        color: var(--bh-black-05);
+    }
+
+    &-file-name {
+        color: var(--bh-black-05);
+    }
+
+    &-image-group, &-file-group {
+        &:hover {
+            .bh-shared-input-delete {
+                opacity: 1;
+            }
+        }
+
+        @media (width <= $mobile-sidebar-bp) {
+            .bh-shared-input-delete {
+                opacity: 1;
+            }
+        }
+    }
+
+    &-button-group {
+        position: absolute;
+        right: 12px;
+        bottom: 5px;
+        display: flex;
+        align-items: center;
+    }
+
+    &-upload-group {
+        position: relative;
+    }
+
+    &-upload {
+        display: none; //hide file upload so custom one will display
+
+        &-button {
+            background-color: transparent;
+            padding: 0;
+            border: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            flex: 0 0 40px;
+        }
+
+        &-icon {
+            width: 28px;
+            height: 28px;
+            font-size: 28px;
+            color: var(--bh-core);
+        }
+    }
+
+    &-submit-group {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 8px;
+    }
+
+    &-submit {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &-icon {
+            width: 24px;
+            height: 24px;
+            flex: 0 0 24px;
+        }
+
+        &[disabled] {
+            .bh-shared-input-send-icon {
+                fill: var(--bh-white);
+            }
+        }
+    }
+
+    &-prompt {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

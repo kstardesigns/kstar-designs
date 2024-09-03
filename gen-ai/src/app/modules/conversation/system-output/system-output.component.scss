@@ -1,0 +1,196 @@
+@import '../../../../scss/styles.scss';
+
+.bh-system-output {
+    margin-bottom: 24px;
+    
+    &-response {
+        width: auto;
+        max-width: 70%;
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 8px;
+
+        @media (width <= $mobile-sidebar-bp) {
+            max-width: 90%;
+        }
+    }
+
+    &-response-group {
+        display: flex;
+
+        .bh-system-output-response-avatar {
+            width: 24px;
+            height: 24px;
+            margin-right: 16px;
+            align-self: flex-start;
+        }
+
+        &--loading {
+            .bh-system-output-response-text {
+                padding: 17px 10px;
+                display: flex;
+            }
+
+            .bh-system-output-response-dot {
+                width: 10px;
+                height: 10px;
+                flex: 0 0 10px;
+                border-radius: 50%;
+                background-color: var(--bh-black-08);
+    
+                &--1 {
+                    animation: loading-dots-1 1.5s linear 0s infinite;
+                }
+    
+                &--2 {
+                    background-color: var(--bh-black-09);
+                    animation: loading-dots-2 1.5s linear 0s infinite;
+                }
+    
+                &--3 {
+                    background-color: var(--bh-black-07);
+                    animation: loading-dots-3 1.5s linear 0s infinite;
+                }
+    
+                &--1, &--2 {
+                    margin-right: 8px;
+                }
+    
+            }
+
+            @keyframes loading-dots-1 {
+                0%, 100% {
+                    background-color: var(--bh-black-07);
+                }
+                33% {
+                    background-color:  var(--bh-black-08);
+                }
+                
+                66% {
+                    background-color:  var(--bh-black-09);
+                }
+            }
+            
+            @keyframes loading-dots-2 {
+                0%, 100% {
+                    background-color:  var(--bh-black-09);
+                }
+                33% {
+                    background-color: var(--bh-black-07);
+                }
+                
+                66% {
+                    background-color: var(--bh-black-08);
+                }
+            }
+        
+            @keyframes loading-dots-3 {
+                0%, 100% {
+                    background-color: var(--bh-black-08);
+                }
+                33% {
+                    background-color: var(--bh-black-09);
+                }
+                
+                66% {
+                    background-color: var(--bh-black-07);
+                }
+            }
+        }
+    }
+
+    &-response-text {
+        background-color: var(--bh-core-11);
+        border-radius: 0 10px 10px 10px;
+        padding: 12px 16px;
+        margin: 0;
+        color: var(--bh-black);
+    }
+
+    &-feedback {
+        display: flex;
+        margin: 8px 0 0 40px;
+        gap: 8px;
+        
+        &-button {
+            background-color: transparent;
+            border: 0;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 4px;
+
+            &:focus {
+                outline: 2px solid var(--bh-accent-03);
+            }
+
+            &:hover {
+                color: var(--bh-core-01);
+            }
+        }
+
+        &-icon {
+            font-size: 21px;
+            color: var(--bh-core);
+        }
+
+        &-copy {
+        }  
+    }
+
+    &-feedback-form {
+        width: auto;
+        max-width: calc(70% - 40px);
+        background-color: var(--bh-white);
+        border: 1px solid var(--bh-black-08);
+        border-radius: 4px;
+        padding: 12px 16px;
+        margin: 12px 0 0 40px;
+        color: var(--bh-black);
+
+        @media (width <= $mobile-sidebar-bp) {
+            margin-left: 0;
+            max-width: 90%;
+        }
+
+        &-close {
+            background-color: transparent;
+            border: 0;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:focus {
+                outline: 2px solid var(--bh-accent-03);
+            }
+        }
+
+        &-cancel-icon {
+            width: 24px;
+            height: 24px;
+            flex: 0 0 24px;
+
+            &:hover {
+                fill: var(--bh-black-04);
+            }
+        }
+
+        &-heading-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        &-submit {
+            margin-top: 16px;
+        }
+
+       
+    }
+}

@@ -1,0 +1,27 @@
+@switch (data.confirmationType) {
+    @case ('removeChatFromHistory') {
+        <h2 mat-dialog-title class="bh-heading-h3b">Delete chat?</h2>
+        <mat-dialog-content>
+            <p class="bh-body-1-tight">This will delete <strong>{{ data.chatName }}</strong> from your history.</p>
+        </mat-dialog-content>
+    }
+    @case ('removeAllHistory') {
+        <h2 mat-dialog-title class="bh-heading-h3b">Delete all history?</h2>
+        <mat-dialog-content>
+            <p class="bh-body-1-tight">This will delete all your history.</p>
+        </mat-dialog-content>
+    }
+    @case ('removeChatFromFavs') {
+        <h2 mat-dialog-title class="bh-heading-h3b">Remove chat from favorites?</h2>
+        <mat-dialog-content>
+            <p class="bh-body-1-tight">This will remove <strong>{{ data.chatName }}</strong> from your favorites.</p>
+        </mat-dialog-content>
+    }
+}
+
+<mat-dialog-actions>
+    <div class="bh-side-by-side-buttons">
+        <button type="button" (click)="cancel()" class="bh-outlined-1-button">Cancel</button>
+        <button type="button" (click)="confirm()" class="bh-primary-button">Confirm</button>
+    </div>
+</mat-dialog-actions>

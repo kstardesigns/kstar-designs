@@ -1,0 +1,86 @@
+<div class="bh-system-output">
+    <div class="bh-system-output-response"> 
+        <div class="bh-system-output-response-group" [ngClass]="{'bh-system-output-response-group--loading': !responseIsReady}">
+            <img class="bh-system-output-response-avatar" src="../../../../assets/images/bh-ic-chatbot-avatar.svg" alt="Chatbot avatar" />
+
+            @if (responseIsReady) {
+                <div class="bh-system-output-response-text bh-body-1-tight">
+                    {{ response }}
+               </div>
+            } @else {
+                <!-- show loading animation -->
+                <div class="bh-system-output-response-text">
+                    <span class="bh-system-output-response-dot bh-system-output-response-dot--1"></span>
+                    <span class="bh-system-output-response-dot bh-system-output-response-dot--2"></span>
+                    <span class="bh-system-output-response-dot bh-system-output-response-dot--3"></span>
+                </div>
+            }
+        </div>
+    </div>
+
+    @if (responseIsReady) {
+        <div class="bh-system-output-feedback">
+            <button type="button" (click)="showFeedbackForm('positive')" [matTooltip]="positiveTooltip" matTooltipClass="custom-tooltip" class="bh-system-output-feedback-button">
+                <mat-icon class="bh-system-output-feedback-icon bh-system-output-feedback-pos" aria-hidden="false" aria-label="Leave positive feedback" fontIcon="thumb_up_off_alt"></mat-icon>
+            </button>
+            <button type="button" (click)="showFeedbackForm('negative')" [matTooltip]="negativeTooltip" matTooltipClass="custom-tooltip" class="bh-system-output-feedback-button">
+                <mat-icon class="bh-system-output-feedback-icon bh-system-output-feedback-neg" aria-hidden="false" aria-label="Leave negative feedback" fontIcon="thumb_down_off_alt"></mat-icon>
+            </button>
+            <button type="button" (click)="copyToClipboard()" [matTooltip]="copyTooltip" matTooltipClass="custom-tooltip" class="bh-system-output-feedback-button" #tooltip3="matTooltip">
+                <mat-icon class="bh-system-output-feedback-icon bh-system-output-feedback-copy" aria-hidden="false" aria-label="Copy response" fontIcon="content_copy"></mat-icon>
+            </button>
+        </div>
+
+        @if (visibleFeedbackForm) {
+            <div class="bh-system-output-feedback-form">
+                <div class="bh-system-output-feedback-form-heading-group">
+                    <h3 class="bh-system-output-feedback-form-heading bh-body-1-strong">Please provide feedback:</h3>
+                    <button type="button" (click)="showFeedbackForm('cancel')" class="bh-system-output-feedback-form-close"><svg class="bh-system-output-feedback-form-close-icon" aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <title>Cancel</title>
+                        <g>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.47 2 2 6.47 2 12C2 17.53 6.47 22 12 22C17.53 22 22 17.53 22 12C22 6.47 17.53 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 10.59L15.59 7L17 8.41L13.41 12L17 15.59L15.59 17L12 13.41L8.41 17L7 15.59L10.59 12L7 8.41L8.41 7L12 10.59Z" fill="#9ca0a5" />
+                        </g>
+                    </svg></button>
+                </div>
+        
+                <form (ngSubmit)="onFeedbackSubmit(feedbackType)">
+                    @if (feedbackType === 'positive') {
+                        <fieldset class="bh-checkbox-group bh-checkbox-group--chip">
+                            <div class="bh-checkbox-group-flex">
+                                @for (choice of positives; track choice.id) {
+                                    <label class="bh-checkbox-group-label" [attr.for]="'positive-choice-' + choice.id">
+                                        <input type="checkbox" (change)="choice.isChecked = !choice.isChecked" [attr.name]="'positive-choice-' + choice.id" [attr.id]="'positive-choice-' + choice.id" role="checkbox" [attr.aria-checked]="choice.isChecked" aria-invalid="false" class="bh-checkbox-group-input" />
+                                        <span class="bh-checkbox-group-chip bh-chip">{{ choice.name }}</span>
+                                    </label>
+                                }
+                            </div>
+                        </fieldset>
+                    }
+        
+                    @if (feedbackType === 'negative') {
+                        <fieldset class="bh-checkbox-group bh-checkbox-group--chip">
+                            <div class="bh-checkbox-group-flex">
+                                @for (choice of negatives; track choice.id) {
+                                    <label class="bh-checkbox-group-label" [attr.for]="'negative-choice-' + choice.id">
+                                        <input type="checkbox" (change)="choice.isChecked = !choice.isChecked" [attr.name]="'negative-choice-' + choice.id" [attr.id]="'negative-choice-' + choice.id" role="checkbox" [attr.aria-checked]="choice.isChecked" aria-invalid="false" class="bh-checkbox-group-input" />
+                                        <span class="bh-checkbox-group-chip bh-chip">{{ choice.name }}</span>
+                                    </label>
+                                }
+                            </div>
+                        </fieldset>
+                    }
+        
+                    <div class="bh-text-input-field bh-text-input-textarea">
+                        <label class="bh-text-input-field-label" for="addl-feedback">Additional feedback:</label>
+                        <div class="bh-text-input-textarea-wrap">
+                            <textarea (keydown)="onEnterKey($event)" [(ngModel)]="feedbackText" class="bh-text-input-field-input bh-text-input-textarea-input" id="textarea" name="addl-feedback" aria-invalid="false"></textarea>
+                        </div>
+                        <div class="bh-text-input-field-helper">Optional.</div>
+                        <div class="bh-text-input-field-error"></div>
+                    </div>
+                    <button type="submit" class="bh-system-output-feedback-form-submit bh-primary-button">Submit</button>
+                </form>
+            </div>
+        }
+    }
+</div>

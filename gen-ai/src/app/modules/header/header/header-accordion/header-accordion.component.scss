@@ -1,0 +1,203 @@
+@import "../../../../../scss/styles.scss";
+
+:host {
+    @media (width <= $mobile-sidebar-bp) {
+        flex-grow: 1;
+    }
+}
+
+.bh-sidebar {
+    &-details {
+        &[open] {
+            .bh-sidebar-nav-header-expand-icon {
+                g {
+                    transform: rotate(0deg);
+                    transform-origin: 50% 50%;
+                    transition: transform 250ms linear;
+                }
+            }
+        }
+
+        &:focus {
+			outline-offset: -1px;
+			outline-color: var(--bh-accent-03);
+		}
+    }
+
+    &-nav-header {
+        cursor: pointer;
+        padding: 16px 16px 17px 6px;
+        list-style: none;
+    
+        @media (width > $mobile-sidebar-bp) {
+            width: 100%;
+            min-width: 196px;
+        }
+    
+        &:focus {
+            outline: 2px solid var(--bh-accent-03);
+            outline-offset: -2px;
+        }
+    
+        &::marker {
+            display: none;
+        }
+    
+        &::-webkit-details-marker { 
+            display: none; 
+        }
+    
+        &-text {
+            display: flex;
+            color: var(--bh-core);
+            width: 100%;
+            min-width: 158px;
+        }
+        
+        &-expand-icon {
+            width: 28px;
+            height: 28px;
+            flex: 0 0 28px;
+            margin-top: 3px;
+    
+            g {
+                transform: rotate(-180deg);
+                transform-origin: 50% 50%;
+                transition: transform 250ms linear;
+            }
+        }
+    }
+
+    &-nav-summary-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    &-accordion-content {
+        // margin-top: -8px;
+    }
+
+    &-list {
+		padding-left: 0;
+		list-style: none;
+		margin-bottom: 0;
+
+        &--main {
+            border-top: 0;
+        }
+	}
+
+    &-list-item {
+        position: relative;
+
+        &--empty {
+            font-style: italic;
+            color: var(--bh-core);
+            padding-right: 8px;
+        }
+    }
+
+    &-list-link {
+		display: flex;
+		align-items: flex-start;
+		color: var(--bh-core);
+        padding: 8px 24px 8px 7px;
+        margin-bottom: 0;
+        gap: 8px;
+        background-color: transparent;
+        border: 0;
+
+        @media (width > $mobile-sidebar-bp) {
+            width: 100%;
+            min-width: 196px;
+        }
+		
+		&:hover {
+			color: var(--bh-core-01);
+			text-decoration: none;
+			background-color: var(--bh-core-09);
+
+            .bh-svg-convo path {
+                fill: var(--bh-core-01);
+            }
+
+            + .bh-sidebar-list-remove .bh-sidebar-list-remove-icon {
+                opacity: 1;
+            }
+		}
+
+		&:focus {
+			outline: 2px solid var(--bh-accent-03);
+            outline-offset: -2px;
+		}
+
+        .bh-svg-convo {
+            width: 18px;
+            height: 18px;
+            flex: 0 0 18px;
+            margin-top: 4px;
+        }
+
+        &--delete {
+            font-style: italic;
+            display: flex;
+            align-items: center;
+
+            &:hover {
+
+                .bh-sidebar-list-remove-icon {
+                    fill: var(--bh-core-01);
+                }
+            }
+
+            .bh-sidebar-list-remove-icon {
+                opacity: 1;
+                fill: var(--bh-core);
+            }
+        }
+
+	}
+
+    &-link-name {
+        text-align: left;
+    }
+
+    &-list-remove {
+        position: absolute;
+        top: 8px;
+        right: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        background-color: transparent;
+        padding: 0;
+        border: 0;
+
+        &-icon {
+            width: 18px;
+            height: 18px;
+            flex: 0 0 18px;
+            opacity: 0;
+        }
+
+        &:hover {
+            .bh-sidebar-list-remove-icon {
+                fill: var(--bh-black-04);
+                opacity: 1;
+            }
+        }
+    }
+
+	&-link-icon {
+        //if needed
+	}
+
+    &-details.sidebar-open {
+        //if needed
+    }
+
+}

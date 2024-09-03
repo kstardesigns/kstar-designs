@@ -1,0 +1,287 @@
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Include the common styles for Angular Material.
+@include mat.core();
+// Define the theme object.
+$company-ai-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  density: (
+    scale: 0,
+  )
+));
+// Include theme styles for core and each component used in your app.
+:root {
+  @include mat.all-component-themes($company-ai-theme);
+}
+
+@import "atria.scss";
+
+/* Global variables */
+$mobile-sidebar-bp: 640px; //when sidebar is full screen on mobile
+$tablet-sidebar-bp: 1000px; //open sidebar will lay on top of content here
+
+/* CSS reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html, body { 
+    height: 100%; 
+}
+
+body {
+	position: relative;
+	font-family: var(--bh-secondary-font-face);
+  font-weight: 400;
+  font-size: 16px;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: var(--bh-black-04);
+  margin: 0; 
+  
+  &.overlay-open {
+    overflow: hidden;
+  }
+  
+  &.mobile-overlay-open {
+    @media screen and (max-width: 640px) {
+      overflow: hidden;
+    }
+  }
+  
+  &.desktop-overlay-open {
+    @media screen and (min-width: 641px) {
+      overflow: hidden;
+    }
+  }
+  
+  &.sidebar-open {
+    .bh-main-content {
+      padding-left: 260px; 
+
+      @media screen and (max-width: $tablet-sidebar-bp) {
+        padding-left: 64px;
+      }
+
+      @media screen and (max-width: $mobile-sidebar-bp) {
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+.bh-main-content {
+  width: 100%;
+  height: 100%;
+  padding: 70px 0 0 64px;
+  display: flex;
+  flex-direction: column;
+
+  @media (width <= $mobile-sidebar-bp) {
+      padding: 97px 0 50px;
+  }
+}
+
+::selection {
+	background-color: var(--bh-accent-07);
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;
+  margin-bottom: 0.5rem;
+	font-weight: 400;
+	line-height: 1.2;
+  overflow-wrap: break-word;
+}
+
+h1 {
+	font-size: 2.5rem;
+}
+
+h2 {
+	font-size: 2rem;
+}
+
+h3 {
+	font-size: 1.75rem;
+}
+
+h4 {
+	font-size: 1.5rem;
+}
+
+h5 {
+	font-size: 1.25rem;
+}
+
+img, picture, video, canvas, iframe {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  border-style: none;
+  vertical-align: middle;
+  border: 0;
+}
+
+input, textarea, button, select, label, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+input, textarea, button, select, optgroup {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+a {
+	color: var(--bh-accent);
+	text-decoration: none;
+  background-color: transparent;
+
+	&:hover {
+		color: var(--bh-accent-01);
+		text-decoration: underline;
+	}
+}
+
+a:not([href]):not([class]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  line-height: 28px;
+  text-rendering: optimizeLegibility;
+}
+
+ol, ul, dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+input, textarea, button, select, label, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, [type="button"], [type="submit"] {
+  -webkit-appearance: button;
+}
+
+button, select {
+  text-transform: none;
+}
+
+button, input {
+  overflow: visible;
+}
+
+button {
+	cursor: pointer;
+}
+
+.inner-width {
+  width: 880px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.custom-tooltip {
+  font-family: var(--secondary);
+}
+
+//sidebar style to affect its child details summary accordion
+.bh-header-group.sidebar-open {
+  .bh-sidebar-subnav {
+    &:hover:not(:has(.bh-sidebar-list:hover)) {
+      .bh-sidebar-icon-button, .bh-sidebar-nav-header {
+        background-color: var(--bh-core-09);
+      }
+    }
+  }
+}
+
+//global mat dialog customizations
+.bh-dialog, .bh-dialog-small {
+  .mat-mdc-dialog-inner-container {
+    width: 560px;
+    max-width: 100%;
+  }
+
+  .mat-mdc-dialog-surface {
+    border-radius: 4px;
+    padding: 40px;
+  }
+
+  .mat-mdc-dialog-title::before {
+    display: none;
+  }
+
+  .mat-mdc-dialog-container .mat-mdc-dialog-title.bh-heading-h1b {
+    color: var(--bh-black);
+    margin: 0 0 8px;
+    padding: 0;
+    font-family: var(--bh-secondary-font-face);
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 43px;
+    letter-spacing: 0.25px;
+  }
+
+  .mat-mdc-dialog-container .mat-mdc-dialog-title.bh-heading-h3b {
+    color: var(--bh-black);
+    margin: 0 0 8px;
+    padding: 0;
+    font-family: var(--bh-secondary-font-face);
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 23px;
+    letter-spacing: 0.22px;
+  }
+
+  .mat-mdc-dialog-content>:last-child {
+    color: var(--bh-black-03);
+    margin-bottom: 24px;
+    font-family: var(--bh-secondary-font-face);
+    font-size: 17px;
+    line-height: 20px;
+    letter-spacing: 0.49px;
+  }
+
+  .mat-mdc-dialog-title + .mat-mdc-dialog-content, .mat-mdc-dialog-actions {
+    padding: 0;
+  }
+
+  .mat-mdc-dialog-actions {
+    min-height: 0;
+  }
+
+  .bh-side-by-side-buttons {
+    gap: 8px;
+  }
+
+  button {
+    margin: 0;
+  }
+
+  &-small {
+    .mat-mdc-dialog-inner-container {
+      max-width: 280px;
+    }
+
+    .mat-mdc-dialog-surface {
+      padding: 24px;
+    }
+  }
+}
