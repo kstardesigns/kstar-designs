@@ -1,8 +1,19 @@
 <div class="bh-conversation-chat">
-    <bh-user-input response="Can you tell me what the company offers?"></bh-user-input>
-    <bh-system-output [responseIsReady]="true" response="The company offers a comprehensive range of services. The system operates across 26 states with a variety of buildings, offices, and locations for its customers. It is one of the largest companies in the country."></bh-system-output>
-    <bh-user-input response="What else do they have?"></bh-user-input>
-    <bh-system-output [responseIsReady]="true" response="They also have locations where their workers work, as well as options depending on the type of service needed. The company is headquartered in Asheville, North Carolina."></bh-system-output>
-    <bh-user-input response="How do I book an appointment?"></bh-user-input>
-    <bh-system-output></bh-system-output>
+    <ng-container *ngIf="chatMessages$ | async as chatMessages">
+        <ng-container *ngFor="let message of chatMessages; let i = index">
+            @if (message.startsWith('ui:')) {
+                <bh-user-input [response]="message.slice(3)"></bh-user-input>
+            }
+
+            @if (message.startsWith('so:') && message.length > 3) {
+                <bh-system-output *ngIf="message.startsWith('so:')" [responseIsReady]="true" [response]="message.slice(3)"></bh-system-output>
+            }
+            
+            @if (message.startsWith('so:') && message.length == 3) {
+                <bh-system-output></bh-system-output>
+            }
+            
+        </ng-container>
+    </ng-container>
 </div>
+  

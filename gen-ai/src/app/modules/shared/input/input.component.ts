@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Store } from '@ngrx/store';
+import { ChatState } from '../../../store/state/chat.state';
+import { selectChatById } from '../../../store/selectors/chat.selectors';
+import * as ChatActions from '../../../store/actions/chat.actions';
+import { switchMap, map, take } from 'rxjs/operators';
+import { Chat } from '../../../store/models/chat.model';
 
 @Component({
   selector: 'bh-input',
@@ -8,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './input.component.scss'
 })
 export class InputComponent {
+  @Input() chatId!: string;
   public inputText: string;
   public selectedFile: File | null;
   public fileUrl: string | null;
@@ -18,7 +25,8 @@ export class InputComponent {
 
   constructor(
     public router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private store: Store<ChatState>
   ) { 
     this.inputText= '';
     this.selectedFile = null;
@@ -62,6 +70,74 @@ export class InputComponent {
   }
 
   onSubmit() {
+
+    //until API is ready: post user message
+    if (this.inputText.trim()) {
+      const userMessage = `ui: ${this.inputText.trim()}`;
+
+      this.store.select(selectChatById(this.chatId)).pipe(
+        take(1),
+        map((chat: Chat | undefined) => {
+          if (chat) {
+            // Create a new array of messages with the new user message appended
+            const updatedMessages = [...chat.messages, userMessage];
+  
+            // Dispatch the action to update the chat's messages in the store
+            this.store.dispatch(ChatActions.updateChat({
+              chatId: this.chatId,
+              changes: { messages: updatedMessages }
+            }));
+          }
+        })
+      ).subscribe();
+
+      //until API is ready: temporarily post loading state
+      setTimeout(() => {
+        this.store.select(selectChatById(this.chatId)).pipe(
+          take(1),
+          map((chat: Chat | undefined) => {
+            if (chat) {
+              // Create a new array of messages with the new user message appended
+              const updatedMessages = [...chat.messages, `so:`];
+    
+              // Dispatch the action to update the chat's messages in the store
+              this.store.dispatch(ChatActions.updateChat({
+                chatId: this.chatId,
+                changes: { messages: updatedMessages }
+              }));
+            }
+          })
+        ).subscribe();
+      }, 500);
+
+      //until API is ready: temporarily post loading state
+
+      //until API is ready: default reply
+      setTimeout(() => {
+        this.store.select(selectChatById(this.chatId)).pipe(
+          take(1),
+          map((chat: Chat | undefined) => {
+            if (chat) {
+              // Create a new array of messages with the new user message appended
+              let updatedMessages = chat.messages.slice(0, -1);
+              const loaderlessMessages = [...updatedMessages, `so: This is just a prototype, but thanks for checking out this chatbot!`];
+    
+              // Dispatch the action to update the chat's messages in the store
+              this.store.dispatch(ChatActions.updateChat({
+                chatId: this.chatId,
+                changes: { messages: loaderlessMessages }
+              }));
+            }
+          })
+        ).subscribe();
+      }, 1500);
+
+
+      // Clear the input field
+      this.inputText = '';
+    }
+
+
     const formData = new FormData();
 
     //pass image attachment
@@ -80,18 +156,19 @@ export class InputComponent {
     // console.log(formDataObj);
     
     //send the FormData to the backend
-    this.http.post('backend-url/api/upload', formData).subscribe({
-      next: (response) => {
-        console.log('upload success:', response);
-      },
-      error: (error) => {
-        console.error('upload error:', error);
-      },
-      complete: () => {
-        console.log('upload completed');
-      }
-    });
+    // this.http.post('backend-url/api/upload', formData).subscribe({
+    //   next: (response) => {
+    //     console.log('upload success:', response);
+    //   },
+    //   error: (error) => {
+    //     console.error('upload error:', error);
+    //   },
+    //   complete: () => {
+    //     console.log('upload completed');
+    //   }
+    // });
   }
+
 
   onEnterKey(event: KeyboardEvent) {
     //submit form on enter, if shift key isn't held for line break
