@@ -30,8 +30,6 @@ export class HeaderAccordionComponent {
   public history$: Observable<{ chatId: string; chatName: string; }[]>;
   public currentChatId: string = '';
 
-
-
   constructor(
     private store: Store<ChatState>,
     private router: Router
@@ -96,5 +94,4 @@ export class HeaderAccordionComponent {
     this.router.navigate(['/start']);
     this.store.dispatch(ChatActions.removeAllChats());
   }
-
 }

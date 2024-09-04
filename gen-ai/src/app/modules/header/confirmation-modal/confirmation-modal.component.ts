@@ -21,5 +21,4 @@ export class ConfirmationModalComponent {
   cancel(): void {
     this.dialogRef.close(false);
   }
-
 }

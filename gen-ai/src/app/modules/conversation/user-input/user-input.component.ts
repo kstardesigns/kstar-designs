@@ -11,5 +11,4 @@ export class UserInputComponent {
   constructor() { 
     this.response = '';
   }
-
 }

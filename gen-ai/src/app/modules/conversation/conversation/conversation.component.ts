@@ -14,5 +14,4 @@ export class ConversationComponent {
       this.currentChatId = params['id'] ? params['id'] : Date.now().toString();
     })
   }
-
 }
