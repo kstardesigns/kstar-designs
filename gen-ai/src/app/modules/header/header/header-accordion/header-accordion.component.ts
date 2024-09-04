@@ -28,6 +28,7 @@ export class HeaderAccordionComponent {
   private mobileSidebarBp: number;
   public favorites$: Observable<{ chatId: string; chatName: string; }[]>;
   public history$: Observable<{ chatId: string; chatName: string; }[]>;
+  public currentChatId: string = '';
 
 
 
@@ -47,6 +48,7 @@ export class HeaderAccordionComponent {
   
   openChat(chatId: string): void {
     this.router.navigate(['/chat', chatId]);
+    this.currentChatId = chatId;
   }
 
   openConfirmationDialog(dialogType: string, chatId: string, chatName: string) {
@@ -79,14 +81,19 @@ export class HeaderAccordionComponent {
   }
 
   removeChatFromFavs(chatId: string): void {
-    this.store.dispatch(ChatActions.updateChat({ chatId, changes: { isFavorite: false } }))
+    this.store.dispatch(ChatActions.updateChat({ chatId, changes: { isFavorite: false } }));
   }
 
-  removeChatFromHistory(chatId: string): void {
+  removeChatFromHistory(chatId: string) {
+    //if current chat is deleted, go back to landing page
+    if (this.currentChatId == chatId) {
+      this.router.navigate(['/start']);
+    }
     this.store.dispatch(ChatActions.removeChat({ chatId }));
   }
 
   removeAllHistory(): void {
+    this.router.navigate(['/start']);
     this.store.dispatch(ChatActions.removeAllChats());
   }
 
