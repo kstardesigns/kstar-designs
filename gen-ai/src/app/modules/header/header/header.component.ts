@@ -79,7 +79,7 @@ export class HeaderComponent {
     this.store.dispatch(ChatActions.addChat({ chat: newChat }));
 
     //go to new chat page
-    this.router.navigate(['/chat', newChatId]);
+    this.router.navigate(['/new', newChatId]);
 
     if (window.innerWidth <= 640) {
       this.toggleSidebar();

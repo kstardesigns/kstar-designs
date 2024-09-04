@@ -11,7 +11,7 @@ export class ConversationComponent {
 
   constructor(private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
-      this.currentChatId = params['id'];
+      this.currentChatId = params['id'] ? params['id'] : Date.now().toString();
     })
   }
 

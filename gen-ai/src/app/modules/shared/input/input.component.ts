@@ -71,6 +71,23 @@ export class InputComponent {
 
   onSubmit() {
 
+    //from root page    
+    if (this.router.url.includes('/start')) { 
+      const newChat: Chat = {
+        chatId: this.chatId, 
+        chatName: '',
+        isFavorite: false,
+        messages: []
+      };
+
+      //add new chat to store
+      this.store.dispatch(ChatActions.addChat({ chat: newChat }));
+    }
+
+    if (this.router.url.includes('/new') || this.router.url.includes('/start')) {
+      this.router.navigate(['/chat', this.chatId]);
+    }
+
     //until API is ready: post user message
     if (this.inputText.trim()) {
       const userMessage = `ui: ${this.inputText.trim()}`;
@@ -109,8 +126,6 @@ export class InputComponent {
           })
         ).subscribe();
       }, 500);
-
-      //until API is ready: temporarily post loading state
 
       //until API is ready: default reply
       setTimeout(() => {
