@@ -15,7 +15,8 @@ import { Chat } from '../../../store/models/chat.model';
 })
 export class InputComponent {
   @Input() chatId!: string;
-  public inputText: string;
+  @Input() optionInput!: string;
+  @Input() inputText: string;
   public selectedFile: File | null;
   public fileUrl: string | null;
   public fileName: string | null;
@@ -28,7 +29,7 @@ export class InputComponent {
     private http: HttpClient,
     private store: Store<ChatState>
   ) { 
-    this.inputText= '';
+    this.inputText = '';
     this.selectedFile = null;
     this.fileUrl = null;
     this.fileName = null;
@@ -184,7 +185,6 @@ export class InputComponent {
     // });
   }
 
-
   onEnterKey(event: KeyboardEvent) {
     //submit form on enter, if shift key isn't held for line break
     if (event.key === 'Enter' && !event.shiftKey && !event.ctrlKey) {
@@ -192,6 +192,4 @@ export class InputComponent {
       this.onSubmit();
     }
   }
-
-
 }

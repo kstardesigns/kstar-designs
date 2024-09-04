@@ -2,15 +2,15 @@
     <h1 class="bh-landing-content-welcome bh-heading-h1">Hello, <strong>Noelle</strong></h1>
     
     <div class="bh-landing-content-input-group">
-        <bh-input [chatId]="currentChatId"></bh-input>
+        <bh-input [chatId]="currentChatId" [optionInput]="optionInput"></bh-input>
         <bh-prompt-button></bh-prompt-button>
     </div>
     
-    <div class="bh-landing-option-group">
-        <p>Or choose an option below: (WIP)</p>
+    <div class="bh-landing-content-option-group">
+        <p class="bh-landing-content-subtitle bh-body-2-main">Or choose an option below:</p>
         <ul>
             @for (option of options; track option.name) {
-                <li><bh-option name="{option.name}"></bh-option></li>
+                <li><button type="button" (click)="populateInput(option.output)" [attr.data-name]="option.name" class="bh-outlined-1-button">{{ option.description }}</button></li>
             }
         </ul>
     </div>

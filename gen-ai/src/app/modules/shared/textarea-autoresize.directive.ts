@@ -1,9 +1,11 @@
-import { Directive, HostListener, ElementRef, OnInit } from '@angular/core';
+import { Directive, HostListener, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Directive({
   selector: '[bhTextareaAutoresize]'
 })
-export class TextareaAutoresizeDirective implements OnInit {
+export class TextareaAutoresizeDirective implements OnChanges {
+
+  @Input() bhTextareaAutoresize!: string;
 
   constructor(private elementRef: ElementRef) { }
 
@@ -12,9 +14,9 @@ export class TextareaAutoresizeDirective implements OnInit {
     this.resize();
   }
 
-  ngOnInit() {
-    if (this.elementRef.nativeElement.scrollHeight) {
-      setTimeout(() => this.resize());
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['bhTextareaAutoresize']) {
+      setTimeout(() => this.resize(), 0);
     }
   }
 
