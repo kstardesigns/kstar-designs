@@ -50,6 +50,10 @@ export class HeaderComponent {
     } 
   }
 
+  updateSidebar(state: boolean) {
+    this.sidebarOpen = state; //update from header-accordion
+  }
+
   openAccordions() {
     if (!this.sidebarOpen) {
       this.accordionsOpen = true;

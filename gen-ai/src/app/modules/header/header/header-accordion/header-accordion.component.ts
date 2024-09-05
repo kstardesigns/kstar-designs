@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef, inject} from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, inject} from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from '../../confirmation-modal/confirmation-modal.component';
@@ -20,6 +20,7 @@ export class HeaderAccordionComponent {
   @Input() favoritesMenu: boolean;
   @Input() historyMenu: boolean;
   @Input() sidebarOpen: boolean;
+  @Output() sidebarToggle = new EventEmitter<boolean>();
   @Input() accordionsOpen: boolean;
   @ViewChild('accDetails', { static: true }) details!: ElementRef; //<details>
   @ViewChild('accSummary', { static: true }) summary!: ElementRef; //<summary>
@@ -46,6 +47,9 @@ export class HeaderAccordionComponent {
   openChat(chatId: string): void {
     this.router.navigate(['/chat', chatId]);
     this.currentChatId = chatId;
+    if (window.innerWidth < this.mobileSidebarBp) {
+      this.sidebarToggle.emit(false);
+    }
   }
 
   openConfirmationDialog(dialogType: string, chatId: string, chatName: string) {
