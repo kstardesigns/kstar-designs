@@ -2,12 +2,12 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatTooltip } from '@angular/material/tooltip';
 
-
 @Component({
   selector: 'bh-system-output',
   templateUrl: './system-output.component.html',
   styleUrl: './system-output.component.scss'
 })
+
 export class SystemOutputComponent {
   @ViewChild('tooltip3', { static: false }) tooltip3!: MatTooltip;
   @Input() responseIsReady: boolean;
@@ -76,24 +76,24 @@ export class SystemOutputComponent {
     formData.append(`${feedback.substring(0,3)}_additional-feedback`, this.feedbackText);
 
     //test form data
-    // const formDataObj: { [key: string]: any } = {};
-    // formData.forEach((value, key) => {
-    //   formDataObj[key] = value;
-    // });
-    // console.log(formDataObj);
+    const formDataObj: { [key: string]: any } = {};
+    formData.forEach((value, key) => {
+      formDataObj[key] = value;
+    });
+    console.log(formDataObj);
 
     //send the FormData to the backend
-    this.http.post('backend-url/api/upload', formData).subscribe({
-      next: (response) => {
-        console.log('upload success:', response);
-      },
-      error: (error) => {
-        console.error('upload error:', error);
-      },
-      complete: () => {
-        console.log('upload completed');
-      }
-    });
+    // this.http.post('backend-url/api/upload', formData).subscribe({
+    //   next: (response) => {
+    //     console.log('upload success:', response);
+    //   },
+    //   error: (error) => {
+    //     console.error('upload error:', error);
+    //   },
+    //   complete: () => {
+    //     console.log('upload completed');
+    //   }
+    // });
   }
 
   onEnterKey(event: KeyboardEvent) {
@@ -109,9 +109,6 @@ export class SystemOutputComponent {
     this.tooltip3.show();
     
     navigator.clipboard.writeText(this.response).then(() => {
-
-      console.log('Text copied to clipboard');
-
       setTimeout(() => {
         this.copyTooltip = 'Click to copy';
         this.tooltip3.hide();

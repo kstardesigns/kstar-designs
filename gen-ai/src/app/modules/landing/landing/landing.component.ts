@@ -7,9 +7,9 @@ import { InputComponent } from '../../shared/input/input.component';
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })
+
 export class LandingComponent {
   @ViewChild(InputComponent) bhInput!: InputComponent;
-
   public currentChatId: string = '';
   public options: { name: string, description: string, output: string }[] = [];
   public optionInput: string = '';

@@ -38,4 +38,5 @@ export interface FeedbackData {
     FooterComponent
   ]
 })
+
 export class SharedModule { }

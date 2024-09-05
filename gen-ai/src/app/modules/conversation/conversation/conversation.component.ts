@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './conversation.component.html',
   styleUrl: './conversation.component.scss'
 })
+
 export class ConversationComponent {
   public currentChatId: string = '';
 

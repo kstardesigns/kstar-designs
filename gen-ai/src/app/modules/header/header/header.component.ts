@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ChatState } from '../../../store/state/chat.state';
@@ -22,13 +22,8 @@ export class HeaderComponent {
     this.accordionsOpen = false;
   }
 
-  ngOnInit(): void {
-    
-  }
-
-   //open/close sidebar
+  //open/close sidebar
   toggleSidebar() {
-
     this.sidebarOpen = !this.sidebarOpen;
 
     if (this.sidebarOpen) { //if it's open
@@ -53,7 +48,6 @@ export class HeaderComponent {
         headerGroup.classList.add('with-transition');
       }, 2000);
     } 
-  
   }
 
   openAccordions() {
@@ -66,7 +60,7 @@ export class HeaderComponent {
   }
 
   createNewChat() {
-    const newChatId = Date.now().toString(); //TODO: update to get unique string from API?
+    const newChatId = Date.now().toString();
 
     const newChat: Chat = {
       chatId: newChatId, 

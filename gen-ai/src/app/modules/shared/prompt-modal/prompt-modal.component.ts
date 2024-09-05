@@ -7,6 +7,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrl: './prompt-modal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class PromptModalComponent {
   data = inject(MAT_DIALOG_DATA);
 }

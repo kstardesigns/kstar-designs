@@ -29,4 +29,5 @@ export interface ConfirmationData {
     HeaderAccordionComponent
   ]
 })
+
 export class HeaderModule { }

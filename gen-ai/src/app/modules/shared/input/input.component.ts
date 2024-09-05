@@ -13,6 +13,7 @@ import { Chat } from '../../../store/models/chat.model';
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss'
 })
+
 export class InputComponent {
   @Input() chatId!: string;
   @Input() optionInput!: string;
@@ -71,7 +72,6 @@ export class InputComponent {
   }
 
   onSubmit() {
-
     //from root page    
     if (this.router.url.includes('/start')) { 
       const newChat: Chat = {
@@ -136,7 +136,7 @@ export class InputComponent {
             if (chat) {
               // Create a new array of messages with the new user message appended
               let updatedMessages = chat.messages.slice(0, -1);
-              const loaderlessMessages = [...updatedMessages, `so: This is just a prototype, but thanks for checking out this chatbot!`];
+              const loaderlessMessages = [...updatedMessages, `so: This is just a prototype of a gen AI chatbot, but thanks for checking it out!`];
     
               // Dispatch the action to update the chat's messages in the store
               this.store.dispatch(ChatActions.updateChat({
@@ -148,12 +148,10 @@ export class InputComponent {
         ).subscribe();
       }, 1500);
 
-
       // Clear the input field
       this.inputText = '';
     }
-
-
+    
     const formData = new FormData();
 
     //pass image attachment

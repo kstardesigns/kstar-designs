@@ -3,8 +3,8 @@ import { Directive, HostListener, ElementRef, Input, OnChanges, SimpleChanges } 
 @Directive({
   selector: '[bhTextareaAutoresize]'
 })
-export class TextareaAutoresizeDirective implements OnChanges {
 
+export class TextareaAutoresizeDirective implements OnChanges {
   @Input() bhTextareaAutoresize!: string;
 
   constructor(private elementRef: ElementRef) { }
@@ -24,5 +24,4 @@ export class TextareaAutoresizeDirective implements OnChanges {
     this.elementRef.nativeElement.style.height = '0';
     this.elementRef.nativeElement.style.height = this.elementRef.nativeElement.scrollHeight + 'px';
   }
-
 }

@@ -2,7 +2,6 @@ import { Component, Input, ViewChild, ElementRef, inject} from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from '../../confirmation-modal/confirmation-modal.component';
-
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ChatState } from '../../../../store/state/chat.state';
@@ -14,9 +13,9 @@ import * as ChatActions from '../../../../store/actions/chat.actions';
   templateUrl: './header-accordion.component.html',
   styleUrl: './header-accordion.component.scss'
 })
+
 export class HeaderAccordionComponent {
   readonly dialog = inject(MatDialog);
-
   @Input() accordionName: string;
   @Input() favoritesMenu: boolean;
   @Input() historyMenu: boolean;

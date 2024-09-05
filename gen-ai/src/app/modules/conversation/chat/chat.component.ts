@@ -12,6 +12,7 @@ import { Chat } from '../../../store/models/chat.model';
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'
 })
+
 export class ChatComponent {
   @Input() chatId!: string;
   public chatMessages$!: Observable<string[]>;
@@ -19,9 +20,7 @@ export class ChatComponent {
   constructor(
     private store: Store<ChatState>,
     private route: ActivatedRoute
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
     this.chatMessages$ = this.route.params.pipe(

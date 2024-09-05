@@ -12,6 +12,7 @@ import { Chat } from '../../../store/models/chat.model';
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
 })
+
 export class ToolbarComponent implements OnInit, OnDestroy {
   @ViewChild('chatName') chatName!: ElementRef;
   @Input() set chatId(value: string) {

@@ -23,7 +23,5 @@ export class ChatEffects {
     constructor(
         private actions$: Actions,
         private chatService: ChatService
-    ) {
-        console.log('Actions stream:', this.actions$);
-    }
+    ) {}
 }

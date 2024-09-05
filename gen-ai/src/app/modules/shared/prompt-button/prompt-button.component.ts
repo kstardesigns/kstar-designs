@@ -8,13 +8,12 @@ import { PromptModalComponent } from '../prompt-modal/prompt-modal.component';
   styleUrl: './prompt-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class PromptButtonComponent {
   readonly dialog = inject(MatDialog);
-
   @Input() smallVariant: boolean;
 
-  constructor(
-  ) { 
+  constructor() { 
     this.smallVariant = false;
   }
 
