@@ -190,6 +190,10 @@ const App = () => {
         setChecking(false);
         setValid(false);
         setValidityMessage('Word must be at least 2 letters long.')
+      } else if (wordValue.includes(' ')) {
+        setChecking(false);
+        setValid(true);
+        setValidityMessage('');
       } else {
         setChecking(false);
         setValid(false);
