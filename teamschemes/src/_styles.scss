@@ -1,5 +1,136 @@
 #root {
   --black: #222;
+  --white: #fff;
+}
+
+/* CSS reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  position: relative;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--black);
+  font-family: 'Tinos';
+}
+
+::selection {
+  background-color:#99d9f5;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+img, picture, video, canvas, iframe {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  border-style: none;
+  vertical-align: middle;
+  border: 0;
+}
+
+input, textarea, button, select, label, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+input, textarea, button, select, optgroup {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+a {
+  color: #007eb4;
+  text-decoration: none;
+  background-color: transparent;
+
+  &:hover {
+    color: #006894;
+    text-decoration: underline;
+  }
+}
+
+a:not([href]):not([class]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  line-height: 28px;
+  text-rendering: optimizeLegibility;
+}
+
+ol, ul, dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+input, textarea, button, select, label, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, [type="button"], [type="submit"] {
+  -webkit-appearance: button;
+}
+
+button, select {
+  text-transform: none;
+}
+
+button, input {
+  overflow: visible;
+}
+
+button, summary {
+  cursor: pointer;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+main { 
+  position: relative;
+  display: flex;
 }
 
 .grid {
@@ -10,5 +141,61 @@
   &--4 {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
+  }
+}
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 350px;
+  background-color: var(--white);
+  padding: 16px 12px;
+  overflow: auto;
+  height: 100%;
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: flex;
+    }
+
+    button {
+      width: 100%;
+      border: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background-color: var(--white);
+      padding: 4px;
+
+      &:hover {
+        background-color: #fed;
+      }
+    }
+
+    .logo {
+      width: 30px;
+      height: auto;
+    }
+
+    .team-colors {
+      display: flex;
+      flex-grow: 1;
+      justify-content: flex-end;
+      gap: 5px;
+    }
+
+    .team-color {
+      width: 14px;
+      height: 14px;
+
+      &.white {
+        border: 1px solid rgb(0 0 0 / 10%);
+      }
+    }
   }
 }

@@ -15,7 +15,7 @@ function App() {
   }
 
   return (
-    <>
+    <main>
       <div className={ `grid grid--${currentTeam.colors.length}` }>
       {
         currentTeam.colors.map((color, colorIndex) => (
@@ -23,7 +23,8 @@ function App() {
             key={ colorIndex }
             style={{ backgroundColor: color.hex }}
           >
-            { color.name }
+            { color.name }<br/>
+            { color.hex }
           </div> 
         ))
       }
@@ -43,16 +44,19 @@ function App() {
 
                   <li key={ teamIndex }> 
                     <button type="button" onClick={() => changeColor(leagueKey, team.id)} > { /* add click function and pass league and team id */ }
-                      <img src={ team.logo } alt={`${ team.name } logo`} style={{ width: '50px' }} />
+                      <img className="logo" src={ `./assets/${team.logo}` } alt={`${ team.name } logo`} />
                       <span>{team.name}</span>
+
+                      <span className="team-colors">
                       { team.colors.map((color, colorIndex) => (
                         <span
                           key={ colorIndex }
-                          style={{ backgroundColor: color.hex, padding: '10px', margin: '5px' }}
+                          style={{ backgroundColor: color.hex }}
+                          className={ `team-color ${color.name}` }
                         >
-                        
                         </span>
                       )) }
+                      </span>
                     </button>
                   </li>
                   
@@ -65,7 +69,7 @@ function App() {
         ))
       }
       </div>
-    </>
+    </main>
   )
 }
 
