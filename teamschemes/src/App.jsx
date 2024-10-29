@@ -35,7 +35,7 @@ function App() {
         /* sample full loop of all teams in a league */
 
         Object.keys(leagues).map((leagueKey, leagueIndex) => (
-          <details key={leagueIndex} open>
+          <details key={leagueIndex} >
             {/* Display the name of the league */}
             <summary>{ leagueKey.toUpperCase() }</summary>
             <div>      
@@ -44,7 +44,9 @@ function App() {
 
                   <li key={ teamIndex }> 
                     <button type="button" onClick={() => changeColor(leagueKey, team.id)} > { /* add click function and pass league and team id */ }
-                      <img className="logo" src={ `./assets/${team.logo}` } alt={`${ team.name } logo`} />
+                      <span className="logo-box">
+                        <img className="logo" src={ `./assets/${team.logo}` } alt={`${ team.name } logo`} />
+                      </span>
                       <span>{team.name}</span>
 
                       <span className="team-colors">

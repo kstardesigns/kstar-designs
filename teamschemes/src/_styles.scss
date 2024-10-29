@@ -123,6 +123,23 @@ button, summary {
   cursor: pointer;
 }
 
+details {
+  border: 2px solid rgb(0 0 0 / 10%);
+  margin-bottom: 4px;
+}
+
+summary {
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 2px 5px 3px 15px;
+  display: flex;
+  font-size: 18px;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -146,13 +163,14 @@ main {
 
 .sidebar {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 17px;
+  right: 22px;
   width: 350px;
   background-color: var(--white);
   padding: 16px 12px;
   overflow: auto;
-  height: 100%;
+  height: calc(100% - 40px);
+  box-shadow: 7px 7px 0px 2px rgb(255 255 255 / 50%);
 
   ul {
     margin: 0;
@@ -160,6 +178,7 @@ main {
 
     li {
       display: flex;
+      height: 42px;
     }
 
     button {
@@ -170,16 +189,25 @@ main {
       align-items: center;
       gap: 16px;
       background-color: var(--white);
-      padding: 4px;
+      padding: 6px;
 
       &:hover {
         background-color: #fed;
       }
     }
 
+    .logo-box {
+      width: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     .logo {
-      width: 30px;
+      width: auto;
+      max-width: 100%;
       height: auto;
+      max-height: 30px;
     }
 
     .team-colors {
@@ -192,10 +220,11 @@ main {
     .team-color {
       width: 14px;
       height: 14px;
+      border: 1px solid rgb(0 0 0 / 10%);
 
-      &.white {
-        border: 1px solid rgb(0 0 0 / 10%);
-      }
+      // &.white {
+        
+      // }
     }
   }
 }
