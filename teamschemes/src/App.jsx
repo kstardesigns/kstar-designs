@@ -19,23 +19,35 @@ function App() {
       <div className={ `grid grid--${currentTeam.colors.length}` }>
       {
         currentTeam.colors.map((color, colorIndex) => (
-          <div
+          <div className="color"
             key={ colorIndex }
             style={{ backgroundColor: color.hex }}
           >
-            { color.name }<br/>
-            { color.hex }
+            <div className="color-box">
+              <span className="color-name">{ color.name }</span>
+              <span className="color-hex">{ color.hex }</span>
+            </div>
           </div> 
         ))
       }
       </div>
 
-      <div className="sidebar">
+      <details className="sidebar" open>
+        <summary className="sidebar-trigger">
+          <svg className="burger" aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g>
+              <path fillRule="evenodd" clipRule="evenodd" d="M3 7C3 6.44772 3.44772 6 4 6H20C20.5523 6 21 6.44772 21 7C21 7.55228 20.5523 8 20 8H4C3.44772 8 3 7.55228 3 7ZM3 12C3 12.5523 3.44772 13 4 13H20C20.5523 13 21 12.5523 21 12C21 11.4477 20.5523 11 20 11H4C3.44772 11 3 11.4477 3 12ZM3 17C3 17.5523 3.44772 18 4 18H20C20.5523 18 21 17.5523 21 17C21 16.4477 20.5523 16 20 16H4C3.44772 16 3 16.4477 3 17Z" fill="#37393d" />
+            </g>
+          </svg>
+          <svg className="close" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false">
+            <g stroke="none" strokeWidth="1" fill="#37393D" fillRule="evenodd">
+              <polygon points="19 6.4 17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12"></polygon>
+            </g>
+          </svg>
+        </summary>
       {
-        /* sample full loop of all teams in a league */
-
         Object.keys(leagues).map((leagueKey, leagueIndex) => (
-          <details key={leagueIndex} >
+          <details key={leagueIndex} open>
             {/* Display the name of the league */}
             <summary>{ leagueKey.toUpperCase() }</summary>
             <div>      
@@ -70,7 +82,7 @@ function App() {
           </details>
         ))
       }
-      </div>
+      </details>
     </main>
   )
 }
