@@ -1,6 +1,8 @@
 #root {
   --black: #222;
   --white: #fff;
+  --theme-color: #000;
+  --accent-color: #000;
 }
 
 /* CSS reset */
@@ -10,6 +12,11 @@
 
 * {
   margin: 0;
+}
+
+html {
+  accent-color: var(--accent-color);
+  color-scheme: var(--accent-color);
 }
 
 body {
@@ -168,10 +175,6 @@ main {
     position: absolute;
     bottom: 0;
     left: 0;
-    background-color: var(--white);
-    outline: 3px solid rgb(255 255 255 / 50%);
-    display: inline-flex;
-    flex-direction: column;
     gap: 4px;
     margin: 12px;
     padding: 4px 8px;
@@ -180,12 +183,51 @@ main {
     font-weight: 500;
   }
 
-  .color-name {
+  .color-name, .color-hex {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: var(--white);
+    -webkit-text-stroke: 1px var(--black);
+    font-size: 24px;
+    line-height: 25px;
+    letter-spacing: 1px;
+    border: 0;
+    background-color: transparent;
+    text-align: left;
+    position: relative;
+    display: flex;
 
+    &::after {
+      content: 'Copied!';
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 100%;
+      font-size: 12px;
+      -webkit-text-stroke: initial;
+      background-color: var(--white);
+      color: var(--black);
+      border-radius: 4px;
+      padding: 5px 4px;
+      line-height: 10px;
+      letter-spacing: 0;
+      font-weight: 500;
+    }
+
+    &.copied {
+      &::after {
+        display: flex;
+      }
+    }
+
+    
+  }
+
+  .color-name {
   }
 
   .color-hex {
-    
+  
   }
 }
 
@@ -242,6 +284,13 @@ main {
       &.close {
         display: none;
       }
+    }
+  }
+
+  .settings {
+    input[type="checkbox"] {
+      width: 40px;
+      height: 40px;
     }
   }
 

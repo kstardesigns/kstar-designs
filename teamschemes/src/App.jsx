@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import colorData from './colors.json';
 import './_styles.scss'; 
 
@@ -14,6 +14,24 @@ function App() {
     setCurrentTeam(newTeam);
   }
 
+  //runs on mount and when currentTeam changes
+  useEffect(() => {
+    document.documentElement.style.setProperty('--theme-color', currentTeam.colors[0].hex);
+    document.documentElement.style.setProperty('--accent-color', currentTeam.colors[0].hex);
+  }, [currentTeam]);
+
+  const copyColor = (text, element) => {
+    navigator.clipboard.writeText(text).then(() => {
+      element.classList.add('copied');
+      setTimeout(() => {
+        element.classList.remove('copied');
+      }, 1500);
+
+    }).catch(err => {
+      console.error('Failed to copy text: ', err);
+    });
+  };
+  
   return (
     <main>
       <div className={ `grid grid--${currentTeam.colors.length}` }>
@@ -24,8 +42,8 @@ function App() {
             style={{ backgroundColor: color.hex }}
           >
             <div className="color-box">
-              <span className="color-name">{ color.name }</span>
-              <span className="color-hex">{ color.hex }</span>
+              <button type="button" onClick={(event) => { copyColor(color.name, event.currentTarget); }} className="color-name">{ color.name }</button>
+              <button type="button" onClick={(event) => { copyColor(color.hex, event.currentTarget); }} className="color-hex">{ color.hex }</button>
             </div>
           </div> 
         ))
@@ -51,6 +69,9 @@ function App() {
             {/* Display the name of the league */}
             <summary>{ leagueKey.toUpperCase() }</summary>
             <div>      
+              <div class="settings">
+                <input type="checkbox"/>
+              </div>
               <ul>  
                 { leagues[leagueKey].map((team, teamIndex) => (
 
