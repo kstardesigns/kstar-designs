@@ -63,15 +63,15 @@ function App() {
             </g>
           </svg>
         </summary>
+        <div class="settings">
+            <input type="checkbox" />
+          
       {
         Object.keys(leagues).map((leagueKey, leagueIndex) => (
           <details key={leagueIndex} open>
             {/* Display the name of the league */}
             <summary>{ leagueKey.toUpperCase() }</summary>
             <div>      
-              <div class="settings">
-                <input type="checkbox"/>
-              </div>
               <ul>  
                 { leagues[leagueKey].map((team, teamIndex) => (
 
@@ -103,6 +103,8 @@ function App() {
           </details>
         ))
       }
+        </div>
+
       </details>
     </main>
   )
