@@ -84,6 +84,10 @@ input, textarea, button, select, optgroup {
   line-height: inherit;
 }
 
+input[type="checkbox"], label {
+  cursor: pointer;
+}
+
 a {
   color: #007eb4;
   text-decoration: none;
@@ -186,10 +190,8 @@ main {
   .color-name, .color-hex {
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
-    color: var(--white);
-    -webkit-text-stroke: 1px #0c233f;
     font-size: 24px;
-    line-height: 25px;
+    line-height: 26px;
     letter-spacing: 1px;
     border: 0;
     background-color: transparent;
@@ -201,11 +203,11 @@ main {
       content: 'Copied!';
       display: none;
       position: absolute;
-      top: 0;
+      top: 4px;
       left: 100%;
       font-size: 12px;
       -webkit-text-stroke: initial;
-      background-color: var(--white);
+      background-color: rgba(255 255 255 / 75%);
       color: var(--black);
       border-radius: 4px;
       padding: 5px 4px;
@@ -246,7 +248,7 @@ main {
   }
 
   &[open] {
-    padding: 48px 0 16px;
+    padding: 16px 0 16px;
     width: 350px;
     height: calc(100% - 40px);
 
@@ -293,9 +295,33 @@ main {
     margin: 0 auto;
     padding: 0 12px;
 
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      text-transform: uppercase;
+      font-size: 16px;
+      color: var(--black);
+      font-weight: bold;
+    }
+
+    &-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    &-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     input[type="checkbox"] {
-      width: 40px;
-      height: 40px;
+      width: 14px;
+      height: 14px;
+    }
+
+    label {
+      font-size: 14px;
     }
   }
 

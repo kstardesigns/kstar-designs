@@ -8,6 +8,16 @@ function App() {
   const wnba = colorData.allColors.wnba;
   let [currentTeam, setCurrentTeam] = useState(wnba.find(team => team.id === 'lynx')); 
   //TODO: change this to random team on load
+  const [colorChecked, setColorChecked] = useState(true);
+  const [hexChecked, setHexChecked] = useState(false);
+
+  const handleColorChecked = () => {
+    setColorChecked(!colorChecked);
+  };
+
+  const handleHexChecked = () => {
+    setHexChecked(!hexChecked);
+  };
 
   const changeColor = (league, teamId) => {
     const newTeam = colorData.allColors[league].find(team => team.id === teamId);
@@ -41,10 +51,22 @@ function App() {
             key={ colorIndex }
             style={{ backgroundColor: color.hex }}
           >
+
             <div className="color-box">
-              <button type="button" onClick={(event) => { copyColor(color.name, event.currentTarget); }} className="color-name">{ color.name }</button>
-              <button type="button" onClick={(event) => { copyColor(color.hex, event.currentTarget); }} className="color-hex">{ color.hex }</button>
+              { colorChecked === true && 
+                <button type="button" onClick={(event) => { copyColor(color.name, event.currentTarget); }} className="color-name" style={{ color: /^[0-9]/.test(color.hex[1]) ? 'var(--white)' : 'var(--black)' }}>{ color.name }</button>
+              }
+
+              { hexChecked === true && 
+                <button type="button" onClick={(event) => { copyColor(color.hex, event.currentTarget); }} className="color-hex" style={{ color: /^[0-9]/.test(color.hex[1]) ? 'var(--white)' : 'var(--black)' }}>{ color.hex }</button>
+              }
+
+              {/* Later, for showing all similar colors together:
+                <span>{ currentTeam.name}</span>
+               */}
             </div>
+
+
           </div> 
         ))
       }
@@ -63,8 +85,18 @@ function App() {
             </g>
           </svg>
         </summary>
-        <div class="settings">
-            <input type="checkbox" />
+        <div className="settings">
+          <h1>Team color schemes</h1>
+          <div className="settings-row">
+            <div className="settings-group">
+              <input type="checkbox" className="settings-checkbox" name="color-name" id="color-name" checked={colorChecked} onChange={handleColorChecked} role="checkbox" aria-checked={colorChecked} />
+              <label htmlFor="color-name" className="settings-label">Show color name</label>
+            </div>
+            <div className="settings-group">
+              <input type="checkbox" className="settings-checkbox" name="color-hex" id="color-hex" checked={hexChecked} onChange={handleHexChecked} role="checkbox" aria-checked={hexChecked} />
+              <label htmlFor="color-hex" className="settings-label">Show HEX</label>
+            </div>
+          </div>
           
       {
         Object.keys(leagues).map((leagueKey, leagueIndex) => (
