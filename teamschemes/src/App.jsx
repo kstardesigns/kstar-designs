@@ -4,10 +4,18 @@ import './_styles.scss';
 
 function App() {
 
-  const leagues = colorData.allColors;
-  const wnba = colorData.allColors.wnba;
-  let [currentTeam, setCurrentTeam] = useState(wnba.find(team => team.id === 'lynx')); 
-  //TODO: change this to random team on load
+  const leagues = colorData.leagues;
+  const leagueKeys = Object.keys(colorData.leagues);
+
+  const getRandomTeam = () => {
+    const randomLeagueKey = leagueKeys[Math.floor(Math.random() * leagueKeys.length)];
+    const randomLeagueTeams = leagues[randomLeagueKey];
+    const randomTeam = randomLeagueTeams[Math.floor(Math.random() * randomLeagueTeams.length)];
+    return randomTeam;
+  };
+
+
+  let [currentTeam, setCurrentTeam] = useState(getRandomTeam()); 
   const [colorChecked, setColorChecked] = useState(true);
   const [hexChecked, setHexChecked] = useState(false);
 
@@ -20,7 +28,7 @@ function App() {
   };
 
   const changeColor = (league, teamId) => {
-    const newTeam = colorData.allColors[league].find(team => team.id === teamId);
+    const newTeam = colorData.leagues[league].find(team => team.id === teamId);
     setCurrentTeam(newTeam);
   }
 
@@ -96,6 +104,9 @@ function App() {
               <input type="checkbox" className="settings-checkbox" name="color-hex" id="color-hex" checked={hexChecked} onChange={handleHexChecked} role="checkbox" aria-checked={hexChecked} />
               <label htmlFor="color-hex" className="settings-label">Show HEX</label>
             </div>
+            <button className="settings-random" type="button" onClick={() => setCurrentTeam(getRandomTeam())}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M592 192H473.26c12.69 29.59 7.12 65.2-17 89.32L320 417.58V464c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48V240c0-26.51-21.49-48-48-48zM480 376c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm-46.37-186.7L258.7 14.37c-19.16-19.16-50.23-19.16-69.39 0L14.37 189.3c-19.16 19.16-19.16 50.23 0 69.39L189.3 433.63c19.16 19.16 50.23 19.16 69.39 0L433.63 258.7c19.16-19.17 19.16-50.24 0-69.4zM96 248c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z"/></svg>
+            </button>
           </div>
           
       {
@@ -108,7 +119,7 @@ function App() {
                 { leagues[leagueKey].map((team, teamIndex) => (
 
                   <li key={ teamIndex }> 
-                    <button type="button" onClick={() => changeColor(leagueKey, team.id)} > { /* add click function and pass league and team id */ }
+                    <button type="button" onClick={() => changeColor(leagueKey, team.id)} className={team.id === currentTeam.id ? 'active' : ''} data-id={team.id}> { /* add click function and pass league and team id */ }
                       <span className="logo-box">
                         <img className="logo" src={ `./assets/${team.logo}` } alt={`${ team.name } logo`} />
                       </span>
