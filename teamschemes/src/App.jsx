@@ -18,6 +18,7 @@ function App() {
   let [currentTeam, setCurrentTeam] = useState(getRandomTeam()); 
   const [colorChecked, setColorChecked] = useState(true);
   const [hexChecked, setHexChecked] = useState(false);
+  const [logoChecked, setLogoChecked] = useState(false);
 
   const handleColorChecked = () => {
     setColorChecked(!colorChecked);
@@ -25,6 +26,10 @@ function App() {
 
   const handleHexChecked = () => {
     setHexChecked(!hexChecked);
+  };
+
+  const handleLogoChecked = () => {
+    setLogoChecked(!logoChecked);
   };
 
   const changeColor = (league, teamId) => {
@@ -60,6 +65,9 @@ function App() {
             style={{ backgroundColor: color.hex }}
           >
 
+            { logoChecked === true && 
+              <img className="logo" src={ `./assets/${currentTeam.logo}` } alt={`${ currentTeam.name } logo`} />
+            }
             <div className="color-box">
               { colorChecked === true && 
                 <button type="button" onClick={(event) => { copyColor(color.name, event.currentTarget); }} className="color-name" style={{ color: /^[0-9]/.test(color.hex[1]) ? 'var(--white)' : 'var(--black)' }}>{ color.name }</button>
@@ -98,11 +106,15 @@ function App() {
           <div className="settings-row">
             <div className="settings-group">
               <input type="checkbox" className="settings-checkbox" name="color-name" id="color-name" checked={colorChecked} onChange={handleColorChecked} role="checkbox" aria-checked={colorChecked} />
-              <label htmlFor="color-name" className="settings-label">Show color name</label>
+              <label htmlFor="color-name" className="settings-label">Color name</label>
             </div>
             <div className="settings-group">
               <input type="checkbox" className="settings-checkbox" name="color-hex" id="color-hex" checked={hexChecked} onChange={handleHexChecked} role="checkbox" aria-checked={hexChecked} />
-              <label htmlFor="color-hex" className="settings-label">Show HEX</label>
+              <label htmlFor="color-hex" className="settings-label">HEX</label>
+            </div>
+            <div className="settings-group">
+              <input type="checkbox" className="settings-checkbox" name="color-logo" id="color-logo" checked={logoChecked} onChange={handleLogoChecked} role="checkbox" aria-checked={logoChecked} />
+              <label htmlFor="color-logo" className="settings-label">Logo</label>
             </div>
             <button className="settings-random" type="button" title="random" onClick={() => setCurrentTeam(getRandomTeam())}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M592 192H473.26c12.69 29.59 7.12 65.2-17 89.32L320 417.58V464c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48V240c0-26.51-21.49-48-48-48zM480 376c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm-46.37-186.7L258.7 14.37c-19.16-19.16-50.23-19.16-69.39 0L14.37 189.3c-19.16 19.16-19.16 50.23 0 69.39L189.3 433.63c19.16 19.16 50.23 19.16 69.39 0L433.63 258.7c19.16-19.17 19.16-50.24 0-69.4zM96 248c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z"/></svg>
@@ -123,7 +135,7 @@ function App() {
                       <span className="logo-box">
                         <img className="logo" src={ `./assets/${team.logo}` } alt={`${ team.name } logo`} />
                       </span>
-                      <span>{team.name}</span>
+                      <span className="team-name">{team.name}</span>
 
                       <span className="team-colors">
                       { team.colors.map((color, colorIndex) => (

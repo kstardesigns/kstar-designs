@@ -1,4 +1,4 @@
-#root {
+:root {
   --black: #222;
   --white: #fff;
   --theme-color: #000;
@@ -17,6 +17,11 @@
 html {
   accent-color: var(--accent-color);
   color-scheme: var(--accent-color);
+
+  button:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: -2px;
+  }
 }
 
 body {
@@ -165,14 +170,52 @@ main {
   display: grid;
   width: 100vw;
   height: 100vh;
+  grid-auto-rows: 25vh;
 
-  // &--4 {
-  //   grid-template-columns: 1fr 1fr;
-  //   grid-template-rows: 1fr 1fr;
-  // }
+  &--1 {
+    grid-auto-rows: 100vh;
+  }
+
+  &--2 {
+    grid-auto-rows: 50vh;
+  }
+
+  &--3 {
+    grid-auto-rows: 33.333vh;
+  }
+
+  &--4 {
+    grid-auto-rows: 25vh;
+  }
+
+  &--5 {
+    grid-auto-rows: 20vh;
+  }
+
+  &--6 {
+    grid-auto-rows: 16.666vh;
+  }
+
+  &--7 {
+    grid-auto-rows: 14.286vh;
+  }
 
   .color {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (width < 640px) {
+      justify-content: flex-end;
+      padding-right: 30px;
+    }
+
+    .logo {
+      display: flex;
+      width: auto;
+      height: 50%;
+    }
   }
 
   .color-box {
@@ -400,6 +443,10 @@ main {
       max-width: 100%;
       height: auto;
       max-height: 30px;
+    }
+
+    .team-name {
+      text-align: left;
     }
 
     .team-colors {
