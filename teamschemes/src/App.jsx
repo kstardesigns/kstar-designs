@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import colorData from './colors.json';
 import './_styles.scss'; 
 
@@ -18,10 +18,20 @@ function App() {
   let [currentTeam, setCurrentTeam] = useState(getRandomTeam()); 
   const [colorChecked, setColorChecked] = useState(() => {
     const savedValue = localStorage.getItem('colorChecked');
-    return savedValue === 'true';
+    return savedValue !== null ? savedValue === 'true' : true; // default to true if no value found
   });
-  const [hexChecked, setHexChecked] = useState(false);
-  const [logoChecked, setLogoChecked] = useState(false);
+  const [hexChecked, setHexChecked] = useState(() => {
+    const savedValue = localStorage.getItem('hexChecked');
+    return savedValue === 'true'; // default to false if no value found
+  });
+  const [logoChecked, setLogoChecked] = useState(() => {
+    const savedValue = localStorage.getItem('logoChecked');
+    return savedValue === 'true'; // default to false if no value found
+  });
+  const [menuOpen, setMenuOpen] = useState(() => {
+    const savedValue = localStorage.getItem('menuOpen');
+    return savedValue !== null ? savedValue === 'true' : true; // default to true if no value found
+  });
 
   const handleColorChecked = () => {
     const newValue = !colorChecked;
@@ -30,12 +40,38 @@ function App() {
   };
 
   const handleHexChecked = () => {
-    setHexChecked(!hexChecked);
+    const newValue = !hexChecked;
+    setHexChecked(newValue);
+    localStorage.setItem('hexChecked', newValue);
   };
 
   const handleLogoChecked = () => {
-    setLogoChecked(!logoChecked);
+    const newValue = !logoChecked;
+    setLogoChecked(newValue);
+    localStorage.setItem('logoChecked', newValue);
   };
+
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const detailsElement = menuRef.current; //add toggle event listener to the details element
+
+    const handleToggle = () => {
+      const isOpen = detailsElement.open;
+      setMenuOpen(isOpen);
+      localStorage.setItem('menuOpen', isOpen);
+    };
+
+    if (detailsElement) {
+      detailsElement.addEventListener('toggle', handleToggle);
+    }
+
+    return () => { //clean up the event listener on unmount
+      if (detailsElement) {
+        detailsElement.removeEventListener('toggle', handleToggle);
+      }
+    };
+  }, []);
 
   const changeColor = (league, teamId) => {
     const newTeam = colorData.leagues[league].find(team => team.id === teamId);
@@ -70,7 +106,7 @@ function App() {
             style={{ backgroundColor: color.hex }}
           >
 
-            { logoChecked === true && 
+            { logoChecked && 
               <img className="logo" src={ `./assets/${currentTeam.logo}` } alt={`${ currentTeam.name } logo`} />
             }
             <div className="color-box">
@@ -78,7 +114,7 @@ function App() {
                 <button type="button" onClick={(event) => { copyColor(color.name, event.currentTarget); }} className="color-name" style={{ color: /^[0-9]/.test(color.hex[1]) ? 'var(--white)' : 'var(--black)' }}>{ color.name }</button>
               }
 
-              { hexChecked === true && 
+              { hexChecked && 
                 <button type="button" onClick={(event) => { copyColor(color.hex, event.currentTarget); }} className="color-hex" style={{ color: /^[0-9]/.test(color.hex[1]) ? 'var(--white)' : 'var(--black)' }}>{ color.hex }</button>
               }
 
@@ -93,7 +129,7 @@ function App() {
       }
       </div>
 
-      <details className="sidebar" open>
+      <details className="sidebar" ref={menuRef} open={menuOpen}>
         <summary className="sidebar-trigger">
           <svg className="burger" aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g>
