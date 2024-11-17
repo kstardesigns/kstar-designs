@@ -16,12 +16,17 @@ function App() {
 
 
   let [currentTeam, setCurrentTeam] = useState(getRandomTeam()); 
-  const [colorChecked, setColorChecked] = useState(true);
+  const [colorChecked, setColorChecked] = useState(() => {
+    const savedValue = localStorage.getItem('colorChecked');
+    return savedValue === 'true';
+  });
   const [hexChecked, setHexChecked] = useState(false);
   const [logoChecked, setLogoChecked] = useState(false);
 
   const handleColorChecked = () => {
-    setColorChecked(!colorChecked);
+    const newValue = !colorChecked;
+    setColorChecked(newValue);
+    localStorage.setItem('colorChecked', newValue);
   };
 
   const handleHexChecked = () => {
@@ -69,7 +74,7 @@ function App() {
               <img className="logo" src={ `./assets/${currentTeam.logo}` } alt={`${ currentTeam.name } logo`} />
             }
             <div className="color-box">
-              { colorChecked === true && 
+              { colorChecked && 
                 <button type="button" onClick={(event) => { copyColor(color.name, event.currentTarget); }} className="color-name" style={{ color: /^[0-9]/.test(color.hex[1]) ? 'var(--white)' : 'var(--black)' }}>{ color.name }</button>
               }
 
