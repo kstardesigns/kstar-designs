@@ -82,6 +82,10 @@ function App() {
   useEffect(() => {
     document.documentElement.style.setProperty('--theme-color', currentTeam.colors[0].hex);
     document.documentElement.style.setProperty('--accent-color', currentTeam.colors[0].hex);
+
+    //update the favicon
+    const faviconLink = document.querySelector('#dynamic-favicon');
+    faviconLink.href = `./assets/${currentTeam.logo}`;
   }, [currentTeam]);
 
   const copyColor = (text, element) => {
