@@ -29,6 +29,9 @@ function App() {
     return savedValue === 'true'; // default to false if no value found
   });
   const [menuOpen, setMenuOpen] = useState(() => {
+    if (window.innerWidth < 480) {
+      return false; //close menu by default on mobile
+    }
     const savedValue = localStorage.getItem('menuOpen');
     return savedValue !== null ? savedValue === 'true' : true; // default to true if no value found
   });
@@ -80,12 +83,20 @@ function App() {
 
   //runs on mount and when currentTeam changes
   useEffect(() => {
+
+    //update color variables
     document.documentElement.style.setProperty('--theme-color', currentTeam.colors[0].hex);
     document.documentElement.style.setProperty('--accent-color', currentTeam.colors[0].hex);
 
     //update the favicon
     const faviconLink = document.querySelector('#dynamic-favicon');
     faviconLink.href = `./assets/${currentTeam.logo}`;
+
+    //close menu on mobile to see team update
+    if (window.innerWidth < 480) {
+      setMenuOpen(false);
+    }
+
   }, [currentTeam]);
 
   const copyColor = (text, element) => {
@@ -110,16 +121,14 @@ function App() {
             style={{ backgroundColor: color.hex }}
           >
 
-            { logoChecked && 
-              <img className="logo" src={ `./assets/${currentTeam.logo}` } alt={`${ currentTeam.name } logo`} />
-            }
             <div className="color-box">
               { colorChecked && 
-                <button type="button" onClick={(event) => { copyColor(color.name, event.currentTarget); }} className="color-name" style={{ color: /^[0-9]/.test(color.hex[1]) ? 'var(--white)' : 'var(--black)' }}>{ color.name }</button>
+                <button type="button" onClick={(event) => { copyColor(color.name, event.currentTarget); }} className="color-name" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3]) ? 'var(--white)' : 'var(--black)' }}>{ color.name }</button>
               }
 
               { hexChecked && 
-                <button type="button" onClick={(event) => { copyColor(color.hex, event.currentTarget); }} className="color-hex" style={{ color: /^[0-9]/.test(color.hex[1]) ? 'var(--white)' : 'var(--black)' }}>{ color.hex }</button>
+                <button type="button" onClick={(event) => { copyColor(color.hex, event.currentTarget); }} className="color-hex" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3])
+                   ? 'var(--white)' : 'var(--black)' }}>{ color.hex }</button>
               }
 
               {/* Later, for showing all similar colors together:
@@ -127,6 +136,9 @@ function App() {
                */}
             </div>
 
+            { logoChecked && 
+              <img className="logo" src={ `./assets/${currentTeam.logo}` } alt={`${ currentTeam.name } logo`} />
+            }
 
           </div> 
         ))
