@@ -330,8 +330,9 @@ main {
       top: 0;
       right: 0;
       background: var(--white);
+      padding: 0;
 
-      svg.burger {
+      &-words, svg.burger {
         display: none;
       }
 
@@ -342,11 +343,29 @@ main {
   }
 
   &-trigger {
-    padding: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    gap: 6px;
+
+    &-words {
+      font-family: 'Poppins', sans-serif;
+      text-transform: uppercase;
+      font-size: 16px;
+      color: var(--black);
+      font-weight: bold;
+    }
 
     svg {
       width: 32px;
       height: 32px;
+      flex: 0 0 32px;
+
+      &.burger {
+        width: 28px;
+        height: 28px;
+        flex: 0 0 28px;
+      }
 
       &.close {
         display: none;
