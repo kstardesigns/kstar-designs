@@ -27,6 +27,10 @@ function App() {
     const savedValue = localStorage.getItem('logoChecked');
     return savedValue === 'true'; // default to false if no value found
   });
+  const [cssChecked, setCssChecked] = useState(() => {
+    const savedValue = localStorage.getItem('cssChecked');
+    return savedValue === 'true'; // default to false if no value found
+  });
   const [menuOpen, setMenuOpen] = useState(() => {
     if (window.innerWidth < 1000) {
       if (window.innerWidth < 480) {
@@ -57,6 +61,12 @@ function App() {
     const newValue = !logoChecked;
     setLogoChecked(newValue);
     localStorage.setItem('logoChecked', newValue);
+  };
+
+  const handleCssChecked = () => {
+    const newValue = !cssChecked;
+    setCssChecked(newValue);
+    localStorage.setItem('cssChecked', newValue);
   };
 
   const menuRef = useRef(null);
@@ -221,8 +231,45 @@ function App() {
           </details>
         ))
       }
-        </div>
 
+          <details className="misc" open>
+            <summary>Misc. stuff</summary>
+            <div className="misc-content">
+              <div className="settings-row">
+                <div className="settings-group">
+                  <input type="checkbox" className="settings-checkbox" name="css-var" id="css-vars" checked={cssChecked} onChange={handleCssChecked} role="checkbox" aria-checked={cssChecked} />
+                  <label htmlFor="css-vars" className="settings-label">CSS variables</label>
+                </div>
+              </div>
+
+              { cssChecked && 
+                <div className="css-vars">
+                  <code className="css-vars-code" style={{ border: `1px solid ${currentTeam.colors[0].hex}`, color: currentTeam.colors[0].hex, backgroundColor: /^[0-7]/.test(currentTeam.colors[0].hex[1]) || /^[0-7]/.test(currentTeam.colors[0].hex[3]) ? 'var(--white)' : 'var(--black)' }}>
+                    <pre id="css-output">
+                      :root {'{'}
+                      {
+                        currentTeam.colors.map((color) => {
+
+                          let initialVarName = `${currentTeam.id}-${color.name.replace(/\s+/g, '-')}`;
+                          let varNameWithoutDupes = initialVarName.split('-').filter((word, index, arr) => arr.indexOf(word) === index).join('-');
+                          let finalVarName = varNameWithoutDupes.replace('-nfl', '').replace('-nhl', '').replace('-mlb', '').replace('-wnba', '').replace('-nba', '');
+
+                          return `\n  --${finalVarName}: ${color.hex};`;
+                        })
+                      }
+                      {'\n}'}
+                    </pre>
+                  </code>
+                  <button type="button" onClick={(event) => { copyColor(document.getElementById('css-output').textContent.trim(), event.currentTarget); }} className="code-copy" style={{ color: currentTeam.colors[0].hex}} title="Copy">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill={currentTeam.colors[0].hex}><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/></svg>
+                  </button>
+                </div>
+              }
+
+              <p className="disclaimer">Site last updated: 12/2024</p>
+            </div>
+          </details>
+        </div>
       </details>
     </main>
   )
