@@ -44,6 +44,7 @@ function App() {
     const savedValue = localStorage.getItem('menuOpen');
     return savedValue !== null ? savedValue === 'true' : true; // default to true if no value found
   });
+  const [selectedColor, setSelectedColor] = useState('');
 
   const handleColorChecked = () => {
     const newValue = !colorChecked;
@@ -64,10 +65,17 @@ function App() {
   };
 
   const handleCssChecked = () => {
+    setSelectedColor('');
     const newValue = !cssChecked;
     setCssChecked(newValue);
     localStorage.setItem('cssChecked', newValue);
   };
+
+   //select - common color change
+   const handleCommonColorChange = (event) => {
+    setCssChecked(false);
+    setSelectedColor(event.target.value);
+  }
 
   const menuRef = useRef(null);
 
@@ -99,6 +107,9 @@ function App() {
   //runs on mount and when currentTeam changes
   useEffect(() => {
 
+    //reset selected color if there is one
+    setSelectedColor('');
+
     //update color variables
     document.documentElement.style.setProperty('--theme-color', currentTeam.colors[0].hex);
     document.documentElement.style.setProperty('--accent-color', currentTeam.colors[0].hex);
@@ -125,12 +136,86 @@ function App() {
       console.error('Failed to copy text: ', err);
     });
   };
+
+  //ignore team names in color that will only be repeated because of that 1 team
+  const ignoredWords = ['49ers', 'dream', 'titans', 'mercury'];
+  const wordCounts = {};
+
+  //gather color counts for dropdown
+  Object.values(colorData.leagues).forEach((teams) => {
+    teams.forEach((team) => {
+      team.colors.forEach((color) => {
+        const words = color.name.split(' ');
+        words.forEach((word) => {
+          if (!ignoredWords.includes(word.toLowerCase())) {
+            if (wordCounts[word]) {
+              wordCounts[word] += 1;
+            } else {
+              wordCounts[word] = 1;
+            }
+          }
+        });
+      });
+    });
+  });
+
+  //convert color counts into array of dropdown options
+  const colorOptions = Object.entries(wordCounts)
+    .filter(([_, count]) => count > 1)
+    .sort((a, b) => b[1] - a[1])
+    .map(([word, count]) => (
+    <option key={word} value={word}>
+      {word} ({count})
+    </option>
+  ));
+
+  //show all teams with selected color
+  const teamsWithSelectedColor = selectedColor ? Object.values(colorData.leagues).flatMap((teams) =>
+    teams.filter((team) =>
+      team.colors.some((color) => color.name.toLowerCase().includes(selectedColor.toLowerCase()))
+    )
+  ) : [];
+
+  //set favicon as a color
+  const setFaviconColor = (hexColor) => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 32;
+    canvas.height = 32;
+    const context = canvas.getContext('2d');
+    context.fillStyle = hexColor;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    const faviconURL = canvas.toDataURL('image/png');//here
+    let faviconLink = document.querySelector('#dynamic-favicon');
+    faviconLink.href = faviconURL;
+  }
+
+  //when selected color changes, change the favicon also
+  useEffect(() => {
+
+    if (selectedColor) {
+      //use first matching team's color
+      const matchingTeam = teamsWithSelectedColor.find(team =>
+        team.colors.some(color => color.name.toLowerCase().includes(selectedColor.toLowerCase()))
+      );
+      const color = matchingTeam.colors.find(color => color.name.toLowerCase().includes(selectedColor.toLowerCase()));
+      if (color) {
+        setFaviconColor(color.hex);
+      }
+    } else {
+      //update the favicon back to team logo
+      const faviconLink = document.querySelector('#dynamic-favicon');
+      faviconLink.href = `./assets/${currentTeam.logo}`;
+    }
+  }, [selectedColor, teamsWithSelectedColor]);
   
   return (
     <main>
-      <div className={ `grid grid--${currentTeam.colors.length}` }>
-      {
-        currentTeam.colors.map((color, colorIndex) => (
+      
+      { !selectedColor && 
+        <div className={ `grid grid--${currentTeam.colors.length}` }>
+
+        { currentTeam.colors.map((color, colorIndex) => (
           <div className="color"
             key={ colorIndex }
             style={{ backgroundColor: color.hex }}
@@ -145,20 +230,42 @@ function App() {
                 <button type="button" onClick={(event) => { copyColor(color.hex, event.currentTarget); }} className="color-hex" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3])
                    ? 'var(--white)' : 'var(--black)' }}>{ color.hex }</button>
               }
-
-              {/* Later, for showing all similar colors together:
-                <span>{ currentTeam.name}</span>
-               */}
             </div>
 
             { logoChecked && 
-              <img className="logo" src={ `./assets/${currentTeam.logo}` } alt={`${ currentTeam.name } logo`} />
+              <img className="logo" src={ `./assets/${currentTeam.logo}` } title={`${ currentTeam.name }`} alt={`${ currentTeam.name } logo`} />
             }
 
           </div> 
-        ))
+        ))}
+        </div>
       }
-      </div>
+      
+      { selectedColor &&
+
+        <div className={ `grid grid--${teamsWithSelectedColor.length}` }>
+
+        { teamsWithSelectedColor.map((team, index) => (
+          team.colors
+            .filter((color) => color.name.toLowerCase().includes(selectedColor.toLowerCase()))
+            .map((color, colorIndex) => (
+              <div className="color"
+                key={ colorIndex }
+                style={{ backgroundColor: color.hex }}
+              >
+                <div className="color-box">
+                  {/* <div className="color-team" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3]) ? 'var(--white)' : 'var(--black)' }}>{ team.name}</div> */}
+                  <button type="button" onClick={(event) => { copyColor(color.name, event.currentTarget); }} className="color-name" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3]) ? 'var(--white)' : 'var(--black)' }}>{ color.name }</button>
+                  <button type="button" onClick={(event) => { copyColor(color.hex, event.currentTarget); }} className="color-hex" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3])
+                      ? 'var(--white)' : 'var(--black)' }}>{ color.hex }</button>
+                </div>
+                <img className="logo" src={ `./assets/${team.logo}` } title={`${ team.name }`} alt={`${ currentTeam.name } logo`} />
+              </div> 
+            ))
+        ))}
+        </div>
+      }
+      
 
       <details className="sidebar" ref={menuRef} open={menuOpen}>
         <summary className="sidebar-trigger">
@@ -196,7 +303,7 @@ function App() {
           
       {
         Object.keys(leagues).map((leagueKey, leagueIndex) => (
-          <details key={leagueIndex} open>
+          <details key={leagueIndex}>
             {/* Display the name of the league */}
             <summary>{ leagueKey.toUpperCase() }</summary>
             <div>      
@@ -204,7 +311,7 @@ function App() {
                 { leagues[leagueKey].map((team, teamIndex) => (
 
                   <li key={ teamIndex }> 
-                    <button type="button" onClick={() => changeColor(leagueKey, team.id)} className={team.id === currentTeam.id ? 'active' : ''} data-id={team.id}> { /* add click function and pass league and team id */ }
+                    <button type="button" onClick={() => changeColor(leagueKey, team.id)} className={!selectedColor && (team.id === currentTeam.id) ? 'active' : ''} data-id={team.id}> { /* add click function and pass league and team id */ }
                       <span className="logo-box">
                         <img className="logo" src={ `./assets/${team.logo}` } alt={`${ team.name } logo`} />
                       </span>
@@ -238,7 +345,10 @@ function App() {
               <div className="settings-row">
                 <div className="settings-group">
                   <input type="checkbox" className="settings-checkbox" name="css-var" id="css-vars" checked={cssChecked} onChange={handleCssChecked} role="checkbox" aria-checked={cssChecked} />
-                  <label htmlFor="css-vars" className="settings-label">CSS variables</label>
+                  <label htmlFor="css-vars" className="settings-label">{ selectedColor ? '' : currentTeam.name } CSS variables</label>
+                </div>
+                <div className="settings-group">
+                  {/* TBD */}
                 </div>
               </div>
 
@@ -265,6 +375,19 @@ function App() {
                   </button>
                 </div>
               }
+
+              <div className="settings-row">
+                <div className="settings-group settings-group--stacked">
+                  <label htmlFor="common-colors">Common colors</label>
+                  <select id="common-colors" onChange={handleCommonColorChange} className="color-select" value={selectedColor}>
+                    <option value="">Select a color</option>
+                    {colorOptions}
+                  </select>
+                </div>
+                <div className="settings-group settings-group--stacked">
+                  {/* TBD */}
+                </div>
+              </div>
 
               <p className="disclaimer">Site last updated: 12/2024</p>
             </div>

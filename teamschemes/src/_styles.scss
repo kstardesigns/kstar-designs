@@ -131,6 +131,10 @@ button, select {
   text-transform: none;
 }
 
+select {
+  padding: 2px;
+}
+
 button, input {
   overflow: visible;
 }
@@ -173,7 +177,7 @@ main {
   grid-auto-rows: 25vh;
 
   &--1 {
-    grid-auto-rows: 100vh;
+    grid-auto-rows: 50vh;
   }
 
   &--2 {
@@ -248,6 +252,15 @@ main {
     }
   }
 
+  .color-team {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: left;
+  }
+
   .color-name, .color-hex {
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
@@ -259,6 +272,7 @@ main {
     text-align: left;
     position: relative;
     display: flex;
+    padding: 0;
 
     @media (width < 480px) {
       font-size: 21px;
@@ -295,7 +309,7 @@ main {
   }
 
   .color-hex {
-  
+    text-transform: lowercase;
   }
 }
 
@@ -397,16 +411,25 @@ main {
     &-group {
       display: flex;
       align-items: center;
-    }
 
-    input[type="checkbox"] {
-      width: 14px;
-      height: 14px;
-    }
+      input[type="checkbox"] {
+        width: 14px;
+        height: 14px;
+      }
 
-    label {
-      padding-left: 8px;
-      font-size: 14px;
+      label {
+        padding-left: 8px;
+        font-size: 14px;
+      }
+
+      &--stacked {
+        flex-direction: column;
+        align-items: flex-start;
+
+        label {
+          padding: 0;
+        }
+      }
     }
 
     &-random {
@@ -516,6 +539,7 @@ main {
 
     .css-vars {
       position: relative;
+      margin-bottom: 8px;
 
       &-code {
         display: block;
