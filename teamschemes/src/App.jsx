@@ -113,6 +113,8 @@ function App() {
     //update color variables
     document.documentElement.style.setProperty('--theme-color', currentTeam.colors[0].hex);
     document.documentElement.style.setProperty('--accent-color', currentTeam.colors[0].hex);
+    const metaThemeColor = document.querySelector('#dynamic-theme');
+    metaThemeColor.setAttribute('content', currentTeam.colors[0].hex);
 
     //update the favicon
     const faviconLink = document.querySelector('#dynamic-favicon');
@@ -188,6 +190,9 @@ function App() {
     const faviconURL = canvas.toDataURL('image/png');//here
     let faviconLink = document.querySelector('#dynamic-favicon');
     faviconLink.href = faviconURL;
+
+    const metaThemeColor = document.querySelector('#dynamic-theme');
+    metaThemeColor.setAttribute('content', hexColor);
   }
 
   //when selected color changes, change the favicon also

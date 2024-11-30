@@ -16,7 +16,7 @@
 
 html {
   accent-color: var(--accent-color);
-  color-scheme: var(--accent-color);
+  color-scheme: var(--theme-color);
 
   *:focus-visible {
     outline: 2px solid var(--accent-color);
@@ -180,32 +180,57 @@ main {
   height: 100vh;
   grid-auto-rows: 25vh;
 
-  &--1 {
-    grid-auto-rows: 50vh;
+  @media (width < 480px) {
+    height: 100dvh;
+    grid-auto-rows: 25dvh;
   }
 
-  &--2 {
+  &--1, &--2 {
     grid-auto-rows: 50vh;
+
+    @media (width < 480px) {
+      grid-auto-rows: 50dvh;
+    }
   }
 
   &--3 {
     grid-auto-rows: 33.333vh;
+    
+    @media (width < 480px) {
+      grid-auto-rows: 33.333dvh;
+    }
   }
 
   &--4 {
     grid-auto-rows: 25vh;
+    
+    @media (width < 480px) {
+      grid-auto-rows: 25dvh;
+    }
   }
 
   &--5 {
     grid-auto-rows: 20vh;
+
+    @media (width < 480px) {
+      grid-auto-rows: 20dvh;
+    }
   }
 
   &--6 {
     grid-auto-rows: 16.666vh;
+
+    @media (width < 480px) {
+      grid-auto-rows: 16.666dvh;
+    }
   }
 
   &--7 {
     grid-auto-rows: 14.286vh;
+
+    @media (width < 480px) {
+      grid-auto-rows: 14.286dvh;
+    }
   }
 
   .color {
@@ -326,9 +351,13 @@ main {
   outline: 6px solid rgb(255 255 255 / 25%);
 
   @media (width < 480px) {
-    top: 0;
-    right: 0;
+    position: fixed;
+    top: initial;
+    right: initial;
+    bottom: 12px;
+    left: 12px;
     outline: 0;
+    margin-bottom: 0;
   }
 
   &[open] {
@@ -339,6 +368,9 @@ main {
     @media (width < 480px) {
       width: 100%;
       height: 100%;
+      bottom: 0;
+      left: 0;
+      padding-bottom: 48px;
     }
 
     .sidebar-trigger {
@@ -349,6 +381,15 @@ main {
       right: 0;
       background: var(--white);
       padding: 0;
+
+      @media (width < 480px) {
+        top: initial;
+        left: initial;
+        bottom: 7px;
+        left: 12px;
+        width: 40px;
+        height: 40px;
+      }
 
       &-words, svg.burger {
         display: none;
@@ -516,6 +557,7 @@ main {
 
     .team-name {
       text-align: left;
+      color: var(--black);
     }
 
     .team-colors {
