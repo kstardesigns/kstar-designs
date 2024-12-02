@@ -75,6 +75,11 @@ function App() {
    const handleCommonColorChange = (event) => {
     setCssChecked(false);
     setSelectedColor(event.target.value);
+
+    //close menu on mobile to see color update
+    if (window.innerWidth < 480) {
+      setMenuOpen(false);
+    }
   }
 
   const menuRef = useRef(null);
@@ -208,10 +213,6 @@ function App() {
         setFaviconColor(color.hex);
       }
 
-      //close menu on mobile to see color update
-      if (window.innerWidth < 480) {
-        //setMenuOpen(false);//here
-      }
     } else {
       //update the favicon back to team logo
       const faviconLink = document.querySelector('#dynamic-favicon');
