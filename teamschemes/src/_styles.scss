@@ -37,6 +37,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: var(--black);
   font-family: 'Tinos';
+  background-color: pink;
 }
 
 ::selection {
@@ -137,6 +138,10 @@ button, select {
 
 select {
   padding: 2px;
+  background-color: white;
+  border: 1px solid var(--black);
+  border-radius: 2px;
+  margin-top: 2px;
 }
 
 button, input {
@@ -342,6 +347,60 @@ main {
   }
 }
 
+.main-random {
+  position: absolute;
+  top: 17px;
+  right: 140px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  padding: 0 2px 2px 0;
+  background-color: var(--white);
+  outline: 6px solid rgb(255 255 255 / 25%);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-right: 0;
+  border-bottom: 0;
+
+  @media (width < 480px) {
+    position: fixed;
+    top: initial;
+    bottom: 0;
+    right: 0;
+    outline: 0;
+    margin-bottom: 0;
+  }
+
+  svg {
+    width: 24px;
+    height: 19px;
+
+    path {
+      fill: var(--accent-color);
+    }
+  }
+
+  @keyframes shake {
+    0% { transform: translateX(0px) translateY(0); }
+    20% { transform: translateX(-2px) translateY(0); }
+    40% { transform: translateX(0px) translateY(0); }
+    60% { transform: translateX(2px) translateY(0); }
+    80% { transform: translateX(0) translateY(-2px); }
+    100% { transform: translateX(0) translateY(0); }
+  }
+
+  &:hover {
+    svg {
+      animation: shake 500ms infinite;
+
+      @media (width < 480px) {
+        animation: none;
+      }
+    }
+  }
+}
 
 .sidebar {
   position: absolute;
@@ -354,10 +413,12 @@ main {
     position: fixed;
     top: initial;
     right: initial;
-    bottom: 12px;
-    left: 12px;
+    bottom: 0;
+    left: 0;
     outline: 0;
     margin-bottom: 0;
+    border-bottom: 0;
+    border-left: 0;
   }
 
   &[open] {
@@ -508,6 +569,10 @@ main {
       &:hover {
         svg {
           animation: shake 500ms infinite;
+
+          @media (width < 480px) {
+            animation: none;
+          }
         }
       }
     }
