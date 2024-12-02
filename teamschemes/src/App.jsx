@@ -6,6 +6,25 @@ function App() {
 
   const leagues = colorData.leagues;
   const leagueKeys = Object.keys(colorData.leagues);
+  const leagueOrderByMonth = [
+    ['nfl', 'nhl', 'nba', 'mlb', 'wnba'], //jan
+    ['nfl', 'nhl', 'nba', 'mlb', 'wnba'], //feb
+    ['mlb', 'nba', 'nhl', 'wnba', 'nfl'], //march
+    ['mlb', 'nba', 'nhl', 'wnba', 'nfl'], //april
+    ['wnba', 'mlb', 'nhl', 'nba', 'nfl'], //may
+    ['nhl', 'nba', 'mlb', 'wnba', 'nfl'], //june
+    ['mlb', 'wnba', 'nba', 'nhl', 'nfl'], //july
+    ['mlb', 'wnba', 'nfl', 'nhl', 'nba'], //aug
+    ['nfl', 'wnba', 'mlb', 'nhl', 'nba'], //sept
+    ['mlb', 'nba', 'nhl', 'nfl', 'wnba'], //oct
+    ['nba', 'nhl', 'mlb', 'nfl', 'wnba'], //nov
+    ['nba', 'nhl', 'nfl', 'mlb', 'wnba'], //dec
+  ];
+  const currentMonth = new Date().getMonth();
+  const currentLeagueOrder = leagueOrderByMonth[currentMonth];
+  
+  //sort league keys based on the current month order
+  const sortedLeagues = currentLeagueOrder.filter((league) => league in leagues);
 
   const getRandomTeam = () => {
     const randomLeagueKey = leagueKeys[Math.floor(Math.random() * leagueKeys.length)];
@@ -317,7 +336,7 @@ function App() {
           </div>
           
       {
-        Object.keys(leagues).map((leagueKey, leagueIndex) => (
+        sortedLeagues.map((leagueKey, leagueIndex) => (
           <details key={leagueIndex}>
             {/* Display the name of the league */}
             <summary>{ leagueKey.toUpperCase() }</summary>
@@ -354,7 +373,7 @@ function App() {
         ))
       }
 
-          <details className="misc" open>
+          <details className="misc">
             <summary>Misc. stuff</summary>
             <div className="misc-content">
               <div className="settings-row">
