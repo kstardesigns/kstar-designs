@@ -25,7 +25,7 @@ function App() {
   });
   const [logoChecked, setLogoChecked] = useState(() => {
     const savedValue = localStorage.getItem('logoChecked');
-    return savedValue === 'true'; // default to false if no value found
+    return savedValue !== null ? savedValue === 'true' : true; // default to true if no value found
   });
   const [cssChecked, setCssChecked] = useState(() => {
     const savedValue = localStorage.getItem('cssChecked');
@@ -187,7 +187,7 @@ function App() {
     context.fillStyle = hexColor;
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    const faviconURL = canvas.toDataURL('image/png');//here
+    const faviconURL = canvas.toDataURL('image/png');
     let faviconLink = document.querySelector('#dynamic-favicon');
     faviconLink.href = faviconURL;
 
@@ -199,13 +199,18 @@ function App() {
   useEffect(() => {
 
     if (selectedColor) {
-      //use first matching team's color
+      //use first matching team's color as favicon color
       const matchingTeam = teamsWithSelectedColor.find(team =>
         team.colors.some(color => color.name.toLowerCase().includes(selectedColor.toLowerCase()))
       );
       const color = matchingTeam.colors.find(color => color.name.toLowerCase().includes(selectedColor.toLowerCase()));
       if (color) {
         setFaviconColor(color.hex);
+      }
+
+      //close menu on mobile to see color update
+      if (window.innerWidth < 480) {
+        //setMenuOpen(false);//here
       }
     } else {
       //update the favicon back to team logo
@@ -271,7 +276,11 @@ function App() {
         </div>
       }
       
-
+      { !menuOpen && 
+        <button className="main-random" type="button" title="random" onClick={() => setCurrentTeam(getRandomTeam())}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M592 192H473.26c12.69 29.59 7.12 65.2-17 89.32L320 417.58V464c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48V240c0-26.51-21.49-48-48-48zM480 376c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm-46.37-186.7L258.7 14.37c-19.16-19.16-50.23-19.16-69.39 0L14.37 189.3c-19.16 19.16-19.16 50.23 0 69.39L189.3 433.63c19.16 19.16 50.23 19.16 69.39 0L433.63 258.7c19.16-19.17 19.16-50.24 0-69.4zM96 248c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z"/></svg>
+        </button>
+      }
       <details className="sidebar" ref={menuRef} open={menuOpen}>
         <summary className="sidebar-trigger">
           <svg className="burger" aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
