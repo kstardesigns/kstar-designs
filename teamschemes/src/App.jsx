@@ -164,7 +164,7 @@ function App() {
   };
 
   //ignore team names in color that will only be repeated because of that 1 team
-  const ignoredWords = ['49ers', 'dream', 'titans', 'mercury'];
+  const ignoredWords = ['49ers', 'dream', 'titans', 'mercury', 'spurs', 'blazers', 'trail', 'suns', 'grizzlies', 'bulls', 'nets', 'aces', 'sun', 'panthers', 'hurricanes', 'wizards', 'jazz', 'magic', 'pelicans', 'heat', 'dallas', 'cavaliers', 'brewers', 'fever', 'avalanche', 'raptors', '76ers', 'knicks', 'pistons', 'nuggets', 'mavericks', 'rockets', 'celtics'];
   const wordCounts = {};
 
   //gather color counts for dropdown
@@ -339,7 +339,7 @@ function App() {
         sortedLeagues.map((leagueKey, leagueIndex) => (
           <details key={leagueIndex}>
             {/* Display the name of the league */}
-            <summary>{ leagueKey.toUpperCase() }</summary>
+            <summary>{ leagueKey.toUpperCase() } <span className="count">{ leagues[leagueKey.toLowerCase()].length } teams</span></summary>
             <div>      
               <ul>  
                 { leagues[leagueKey].map((team, teamIndex) => (
