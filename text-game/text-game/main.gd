@@ -13,6 +13,7 @@ var current_choices: Array = []
 func _ready() -> void:
 	load_choices()
 	show_choices([1001]) # start with first choice ID
+	setup_debug_box()
 	
 func load_choices():
 	var file = FileAccess.open('res://choices.json', FileAccess.READ)
@@ -21,13 +22,34 @@ func load_choices():
 		var parsed = JSON.parse_string(content)
 		if typeof(parsed) == TYPE_DICTIONARY:
 			choices_data = parsed
-			print('Choices loaded:', choices_data)
 		else:
 			print('error parsing JSON: expected a dictionary but got:', typeof(parsed))
 		file.close()
 		
 	else:
 		print('Error loading choices file')
+
+func setup_debug_box():
+	# connect submit button to func
+	$DebugBox/GoToNode/SubmitButton.text = 'Submit'
+	$DebugBox/GoToNode/SubmitButton.connect('pressed', Callable(self, '_on_debug_submit'))
+	
+	# hide it by default
+	$DebugBox.hide()
+	
+func _on_debug_submit():
+	# get the input value from debug box
+	var input_id = $DebugBox/GoToNode/InputField.text.strip_edges()
+	
+	# check if input_id exists in choices dictionary
+	if choices_data.has(input_id):
+		#simulate a button press with given id
+		var debug_button = Button.new()
+		debug_button.set_meta('choice_id', input_id)
+		_on_choice_pressed(debug_button)
+	else:
+		printerr('Invalid debug input: key not found in choices data ->', input_id)
+	
 
 func show_choices(choice_ids: Array):
 	current_choices = choice_ids
@@ -73,3 +95,8 @@ func _on_choice_pressed(button: Button):
 		
 	# Refresh the UI
 	update_story()
+	
+# toggle debug box visibility with f1
+func _input(event):
+	if Input.is_action_just_pressed('toggle_debug_box'):
+		$DebugBox.visible = not $DebugBox.visible
