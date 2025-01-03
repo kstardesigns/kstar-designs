@@ -5,6 +5,7 @@ var mood: int = 5     # player's mood (0 to 10)
 var money: int = 10   # player's money
 var story_text: String = 'Welcome to the game! What would you like to do?'   # default story text
 var choices_data: Dictionary = {}
+var pet_name: String = ''
 
 # current set of choice IDs to display
 var current_choices: Array = []
@@ -33,9 +34,6 @@ func setup_debug_box():
 	# connect submit button to func
 	$DebugBox/GoToNode/SubmitButton.text = 'Submit'
 	$DebugBox/GoToNode/SubmitButton.connect('pressed', Callable(self, '_on_debug_submit'))
-	
-	# hide it by default
-	$DebugBox.hide()
 	
 func _on_debug_submit():
 	# get the input value from debug box
@@ -87,14 +85,57 @@ func _on_choice_pressed(button: Button):
 		mood += data.mood_change
 		money += data.money_change
 		
-		# load next choices
-		var next_choices = data.next_choices
-		show_choices(next_choices)
+		# load next choices or input field
+		if data.next_choices:
+			var next_choices = data.next_choices
+			show_choices(next_choices)
+		else: # clear out container for something besides choice buttons
+			current_choices = []
+			var choices_container = $ChoicesContainer
+			for child in choices_container.get_children():
+				choices_container.remove_child(child)
+				child.queue_free()
+			
+			# show input field
+			if data.has('input_field'):
+				_show_input_field(data.input_field)
+
 	else:
 		print('Error: choice data not found!')
+	
+func _show_input_field(input_field_data: Array):
+	var input_field_id = input_field_data[0]
+	var placeholder_text = input_field_data[1]
+	var next_node_id = input_field_data[2]
+	var choices_container = $ChoicesContainer
+	
+	# create input field
+	var input_field = LineEdit.new()
+	input_field.placeholder_text = placeholder_text
+	choices_container.add_child(input_field)
+	
+	# create submit button
+	var submit_button = Button.new()
+	submit_button.text = 'Submit'
+	choices_container.add_child(submit_button)
+	submit_button.connect('pressed', Callable(self, '_on_submit_input').bind(input_field, input_field_id, next_node_id))
+
+	
+# handle submission of input field data
+func _on_submit_input(input_field: LineEdit, input_field_id: String, next_node_id: String):
+	var input_value = input_field.text.strip_edges()
+	
+	if input_value.size() == 0: #LEFT OFF - it's not catching if it's empty
+		printerr('Please enter a valid input')
+		return
 		
-	# Refresh the UI
-	update_story()
+	# store the input value based on the field id
+	if input_field_id == 'pet_name':
+		pet_name = input_value
+		print('Pet name submitted: ', pet_name)
+		
+	# move to the next node
+	show_choices([next_node_id])
 	
 # toggle debug box visibility with f1
 func _input(event):
