@@ -3,17 +3,16 @@ extends Control
 # variables to track game state
 var default_mood: int = 5
 var mood: int = default_mood     # player's mood (0 to 10)
-var default_money: int = 10
+var default_money: int = 0
 var money: int = default_money   # player's money
 var story_text: String = 'Welcome to the game! What would you like to do?'   # default story text
 var choices_data: Dictionary = {}
 var current_node = '1001'
 
-# player defined variables
+# player-defined variables
 var variable_map = {
 	'pet_name': '',
-	'job_title': 'fast food worker',
-	'toilet_bob': ''
+	'job_title': 'fast food worker'
 }
 
 # current set of choice IDs to display
@@ -28,7 +27,7 @@ func _ready() -> void:
 		load_game_state()
 	else:
 		print('no save file found, starting a new game...')
-		show_choices([1001]) # start with first choice ID
+		show_choices([current_node]) # start with first choice ID
 		
 	setup_debug_box()
 	
