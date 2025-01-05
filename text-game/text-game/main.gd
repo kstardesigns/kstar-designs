@@ -31,10 +31,19 @@ func _ready() -> void:
 		load_game_state()
 	else:
 		print('no save file found, starting a new game...')
-		show_choices([current_node]) # start with first choice ID
+		start_game()
 		
 	setup_debug_box()
 	
+func start_game():
+	var data = choices_data.get(current_node, null)
+	print(data.next_choices)
+	if data:
+		story_text = data.story
+		show_choices(data.next_choices)
+	else:
+		print('Error: Could not load starting node!')
+
 func load_choices():
 	var file = FileAccess.open('res://choices.json', FileAccess.READ)
 	if file:
@@ -90,7 +99,6 @@ func show_choices(choice_ids: Array):
 
 	# Iterate over next_choices
 	for choice_data in current_choices:
-		print(typeof(choice_data))
 		if typeof(choice_data) == TYPE_STRING:
 			# Ensure choice_data is a valid key in choices_data
 			if not choices_data.has(choice_data):
@@ -306,7 +314,7 @@ func load_game_state():
 				printerr('Error loading save file: Current node not found in choices data.')
 		else:
 			print('Save file is empty or invalid. Starting a new game.')
-			show_choices([1001]) # Default to starting node
+			start_game()
 	else:
 		printerr('Save file not found.')
 
