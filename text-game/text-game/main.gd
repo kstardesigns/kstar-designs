@@ -2,9 +2,13 @@ extends Control
 
 # variables to track game state
 var default_mood: int = 5
-var mood: int = default_mood     # player's mood (0 to 10)
+var mood: int = default_mood
+var mood_min: int = 0
+var mood_max: int = 10
+
 var default_money: int = 0
 var money: int = default_money   # player's money
+
 var story_text: String = 'Welcome to the game! What would you like to do?'   # default story text
 var choices_data: Dictionary = {}
 var current_node = '1001'
@@ -181,7 +185,7 @@ func _on_choice_pressed(button: Button):
 	if data:
 		# Update game state
 		story_text = data.story
-		mood += data.mood_change
+		adjust_mood(data.mood_change)
 		money += data.money_change
 		current_node = str(choice_id)
 		
@@ -221,7 +225,6 @@ func _show_input_field(input_field_data: Array):
 	choices_container.add_child(submit_button)
 	submit_button.connect('pressed', Callable(self, '_on_submit_input').bind(input_field, input_field_id, next_node_id))
 
-	
 # Handle submission of input field data
 func _on_submit_input(input_field: LineEdit, input_field_id: String, next_node_id: String):
 	var input_value = input_field.text.strip_edges()
@@ -240,7 +243,7 @@ func _on_submit_input(input_field: LineEdit, input_field_id: String, next_node_i
 		
 	# Move to the next node
 	story_text = data.story
-	mood += data.mood_change
+	adjust_mood(data.mood_change)
 	money += data.money_change
 	current_node = str(next_node_id)
 	show_choices(data.next_choices)
@@ -248,6 +251,9 @@ func _on_submit_input(input_field: LineEdit, input_field_id: String, next_node_i
 	# Auto-save after submitting input
 	save_game_state()
 
+func adjust_mood(change: int) -> void:
+	mood = clamp(mood + change, mood_min, mood_max)
+	
 func save_game_state():
 	var save_data = {
 		'mood': mood,
