@@ -86,6 +86,7 @@ func show_choices(choice_ids: Array):
 
 	# Iterate over next_choices
 	for choice_data in current_choices:
+		print(typeof(choice_data))
 		if typeof(choice_data) == TYPE_STRING:
 			# Ensure choice_data is a valid key in choices_data
 			if not choices_data.has(choice_data):
@@ -110,6 +111,34 @@ func show_choices(choice_ids: Array):
 			button.text = choices_data[chosen_id].button_text
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 			choices_container.add_child(button)
+		elif typeof(choice_data) == TYPE_DICTIONARY:
+			# Mood-based choices
+			var chosen_id = choice_data.get('id', null)
+			
+			if chosen_id == null:
+				print('Invalid dictionary format: Missing \'id\'')
+				continue
+			
+			# check for mood_min or mood_max
+			if choice_data.has('mood_min'):
+				print('contains mood_min')
+				if mood >= choice_data['mood_min']:
+					print('more than or equal to mood_min')
+					var button = Button.new()
+					button.set_meta('choice_id', chosen_id)
+					button.text = choices_data[chosen_id].button_text
+					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
+					choices_container.add_child(button)
+			elif choice_data.has('mood_max'):
+				if mood <= choice_data['mood_max']:
+					print('less than or equal to mood_max')
+					var button = Button.new()
+					button.set_meta('choice_id', chosen_id)
+					button.text = choices_data[chosen_id].button_text
+					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
+					choices_container.add_child(button)
+			else:
+				print('no mood constraints found')
 		else:
 			print('Invalid next_choices format:', choice_data)
 
