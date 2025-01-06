@@ -1,0 +1,79 @@
+{
+	"1000": { 
+		# Explanation: Node number - all the info about this node is within the object
+		# Type: String
+		
+		"button_text": "Eat some breakfast",
+		# Explanation: Text that appears on button that will lead to this node
+		# Type: String 
+		
+		"story": "You look through the pantry for something to eat.",
+		# Explanation: Story text that appears to the user on this node
+		# Type: String 
+		
+		"mood_change": 3, 
+		# Explanation: Amount to increase or decrease mood. Mood range is 0-10
+		# Type: Integer 
+		
+		"mood_change_info": "Found a family size box of Fruity Pebbles",
+		# Explanation: Explanation for mood_change, mostly as a reminder to me
+		# Type: String 
+		
+		"money_change": -15, 
+		# Explanation: Amount to increase or decrease money on this node
+		# Type: Integer
+		
+		"add_inventory": ["bus pass", "credit card"], 
+		# Explanation: List of items to add to inventory on this node
+		# Type: Array
+		
+		"remove_inventory": ["bike"], 
+		# Explanation: List of items to remove from inventory on this node
+		# Type: Array
+		
+		"next_choices": [ 
+			# Explanation: List of choice buttons that will appear on the current story node.
+			# Type: Array
+			# ** An array which can mix strings, objects, and arrays to output choice buttons.
+			# Explanations for each type below.
+			
+			"1023"
+			# Explanation: Creates a choice button of node in string
+			# Type: String
+			
+			[
+				{ "id": "1012", "probability": 95 },
+				{ "id": "1013", "probability": 5 }
+			],
+			# Explanation: Creates a choice button based on a random number 1-100.
+			# Type: Array of objects
+			# ** Can include any number of items. Items must have an id and
+			# probabilities that add up to 100. A random number will decide
+			# which one is shown as a choice button.
+			
+			{ "id": "1021", "mood_min": 5 },
+			# Explanation: May create a choice button, based on mood [minimum].
+			# Type: Object
+			# ** One item that must include an id and mood_min. Choice button
+			# will appear only if mood is equal to mood_min or more.
+			
+			{ "id": "1022", "mood_max": 3 },
+			# Explanation: May create a choice button, based on mood [maximum].
+			# Type: Object
+			# ** One item that must include an id and mood_max. Choice button
+			# will appear only if mood is less than or equal to mood_max.
+		],
+		
+		
+		"next_choices": null,
+		"input_field": ["pet_name", "Enter your cat's name...", "1011"]
+		# Explanation: This is used to display a text input field and submit button 
+		# instead of choice buttons
+		# Type: Array
+		# ** This must include 3 items: item 1 is the id corresponding to the key 
+		# in variable_map where the input will be stored. item 2 is the placeholder
+		# text in the input field. item 3 is the node where the story will go once
+		# the text is submitted in the input field. NOTE: next_choices must be set 
+		# to null if input_field is used.
+	},
+}
