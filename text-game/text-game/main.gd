@@ -1,6 +1,21 @@
+# ============================
+# TOC:
+# variables to track game state
+# player-defined variables
+# game set up
+# choice functionality
+# systems (mood, inventory)
+# node functions
+# load & save
+# Key shortcuts for testing
+
+# ============================
+
 extends Control
 
+# ============================
 # variables to track game state
+
 var default_mood: int = 5
 var mood: int = default_mood
 var mood_min: int = 0
@@ -15,14 +30,23 @@ var story_text: String = 'Welcome to the game! What would you like to do?'   # d
 var choices_data: Dictionary = {}
 var current_node = '1001'
 
+# current set of choice IDs to display
+var current_choices: Array = []
+# ============================
+
+
+# ============================
 # player-defined variables
+
 var variable_map = {
 	'pet_name': '',
 	'job_title': 'fast food worker'
 }
+# ============================
 
-# current set of choice IDs to display
-var current_choices: Array = []
+
+# ============================
+# game set up
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -76,7 +100,11 @@ func _on_debug_submit():
 		_on_choice_pressed(debug_button)
 	else:
 		printerr('Invalid debug input: key not found in choices data ->', input_id)
-	
+# ============================
+
+
+# ============================
+# choice functionality
 
 func update_story():
 	# Replace placeholders in the story text (e.g., [pet_name])
@@ -159,7 +187,6 @@ func show_choices(choice_ids: Array):
 	# Update the story text and stats
 	update_story()
 
-
 func get_random_choice_from_array(probability_group: Array) -> String:
 	var random_roll = randi() % 100 + 1  # Random number between 1 and 100
 	var cumulative_probability = 0
@@ -197,11 +224,11 @@ func _on_choice_pressed(button: Button):
 		story_text = data.story
 		current_node = str(choice_id)
 		
-		# mood updates
+		# Mood updates
 		if (data.has('mood_change')):
 			adjust_mood(data.mood_change)
 			
-		# money updates
+		# Money updates
 		if (data.has('money_change')):
 			money += data.money_change
 		
@@ -280,6 +307,11 @@ func _on_submit_input(input_field: LineEdit, input_field_id: String, next_node_i
 	
 	# Auto-save after submitting input
 	save_game_state()
+# ============================
+
+
+# ============================
+# systems (mood, inventory)
 
 func adjust_mood(change: int) -> void:
 	mood = clamp(mood + change, mood_min, mood_max)
@@ -303,6 +335,19 @@ func remove_from_inventory(item: String) -> void:
 func update_inventory_display():
 	var inventory_text = "Inventory:\n" + ", ".join(inventory)
 	$StatsContainer/InventoryLabel.text = inventory_text
+# ============================
+
+
+# ============================
+# node functions
+
+#LEFT OFF: 2. Define Example Functions
+
+# ============================
+
+
+# ============================
+# load & save
 
 func save_game_state():
 	var save_data = {
@@ -363,8 +408,12 @@ func load_game_state():
 			start_game()
 	else:
 		printerr('Save file not found.')
+# ============================
 
+
+# ============================
 # Key shortcuts for testing
+
 func _input(event):
 	if Input.is_action_just_pressed('toggle_debug_box'): # Toggle debug box visibility with F1
 		$DebugBox.visible = not $DebugBox.visible
@@ -374,3 +423,5 @@ func _input(event):
 			file.store_string('{}')
 			file.close()
 			print('Save file reset!')
+			
+# ============================
