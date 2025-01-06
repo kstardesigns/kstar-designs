@@ -9,6 +9,8 @@ var mood_max: int = 10
 var default_money: int = 0
 var money: int = default_money   # player's money
 
+var inventory: Array = []
+
 var story_text: String = 'Welcome to the game! What would you like to do?'   # default story text
 var choices_data: Dictionary = {}
 var current_node = '1001'
@@ -193,9 +195,24 @@ func _on_choice_pressed(button: Button):
 	if data:
 		# Update game state
 		story_text = data.story
-		adjust_mood(data.mood_change)
-		money += data.money_change
 		current_node = str(choice_id)
+		
+		# mood updates
+		if (data.has('mood_change')):
+			adjust_mood(data.mood_change)
+			
+		# money updates
+		if (data.has('money_change')):
+			money += data.money_change
+		
+		# Inventory updates
+		if (data.has('add_inventory')):
+			for item in data.add_inventory:
+				add_to_inventory(item)
+				
+		if (data.has('remove_inventory')):
+			for item in data.remove_inventory:
+				remove_from_inventory(item)
 		
 		# Load next choices or input field
 		if data.next_choices:
@@ -251,8 +268,13 @@ func _on_submit_input(input_field: LineEdit, input_field_id: String, next_node_i
 		
 	# Move to the next node
 	story_text = data.story
-	adjust_mood(data.mood_change)
-	money += data.money_change
+	
+	if (data.has('mood_change')):
+		adjust_mood(data.mood_change)
+		
+	if (data.has('money_change')):
+		money += data.money_change
+	
 	current_node = str(next_node_id)
 	show_choices(data.next_choices)
 	
@@ -262,12 +284,33 @@ func _on_submit_input(input_field: LineEdit, input_field_id: String, next_node_i
 func adjust_mood(change: int) -> void:
 	mood = clamp(mood + change, mood_min, mood_max)
 	
+func add_to_inventory(item: String) -> void:
+	if not inventory.has(item):
+		inventory.append(item)
+		update_inventory_display()
+		print('added to inventory: ', item)
+	else:
+		print('item already in inventory: ', item)
+		
+func remove_from_inventory(item: String) -> void:
+	if inventory.has(item):
+		inventory.erase(item)
+		update_inventory_display()
+		print('removed from inventory: ', item)
+	else:
+		print('item not found in inventory: ', item)
+	
+func update_inventory_display():
+	var inventory_text = "Inventory:\n" + ", ".join(inventory)
+	$StatsContainer/InventoryLabel.text = inventory_text
+
 func save_game_state():
 	var save_data = {
 		'mood': mood,
 		'money': money,
 		'variable_map': variable_map,
-		'current_node': current_node
+		'current_node': current_node,
+		'inventory': inventory
 	}
 	
 	var file = FileAccess.open('user://save_game.json', FileAccess.WRITE)
@@ -291,7 +334,10 @@ func load_game_state():
 			money = save_data.get('money', default_money) # Default money if not found
 			variable_map = save_data.get('variable_map', variable_map) # Default to empty variable_map if not found
 			current_node = save_data.get('current_node', '1001') # Default to 1001 if not found
+			inventory = save_data.get('inventory', []) # Default to empty inventory
 			
+			update_inventory_display()
+		
 			# Load corresponding node data
 			var data = choices_data.get(current_node, null)
 			if data:
