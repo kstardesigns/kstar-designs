@@ -123,8 +123,8 @@ func update_story():
 	$StoryTextLabel.text = updated_story
 	
 	# Update stats labels
-	$StatsContainer/MoodLabel.text = 'Mood: %d' % mood
-	$StatsContainer/MoneyLabel.text = 'Money: $%d' % money
+	$DebugBox/MoodSection/MoodLabel.text = 'Mood: %d' % mood
+	$StatsContainer/MoneyLabel.text = '$%d' % money
 
 func show_choices(choice_ids: Array):
 	current_choices = choice_ids
@@ -349,7 +349,7 @@ func remove_from_inventory(item: String) -> void:
 		print('item not found in inventory: ', item)
 	
 func update_inventory_display():
-	var inventory_text = "Inventory:\n" + ", ".join(inventory)
+	var inventory_text = 'Inventory:\n' + ', '.join(inventory)
 	$StatsContainer/InventoryLabel.text = inventory_text
 # ============================
 
@@ -357,8 +357,8 @@ func update_inventory_display():
 # ============================
 # node functions
 
-func explode() -> void:
-	print('you exploded and died, game over!')
+func introduce_inventory_section() -> void:
+	print('this is when the inventory section will appear')
 
 # ============================
 
