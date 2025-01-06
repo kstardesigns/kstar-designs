@@ -51,7 +51,8 @@ var variable_map = {
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	load_choices()
-
+	validate_run_functions()
+	
 	if FileAccess.file_exists('user://save_game.json'):
 		print('save file found, loading game...')
 		load_game_state()
@@ -83,9 +84,16 @@ func load_choices():
 	else:
 		print('Error loading choices file')
 
+func validate_run_functions():
+	for key in choices_data.keys():
+		var data = choices_data[key]
+		if data.has('run_function') and not has_method(data.run_function):
+			printerr('Invalid run_function \'%s\' in node %s!' % [data.run_function, key])
+			
 func setup_debug_box():
 	# connect submit button to func
 	$DebugBox/GoToNode/SubmitButton.text = 'Submit'
+	$DebugBox/GoToNode/InputField.placeholder_text = 'Node'
 	$DebugBox/GoToNode/SubmitButton.connect('pressed', Callable(self, '_on_debug_submit'))
 	
 func _on_debug_submit():
@@ -241,6 +249,14 @@ func _on_choice_pressed(button: Button):
 			for item in data.remove_inventory:
 				remove_from_inventory(item)
 		
+		# Check for and run the specified function
+		if (data.has('run_function')):
+			var function_name = data.run_function
+			if has_method(function_name):
+				call(function_name)
+			else:
+				printerr('function "%s" does not exist!' % function_name)
+		
 		# Load next choices or input field
 		if data.next_choices:
 			var next_choices = data.next_choices
@@ -341,7 +357,8 @@ func update_inventory_display():
 # ============================
 # node functions
 
-#LEFT OFF: 2. Define Example Functions
+func explode() -> void:
+	print('you exploded and died, game over!')
 
 # ============================
 
