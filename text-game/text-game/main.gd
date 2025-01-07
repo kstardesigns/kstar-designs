@@ -1,6 +1,7 @@
 # ============================
 # TOC:
 # variables to track game state
+# variables for scene nodes
 # player-defined variables
 # game set up
 # choice functionality
@@ -32,6 +33,21 @@ var current_node = '1001'
 
 # current set of choice IDs to display
 var current_choices: Array = []
+
+# ============================
+
+
+# ============================
+# variables for scene nodes
+@onready var node_debug_box = $DebugBox
+@onready var node_debug_gotoinput = $DebugBox/GoToNode/InputField
+@onready var node_debug_gotosubmit = $DebugBox/GoToNode/SubmitButton
+@onready var node_debug_moodtext = $DebugBox/MoodSection/MoodLabel
+@onready var node_storytext = $MainVBox/StoryTextLabel
+@onready var node_choicescontainer = $MainVBox/ChoiceStatsHBox/ChoicesContainer
+@onready var node_moneytext = $MainVBox/ChoiceStatsHBox/StatsContainer/MoneyLabel
+@onready var node_inventorytext = $MainVBox/ChoiceStatsHBox/StatsContainer/InventoryLabel
+
 # ============================
 
 
@@ -40,7 +56,8 @@ var current_choices: Array = []
 
 var variable_map = {
 	'pet_name': '',
-	'job_title': 'fast food worker'
+	'job_title': 'fast food worker',
+	'player_name': ''
 }
 # ============================
 
@@ -92,13 +109,13 @@ func validate_run_functions():
 			
 func setup_debug_box():
 	# connect submit button to func
-	$DebugBox/GoToNode/SubmitButton.text = 'Submit'
-	$DebugBox/GoToNode/InputField.placeholder_text = 'Node'
-	$DebugBox/GoToNode/SubmitButton.connect('pressed', Callable(self, '_on_debug_submit'))
+	node_debug_gotosubmit.text = 'Submit'
+	node_debug_gotoinput.placeholder_text = 'Node'
+	node_debug_gotosubmit.connect('pressed', Callable(self, '_on_debug_submit'))
 	
 func _on_debug_submit():
 	# get the input value from debug box
-	var input_id = $DebugBox/GoToNode/InputField.text.strip_edges()
+	var input_id = node_debug_gotoinput.text.strip_edges()
 	
 	# check if input_id exists in choices dictionary
 	if choices_data.has(input_id):
@@ -120,17 +137,17 @@ func update_story():
 	for key in variable_map.keys():
 		var placeholder = '[%s]' % key
 		updated_story = updated_story.replace(placeholder, variable_map[key])
-	$StoryTextLabel.text = updated_story
+	node_storytext.text = updated_story
 	
 	# Update stats labels
-	$DebugBox/MoodSection/MoodLabel.text = 'Mood: %d' % mood
-	$StatsContainer/MoneyLabel.text = '$%d' % money
+	node_debug_moodtext.text = 'Mood: %d' % mood
+	node_moneytext.text = '$%d' % money
 
 func show_choices(choice_ids: Array):
 	current_choices = choice_ids
 
 	# Clear existing choice buttons
-	var choices_container = $ChoicesContainer
+	var choices_container = node_choicescontainer
 	for child in choices_container.get_children():
 		choices_container.remove_child(child)
 		child.queue_free()
@@ -220,7 +237,7 @@ func _create_choice_button(choice_data: Dictionary):
 	button.text = updated_button_text
 	button.set_meta('choice_id', choice_data.id)
 	button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
-	$ChoicesContainer.add_child(button)
+	node_choicescontainer.add_child(button)
 
 func _on_choice_pressed(button: Button):
 	# Retrieve the choice from the button's metadata
@@ -263,7 +280,7 @@ func _on_choice_pressed(button: Button):
 			show_choices(next_choices)
 		else: # Clear out container for something besides choice buttons
 			current_choices = []
-			var choices_container = $ChoicesContainer
+			var choices_container = node_choicescontainer
 			for child in choices_container.get_children():
 				child.queue_free()
 			update_story()
@@ -280,7 +297,7 @@ func _show_input_field(input_field_data: Array):
 	var input_field_id = input_field_data[0]
 	var placeholder_text = input_field_data[1]
 	var next_node_id = input_field_data[2]
-	var choices_container = $ChoicesContainer
+	var choices_container = node_choicescontainer
 	
 	# Create input field
 	var input_field = LineEdit.new()
@@ -350,7 +367,7 @@ func remove_from_inventory(item: String) -> void:
 	
 func update_inventory_display():
 	var inventory_text = 'Inventory:\n' + ', '.join(inventory)
-	$StatsContainer/InventoryLabel.text = inventory_text
+	node_inventorytext.text = inventory_text
 # ============================
 
 
@@ -433,7 +450,7 @@ func load_game_state():
 
 func _input(event):
 	if Input.is_action_just_pressed('toggle_debug_box'): # Toggle debug box visibility with F1
-		$DebugBox.visible = not $DebugBox.visible
+		node_debug_box.visible = not node_debug_box.visible
 	elif Input.is_action_just_pressed('reset_save_file'): # Reset the save file to default
 		var file = FileAccess.open('user://save_game.json', FileAccess.WRITE)
 		if file:
