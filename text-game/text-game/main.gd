@@ -34,19 +34,24 @@ var current_node = '1001'
 # current set of choice IDs to display
 var current_choices: Array = []
 
+
+
 # ============================
 
 
 # ============================
-# variables for scene nodes
+# variables and themes for scene nodes
 @onready var node_debug_box = $DebugBox
 @onready var node_debug_gotoinput = $DebugBox/GoToNode/InputField
 @onready var node_debug_gotosubmit = $DebugBox/GoToNode/SubmitButton
 @onready var node_debug_moodtext = $DebugBox/MoodSection/MoodLabel
-@onready var node_storytext = $MainVBox/StoryTextLabel
+@onready var node_storytext = $MainVBox/MarginContainer/StoryTextLabel
 @onready var node_choicescontainer = $MainVBox/ChoiceStatsHBox/ChoicesContainer
 @onready var node_moneytext = $MainVBox/ChoiceStatsHBox/StatsContainer/MoneyLabel
 @onready var node_inventorytext = $MainVBox/ChoiceStatsHBox/StatsContainer/InventoryLabel
+
+var choices_theme = preload("res://themes/buttons.tres")
+
 
 # ============================
 
@@ -164,6 +169,8 @@ func show_choices(choice_ids: Array):
 			var button = Button.new()
 			button.set_meta('choice_id', choice_data)
 			button.text = choices_data[choice_data].button_text
+			button.theme = choices_theme
+			button.size_flags_horizontal = 0
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 			choices_container.add_child(button)
 		elif typeof(choice_data) == TYPE_ARRAY:
@@ -176,6 +183,7 @@ func show_choices(choice_ids: Array):
 			var button = Button.new()
 			button.set_meta('choice_id', chosen_id)
 			button.text = choices_data[chosen_id].button_text
+			button.theme = choices_theme
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 			choices_container.add_child(button)
 		elif typeof(choice_data) == TYPE_DICTIONARY:
@@ -194,6 +202,7 @@ func show_choices(choice_ids: Array):
 					var button = Button.new()
 					button.set_meta('choice_id', chosen_id)
 					button.text = choices_data[chosen_id].button_text
+					button.theme = choices_theme
 					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 					choices_container.add_child(button)
 			elif choice_data.has('mood_max'):
@@ -202,6 +211,7 @@ func show_choices(choice_ids: Array):
 					var button = Button.new()
 					button.set_meta('choice_id', chosen_id)
 					button.text = choices_data[chosen_id].button_text
+					button.theme = choices_theme
 					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 					choices_container.add_child(button)
 			else:
@@ -225,19 +235,20 @@ func get_random_choice_from_array(probability_group: Array) -> String:
 	print('DEBUG: No valid choice found for random roll:', random_roll)
 	return ''  # Fallback, though this should never happen if probabilities are valid
 
-func _create_choice_button(choice_data: Dictionary):
-	# Replace placeholders in the button text (e.g., [pet_name])
-	var updated_button_text = choice_data.button_text
-	for key in variable_map.keys():
-		var placeholder = '[%s]' % key
-		updated_button_text = updated_button_text.replace(placeholder, variable_map[key])
-	
-	# Create and add the button
-	var button = Button.new()
-	button.text = updated_button_text
-	button.set_meta('choice_id', choice_data.id)
-	button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
-	node_choicescontainer.add_child(button)
+#func _create_choice_button(choice_data: Dictionary):
+	## Replace placeholders in the button text (e.g., [pet_name])
+	#var updated_button_text = choice_data.button_text
+	#for key in variable_map.keys():
+		#var placeholder = '[%s]' % key
+		#updated_button_text = updated_button_text.replace(placeholder, variable_map[key])
+	#
+	## Create and add the button
+	#var button = Button.new()
+	#button.text = updated_button_text
+	#button.theme = choices_theme #here
+	#button.set_meta('choice_id', choice_data.id)
+	#button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
+	#node_choicescontainer.add_child(button)
 
 func _on_choice_pressed(button: Button):
 	# Retrieve the choice from the button's metadata
@@ -307,6 +318,7 @@ func _show_input_field(input_field_data: Array):
 	# Create submit button
 	var submit_button = Button.new()
 	submit_button.text = 'Submit'
+	submit_button.theme = choices_theme
 	choices_container.add_child(submit_button)
 	submit_button.connect('pressed', Callable(self, '_on_submit_input').bind(input_field, input_field_id, next_node_id))
 

@@ -33,12 +33,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StoryTextLabel" type="Label" parent="MainVBox"]
+[node name="MarginContainer" type="MarginContainer" parent="MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 100
+
+[node name="StoryTextLabel" type="Label" parent="MainVBox/MarginContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 theme_override_colors/font_color = Color(0.266667, 0.266667, 0.266667, 1)
+theme_override_constants/line_spacing = -4
 theme_override_fonts/font = ExtResource("2_67xfp")
 theme_override_font_sizes/font_size = 28
 horizontal_alignment = 1
@@ -51,7 +61,7 @@ size_flags_vertical = 3
 
 [node name="ChoicesContainer" type="VBoxContainer" parent="MainVBox/ChoiceStatsHBox"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 size_flags_stretch_ratio = 3.0
 
 [node name="StatsContainer" type="HBoxContainer" parent="MainVBox/ChoiceStatsHBox"]
@@ -71,8 +81,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -134.0
-offset_bottom = 58.0
+offset_left = -144.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 68.0
 grow_horizontal = 0
 
 [node name="GoToNode" type="HBoxContainer" parent="DebugBox"]
