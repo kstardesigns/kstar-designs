@@ -8,7 +8,7 @@
 # systems (mood, inventory)
 # node functions
 # load & save
-# Key shortcuts for testing
+# key shortcuts for testing
 
 # ============================
 
@@ -153,9 +153,8 @@ func show_choices(choice_ids: Array):
 	current_choices = choice_ids
 
 	# Clear existing choice buttons
-	var choices_container = node_choicescontainer
-	for child in choices_container.get_children():
-		choices_container.remove_child(child)
+	for child in node_choicescontainer.get_children():
+		node_choicescontainer.remove_child(child)
 		child.queue_free()
 
 	# Iterate over next_choices
@@ -173,7 +172,7 @@ func show_choices(choice_ids: Array):
 			button.theme = choices_theme
 			button.size_flags_horizontal = 0
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
-			choices_container.add_child(button)
+			node_choicescontainer.add_child(button)
 		elif typeof(choice_data) == TYPE_ARRAY:
 			# Probabilistic choices
 			var chosen_id = get_random_choice_from_array(choice_data)
@@ -186,7 +185,7 @@ func show_choices(choice_ids: Array):
 			button.text = choices_data[chosen_id].button_text
 			button.theme = choices_theme
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
-			choices_container.add_child(button)
+			node_choicescontainer.add_child(button)
 		elif typeof(choice_data) == TYPE_DICTIONARY:
 			# Mood-based choices
 			var chosen_id = choice_data.get('id', null)
@@ -205,7 +204,7 @@ func show_choices(choice_ids: Array):
 					button.text = choices_data[chosen_id].button_text
 					button.theme = choices_theme
 					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
-					choices_container.add_child(button)
+					node_choicescontainer.add_child(button)
 			elif choice_data.has('mood_max'):
 				if mood <= choice_data['mood_max']:
 					print('less than or equal to mood_max')
@@ -214,7 +213,7 @@ func show_choices(choice_ids: Array):
 					button.text = choices_data[chosen_id].button_text
 					button.theme = choices_theme
 					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
-					choices_container.add_child(button)
+					node_choicescontainer.add_child(button)
 			else:
 				print('no mood constraints found')
 		else:
@@ -222,7 +221,7 @@ func show_choices(choice_ids: Array):
 
 	# Update the story text and stats
 	update_story()
-
+	
 func get_random_choice_from_array(probability_group: Array) -> String:
 	var random_roll = randi() % 100 + 1  # Random number between 1 and 100
 	var cumulative_probability = 0
@@ -459,7 +458,7 @@ func load_game_state():
 			current_node = save_data.get('current_node', '1001') # Default to 1001 if not found
 			inventory = save_data.get('inventory', []) # Default to empty inventory
 			
-			#reset inventory
+			# Reset inventory
 			inventory_images.clear()
 			for item in inventory:
 				initialize_inventory_image(item)
@@ -494,7 +493,7 @@ func load_game_state():
 
 
 # ============================
-# Key shortcuts for testing
+# key shortcuts for testing
 
 func _input(event):
 	if Input.is_action_just_pressed('toggle_debug_box'): # Toggle debug box visibility with F1
