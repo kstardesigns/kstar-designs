@@ -224,26 +224,68 @@
 	},
 	"1020": {
 		"button_text": "",
-		"story": "cool, your name is [player_name]",
+		"story": "You slide your name tag onto your shirt.",
+		"next_choices": ["1021"]
+	},
+	"1021": {
+		"button_text": "Start the car",
+		"story": "You turn the key in the ignition twice and it doesn’t start.",
 		"next_choices": [
-			{ "id": "1021", "mood_min": 5 },
-			{ "id": "1022", "mood_max": 3 },
+			[
+				{ "id": "1022", "probability": 85 },
+				{ "id": "1024", "probability": 15 }
+			],
 			"1023"
 		]
 	},
-	"1021": {
-		"button_text": "TEST mood was at least 5 so you see this",
-		"story": "TODO: you got here because your mood was 5 or more ",
-		"next_choices": []
-	},
 	"1022": {
-		"button_text": "TEST mood was no more than 3 so you see this",
-		"story": "TODO: you got here because your mood was 3 or less ",
+		"button_text": "Turn the key again",
+		"story": "It starts! You really need to take the car to the shop, but that’s a problem for another day. You head out of your neighborhood.",
+		"mood_change": 1,
+		"mood_change_info": "your car started",
 		"next_choices": []
 	},
 	"1023": {
-		"button_text": "TEST the one you always see",
-		"story": "TODO: a place you got to unrelated to your mood",
-		"next_choices": []
+		"button_text": "Scream out “fuck!”",
+		"story": "Yelling a swear word felt good but it didn’t start the car.",
+		"next_choices": ["1022"]
 	},
+	"1024": {
+		"button_text": "Turn the key again",
+		"story": "It still doesn’t start. You try it three more times before giving up.",
+		"mood_change": -1,
+		"mood_change_info": "your car didn’t start",
+		"next_choices": ["1025", "1026", "1027"]
+	},
+	"1025": {
+		"button_text": "Take your bike to work",
+		"story": "You lock your car and head over to the bike rack. You scan through a dozen bikes for yours.",
+		"next_choices": [
+			[
+				{ "id": "1028", "probability": 90 },
+				{ "id": "1029", "probability": 10 }
+			]
+		]
+	},
+	"1026": {
+		"button_text": "Catch the bus",
+		"story": "",
+		"next_choices": [""]
+	},
+	"1027": {
+		"button_text": "Walk to work",
+		"story": "",
+		"next_choices": [""]
+	},
+	"1028": {
+		"button_text": "You find your bike and unlock it.",
+		"story": "You put on your helmet. It’s a 3-mile bike ride to work but you’ll only be about 15 minutes late. You leave your neighborhood and get to the main road.",
+		"add_inventory": ["helmet"],
+		"next_choices": [""]
+	},
+	"1029": {
+		"button_text": "You panic when you can’t find your bike.",
+		"story": "",
+		"next_choices": [""]
+	}
 }
