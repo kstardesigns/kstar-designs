@@ -26,6 +26,7 @@ var default_money: int = 0
 var money: int = default_money   # player's money
 
 var inventory: Array = []
+var inventory_images: Dictionary = {}
 
 var story_text: String = 'Welcome to the game! What would you like to do?'   # default story text
 var choices_data: Dictionary = {}
@@ -48,7 +49,7 @@ var current_choices: Array = []
 @onready var node_storytext = $MainVBox/MarginContainer/StoryTextLabel
 @onready var node_choicescontainer = $MainVBox/ChoiceStatsHBox/ChoicesContainer
 @onready var node_moneytext = $MainVBox/ChoiceStatsHBox/StatsContainer/MoneyLabel
-@onready var node_inventorytext = $MainVBox/ChoiceStatsHBox/StatsContainer/InventoryLabel
+@onready var node_inventory = $MainVBox/ChoiceStatsHBox/StatsContainer/Inventory
 
 var choices_theme = preload("res://themes/buttons.tres")
 
@@ -364,6 +365,7 @@ func adjust_mood(change: int) -> void:
 func add_to_inventory(item: String) -> void:
 	if not inventory.has(item):
 		inventory.append(item)
+		initialize_inventory_image(item)
 		update_inventory_display()
 		print('added to inventory: ', item)
 	else:
@@ -372,14 +374,43 @@ func add_to_inventory(item: String) -> void:
 func remove_from_inventory(item: String) -> void:
 	if inventory.has(item):
 		inventory.erase(item)
+		inventory_images.erase(item)
 		update_inventory_display()
 		print('removed from inventory: ', item)
 	else:
 		print('item not found in inventory: ', item)
 	
 func update_inventory_display():
-	var inventory_text = 'Inventory:\n' + ', '.join(inventory)
-	node_inventorytext.text = inventory_text
+	#var inventory_text = 'Inventory:\n' + ', '.join(inventory)
+	#node_inventory.text = inventory_text
+	
+	# clear items before re-adding them
+	for child in node_inventory.get_children():
+		node_inventory.remove_child(child)
+		child.queue_free()
+		
+	for item in inventory:
+		print('hits on each inventory')
+
+		var image_box = TextureRect.new()
+		if inventory_images.has(item) and inventory_images[item] != null:
+			image_box.texture = inventory_images[item]
+			image_box.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
+			image_box.custom_minimum_size = Vector2(64, 64)
+			node_inventory.add_child(image_box)
+		else:
+			print('Warning: Missing image for inventory item:', item)
+			
+func initialize_inventory_image(item: String) -> void:
+	var normalized_item_name = item.replace(' ', '_').to_lower()
+	var image_path = "res://images/%s.png" % normalized_item_name
+	if FileAccess.file_exists(image_path):
+		inventory_images[item] = load(image_path)
+	else:
+		print('Warning: No image found for inventory item:', item)
+		inventory_images[item] = null  # Optional: Handle missing images
+
+		
 # ============================
 
 
@@ -401,7 +432,8 @@ func save_game_state():
 		'money': money,
 		'variable_map': variable_map,
 		'current_node': current_node,
-		'inventory': inventory
+		'inventory': inventory,
+		'inventory_images': inventory_images
 	}
 	
 	var file = FileAccess.open('user://save_game.json', FileAccess.WRITE)
@@ -427,6 +459,10 @@ func load_game_state():
 			current_node = save_data.get('current_node', '1001') # Default to 1001 if not found
 			inventory = save_data.get('inventory', []) # Default to empty inventory
 			
+			#reset inventory
+			inventory_images.clear()
+			for item in inventory:
+				initialize_inventory_image(item)
 			update_inventory_display()
 		
 			# Load corresponding node data
