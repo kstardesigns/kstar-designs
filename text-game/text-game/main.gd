@@ -158,6 +158,8 @@ func show_choices(choice_ids: Array):
 		child.queue_free()
 
 	# Iterate over next_choices
+	var index = 1
+	
 	for choice_data in current_choices:
 		if typeof(choice_data) == TYPE_STRING:
 			# Ensure choice_data is a valid key in choices_data
@@ -168,7 +170,7 @@ func show_choices(choice_ids: Array):
 			# Simple node ID
 			var button = Button.new()
 			button.set_meta('choice_id', choice_data)
-			button.text = choices_data[choice_data].button_text
+			button.text = '[%d] %s' % [index, choices_data[choice_data].button_text]
 			button.theme = choices_theme
 			button.size_flags_horizontal = 0
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
@@ -182,7 +184,7 @@ func show_choices(choice_ids: Array):
 			
 			var button = Button.new()
 			button.set_meta('choice_id', chosen_id)
-			button.text = choices_data[chosen_id].button_text
+			button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
 			button.theme = choices_theme
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 			node_choicescontainer.add_child(button)
@@ -201,7 +203,7 @@ func show_choices(choice_ids: Array):
 					print('more than or equal to mood_min')
 					var button = Button.new()
 					button.set_meta('choice_id', chosen_id)
-					button.text = choices_data[chosen_id].button_text
+					button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
 					button.theme = choices_theme
 					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 					node_choicescontainer.add_child(button)
@@ -210,7 +212,7 @@ func show_choices(choice_ids: Array):
 					print('less than or equal to mood_max')
 					var button = Button.new()
 					button.set_meta('choice_id', chosen_id)
-					button.text = choices_data[chosen_id].button_text
+					button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
 					button.theme = choices_theme
 					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 					node_choicescontainer.add_child(button)
@@ -218,6 +220,8 @@ func show_choices(choice_ids: Array):
 				print('no mood constraints found')
 		else:
 			print('Invalid next_choices format:', choice_data)
+			
+		index += 1 
 
 	# Update the story text and stats
 	update_story()
@@ -493,16 +497,24 @@ func load_game_state():
 
 
 # ============================
-# key shortcuts for testing
+# key shortcuts for testing & game functionality
 
 func _input(event):
-	if Input.is_action_just_pressed('toggle_debug_box'): # Toggle debug box visibility with F1
+	if Input.is_action_just_pressed('toggle_debug_box'): # F1: Toggle debug box visibility
 		node_debug_box.visible = not node_debug_box.visible
-	elif Input.is_action_just_pressed('reset_save_file'): # Reset the save file to default
+	elif Input.is_action_just_pressed('reset_save_file'): # F2: Reset the save file to default
 		var file = FileAccess.open('user://save_game.json', FileAccess.WRITE)
 		if file:
 			file.store_string('{}')
 			file.close()
 			print('Save file reset!')
+	elif event is InputEventKey and event.pressed: # 1-9: pick choice button
+		# Check if the pressed key is a number between 1 and 9
+		var key_num = event.physical_keycode - KEY_1 + 1 # Convert physical keycode to a number (1-9)
+		if key_num in range(1, 10): # Ensure it's within valid range
+			if key_num <= node_choicescontainer.get_child_count():
+				var button = node_choicescontainer.get_child(key_num - 1) as Button
+				if button:
+					_on_choice_pressed(button)
 			
 # ============================
