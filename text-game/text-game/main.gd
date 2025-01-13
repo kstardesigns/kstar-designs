@@ -239,21 +239,6 @@ func get_random_choice_from_array(probability_group: Array) -> String:
 	print('DEBUG: No valid choice found for random roll:', random_roll)
 	return ''  # Fallback, though this should never happen if probabilities are valid
 
-#func _create_choice_button(choice_data: Dictionary):
-	## Replace placeholders in the button text (e.g., [pet_name])
-	#var updated_button_text = choice_data.button_text
-	#for key in variable_map.keys():
-		#var placeholder = '[%s]' % key
-		#updated_button_text = updated_button_text.replace(placeholder, variable_map[key])
-	#
-	## Create and add the button
-	#var button = Button.new()
-	#button.text = updated_button_text
-	#button.theme = choices_theme #here
-	#button.set_meta('choice_id', choice_data.id)
-	#button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
-	#node_choicescontainer.add_child(button)
-
 func _on_choice_pressed(button: Button):
 	# Retrieve the choice from the button's metadata
 	var choice_id = button.get_meta('choice_id')
