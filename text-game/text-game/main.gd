@@ -403,12 +403,12 @@ func update_inventory_display():
 			
 func initialize_inventory_image(item: String) -> void:
 	var normalized_item_name = item.replace(' ', '_').to_lower()
-	var image_path = "res://images/%s.png" % normalized_item_name
+	var image_path = 'res://images/%s.png' % normalized_item_name
 	if FileAccess.file_exists(image_path):
 		inventory_images[item] = load(image_path)
 	else:
-		print('Warning: No image found for inventory item:', item)
-		inventory_images[item] = null  # Optional: Handle missing images
+		inventory_images[item] = load('res://images/placeholder.png')
+		printerr('Warning: No image found for inventory item:', item)
 
 		
 # ============================
