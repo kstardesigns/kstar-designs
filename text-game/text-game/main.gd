@@ -43,6 +43,7 @@ var current_choices: Array = []
 # ============================
 # variables and themes for scene nodes
 @onready var node_debug_box = $DebugBox
+@onready var node_debug_current = $DebugBox/CurrentNodeLabel
 @onready var node_debug_gotoinput = $DebugBox/GoToNode/InputField
 @onready var node_debug_gotosubmit = $DebugBox/GoToNode/SubmitButton
 @onready var node_debug_moodtext = $DebugBox/MoodSection/MoodLabel
@@ -75,6 +76,7 @@ var variable_map = {
 func _ready() -> void:
 	load_choices()
 	validate_run_functions()
+	set_properties_for_buttons(self)
 	
 	if FileAccess.file_exists('user://save_game.json'):
 		print('save file found, loading game...')
@@ -112,9 +114,18 @@ func validate_run_functions():
 		var data = choices_data[key]
 		if data.has('run_function') and not has_method(data.run_function):
 			printerr('Invalid run_function \'%s\' in node %s!' % [data.run_function, key])
-			
+
+func set_properties_for_buttons(parent_node: Node) -> void:
+	for child in parent_node.get_children():
+		if child is Button:
+			child.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+			child.theme = choices_theme  # Apply the theme to all buttons
+		elif child.get_child_count() > 0:
+			set_properties_for_buttons(child)  # Recursively check children		
+				
 func setup_debug_box():
 	# connect submit button to func
+	node_debug_current.text = current_node
 	node_debug_gotosubmit.text = 'Submit'
 	node_debug_gotoinput.placeholder_text = 'Node'
 	node_debug_gotosubmit.connect('pressed', Callable(self, '_on_debug_submit'))
@@ -172,6 +183,7 @@ func show_choices(choice_ids: Array):
 			button.set_meta('choice_id', choice_data)
 			button.text = '[%d] %s' % [index, choices_data[choice_data].button_text]
 			button.theme = choices_theme
+			button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 			button.size_flags_horizontal = 0
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 			node_choicescontainer.add_child(button)
@@ -248,6 +260,8 @@ func _on_choice_pressed(button: Button):
 		# Update game state
 		story_text = data.story
 		current_node = str(choice_id)
+		node_debug_current.text = current_node
+
 		
 		# Mood updates
 		if (data.has('mood_change')):
@@ -369,8 +383,6 @@ func remove_from_inventory(item: String) -> void:
 		print('item not found in inventory: ', item)
 	
 func update_inventory_display():
-	#var inventory_text = 'Inventory:\n' + ', '.join(inventory)
-	#node_inventory.text = inventory_text
 	
 	# clear items before re-adding them
 	for child in node_inventory.get_children():
@@ -494,6 +506,13 @@ func _input(event):
 			file.close()
 			print('Save file reset!')
 	elif event is InputEventKey and event.pressed: # 1-9: pick choice button
+		# Check if the currently focused control is an InputField
+		var focused = get_viewport().gui_get_focus_owner()
+		
+		# If the focused control is a LineEdit, return early to avoid button press logic
+		if focused is LineEdit:
+			return
+			
 		# Check if the pressed key is a number between 1 and 9
 		var key_num = event.physical_keycode - KEY_1 + 1 # Convert physical keycode to a number (1-9)
 		if key_num in range(1, 10): # Ensure it's within valid range
