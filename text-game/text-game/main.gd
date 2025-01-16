@@ -194,6 +194,7 @@ func show_choices(choice_ids: Array):
 			button.size_flags_horizontal = 0
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 			node_choicescontainer.add_child(button)
+			index += 1
 		elif typeof(choice_data) == TYPE_ARRAY:
 			# Probabilistic choices
 			var chosen_id = get_random_choice_from_array(choice_data)
@@ -207,6 +208,7 @@ func show_choices(choice_ids: Array):
 			button.theme = choices_theme
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 			node_choicescontainer.add_child(button)
+			index += 1
 		elif typeof(choice_data) == TYPE_DICTIONARY:
 			# Mood-based choices
 			var chosen_id = choice_data.get('id', null)
@@ -226,6 +228,7 @@ func show_choices(choice_ids: Array):
 					button.theme = choices_theme
 					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 					node_choicescontainer.add_child(button)
+					index += 1
 			elif choice_data.has('mood_max'):
 				if mood <= choice_data['mood_max']:
 					print('less than or equal to mood_max')
@@ -235,6 +238,7 @@ func show_choices(choice_ids: Array):
 					button.theme = choices_theme
 					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 					node_choicescontainer.add_child(button)
+					index += 1
 			else:
 				print('no mood constraints found')
 				
@@ -254,11 +258,10 @@ func show_choices(choice_ids: Array):
 							button.theme = choices_theme
 							button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 							node_choicescontainer.add_child(button)
+							index += 1
 
 		else:
-			print('Invalid next_choices format:', choice_data)
-			
-		index += 1 
+			print('Invalid next_choices format:', choice_data) 
 
 	# Update the story text and stats
 	update_story()
