@@ -426,21 +426,25 @@ func update_diary_entry():
 	for i in final_diary_list.size():
 		var entry = final_diary_list[i]
 		
+		# replace placeholders in variable_map
+		var updated_entry = entry
+		for key in variable_map.keys():
+			var placeholder = '[%s]' % key
+			updated_entry = updated_entry.replace(placeholder, variable_map[key])
+		
 		# Determine prefix based on the index
 		if i == 0: # first one
-			final_diary_entry += entry
+			final_diary_entry += updated_entry
 		elif i == final_diary_list.size() - 1: # last one
-			final_diary_entry += ", and %s." % entry
+			final_diary_entry += ", and %s." % updated_entry
 		elif i == 1: # second one
-			final_diary_entry += ', then %s' % entry
+			final_diary_entry += ', then %s' % updated_entry
+		elif i > 1 and i % 20 == 0: # every 20th one
+			final_diary_entry += ', and %s.' % updated_entry
 		elif i > 1 and (i - 1) % 20 == 0: # after every 20th one
-			final_diary_entry += "\n\nAfter that, %s" % entry
-		elif i > 1 and i % 20: # every 20th one
-			final_diary_entry += ', and %s.' % entry
-			if i % 40:
-				final_diary_entry += '\n\n'
+			final_diary_entry += "\n\nAfter that, %s" % updated_entry
 		else: # all others
-			final_diary_entry += ', %s' % entry
+			final_diary_entry += ', %s' % updated_entry
 	print('final entry: %s\n' % final_diary_entry)
 
 
@@ -466,7 +470,8 @@ func save_game_state():
 		'variable_map': variable_map,
 		'current_node': current_node,
 		'inventory': inventory,
-		'inventory_images': inventory_images
+		'inventory_images': inventory_images,
+		'final_diary_list': final_diary_list
 	}
 	
 	var file = FileAccess.open('user://save_game.json', FileAccess.WRITE)
@@ -491,6 +496,7 @@ func load_game_state():
 			variable_map = save_data.get('variable_map', variable_map) # Default to empty variable_map if not found
 			current_node = save_data.get('current_node', '1001') # Default to 1001 if not found
 			inventory = save_data.get('inventory', []) # Default to empty inventory
+			final_diary_list = save_data.get('final_diary_list', []) # Default to empty diary list
 			
 			# Reset inventory
 			inventory_images.clear()
