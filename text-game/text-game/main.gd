@@ -431,7 +431,9 @@ func update_inventory_display():
 		node_inventory.remove_child(child)
 		child.queue_free()
 		
-	for item in inventory:
+	# Iterate over the inventory array in reverse order
+	for i in range(inventory.size() - 1, -1, -1): # Start from the last index to 0
+		var item = inventory[i]
 		var image_box = TextureRect.new()
 		if inventory_images.has(item) and inventory_images[item] != null:
 			image_box.texture = inventory_images[item]
