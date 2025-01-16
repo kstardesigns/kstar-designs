@@ -69,6 +69,10 @@ var variable_map = {
 	'job_title': 'fast food worker',
 	'player_name': ''
 }
+
+var event_map = {
+	
+}
 # ============================
 
 
@@ -233,6 +237,24 @@ func show_choices(choice_ids: Array):
 					node_choicescontainer.add_child(button)
 			else:
 				print('no mood constraints found')
+				
+			# check if a key begins with event_
+			for key in choice_data.keys():
+				if key.begins_with('event_'):
+					var event = key.substr('event_'.length())
+					print('there is an event') 
+					
+					# check if event_map has the key and contains the same value - create button
+					if event_map.has(event):
+						var event_value = event_map[event]
+						if event_value == choice_data[key]:
+							var button = Button.new()
+							button.set_meta('choice_id', chosen_id)
+							button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
+							button.theme = choices_theme
+							button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
+							node_choicescontainer.add_child(button)
+
 		else:
 			print('Invalid next_choices format:', choice_data)
 			
@@ -298,6 +320,12 @@ func _on_choice_pressed(button: Button):
 		else:
 			printerr('diary entry missing for node %s' % choice_id)
 		
+		# Track events if necessary
+		if (data.has('event_tracker')):
+			var event_to_track = data.event_tracker
+			event_map[event_to_track[0]] = event_to_track[1]			
+			print('events so far:', event_map)
+			
 		# Load next choices or input field
 		if data.next_choices:
 			var next_choices = data.next_choices

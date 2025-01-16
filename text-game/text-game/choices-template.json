@@ -25,6 +25,12 @@
 		# Explanation: This is added to the final_diary_entry which is shown on Game Over
 		# Type: String
 		
+		"event_tracker": ["has_dog", "true"]
+		# Explanation: Adds an event to event map to be checked for choice possibilities 
+		# Type: Array
+		# ** Must include two strings: name of event to track, and value you want to check.
+		# It will be used in next_choices below to determine whether to show a button 
+		
 		"mood_change": 3, 
 		# Explanation: Amount to increase or decrease mood. Mood range is 0-10
 		# Type: Integer 
@@ -81,6 +87,13 @@
 			# Type: Object
 			# ** One item that must include an id and mood_max. Choice button
 			# will appear only if mood is less than or equal to mood_max.
+			
+			{ "id": "1025", "event_has_dog": "true" },
+			# Explanation: May create a choice button, based on an event's fvalue. 
+			# Type: Object
+			# ** One item that must include an id and a key starting with event_.
+			# Choice button will appear only if key is equal to value of its value
+			
 		],
 		
 		
