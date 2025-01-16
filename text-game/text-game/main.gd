@@ -35,6 +35,9 @@ var current_node = '1001'
 # current set of choice IDs to display
 var current_choices: Array = []
 
+var final_diary_list: Array = []
+var final_diary_entry: String = '';
+
 
 
 # ============================
@@ -261,7 +264,6 @@ func _on_choice_pressed(button: Button):
 		story_text = data.story
 		current_node = str(choice_id)
 		node_debug_current.text = current_node
-
 		
 		# Mood updates
 		if (data.has('mood_change')):
@@ -287,6 +289,14 @@ func _on_choice_pressed(button: Button):
 				call(function_name)
 			else:
 				printerr('function "%s" does not exist!' % function_name)
+				
+		# Update final_diary_entry
+		if (data.has('diary_entry')):
+			var diary_entry = data.diary_entry
+			final_diary_list.append(diary_entry)
+			update_diary_entry()
+		else:
+			printerr('diary entry missing for node %s' % choice_id)
 		
 		# Load next choices or input field
 		if data.next_choices:
@@ -355,6 +365,7 @@ func _on_submit_input(input_field: LineEdit, input_field_id: String, next_node_i
 	
 	# Auto-save after submitting input
 	save_game_state()
+	
 # ============================
 
 
@@ -390,8 +401,6 @@ func update_inventory_display():
 		child.queue_free()
 		
 	for item in inventory:
-		print('hits on each inventory')
-
 		var image_box = TextureRect.new()
 		if inventory_images.has(item) and inventory_images[item] != null:
 			image_box.texture = inventory_images[item]
@@ -410,7 +419,31 @@ func initialize_inventory_image(item: String) -> void:
 		inventory_images[item] = load('res://images/placeholder.png')
 		printerr('Warning: No image found for inventory item:', item)
 
+func update_diary_entry():
+	# Reset the entry
+	final_diary_entry = 'Suddenly, I was awake. First, '
+	
+	for i in final_diary_list.size():
+		var entry = final_diary_list[i]
 		
+		# Determine prefix based on the index
+		if i == 0: # first one
+			final_diary_entry += entry
+		elif i == final_diary_list.size() - 1: # last one
+			final_diary_entry += ", and %s." % entry
+		elif i == 1: # second one
+			final_diary_entry += ', then %s' % entry
+		elif i > 1 and (i - 1) % 20 == 0: # after every 20th one
+			final_diary_entry += "\n\nAfter that, %s" % entry
+		elif i > 1 and i % 20: # every 20th one
+			final_diary_entry += ', and %s.' % entry
+			if i % 40:
+				final_diary_entry += '\n\n'
+		else: # all others
+			final_diary_entry += ', %s' % entry
+	print('final entry: %s\n' % final_diary_entry)
+
+
 # ============================
 
 
