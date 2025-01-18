@@ -663,44 +663,107 @@
 	},
 	"1072": {
 		"button_text": "“I’m sorry! I’ll get it.”",
-		"story": " ",
-		"diary_entry": " ",
-		"next_choices": []
+		"story": "You pull a little bag from your dog’s leash dispenser, put it on your hand, and pick up the shit while the woman glares at you. You look up at her and say...",
+		"diary_entry": "so I picked up the shit",
+		"next_choices": ["1074", "1075", "1073b"]
 	},
 	"1073": {
 		"button_text": "“I didn’t notice. Why don’t you clean it?!”",
-		"story": " ",
-		"diary_entry": " ",
-		"next_choices": []
+		"story": "You turn around and walk back across the bridge, leaving the woman with your dog’s shit, as she yells angrily.",
+		"diary_entry": "but I left the shit with her",
+		"next_choices": [],
+		"paused": "true"
+	},
+	"1073b": {
+		"button_text": "“You take it.” Force the bag into her hands.",
+		"story": "You turn around and walk back across the bridge, leaving the woman with your dog’s shit, as she yells angrily.",
+		"diary_entry": "but I left the shit with her",
+		"next_choices": [],
+		"paused": "true"
 	},
 	"1074": {
-		"button_text": "",
+		"button_text": "“There. Happy?”",
 		"story": " ",
 		"diary_entry": " ",
+		"add_inventory": "bag of dog poop",
 		"next_choices": []
 	},
 	"1075": {
-		"button_text": "",
+		"button_text": "nothing. Hang your head in shame.",
 		"story": " ",
 		"diary_entry": " ",
+		"add_inventory": "bag of dog poop",
 		"next_choices": []
 	},
 	"1076": {
-		"button_text": "",
-		"story": " ",
+		"button_text": "Don’t give up yet",
+		"story": "",
 		"diary_entry": " ",
-		"next_choices": []
+		"next_choices": [],
+		"paused": "true"
 	},
 	"1077": {
 		"button_text": "You have regrets. Swim back up.",
+		"story": "You surface and back away from the body. What were you thinking? Your clothes are soaked in dirty canal water. And all so you could see a possible dead body?",
+		"diary_entry": "I chickened out and got out of the canal",
+		"next_choices": ["1079"]
+	},
+	"1077b": {
+		"button_text": "Maybe I should bail on this weird idea...",
+		"story": "You surface and back away from the body. What were you thinking? Your clothes are soaked in dirty canal water. And all so you could see a possible dead body?",
+		"diary_entry": "I chickened out and got out of the canal",
+		"next_choices": ["1079"]
+	},
+	"1078": {
+		"button_text": "Try to get the body out of the water.",
+		"story": "You go to surface but then you realize why the body is stuck. Their one submerged leg is bent at the knee, with their foot caught on old wood pallet. You hear the muted barking from [pet_name] on the bridge.",
+		"diary_entry": "I decided to try to get the body out of the water",
+		"next_choices": ["1080", "1077b"]
+	},
+	"1079": {
+		"button_text": "Climb the ladder",
 		"story": " ",
 		"diary_entry": " ",
 		"next_choices": []
 	},
-	"1078": {
-		"button_text": "Try to get the body out of the water.",
+	"1080": {
+		"button_text": "Dive under again and dislodge the foot",
+		"story": "You quickly swim up for some air, then dive back down. Now that you know what you’re looking for, it’s a bit easier to see where the wood pallet is. You swim down, directly underneath the pallet, and pull at the leg until you dislodge the foot from the pallet. But the pallet itself breaks free from the hill of trash, causing a ton of it to fall into the water, piling onto the body. The full weight of the body falls forward onto you, and you instantly sink. You catch one last glimpse of a beach ball on the surface before the weight of the trash and corpse push your body deeper.",
+		"diary_entry": "after trying to dislodge the body, the trash heap buried me",
+		"next_choices": ["1081"]
+	},
+	"1081": {
+		"button_text": "Flail around and try to swim",
+		"story": "You’ve been underwater for almost a whole minute but it feels like much longer. You struggle to swim out of the garbage patch. A few seconds later you’re at the bottom of the canal, about 17 feet deep. You push a heavy trash bag off you and notice your leg is trapped beneath the sunken wood pallet.",
+		"diary_entry": "I tried to swim out but I was stuck under the wood pallet",
+		"mood_change": -5,
+		"mood_change_info": "made the decision that led to possible drowning",
+		"next_choices": ["1082"]
+	},
+	"1082": {
+		"button_text": "Get it off",
+		"story": "Your need to breathe is overwhelming. You get some more loose trash off your chest. You involuntarily try to breathe, letting a little bit of water in. The struggle continues, but you’re finding it harder to fight. Your lungs start to burn. You’re so tired.",
+		"diary_entry": "my lungs were burning and I struggled to keep fighting",
+		"next_choices": [
+			[
+				{ "id": "1084", "probability": 98 },
+				{ "id": "1076", "probability": 2 }
+			],
+			"1083",
+		]
+	},
+	"1083": {
+		"button_text": "It’s okay to rest",
+		"story": "A calm washes over you. You hear faint piano from above, just like your grandma used to play when you visited as a kid. A slow, cheerful, recognizable piece that she wrote herself. So peaceful. You close your eyes.",
+		"diary_entry": "but I couldn't fight anymore. A calm washed over me at the last second, before I drowned.",		
+		"run_function": "game_over",
+		"next_choices": []
+	},
+	"1084": {
+		"button_text": "Keep up the fight",
 		"story": " ",
 		"diary_entry": " ",
+		"run_function": "game_over",
 		"next_choices": []
 	},
 }

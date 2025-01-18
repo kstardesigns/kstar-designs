@@ -490,6 +490,9 @@ func update_diary_entry():
 func introduce_inventory_section() -> void:
 	print('this is when the inventory section will appear')
 
+func game_over() -> void:
+	print('instead of going to another node, go to game over screen here')
+
 # ============================
 
 
