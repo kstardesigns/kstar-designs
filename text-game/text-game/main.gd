@@ -55,7 +55,7 @@ var final_diary_entry: String = '';
 @onready var node_moneytext = $MainVBox/ChoiceStatsHBox/StatsContainer/MoneyLabel
 @onready var node_inventory = $MainVBox/ChoiceStatsHBox/StatsContainer/Inventory
 
-var choices_theme = preload("res://themes/buttons.tres")
+var choices_theme = preload('res://themes/buttons.tres')
 
 
 # ============================
@@ -189,8 +189,6 @@ func show_choices(choice_ids: Array):
 			var button = Button.new()
 			button.set_meta('choice_id', choice_data)
 			button.text = '[%d] %s' % [index, choices_data[choice_data].button_text]
-			button.theme = choices_theme
-			button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 			button.size_flags_horizontal = 0
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 			node_choicescontainer.add_child(button)
@@ -205,7 +203,6 @@ func show_choices(choice_ids: Array):
 			var button = Button.new()
 			button.set_meta('choice_id', chosen_id)
 			button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
-			button.theme = choices_theme
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 			node_choicescontainer.add_child(button)
 			index += 1
@@ -225,7 +222,6 @@ func show_choices(choice_ids: Array):
 					var button = Button.new()
 					button.set_meta('choice_id', chosen_id)
 					button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
-					button.theme = choices_theme
 					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 					node_choicescontainer.add_child(button)
 					index += 1
@@ -235,7 +231,6 @@ func show_choices(choice_ids: Array):
 					var button = Button.new()
 					button.set_meta('choice_id', chosen_id)
 					button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
-					button.theme = choices_theme
 					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 					node_choicescontainer.add_child(button)
 					index += 1
@@ -255,7 +250,6 @@ func show_choices(choice_ids: Array):
 							var button = Button.new()
 							button.set_meta('choice_id', chosen_id)
 							button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
-							button.theme = choices_theme
 							button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 							node_choicescontainer.add_child(button)
 							index += 1
@@ -264,6 +258,7 @@ func show_choices(choice_ids: Array):
 			print('Invalid next_choices format:', choice_data) 
 
 	# Update the story text and stats
+	set_properties_for_buttons(self)
 	update_story()
 	
 func get_random_choice_from_array(probability_group: Array) -> String:
@@ -306,14 +301,6 @@ func _on_choice_pressed(button: Button):
 		if (data.has('remove_inventory')):
 			for item in data.remove_inventory:
 				remove_from_inventory(item)
-		
-		# Check for and run the specified function
-		if (data.has('run_function')):
-			var function_name = data.run_function
-			if has_method(function_name):
-				call(function_name)
-			else:
-				printerr('function "%s" does not exist!' % function_name)
 				
 		# Update final_diary_entry
 		if (data.has('diary_entry')):
@@ -344,6 +331,14 @@ func _on_choice_pressed(button: Button):
 			if data.has('input_field'):
 				_show_input_field(data.input_field)
 				
+		# Check for and run the specified function
+		if (data.has('run_function')):
+			var function_name = data.run_function
+			if has_method(function_name):
+				call(function_name)
+			else:
+				printerr('function "%s" does not exist!' % function_name)
+				
 		save_game_state()
 	else:
 		print('Error: choice data not found!')
@@ -362,7 +357,6 @@ func _show_input_field(input_field_data: Array):
 	# Create submit button
 	var submit_button = Button.new()
 	submit_button.text = 'Submit'
-	submit_button.theme = choices_theme
 	choices_container.add_child(submit_button)
 	submit_button.connect('pressed', Callable(self, '_on_submit_input').bind(input_field, input_field_id, next_node_id))
 
@@ -490,8 +484,22 @@ func update_diary_entry():
 func introduce_inventory_section() -> void:
 	print('this is when the inventory section will appear')
 
-func game_over() -> void:
-	print('instead of going to another node, go to game over screen here')
+func game_over() -> void: 
+	var gameover_scene = load("res://gameover.tscn").instantiate()
+	gameover_scene.final_diary_entry = final_diary_entry  # Pass the variable
+	get_tree().root.add_child(gameover_scene)  # Add the new scene to the tree
+	get_tree().current_scene.queue_free()  # Free the current scene
+	
+	# Clear existing choice buttons
+	var button = Button.new()
+	button.text = '[1] GAME OVER'
+	button.size_flags_horizontal = 0
+	button.connect('pressed', Callable(self, '_on_game_over_pressed'))
+	node_choicescontainer.add_child(button)
+	set_properties_for_buttons(self)
+
+func _on_game_over_pressed() -> void:
+	get_tree().change_scene_to_file('res://gameover.tscn')
 
 # ============================
 
