@@ -1,7 +1,7 @@
 # ============================
 # TOC:
 # variables to track game state
-# variables for scene nodes
+# variables and themes for scene nodes
 # player-defined variables
 # game set up
 # choice functionality
@@ -53,7 +53,7 @@ var final_diary_entry: String = '';
 @onready var node_storytext = $MainVBox/MarginContainer/StoryTextLabel
 @onready var node_choicescontainer = $MainVBox/ChoiceStatsHBox/ChoicesContainer
 @onready var node_moneytext = $MainVBox/ChoiceStatsHBox/StatsContainer/MoneyLabel
-@onready var node_inventory = $MainVBox/ChoiceStatsHBox/StatsContainer/Inventory
+@onready var node_inventory = $Inventory
 
 var choices_theme = preload('res://themes/buttons.tres')
 
