@@ -51,9 +51,9 @@ var final_diary_entry: String = '';
 @onready var node_debug_gotosubmit = $DebugBox/GoToNode/SubmitButton
 @onready var node_debug_moodtext = $DebugBox/MoodSection/MoodLabel
 @onready var node_storytext = $MainVBox/MarginContainer/StoryTextLabel
-@onready var node_choicescontainer = $MainVBox/ChoiceStatsHBox/ChoicesContainer
-@onready var node_moneytext = $MainVBox/ChoiceStatsHBox/StatsContainer/MoneyLabel
-@onready var node_inventory = $Inventory
+@onready var node_choicescontainer = $MainVBox/ChoiceStatsHBox/ChoicesBg/ChoicesContainer
+@onready var node_moneytext = $Inventory/InventoryBg/InnerInventory/MoneyLabel
+@onready var node_inventory = $Inventory/InventoryBg/InnerInventory/InventoryItems
 
 var choices_theme = preload('res://themes/buttons.tres')
 
@@ -428,12 +428,16 @@ func update_inventory_display():
 	# Iterate over the inventory array in reverse order
 	for i in range(inventory.size() - 1, -1, -1): # Start from the last index to 0
 		var item = inventory[i]
+		var margin_box = MarginContainer.new()#here
 		var image_box = TextureRect.new()
 		if inventory_images.has(item) and inventory_images[item] != null:
+			margin_box.add_theme_constant_override('margin_right', 10)
 			image_box.texture = inventory_images[item]
+			image_box.custom_minimum_size = Vector2(48, 48)
 			image_box.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
-			image_box.custom_minimum_size = Vector2(64, 64)
-			node_inventory.add_child(image_box)
+			image_box.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			node_inventory.add_child(margin_box)
+			margin_box.add_child(image_box)
 		else:
 			print('Warning: Missing image for inventory item:', item)
 			
