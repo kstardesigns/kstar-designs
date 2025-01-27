@@ -51,7 +51,8 @@ var final_diary_entry: String = '';
 @onready var node_debug_gotosubmit = $DebugBox/GoToNode/SubmitButton
 @onready var node_debug_moodtext = $DebugBox/MoodSection/MoodLabel
 @onready var node_storytext = $MainVBox/MarginContainer/StoryTextLabel
-@onready var node_choicescontainer = $MainVBox/ChoiceStatsHBox/ChoicesBg/ChoicesContainer
+@onready var node_choiceshbox = $MainVBox/ChoicesHBox/ChoicesBg/ChoicesContainer
+@onready var node_choicescontainer = $MainVBox/ChoicesHBox/ChoicesBg/ChoicesContainer
 @onready var node_moneytext = $Inventory/InventoryBg/InnerInventory/MoneyLabel
 @onready var node_inventory = $Inventory/InventoryBg/InnerInventory/InventoryItems
 
@@ -83,7 +84,6 @@ var event_map = {
 func _ready() -> void:
 	load_choices()
 	validate_run_functions()
-	set_properties_for_buttons(self)
 	
 	if FileAccess.file_exists('user://save_game.json'):
 		print('save file found, loading game...')
@@ -123,10 +123,16 @@ func validate_run_functions():
 			printerr('Invalid run_function \'%s\' in node %s!' % [data.run_function, key])
 
 func set_properties_for_buttons(parent_node: Node) -> void:
+	await get_tree().process_frame
+	var parent_width = node_choiceshbox.size.x
+	
 	for child in parent_node.get_children():
 		if child is Button:
 			child.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 			child.theme = choices_theme  # Apply the theme to all buttons
+			
+			if parent_width > 0:
+				child.custom_minimum_size = Vector2(parent_width / 2, 0)
 		elif child.get_child_count() > 0:
 			set_properties_for_buttons(child)  # Recursively check children		
 				
@@ -177,7 +183,7 @@ func show_choices(choice_ids: Array):
 
 	# Iterate over next_choices
 	var index = 1
-	
+		
 	for choice_data in current_choices:
 		if typeof(choice_data) == TYPE_STRING:
 			# Ensure choice_data is a valid key in choices_data
@@ -187,9 +193,9 @@ func show_choices(choice_ids: Array):
 			
 			# Simple node ID
 			var button = Button.new()
+			
 			button.set_meta('choice_id', choice_data)
 			button.text = '[%d] %s' % [index, choices_data[choice_data].button_text]
-			button.size_flags_horizontal = 0
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 			node_choicescontainer.add_child(button)
 			index += 1
@@ -258,7 +264,7 @@ func show_choices(choice_ids: Array):
 			print('Invalid next_choices format:', choice_data) 
 
 	# Update the story text and stats
-	set_properties_for_buttons(self)
+	set_properties_for_buttons(node_choicescontainer)
 	update_story()
 	
 func get_random_choice_from_array(probability_group: Array) -> String:
@@ -500,7 +506,7 @@ func game_over() -> void:
 	button.size_flags_horizontal = 0
 	button.connect('pressed', Callable(self, '_on_game_over_pressed'))
 	node_choicescontainer.add_child(button)
-	set_properties_for_buttons(self)
+	set_properties_for_buttons(node_choicescontainer)
 
 func _on_game_over_pressed() -> void:
 	get_tree().change_scene_to_file('res://gameover.tscn')
