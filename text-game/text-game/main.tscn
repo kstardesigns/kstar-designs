@@ -28,9 +28,11 @@ grow_vertical = 2
 color = Color(0.960784, 0.94902, 0.909804, 1)
 
 [node name="Inventory" type="HBoxContainer" parent="."]
-layout_mode = 2
-offset_right = 1440.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 51.0
+grow_horizontal = 2
 size_flags_vertical = 0
 theme = SubResource("Theme_glxuj")
 
@@ -94,17 +96,56 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="ChoicesHBox" type="HBoxContainer" parent="MainVBox"]
+[node name="ChoicesMargin" type="MarginContainer" parent="MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ChoicesHBox" type="HBoxContainer" parent="MainVBox/ChoicesMargin"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ChoicesBg" type="PanelContainer" parent="MainVBox/ChoicesHBox"]
+[node name="ChoicesBg" type="PanelContainer" parent="MainVBox/ChoicesMargin/ChoicesHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ChoicesContainer" type="HBoxContainer" parent="MainVBox/ChoicesHBox/ChoicesBg"]
+[node name="ChoicesInnerMargin" type="MarginContainer" parent="MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg"]
 layout_mode = 2
-size_flags_stretch_ratio = 2.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ChoicesContainer" type="GridContainer" parent="MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin"]
+layout_mode = 2
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 2
+
+[node name="Choice1Margin" type="MarginContainer" parent="MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Choice2Margin" type="MarginContainer" parent="MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Choice3Margin" type="MarginContainer" parent="MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer"]
+layout_mode = 2
+
+[node name="Choice4Margin" type="MarginContainer" parent="MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer"]
+layout_mode = 2
+
+[node name="Choice5Margin" type="MarginContainer" parent="MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer"]
+layout_mode = 2
+
+[node name="Choice6Margin" type="MarginContainer" parent="MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer"]
+layout_mode = 2
 
 [node name="DebugBox" type="VBoxContainer" parent="."]
 layout_mode = 1

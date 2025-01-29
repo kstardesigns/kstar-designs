@@ -51,10 +51,15 @@ var final_diary_entry: String = '';
 @onready var node_debug_gotosubmit = $DebugBox/GoToNode/SubmitButton
 @onready var node_debug_moodtext = $DebugBox/MoodSection/MoodLabel
 @onready var node_storytext = $MainVBox/MarginContainer/StoryTextLabel
-@onready var node_choiceshbox = $MainVBox/ChoicesHBox/ChoicesBg/ChoicesContainer
-@onready var node_choicescontainer = $MainVBox/ChoicesHBox/ChoicesBg/ChoicesContainer
+@onready var node_choicescontainer = $MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer
 @onready var node_moneytext = $Inventory/InventoryBg/InnerInventory/MoneyLabel
 @onready var node_inventory = $Inventory/InventoryBg/InnerInventory/InventoryItems
+@onready var node_choice1box = $MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer/Choice1Margin
+@onready var node_choice2box = $MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer/Choice2Margin
+@onready var node_choice3box = $MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer/Choice3Margin
+@onready var node_choice4box = $MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer/Choice4Margin
+@onready var node_choice5box = $MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer/Choice5Margin
+@onready var node_choice6box = $MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer/Choice6Margin
 
 var choices_theme = preload('res://themes/buttons.tres')
 
@@ -123,16 +128,16 @@ func validate_run_functions():
 			printerr('Invalid run_function \'%s\' in node %s!' % [data.run_function, key])
 
 func set_properties_for_buttons(parent_node: Node) -> void:
-	await get_tree().process_frame
-	var parent_width = node_choiceshbox.size.x
+	#await get_tree().process_frame
+	#var parent_width = $MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg.size.x
 	
 	for child in parent_node.get_children():
 		if child is Button:
 			child.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 			child.theme = choices_theme  # Apply the theme to all buttons
 			
-			if parent_width > 0:
-				child.custom_minimum_size = Vector2(parent_width / 2, 0)
+			#if parent_width > 0:
+				#child.custom_minimum_size = Vector2(parent_width / 2, 0)
 		elif child.get_child_count() > 0:
 			set_properties_for_buttons(child)  # Recursively check children		
 				
@@ -185,6 +190,8 @@ func show_choices(choice_ids: Array):
 	var index = 1
 		
 	for choice_data in current_choices:
+		var button = Button.new()
+		
 		if typeof(choice_data) == TYPE_STRING:
 			# Ensure choice_data is a valid key in choices_data
 			if not choices_data.has(choice_data):
@@ -192,13 +199,19 @@ func show_choices(choice_ids: Array):
 				continue
 			
 			# Simple node ID
-			var button = Button.new()
+			#var button = Button.new()
 			
 			button.set_meta('choice_id', choice_data)
 			button.text = '[%d] %s' % [index, choices_data[choice_data].button_text]
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
-			node_choicescontainer.add_child(button)
-			index += 1
+			#node_choicescontainer.add_child(button)
+			
+			# LEFT OFF - instead of adding these to node_choicescontainer, add them to the individual 
+			# margin containers. and if they are 3 4 5 6 - then expand that margin container. otherwise
+			# they will be small and take up no space
+			
+			
+			#index += 1
 		elif typeof(choice_data) == TYPE_ARRAY:
 			# Probabilistic choices
 			var chosen_id = get_random_choice_from_array(choice_data)
@@ -206,12 +219,12 @@ func show_choices(choice_ids: Array):
 				print('Invalid probabilistic choice ID:', chosen_id)
 				continue
 			
-			var button = Button.new()
+			#var button = Button.new()
 			button.set_meta('choice_id', chosen_id)
 			button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
-			node_choicescontainer.add_child(button)
-			index += 1
+			#node_choicescontainer.add_child(button)
+			#index += 1
 		elif typeof(choice_data) == TYPE_DICTIONARY:
 			# Mood-based choices
 			var chosen_id = choice_data.get('id', null)
@@ -225,21 +238,21 @@ func show_choices(choice_ids: Array):
 				print('contains mood_min')
 				if mood >= choice_data['mood_min']:
 					print('more than or equal to mood_min')
-					var button = Button.new()
+					#var button = Button.new()
 					button.set_meta('choice_id', chosen_id)
 					button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
 					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
-					node_choicescontainer.add_child(button)
-					index += 1
+					#node_choicescontainer.add_child(button)
+					#index += 1
 			elif choice_data.has('mood_max'):
 				if mood <= choice_data['mood_max']:
 					print('less than or equal to mood_max')
-					var button = Button.new()
+					#var button = Button.new()
 					button.set_meta('choice_id', chosen_id)
 					button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
 					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
-					node_choicescontainer.add_child(button)
-					index += 1
+					#node_choicescontainer.add_child(button)
+					#index += 1
 			else:
 				print('no mood constraints found')
 				
@@ -253,16 +266,48 @@ func show_choices(choice_ids: Array):
 					if event_map.has(event):
 						var event_value = event_map[event]
 						if event_value == choice_data[key]:
-							var button = Button.new()
+							#var button = Button.new()
 							button.set_meta('choice_id', chosen_id)
 							button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
 							button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
-							node_choicescontainer.add_child(button)
-							index += 1
+							#node_choicescontainer.add_child(button)
+							#index += 1
 
 		else:
 			print('Invalid next_choices format:', choice_data) 
-
+		
+		match index:
+			1:
+				print("Parent size: ", node_choice1box.size)
+				node_choice1box.add_child(button)
+				print("Parent size: ", node_choice1box.size)
+				print(button)
+			2:
+				node_choice2box.add_child(button)
+			3:
+				node_choice3box.add_child(button)
+				node_choice3box.size_flags_horizontal = 3
+				node_choice3box.size_flags_vertical = 3
+				#expand margin
+			4:
+				node_choice4box.add_child(button)
+				node_choice3box.size_flags_horizontal = 3
+				node_choice3box.size_flags_vertical = 3
+				#expand margin
+			5:
+				node_choice5box.add_child(button)
+				node_choice3box.size_flags_horizontal = 3
+				node_choice3box.size_flags_vertical = 3
+				#expand margin
+			6:
+				node_choice6box.add_child(button)
+				node_choice3box.size_flags_horizontal = 3
+				node_choice3box.size_flags_vertical = 3
+				#expandmargin
+				
+		
+		index += 1
+		
 	# Update the story text and stats
 	set_properties_for_buttons(node_choicescontainer)
 	update_story()
