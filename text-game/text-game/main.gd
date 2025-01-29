@@ -180,11 +180,25 @@ func update_story():
 
 func show_choices(choice_ids: Array):
 	current_choices = choice_ids
-
+	
 	# Clear existing choice buttons
-	for child in node_choicescontainer.get_children():
-		node_choicescontainer.remove_child(child)
-		child.queue_free()
+	var marginBoxesToClear = [node_choice1box, node_choice2box, node_choice3box, node_choice4box, node_choice5box, node_choice6box]
+	for marginBox in marginBoxesToClear:
+		for child in marginBox.get_children():
+			marginBox.remove_child(child)
+			child.queue_free()
+
+	# LEFT OFF
+	# make sure above margin boxes are cleared. they seem to be. but input field/button are not (will need to do it manually)
+	# buttons should have text wrap
+	# error on submitting an input field (ex 1018c) - "Attempt to call function 'get_children' in base 'previously free' on a null instance
+	# maybe change layout when just one button
+	# fix layout for input field + button
+	
+	
+	#for child in node_choicescontainer.get_children():
+		#node_choicescontainer.remove_child(child)
+		#child.queue_free()
 
 	# Iterate over next_choices
 	var index = 1
@@ -205,10 +219,7 @@ func show_choices(choice_ids: Array):
 			button.text = '[%d] %s' % [index, choices_data[choice_data].button_text]
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 			#node_choicescontainer.add_child(button)
-			
-			# LEFT OFF - instead of adding these to node_choicescontainer, add them to the individual 
-			# margin containers. and if they are 3 4 5 6 - then expand that margin container. otherwise
-			# they will be small and take up no space
+		
 			
 			
 			#index += 1
@@ -275,35 +286,28 @@ func show_choices(choice_ids: Array):
 
 		else:
 			print('Invalid next_choices format:', choice_data) 
-		
+			
 		match index:
 			1:
-				print("Parent size: ", node_choice1box.size)
 				node_choice1box.add_child(button)
-				print("Parent size: ", node_choice1box.size)
-				print(button)
 			2:
 				node_choice2box.add_child(button)
 			3:
 				node_choice3box.add_child(button)
 				node_choice3box.size_flags_horizontal = 3
 				node_choice3box.size_flags_vertical = 3
-				#expand margin
 			4:
 				node_choice4box.add_child(button)
-				node_choice3box.size_flags_horizontal = 3
-				node_choice3box.size_flags_vertical = 3
-				#expand margin
+				node_choice4box.size_flags_horizontal = 3
+				node_choice4box.size_flags_vertical = 3
 			5:
 				node_choice5box.add_child(button)
-				node_choice3box.size_flags_horizontal = 3
-				node_choice3box.size_flags_vertical = 3
-				#expand margin
+				node_choice5box.size_flags_horizontal = 3
+				node_choice5box.size_flags_vertical = 3
 			6:
 				node_choice6box.add_child(button)
-				node_choice3box.size_flags_horizontal = 3
-				node_choice3box.size_flags_vertical = 3
-				#expandmargin
+				node_choice6box.size_flags_horizontal = 3
+				node_choice6box.size_flags_vertical = 3
 				
 		
 		index += 1
