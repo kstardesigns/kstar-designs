@@ -183,6 +183,7 @@ func show_choices(choice_ids: Array):
 	for choice_data in current_choices:
 		var button = Button.new()
 		var label = Label.new()
+		var margin_box = MarginContainer.new()
 		
 		if typeof(choice_data) == TYPE_STRING:
 			# Ensure choice_data is a valid key in choices_data
@@ -253,34 +254,43 @@ func show_choices(choice_ids: Array):
 		match index:
 			1:
 				node_choice1box.add_child(button)
-				node_choice1box.add_child(label)
+				node_choice1box.add_child(margin_box)
 			2:
 				node_choice2box.add_child(button)
-				node_choice2box.add_child(label)
+				node_choice2box.add_child(margin_box)
 			3:
 				node_choice3box.add_child(button)
-				node_choice3box.add_child(label)
+				node_choice3box.add_child(margin_box)
 				node_choice3box.size_flags_horizontal = 3
 				node_choice3box.size_flags_vertical = 3
 			4:
 				node_choice4box.add_child(button)
-				node_choice4box.add_child(label)
+				node_choice4box.add_child(margin_box)
 				node_choice4box.size_flags_horizontal = 3
 				node_choice4box.size_flags_vertical = 3
 			5:
 				node_choice5box.add_child(button)
-				node_choice5box.add_child(label)
+				node_choice5box.add_child(margin_box)
 				node_choice5box.size_flags_horizontal = 3
 				node_choice5box.size_flags_vertical = 3
 			6:
 				node_choice6box.add_child(button)
-				node_choice6box.add_child(label)
+				node_choice6box.add_child(margin_box)
 				node_choice6box.size_flags_horizontal = 3
 				node_choice6box.size_flags_vertical = 3
 		
+		margin_box.add_child(label)
+
+		# style margin & label, adjust so button behind them is clickable
+		margin_box.add_theme_constant_override('margin_top', 15)
+		margin_box.add_theme_constant_override('margin_right', 15)
+		margin_box.add_theme_constant_override('margin_bottom', 15)
+		margin_box.add_theme_constant_override('margin_left', 15)
+		margin_box.mouse_filter = MouseFilter.MOUSE_FILTER_IGNORE
 		label.autowrap_mode = 3
 		label.horizontal_alignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_CENTER
 		label.vertical_alignment = VerticalAlignment.VERTICAL_ALIGNMENT_CENTER
+		
 		index += 1
 		
 	# Update the story text and stats
@@ -630,7 +640,7 @@ func _input(event):
 			file.store_string('{}')
 			file.close()
 			print('Save file reset!')
-	elif event is InputEventKey and event.pressed: # 1-9: pick choice button
+	elif event is InputEventKey and event.pressed: # 1-6: pick choice button
 		# Check if the currently focused control is an InputField
 		var focused = get_viewport().gui_get_focus_owner()
 		
@@ -638,12 +648,15 @@ func _input(event):
 		if focused is LineEdit:
 			return
 			
-		# Check if the pressed key is a number between 1 and 9
-		var key_num = event.physical_keycode - KEY_1 + 1 # Convert physical keycode to a number (1-9)
-		if key_num in range(1, 10): # Ensure it's within valid range
-			if key_num <= node_choicescontainer.get_child_count():
-				var button = node_choicescontainer.get_child(key_num - 1) as Button
-				if button:
-					_on_choice_pressed(button)
+		# Check if the pressed key is a number between 1 and 6
+		var key_num = event.physical_keycode - KEY_1 + 1 # Convert physical keycode to a number (1-6)
+		if key_num in range(1, 6):
+			# check margin containers for a button corresponding to the key pressed
+			var margin_container = node_choicescontainer.get_child(key_num - 1) as MarginContainer
+			if margin_container and margin_container.get_child_count() > 0:
+				for child in margin_container.get_children():
+					if child is Button:
+						_on_choice_pressed(child)
+						break
 			
 # ============================
