@@ -3,7 +3,7 @@
 # variables to track game state
 # variables and themes for scene nodes
 # player-defined variables
-# game set up
+# game set up / debug
 # choice functionality
 # systems (mood, inventory)
 # node functions
@@ -37,8 +37,6 @@ var current_choices: Array = []
 
 var final_diary_list: Array = []
 var final_diary_entry: String = '';
-
-
 
 # ============================
 
@@ -83,7 +81,7 @@ var event_map = {
 
 
 # ============================
-# game set up
+# game set up / debug
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -127,17 +125,11 @@ func validate_run_functions():
 		if data.has('run_function') and not has_method(data.run_function):
 			printerr('Invalid run_function \'%s\' in node %s!' % [data.run_function, key])
 
-func set_properties_for_buttons(parent_node: Node) -> void:
-	#await get_tree().process_frame
-	#var parent_width = $MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg.size.x
-	
+func set_properties_for_buttons(parent_node: Node) -> void:	
 	for child in parent_node.get_children():
 		if child is Button:
 			child.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 			child.theme = choices_theme  # Apply the theme to all buttons
-			
-			#if parent_width > 0:
-				#child.custom_minimum_size = Vector2(parent_width / 2, 0)
 		elif child.get_child_count() > 0:
 			set_properties_for_buttons(child)  # Recursively check children		
 				
@@ -181,24 +173,9 @@ func update_story():
 func show_choices(choice_ids: Array):
 	current_choices = choice_ids
 	
-	# Clear existing choice buttons
-	var marginBoxesToClear = [node_choice1box, node_choice2box, node_choice3box, node_choice4box, node_choice5box, node_choice6box]
-	for marginBox in marginBoxesToClear:
-		for child in marginBox.get_children():
-			marginBox.remove_child(child)
-			child.queue_free()
-
-	# LEFT OFF
-	# make sure above margin boxes are cleared. they seem to be. but input field/button are not (will need to do it manually)
-	# buttons should have text wrap
-	# error on submitting an input field (ex 1018c) - "Attempt to call function 'get_children' in base 'previously free' on a null instance
-	# maybe change layout when just one button
-	# fix layout for input field + button
-	
-	
-	#for child in node_choicescontainer.get_children():
-		#node_choicescontainer.remove_child(child)
-		#child.queue_free()
+	# Clear existing choice buttons, set to 2 columns for buttons
+	reset_choiceboxes()
+	node_choicescontainer.columns = 2
 
 	# Iterate over next_choices
 	var index = 1
@@ -212,17 +189,10 @@ func show_choices(choice_ids: Array):
 				print('Invalid choice ID:', choice_data)
 				continue
 			
-			# Simple node ID
-			#var button = Button.new()
-			
 			button.set_meta('choice_id', choice_data)
 			button.text = '[%d] %s' % [index, choices_data[choice_data].button_text]
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
-			#node_choicescontainer.add_child(button)
-		
-			
-			
-			#index += 1
+
 		elif typeof(choice_data) == TYPE_ARRAY:
 			# Probabilistic choices
 			var chosen_id = get_random_choice_from_array(choice_data)
@@ -230,12 +200,10 @@ func show_choices(choice_ids: Array):
 				print('Invalid probabilistic choice ID:', chosen_id)
 				continue
 			
-			#var button = Button.new()
 			button.set_meta('choice_id', chosen_id)
 			button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
-			#node_choicescontainer.add_child(button)
-			#index += 1
+
 		elif typeof(choice_data) == TYPE_DICTIONARY:
 			# Mood-based choices
 			var chosen_id = choice_data.get('id', null)
@@ -249,21 +217,17 @@ func show_choices(choice_ids: Array):
 				print('contains mood_min')
 				if mood >= choice_data['mood_min']:
 					print('more than or equal to mood_min')
-					#var button = Button.new()
 					button.set_meta('choice_id', chosen_id)
 					button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
 					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
-					#node_choicescontainer.add_child(button)
-					#index += 1
+
 			elif choice_data.has('mood_max'):
 				if mood <= choice_data['mood_max']:
 					print('less than or equal to mood_max')
-					#var button = Button.new()
 					button.set_meta('choice_id', chosen_id)
 					button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
 					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
-					#node_choicescontainer.add_child(button)
-					#index += 1
+					
 			else:
 				print('no mood constraints found')
 				
@@ -277,16 +241,14 @@ func show_choices(choice_ids: Array):
 					if event_map.has(event):
 						var event_value = event_map[event]
 						if event_value == choice_data[key]:
-							#var button = Button.new()
 							button.set_meta('choice_id', chosen_id)
 							button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
 							button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
-							#node_choicescontainer.add_child(button)
-							#index += 1
 
 		else:
 			print('Invalid next_choices format:', choice_data) 
 			
+		# add each button to its margin parent
 		match index:
 			1:
 				node_choice1box.add_child(button)
@@ -309,13 +271,25 @@ func show_choices(choice_ids: Array):
 				node_choice6box.size_flags_horizontal = 3
 				node_choice6box.size_flags_vertical = 3
 				
-		
 		index += 1
 		
 	# Update the story text and stats
 	set_properties_for_buttons(node_choicescontainer)
 	update_story()
+
+func reset_choiceboxes():
+	var marginBoxesToClear = [node_choice1box, node_choice2box, node_choice3box, node_choice4box, node_choice5box, node_choice6box]
+	var marginBoxesToResize = [node_choice3box, node_choice4box, node_choice5box, node_choice6box]
 	
+	for marginBox in marginBoxesToClear:
+		for child in marginBox.get_children():
+			marginBox.remove_child(child)
+			child.queue_free()
+	
+	for marginBox in marginBoxesToResize:
+		marginBox.size_flags_horizontal = 1
+		marginBox.size_flags_vertical = 1
+			
 func get_random_choice_from_array(probability_group: Array) -> String:
 	var random_roll = randi() % 100 + 1  # Random number between 1 and 100
 	var cumulative_probability = 0
@@ -377,9 +351,7 @@ func _on_choice_pressed(button: Button):
 			show_choices(next_choices)
 		else: # Clear out container for something besides choice buttons
 			current_choices = []
-			var choices_container = node_choicescontainer
-			for child in choices_container.get_children():
-				child.queue_free()
+			reset_choiceboxes()
 			update_story()
 			
 			# Show input field
@@ -402,17 +374,18 @@ func _show_input_field(input_field_data: Array):
 	var input_field_id = input_field_data[0]
 	var placeholder_text = input_field_data[1]
 	var next_node_id = input_field_data[2]
-	var choices_container = node_choicescontainer
+	
+	node_choicescontainer.columns = 1
 	
 	# Create input field
 	var input_field = LineEdit.new()
 	input_field.placeholder_text = placeholder_text
-	choices_container.add_child(input_field)
+	node_choice1box.add_child(input_field)
 	
 	# Create submit button
 	var submit_button = Button.new()
 	submit_button.text = 'Submit'
-	choices_container.add_child(submit_button)
+	node_choice2box.add_child(submit_button)
 	submit_button.connect('pressed', Callable(self, '_on_submit_input').bind(input_field, input_field_id, next_node_id))
 
 # Handle submission of input field data
