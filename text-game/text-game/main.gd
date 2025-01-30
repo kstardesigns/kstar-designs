@@ -182,6 +182,7 @@ func show_choices(choice_ids: Array):
 		
 	for choice_data in current_choices:
 		var button = Button.new()
+		var label = Label.new()
 		
 		if typeof(choice_data) == TYPE_STRING:
 			# Ensure choice_data is a valid key in choices_data
@@ -190,7 +191,7 @@ func show_choices(choice_ids: Array):
 				continue
 			
 			button.set_meta('choice_id', choice_data)
-			button.text = '[%d] %s' % [index, choices_data[choice_data].button_text]
+			label.text = '[%d] %s' % [index, choices_data[choice_data].button_text]
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 
 		elif typeof(choice_data) == TYPE_ARRAY:
@@ -201,7 +202,7 @@ func show_choices(choice_ids: Array):
 				continue
 			
 			button.set_meta('choice_id', chosen_id)
-			button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
+			label.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
 			button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 
 		elif typeof(choice_data) == TYPE_DICTIONARY:
@@ -218,14 +219,14 @@ func show_choices(choice_ids: Array):
 				if mood >= choice_data['mood_min']:
 					print('more than or equal to mood_min')
 					button.set_meta('choice_id', chosen_id)
-					button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
+					label.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
 					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 
 			elif choice_data.has('mood_max'):
 				if mood <= choice_data['mood_max']:
 					print('less than or equal to mood_max')
 					button.set_meta('choice_id', chosen_id)
-					button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
+					label.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
 					button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 					
 			else:
@@ -242,7 +243,7 @@ func show_choices(choice_ids: Array):
 						var event_value = event_map[event]
 						if event_value == choice_data[key]:
 							button.set_meta('choice_id', chosen_id)
-							button.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
+							label.text = '[%d] %s' % [index, choices_data[chosen_id].button_text]
 							button.connect('pressed', Callable(self, '_on_choice_pressed').bind(button))
 
 		else:
@@ -252,25 +253,34 @@ func show_choices(choice_ids: Array):
 		match index:
 			1:
 				node_choice1box.add_child(button)
+				node_choice1box.add_child(label)
 			2:
 				node_choice2box.add_child(button)
+				node_choice2box.add_child(label)
 			3:
 				node_choice3box.add_child(button)
+				node_choice3box.add_child(label)
 				node_choice3box.size_flags_horizontal = 3
 				node_choice3box.size_flags_vertical = 3
 			4:
 				node_choice4box.add_child(button)
+				node_choice4box.add_child(label)
 				node_choice4box.size_flags_horizontal = 3
 				node_choice4box.size_flags_vertical = 3
 			5:
 				node_choice5box.add_child(button)
+				node_choice5box.add_child(label)
 				node_choice5box.size_flags_horizontal = 3
 				node_choice5box.size_flags_vertical = 3
 			6:
 				node_choice6box.add_child(button)
+				node_choice6box.add_child(label)
 				node_choice6box.size_flags_horizontal = 3
 				node_choice6box.size_flags_vertical = 3
-				
+		
+		label.autowrap_mode = 3
+		label.horizontal_alignment = HorizontalAlignment.HORIZONTAL_ALIGNMENT_CENTER
+		label.vertical_alignment = VerticalAlignment.VERTICAL_ALIGNMENT_CENTER
 		index += 1
 		
 	# Update the story text and stats
@@ -456,7 +466,7 @@ func update_inventory_display():
 	# Iterate over the inventory array in reverse order
 	for i in range(inventory.size() - 1, -1, -1): # Start from the last index to 0
 		var item = inventory[i]
-		var margin_box = MarginContainer.new()#here
+		var margin_box = MarginContainer.new()
 		var image_box = TextureRect.new()
 		if inventory_images.has(item) and inventory_images[item] != null:
 			margin_box.add_theme_constant_override('margin_right', 10)
