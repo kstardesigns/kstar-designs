@@ -474,7 +474,7 @@ func update_inventory_display():
 		child.queue_free()
 		
 	# Iterate over the inventory array in reverse order
-	for i in range(inventory.size() - 1, -1, -1): # Start from the last index to 0
+	for i in range(inventory.size()): # Start from the last index to 0
 		var item = inventory[i]
 		var margin_box = MarginContainer.new()
 		var image_box = TextureRect.new()
