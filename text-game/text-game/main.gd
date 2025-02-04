@@ -84,6 +84,8 @@ var event_map = {
 # ============================
 # game set up / debug
 
+#func _process(delta): #run every frame
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	load_choices()
@@ -495,16 +497,18 @@ func update_inventory_display():
 		node_inventory.remove_child(child)
 		child.queue_free()
 		
-	# Iterate over the inventory array in reverse order
-	for i in range(inventory.size()): # Start from the last index to 0
+	# Iterate over the inventory array 
+	for i in range(inventory.size()):
 		var item = inventory[i]
 		var margin_box = MarginContainer.new()
 		var image_box = TextureRect.new()
 		if inventory_images.has(item) and inventory_images[item] != null:
-			margin_box.add_theme_constant_override('margin_right', 10)
+			margin_box.add_theme_constant_override('margin_top', 6)
+			margin_box.add_theme_constant_override('margin_bottom', 10)
+			margin_box.add_theme_constant_override('margin_left', 6)
 			image_box.texture = inventory_images[item]
 			image_box.custom_minimum_size = Vector2(48, 48)
-			image_box.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
+			image_box.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			image_box.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 			connect_signals(image_box, item);
 			node_inventory.add_child(margin_box)
