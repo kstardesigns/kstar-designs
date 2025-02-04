@@ -26,7 +26,11 @@ var mood_max: int = 10
 
 var default_money: int = 0
 var money: int = default_money   # player's money
-var current_money: int = 0 # tracks the animated money value
+var is_animating_money: bool = false
+var current_money: float = 0 # tracks the animated money value
+var target_money: float = 0
+var money_animation_speed: float = 12.0 # change per second
+
 
 var inventory: Array = []
 var inventory_images: Dictionary = {}
@@ -87,7 +91,9 @@ var event_map = {
 # ============================
 # game set up / debug
 
-#func _process(delta): #run every frame
+func _process(delta): #run every frame
+	if is_animating_money:
+		update_money_animation(delta)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -180,6 +186,7 @@ func _on_debug_submit():
 		_on_choice_pressed(debug_button)
 	else:
 		printerr('Invalid debug input: key not found in choices data ->', input_id)
+		
 # ============================
 
 
@@ -480,28 +487,24 @@ func adjust_mood(change: int) -> void:
 	mood = clamp(mood + change, mood_min, mood_max)
 	
 func _on_money_changed(old_value: int, new_value: int):
-	var increment = 1 if new_value > old_value else -1
+	is_animating_money = true
 	current_money = old_value
-	
-	# timer
-	var timer = Timer.new()
-	timer.wait_time = 0.05 # 250ms
-	timer.one_shot = false
-	add_child(timer)
-	
-	# bind parameters and connect the timer's timeout signal
-	timer.timeout.connect(Callable(self, '_update_money_ui').bind(timer, new_value, increment))
-	timer.start()
-	
-func _update_money_ui(timer: Timer, target_value: int, increment: int):
-	current_money += increment
-	node_moneytext.text = '$%d' % current_money # update money label
-	
-	# stop timer if target is reached
-	if (increment > 0 and current_money >= target_value) or (increment < 0 and current_money <= target_value):
-		timer.stop()
-		timer.queue_free()
+	target_money = new_value
 		
+func update_money_animation(delta: float):
+	var increment = money_animation_speed * delta
+	if current_money < target_money:
+		current_money = min(current_money + increment, target_money)
+	elif current_money > target_money:
+		current_money = max(current_money - increment, target_money)
+		
+	# update the money label
+	node_moneytext.text = '$%d' % int(current_money)
+	
+	# stop animation when complete
+	if current_money == target_money:
+		is_animating_money = false
+		money = int(target_money)  # final update
 	
 func add_to_inventory(item: String) -> void:
 	if not inventory.has(item):
@@ -656,11 +659,14 @@ func load_game_state():
 			for item in inventory:
 				initialize_inventory_image(item)
 			update_inventory_display()
+			
+			# update money
+			node_moneytext.text = '$%d' % int(money)
 		
 			# Load corresponding node data
 			var data = choices_data.get(current_node, null)
 			if data:
-				# Update story text directly
+				# update story text
 				story_text = data.story
 				
 				# Set current choices if next_choices exist, otherwise clear choices
