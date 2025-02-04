@@ -14,6 +14,8 @@
 
 extends Control
 
+signal money_changed(old_value, new_value)
+
 # ============================
 # variables to track game state
 
@@ -24,6 +26,7 @@ var mood_max: int = 10
 
 var default_money: int = 0
 var money: int = default_money   # player's money
+var current_money: int = 0 # tracks the animated money value
 
 var inventory: Array = []
 var inventory_images: Dictionary = {}
@@ -90,6 +93,7 @@ var event_map = {
 func _ready() -> void:
 	load_choices()
 	validate_run_functions()
+	self.connect('money_changed', Callable(self, '_on_money_changed'))
 	
 	if FileAccess.file_exists('user://save_game.json'):
 		print('save file found, loading game...')
@@ -192,7 +196,6 @@ func update_story():
 	
 	# Update stats labels
 	node_debug_moodtext.text = 'Mood: %d' % mood
-	node_moneytext.text = '$%d' % money
 
 func show_choices(choice_ids: Array):
 	current_choices = choice_ids
@@ -364,7 +367,9 @@ func _on_choice_pressed(button: Button):
 			
 		# Money updates
 		if (data.has('money_change')):
+			var old_money = money
 			money += data.money_change
+			money_changed.emit(old_money, money)
 		
 		# Inventory updates
 		if (data.has('add_inventory')):
@@ -455,7 +460,9 @@ func _on_submit_input(input_field: LineEdit, input_field_id: String, next_node_i
 		adjust_mood(data.mood_change)
 		
 	if (data.has('money_change')):
+		var old_money = money
 		money += data.money_change
+		money_changed.emit(old_money, money)
 	
 	current_node = str(next_node_id)
 	show_choices(data.next_choices)
@@ -471,6 +478,30 @@ func _on_submit_input(input_field: LineEdit, input_field_id: String, next_node_i
 
 func adjust_mood(change: int) -> void:
 	mood = clamp(mood + change, mood_min, mood_max)
+	
+func _on_money_changed(old_value: int, new_value: int):
+	var increment = 1 if new_value > old_value else -1
+	current_money = old_value
+	
+	# timer
+	var timer = Timer.new()
+	timer.wait_time = 0.05 # 250ms
+	timer.one_shot = false
+	add_child(timer)
+	
+	# bind parameters and connect the timer's timeout signal
+	timer.timeout.connect(Callable(self, '_update_money_ui').bind(timer, new_value, increment))
+	timer.start()
+	
+func _update_money_ui(timer: Timer, target_value: int, increment: int):
+	current_money += increment
+	node_moneytext.text = '$%d' % current_money # update money label
+	
+	# stop timer if target is reached
+	if (increment > 0 and current_money >= target_value) or (increment < 0 and current_money <= target_value):
+		timer.stop()
+		timer.queue_free()
+		
 	
 func add_to_inventory(item: String) -> void:
 	if not inventory.has(item):
@@ -495,7 +526,6 @@ func update_inventory_display():
 	# clear items before re-adding them
 	for child in node_inventory.get_children():
 		node_inventory.remove_child(child)
-		child.queue_free()
 		
 	# Iterate over the inventory array 
 	for i in range(inventory.size()):
@@ -510,7 +540,7 @@ func update_inventory_display():
 			image_box.custom_minimum_size = Vector2(48, 48)
 			image_box.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			image_box.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-			connect_signals(image_box, item);
+			connect_signals(image_box, item)
 			node_inventory.add_child(margin_box)
 			margin_box.add_child(image_box)
 		else:
