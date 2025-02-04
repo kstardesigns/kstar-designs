@@ -52,6 +52,7 @@ var final_diary_entry: String = '';
 @onready var node_choicescontainer = $MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer
 @onready var node_moneytext = $Inventory/InventoryBg/InnerInventory/MoneyLabel
 @onready var node_inventory = $Inventory/InventoryBg/InnerInventory/InventoryItems
+@onready var node_inventorylabel = $InventoryHoverLabel
 @onready var node_choice1box = $MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer/Choice1Margin
 @onready var node_choice2box = $MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer/Choice2Margin
 @onready var node_choice3box = $MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer/Choice3Margin
@@ -132,7 +133,28 @@ func set_properties_for_buttons(parent_node: Node) -> void:
 			child.theme = choices_theme  # Apply the theme to all buttons
 		elif child.get_child_count() > 0:
 			set_properties_for_buttons(child)  # Recursively check children		
+	
+func connect_signals(element_node: Control, element_name: String):
+	# ensure the layout is updated
+	await get_tree().process_frame
+	
+	# get the global position of the element
+	var element_pos = element_node.get_global_position()
+	
+	# connect the mouse_entered/exit signal for inventory items
+	element_node.connect('mouse_entered', Callable(self, '_on_item_hovered').bind(element_name, element_pos))
+	element_node.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	element_node.connect('mouse_exited', Callable(self, '_on_item_unhovered'))
 				
+func _on_item_hovered(element_name: String, element_pos: Vector2):
+	# set label and position
+	node_inventorylabel.text = element_name
+	node_inventorylabel.position.x = element_pos.x
+	
+func _on_item_unhovered():
+	# hide label
+	node_inventorylabel.text = ''
+	
 func setup_debug_box():
 	# connect submit button to func
 	node_debug_current.text = current_node
@@ -484,6 +506,7 @@ func update_inventory_display():
 			image_box.custom_minimum_size = Vector2(48, 48)
 			image_box.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
 			image_box.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			connect_signals(image_box, item);
 			node_inventory.add_child(margin_box)
 			margin_box.add_child(image_box)
 		else:
