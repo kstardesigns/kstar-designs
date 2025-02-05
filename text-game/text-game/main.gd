@@ -29,7 +29,7 @@ var money: int = default_money   # player's money
 var is_animating_money: bool = false
 var current_money: float = 0 # tracks the animated money value
 var target_money: float = 0
-var money_animation_speed: float = 12.0 # change per second
+var money_animation_speed: float = 15.0 # change per second
 
 
 var inventory: Array = []
@@ -58,6 +58,7 @@ var final_diary_entry: String = '';
 @onready var node_storytext = $MainVBox/MarginContainer/StoryTextLabel
 @onready var node_choicescontainer = $MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer
 @onready var node_moneytext = $Inventory/InventoryBg/InnerInventory/MoneyLabel
+@onready var node_moneydescreasesound = $Inventory/InventoryBg/InnerInventory/MoneyLabel/MoneyDescreaseSound
 @onready var node_inventory = $Inventory/InventoryBg/InnerInventory/InventoryItems
 @onready var node_inventorylabel = $InventoryHoverLabel
 @onready var node_choice1box = $MainVBox/ChoicesMargin/ChoicesHBox/ChoicesBg/ChoicesInnerMargin/ChoicesContainer/Choice1Margin
@@ -498,6 +499,10 @@ func update_money_animation(delta: float):
 	elif current_money > target_money:
 		current_money = max(current_money - increment, target_money)
 		
+		# play a sound when money decreases
+		if node_moneydescreasesound and !node_moneydescreasesound.playing:
+			node_moneydescreasesound.play()
+					
 	# update the money label
 	node_moneytext.text = '$%d' % int(current_money)
 	
