@@ -602,21 +602,20 @@ func introduce_inventory_section() -> void:
 	print('this is when the inventory section will appear')
 
 func game_over() -> void: 
-	var gameover_scene = load("res://gameover.tscn").instantiate()
-	gameover_scene.final_diary_entry = final_diary_entry  # Pass the variable
-	get_tree().root.add_child(gameover_scene)  # Add the new scene to the tree
-	get_tree().current_scene.queue_free()  # Free the current scene
-	
-	# Clear existing choice buttons
+	# add game over button to last screen
+	node_choicescontainer.columns = 1
+	node_choice2box.hide()
 	var button = Button.new()
 	button.text = '[1] GAME OVER'
-	button.size_flags_horizontal = 0
 	button.connect('pressed', Callable(self, '_on_game_over_pressed'))
-	node_choicescontainer.add_child(button)
+	node_choice1box.add_child(button)
 	set_properties_for_buttons(node_choicescontainer)
 
 func _on_game_over_pressed() -> void:
-	get_tree().change_scene_to_file('res://gameover.tscn')
+	var gameover_scene = load('res://gameover.tscn').instantiate()
+	gameover_scene.final_diary_entry = final_diary_entry
+	get_tree().current_scene.queue_free()  # free the current scene
+	get_tree().root.add_child(gameover_scene)  # add the new scene to the tree
 
 # ============================
 
