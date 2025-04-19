@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>Animation Viewer</title>
+  <style>
+    :root {
+        --scale: 6;
+        --bg-green: #95a87e;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #tidbyt {
+        background-color: var(--bg-green);
+        width: calc(64px * var(--scale));
+        height: calc(32px * var(--scale));
+        display: flex;
+        position: relative;
+    }
+
+    #frame {
+      /* width: calc(36px * var(--scale));
+      height: calc(25px * var(--scale)); */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      image-rendering: pixelated;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+
+    <div id='tidbyt'>
+        <img id='frame' src='' alt='' />
+    </div>
+    <div id='info'></div>
+    <script>
+        const animations = {
+            'READ': [ ['READ_1', 'READ_2', 'READ_1', 'READ_2', 'READ_1', 'READ_2', 'READ_1', 'READ_2', 'READ_1', 'READ_2', 'READ_3', 'READ_3', 'READ_3'],  32, 15, 5, 12, 750 ], 
+            'BUILD': [ ['BUILD_1', 'BUILD_1', 'BUILD_1', 'BUILD_2', 'BUILD_2', 'BUILD_2', 'BUILD_3', 'BUILD_4', 'BUILD_3', 'BUILD_4', 'BUILD_3', 'BUILD_4', 'BUILD_3', 'BUILD_4',   'BUILD_1', 'BUILD_1', 'BUILD_1', 'BUILD_2', 'BUILD_2', 'BUILD_2', 'BUILD_3', 'BUILD_4', 'BUILD_3', 'BUILD_4', 'BUILD_3', 'BUILD_4', 'BUILD_3', 'BUILD_4', 'BUILD_5', 'BUILD_5', 'BUILD_5', 'BUILD_5'],  32, 22, 8, 8, 250 ], 
+            'GLIDE': [ ['GLIDE_1', 'GLIDE_1', 'GLIDE_2', 'GLIDE_3', 'GLIDE_4', 'GLIDE_5', 'GLIDE_6', 'GLIDE_7', 'GLIDE_8', 'GLIDE_9', 'GLIDE_10', 'GLIDE_11', 'GLIDE_12', 'GLIDE_13', 'GLIDE_1', 'GLIDE_1', 'GLIDE_1', 'GLIDE_14', 'GLIDE_15', 'GLIDE_16', 'GLIDE_17', 'GLIDE_18', 'GLIDE_19', 'GLIDE_20', 'GLIDE_21', 'GLIDE_22', 'GLIDE_1', 'GLIDE_1', 'GLIDE_1'],  64, 32, 0, 0, 300 ], 
+            'WAVE': [ ['WAVE_1', 'WAVE_2', 'WAVE_3', 'WAVE_4', 'WAVE_3', 'WAVE_5', 'WAVE_6', 'WAVE_5', 'WAVE_6'],  36, 32, 14, 0, 750 ], 
+            'WRITE': [ ['WRITE_1', 'WRITE_2', 'WRITE_1', 'WRITE_2', 'WRITE_1', 'WRITE_2', 'WRITE_1', 'WRITE_2', 'WRITE_1', 'WRITE_2', 'WRITE_1', 'WRITE_2', 'WRITE_3', 'WRITE_3', 'WRITE_3', 'WRITE_3', 'WRITE_3'],  34, 32, 14, 0, 500 ], 
+            'CHEER': [ ['CHEER_1', 'CHEER_2', 'CHEER_1', 'CHEER_3' ],  30, 26, 19, 4, 750 ], 
+            'TEASE': [ ['TEASE_1', 'TEASE_1', 'TEASE_1', 'TEASE_1', 'TEASE_1', 'TEASE_2', 'TEASE_3', 'TEASE_3', 'TEASE_4', 'TEASE_4', 'TEASE_3', 'TEASE_3', 'TEASE_4', 'TEASE_4', 'TEASE_3', 'TEASE_3', 'TEASE_4', 'TEASE_4', 'TEASE_3', 'TEASE_3'],  32, 26, 16, 4, 250 ], 
+            'SWIM': [ ['SWIM_1', 'SWIM_2', 'SWIM_3', 'SWIM_4', 'SWIM_5', 'SWIM_6', 'SWIM_7', 'SWIM_8', 'SWIM_9'],  64, 32, 0, 0, 400 ], 
+            'YOYO': [ ['YOYO_2', 'YOYO_3', 'YOYO_1', 'YOYO_2', 'YOYO_2', 'YOYO_3', 'YOYO_1', 'YOYO_2', 'YOYO_2', 'YOYO_3', 'YOYO_1', 'YOYO_2', 'YOYO_2', 'YOYO_4', 'YOYO_5', 'YOYO_6'],  38, 25, 26, 7, 500 ], 
+            'SLEEP': [ ['SLEEP_1', 'SLEEP_2', 'SLEEP_3', 'SLEEP_3', 'SLEEP_3', 'SLEEP_4', 'SLEEP_4', 'SLEEP_4', 'SLEEP_5', 'SLEEP_5', 'SLEEP_5', 'SLEEP_4', 'SLEEP_4', 'SLEEP_4', 'SLEEP_5', 'SLEEP_5', 'SLEEP_5', 'SLEEP_3', 'SLEEP_3','SLEEP_3', 'SLEEP_5', 'SLEEP_5','SLEEP_5', 'SLEEP_3', 'SLEEP_3', 'SLEEP_3', 'SLEEP_2', 'SLEEP_2', 'SLEEP_1'], 34, 26, 14, 4, 750 ], 
+            'SLEEPTHRU': [ ['SLEEP_5', 'SLEEP_3', 'SLEEP_4', 'SLEEP_5', 'SLEEP_4', 'SLEEP_3'], 34, 26, 14, 4, 3000 ], 
+            'PIANO': [ ['PIANO_1', 'PIANO_2'], 34, 24, 14, 4, 750 ], 
+            'BATHE': [ ['BATHE_1', 'BATHE_2', 'BATHE_1', 'BATHE_2', 'BATHE_1', 'BATHE_2', 'BATHE_1', 'BATHE_2', 'BATHE_3', 'BATHE_4', 'BATHE_3', 'BATHE_4'], 34, 24, 14, 5, 750 ], 
+            'LICK': [ ['LICK_1', 'LICK_2', 'LICK_1', 'LICK_2', 'LICK_1', 'LICK_2', 'LICK_1', 'LICK_2', 'LICK_3', 'LICK_3', 'LICK_3'], 35, 22, 15, 5, 750 ], 
+            'WATCH': [ ['WATCH_1', 'WATCH_2', 'WATCH_1', 'WATCH_2', 'WATCH_1', 'WATCH_2', 'WATCH_1', 'WATCH_2', 'WATCH_1', 'WATCH_2', 'WATCH_1', 'WATCH_2', 'WATCH_3', 'WATCH_3'], 44, 25, 0, 5, 500 ], 
+            'EAT': [ ['EAT_1', 'EAT_2', 'EAT_3', 'EAT_2', 'EAT_3', 'EAT_2', 'EAT_3', 'EAT_2', 'EAT_3', 'EAT_2', 'EAT_3', 'EAT_2'], 36, 32, 14, 0, 400 ], 
+            'EATRICE': [ ['EATRICE_1', 'EATRICE_2', 'EATRICE_3', 'EATRICE_2', 'EATRICE_3', 'EATRICE_2', 'EATRICE_3', 'EATRICE_2'], 36, 32, 14, 0, 400 ], 
+            'SHOVEL': [ ['SHOVEL_1', 'SHOVEL_2'], 38, 17, 10, 12, 600 ], 
+            'SUCK': [ ['SUCK_1', 'SUCK_2', 'SUCK_1', 'SUCK_2', 'SUCK_1', 'SUCK_2', 'SUCK_1', 'SUCK_2', 'SUCK_3', 'SUCK_3', 'SUCK_3'], 35, 25, 23, 4, 750 ], 
+            'WAIL': [ ['WAIL_1', 'WAIL_2', 'WAIL_3', 'WAIL_4', 'WAIL_3', 'WAIL_4', 'WAIL_3', 'WAIL_4', 'WAIL_2', 'WAIL_1', 'WAIL_1'], 30, 26, 17, 3, 500 ], 
+            'BACKFLIP': [ ['WAIL_1', 'BACKFLIP_1', 'BACKFLIP_2', 'BACKFLIP_3', 'BACKFLIP_4', 'BACKFLIP_1', 'WAIL_1', 'WAIL_1', 'WAIL_1'], 33, 32, 15, 0, 500 ], 
+            'LOVE': [ ['LOVE_1', 'LOVE_2', 'LOVE_1', 'LOVE_3'], 38, 28, 13, 2, 750 ], 
+            'COMPUTE': [ ['COMPUTE_1', 'COMPUTE_1', 'COMPUTE_1', 'COMPUTE_2', 'COMPUTE_2', 'COMPUTE_2', 'COMPUTE_3', 'COMPUTE_2', 'COMPUTE_3', 'COMPUTE_2', 'COMPUTE_3', 'COMPUTE_2', 'COMPUTE_3', 'COMPUTE_2'], 36, 25, 0, 7, 300 ], 
+            'DRIVE': [ ['DRIVE_14', 'DRIVE_1', 'DRIVE_2', 'DRIVE_3', 'DRIVE_4', 'DRIVE_5', 'DRIVE_6', 'DRIVE_7', 'DRIVE_8', 'DRIVE_9', 'DRIVE_10', 'DRIVE_11', 'DRIVE_12', 'DRIVE_13', 'DRIVE_14', 'DRIVE_14'], 64, 24, 0, 4, 400 ], 
+            'BRUSH': [ ['BRUSH_1', 'BRUSH_2'], 64, 27, 0, 5, 500 ], 
+            'SHOWER': [ ['SHOWER_1', 'SHOWER_2', 'SHOWER_1', 'SHOWER_2', 'SHOWER_1', 'SHOWER_2', 'SHOWER_3', 'SHOWER_4', 'SHOWER_3', 'SHOWER_4', 'SHOWER_3', 'SHOWER_4'], 36, 29, 0, 2, 500 ], 
+            'LEARN': [ ['LEARN_1', 'LEARN_2', 'LEARN_1', 'LEARN_3', 'LEARN_1', 'LEARN_1', 'LEARN_4', 'LEARN_1', 'LEARN_5'], 40, 32, 0, 0, 1000 ], 
+            'DESKSLEEP': [ ['DESKSLEEP_1', 'DESKSLEEP_2', 'DESKSLEEP_1', 'DESKSLEEP_2', 'DESKSLEEP_1', 'DESKSLEEP_2', 'DESKSLEEP_3', 'DESKSLEEP_3' ], 30, 24, 10, 8, 1000 ], 
+            'LEARNGEO': [ ['LEARN_1', 'LEARNGEO_1', 'LEARN_1', 'LEARNGEO_2'], 40, 32, 0, 0, 1500 ], 
+            'BIKE': [ ['BIKE_4', 'BIKE_4', 'BIKE_4', 'BIKE_1', 'BIKE_2', 'BIKE_1', 'BIKE_2', 'BIKE_1', 'BIKE_2', 'BIKE_1', 'BIKE_2', 'BIKE_1', 'BIKE_2', 'BIKE_1', 'BIKE_2', 'BIKE_1'], 35, 21, 13, 6, 300 ], 
+            'TOOT': [ ['TOOT_1', 'TOOT_2', 'TOOT_3', 'TOOT_4', 'TOOT_5', 'TOOT_6', 'TOOT_7', 'TOOT_8', 'TOOT_9', 'TOOT_10', 'TOOT_11', 'TOOT_12', 'TOOT_13', 'TOOT_14', 'TOOT_15', 'TOOT_16', 'TOOT_16', 'TOOT_16'], 64, 21, 0, 8, 500 ], 
+            'EATDONUT': [ ['EATDONUT_1', 'EATDONUT_2', 'EATDONUT_3', 'EATDONUT_2', 'EATDONUT_3', 'EATDONUT_2', 'EATDONUT_3', 'EATDONUT_2'], 36, 32, 14, 0, 400 ], 
+            'WALK': [ ['WALK_1', 'WALK_2', 'WALK_3', 'WALK_4', 'WALK_5', 'WALK_6', 'WALK_6', 'WALK_7', 'WALK_6', 'WALK_6', 'WALK_7', 'WALK_6', 'WALK_6', 'WALK_7', 'WALK_6', 'WALK_6', 'WALK_7', 'WALK_6', 'WALK_6', 'WALK_7', 'WALK_6', 'WALK_6', 'WALK_7'], 41, 24, 20, 4, 750 ], 
+            'UNICYCLE': [ ['UNICYCLE_5', 'UNICYCLE_5', 'UNICYCLE_4', 'UNICYCLE_2', 'UNICYCLE_1', 'UNICYCLE_3', 'UNICYCLE_1', 'UNICYCLE_3', 'UNICYCLE_1', 'UNICYCLE_3', 'UNICYCLE_4', 'UNICYCLE_2', 'UNICYCLE_4', 'UNICYCLE_2', 'UNICYCLE_4', 'UNICYCLE_3', 'UNICYCLE_4', 'UNICYCLE_5', 'UNICYCLE_5'], 51, 23, 10, 6, 600 ], 
+            'KITE': [ ['KITE_1', 'KITE_2', 'KITE_3', 'KITE_4', 'KITE_5', 'KITE_6', 'KITE_7', 'KITE_8', 'KITE_9', 'KITE_10', 'KITE_11', 'KITE_12', 'KITE_13', 'KITE_14', 'KITE_15', 'KITE_16', 'KITE_16', 'KITE_16', 'KITE_16'], 64, 30, 0, 1, 250 ], 
+            'SKATE': [ ['SKATE_1', 'SKATE_2', 'SKATE_3', 'SKATE_4', 'SKATE_5', 'SKATE_6', 'SKATE_6', 'SKATE_6', 'SKATE_6', 'SKATE_6', 'SKATE_7', 'SKATE_8', 'SKATE_9', 'SKATE_10', 'SKATE_11', 'SKATE_12', 'SKATE_13', 'SKATE_14', 'SKATE_15', 'SKATE_15', 'SKATE_15', 'SKATE_15', 'SKATE_15'], 64, 16, 0, 12, 350 ], 
+            'CHILL': [ ['CHILL_1', 'CHILL_2'], 24, 22, 22, 7, 750 ]
+        };
+
+        function getCurrentAnimation() {
+            const now = new Date();
+            const HOUR = now.getHours();
+            const MINUTE = now.getMinutes();
+            const DATE = now.getDate();
+            const DAY = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][now.getDay()];
+            const RANDOM_NUMBER = Math.floor(Math.random() * 100);
+
+            // Inline logic copied directly from petpikachu.star's `action()`
+            if (HOUR < 6) return 'SLEEPTHRU';
+            if (HOUR === 6) return MINUTE <= 30 ? 'READ' : 'SHOWER';
+            if (HOUR === 7) return RANDOM_NUMBER > 5 ? (DAY === 'Sun' || DAY === 'Sat' ? 'COMPUTE' : 'WALK') : 'TOOT';
+            if (HOUR === 8) return MINUTE <= 30 ? (DATE === 7 ? 'LICK' : 'EATDONUT') : 'BRUSH';
+            if (HOUR === 9) return DATE % 2 === 0 ? 'YOYO' : 'PIANO';
+            if (HOUR === 10) return RANDOM_NUMBER > 20 ? 'LOVE' : (RANDOM_NUMBER > 10 ? 'CHEER' : 'WAIL');
+            if (HOUR === 11) return DATE <= 15 ? (MINUTE <= 5 ? 'GLIDE' : 'BUILD') : 'SHOVEL';
+            if (HOUR === 12) return 'EAT';
+            if (HOUR === 13) {
+                if (['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].includes(DAY)) {
+                if (DATE % 2 !== 0) return 'LEARN';
+                if (DATE % 10 !== 0) return 'LEARNGEO';
+                return 'DESKSLEEP';
+                } else {
+                return 'KITE';
+                }
+            }
+            if (HOUR === 14 || HOUR === 15) {
+                if (['Sun', 'Thu'].includes(DAY)) return 'BIKE';
+                if (['Mon', 'Fri'].includes(DAY)) return 'SWIM';
+                if (['Tue', 'Sat'].includes(DAY)) return 'SKATE';
+                return 'YOYO';
+            }
+            if (HOUR === 16) {
+                if (MINUTE <= 25) return 'UNICYCLE';
+                if (MINUTE <= 30) return RANDOM_NUMBER > 95 ? 'GLIDE' : 'BACKFLIP';
+                return 'DRIVE';
+            }
+            if (HOUR === 17) {
+                if (['Mon', 'Tue', 'Wed', 'Thu', 'Sun'].includes(DAY)) {
+                if (MINUTE > 40) return DATE % 2 === 0 ? 'LICK' : 'SUCK';
+                return 'EATRICE';
+                } else {
+                return 'DRIVE';
+                }
+            }
+            if (HOUR === 18) return (['Fri', 'Sat'].includes(DAY) && MINUTE <= 40) ? 'EATRICE' : (['Fri', 'Sat'].includes(DAY) ? 'TOOT' : 'WATCH');
+            if (HOUR === 19) {
+                if (['Fri', 'Sat'].includes(DAY)) return MINUTE <= 30 ? 'COMPUTE' : 'CHILL';
+                if (['Mon', 'Tue', 'Wed', 'Thu'].includes(DAY)) return MINUTE <= 20 ? 'WRITE' : (MINUTE <= 40 ? 'WAVE' : 'CHILL');
+                return 'BATHE';
+            }
+            if (HOUR === 20) return RANDOM_NUMBER > 50 ? 'WAVE' : 'TEASE';
+            if (HOUR === 21) return MINUTE <= 30 ? 'READ' : 'BRUSH';
+            if (HOUR >= 22) return 'SLEEP';
+            return 'CHILL';
+        }
+
+        const frameDiv = document.getElementById('frame');
+        const tidbyt = document.getElementById('tidybt');
+
+        let frameIndex = 0;
+        let currentAnimation = getCurrentAnimation();
+        let [frames, width, height, left, topo, interval] = animations[currentAnimation] || animations.READ;
+        function updateFrame() {
+            console.log(frameIndex);
+            frameDiv.src = `images/${frames[frameIndex]}.png`;
+            frameDiv.style.width = `calc(${width}px * var(--scale))`;
+            frameDiv.style.height = `calc(${height}px * var(--scale))`;
+            frameDiv.style.top = `calc(${topo}px * var(--scale))`;
+            frameDiv.style.left = `calc(${left}px * var(--scale))`; 
+            frameIndex = (frameIndex + 1) % frames.length;
+        }
+
+        updateFrame();
+        setInterval(updateFrame, interval);
+    </script>
+</body>
+</html>
