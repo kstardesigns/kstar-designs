@@ -3,7 +3,9 @@
 <head>
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-  <title>Animation Viewer</title>
+  <link rel="shortcut icon" href="../assets/icons/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="../assets/icons/touchicon-152.png">
+  <title>Pet Pikachu - Tidbyt app</title>
   <style>
     :root {
         --scale: 6;
@@ -15,15 +17,21 @@
     }
 
     body {
+      background: #111;
+      color: white;
       font-family: sans-serif;
-      padding: 0;
-      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     #tidbyt {
         background-color: var(--bg-green);
         width: calc(64px * var(--scale));
         height: calc(32px * var(--scale));
+        display: flex;
+        margin: 40px auto 0;
         position: relative;
     }
 
@@ -93,6 +101,7 @@
         };
 
         function getCurrentAnimation() {
+            console.log('getting...');
             const now = new Date();
             const HOUR = now.getHours();
             const MINUTE = now.getMinutes();
@@ -153,7 +162,7 @@
         let frameIndex = 0;
         let currentAnimation = getCurrentAnimation();
         let [frames, width, height, left, topo, interval] = animations[currentAnimation] || animations.READ;
-
+        
         function updateFrame() {
             frameDiv.src = `images/${frames[frameIndex]}.png`;
             frameDiv.style.width = `calc(${width}px * var(--scale))`;
