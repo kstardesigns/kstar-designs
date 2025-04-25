@@ -107,7 +107,19 @@
             const MINUTE = now.getMinutes();
             const DATE = now.getDate();
             const DAY = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][now.getDay()];
-            const RANDOM_NUMBER = Math.floor(Math.random() * 100);
+
+            if (MINUTE === 0 || MINUTE === 30) {
+                const RANDOM_NUMBER = Math.floor(Math.random() * 100);
+                localStorage.setItem('RANDOM_NUMBER', RANDOM_NUMBER);
+            }
+
+            let RANDOM_NUMBER = parseInt(localStorage.getItem('RANDOM_NUMBER'), 10);
+            if (isNaN(RANDOM_NUMBER)) {
+                // If no random number is in localStorage, generate one
+                RANDOM_NUMBER = Math.floor(Math.random() * 100);
+                localStorage.setItem('RANDOM_NUMBER', RANDOM_NUMBER);
+            }
+            console.log(RANDOM_NUMBER);
 
             // Inline logic copied directly from petpikachu.star's `action()`
             if (HOUR < 6) return 'SLEEPTHRU';
