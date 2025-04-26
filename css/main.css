@@ -3,7 +3,15 @@
 :root {
   --tip-color: rgba(0,0,0,0.8);
   --left-arrow: 0;
-  --right-arrow: 0;
+  --right-arrow: 0; 
+  --scale: 3;
+  --bg-green: #95a87e;
+}
+
+@media (width <= 850px) {
+  :root {
+    --scale: 4;
+  }
 }
 
 /* Fonts */
@@ -120,8 +128,7 @@ nav .navBottom {
 }
 @media screen and (max-height: 639px) {
   nav .navBottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
-    padding-top: 20px;
+    display: none;
   }
 }
 nav .navBottom p {
@@ -147,6 +154,7 @@ nav .sun {
   margin: 10px auto;
   border: 5px solid #ffce3c;
 }
+
 nav .currTemp {
   text-align: center;
   line-height: 62px;
@@ -157,6 +165,46 @@ nav .currTemp {
   font-family: "Source Sans Pro", serif;
   text-shadow: 0 0 7px #d59f00;
 }
+
+nav #tidbyt {
+  background-color: var(--bg-green);
+  width: calc(64px * var(--scale));
+  height: calc(32px * var(--scale));
+  display: flex;
+  margin: 40px auto 0;
+  position: relative;
+}
+
+@media (height < 500px) {
+  nav #tidbyt {
+    display: none;
+  }
+}
+
+nav #frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  image-rendering: pixelated;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+nav .pikachu-link {
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+  color: #223d45;
+  font-size: 21px;
+}
+
+@media (height < 500px) {
+  nav .pikachu-link {
+    display: none;
+  }
+}
+
 nav.open {
   width: 250px;
   background: linear-gradient(45deg, rgba(0, 155, 255, 0.75) 0%, rgba(0, 255, 155, 0.85) 55%, rgba(0, 155, 255, 0.75) 100%);
