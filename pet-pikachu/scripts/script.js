@@ -1,5 +1,5 @@
 // available actions (37): 
-// BACKFLIP, BATHE, BIKE, BRUSH, BUILD, CHEER, CHILL, COMPUTE, 
+// BACKFLIP, BATHE, BIKE, BRUSH, BUILD, CHEER, CHILLMAG, COMPUTE, 
 // DESKSLEEP, DRIVE, EAT, EATDONUT, EATRICE, GLIDE, KITE, 
 // LEARN, LEARNGEO, LICK, LOVE, PIANO, READ, SHOVEL, SHOWER, 
 // SKATE, SLEEP, SLEEPTHRU, SUCK, SWIM, TEASE, TOOT, UNICYCLE, 
@@ -42,7 +42,7 @@ const animations = {
     'UNICYCLE': [ ['unicycle5', 'unicycle5', 'unicycle4', 'unicycle2', 'unicycle1', 'unicycle3', 'unicycle1', 'unicycle3', 'unicycle1', 'unicycle3', 'unicycle4', 'unicycle2', 'unicycle4', 'unicycle2', 'unicycle4', 'unicycle3', 'unicycle4', 'unicycle5', 'unicycle5'], 51, 23, 10, 6, 600 ],
     'KITE': [ ['kite1', 'kite2', 'kite3', 'kite4', 'kite5', 'kite6', 'kite7', 'kite8', 'kite9', 'kite10', 'kite11', 'kite12', 'kite13', 'kite14', 'kite15', 'kite16', 'kite16', 'kite16', 'kite16'], 64, 30, 0, 1, 250 ],
     'SKATE': [ ['skate1', 'skate2', 'skate3', 'skate4', 'skate5', 'skate6', 'skate6', 'skate6', 'skate6', 'skate6', 'skate7', 'skate8', 'skate9', 'skate10', 'skate11', 'skate12', 'skate13', 'skate14', 'skate15', 'skate15', 'skate15', 'skate15', 'skate15'], 64, 16, 0, 12, 350 ],
-    'CHILL': [ ['chill1', 'chill2'], 24, 22, 22, 7, 750 ]
+    'CHILLMAG': [ ['chillmag1', 'chillmag2', 'chillmag1', 'chillmag3', 'chillmag4', 'chillmag5', 'chillmag1', 'chillmag6', 'chillmag1', 'chillmag7', 'chillmag8', 'chillmag9', 'chillmag8', 'chillmag10', 'chillmag11', 'chillmag12', 'chillmag11', 'chillmag10', 'chillmag13'], 64, 32, 0, 0, 250 ]
 };
 
 function getCurrentAnimation() {
@@ -105,14 +105,14 @@ function getCurrentAnimation() {
     }
     if (HOUR === 18) return (['Fri', 'Sat'].includes(DAY) && MINUTE <= 40) ? 'EATRICE' : (['Fri', 'Sat'].includes(DAY) ? 'TOOT' : 'WATCH');
     if (HOUR === 19) {
-        if (['Fri', 'Sat'].includes(DAY)) return MINUTE <= 30 ? 'COMPUTE' : 'CHILL';
-        if (['Mon', 'Tue', 'Wed', 'Thu'].includes(DAY)) return MINUTE <= 20 ? 'WRITE' : (MINUTE <= 40 ? 'WAVE' : 'CHILL');
+        if (['Fri', 'Sat'].includes(DAY)) return MINUTE <= 30 ? 'COMPUTE' : 'CHILLMAG';
+        if (['Mon', 'Tue', 'Wed', 'Thu'].includes(DAY)) return MINUTE <= 30 ? 'WRITE' : 'CHILLMAG';
         return 'BATHE';
     }
     if (HOUR === 20) return RANDOM_NUMBER > 50 ? 'WAVE' : 'TEASE';
     if (HOUR === 21) return MINUTE <= 30 ? 'READ' : 'BRUSH';
     if (HOUR >= 22) return 'SLEEP';
-    return 'CHILL'; // default animation
+    return 'BUILD'; // default animation
 }
 
 const frameDiv = document.getElementById('frame');
