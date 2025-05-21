@@ -39,6 +39,7 @@ const animations = {
     'TOOT': [ ['toot1', 'toot2', 'toot3', 'toot4', 'toot5', 'toot6', 'toot7', 'toot8', 'toot9', 'toot10', 'toot11', 'toot12', 'toot13', 'toot14', 'toot15', 'toot16', 'toot16', 'toot16'], 64, 21, 0, 8, 500 ],
     'EATDONUT': [ ['eatdonut1', 'eatdonut2', 'eatdonut3', 'eatdonut2', 'eatdonut3', 'eatdonut2', 'eatdonut3', 'eatdonut2'], 36, 32, 14, 0, 400 ],
     'WALK': [ ['walk1', 'walk2', 'walk3', 'walk4', 'walk5', 'walk6', 'walk6', 'walk7', 'walk6', 'walk6', 'walk7', 'walk6', 'walk6', 'walk7', 'walk6', 'walk6', 'walk7', 'walk6', 'walk6', 'walk7', 'walk6', 'walk6', 'walk7'], 41, 24, 20, 4, 750 ],
+    'WALKDITTO': [ ['walkditto1', 'walkditto2', 'walkditto3', 'walkditto4', 'walkditto5', 'walkditto6', 'walkditto7', 'walkditto8', 'walkditto9',  'walkditto11', 'walkditto12', 'walkditto13', 'walkditto14', 'walkditto14', 'walkditto14', 'walkditto14', 'walkditto14', 'walkditto14', 'walkditto14', 'walkditto14', 'walkditto14', 'walkditto14', 'walkditto14', 'walkditto14', 'walkditto14' ], 64, 32, 0, 0, 300 ],
     'UNICYCLE': [ ['unicycle5', 'unicycle5', 'unicycle4', 'unicycle2', 'unicycle1', 'unicycle3', 'unicycle1', 'unicycle3', 'unicycle1', 'unicycle3', 'unicycle4', 'unicycle2', 'unicycle4', 'unicycle2', 'unicycle4', 'unicycle3', 'unicycle4', 'unicycle5', 'unicycle5'], 51, 23, 10, 6, 600 ],
     'KITE': [ ['kite1', 'kite2', 'kite3', 'kite4', 'kite5', 'kite6', 'kite7', 'kite8', 'kite9', 'kite10', 'kite11', 'kite12', 'kite13', 'kite14', 'kite15', 'kite16', 'kite16', 'kite16', 'kite16'], 64, 30, 0, 1, 250 ],
     'SKATE': [ ['skate1', 'skate2', 'skate3', 'skate4', 'skate5', 'skate6', 'skate6', 'skate6', 'skate6', 'skate6', 'skate7', 'skate8', 'skate9', 'skate10', 'skate11', 'skate12', 'skate13', 'skate14', 'skate15', 'skate15', 'skate15', 'skate15', 'skate15'], 64, 16, 0, 12, 350 ],
@@ -69,11 +70,61 @@ function getCurrentAnimation() {
     // Inline logic copied directly from petpikachu.star's `action()`
     if (HOUR < 6) return 'SLEEPTHRU';
     if (HOUR === 6) return MINUTE <= 30 ? 'READ' : 'SHOWER';
-    if (HOUR === 7) return RANDOM_NUMBER > 5 ? (DAY === 'Sun' || DAY === 'Sat' ? 'COMPUTE' : 'WALK') : 'TOOT';
-    if (HOUR === 8) return MINUTE <= 30 ? (DATE === 7 ? 'LICK' : 'EATDONUT') : 'BRUSH';
-    if (HOUR === 9) return DATE % 2 === 0 ? 'YOYO' : 'PIANO'; // even days : odd days
-    if (HOUR === 10) return RANDOM_NUMBER > 20 ? 'LOVE' : (RANDOM_NUMBER > 10 ? 'CHEER' : 'WAIL');
-    if (HOUR === 11) return DATE <= 15 ? (MINUTE <= 5 ? 'GLIDE' : 'BUILD') : 'SHOVEL';
+    if (HOUR === 7) {
+        if (RANDOM_NUMBER > 5) {
+            if (DAY === 'Sun' || DAY === 'Sat') {
+                return 'COMPUTE';
+            } else {
+                if (RANDOM_NUMBER > 50) {
+                    return 'WALKDITTO';
+                } else {
+                    return 'WALK';
+                }
+            }
+        } else {
+            return 'TOOT';
+        }
+    }
+    if (HOUR === 8) {
+        if (MINUTE <= 30) {
+            if (DATE === 7) {
+                return 'LICK';
+            } else {
+                return 'EATDONUT';
+            }
+        } else {
+            return 'BRUSH';
+        }
+    }
+    if (HOUR === 9) {
+        if (DATE % 2 === 0) { //even days
+            return 'YOYO';
+        } else { //odd days
+            return 'PIANO';
+        }
+    }
+    if (HOUR === 10) {
+        if (RANDOM_NUMBER > 20) {
+            return 'LOVE';
+        } else {
+            if (RANDOM_NUMBER > 10) {
+                return 'CHEER';
+            } else {
+                return 'WAIL';
+            }
+        }
+    }
+    if (HOUR === 11) {
+        if (DATE <= 15) {
+            if (MINUTE <= 5) {
+                return 'GLIDE';
+            } else {
+                return 'BUILD';
+            }
+        } else {
+            return 'SHOVEL';
+        }
+    }
     if (HOUR === 12) return 'EAT';
     if (HOUR === 13) {
         if (['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].includes(DAY)) {
