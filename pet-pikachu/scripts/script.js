@@ -32,7 +32,7 @@ const animations = {
     'DRIVE': [ ['drive14', 'drive1', 'drive2', 'drive3', 'drive4', 'drive5', 'drive6', 'drive7', 'drive8', 'drive9', 'drive10', 'drive11', 'drive12', 'drive13', 'drive14', 'drive14'], 64, 24, 0, 4, 400 ],
     'BRUSH': [ ['brush1', 'brush2'], 64, 27, 0, 5, 500 ],
     'SHOWER': [ ['shower1', 'shower2', 'shower1', 'shower2', 'shower1', 'shower2', 'shower3', 'shower4', 'shower3', 'shower4', 'shower3', 'shower4'], 36, 29, 0, 2, 500 ],
-    'LEARN': [ ['learn1', 'learn2', 'learn1', 'learn3', 'learn1', 'learn1', 'learn4', 'learn1', 'learn5'], 40, 32, 0, 0, 1000 ],
+    'LEARNWOOPER': [ ['learnwooper1', 'learnwooper2', 'learnwooper3', 'learnwooper4', 'learnwooper1', 'learnwooper2', 'learnwooper5', 'learnwooper6'], 64, 32, 0, 0, 500 ],
     'DESKSLEEP': [ ['desksleep1', 'desksleep2', 'desksleep1', 'desksleep2', 'desksleep1', 'desksleep2', 'desksleep3', 'desksleep3'], 30, 24, 10, 8, 1000 ],
     'LEARNGEO': [ ['learn1', 'learngeo1', 'learn1', 'learngeo2'], 40, 32, 0, 0, 1500 ],
     'BIKE': [ ['bike4', 'bike4', 'bike4', 'bike1', 'bike2', 'bike1', 'bike2', 'bike1', 'bike2', 'bike1', 'bike2', 'bike1', 'bike2', 'bike1', 'bike2', 'bike1'], 35, 21, 13, 6, 300 ],
@@ -128,7 +128,7 @@ function getCurrentAnimation() {
     if (HOUR === 12) return 'EAT';
     if (HOUR === 13) {
         if (['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].includes(DAY)) {
-            if (DATE % 2 !== 0) return 'LEARN'; // odd days
+            if (DATE % 2 !== 0) return 'LEARNWOOPER'; // odd days
             if (DATE % 10 !== 0) return 'LEARNGEO'; // even days not divisible by 10
             return 'DESKSLEEP'; // 10th, 20th, 30th
         } else { // weekend
