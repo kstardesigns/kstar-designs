@@ -214,6 +214,7 @@ new Vue({
 			{ number: 147, name: 'Dratini', stringname: '147', type1: 'dragon', type2: '', evos: '0147-line', pronunciation: 'dra-TEE-nee', gen: '1' },
 			{ number: 148, name: 'Dragonair', stringname: '148', type1: 'dragon', type2: '', evos: '0147-line', pronunciation: 'DRAG-gon-AIR', gen: '1' },
 			{ number: 149, name: 'Dragonite', stringname: '149', type1: 'dragon', type2: 'flying', evos: '0147-line', pronunciation: 'DRAG-gon-ite', gen: '1' },
+			{ number: 149, prefix: 'Mega', name: 'Dragonite', stringname: '149m', type1: 'dragon', type2: 'flying', evos: '0147-line', pronunciation: 'DRAG-gon-ite', gen: '9' },
 			{ number: 150, name: 'Mewtwo', stringname: '150', type1: 'psychic', type2: '', evos: '0150-line', pronunciation: 'MUE-TOO', gen: '1' },
 			{ number: 150, prefix: 'Mega', name: 'Mewtwo', suffix: 'X', stringname: '150mx', type1: 'psychic', type2: 'fighting', evos: '0150-line', pronunciation: 'MUE-TOO', gen: '6' },
 			{ number: 150, prefix: 'Mega', name: 'Mewtwo', suffix: 'Y', stringname: '150my', type1: 'psychic', type2: '', evos: '0150-line', pronunciation: 'MUE-TOO', gen: '6' },
