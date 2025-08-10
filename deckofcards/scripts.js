@@ -1,3 +1,6 @@
+//controls
+let showTesting = false;
+
 //define deck of cards
 let cards = ['♠A','♠2','♠3','♠4','♠5','♠6','♠7','♠8','♠9','♠10','♠J','♠Q','♠K',
             '♦A','♦2','♦3','♦4','♦5','♦6','♦7','♦8','♦9','♦10','♦J','♦Q','♦K',
@@ -7,7 +10,10 @@ let cards = ['♠A','♠2','♠3','♠4','♠5','♠6','♠7','♠8','♠9','♠
 //define leftovers list which starts with X wildcards
 let extraCards = ['wc', 'wc', 'wc'];
 
+//values to track
 let currentHand = 1;
+let totalScore = 0;
+let activeHands = ['hand1', 'hand2', 'hand3'];
 
 //store hands
 let hands = {
@@ -20,7 +26,7 @@ let hands = {
 	hand7: [],
 	hand8: [],
 	hand9: [],
-	hand10: [],
+	hand10: []
 }
 
 //store scores
@@ -91,61 +97,146 @@ const deal = () => {
 	
 	//show 1st hand
 	createCards(hands["hand1"]);
+	console.log(hands["hand1"]);
 	calcHandScore(currentHand);
 	// confirmHand();
 }
 
-const createCards = (array) => {
+// Helper: creates a card <li> element from a card string
+function createCardElement(cardToCreate) {
+	const cardLi = document.createElement('li');
+  
+	if (cardToCreate !== 'wc') {
+	  const cardSuit = cardToCreate[0];
+	  const cardNo = cardToCreate.substring(1);
+  
+	  cardLi.innerHTML = `<span class="card-first-no">${cardNo}</span>
+						  <span class="card-suit">${cardSuit}</span>
+						  <span class="card-second-no">${cardNo}</span>`;
+	  cardLi.classList.add('card');
+	  cardLi.setAttribute('data-number', cardNo);
+	  cardLi.setAttribute('data-card', cardToCreate);
+  
+	  switch(cardSuit) {
+		case '♠':
+		  cardLi.classList.add('spade');
+		  cardLi.setAttribute('data-suit', 'spade');
+		  break;
+		case '♦':
+		  cardLi.classList.add('diamond');
+		  cardLi.setAttribute('data-suit', 'diamond');
+		  break;
+		case '♣':
+		  cardLi.classList.add('club');
+		  cardLi.setAttribute('data-suit', 'club');
+		  break;
+		case '♥':
+		  cardLi.classList.add('heart');
+		  cardLi.setAttribute('data-suit', 'heart');
+		  break;
+	  }
+	} else {
+	  // TODO: handle wild card here
+	}
+  
+	return cardLi;
+  }
+  
+  // Refactor createCards to use helper
+  const createCards = (array) => {
 	const cardGroup = document.createElement('ul');
 	cardGroup.classList.add('hand');
 	cardGroup.dataset.hand = currentHand;
-	
-	array.forEach((cardToCreate) => {
-		const cardLi = document.createElement('li'),
-					cardSuit = cardToCreate[0],
-					cardNo = cardToCreate.substring(1, cardToCreate.length);
-		
-		if (cardToCreate != 'wc') {
-			cardLi.innerHTML = `<span class="card-first-no">${cardNo}</span>
-													<span class="card-suit">${cardSuit}</span>
-													<span class="card-second-no">${cardNo}</span>`;
-			cardLi.classList.add('card');
-			cardLi.setAttribute('data-number', `${cardNo}`);
-
-			switch(cardSuit) {
-				case '♠':
-					cardLi.classList.add('spade');
-					cardLi.setAttribute('data-suit', 'spade');
-					break;
-				case '♦':
-					cardLi.classList.add('diamond');
-					cardLi.setAttribute('data-suit', 'diamond');
-					break;
-				case '♣':
-					cardLi.classList.add('club');
-					cardLi.setAttribute('data-suit', 'club');
-					break;
-				case '♥':
-					cardLi.classList.add('heart');
-					cardLi.setAttribute('data-suit', 'heart');
-					break;
-			}
-			cardGroup.append(cardLi);
-		} else { //is wild card
-			//TODO: create/style wild card
-		}
-		
-		//TODO: animation to shrink cards to 0 width so it looks like they're flipping (?), before they're revealed
-		document.querySelector('.card-area').append(cardGroup);
-		//TODO: append a "confirm hand" button (checkmark?) that will score current hand after row
+	cardGroup.id = `hand${currentHand}`;
+  
+	array.forEach(card => {
+	  const cardLi = createCardElement(card);
+	  cardGroup.append(cardLi);
 	});
-	
-	const handConfirm = document.createElement('div');
+  
+	const handConfirm = document.createElement('li');
 	handConfirm.classList.add('hand-confirm-wrap');
-	// handConfirm.innerHTML = `<button type="button" class="hand-confirm" onclick="confirmHand()">Play hand</button>`;
-	document.querySelector(`.hand[data-hand="${currentHand}"]`).append(handConfirm);
-	
+	cardGroup.append(handConfirm);
+  
+	document.querySelector('.card-area').append(cardGroup);
+  
+	initSortableForHand(`hand${currentHand}`);
+  }
+  
+// New renderHand using same helper
+const renderHand = (handKey) => {
+	const handNumber = handKey.replace('hand', '');
+	const cardGroup = document.getElementById(handKey);
+	if (!cardGroup) return;
+  
+	// Remove all existing cards but keep hand-confirm-wrap
+	cardGroup.querySelectorAll('li.card').forEach(li => li.remove());
+  
+	hands[handKey].forEach(card => {
+	  const cardLi = createCardElement(card);
+	  cardGroup.insertBefore(cardLi, cardGroup.querySelector('.hand-confirm-wrap'));
+	});
+  
+	calcHandScore(Number(handNumber));
 }
+  
+
+// const createCards = (array) => {
+// 	const cardGroup = document.createElement('ul');
+// 	cardGroup.classList.add('hand');
+// 	cardGroup.dataset.hand = currentHand;
+// 	cardGroup.id = `hand${currentHand}`;
+	
+// 	array.forEach((cardToCreate) => {
+// 		const cardLi = document.createElement('li'),
+// 					cardSuit = cardToCreate[0],
+// 					cardNo = cardToCreate.substring(1, cardToCreate.length);
+
+// 		cardLi.setAttribute('data-card', cardToCreate);
+		
+// 		if (cardToCreate !== 'wc') {
+// 			cardLi.innerHTML = `<span class="card-first-no">${cardNo}</span>
+// 													<span class="card-suit">${cardSuit}</span>
+// 													<span class="card-second-no">${cardNo}</span>`;
+// 			cardLi.classList.add('card');
+// 			cardLi.setAttribute('data-number', `${cardNo}`);
+
+// 			switch(cardSuit) {
+// 				case '♠':
+// 					cardLi.classList.add('spade');
+// 					cardLi.setAttribute('data-suit', 'spade');
+// 					break;
+// 				case '♦':
+// 					cardLi.classList.add('diamond');
+// 					cardLi.setAttribute('data-suit', 'diamond');
+// 					break;
+// 				case '♣':
+// 					cardLi.classList.add('club');
+// 					cardLi.setAttribute('data-suit', 'club');
+// 					break;
+// 				case '♥':
+// 					cardLi.classList.add('heart');
+// 					cardLi.setAttribute('data-suit', 'heart');
+// 					break;
+// 			}
+// 			cardGroup.append(cardLi);
+// 		} else { //is wild card
+// 			//TODO: create/style wild card
+// 		}
+		
+// 		//TODO: animation to shrink cards to 0 width so it looks like they're flipping (?), before they're revealed
+// 		document.querySelector('.card-area').append(cardGroup);
+// 		//TODO: append a "confirm hand" button (checkmark?) that will score current hand after row
+// 	});
+
+// 	initSortableForHand(currentHand);
+	
+// 	const handConfirm = document.createElement('li');
+// 	handConfirm.classList.add('hand-confirm-wrap');
+// 	// handConfirm.innerHTML = `<button type="button" class="hand-confirm" onclick="confirmHand()">Play hand</button>`;
+// 	document.querySelector(`.hand[data-hand="${currentHand}"]`).append(handConfirm);
+	
+// }
 
 const confirmHand = () => {
 	if (currentHand < 10) {
@@ -153,10 +244,65 @@ const confirmHand = () => {
 		console.log(`current hand: ${currentHand}`);
 		createCards(hands[`hand${currentHand}`]);
 	} else {
-		//TODO: disable or hide confirm & score button
+		document.getElementById('hand-confirm').style.display = 'none';
 	}
 
 	calcHandScore(currentHand);
+}
+
+function swapCards(arr1, idx1, arr2, idx2) {
+    const temp = arr1[idx1];
+    arr1[idx1] = arr2[idx2];
+    arr2[idx2] = temp;
+}
+
+const initializedHands = new Set();
+
+function initSortableForHand(handKey) {
+console.log('initSortableForHand called for:', handKey);
+
+	const el = document.getElementById(handKey);
+  if (!el) {
+    console.warn('Element not found for:', handKey);
+    return;
+  }
+  if (!el || initializedHands.has(handKey)) return;
+
+  Sortable.create(el, {
+    group: 'cards',
+    animation: 150,
+	swap: true,
+	swapClass: 'highlight',
+    onEnd: function(evt) {
+      const draggedEl = evt.item;
+
+      // Find element under the drop position
+      const targetEl = document.elementFromPoint(
+        evt.originalEvent.clientX,
+        evt.originalEvent.clientY
+      );
+      const targetLi = targetEl?.closest('li.card');
+
+      if (targetLi && targetLi !== draggedEl) {
+        const fromHandKey = `hand${evt.from.dataset.hand}`;
+        const toHandKey = `hand${evt.to.dataset.hand}`;
+
+        const fromIndex = [...evt.from.querySelectorAll('li.card')].indexOf(draggedEl);
+        const toIndex = [...evt.to.querySelectorAll('li.card')].indexOf(targetLi);
+
+        swapCards(hands[fromHandKey], fromIndex, hands[toHandKey], toIndex);
+
+        renderHand(fromHandKey);
+        renderHand(toHandKey);
+      } else {
+        const handKey = `hand${evt.to.dataset.hand}`;
+		hands[handKey] = [...evt.to.querySelectorAll('li.card')].map(li => li.dataset.card);
+
+      }
+    }
+  });
+
+  initializedHands.add(handKey);
 }
 
 const moveInHand = () => {
@@ -264,7 +410,6 @@ const calcHandScore = (scoredHand) => {
 	}
 	
 	let handType;
-	let handScore;
 	
 	//only score highest hand
 	if (handIsRoyalFlush) {
@@ -291,19 +436,33 @@ const calcHandScore = (scoredHand) => {
 	
 	//store hand type & show result 
 	handNames[`hand${currentHand}`] = handType;
-	document.querySelector(`.hand[data-hand="${currentHand}"] .hand-confirm-wrap`).innerHTML = `<div class='hand-result'>${handType}</div>`;
+	document.querySelector(`.hand[data-hand="${currentHand}"] .hand-confirm-wrap`).innerHTML = `<div class='hand-result'>${handType} (${baseValues[handType]})</div>`;
 	
-	// console.log('handNames:');
-	// console.log(handNames);
+	console.log('handNames:');
+	console.log(handNames);
 	
 	//score result
 	handScores[`hand${currentHand}`] = baseValues[handType];
-	// console.log('handScores:');
-	// console.log(handScores);
+	console.log('handScores:');
+	console.log(handScores);
+
+	totalScore = Object.values(handScores).reduce((a, b) => a + b, 0);
+
+	console.log('totalScore:');
+	console.log(totalScore);
+
+	document.getElementById('points').innerText = totalScore;
 }
 
 window.addEventListener('DOMContentLoaded', () => {
     deal();
+	showTestButton(showTesting);
+
+	//set up dialogs
+	for (var i = 0; i < dialogs.length; i++) {
+        var myDialog = new Dialog(dialogs[i].id);
+        myDialog.addEventListeners(dialogs[i].id, '.yz-dialog-close');
+    }
 });
 
 //modal
@@ -471,17 +630,18 @@ var closeDialog = function(dialogId) {
 
 var dialogs = document.getElementsByClassName('yz-dialog');
 
-window.addEventListener('DOMContentLoaded', () => {
-    for (var i = 0; i < dialogs.length; i++) {
-        var myDialog = new Dialog(dialogs[i].id);
-        myDialog.addEventListeners(dialogs[i].id, '.yz-dialog-close');
-    }
-});
-
 
 
 
 //TESTS
+const showTestButton = (showTesting) => {
+	if (showTesting) {
+		document.getElementById('test-button').style.display = 'flex';
+	} else {
+		document.getElementById('test-button').style.display = 'done';
+	}
+}
+
 const reset = () => {
 	currentHand = 1;
 	document.querySelector('.card-area').innerHTML = '';
@@ -532,5 +692,5 @@ const teststraightflush = () => {
 	reset();
 	hands['hand1'] = ['♦5','♦6','♦9','♦8','♦7'];
 	createCards(['♦5','♦6','♦9','♦8','♦7']);
-}
+} 
 
