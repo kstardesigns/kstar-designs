@@ -254,6 +254,11 @@ function swapCards(arr1, idx1, arr2, idx2) {
     const temp = arr1[idx1];
     arr1[idx1] = arr2[idx2];
     arr2[idx2] = temp;
+	console.log('Hands after swap:', arr1, arr2);
+    console.log('Current hand:', currentHand);
+	Array.from({ length: currentHand }, (value, i) => i + 1).forEach(handNum => {
+		calcHandScore(handNum);	
+	});
 }
 
 const initializedHands = new Set();
@@ -286,9 +291,8 @@ console.log('initSortableForHand called for:', handKey);
       if (targetLi && targetLi !== draggedEl) {
         const fromHandKey = `hand${evt.from.dataset.hand}`;
         const toHandKey = `hand${evt.to.dataset.hand}`;
-
-        const fromIndex = [...evt.from.querySelectorAll('li.card')].indexOf(draggedEl);
-        const toIndex = [...evt.to.querySelectorAll('li.card')].indexOf(targetLi);
+		const fromIndex = evt.oldIndex;
+		const toIndex = evt.newIndex;
 
         swapCards(hands[fromHandKey], fromIndex, hands[toHandKey], toIndex);
 
@@ -297,7 +301,6 @@ console.log('initSortableForHand called for:', handKey);
       } else {
         const handKey = `hand${evt.to.dataset.hand}`;
 		hands[handKey] = [...evt.to.querySelectorAll('li.card')].map(li => li.dataset.card);
-
       }
     }
   });
@@ -330,9 +333,7 @@ const calcHandScore = (scoredHand) => {
 	const ranks = hands[`hand${scoredHand}`].map(item => { return item.substring(1, item.length) });
 	const uniqueSuits = new Set(suits).size;
 	const uniqueRanks = new Set(ranks).size;
-	const straights = [['A', '2', '3', '4', '5'], ['2', '3', '4', '5', '6'], ['3', '4', '5', '6', '7'], 
-										 ['4', '5', '6', '7', '8'], ['5', '6', '7', '8', '9'], ['6', '7', '8', '9', '10'], 
-										 ['7', '8', '9', '10', 'J'], ['8', '9', '10', 'J', 'Q'], ['9', '10', 'J', 'Q', 'K'], ['10', 'J', 'Q', 'K', 'A']];
+	const straights = [['A', '2', '3', '4', '5'], ['2', '3', '4', '5', '6'], ['3', '4', '5', '6', '7'], ['4', '5', '6', '7', '8'], ['5', '6', '7', '8', '9'], ['6', '7', '8', '9', '10'], ['7', '8', '9', '10', 'J'], ['8', '9', '10', 'J', 'Q'], ['9', '10', 'J', 'Q', 'K'], ['10', 'J', 'Q', 'K', 'A']];
 	const royal = straights[9];
 	const handIsRoyal = ranks.every(i => royal.includes(i));
 	// console.log(`suits: ${suits}`);
@@ -354,7 +355,7 @@ const calcHandScore = (scoredHand) => {
 	
 	//check for a pair
 	const dupes = ranks.filter((element, index) => {
-			return ranks.indexOf(element) !== index;
+		return ranks.indexOf(element) !== index;
 	});
 	
 	if (new Set(dupes).size >= 1) { 
@@ -438,18 +439,18 @@ const calcHandScore = (scoredHand) => {
 	handNames[`hand${currentHand}`] = handType;
 	document.querySelector(`.hand[data-hand="${currentHand}"] .hand-confirm-wrap`).innerHTML = `<div class='hand-result'>${handType} (${baseValues[handType]})</div>`;
 	
-	console.log('handNames:');
-	console.log(handNames);
+	// console.log('handNames:');
+	// console.log(handNames);
 	
 	//score result
 	handScores[`hand${currentHand}`] = baseValues[handType];
-	console.log('handScores:');
-	console.log(handScores);
+	// console.log('handScores:');
+	// console.log(handScores);
 
 	totalScore = Object.values(handScores).reduce((a, b) => a + b, 0);
 
-	console.log('totalScore:');
-	console.log(totalScore);
+	// console.log('totalScore:');
+	// console.log(totalScore);
 
 	document.getElementById('points').innerText = totalScore;
 }
