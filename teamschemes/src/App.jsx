@@ -46,8 +46,16 @@ function App() {
     const savedValue = localStorage.getItem('logoChecked');
     return savedValue !== null ? savedValue === 'true' : true; // default to true if no value found
   });
+  const [teamChecked, setTeamChecked] = useState(() => {
+    const savedValue = localStorage.getItem('teamChecked');
+    return savedValue === 'true'; // default to false if no value found
+  });
   const [cssChecked, setCssChecked] = useState(() => {
     const savedValue = localStorage.getItem('cssChecked');
+    return savedValue === 'true'; // default to false if no value found
+  });
+  const [uppercaseChecked, setUppercaseChecked] = useState(() => {
+    const savedValue = localStorage.getItem('uppercaseChecked');
     return savedValue === 'true'; // default to false if no value found
   });
   const [menuOpen, setMenuOpen] = useState(() => {
@@ -63,6 +71,18 @@ function App() {
     const savedValue = localStorage.getItem('menuOpen');
     return savedValue !== null ? savedValue === 'true' : true; // default to true if no value found
   });
+
+  //track which leagues' accordions are open
+  const [leagueOpenStates, setLeagueOpenStates] = useState(() => {
+    const saved = localStorage.getItem('leagueOpenStates');
+    return saved ? JSON.parse(saved) : {};
+  });
+
+  const [miscOpen, setMiscOpen] = useState(() => {
+    const saved = localStorage.getItem('miscOpen');
+    return saved ? saved === 'true' : false; // default closed
+  });
+
   const [selectedColor, setSelectedColor] = useState('');
 
   const handleColorChecked = () => {
@@ -83,6 +103,12 @@ function App() {
     localStorage.setItem('logoChecked', newValue);
   };
 
+  const handleTeamChecked = () => {
+    const newValue = !teamChecked;
+    setTeamChecked(newValue);
+    localStorage.setItem('teamChecked', newValue);
+  };
+
   const handleCssChecked = () => {
     setSelectedColor('');
     const newValue = !cssChecked;
@@ -90,8 +116,14 @@ function App() {
     localStorage.setItem('cssChecked', newValue);
   };
 
-   //select - common color change
-   const handleCommonColorChange = (event) => {
+  const handleUppercaseChecked = () => {
+    const newValue = !uppercaseChecked;
+    setUppercaseChecked(newValue);
+    localStorage.setItem('uppercaseChecked', newValue);
+  };
+
+  //select - common color change
+  const handleCommonColorChange = (event) => {
     setCssChecked(false);
     setSelectedColor(event.target.value);
 
@@ -100,6 +132,19 @@ function App() {
       setMenuOpen(false);
     }
   }
+
+  const handleLeagueToggle = (leagueKey, isOpen) => {
+    setLeagueOpenStates((prev) => {
+      const updated = { ...prev, [leagueKey]: isOpen };
+      localStorage.setItem('leagueOpenStates', JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const handleMiscToggle = (isOpen) => {
+    setMiscOpen(isOpen);
+    localStorage.setItem('miscOpen', isOpen);
+  };
 
   const menuRef = useRef(null);
 
@@ -252,13 +297,16 @@ function App() {
           >
 
             <div className="color-box">
-              { colorChecked && 
-                <button type="button" onClick={(event) => { copyColor(color.name, event.currentTarget); }} className="color-name" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3]) ? 'var(--white)' : 'var(--black)' }}>{ color.name }</button>
-              }
-
               { hexChecked && 
                 <button type="button" onClick={(event) => { copyColor(color.hex, event.currentTarget); }} className="color-hex" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3])
                    ? 'var(--white)' : 'var(--black)' }}>{ color.hex }</button>
+              }
+              { colorChecked && 
+                <button type="button" onClick={(event) => { copyColor(color.name, event.currentTarget); }} className="color-name" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3]) ? 'var(--white)' : 'var(--black)' }}>{ color.name }</button>
+              }
+              { teamChecked && 
+                <div className="color-team" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3])
+                   ? 'var(--white)' : 'var(--black)' }}>{ currentTeam.name }</div>
               }
             </div>
 
@@ -284,10 +332,13 @@ function App() {
                 style={{ backgroundColor: color.hex }}
               >
                 <div className="color-box">
-                  {/* <div className="color-team" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3]) ? 'var(--white)' : 'var(--black)' }}>{ team.name}</div> */}
-                  <button type="button" onClick={(event) => { copyColor(color.name, event.currentTarget); }} className="color-name" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3]) ? 'var(--white)' : 'var(--black)' }}>{ color.name }</button>
                   <button type="button" onClick={(event) => { copyColor(color.hex, event.currentTarget); }} className="color-hex" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3])
                       ? 'var(--white)' : 'var(--black)' }}>{ color.hex }</button>
+                  <button type="button" onClick={(event) => { copyColor(color.name, event.currentTarget); }} className="color-name" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3]) ? 'var(--white)' : 'var(--black)' }}>{ color.name }</button>
+                  { teamChecked && 
+                    <div className="color-team" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3])
+                   ? 'var(--white)' : 'var(--black)' }}>{ team.name }</div>
+                  }
                 </div>
                 <img className="logo" src={ `./assets/${team.logo}` } title={`${ team.name }`} alt={`${ currentTeam.name } logo`} />
               </div> 
@@ -297,7 +348,7 @@ function App() {
       }
       
       { !menuOpen && 
-        <button className="main-random" type="button" title="random" onClick={() => setCurrentTeam(getRandomTeam())}>
+        <button className="main-random" type="button" title="Random team" aria-label="Random team" onClick={() => setCurrentTeam(getRandomTeam())} >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M592 192H473.26c12.69 29.59 7.12 65.2-17 89.32L320 417.58V464c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48V240c0-26.51-21.49-48-48-48zM480 376c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm-46.37-186.7L258.7 14.37c-19.16-19.16-50.23-19.16-69.39 0L14.37 189.3c-19.16 19.16-19.16 50.23 0 69.39L189.3 433.63c19.16 19.16 50.23 19.16 69.39 0L433.63 258.7c19.16-19.17 19.16-50.24 0-69.4zM96 248c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z"/></svg>
         </button>
       }
@@ -310,7 +361,7 @@ function App() {
           </svg>
           <span className="sidebar-trigger-words">MENU</span>
           <svg className="close" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false">
-            <g stroke="none" strokeWidth="1" fill="#37393D" fillRule="evenodd">
+            <g stroke="none" strokeWidth="1" fill="#37393d" fillRule="evenodd">
               <polygon points="19 6.4 17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12"></polygon>
             </g>
           </svg>
@@ -318,6 +369,10 @@ function App() {
         <div className="settings">
           <h1>Team color schemes</h1>
           <div className="settings-row">
+            <div className="settings-group">
+              <input type="checkbox" className="settings-checkbox" name="color-team" id="color-team" checked={teamChecked} onChange={handleTeamChecked} role="checkbox" aria-checked={teamChecked} />
+              <label htmlFor="color-team" className="settings-label">Team</label>
+            </div>
             <div className="settings-group">
               <input type="checkbox" className="settings-checkbox" name="color-name" id="color-name" checked={colorChecked} onChange={handleColorChecked} role="checkbox" aria-checked={colorChecked} />
               <label htmlFor="color-name" className="settings-label">Color name</label>
@@ -330,14 +385,14 @@ function App() {
               <input type="checkbox" className="settings-checkbox" name="color-logo" id="color-logo" checked={logoChecked} onChange={handleLogoChecked} role="checkbox" aria-checked={logoChecked} />
               <label htmlFor="color-logo" className="settings-label">Logo</label>
             </div>
-            <button className="settings-random" type="button" title="random" onClick={() => setCurrentTeam(getRandomTeam())}>
+            <button className="settings-random" type="button" title="Random team" aria-label="Random team" onClick={() => setCurrentTeam(getRandomTeam())}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M592 192H473.26c12.69 29.59 7.12 65.2-17 89.32L320 417.58V464c0 26.51 21.49 48 48 48h224c26.51 0 48-21.49 48-48V240c0-26.51-21.49-48-48-48zM480 376c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm-46.37-186.7L258.7 14.37c-19.16-19.16-50.23-19.16-69.39 0L14.37 189.3c-19.16 19.16-19.16 50.23 0 69.39L189.3 433.63c19.16 19.16 50.23 19.16 69.39 0L433.63 258.7c19.16-19.17 19.16-50.24 0-69.4zM96 248c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm0-128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24zm128 128c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z"/></svg>
             </button>
           </div>
           
       {
         sortedLeagues.map((leagueKey, leagueIndex) => (
-          <details key={leagueIndex}>
+          <details key={leagueIndex} open={leagueOpenStates[leagueKey] ?? false} onToggle={(e) => handleLeagueToggle(leagueKey, e.target.open)}>
             {/* Display the name of the league */}
             <summary>{ leagueKey.toUpperCase() } <span className="count">{ leagues[leagueKey.toLowerCase()].length } teams</span></summary>
             <div>      
@@ -373,17 +428,20 @@ function App() {
         ))
       }
 
-          <details className="misc">
+          <details className="misc" open={miscOpen} onToggle={(e) => handleMiscToggle(e.target.open)}>
             <summary>Misc. stuff</summary>
             <div className="misc-content">
               <div className="settings-row">
                 <div className="settings-group">
                   <input type="checkbox" className="settings-checkbox" name="css-var" id="css-vars" checked={cssChecked} onChange={handleCssChecked} role="checkbox" aria-checked={cssChecked} />
-                  <label htmlFor="css-vars" className="settings-label">{ selectedColor ? '' : currentTeam.name } CSS variables</label>
+                  <label htmlFor="css-vars" className="settings-label">CSS variables</label>
                 </div>
-                <div className="settings-group">
-                  {/* TBD */}
-                </div>
+                { cssChecked && 
+                  <div className="settings-group">
+                    <input type="checkbox" className="settings-checkbox" name="var-casing" id="var-casing" checked={uppercaseChecked} onChange={handleUppercaseChecked} role="checkbox" aria-checked={uppercaseChecked} />
+                    <label htmlFor="var-casing" className="settings-label">Uppercase HEX codes</label>
+                  </div>
+                }
               </div>
 
               { cssChecked && 
@@ -398,7 +456,7 @@ function App() {
                           let varNameWithoutDupes = initialVarName.split('-').filter((word, index, arr) => arr.indexOf(word) === index).join('-');
                           let finalVarName = varNameWithoutDupes.replace('-nfl', '').replace('-nhl', '').replace('-mlb', '').replace('-wnba', '').replace('-nba', '');
 
-                          return `\n  --${finalVarName}: ${color.hex};`;
+                          return `\n  --${finalVarName}: ${uppercaseChecked ? color.hex.toUpperCase() : color.hex};`;
                         })
                       }
                       {'\n}'}

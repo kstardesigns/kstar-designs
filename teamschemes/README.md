@@ -1,5 +1,28 @@
-# React + Vite
+# Run project locally
+1. npm run dev
+2. Open http://localhost:5173/teamschemes/
 
+# Latest to FileZilla
+1. npm run build
+2. Add /dist/index.html, dist/assets/index-XXX.css, dist/assets/index-XXX.js, dist/assets/XXX.svg (new logos)
+
+# Team updates
+1. Search for "brand assets / brand guide / style guide / official colors" for official hex & color names
+2. Look at Wikipedia color sources to see what they link to
+Backup plan: 
+3. Use hex codes found in logo
+4. Use color names and # of colors from Wikipedia
+5. teamcolorcodes.com to corroborate hex codes
+
+# Sources
+NFL official (primary) color names:
+https://static.www.nfl.com/image/upload/league/apps/league-site/media-guides/2022/2022_NFL_Record_and_Fact_Book.pdf (search "team colors:")
+
+NBA:
+maybe search mediacentral + team name like mercury
+
+# React + Vite
+npm run dev
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
