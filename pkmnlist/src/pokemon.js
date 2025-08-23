@@ -108,6 +108,7 @@ new Vue({
 			{ number: 69, name: 'Bellsprout', stringname: '069', type1: 'grass', type2: 'poison', evos: '0069-line', pronunciation: 'BELL-sprout', gen: '1' },
 			{ number: 70, name: 'Weepinbell', stringname: '070', type1: 'grass', type2: 'poison', evos: '0069-line', pronunciation: 'WEE-pin-bell', gen: '1' },
 			{ number: 71, name: 'Victreebel', stringname: '071', type1: 'grass', type2: 'poison', evos: '0069-line', pronunciation: 'VICK-tree-bell', gen: '1' },
+			{ number: 71, prefix: 'Mega', name: 'Victreebel', stringname: '071m', type1: 'grass', type2: 'poison', evos: '0069-line', pronunciation: 'VICK-tree-bell', gen: '9' },
 			{ number: 72, name: 'Tentacool', stringname: '072', type1: 'water', type2: 'poison', evos: '0072-line', pronunciation: 'TEN-ta-cool', gen: '1' },
 			{ number: 73, name: 'Tentacruel', stringname: '073', type1: 'water', type2: 'poison', evos: '0072-line', pronunciation: 'TEN-ta-crool', gen: '1' },
 			{ number: 74, name: 'Geodude', stringname: '074', type1: 'rock', type2: 'ground', evos: '0074-line', pronunciation: 'JEE-oh-dude', gen: '1' },
