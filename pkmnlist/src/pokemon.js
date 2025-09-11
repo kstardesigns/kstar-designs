@@ -1309,37 +1309,38 @@ new Vue({
 		showAll() {
 			this.query = 'all';
 		},
-		setCookie(cookieName, value, days) {
-			var expires = '';
-			if (days) {
-				var date = new Date();
-				date.setTime(date.getTime() + (days*24*60*60*1000));
-				expires = '; expires=' + date.toUTCString();
+		
+		setLocal(localName, value) {
+			try {
+				localStorage.setItem(localName, value);
+			} catch (e) {
+				console.warn('localStorage unavailable:', e);
 			}
-			document.cookie = cookieName + '=' + (value || '')  + expires + '; path=/';
 		},
-		getCookie(cookieName) {
-			var nameEQ = cookieName + '=';
-			var ca = document.cookie.split(';');
-			for(var i=0;i < ca.length;i++) {
-				var c = ca[i];
-				while (c.charAt(0)==' ') c = c.substring(1,c.length);
-				if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+		getLocal(localName) {
+			try {
+				return localStorage.getItem(localName);
+			} catch (e) {
+				console.warn('localStorage unavailable:', e);
+				return null;
 			}
-			return null;
 		},
-		eraseCookie(cookieName) {   
-			document.cookie = cookieName +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+		eraseLocal(localName) {
+			try {
+				localStorage.removeItem(localName);
+			} catch (e) {
+				console.warn('localStorage unavailable:', e);
+			}
 		},
 		changeLinkPreference() {
 			var linkPrefValue = document.querySelector('[name="link-preference"]:checked').value.toLowerCase();
 			this.linkPreference = linkPrefValue;
-			this.setCookie('linkPreference', this.linkPreference, 1095);
+			this.setLocal('linkPreference', this.linkPreference);
 		},
 		changePronunciationPreference() {
 			var pronPrefValue = document.querySelector('[name="pronunciation-preference"]:checked').value.toLowerCase();
 			this.pronPreference = pronPrefValue;
-			this.setCookie('pronPreference', this.pronPreference, 1095);
+			this.setLocal('pronPreference', this.pronPreference);
 		},
 		changeGenFilter() {
 			var selectedGen = document.querySelector('[name="gen-filter"]:checked');
@@ -1429,19 +1430,17 @@ new Vue({
 			this.query = url.substring((url.indexOf('?q='))+3, url.length);
 		}
 
-		//check if link & pronunciation preference cookies exist, if not, set them
-		if (url.indexOf('https') > -1) { //if on live site
-			if (this.getCookie('linkPreference')) {
-				this.linkPreference = this.getCookie('linkPreference');
-			} else {
-				this.setCookie('linkPreference', this.linkPreference, 1095);
-			}
+		//check if link & pronunciation preference exist in local storage, if not, set them
+		if (this.getLocal('linkPreference')) {
+			this.linkPreference = this.getLocal('linkPreference');
+		} else {
+			this.setLocal('linkPreference', this.linkPreference);
+		}
 
-			if (this.getCookie('pronPreference')) {
-				this.pronPreference = this.getCookie('pronPreference');
-			} else {
-				this.setCookie('pronPreference', this.pronPreference, 1095);
-			}
+		if (this.getLocal('pronPreference')) {
+			this.pronPreference = this.getLocal('pronPreference');
+		} else {
+			this.setLocal('pronPreference', this.pronPreference);
 		}
 	},
 	mounted() {
@@ -1452,10 +1451,10 @@ new Vue({
 			var linkPref = url.substring((url.indexOf('?linkPref='))+10, url.length);
 			this.linkPreference = linkPref;
 			document.getElementById(this.linkPreference).checked = true;
-			this.setCookie('linkPreference', this.linkPreference, 1095);
+			this.setLocal('linkPreference', this.linkPreference);
 		}
 
-		//choose radio buttons based on preference cookies
+		//choose radio buttons based on preferences in local storage
 		document.getElementById(this.linkPreference).checked = true;
 		document.getElementById(`pron-${this.pronPreference}`).checked = true;
 	}
