@@ -1,5 +1,113 @@
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
 /*
-! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -32,9 +140,11 @@
 4. Use the user's configured `sans` font-family by default.
 5. Use the user's configured `sans` font-feature-settings by default.
 6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
 */
 
-html {
+html,
+:host {
   line-height: 1.5;
   /* 1 */
   -webkit-text-size-adjust: 100%;
@@ -50,6 +160,8 @@ html {
   /* 5 */
   font-variation-settings: normal;
   /* 6 */
+  -webkit-tap-highlight-color: transparent;
+  /* 7 */
 }
 
 /*
@@ -121,8 +233,10 @@ strong {
 }
 
 /*
-1. Use the user's configured `mono` font family by default.
-2. Correct the odd `em` font sizing in all browsers.
+1. Use the user's configured `mono` font-family by default.
+2. Use the user's configured `mono` font-feature-settings by default.
+3. Use the user's configured `mono` font-variation-settings by default.
+4. Correct the odd `em` font sizing in all browsers.
 */
 
 code,
@@ -131,8 +245,12 @@ samp,
 pre {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   /* 1 */
-  font-size: 1em;
+  font-feature-settings: normal;
   /* 2 */
+  font-variation-settings: normal;
+  /* 3 */
+  font-size: 1em;
+  /* 4 */
 }
 
 /*
@@ -201,6 +319,8 @@ textarea {
   /* 1 */
   line-height: inherit;
   /* 1 */
+  letter-spacing: inherit;
+  /* 1 */
   color: inherit;
   /* 1 */
   margin: 0;
@@ -224,9 +344,9 @@ select {
 */
 
 button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
   -webkit-appearance: button;
   /* 1 */
   background-color: transparent;
@@ -430,108 +550,8 @@ video {
 
 /* Make elements with the HTML hidden attribute stay hidden by default */
 
-[hidden] {
+[hidden]:where(:not([hidden="until-found"])) {
   display: none;
-}
-
-*, ::before, ::after {
-  --tw-border-spacing-x: 0;
-  --tw-border-spacing-y: 0;
-  --tw-translate-x: 0;
-  --tw-translate-y: 0;
-  --tw-rotate: 0;
-  --tw-skew-x: 0;
-  --tw-skew-y: 0;
-  --tw-scale-x: 1;
-  --tw-scale-y: 1;
-  --tw-pan-x:  ;
-  --tw-pan-y:  ;
-  --tw-pinch-zoom:  ;
-  --tw-scroll-snap-strictness: proximity;
-  --tw-gradient-from-position:  ;
-  --tw-gradient-via-position:  ;
-  --tw-gradient-to-position:  ;
-  --tw-ordinal:  ;
-  --tw-slashed-zero:  ;
-  --tw-numeric-figure:  ;
-  --tw-numeric-spacing:  ;
-  --tw-numeric-fraction:  ;
-  --tw-ring-inset:  ;
-  --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
-  --tw-ring-color: rgb(59 130 246 / 0.5);
-  --tw-ring-offset-shadow: 0 0 #0000;
-  --tw-ring-shadow: 0 0 #0000;
-  --tw-shadow: 0 0 #0000;
-  --tw-shadow-colored: 0 0 #0000;
-  --tw-blur:  ;
-  --tw-brightness:  ;
-  --tw-contrast:  ;
-  --tw-grayscale:  ;
-  --tw-hue-rotate:  ;
-  --tw-invert:  ;
-  --tw-saturate:  ;
-  --tw-sepia:  ;
-  --tw-drop-shadow:  ;
-  --tw-backdrop-blur:  ;
-  --tw-backdrop-brightness:  ;
-  --tw-backdrop-contrast:  ;
-  --tw-backdrop-grayscale:  ;
-  --tw-backdrop-hue-rotate:  ;
-  --tw-backdrop-invert:  ;
-  --tw-backdrop-opacity:  ;
-  --tw-backdrop-saturate:  ;
-  --tw-backdrop-sepia:  ;
-}
-
-::backdrop {
-  --tw-border-spacing-x: 0;
-  --tw-border-spacing-y: 0;
-  --tw-translate-x: 0;
-  --tw-translate-y: 0;
-  --tw-rotate: 0;
-  --tw-skew-x: 0;
-  --tw-skew-y: 0;
-  --tw-scale-x: 1;
-  --tw-scale-y: 1;
-  --tw-pan-x:  ;
-  --tw-pan-y:  ;
-  --tw-pinch-zoom:  ;
-  --tw-scroll-snap-strictness: proximity;
-  --tw-gradient-from-position:  ;
-  --tw-gradient-via-position:  ;
-  --tw-gradient-to-position:  ;
-  --tw-ordinal:  ;
-  --tw-slashed-zero:  ;
-  --tw-numeric-figure:  ;
-  --tw-numeric-spacing:  ;
-  --tw-numeric-fraction:  ;
-  --tw-ring-inset:  ;
-  --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
-  --tw-ring-color: rgb(59 130 246 / 0.5);
-  --tw-ring-offset-shadow: 0 0 #0000;
-  --tw-ring-shadow: 0 0 #0000;
-  --tw-shadow: 0 0 #0000;
-  --tw-shadow-colored: 0 0 #0000;
-  --tw-blur:  ;
-  --tw-brightness:  ;
-  --tw-contrast:  ;
-  --tw-grayscale:  ;
-  --tw-hue-rotate:  ;
-  --tw-invert:  ;
-  --tw-saturate:  ;
-  --tw-sepia:  ;
-  --tw-drop-shadow:  ;
-  --tw-backdrop-blur:  ;
-  --tw-backdrop-brightness:  ;
-  --tw-backdrop-contrast:  ;
-  --tw-backdrop-grayscale:  ;
-  --tw-backdrop-hue-rotate:  ;
-  --tw-backdrop-invert:  ;
-  --tw-backdrop-opacity:  ;
-  --tw-backdrop-saturate:  ;
-  --tw-backdrop-sepia:  ;
 }
 
 .visible {
@@ -586,11 +606,6 @@ video {
   margin: 0px;
 }
 
-.mx-0 {
-  margin-left: 0px;
-  margin-right: 0px;
-}
-
 .mx-0\.5 {
   margin-left: 0.125rem;
   margin-right: 0.125rem;
@@ -604,10 +619,6 @@ video {
 .my-0 {
   margin-top: 0px;
   margin-bottom: 0px;
-}
-
-.-mt-0 {
-  margin-top: -0px;
 }
 
 .-mt-0\.5 {
@@ -686,10 +697,6 @@ video {
   height: 3.5rem;
 }
 
-.h-2 {
-  height: 0.5rem;
-}
-
 .h-2\.5 {
   height: 0.625rem;
 }
@@ -720,10 +727,6 @@ video {
 
 .w-14 {
   width: 3.5rem;
-}
-
-.w-2 {
-  width: 0.5rem;
 }
 
 .w-2\.5 {
@@ -884,102 +887,102 @@ video {
 
 .border-black {
   --tw-border-opacity: 1;
-  border-color: rgb(34 34 34 / var(--tw-border-opacity));
+  border-color: rgb(34 34 34 / var(--tw-border-opacity, 1));
 }
 
 .border-blacker {
   --tw-border-opacity: 1;
-  border-color: rgb(102 102 102 / var(--tw-border-opacity));
+  border-color: rgb(102 102 102 / var(--tw-border-opacity, 1));
 }
 
 .border-t-steel {
   --tw-border-opacity: 1;
-  border-top-color: rgb(170 170 187 / var(--tw-border-opacity));
+  border-top-color: rgb(170 170 187 / var(--tw-border-opacity, 1));
 }
 
 .bg-bug {
   --tw-bg-opacity: 1;
-  background-color: rgb(170 187 34 / var(--tw-bg-opacity));
+  background-color: rgb(170 187 34 / var(--tw-bg-opacity, 1));
 }
 
 .bg-dark {
   --tw-bg-opacity: 1;
-  background-color: rgb(119 85 68 / var(--tw-bg-opacity));
+  background-color: rgb(119 85 68 / var(--tw-bg-opacity, 1));
 }
 
 .bg-dragon {
   --tw-bg-opacity: 1;
-  background-color: rgb(119 102 238 / var(--tw-bg-opacity));
+  background-color: rgb(119 102 238 / var(--tw-bg-opacity, 1));
 }
 
 .bg-electric {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 204 51 / var(--tw-bg-opacity));
+  background-color: rgb(255 204 51 / var(--tw-bg-opacity, 1));
 }
 
 .bg-fairy {
   --tw-bg-opacity: 1;
-  background-color: rgb(238 153 238 / var(--tw-bg-opacity));
+  background-color: rgb(238 153 238 / var(--tw-bg-opacity, 1));
 }
 
 .bg-fighting {
   --tw-bg-opacity: 1;
-  background-color: rgb(187 85 68 / var(--tw-bg-opacity));
+  background-color: rgb(187 85 68 / var(--tw-bg-opacity, 1));
 }
 
 .bg-fire {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 68 34 / var(--tw-bg-opacity));
+  background-color: rgb(255 68 34 / var(--tw-bg-opacity, 1));
 }
 
 .bg-flying {
   --tw-bg-opacity: 1;
-  background-color: rgb(136 153 255 / var(--tw-bg-opacity));
+  background-color: rgb(136 153 255 / var(--tw-bg-opacity, 1));
 }
 
 .bg-ghost {
   --tw-bg-opacity: 1;
-  background-color: rgb(102 102 187 / var(--tw-bg-opacity));
+  background-color: rgb(102 102 187 / var(--tw-bg-opacity, 1));
 }
 
 .bg-grass {
   --tw-bg-opacity: 1;
-  background-color: rgb(119 204 85 / var(--tw-bg-opacity));
+  background-color: rgb(119 204 85 / var(--tw-bg-opacity, 1));
 }
 
 .bg-ground {
   --tw-bg-opacity: 1;
-  background-color: rgb(221 187 85 / var(--tw-bg-opacity));
+  background-color: rgb(221 187 85 / var(--tw-bg-opacity, 1));
 }
 
 .bg-ice {
   --tw-bg-opacity: 1;
-  background-color: rgb(102 204 255 / var(--tw-bg-opacity));
+  background-color: rgb(102 204 255 / var(--tw-bg-opacity, 1));
 }
 
 .bg-normal {
   --tw-bg-opacity: 1;
-  background-color: rgb(170 170 153 / var(--tw-bg-opacity));
+  background-color: rgb(170 170 153 / var(--tw-bg-opacity, 1));
 }
 
 .bg-poison {
   --tw-bg-opacity: 1;
-  background-color: rgb(170 85 153 / var(--tw-bg-opacity));
+  background-color: rgb(170 85 153 / var(--tw-bg-opacity, 1));
 }
 
 .bg-psychic {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 85 153 / var(--tw-bg-opacity));
+  background-color: rgb(255 85 153 / var(--tw-bg-opacity, 1));
 }
 
 .bg-rock {
   --tw-bg-opacity: 1;
-  background-color: rgb(187 170 102 / var(--tw-bg-opacity));
+  background-color: rgb(187 170 102 / var(--tw-bg-opacity, 1));
 }
 
 .bg-steel {
   --tw-bg-opacity: 1;
-  background-color: rgb(170 170 187 / var(--tw-bg-opacity));
+  background-color: rgb(170 170 187 / var(--tw-bg-opacity, 1));
 }
 
 .bg-transparent {
@@ -988,12 +991,12 @@ video {
 
 .bg-water {
   --tw-bg-opacity: 1;
-  background-color: rgb(51 153 255 / var(--tw-bg-opacity));
+  background-color: rgb(51 153 255 / var(--tw-bg-opacity, 1));
 }
 
 .bg-white {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
 .p-0 {
@@ -1007,11 +1010,6 @@ video {
 .px-0 {
   padding-left: 0px;
   padding-right: 0px;
-}
-
-.px-1 {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
 }
 
 .px-1\.5 {
@@ -1052,10 +1050,6 @@ video {
   padding-left: 0px;
 }
 
-.pl-1 {
-  padding-left: 0.25rem;
-}
-
 .pl-1\.5 {
   padding-left: 0.375rem;
 }
@@ -1064,20 +1058,12 @@ video {
   padding-left: 1rem;
 }
 
-.pr-2 {
-  padding-right: 0.5rem;
-}
-
 .pr-2\.5 {
   padding-right: 0.625rem;
 }
 
 .pr-9 {
   padding-right: 2.25rem;
-}
-
-.pt-2 {
-  padding-top: 0.5rem;
 }
 
 .pt-2\.5 {
@@ -1155,17 +1141,106 @@ video {
 
 .text-black {
   --tw-text-opacity: 1;
-  color: rgb(34 34 34 / var(--tw-text-opacity));
+  color: rgb(34 34 34 / var(--tw-text-opacity, 1));
+}
+
+.text-bug {
+  --tw-text-opacity: 1;
+  color: rgb(170 187 34 / var(--tw-text-opacity, 1));
+}
+
+.text-dark {
+  --tw-text-opacity: 1;
+  color: rgb(119 85 68 / var(--tw-text-opacity, 1));
+}
+
+.text-dragon {
+  --tw-text-opacity: 1;
+  color: rgb(119 102 238 / var(--tw-text-opacity, 1));
+}
+
+.text-electric {
+  --tw-text-opacity: 1;
+  color: rgb(255 204 51 / var(--tw-text-opacity, 1));
+}
+
+.text-fairy {
+  --tw-text-opacity: 1;
+  color: rgb(238 153 238 / var(--tw-text-opacity, 1));
+}
+
+.text-fighting {
+  --tw-text-opacity: 1;
+  color: rgb(187 85 68 / var(--tw-text-opacity, 1));
+}
+
+.text-fire {
+  --tw-text-opacity: 1;
+  color: rgb(255 68 34 / var(--tw-text-opacity, 1));
+}
+
+.text-flying {
+  --tw-text-opacity: 1;
+  color: rgb(136 153 255 / var(--tw-text-opacity, 1));
+}
+
+.text-ghost {
+  --tw-text-opacity: 1;
+  color: rgb(102 102 187 / var(--tw-text-opacity, 1));
+}
+
+.text-grass {
+  --tw-text-opacity: 1;
+  color: rgb(119 204 85 / var(--tw-text-opacity, 1));
+}
+
+.text-ground {
+  --tw-text-opacity: 1;
+  color: rgb(221 187 85 / var(--tw-text-opacity, 1));
+}
+
+.text-ice {
+  --tw-text-opacity: 1;
+  color: rgb(102 204 255 / var(--tw-text-opacity, 1));
+}
+
+.text-normal {
+  --tw-text-opacity: 1;
+  color: rgb(170 170 153 / var(--tw-text-opacity, 1));
+}
+
+.text-poison {
+  --tw-text-opacity: 1;
+  color: rgb(170 85 153 / var(--tw-text-opacity, 1));
+}
+
+.text-psychic {
+  --tw-text-opacity: 1;
+  color: rgb(255 85 153 / var(--tw-text-opacity, 1));
+}
+
+.text-rock {
+  --tw-text-opacity: 1;
+  color: rgb(187 170 102 / var(--tw-text-opacity, 1));
+}
+
+.text-steel {
+  --tw-text-opacity: 1;
+  color: rgb(170 170 187 / var(--tw-text-opacity, 1));
 }
 
 .text-water {
   --tw-text-opacity: 1;
-  color: rgb(51 153 255 / var(--tw-text-opacity));
+  color: rgb(51 153 255 / var(--tw-text-opacity, 1));
 }
 
 .text-white {
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.underline {
+  text-decoration-line: underline;
 }
 
 .no-underline {
@@ -1219,7 +1294,7 @@ video {
 
 .hover\:text-ghost:hover {
   --tw-text-opacity: 1;
-  color: rgb(102 102 187 / var(--tw-text-opacity));
+  color: rgb(102 102 187 / var(--tw-text-opacity, 1));
 }
 
 .hover\:underline:hover {
@@ -1253,11 +1328,6 @@ video {
 
   .iphone\:basis-16 {
     flex-basis: 4rem;
-  }
-
-  .iphone\:px-2 {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
   }
 
   .iphone\:px-2\.5 {

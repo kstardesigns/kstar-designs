@@ -69,7 +69,7 @@
 		</div>
 		<ul class="block w-full max-w-lg my-0 mx-auto p-0">
 			<li class="flex items-center justify-start relative" v-for="pokemon in filteredList" :data-pokemon="pokemon.name" :data-evos="pokemon.evos" :id="'n' + pokemon.stringname.replace(/^0+/, '')"> 
-				<button type="button" class="font-bold text-xs w-8 h-12 py-0 pl-0 pr-2.5 basis-8 bg-transparent border-0" v-if="pokemon.evos !== ''" @click="query = pokemon.evos" title="Show evolution line">{{ pokemon.number}}</button>
+				<button type="button" :class="{'font-bold text-xs w-8 h-12 py-0 pl-0 pr-2.5 basis-8 bg-transparent border-0': true, [`text-${pokemon.type1}`]: true}" v-if="pokemon.evos !== ''" @click="query = pokemon.evos" title="Show evolution line">{{ pokemon.number}}</button>
 				<button type="button" class="font-bold text-xs w-8 h-12 py-0 pl-0 pr-2.5 basis-8 bg-transparent border-0 cursor-default" v-else disabled>{{ pokemon.number}}</button>
 				<a class="no-underline flex items-center flex-1 hover:text-ghost hover:underline" :href="createPkmnLink(pokemon.number, pokemon.name, pokemon.stringname)" target="_blank">
 					<span class="w-10 h-12 flex justify-center items-center basis-10 min-w-[40px]"><img :src="'assets/icons/' + pokemon.stringname + '.png'" :alt="pokemon.name"/></span>
@@ -154,7 +154,7 @@
 			<div class="number-error">{{ numberError }}</div>
 		</div>
 
-		<div hidden class="bg-normal bg-fire bg-water bg-electric bg-grass bg-ice bg-fighting bg-poison bg-ground bg-flying bg-psychic bg-bug bg-rock bg-ghost bg-dragon bg-dark bg-steel bg-fairy"></div>
+		<div hidden class="bg-normal bg-fire bg-water bg-electric bg-grass bg-ice bg-fighting bg-poison bg-ground bg-flying bg-psychic bg-bug bg-rock bg-ghost bg-dragon bg-dark bg-steel bg-fairy text-normal text-fire text-water text-electric text-grass text-ice text-fighting text-poison text-ground text-flying text-psychic text-bug text-rock text-ghost text-dragon text-dark text-steel text-fairy"></div>
 	</div>
 
 	<script src="src/vue.min.js"></script>
