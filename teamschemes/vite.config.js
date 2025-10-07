@@ -5,6 +5,11 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: '/teamschemes/',
   plugins: [react()],
+  root: 'src',
+  build: {
+    outDir: '../',  // Build directly to teamschemes root
+    emptyDir: false, // Don't delete everything
+  },
   css: {
     preprocessorOptions: {
       scss: {
