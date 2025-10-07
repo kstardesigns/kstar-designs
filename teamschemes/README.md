@@ -2,9 +2,9 @@
 1. npm run dev
 2. Open http://localhost:5173/teamschemes/
 
-# Latest to FileZilla
+# Latest to live site
 1. npm run build
-2. Add /dist/index.html, dist/assets/index-XXX.css, dist/assets/index-XXX.js, dist/assets/XXX.svg (new logos)
+2. Push latest to master branch and site will auto update in Github Pages
 
 # Team updates
 1. Search for "brand assets / brand guide / style guide / official colors" for official hex & color names

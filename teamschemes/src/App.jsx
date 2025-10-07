@@ -332,15 +332,27 @@ function App() {
                 style={{ backgroundColor: color.hex }}
               >
                 <div className="color-box">
+
+                  { hexChecked && 
                   <button type="button" onClick={(event) => { copyColor(color.hex, event.currentTarget); }} className="color-hex" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3])
                       ? 'var(--white)' : 'var(--black)' }}>{ color.hex }</button>
+                  }
+
+                  { colorChecked && 
                   <button type="button" onClick={(event) => { copyColor(color.name, event.currentTarget); }} className="color-name" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3]) ? 'var(--white)' : 'var(--black)' }}>{ color.name }</button>
+                  }
+
                   { teamChecked && 
                     <div className="color-team" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3])
                    ? 'var(--white)' : 'var(--black)' }}>{ team.name }</div>
                   }
+                  
                 </div>
-                <img className="logo" src={ `./assets/${team.logo}` } title={`${ team.name }`} alt={`${ currentTeam.name } logo`} />
+
+                { logoChecked && 
+                  <img className="logo" src={ `./assets/${team.logo}` } title={`${ team.name }`} alt={`${ currentTeam.name } logo`} />
+                }
+
               </div> 
             ))
         ))}
