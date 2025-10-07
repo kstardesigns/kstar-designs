@@ -22,6 +22,8 @@ NBA:
 maybe search mediacentral + team name like mercury
 
 # React + Vite
+## Note: local index.html has been moved to /src so the build index.html can be deployed to github pages
+
 npm run dev
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

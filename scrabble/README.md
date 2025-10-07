@@ -1,4 +1,14 @@
+# Run project locally
+1. npm run dev
+2. Open http://localhost:5173/scrabble/
+
+# Latest to live site
+1. npm run build
+2. Push latest to master branch and site will auto update in Github Pages
+
 # React + Vite
+## Note: local index.html has been moved to /src so the build index.html can be deployed to github pages
+
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
