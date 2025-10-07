@@ -346,7 +346,7 @@ function App() {
                     <div className="color-team" style={{ color: /^[0-7]/.test(color.hex[1]) || /^[0-7]/.test(color.hex[3])
                    ? 'var(--white)' : 'var(--black)' }}>{ team.name }</div>
                   }
-                  
+
                 </div>
 
                 { logoChecked && 
@@ -383,7 +383,7 @@ function App() {
           <div className="settings-row">
             <div className="settings-group">
               <input type="checkbox" className="settings-checkbox" name="color-team" id="color-team" checked={teamChecked} onChange={handleTeamChecked} role="checkbox" aria-checked={teamChecked} />
-              <label htmlFor="color-team" className="settings-label">Team</label>
+              <label htmlFor="color-team" className="settings-label">*Team*</label>
             </div>
             <div className="settings-group">
               <input type="checkbox" className="settings-checkbox" name="color-name" id="color-name" checked={colorChecked} onChange={handleColorChecked} role="checkbox" aria-checked={colorChecked} />
