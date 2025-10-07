@@ -187,7 +187,7 @@ function App() {
 
     //update the favicon
     const faviconLink = document.querySelector('#dynamic-favicon');
-    faviconLink.href = `./assets/${currentTeam.logo}`;
+    faviconLink.href = `/teamschemes/assets/${currentTeam.logo}`;
 
     //close menu on mobile to see team update
     if (window.innerWidth < 480) {
@@ -280,7 +280,7 @@ function App() {
     } else {
       //update the favicon back to team logo
       const faviconLink = document.querySelector('#dynamic-favicon');
-      faviconLink.href = `./assets/${currentTeam.logo}`;
+      faviconLink.href = `/teamschemes/assets/${currentTeam.logo}`;
     }
   }, [selectedColor, teamsWithSelectedColor]);
   
@@ -311,7 +311,7 @@ function App() {
             </div>
 
             { logoChecked && 
-              <img className="logo" src={ `./assets/${currentTeam.logo}` } title={`${ currentTeam.name }`} alt={`${ currentTeam.name } logo`} />
+              <img className="logo" src={ `/teamschemes/assets/${currentTeam.logo}` } title={`${ currentTeam.name }`} alt={`${ currentTeam.name } logo`} />
             }
 
           </div> 
@@ -350,7 +350,7 @@ function App() {
                 </div>
 
                 { logoChecked && 
-                  <img className="logo" src={ `./assets/${team.logo}` } title={`${ team.name }`} alt={`${ currentTeam.name } logo`} />
+                  <img className="logo" src={ `/teamschemes/assets/${team.logo}` } title={`${ team.name }`} alt={`${ currentTeam.name } logo`} />
                 }
 
               </div> 
@@ -383,7 +383,7 @@ function App() {
           <div className="settings-row">
             <div className="settings-group">
               <input type="checkbox" className="settings-checkbox" name="color-team" id="color-team" checked={teamChecked} onChange={handleTeamChecked} role="checkbox" aria-checked={teamChecked} />
-              <label htmlFor="color-team" className="settings-label">*Team*</label>
+              <label htmlFor="color-team" className="settings-label">Team</label>
             </div>
             <div className="settings-group">
               <input type="checkbox" className="settings-checkbox" name="color-name" id="color-name" checked={colorChecked} onChange={handleColorChecked} role="checkbox" aria-checked={colorChecked} />
@@ -414,7 +414,7 @@ function App() {
                   <li key={ teamIndex }> 
                     <button type="button" onClick={() => changeColor(leagueKey, team.id)} className={!selectedColor && (team.id === currentTeam.id) ? 'active' : ''} data-id={team.id}> { /* add click function and pass league and team id */ }
                       <span className="logo-box">
-                        <img className="logo" src={ `./assets/${team.logo}` } alt={`${ team.name } logo`} />
+                        <img className="logo" src={ `/teamschemes/assets/${team.logo}` } alt={`${ team.name } logo`} />
                       </span>
                       <span className="team-name">{team.name}</span>
 
