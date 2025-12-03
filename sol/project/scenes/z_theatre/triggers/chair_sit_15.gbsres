@@ -1,0 +1,62 @@
+{
+  "_resourceType": "trigger",
+  "id": "b60887cb-a78e-4db3-8d4a-4cffd0c44868",
+  "name": "Chair sit",
+  "prefabId": "",
+  "x": 12,
+  "y": 32,
+  "symbol": "trigger_93",
+  "prefabScriptOverrides": {},
+  "width": 2,
+  "height": 1,
+  "script": [
+    {
+      "command": "EVENT_ACTOR_SET_STATE",
+      "args": {
+        "actorId": "$self$",
+        "spriteStateId": "Sit still up",
+        "loopAnim": false
+      },
+      "id": "1db7718f-becb-4366-a480-ff9e4459e4f1"
+    }
+  ],
+  "leaveScript": [
+    {
+      "command": "EVENT_IF_ACTOR_DIRECTION",
+      "args": {
+        "actorId": "$self$",
+        "direction": {
+          "type": "direction",
+          "value": "up"
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "$self$",
+              "spriteStateId": "",
+              "loopAnim": true
+            },
+            "id": "0508cb74-3e6f-47cc-94dc-a346cfdcb5b2"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "$self$",
+              "spriteStateId": "Sit still up",
+              "loopAnim": true
+            },
+            "id": "56b37734-3953-4bfa-9203-f4e9fa25c43b"
+          }
+        ]
+      },
+      "id": "b8059752-0fcc-4c24-a6ef-8e0a317ac27e"
+    }
+  ],
+  "_index": 17
+}
