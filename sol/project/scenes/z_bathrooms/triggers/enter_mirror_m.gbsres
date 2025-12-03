@@ -1,0 +1,172 @@
+{
+  "_resourceType": "trigger",
+  "id": "f6f698a0-7487-451a-9975-9ee2a148608a",
+  "name": "Enter Mirror M",
+  "prefabId": "",
+  "x": 0,
+  "y": 3,
+  "symbol": "trigger_74",
+  "prefabScriptOverrides": {},
+  "width": 2,
+  "height": 1,
+  "script": [
+    {
+      "command": "EVENT_IF_ACTOR_DIRECTION",
+      "args": {
+        "actorId": "$self$",
+        "direction": {
+          "type": "direction",
+          "value": "up"
+        },
+        "__collapseElse": true,
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF_ACTOR_AT_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 1
+              },
+              "y": {
+                "type": "number",
+                "value": 3
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "number",
+                      "value": 1
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 1
+                    },
+                    "tilesetId": "eac4ba45-f540-4a9c-8219-0f48dd818b65",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "tileSize": "16px"
+                  },
+                  "id": "85e91aeb-6b27-43c2-9ed6-ac1d6db5e71a"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "$self$",
+                    "spriteStateId": "Stand still up",
+                    "loopAnim": false
+                  },
+                  "id": "da8322d5-63f8-4147-aa9a-1feabcbad6db"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Lookin' good!"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "de0e9514-1ec0-4350-ac52-d8b86174cdc6"
+                },
+                {
+                  "command": "EVENT_ACTOR_MOVE_RELATIVE",
+                  "args": {
+                    "actorId": "$self$",
+                    "x": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 1
+                    },
+                    "moveType": "horizontal",
+                    "useCollisions": false
+                  },
+                  "id": "85b075ff-f3b4-4c27-ac77-287ae9fb10cc"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "$self$",
+                    "spriteStateId": "",
+                    "loopAnim": true
+                  },
+                  "id": "c4864f7c-be22-4579-8abd-4674efc3b8a7"
+                },
+                {
+                  "command": "EVENT_INC_VALUE",
+                  "args": {
+                    "variable": "511"
+                  },
+                  "id": "424e281c-61c3-4736-9bac-47b14f104837"
+                }
+              ],
+              "false": []
+            },
+            "id": "902c96ea-3bde-4634-aa37-8a82fa39d11a"
+          }
+        ],
+        "false": []
+      },
+      "id": "30377986-01c9-4f1d-a744-c25abd746f02"
+    }
+  ],
+  "leaveScript": [
+    {
+      "command": "EVENT_REPLACE_TILE_XY",
+      "args": {
+        "x": {
+          "type": "number",
+          "value": 1
+        },
+        "y": {
+          "type": "number",
+          "value": 1
+        },
+        "tilesetId": "0236cb72-ae2a-4d0d-b921-1d2ba1abd2a0",
+        "tileIndex": {
+          "type": "number",
+          "value": 0
+        },
+        "tileSize": "16px"
+      },
+      "id": "83fa65a0-bc62-46fc-850c-5da313eccc1a"
+    },
+    {
+      "command": "EVENT_ACTOR_SET_STATE",
+      "args": {
+        "actorId": "$self$",
+        "spriteStateId": "",
+        "loopAnim": true
+      },
+      "id": "c82a83c9-5c0a-4913-b19c-dc561625b3e6"
+    }
+  ],
+  "_index": 1
+}
