@@ -1,0 +1,186 @@
+{
+  "_resourceType": "actor",
+  "id": "ee979499-347e-46ae-b9c2-fade9bf29a43",
+  "name": "",
+  "frame": 0,
+  "animate": false,
+  "spriteSheetId": "9fab9803-3f8c-4740-8c5d-86181344ec1a",
+  "prefabId": "",
+  "direction": "down",
+  "moveSpeed": 1,
+  "animSpeed": 15,
+  "paletteId": "",
+  "isPinned": false,
+  "persistent": false,
+  "collisionGroup": "",
+  "prefabScriptOverrides": {},
+  "symbol": "actor_55",
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "508"
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Check out the bottom \nof the map. There are ",
+                "5 stickers you can\ncollect. "
+              ],
+              "__section": "layout",
+              "avatarId": "",
+              "minHeight": 3,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "top",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "c821a9ae-e26b-4720-bb58-4f606b066e95"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Would you like a map to \nthe planetarium?"
+              ],
+              "__section": "layout",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "top",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "988b046a-166d-49b5-848c-287b5ebd0209"
+          },
+          {
+            "command": "EVENT_CHOICE",
+            "args": {
+              "variable": "508",
+              "trueText": "Sure!",
+              "falseText": "No thanks."
+            },
+            "id": "b8da3ac2-98e7-4db8-87bd-6295c76fb771"
+          }
+        ]
+      },
+      "id": "e0addac3-61f0-4019-946f-0fb9949fb1b2"
+    }
+  ],
+  "startScript": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "not",
+          "value": {
+            "type": "variable",
+            "value": "509"
+          }
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 0.5,
+              "frames": 30
+            },
+            "id": "68009395-0dfe-4103-bbd2-a4bee6bf9b8a"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "$self$",
+              "spriteStateId": "Wave",
+              "loopAnim": false
+            },
+            "id": "1d9d7f14-21d6-47cb-b67b-1d923eb511e0"
+          },
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Hi! Welcome to \nSol Planetarium &\nObservatory. "
+              ],
+              "__section": "layout",
+              "avatarId": "",
+              "minHeight": 3,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "top",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "8f195167-e3c7-4ced-87f7-216368ab75b7"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "509",
+              "value": {
+                "type": "true"
+              }
+            },
+            "id": "e783e2af-e57d-44d1-b98e-b8cc6343a060"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "$self$",
+              "spriteStateId": "",
+              "loopAnim": true
+            },
+            "id": "741dde08-9293-4512-85bf-3e8938da8b53"
+          }
+        ],
+        "false": []
+      },
+      "id": "774e69bb-501a-4e52-92e8-19a9e30463f5"
+    }
+  ],
+  "updateScript": [],
+  "hit1Script": [],
+  "hit2Script": [],
+  "hit3Script": [],
+  "x": 5,
+  "y": 13,
+  "_index": 1
+}
