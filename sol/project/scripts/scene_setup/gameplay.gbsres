@@ -1,0 +1,230 @@
+{
+  "_resourceType": "script",
+  "id": "ffc82f77-39a4-4b79-8751-e5f02489dcf3",
+  "name": "scene setup/gameplay",
+  "description": "Attaches START and SELECT button events, tracks room ID for map",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_12",
+  "script": [
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "start"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "499"
+                }
+              },
+              "__collapseElse": false,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SCENE_PUSH_STATE",
+                  "args": {},
+                  "id": "9f035c77-8ed9-4803-a8aa-3d87c8e31ec4"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "499",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "fea3a8fe-ba21-4537-8349-97b48b481dd2"
+                },
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "dc9b0f85-96f3-40fa-b3e8-2fbd74557ef1",
+                    "x": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "direction": "",
+                    "fadeSpeed": 2,
+                    "__collapse": false
+                  },
+                  "id": "ec4048c9-6cc0-42b9-8ff8-6c4b5ac7a706"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "499",
+                    "value": {
+                      "type": "false"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "2741cec2-425a-42cd-a1cf-3ba20fe411ed"
+                },
+                {
+                  "command": "EVENT_SCENE_POP_STATE",
+                  "args": {
+                    "fadeSpeed": 1
+                  },
+                  "id": "a7c67e35-cba8-4d8d-a5fb-a23da08b75dc"
+                }
+              ]
+            },
+            "id": "2d841892-0ba0-48d5-a517-93b6cdcbf956"
+          }
+        ]
+      },
+      "id": "c397c043-463f-4245-b562-984ef4b3f10f"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "select"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "508"
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "not",
+                      "value": {
+                        "type": "variable",
+                        "value": "498"
+                      }
+                    },
+                    "__collapseElse": false,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SCENE_PUSH_STATE",
+                        "args": {},
+                        "id": "14ed409d-5dd6-46d3-8379-97261a2490f0"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "498",
+                          "value": {
+                            "type": "true"
+                          }
+                        },
+                        "id": "2b3d05e9-bdb5-4dff-a0e2-8555983e8ff8"
+                      },
+                      {
+                        "command": "EVENT_SWITCH_SCENE",
+                        "args": {
+                          "sceneId": "c4eecf37-ddd2-45c3-920a-52ddffde0aa6",
+                          "x": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "direction": "",
+                          "fadeSpeed": "2"
+                        },
+                        "id": "ec627eec-4c59-4487-b914-fe8ad574e1e3"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "498",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "44e2b61b-dd31-4c1b-9f84-60f228652c2c"
+                      },
+                      {
+                        "command": "EVENT_SCENE_POP_STATE",
+                        "args": {
+                          "fadeSpeed": 1,
+                          "__collapse": true
+                        },
+                        "id": "fe073cc0-0a8a-4bfa-b0e5-a33342f2b6a9"
+                      }
+                    ]
+                  },
+                  "id": "c298bbda-34fb-4d8a-95f8-aa8f933bf044"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Don't forget to pick up\nthe map from the front \ndesk!"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "6e95122d-2de9-4b42-95d4-8175243ce99a"
+                }
+              ]
+            },
+            "id": "aa2692b8-1631-4f4f-9f0f-182c55a498b8"
+          }
+        ]
+      },
+      "id": "75b8859d-569c-4a17-9d23-c400f2be6d69"
+    }
+  ]
+}
