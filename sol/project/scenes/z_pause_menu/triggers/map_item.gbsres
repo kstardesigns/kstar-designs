@@ -1,0 +1,222 @@
+{
+  "_resourceType": "trigger",
+  "id": "f79c371c-56a8-4131-b39c-dc6e6f7b2d07",
+  "name": "Map item",
+  "prefabId": "",
+  "x": 2,
+  "y": 2,
+  "symbol": "trigger_98",
+  "prefabScriptOverrides": {},
+  "width": 2,
+  "height": 1,
+  "script": [
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "down"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 2
+              },
+              "y": {
+                "type": "number",
+                "value": 6
+              },
+              "__collapse": true
+            },
+            "id": "00f1162f-0910-48b3-980f-e6c3773f651b"
+          }
+        ]
+      },
+      "id": "b0b3c5eb-958e-41cd-b23a-8fb29c0c68a5"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "up"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 2
+              },
+              "y": {
+                "type": "number",
+                "value": 14
+              }
+            },
+            "id": "650f96b3-5090-457b-9bee-24574bf9de50"
+          }
+        ]
+      },
+      "id": "f408a870-2a92-4394-b020-9d77f1326499"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "a"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "508"
+              },
+              "__collapseElse": false,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SCENE_PUSH_STATE",
+                  "args": {},
+                  "id": "ea982aea-826a-47e4-bae8-bd326ad51bd0"
+                },
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "c4eecf37-ddd2-45c3-920a-52ddffde0aa6",
+                    "x": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "direction": "",
+                    "fadeSpeed": "2"
+                  },
+                  "id": "4c9dbdb7-f4fa-4339-8262-ed141e6e3a55"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Don't forget to pick up\nthe map in the lobby!"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "36d231c7-39ea-4bca-8f45-e29ff5c7349f"
+                }
+              ]
+            },
+            "id": "4be2c1f4-2573-4f43-96c9-ffba51b00d44"
+          }
+        ]
+      },
+      "id": "27684e90-3a72-477b-90c5-f0d546ea95e3"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "start",
+          "b"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false,
+        "__comment": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "499",
+              "value": {
+                "type": "false"
+              },
+              "__collapse": true
+            },
+            "id": "acf93431-b1b1-4622-8369-ae310847b5da"
+          },
+          {
+            "command": "EVENT_SCENE_POP_STATE",
+            "args": {
+              "fadeSpeed": 1,
+              "__collapse": true
+            },
+            "id": "50de0d43-21b1-4cfe-8fdd-32e3017ba1d2"
+          }
+        ]
+      },
+      "id": "2994afc2-cd0b-4676-b3bd-1fc27b0476fe"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Disable following buttons",
+        "__collapse": true
+      },
+      "id": "f01dbadd-5fee-4112-b284-53a0487e70aa"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "select",
+          "left",
+          "right"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": []
+      },
+      "id": "40613dd5-ba05-4d26-a3f0-5c66c700783b"
+    }
+  ],
+  "leaveScript": [],
+  "_index": 0
+}
