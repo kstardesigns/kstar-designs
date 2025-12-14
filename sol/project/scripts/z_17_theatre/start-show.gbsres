@@ -1,0 +1,151 @@
+{
+  "_resourceType": "script",
+  "id": "793c439f-4a78-4451-8ad9-cea6e01b8867",
+  "name": "z 17 Theatre/start-show",
+  "description": "Makes player sit in chair and asks if they want to start the show",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_13",
+  "script": [
+    {
+      "command": "EVENT_ACTOR_SET_STATE",
+      "args": {
+        "actorId": "$self$",
+        "spriteStateId": "Sit still up",
+        "loopAnim": false,
+        "__collapse": true
+      },
+      "id": "64e0b6de-baa1-4f9b-a08d-cb69e5c526a1"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "491"
+        },
+        "__collapseElse": false,
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Would you like to watch\nthe show again?"
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30,
+              "__collapse": false
+            },
+            "id": "a51bbbd9-5666-4ef4-a389-f76559e49721"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Ready to start the\nshow?"
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "56f0d5e1-9e76-4436-a53b-d6acf1828686"
+          }
+        ]
+      },
+      "id": "83ce6519-5a3c-4df6-a08c-a854b62ec334"
+    },
+    {
+      "command": "EVENT_MENU",
+      "args": {
+        "variable": "491",
+        "items": 2,
+        "option1": "Yep!",
+        "option2": "Not yet",
+        "option3": "",
+        "option4": "",
+        "option5": "",
+        "option6": "",
+        "option7": "",
+        "option8": "",
+        "cancelOnB": true,
+        "layout": "menu",
+        "cancelOnLastOption": true,
+        "__collapse": false
+      },
+      "id": "3e1a8e39-351b-4eb5-aa4d-a52a8351fdb4"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "491"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SCENE_PUSH_STATE",
+            "args": {
+              "__collapse": true
+            },
+            "id": "061317af-db24-4fa5-93e1-48a2a572ba27"
+          },
+          {
+            "command": "EVENT_SWITCH_SCENE",
+            "args": {
+              "sceneId": "9d05a8d2-f5d7-41ae-846a-8b24967c53c7",
+              "x": {
+                "type": "number",
+                "value": 11
+              },
+              "y": {
+                "type": "number",
+                "value": 5
+              },
+              "direction": "",
+              "fadeSpeed": "2",
+              "__collapse": true
+            },
+            "id": "d2a31a78-e3d7-43ca-8de3-d6eea765cbba"
+          }
+        ],
+        "false": []
+      },
+      "id": "6d5f4219-31a2-481e-9040-990cef2e19d1"
+    }
+  ]
+}

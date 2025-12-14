@@ -1,23 +1,22 @@
 {
   "_resourceType": "trigger",
-  "id": "d28271c3-6f48-43df-9dcc-d620bf3f953d",
+  "id": "4d0ef163-b368-4582-8850-fc126cd70a31",
   "name": "Chair sit",
   "prefabId": "",
-  "x": 10,
-  "y": 32,
-  "symbol": "trigger_92",
+  "x": 14,
+  "y": 28,
+  "symbol": "trigger_87",
   "prefabScriptOverrides": {},
   "width": 2,
   "height": 1,
   "script": [
     {
-      "command": "EVENT_ACTOR_SET_STATE",
+      "command": "EVENT_CALL_CUSTOM_EVENT",
       "args": {
-        "actorId": "$self$",
-        "spriteStateId": "Sit still up",
-        "loopAnim": false
+        "customEventId": "793c439f-4a78-4451-8ad9-cea6e01b8867",
+        "__collapse": true
       },
-      "id": "c71d89ba-5fde-4be0-98d7-31ce212bd757"
+      "id": "9e97f8ee-fab9-4b3a-886e-906cdaf68dc9"
     }
   ],
   "leaveScript": [
@@ -40,22 +39,38 @@
               "spriteStateId": "",
               "loopAnim": true
             },
-            "id": "138f2b68-92e2-4773-8728-7a5cbfef3066"
+            "id": "5078a136-6121-41d5-9af5-3c067c8ad9fe"
           }
         ],
-        "false": [
+        "false": []
+      },
+      "id": "5de0a504-9ba8-41ac-a407-453ab2b0ac03"
+    },
+    {
+      "command": "EVENT_IF_ACTOR_DIRECTION",
+      "args": {
+        "actorId": "$self$",
+        "direction": {
+          "type": "direction",
+          "value": "right"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
           {
             "command": "EVENT_ACTOR_SET_STATE",
             "args": {
               "actorId": "$self$",
-              "spriteStateId": "Sit still up",
+              "spriteStateId": "",
               "loopAnim": true
             },
-            "id": "60b58542-739c-4a54-bfa2-16933e8df170"
+            "id": "464941e7-86ab-41cb-b44c-9fcd64e67b82"
           }
-        ]
+        ],
+        "false": []
       },
-      "id": "0398148c-4acc-41e5-9a01-a1889d6f17ba"
+      "id": "054999c1-3cb6-4b75-a26d-3f7fa22327d0"
     }
   ],
   "_index": 16
