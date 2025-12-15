@@ -1,11 +1,11 @@
 {
   "_resourceType": "trigger",
-  "id": "e64f0d2b-b83d-4799-99dd-d0b98ab3a985",
-  "name": "Save game item",
+  "id": "03449d45-4b1f-4ac4-acf8-6f85682cfdb1",
+  "name": "Exit item",
   "prefabId": "",
-  "x": 2,
-  "y": 10,
-  "symbol": "trigger_100",
+  "x": 1,
+  "y": 5,
+  "symbol": "trigger_104",
   "prefabScriptOverrides": {},
   "width": 2,
   "height": 1,
@@ -28,18 +28,18 @@
               "actorId": "$self$",
               "x": {
                 "type": "number",
-                "value": 2
+                "value": 1
               },
               "y": {
                 "type": "number",
-                "value": 14
+                "value": 10
               }
             },
-            "id": "7861fa32-5ffd-42f7-8eaf-bd7925f6f8f0"
+            "id": "c52ccafb-5633-4c42-a4f6-2767629c7a52"
           }
         ]
       },
-      "id": "5d53d575-4633-4a67-a0ee-12a360ad8974"
+      "id": "997c3b15-0228-472f-b587-91549dd63556"
     },
     {
       "command": "EVENT_SET_INPUT_SCRIPT",
@@ -59,24 +59,25 @@
               "actorId": "$self$",
               "x": {
                 "type": "number",
-                "value": 2
+                "value": 1
               },
               "y": {
                 "type": "number",
-                "value": 6
+                "value": 15
               },
-              "__collapse": true
+              "__collapse": false
             },
-            "id": "b7b5c26f-81a9-4746-ba5c-c68632f1162d"
+            "id": "7bb8df3f-991d-433c-9d30-e00004bfb2ca"
           }
         ]
       },
-      "id": "dc68d9e1-0961-4af7-90b5-b2a8b60f1f48"
+      "id": "08717884-34c9-43cb-97cd-8ed3bd709523"
     },
     {
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
+          "start",
           "a"
         ],
         "override": true,
@@ -86,50 +87,64 @@
       "children": {
         "true": [
           {
-            "command": "EVENT_COMMENT",
-            "args": {
-              "text": "Saving actually happens in the check-for-save function, after restoring scene stack",
-              "__collapse": true
-            },
-            "id": "40c2987d-7ae9-4806-8b78-723b847562d9"
-          },
-          {
             "command": "EVENT_SET_VALUE",
             "args": {
-              "variable": "489",
+              "variable": "490",
               "value": {
-                "type": "true"
-              }
+                "type": "number",
+                "value": 1
+              },
+              "__collapse": false
             },
-            "id": "49806c83-eda6-4366-a87e-787c3cbf180d"
+            "id": "4f5ee575-2e09-4505-95b5-03890cd98094"
           },
           {
-            "command": "EVENT_SET_VALUE",
+            "command": "EVENT_IF_SAVED_DATA",
             "args": {
-              "variable": "499",
-              "value": {
-                "type": "false"
-              }
+              "saveSlot": 0,
+              "__collapseElse": false
             },
-            "id": "aa4727fc-9dcb-4157-babc-16570cf1149a"
-          },
-          {
-            "command": "EVENT_SCENE_POP_STATE",
-            "args": {
-              "fadeSpeed": "2"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_LOAD_DATA",
+                  "args": {
+                    "saveSlot": 0
+                  },
+                  "id": "7ccc6bdf-15f0-402a-aec4-b4f153a3210f"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "590cf1a5-c7f5-419a-80ea-8947b70dd658",
+                    "x": {
+                      "type": "number",
+                      "value": 9
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 17
+                    },
+                    "direction": "",
+                    "fadeSpeed": "2"
+                  },
+                  "id": "ef39b019-4d05-4680-8c56-e3d4af8c583f"
+                }
+              ]
             },
-            "id": "63143ce6-2f3d-4f09-ab6b-cf8020cf65ea"
+            "id": "40a50526-482a-41fc-8c44-96150e253c19"
           }
         ]
       },
-      "id": "38ba224e-458c-4e37-88f8-b3671d7034e5"
+      "id": "a6cc0be5-a68b-47e7-8156-a7e06ce8a141"
     },
     {
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
-          "b",
-          "start"
+          "b"
         ],
         "override": true,
         "__scriptTabs": "press",
@@ -138,26 +153,25 @@
       "children": {
         "true": [
           {
-            "command": "EVENT_SET_VALUE",
+            "command": "EVENT_SWITCH_SCENE",
             "args": {
-              "variable": "499",
-              "value": {
-                "type": "false"
+              "sceneId": "0c55bef0-5863-4914-a996-5149b47fcd5c",
+              "x": {
+                "type": "number",
+                "value": 0
               },
-              "__collapse": true
+              "y": {
+                "type": "number",
+                "value": 0
+              },
+              "direction": "",
+              "fadeSpeed": "2"
             },
-            "id": "c1d7a18f-2786-41dc-ad6a-fdab85793750"
-          },
-          {
-            "command": "EVENT_SCENE_POP_STATE",
-            "args": {
-              "fadeSpeed": 1
-            },
-            "id": "a257fc8a-93a8-475a-89c2-de7d6213c69a"
+            "id": "dbe6daba-ca06-480a-b2c9-9a58280ae828"
           }
         ]
       },
-      "id": "3dc8c167-6dbd-4ba9-a0a0-f019726a530f"
+      "id": "4a82eaef-4c7a-4532-b080-78060f58875a"
     },
     {
       "command": "EVENT_COMMENT",
@@ -165,7 +179,7 @@
         "text": "Disable following buttons",
         "__collapse": true
       },
-      "id": "f75adad1-52c5-4574-a3c8-4e6f8d509150"
+      "id": "5fb3631e-e7b9-430f-96a0-82ed2347ccd1"
     },
     {
       "command": "EVENT_SET_INPUT_SCRIPT",
@@ -182,20 +196,9 @@
       "children": {
         "true": []
       },
-      "id": "e5c71582-4e17-46f3-8744-15d063ff3ca1"
+      "id": "af997520-b3ed-4f82-b5e4-e2f4793588f7"
     }
   ],
-  "leaveScript": [
-    {
-      "command": "EVENT_SET_VALUE",
-      "args": {
-        "variable": "499",
-        "value": {
-          "type": "true"
-        }
-      },
-      "id": "cb97ffc2-dd0b-4a8b-9e12-0c3059d4527e"
-    }
-  ],
+  "leaveScript": [],
   "_index": 2
 }
