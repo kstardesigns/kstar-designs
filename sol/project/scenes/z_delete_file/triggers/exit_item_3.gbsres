@@ -1,0 +1,226 @@
+{
+  "_resourceType": "trigger",
+  "id": "7d4cfae2-0cd8-40f7-8e0c-30760cc97272",
+  "name": "Exit item",
+  "prefabId": "",
+  "x": 1,
+  "y": 5,
+  "symbol": "trigger_107",
+  "prefabScriptOverrides": {},
+  "width": 2,
+  "height": 1,
+  "script": [
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "down"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 1
+              },
+              "y": {
+                "type": "number",
+                "value": 10
+              }
+            },
+            "id": "7e123c0f-7c54-40c2-b870-f15ffec383b0"
+          }
+        ]
+      },
+      "id": "96cb3296-ab3d-4dcf-846b-bd93c0613bca"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "start",
+          "a"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "490",
+              "value": {
+                "type": "number",
+                "value": 1
+              },
+              "__collapse": false
+            },
+            "id": "48903159-6190-4dbe-9e3c-9551c712d0f2"
+          },
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Are you sure you want\nto delete File 1?"
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "7d2ede22-304e-4ff0-b87d-2f70caaa2f5c"
+          },
+          {
+            "command": "EVENT_MENU",
+            "args": {
+              "variable": "L0",
+              "items": 2,
+              "option1": "Delete",
+              "option2": "Cancel",
+              "option3": "",
+              "option4": "",
+              "option5": "",
+              "option6": "",
+              "option7": "",
+              "option8": "",
+              "cancelOnB": true,
+              "layout": "menu",
+              "cancelOnLastOption": true,
+              "__collapse": false
+            },
+            "id": "7eeaefa1-717a-402a-8332-6a5f6e130f8c"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "L0"
+              },
+              "__collapseElse": true,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_CLEAR_DATA",
+                  "args": {
+                    "saveSlot": 0
+                  },
+                  "id": "9dd9b0cd-9c89-4125-b352-f34f625e4d2b"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "File 1 has been deleted."
+                    ],
+                    "__section": "layout",
+                    "avatarId": "",
+                    "minHeight": 1,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "54b55c0c-835d-4078-b0d2-ea17b6a9e50e"
+                },
+                {
+                  "command": "EVENT_SCENE_POP_STATE",
+                  "args": {
+                    "fadeSpeed": "2"
+                  },
+                  "id": "830e265c-2fda-4244-bc0c-c3fa40cf5136"
+                }
+              ],
+              "false": []
+            },
+            "id": "9d93de0f-a012-4b05-957e-7de4a9190617"
+          }
+        ]
+      },
+      "id": "d7182772-7e7c-491a-a191-eaf9b33767c6"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "b"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SCENE_POP_STATE",
+            "args": {
+              "fadeSpeed": "2"
+            },
+            "id": "8f8e5ea4-2b66-46fc-a599-24dec603ddee"
+          }
+        ]
+      },
+      "id": "d94b3e1a-ead6-4574-b93a-6de2d4452bc3"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Disable following buttons",
+        "__collapse": true
+      },
+      "id": "94ae1b09-5244-46f8-9854-47ecbcc3557f"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "left",
+          "right",
+          "select",
+          "up"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": []
+      },
+      "id": "239f9314-07fd-4375-922a-84fd7ce9c639"
+    }
+  ],
+  "leaveScript": [],
+  "_index": 2
+}

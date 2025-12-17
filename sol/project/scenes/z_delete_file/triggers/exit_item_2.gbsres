@@ -1,0 +1,227 @@
+{
+  "_resourceType": "trigger",
+  "id": "8b923847-6cbe-40c0-bb94-2527fa8455b3",
+  "name": "Exit item",
+  "prefabId": "",
+  "x": 1,
+  "y": 10,
+  "symbol": "trigger_106",
+  "prefabScriptOverrides": {},
+  "width": 2,
+  "height": 1,
+  "script": [
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "down"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 1
+              },
+              "y": {
+                "type": "number",
+                "value": 15
+              }
+            },
+            "id": "26d6993c-eff7-4161-9079-2fe817fbb839"
+          }
+        ]
+      },
+      "id": "d9525fc1-ea68-4dc9-b6c4-2e430e3d632c"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "start",
+          "a"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "490",
+              "value": {
+                "type": "number",
+                "value": 2
+              },
+              "__collapse": false
+            },
+            "id": "fe601011-c676-4737-ba98-b768f960c066"
+          },
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Are you sure you want\nto delete File 2?"
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "f22c1c1a-892c-4c0d-984d-1a927aa828b7"
+          },
+          {
+            "command": "EVENT_MENU",
+            "args": {
+              "variable": "L0",
+              "items": 2,
+              "option1": "Delete",
+              "option2": "Cancel",
+              "option3": "",
+              "option4": "",
+              "option5": "",
+              "option6": "",
+              "option7": "",
+              "option8": "",
+              "cancelOnB": true,
+              "layout": "menu",
+              "cancelOnLastOption": true,
+              "__collapse": false
+            },
+            "id": "316feea6-5971-4f08-bc60-cd1ed9d839aa"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "L0"
+              },
+              "__collapseElse": true,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_CLEAR_DATA",
+                  "args": {
+                    "saveSlot": 1
+                  },
+                  "id": "1f1bd853-a673-49a3-94a6-6306485e8a0a"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "File 2 has been deleted."
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 1,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": true
+                  },
+                  "id": "0f1e1843-2507-4863-b594-c804146abdf9"
+                },
+                {
+                  "command": "EVENT_SCENE_POP_STATE",
+                  "args": {
+                    "fadeSpeed": "2"
+                  },
+                  "id": "757246b4-20c3-4f09-b221-c37c7ceb20fd"
+                }
+              ],
+              "false": []
+            },
+            "id": "83b7a450-afa3-41bf-9833-2e34689d09ba"
+          }
+        ]
+      },
+      "id": "2f6d369b-3739-4a9d-8250-1bdeab918cbe"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "b"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SCENE_POP_STATE",
+            "args": {
+              "fadeSpeed": "2"
+            },
+            "id": "309e417e-dc01-4ecd-9b7a-bba355f9b51b"
+          }
+        ]
+      },
+      "id": "16df7ac2-4688-483b-aed8-9dfc30ba13a4"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Disable following buttons",
+        "__collapse": true
+      },
+      "id": "6dfbb425-140f-43c2-b4a3-e9ae82e45c65"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "left",
+          "right",
+          "select",
+          "up"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": []
+      },
+      "id": "ba50d0e6-bcc7-4897-81b4-b76826d93afc"
+    }
+  ],
+  "leaveScript": [],
+  "_index": 1
+}

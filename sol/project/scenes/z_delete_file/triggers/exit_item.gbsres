@@ -1,0 +1,226 @@
+{
+  "_resourceType": "trigger",
+  "id": "cba24cfc-892c-4964-b105-e86d06427adf",
+  "name": "Exit item",
+  "prefabId": "",
+  "x": 1,
+  "y": 15,
+  "symbol": "trigger_105",
+  "prefabScriptOverrides": {},
+  "width": 2,
+  "height": 1,
+  "script": [
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "start",
+          "a"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "490",
+              "value": {
+                "type": "number",
+                "value": 3
+              },
+              "__collapse": false
+            },
+            "id": "4f12277d-3509-419e-8b27-3a4e8adf87d5"
+          },
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Are you sure you want\nto delete File 3?"
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "08468f61-31a6-4259-8848-18aaf4f250be"
+          },
+          {
+            "command": "EVENT_MENU",
+            "args": {
+              "variable": "L0",
+              "items": 2,
+              "option1": "Delete",
+              "option2": "Cancel",
+              "option3": "",
+              "option4": "",
+              "option5": "",
+              "option6": "",
+              "option7": "",
+              "option8": "",
+              "cancelOnB": true,
+              "layout": "menu",
+              "cancelOnLastOption": true,
+              "__collapse": false
+            },
+            "id": "a5c9e274-2795-4f08-9922-c7a11a3f9cde"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "L0"
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_CLEAR_DATA",
+                  "args": {
+                    "saveSlot": 2
+                  },
+                  "id": "d0557c0d-3ce6-49cb-974e-9cbb6e4ba8ae"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "File 3 has been deleted."
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 1,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": false
+                  },
+                  "id": "9bb93e36-a026-4663-8ffa-5d1d315adc15"
+                },
+                {
+                  "command": "EVENT_SCENE_POP_STATE",
+                  "args": {
+                    "fadeSpeed": "2"
+                  },
+                  "id": "0c87cca5-8289-4ce9-b49b-f8048a57bc0f"
+                }
+              ],
+              "false": []
+            },
+            "id": "8ce9484b-82ed-4533-bdf3-916e6fad2867"
+          }
+        ]
+      },
+      "id": "7c88600b-433e-46aa-9b51-c7964ed0c202"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "b"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SCENE_POP_STATE",
+            "args": {
+              "fadeSpeed": "2"
+            },
+            "id": "e25c0437-9bc1-4a15-9b91-465114a73ef8"
+          }
+        ]
+      },
+      "id": "5f79de21-7c02-45a0-8a86-7d9757b9cd83"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "up"
+        ],
+        "override": true,
+        "__scriptTabs": "press"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 1
+              },
+              "y": {
+                "type": "number",
+                "value": 10
+              }
+            },
+            "id": "c8f43bf5-c0fc-40af-8c92-608253a304bf"
+          }
+        ]
+      },
+      "id": "d8f6df2b-282e-4a23-9e47-ad67c6f968f0"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Disable following buttons",
+        "__collapse": true
+      },
+      "id": "12b0bf26-1bc2-48ce-871d-5b343478259c"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "left",
+          "right",
+          "select",
+          "down"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": []
+      },
+      "id": "48c0bd1d-12b1-468b-a080-8e495d1c75be"
+    }
+  ],
+  "leaveScript": [],
+  "_index": 0
+}
