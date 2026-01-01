@@ -1,27 +1,173 @@
 {
   "_resourceType": "actor",
-  "id": "832b8089-0679-4a77-b8e3-2601c9aa25fe",
+  "id": "01fc855a-bc73-47f3-95b1-9af0a62cbce4",
   "name": "",
   "frame": 0,
   "animate": false,
-  "spriteSheetId": "a7652ae9-b97b-4ece-875d-2e232d332b30",
+  "spriteSheetId": "de10eca9-dd1e-4476-9353-ddfd34df438e",
   "prefabId": "",
   "direction": "down",
   "moveSpeed": 1,
-  "animSpeed": 31,
+  "animSpeed": 15,
   "paletteId": "",
   "isPinned": false,
   "persistent": false,
   "collisionGroup": "",
   "prefabScriptOverrides": {},
-  "symbol": "actor_66",
-  "script": [],
-  "startScript": [],
-  "updateScript": [],
+  "symbol": "actor_68",
+  "script": [
+    {
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": [
+          "Did you know AU stands\nfor Astronomical Unit?",
+          "It was originally \ndefined as the ",
+          "average distance\nbetween the Earth and",
+          "the Sun. Now, it's\n149,597,870,700 meters"
+        ],
+        "__section": "text",
+        "avatarId": "",
+        "minHeight": 4,
+        "maxHeight": 7,
+        "textX": 1,
+        "textY": 1,
+        "textHeight": 2,
+        "position": "top",
+        "clearPrevious": true,
+        "showFrame": "true",
+        "speedIn": -1,
+        "speedOut": -1,
+        "closeWhen": "key",
+        "closeButton": "a",
+        "closeDelayTime": 0.5,
+        "closeDelayFrames": 30
+      },
+      "id": "025fca09-9dd6-4296-b84d-8cbc0cf1e59b"
+    }
+  ],
+  "startScript": [
+    {
+      "command": "EVENT_SET_TIMER_SCRIPT",
+      "args": {
+        "timer": 1,
+        "duration": 3,
+        "frames": 30,
+        "__scriptTabs": "end",
+        "__comment": true
+      },
+      "children": {
+        "script": [
+          {
+            "command": "EVENT_IF_ACTOR_DIRECTION",
+            "args": {
+              "actorId": "$self$",
+              "direction": {
+                "type": "direction",
+                "value": "up"
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_SET_DIRECTION",
+                  "args": {
+                    "actorId": "$self$",
+                    "direction": {
+                      "type": "direction",
+                      "value": "down"
+                    }
+                  },
+                  "id": "c873055b-dc2f-4826-b68d-013cdfa923af"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_ACTOR_SET_DIRECTION",
+                  "args": {
+                    "actorId": "$self$",
+                    "direction": {
+                      "type": "direction",
+                      "value": "up"
+                    }
+                  },
+                  "id": "c1d8ab62-de09-4195-8803-276aea1d3c9b"
+                }
+              ]
+            },
+            "id": "361de3a5-3310-4415-bbcb-fddcf53ba786"
+          }
+        ]
+      },
+      "id": "5ec21135-2faa-4e26-b8db-35d3e44fdec2"
+    }
+  ],
+  "updateScript": [
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 8,
+        "frames": 30,
+        "__collapse": false
+      },
+      "id": "f6fe175e-de77-4df9-b0f5-b4de9fb6585a"
+    },
+    {
+      "command": "EVENT_ACTOR_SET_DIRECTION",
+      "args": {
+        "actorId": "$self$",
+        "direction": {
+          "type": "direction",
+          "value": "up"
+        }
+      },
+      "id": "91453c9f-6345-473c-84ef-383b6fee805d"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 5,
+        "frames": 30,
+        "__collapse": false
+      },
+      "id": "8c97696f-29f4-4c54-a06a-3a90cbde3663"
+    },
+    {
+      "command": "EVENT_ACTOR_SET_DIRECTION",
+      "args": {
+        "actorId": "$self$",
+        "direction": {
+          "type": "direction",
+          "value": "left"
+        }
+      },
+      "id": "f1866f3c-b220-41b3-8129-629eabdb00a1"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 4,
+        "frames": 30,
+        "__collapse": false
+      },
+      "id": "425c93d7-fa02-4c74-ac04-746fe79d06fa"
+    },
+    {
+      "command": "EVENT_ACTOR_SET_DIRECTION",
+      "args": {
+        "actorId": "$self$",
+        "direction": {
+          "type": "direction",
+          "value": "down"
+        }
+      },
+      "id": "258d321c-97bc-4704-b690-272734ce5b41"
+    }
+  ],
   "hit1Script": [],
   "hit2Script": [],
   "hit3Script": [],
-  "x": 15,
-  "y": 45,
+  "x": 13,
+  "y": 48,
   "_index": 6
 }

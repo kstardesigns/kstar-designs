@@ -1,50 +1,146 @@
 {
   "_resourceType": "actor",
-  "id": "a8933c03-8c90-49da-9f2a-858893becf4a",
+  "id": "6f399ac0-bec9-4cf3-adee-cff49ee3faec",
   "name": "",
   "frame": 0,
   "animate": false,
-  "spriteSheetId": "5d7992b0-43ee-4a05-b95c-e7cda9f9b5a2",
+  "spriteSheetId": "5c11ecb8-7057-4700-9bcd-3f340a0bcb3a",
   "prefabId": "",
   "direction": "down",
-  "moveSpeed": 1,
+  "moveSpeed": 0.5,
   "animSpeed": 15,
   "paletteId": "",
   "isPinned": false,
   "persistent": false,
-  "collisionGroup": "",
+  "collisionGroup": "1",
   "prefabScriptOverrides": {},
-  "symbol": "actor_67",
+  "symbol": "actor_61",
   "script": [
     {
-      "command": "EVENT_TEXT",
+      "command": "EVENT_IF_ACTOR_DIRECTION",
       "args": {
-        "text": [
-          "My daughter is really\nsmart. It was her idea",
-          "to come here. My son,\non the other hand..."
-        ],
-        "__section": "text",
-        "avatarId": "",
-        "minHeight": 4,
-        "maxHeight": 7,
-        "textX": 1,
-        "textY": 1,
-        "textHeight": 5,
-        "position": "bottom",
-        "clearPrevious": true,
-        "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
-        "closeButton": "a",
-        "closeDelayTime": 0.5,
-        "closeDelayFrames": 30
+        "actorId": "$self$",
+        "direction": {
+          "type": "direction",
+          "value": "right"
+        },
+        "__collapseElse": false,
+        "__comment": true
       },
-      "id": "df89e38f-1a20-46e7-a764-83cecb88f0df"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_DIRECTION",
+            "args": {
+              "actorId": "$self$",
+              "direction": {
+                "type": "direction",
+                "value": "left"
+              }
+            },
+            "id": "8b332c9e-4ffa-4e07-9477-ebdd4d9b1c7f"
+          },
+          {
+            "command": "EVENT_ACTOR_MOVE_RELATIVE",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": -1
+              },
+              "y": {
+                "type": "number",
+                "value": 0
+              },
+              "moveType": "horizontal",
+              "useCollisions": true,
+              "__comment": false
+            },
+            "id": "fa2f0119-9b76-4dec-b72f-f4b9805d9feb"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_ACTOR_SET_DIRECTION",
+            "args": {
+              "actorId": "$self$",
+              "direction": {
+                "type": "direction",
+                "value": "right"
+              }
+            },
+            "id": "7707c8d3-ab60-4427-95c5-5e585ab470ca"
+          },
+          {
+            "command": "EVENT_ACTOR_MOVE_RELATIVE",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 1
+              },
+              "y": {
+                "type": "number",
+                "value": 0
+              },
+              "moveType": "horizontal",
+              "useCollisions": false,
+              "__comment": true
+            },
+            "id": "33001a95-68eb-46ae-a620-4f2efeb4cc44"
+          }
+        ]
+      },
+      "id": "adc61fcd-8b4b-4022-96ce-525051290df2"
     }
   ],
-  "startScript": [],
-  "updateScript": [],
+  "startScript": [
+    {
+      "command": "EVENT_ACTOR_SET_STATE",
+      "args": {
+        "actorId": "$self$",
+        "spriteStateId": "",
+        "loopAnim": true
+      },
+      "id": "b73d6b56-f0e7-48e8-9e8a-de828b85ccad"
+    }
+  ],
+  "updateScript": [
+    {
+      "command": "EVENT_ACTOR_MOVE_RELATIVE",
+      "args": {
+        "actorId": "$self$",
+        "x": {
+          "type": "number",
+          "value": 5
+        },
+        "y": {
+          "type": "number",
+          "value": 0
+        },
+        "moveType": "horizontal",
+        "useCollisions": true
+      },
+      "id": "e7621d3f-f1d5-45c6-bed3-dcaabbefbf27"
+    },
+    {
+      "command": "EVENT_ACTOR_MOVE_RELATIVE",
+      "args": {
+        "actorId": "$self$",
+        "x": {
+          "type": "number",
+          "value": -5
+        },
+        "y": {
+          "type": "number",
+          "value": 0
+        },
+        "moveType": "horizontal",
+        "useCollisions": true
+      },
+      "id": "66667cbc-6961-4bc1-8ff5-3493a127bb3d"
+    }
+  ],
   "hit1Script": [],
   "hit2Script": [],
   "hit3Script": [],
