@@ -23,7 +23,8 @@
           "type": "variable",
           "value": "508"
         },
-        "__collapseElse": false
+        "__collapseElse": false,
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -31,10 +32,10 @@
             "command": "EVENT_TEXT",
             "args": {
               "text": [
-                "Check out the bottom \nof the map. There are ",
-                "5 stickers you can\ncollect. "
+                "Check out the bottom \nof the map. @ ",
+                "There are 5 stickers \nyou can collect. "
               ],
-              "__section": "layout",
+              "__section": "text",
               "avatarId": "",
               "minHeight": 3,
               "maxHeight": 7,
@@ -51,7 +52,7 @@
               "closeDelayTime": 0.5,
               "closeDelayFrames": 30
             },
-            "id": "900370ac-5abb-4a7e-8ba1-824b4a716370"
+            "id": "a08b4bb7-0ce3-45dd-89b0-3470964e65e9"
           }
         ],
         "false": [
@@ -59,9 +60,9 @@
             "command": "EVENT_TEXT",
             "args": {
               "text": [
-                "Would you like a map to \nthe planetarium?"
+                "Would you like a map\nto the planetarium?"
               ],
-              "__section": "layout",
+              "__section": "text",
               "avatarId": "",
               "minHeight": 4,
               "maxHeight": 7,
@@ -76,10 +77,9 @@
               "closeWhen": "key",
               "closeButton": "a",
               "closeDelayTime": 0.5,
-              "closeDelayFrames": 30,
-              "__collapse": false
+              "closeDelayFrames": 30
             },
-            "id": "d2bc21e6-2241-4e32-8a81-4aafe009b84a"
+            "id": "b1d1e5d4-a915-414f-bf69-6f33a2fe566c"
           },
           {
             "command": "EVENT_CHOICE",
@@ -88,11 +88,64 @@
               "trueText": "Sure!",
               "falseText": "No thanks."
             },
-            "id": "c0d7d92e-5e1f-406c-8fad-8c141ea82392"
+            "id": "a6e87dc7-7806-4569-b962-35a7d5f7c735"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "508"
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "You sure about that?"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "a2f11f8c-587c-4993-a83c-22d8ad42f474"
+                },
+                {
+                  "command": "EVENT_CHOICE",
+                  "args": {
+                    "variable": "508",
+                    "trueText": "I'll take a map",
+                    "falseText": "No thanks!"
+                  },
+                  "id": "53971cd7-9a21-4a2e-99cb-fd8646ee8e36"
+                }
+              ],
+              "false": []
+            },
+            "id": "d8c5fb5e-6b74-48cf-ad27-af77be903b97"
           }
         ]
       },
-      "id": "8bc91ce1-92e7-45e3-98bf-3caaac2250c9"
+      "id": "cb8f7e63-ddae-49a7-8bbe-9c528d298497"
     }
   ],
   "startScript": [],

@@ -32,8 +32,8 @@
             "command": "EVENT_TEXT",
             "args": {
               "text": [
-                "Check out the bottom \nof the map. There are ",
-                "5 stickers you can\ncollect. "
+                "Check out the bottom \nof the map. @ ",
+                "There are 5 stickers \nyou can collect. "
               ],
               "__section": "text",
               "avatarId": "",
@@ -60,7 +60,7 @@
             "command": "EVENT_TEXT",
             "args": {
               "text": [
-                "Would you like a map to \nthe planetarium?"
+                "Would you like a map\nto the planetarium?"
               ],
               "__section": "text",
               "avatarId": "",
@@ -89,6 +89,59 @@
               "falseText": "No thanks."
             },
             "id": "b8da3ac2-98e7-4db8-87bd-6295c76fb771"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "L0"
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "You sure about that?"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "aeb83ed5-d285-40de-9a05-f370c1286913"
+                },
+                {
+                  "command": "EVENT_CHOICE",
+                  "args": {
+                    "variable": "L0",
+                    "trueText": "I'll take a map",
+                    "falseText": "No thanks!"
+                  },
+                  "id": "aa680132-284e-4df9-9464-02d7a6e51426"
+                }
+              ],
+              "false": []
+            },
+            "id": "c554bb28-7010-488b-98bf-afe81d146714"
           }
         ]
       },
