@@ -1,0 +1,84 @@
+{
+  "_resourceType": "script",
+  "id": "0f9678d6-ba08-4acd-960e-d155fb31de15",
+  "name": "z 20 Long Hall/Auto left",
+  "description": "",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_18",
+  "script": [
+    {
+      "command": "EVENT_IF_ACTOR_DIRECTION",
+      "args": {
+        "actorId": "$self$",
+        "direction": {
+          "type": "direction",
+          "value": "left"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_MOVEMENT_SPEED",
+            "args": {
+              "actorId": "$self$",
+              "speed": 2,
+              "__collapse": true
+            },
+            "id": "31ec0e52-ff74-4355-a13d-f636841d3e39"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "$self$",
+              "spriteStateId": "Stand still left",
+              "loopAnim": false,
+              "__collapse": false
+            },
+            "id": "c6cbffe0-f7c6-4f17-9405-ac0cbcba6d62"
+          },
+          {
+            "command": "EVENT_ACTOR_MOVE_RELATIVE",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": -20
+              },
+              "y": {
+                "type": "number",
+                "value": 0
+              },
+              "moveType": "horizontal",
+              "useCollisions": false,
+              "__collapse": false
+            },
+            "id": "d4d4de70-0b87-4ccf-923f-18096cfdf194"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_MOVEMENT_SPEED",
+            "args": {
+              "actorId": "$self$",
+              "speed": 1,
+              "__collapse": true
+            },
+            "id": "1f25a380-d784-4427-a211-787cff1deeae"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "$self$",
+              "spriteStateId": "",
+              "loopAnim": true,
+              "__collapse": true
+            },
+            "id": "8bff9cf7-da67-45d3-9626-f58dae6066d4"
+          }
+        ],
+        "false": []
+      },
+      "id": "45c91443-c41f-497c-a19a-e1501c27f2e0"
+    }
+  ]
+}
