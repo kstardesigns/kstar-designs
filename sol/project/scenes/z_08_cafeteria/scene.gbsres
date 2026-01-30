@@ -22,7 +22,14 @@
     "1ddbab50-d310-4a0f-97b7-b83039f142f4"
   ],
   "spritePaletteIds": [
-    "d73adccf-4071-4012-b0a6-9c3973a2dc0e"
+    "d73adccf-4071-4012-b0a6-9c3973a2dc0e",
+    null,
+    null,
+    null,
+    null,
+    null,
+    "14984435-0ce6-4402-a59a-cc1cab069be5",
+    "5e536053-236d-4944-82bc-8204ce0292ea"
   ],
   "autoFadeSpeed": 1,
   "script": [
@@ -43,6 +50,77 @@
         }
       },
       "id": "eb14c9a6-41b7-4250-ab0c-158f39c206d1"
+    },
+    {
+      "command": "EVENT_ACTOR_DEACTIVATE",
+      "args": {
+        "actorId": "cf7f8be7-f4e8-4c07-8ea6-b2e7c2bfef26"
+      },
+      "id": "c2950afb-bf8b-4c15-b69c-3851bbd9ecca"
+    },
+    {
+      "command": "EVENT_ACTOR_DEACTIVATE",
+      "args": {
+        "actorId": "0a369441-7f70-428d-83ca-e8de3d320ad4"
+      },
+      "id": "2184fd3f-26bb-42f4-a8c1-da667dafea67"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "If mission has been started, but step 2 hasn't been done yet",
+        "__collapse": true
+      },
+      "id": "8abdf48f-cd97-4d47-8394-19a83a30f913"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "21"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "19"
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_ACTIVATE",
+                  "args": {
+                    "actorId": "cf7f8be7-f4e8-4c07-8ea6-b2e7c2bfef26"
+                  },
+                  "id": "df80259c-6525-454d-9e16-aaa4d38a3f3b"
+                },
+                {
+                  "command": "EVENT_ACTOR_ACTIVATE",
+                  "args": {
+                    "actorId": "0a369441-7f70-428d-83ca-e8de3d320ad4"
+                  },
+                  "id": "dc4af380-4090-41bb-a842-cc8dc5a40904"
+                }
+              ],
+              "false": []
+            },
+            "id": "7a7cdd53-38ab-4ae4-8a88-0182bdf1c922"
+          }
+        ],
+        "false": []
+      },
+      "id": "82d99475-2691-41a1-b6e9-e82fd74c6972"
     }
   ],
   "playerHit1Script": [],

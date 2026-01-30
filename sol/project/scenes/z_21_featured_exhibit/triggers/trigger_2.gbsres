@@ -1,101 +1,85 @@
 {
   "_resourceType": "trigger",
-  "id": "762ad5b2-5e65-4bfc-8815-881e8e7ab95a",
+  "id": "96ca88d4-624f-4b4d-9e56-6c12d936924b",
   "name": "",
   "prefabId": "",
-  "x": 2,
-  "y": 9,
-  "symbol": "trigger_4",
+  "x": 18,
+  "y": 4,
+  "symbol": "trigger_16",
   "prefabScriptOverrides": {},
-  "width": 1,
-  "height": 4,
+  "width": 2,
+  "height": 1,
   "script": [
     {
-      "command": "EVENT_IF_ACTOR_DIRECTION",
+      "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
-        "actorId": "$self$",
-        "direction": {
-          "type": "direction",
-          "value": "left"
-        },
-        "__collapseElse": true,
-        "__collapse": false
-      },
-      "children": {
-        "true": [
-          {
-            "command": "EVENT_SWITCH_SCENE",
-            "args": {
-              "sceneId": "617a88f3-dc1f-4298-b596-4427aac0a46d",
-              "x": {
-                "type": "number",
-                "value": 18
-              },
-              "y": {
-                "type": "number",
-                "value": 10
-              },
-              "direction": "left",
-              "fadeSpeed": "2"
-            },
-            "id": "7cdf0841-8ab1-48d2-96f9-3e8e1ee4e0f9"
-          }
+        "input": [
+          "a"
         ],
-        "false": []
-      },
-      "id": "fc29e697-154c-4fb3-b662-b211cabf3b8e"
-    },
-    {
-      "command": "EVENT_IF_ACTOR_DIRECTION",
-      "args": {
-        "actorId": "$self$",
-        "direction": {
-          "type": "direction",
-          "value": "right"
-        },
-        "__collapseElse": true,
-        "__collapse": false
+        "override": true,
+        "__scriptTabs": "press"
       },
       "children": {
         "true": [
           {
-            "command": "EVENT_IF_INPUT",
+            "command": "EVENT_IF_ACTOR_DIRECTION",
             "args": {
-              "input": [
-                "right"
-              ],
-              "__collapseElse": false
+              "actorId": "$self$",
+              "direction": {
+                "type": "direction",
+                "value": "up"
+              },
+              "__collapseElse": true
             },
             "children": {
-              "true": [],
-              "false": [
+              "true": [
                 {
-                  "command": "EVENT_ACTOR_MOVE_RELATIVE",
+                  "command": "EVENT_TEXT",
                   "args": {
-                    "actorId": "$self$",
-                    "x": {
-                      "type": "number",
-                      "value": 1
-                    },
-                    "y": {
-                      "type": "number",
-                      "value": 0
-                    },
-                    "moveType": "horizontal",
-                    "useCollisions": false
+                    "text": [
+                      " It's the Europa\n Clipper mission \n patch. @",
+                      " It depicts a clipper\n ship, sailing in\n front of Europa."
+                    ],
+                    "__section": "text",
+                    "avatarId": "624ade56-848a-4c48-afa2-5e45c735c3ca",
+                    "minHeight": 5,
+                    "maxHeight": 3,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": 0,
+                    "speedOut": 0,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": false
                   },
-                  "id": "631e9ae8-5788-421d-8d57-2235a6bc3f36"
+                  "id": "19ba7304-7bf4-407c-ac8a-108aa704383d"
                 }
-              ]
+              ],
+              "false": []
             },
-            "id": "485f76ef-39a8-4d6c-809c-d10c2ac2afe4"
+            "id": "4a367e3b-75a1-4cfd-a271-c333263738e3"
           }
-        ],
-        "false": []
+        ]
       },
-      "id": "d682fc57-5c88-40c7-b6ee-09ecc4c353c7"
+      "id": "260bc959-e220-41f4-b856-c27ff4e4b1d7"
     }
   ],
-  "leaveScript": [],
-  "_index": 1
+  "leaveScript": [
+    {
+      "command": "EVENT_REMOVE_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "a"
+        ]
+      },
+      "id": "ca889971-e743-418c-b281-fd45d726a9af"
+    }
+  ],
+  "_index": 2
 }

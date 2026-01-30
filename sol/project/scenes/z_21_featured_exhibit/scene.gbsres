@@ -24,11 +24,11 @@
   "spritePaletteIds": [
     "d73adccf-4071-4012-b0a6-9c3973a2dc0e",
     "9187744a-02a6-4c74-85c7-9cb6f2b93772",
-    "14984435-0ce6-4402-a59a-cc1cab069be5",
+    "dmg",
     "dmg",
     "9187744a-02a6-4c74-85c7-9cb6f2b93772",
     "",
-    "",
+    "14984435-0ce6-4402-a59a-cc1cab069be5",
     "5e536053-236d-4944-82bc-8204ce0292ea"
   ],
   "autoFadeSpeed": 1,
@@ -41,6 +41,24 @@
         "__collapse": true
       },
       "id": "dd7e0b3e-6a61-4d9d-83e7-1e45cac2bd27"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "FOR TESTING:"
+      },
+      "id": "16981c45-0c23-4989-a8dc-aa171528370a"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "18",
+        "value": {
+          "type": "true"
+        },
+        "__collapse": true
+      },
+      "id": "a7af8c30-436c-4127-9dad-e499e66cb2ff"
     },
     {
       "command": "EVENT_SET_VALUE",
@@ -76,10 +94,126 @@
         "false": []
       },
       "id": "15b521e9-d047-4e48-af80-ac7f655c4d39"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "If mission has been started but step 2 hasn't happened, hide from room. If step 2 has happened, they will be back in this room in a different spot"
+      },
+      "id": "572fd8e3-56d1-4d00-8b94-f77420cad06b"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "21"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "19"
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_DEACTIVATE",
+                  "args": {
+                    "actorId": "4a0e96bb-7769-4091-bedf-2e10f89ae242"
+                  },
+                  "id": "c30e4bb3-d700-48b1-a7ed-058c0782fb1b"
+                },
+                {
+                  "command": "EVENT_ACTOR_DEACTIVATE",
+                  "args": {
+                    "actorId": "9ddd8c46-7fc1-4028-bf30-45a0c34a5fff"
+                  },
+                  "id": "a16dd4d6-e41c-4efd-a943-8d2bcd916c31"
+                }
+              ],
+              "false": []
+            },
+            "id": "8bd145c9-6382-417c-a222-327de5ec711d"
+          }
+        ],
+        "false": []
+      },
+      "id": "0c84fe86-d153-4d7c-8072-f7a664a966f6"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "19"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_ACTIVATE",
+            "args": {
+              "actorId": "4a0e96bb-7769-4091-bedf-2e10f89ae242"
+            },
+            "id": "77e40e82-8479-448e-ac0c-bb134cd712b7"
+          },
+          {
+            "command": "EVENT_ACTOR_ACTIVATE",
+            "args": {
+              "actorId": "9ddd8c46-7fc1-4028-bf30-45a0c34a5fff"
+            },
+            "id": "a992a24a-f7bb-4ad5-8125-61acfe1a15e0"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "9ddd8c46-7fc1-4028-bf30-45a0c34a5fff",
+              "x": {
+                "type": "number",
+                "value": 8
+              },
+              "y": {
+                "type": "number",
+                "value": 16
+              }
+            },
+            "id": "0b920542-8d9d-4893-87c7-7926f90a3573"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "4a0e96bb-7769-4091-bedf-2e10f89ae242",
+              "x": {
+                "type": "number",
+                "value": 11
+              },
+              "y": {
+                "type": "number",
+                "value": 16
+              }
+            },
+            "id": "908b3c73-3a13-40f3-9012-3050a58c077c"
+          }
+        ],
+        "false": []
+      },
+      "id": "74ba827d-905c-44ae-bece-60d9618de8a1"
     }
   ],
   "playerHit1Script": [],
   "playerHit2Script": [],
   "playerHit3Script": [],
-  "collisions": "007a+0f23+005+0f!0021+0f!005+0f!0021+0f!005+0f!0021+0f!005+0f!0021+0f!005+0f!00!0f2+001a+0f3+00!0f!0027+0f!0027+0f!00e+0f12+007+0f!00e+0f12+007+0f!005+0f!0021+0f!005+0f!0021+0f!005+0f!00!0f4+001c+0f!005+0f!00!0f4+0017+0f4+00!0f!005+0f!0021+0f!003+"
+  "collisions": "007a+0f23+005+0f!0021+0f!005+0f!0021+0f!005+0f!0021+0f!005+0f!0021+0f!005+0f!00!0f2+001a+0f3+00!0f!0027+0f!0027+0f!00e+0f12+007+0f!00e+0f12+007+0f!005+0f!0021+0f!005+0f!0021+0f!005+0f5+001d+0f!005+0f5+0018+0f4+00!0f!005+0f!0021+0f!003+"
 }
