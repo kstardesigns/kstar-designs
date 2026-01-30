@@ -19,9 +19,72 @@
     {
       "command": "EVENT_COMMENT",
       "args": {
+        "text": "FOR TESTING:",
+        "__collapse": true
+      },
+      "id": "263532b0-eeca-4a86-aae8-b0b9583a108a"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "18",
+        "value": {
+          "type": "true"
+        },
+        "__collapse": true
+      },
+      "id": "3dc1779d-6dae-4e62-a2d4-2c4482bc6b6b"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
         "text": "Mission sticker 5 start"
       },
       "id": "f77a237c-a9c4-4bbf-afe7-bad69e2d8741"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "not",
+          "value": {
+            "type": "variable",
+            "value": "18"
+          }
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "(Dialog for before\nlights went out)"
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "efe8324b-3a73-4f85-81ef-9b94f8936163"
+          }
+        ],
+        "false": []
+      },
+      "id": "6a0d7ef2-5bb3-422f-8c07-fd5487eb0fed"
     },
     {
       "command": "EVENT_IF",
@@ -33,10 +96,86 @@
         "__collapseElse": true
       },
       "children": {
-        "true": [],
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Our daughter got lost \nwhen the power went  @",
+                "out. My husband and I \nhave been checking  @",
+                "rooms, looking every-\nwhere. I'm starting  @",
+                "to panic.  @",
+                "We haven't checked \nthe cafeteria..."
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 2,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30,
+              "__collapse": true
+            },
+            "id": "4feaf1bf-4464-4a78-a401-3acd12a2f1ad"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "4a0e96bb-7769-4091-bedf-2e10f89ae242",
+              "spriteStateId": "Curly look down",
+              "loopAnim": false
+            },
+            "id": "06d917ec-f6e7-4a6c-b666-cb1de12970f1"
+          },
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "test text after \nlook down"
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "f9a14683-b970-49da-9c69-d72521f4c446"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "21",
+              "value": {
+                "type": "true"
+              },
+              "__collapse": true
+            },
+            "id": "7ae4de36-ef61-4cf2-b21e-e3b4c86146bf"
+          }
+        ],
         "false": []
       },
-      "id": "d621f67b-bb8d-414a-b7b6-d4e050865129"
+      "id": "dd7f2d53-2421-4740-96f0-f5f204a5bce1"
     }
   ],
   "startScript": [],
