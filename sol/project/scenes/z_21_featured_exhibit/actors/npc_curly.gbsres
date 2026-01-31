@@ -125,30 +125,171 @@
                     ],
                     "false": [
                       {
-                        "command": "EVENT_TEXT",
+                        "command": "EVENT_IF",
                         "args": {
-                          "text": [
-                            "No, we still don't know\nwhere she is. Have  @",
-                            "you tried checking\nyour map?"
-                          ],
-                          "__section": "text",
-                          "avatarId": "",
-                          "minHeight": 4,
-                          "maxHeight": 7,
-                          "textX": 1,
-                          "textY": 1,
-                          "textHeight": 5,
-                          "position": "top",
-                          "clearPrevious": true,
-                          "showFrame": "true",
-                          "speedIn": -1,
-                          "speedOut": -1,
-                          "closeWhen": "key",
-                          "closeButton": "a",
-                          "closeDelayTime": 0.5,
-                          "closeDelayFrames": 30
+                          "condition": {
+                            "type": "not",
+                            "value": {
+                              "type": "variable",
+                              "value": "440"
+                            }
+                          },
+                          "__collapseElse": false
                         },
-                        "id": "aa51b23c-236e-45ad-a851-e930192b600e"
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_TEXT",
+                              "args": {
+                                "text": [
+                                  "No, we still don't know\nwhere she is. Have  @",
+                                  "you tried checking\nyour map to see  @",
+                                  "which rooms you\nhaven't checked?"
+                                ],
+                                "__section": "text",
+                                "avatarId": "",
+                                "minHeight": 4,
+                                "maxHeight": 7,
+                                "textX": 1,
+                                "textY": 1,
+                                "textHeight": 5,
+                                "position": "top",
+                                "clearPrevious": true,
+                                "showFrame": "true",
+                                "speedIn": -1,
+                                "speedOut": -1,
+                                "closeWhen": "key",
+                                "closeButton": "a",
+                                "closeDelayTime": 0.5,
+                                "closeDelayFrames": 30
+                              },
+                              "id": "aa51b23c-236e-45ad-a851-e930192b600e"
+                            }
+                          ],
+                          "false": [
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "variable",
+                                  "value": "85"
+                                },
+                                "__collapseElse": false,
+                                "__collapse": false
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_TEXT",
+                                    "args": {
+                                      "text": [
+                                        "We owe you one. Oh, I\nhave an idea.  @",
+                                        "We got a rare \nsticker from this  @",
+                                        "exhibit. You can have\nit."
+                                      ],
+                                      "__section": "text",
+                                      "avatarId": "",
+                                      "minHeight": 4,
+                                      "maxHeight": 7,
+                                      "textX": 1,
+                                      "textY": 1,
+                                      "textHeight": 5,
+                                      "position": "bottom",
+                                      "clearPrevious": true,
+                                      "showFrame": "true",
+                                      "speedIn": -1,
+                                      "speedOut": -1,
+                                      "closeWhen": "key",
+                                      "closeButton": "a",
+                                      "closeDelayTime": 0.5,
+                                      "closeDelayFrames": 30
+                                    },
+                                    "id": "fe3567e0-8270-4cc1-adce-42fcddae5e67"
+                                  },
+                                  {
+                                    "command": "EVENT_SET_VALUE",
+                                    "args": {
+                                      "variable": "33",
+                                      "value": {
+                                        "type": "true"
+                                      }
+                                    },
+                                    "id": "48f3ff11-9a81-4bd8-9738-7fc75e7aefce"
+                                  },
+                                  {
+                                    "command": "EVENT_ACTOR_ACTIVATE",
+                                    "args": {
+                                      "actorId": "0c666f08-d7e3-4ce7-b03d-037cec1067ab"
+                                    },
+                                    "id": "6c6a2484-f01e-4f44-85d3-43ed991ea0df"
+                                  },
+                                  {
+                                    "command": "EVENT_ACTOR_SET_POSITION",
+                                    "args": {
+                                      "actorId": "0c666f08-d7e3-4ce7-b03d-037cec1067ab",
+                                      "x": {
+                                        "type": "number",
+                                        "value": 19
+                                      },
+                                      "y": {
+                                        "type": "number",
+                                        "value": 12
+                                      }
+                                    },
+                                    "id": "68a615a9-41cb-4e4b-8af9-3f414cc3b44d"
+                                  },
+                                  {
+                                    "command": "EVENT_ACTOR_MOVE_RELATIVE",
+                                    "args": {
+                                      "actorId": "0c666f08-d7e3-4ce7-b03d-037cec1067ab",
+                                      "x": {
+                                        "type": "number",
+                                        "value": 4
+                                      },
+                                      "y": {
+                                        "type": "number",
+                                        "value": -4
+                                      },
+                                      "moveType": "diagonal",
+                                      "useCollisions": false
+                                    },
+                                    "id": "1d219f1a-6523-43c2-8252-697d8996abde"
+                                  }
+                                ],
+                                "false": [
+                                  {
+                                    "command": "EVENT_TEXT",
+                                    "args": {
+                                      "text": [
+                                        "Where was she? She's\nin trouble when she  @",
+                                        "gets home."
+                                      ],
+                                      "__section": "text",
+                                      "avatarId": "",
+                                      "minHeight": 4,
+                                      "maxHeight": 7,
+                                      "textX": 1,
+                                      "textY": 1,
+                                      "textHeight": 5,
+                                      "position": "bottom",
+                                      "clearPrevious": true,
+                                      "showFrame": "true",
+                                      "speedIn": -1,
+                                      "speedOut": -1,
+                                      "closeWhen": "key",
+                                      "closeButton": "a",
+                                      "closeDelayTime": 0.5,
+                                      "closeDelayFrames": 30
+                                    },
+                                    "id": "9316d093-4bc4-4c02-93cf-93f46ba22ff0"
+                                  }
+                                ]
+                              },
+                              "id": "cf93ef25-b461-424c-a603-1660d4f01e9a"
+                            }
+                          ]
+                        },
+                        "id": "7c92331c-edf5-4c0a-9afd-ac2265f2b618"
                       }
                     ]
                   },
