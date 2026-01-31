@@ -1,0 +1,87 @@
+{
+  "_resourceType": "script",
+  "id": "0cec9463-1b12-475b-9370-8eebd22455aa",
+  "name": "Set Claire location",
+  "description": "",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_20",
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "19"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "33"
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_VARIABLE_MATH",
+                  "args": {
+                    "vectorX": "89",
+                    "operation": "set",
+                    "other": "rnd",
+                    "vectorY": "L0",
+                    "value": "0",
+                    "minValue": 1,
+                    "maxValue": 10,
+                    "clamp": false,
+                    "__comment": false,
+                    "__collapse": false
+                  },
+                  "id": "32d74cc0-d0a1-4ebe-a0e2-b19b537af3ea"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Claire location set\nto $89$"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "76454f07-7946-4c44-8fc6-48ea9fdf5524"
+                }
+              ],
+              "false": []
+            },
+            "id": "5a64fcd8-1d43-4d6e-aff0-2204659095b7"
+          }
+        ],
+        "false": []
+      },
+      "id": "01fa4518-5471-4ebc-84d9-bc7bed7b9ebf"
+    }
+  ]
+}
