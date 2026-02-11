@@ -86,10 +86,173 @@
           {
             "command": "EVENT_COMMENT",
             "args": {
-              "text": "set up dialog to confirm deleting a file. then delete file then start new game\n",
-              "__collapse": true
+              "text": "If file exists, confirm deletion of it before new game starts",
+              "__collapse": false
             },
             "id": "24f30dcd-d776-48c8-a456-2abb06f2c807"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "490",
+              "value": {
+                "type": "number",
+                "value": 1
+              },
+              "__collapse": false
+            },
+            "id": "12cb1c53-7c33-499c-be2a-cec09dace2bb"
+          },
+          {
+            "command": "EVENT_IF_SAVED_DATA",
+            "args": {
+              "saveSlot": 0,
+              "__collapseElse": false,
+              "input": [
+                "start",
+                "a"
+              ],
+              "override": true,
+              "__scriptTabs": "press",
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Would you like to\ndelete the existing @",
+                      "file and start a new\none?"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": true
+                  },
+                  "id": "afb4148a-6ea9-482d-8878-85df95f79cbe"
+                },
+                {
+                  "command": "EVENT_MENU",
+                  "args": {
+                    "variable": "L0",
+                    "items": 2,
+                    "option1": "Delete existing file",
+                    "option2": "Cancel",
+                    "option3": "",
+                    "option4": "",
+                    "option5": "",
+                    "option6": "",
+                    "option7": "",
+                    "option8": "",
+                    "cancelOnB": true,
+                    "layout": "dialogue",
+                    "cancelOnLastOption": true,
+                    "__collapse": false
+                  },
+                  "id": "6b55802a-3f28-4206-a802-83abd2a042bd"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "variable",
+                      "value": "L0"
+                    },
+                    "__collapseElse": true,
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_CLEAR_DATA",
+                        "args": {
+                          "saveSlot": 0
+                        },
+                        "id": "acabc84f-2fcc-45ee-a31f-ee2ff4675be6"
+                      },
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "Existing file has been\ndeleted."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 1,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "c8c4cf77-92f6-4220-a385-b24502a708c7"
+                      },
+                      {
+                        "command": "EVENT_SWITCH_SCENE",
+                        "args": {
+                          "sceneId": "bf5b8dca-e6d0-412e-b8ec-b9175f257028",
+                          "x": {
+                            "type": "number",
+                            "value": 1
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 13
+                          },
+                          "direction": "right",
+                          "fadeSpeed": "2"
+                        },
+                        "id": "52298926-3633-4cda-a0b8-684cbf076fa2"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "18971e3f-d491-46c5-a1ef-50ee3a7f78e0"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "bf5b8dca-e6d0-412e-b8ec-b9175f257028",
+                    "x": {
+                      "type": "number",
+                      "value": 1
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 13
+                    },
+                    "direction": "right",
+                    "fadeSpeed": "2"
+                  },
+                  "id": "c6d53952-0955-465b-b246-e8b9191a1a4d"
+                }
+              ]
+            },
+            "id": "75d18162-537b-46de-8a1e-1fdb1301df13"
           }
         ]
       },
@@ -113,7 +276,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true,
+        "__collapse": false,
         "__comment": false
       },
       "children": {

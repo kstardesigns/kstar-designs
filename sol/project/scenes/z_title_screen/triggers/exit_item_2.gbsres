@@ -87,9 +87,56 @@
             "command": "EVENT_COMMENT",
             "args": {
               "text": "this will only appear if there is a save file. if continue is clicked, continue saved game (file selection)",
-              "__collapse": false
+              "__collapse": true
             },
             "id": "01a430a2-d752-4719-b51e-6a0b4737f291"
+          },
+          {
+            "command": "EVENT_IF_SAVED_DATA",
+            "args": {
+              "saveSlot": 0,
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_LOAD_DATA",
+                  "args": {
+                    "saveSlot": 0
+                  },
+                  "id": "3cdfb1b4-d3f0-4e78-a203-bfe6063b88e4"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "slot 1 save doesnt \nexist. this continue\nbutton shouldnt show @",
+                      "if slot 1 save doesnt\nexist..."
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "c5694215-4b4d-48d8-820f-28fda8547b82"
+                }
+              ]
+            },
+            "id": "c4de9cbc-74cc-427d-ae69-71e227a2ca3a"
           }
         ]
       },
