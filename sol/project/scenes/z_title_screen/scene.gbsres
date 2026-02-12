@@ -22,7 +22,7 @@
     "75132dab-d623-4846-8ddb-014452258a47"
   ],
   "collisions": "00168+",
-  "autoFadeSpeed": 1,
+  "autoFadeSpeed": null,
   "symbol": "scene_32",
   "x": 1352,
   "y": 1016,
@@ -41,6 +41,63 @@
         "true": []
       },
       "id": "9f78337c-a113-435c-bcd2-2edaaaf2c88e"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Hide Continue if no saved data"
+      },
+      "id": "7ea262d6-ae0a-455a-a0e0-b0aef2b8484d"
+    },
+    {
+      "command": "EVENT_IF_SAVED_DATA",
+      "args": {
+        "saveSlot": 0,
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [],
+        "false": [
+          {
+            "command": "EVENT_ACTOR_DEACTIVATE",
+            "args": {
+              "actorId": "d199fdb1-cb12-4574-8d0e-1d1d0257aeac"
+            },
+            "id": "bd2ad466-6c71-4286-950d-96cf74f29ebb"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "e01184ee-8974-4cbf-be1e-9a5ad99e293c",
+              "x": {
+                "type": "number",
+                "value": 9
+              },
+              "y": {
+                "type": "number",
+                "value": 14
+              }
+            },
+            "id": "12d688fa-2bf3-45de-9f5c-145cf0557df8"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 4
+              },
+              "y": {
+                "type": "number",
+                "value": 14
+              }
+            },
+            "id": "bd801d66-fe4e-4d34-9ab9-c441186ff1cb"
+          }
+        ]
+      },
+      "id": "1980d25e-0f6a-45c0-bd1c-a0f7cf115709"
     },
     {
       "command": "EVENT_SET_TIMER_SCRIPT",
@@ -445,6 +502,13 @@
         ]
       },
       "id": "9f39ed44-a10a-4b4d-8571-a56ef88cf457"
+    },
+    {
+      "command": "EVENT_FADE_IN",
+      "args": {
+        "speed": "2"
+      },
+      "id": "24a26c99-c175-44ed-89e7-b6d8d41e6362"
     }
   ],
   "playerHit1Script": [],

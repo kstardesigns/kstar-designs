@@ -1,0 +1,168 @@
+{
+  "_resourceType": "trigger",
+  "id": "3eec953f-6b74-46da-a099-06c73b1c4098",
+  "name": "Continue trigger",
+  "prefabId": "",
+  "x": 4,
+  "y": 13,
+  "symbol": "trigger_25",
+  "prefabScriptOverrides": {},
+  "width": 2,
+  "height": 1,
+  "script": [
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "if saved data exists, trigger for Continue will have button assignments"
+      },
+      "id": "54b56e53-661d-4f29-9082-b802f1750b77"
+    },
+    {
+      "command": "EVENT_IF_SAVED_DATA",
+      "args": {
+        "saveSlot": 0,
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_INPUT_SCRIPT",
+            "args": {
+              "input": [
+                "up",
+                "down"
+              ],
+              "override": true,
+              "__scriptTabs": "press",
+              "__collapse": true,
+              "__comment": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_SET_POSITION",
+                  "args": {
+                    "actorId": "$self$",
+                    "x": {
+                      "type": "number",
+                      "value": 4
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 15
+                    }
+                  },
+                  "id": "2fd5a7b9-16e1-4f10-8097-6bf478837122"
+                }
+              ]
+            },
+            "id": "9d75ef8d-0939-407b-8ab0-8cd9268fb8e1"
+          },
+          {
+            "command": "EVENT_SET_INPUT_SCRIPT",
+            "args": {
+              "input": [
+                "start",
+                "a"
+              ],
+              "override": true,
+              "__scriptTabs": "press",
+              "__collapse": true,
+              "__comment": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "this will only appear if there is a save file. if continue is clicked, continue saved game (file selection)",
+                    "__collapse": true
+                  },
+                  "id": "01a430a2-d752-4719-b51e-6a0b4737f291"
+                },
+                {
+                  "command": "EVENT_IF_SAVED_DATA",
+                  "args": {
+                    "saveSlot": 0,
+                    "__collapseElse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_LOAD_DATA",
+                        "args": {
+                          "saveSlot": 0
+                        },
+                        "id": "3cdfb1b4-d3f0-4e78-a203-bfe6063b88e4"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "slot 1 save doesnt \nexist. this continue\nbutton shouldnt show @",
+                            "if slot 1 save doesnt\nexist..."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "c5694215-4b4d-48d8-820f-28fda8547b82"
+                      }
+                    ]
+                  },
+                  "id": "c4de9cbc-74cc-427d-ae69-71e227a2ca3a"
+                }
+              ]
+            },
+            "id": "20c61ff8-bd07-49ab-b31b-961c116a29c6"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Disable following buttons",
+              "__collapse": false
+            },
+            "id": "e666fd88-09e7-40d9-bf6f-74087cfe8fae"
+          },
+          {
+            "command": "EVENT_SET_INPUT_SCRIPT",
+            "args": {
+              "input": [
+                "left",
+                "right",
+                "select"
+              ],
+              "override": true,
+              "__scriptTabs": "press",
+              "__collapse": true,
+              "__comment": false
+            },
+            "children": {
+              "true": []
+            },
+            "id": "b59c6154-1e21-4098-995e-b6f131a55e15"
+          }
+        ],
+        "false": []
+      },
+      "id": "145d1e84-ca33-498d-86f9-3bef62583fc0"
+    }
+  ],
+  "leaveScript": [],
+  "_index": 1
+}

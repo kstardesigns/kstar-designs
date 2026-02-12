@@ -1,73 +1,84 @@
 {
   "_resourceType": "trigger",
   "id": "942bb9c4-f893-42cd-b4e1-ecd4f71a4a76",
-  "name": "Exit item",
+  "name": "New game trigger",
   "prefabId": "",
   "x": 4,
-  "y": 15,
+  "y": 14,
   "symbol": "trigger_22",
   "prefabScriptOverrides": {},
   "width": 2,
-  "height": 1,
+  "height": 2,
   "script": [
     {
-      "command": "EVENT_TEXT",
+      "command": "EVENT_IF_SAVED_DATA",
       "args": {
-        "text": [
-          "here!"
-        ],
-        "__section": "text",
-        "avatarId": "",
-        "minHeight": 4,
-        "maxHeight": 7,
-        "textX": 1,
-        "textY": 1,
-        "textHeight": 5,
-        "position": "bottom",
-        "clearPrevious": true,
-        "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
-        "closeButton": "a",
-        "closeDelayTime": 0.5,
-        "closeDelayFrames": 30,
-        "__comment": true
-      },
-      "id": "3d123103-772b-4ee9-800e-8bcefa201544"
-    },
-    {
-      "command": "EVENT_SET_INPUT_SCRIPT",
-      "args": {
-        "input": [
-          "up",
-          "down"
-        ],
-        "override": true,
-        "__scriptTabs": "press",
-        "__collapse": false,
-        "__comment": false
+        "saveSlot": 0,
+        "__collapseElse": false
       },
       "children": {
         "true": [
           {
-            "command": "EVENT_ACTOR_SET_POSITION",
+            "command": "EVENT_SET_INPUT_SCRIPT",
             "args": {
-              "actorId": "$self$",
-              "x": {
-                "type": "number",
-                "value": 4
-              },
-              "y": {
-                "type": "number",
-                "value": 13
-              }
+              "input": [
+                "up",
+                "down"
+              ],
+              "override": true,
+              "__scriptTabs": "press",
+              "__collapse": false,
+              "__comment": false
             },
-            "id": "bb7daee7-ef60-4765-aeda-caf898530e9a"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_SET_POSITION",
+                  "args": {
+                    "actorId": "$self$",
+                    "x": {
+                      "type": "number",
+                      "value": 4
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 13
+                    }
+                  },
+                  "id": "bb7daee7-ef60-4765-aeda-caf898530e9a"
+                }
+              ]
+            },
+            "id": "2f4274bd-5ff7-462e-8af7-cea4b34e4299"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "If no save data exists, deactivate up/down since we don't need to move to Continue",
+              "__collapse": true
+            },
+            "id": "9e4ee69b-a43d-4c3e-90ac-9d04b9eb54cc"
+          },
+          {
+            "command": "EVENT_SET_INPUT_SCRIPT",
+            "args": {
+              "input": [
+                "up",
+                "down"
+              ],
+              "override": true,
+              "__scriptTabs": "press"
+            },
+            "children": {
+              "true": []
+            },
+            "id": "5fb30442-c2ae-496a-b71f-6eb66449df9f"
           }
         ]
       },
-      "id": "2f4274bd-5ff7-462e-8af7-cea4b34e4299"
+      "id": "db552ad7-8439-4b7d-8fac-6631b619cab9"
     },
     {
       "command": "EVENT_SET_INPUT_SCRIPT",
