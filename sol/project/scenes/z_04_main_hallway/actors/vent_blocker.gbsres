@@ -1,0 +1,171 @@
+{
+  "_resourceType": "actor",
+  "id": "f46469ae-2c63-484d-8e33-51661d1f4074",
+  "name": "Vent blocker",
+  "frame": 0,
+  "animate": false,
+  "spriteSheetId": "af00b79b-c449-4caf-ae35-2253a6547695",
+  "prefabId": "",
+  "direction": "down",
+  "moveSpeed": 1,
+  "animSpeed": 15,
+  "paletteId": "",
+  "isPinned": false,
+  "persistent": false,
+  "collisionGroup": "",
+  "prefabScriptOverrides": {},
+  "symbol": "actor_27",
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "eq",
+          "valueA": {
+            "type": "variable",
+            "value": "83"
+          },
+          "valueB": {
+            "type": "true"
+          }
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "The vent is locked. \nMaybe the janitor's  @",
+                "keys can unlock it...  @",
+                "It worked!"
+              ],
+              "__section": "layout",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "top",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "11368e2f-0ad7-4a1f-a8fd-860773a048e2"
+          },
+          {
+            "command": "EVENT_REPLACE_TILE_XY",
+            "args": {
+              "x": {
+                "type": "number",
+                "value": 4
+              },
+              "y": {
+                "type": "number",
+                "value": 12
+              },
+              "tilesetId": "1d683de3-4071-422e-946e-695b879d9203",
+              "tileIndex": {
+                "type": "number",
+                "value": 0
+              },
+              "tileSize": "16px"
+            },
+            "id": "e132119c-59da-4e0b-af60-a0609fd97571"
+          },
+          {
+            "command": "EVENT_ACTOR_COLLISIONS_DISABLE",
+            "args": {
+              "actorId": "$self$"
+            },
+            "id": "90f6dd15-0969-4fce-854a-237f0dda9be2"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "player",
+              "spriteStateId": "Crawl up",
+              "loopAnim": true
+            },
+            "id": "dc84578e-5a6b-4165-a2c3-ffed6d722a83"
+          },
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 0.7,
+              "frames": 30
+            },
+            "id": "d91aa9f7-f1c8-4dbe-bda6-652f833e2616"
+          },
+          {
+            "command": "EVENT_ACTOR_MOVE_RELATIVE",
+            "args": {
+              "actorId": "player",
+              "x": {
+                "type": "number",
+                "value": 0
+              },
+              "y": {
+                "type": "number",
+                "value": -1
+              },
+              "moveType": "horizontal",
+              "useCollisions": false
+            },
+            "id": "43caafda-8edf-4d0b-8158-4dc63e325fcd"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "It's a locked vent."
+              ],
+              "__section": "layout",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "top",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "fe65084b-8ee3-4cd6-9318-621364252fc4"
+          },
+          {
+            "command": "EVENT_ACTOR_COLLISIONS_ENABLE",
+            "args": {
+              "actorId": "$self$"
+            },
+            "id": "b3eff165-5ada-461b-a889-0b121570e5fe"
+          }
+        ]
+      },
+      "id": "527010bf-c7bf-4d82-a6f3-114d29d7fb3c"
+    }
+  ],
+  "startScript": [],
+  "updateScript": [],
+  "hit1Script": [],
+  "hit2Script": [],
+  "hit3Script": [],
+  "x": 4,
+  "y": 13,
+  "_index": 0
+}

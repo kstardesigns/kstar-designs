@@ -1,10 +1,10 @@
 {
   "_resourceType": "actor",
-  "id": "f46469ae-2c63-484d-8e33-51661d1f4074",
-  "name": "",
+  "id": "1fb2e539-b1ee-4f1e-a13b-d27fc9b7f1ca",
+  "name": "Janitor keys",
   "frame": 0,
   "animate": false,
-  "spriteSheetId": "af00b79b-c449-4caf-ae35-2253a6547695",
+  "spriteSheetId": "8f6ff313-3008-42aa-8283-97bc150663ab",
   "prefabId": "",
   "direction": "down",
   "moveSpeed": 1,
@@ -14,30 +14,76 @@
   "persistent": false,
   "collisionGroup": "",
   "prefabScriptOverrides": {},
-  "symbol": "actor_27",
+  "symbol": "actor_56",
   "script": [
+    {
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": [
+          "Looks like the janitor\nleft his keys...  @",
+          "Take them?"
+        ],
+        "__section": "text",
+        "avatarId": "",
+        "minHeight": 4,
+        "maxHeight": 7,
+        "textX": 1,
+        "textY": 1,
+        "textHeight": 5,
+        "position": "bottom",
+        "clearPrevious": true,
+        "showFrame": "true",
+        "speedIn": -1,
+        "speedOut": -1,
+        "closeWhen": "key",
+        "closeButton": "a",
+        "closeDelayTime": 0.5,
+        "closeDelayFrames": 30
+      },
+      "id": "64cc0146-1ac3-486c-92f3-15ac37c8c34b"
+    },
+    {
+      "command": "EVENT_MENU",
+      "args": {
+        "variable": "83",
+        "items": 2,
+        "option1": "Take keys",
+        "option2": "Leave them",
+        "option3": "",
+        "option4": "",
+        "option5": "",
+        "option6": "",
+        "option7": "",
+        "option8": "",
+        "cancelOnB": true,
+        "layout": "dialogue",
+        "cancelOnLastOption": true
+      },
+      "id": "333540eb-7600-4ad0-9955-ba8cafb5f851"
+    },
     {
       "command": "EVENT_IF",
       "args": {
         "condition": {
-          "type": "eq",
-          "valueA": {
-            "type": "variable",
-            "value": "20"
-          },
-          "valueB": {
-            "type": "true"
-          }
+          "type": "variable",
+          "value": "83"
         },
         "__collapseElse": false
       },
       "children": {
         "true": [
           {
+            "command": "EVENT_ACTOR_DEACTIVATE",
+            "args": {
+              "actorId": "$self$"
+            },
+            "id": "2140b571-9aab-4103-958f-d85b183bffa7"
+          },
+          {
             "command": "EVENT_TEXT",
             "args": {
               "text": [
-                "You got the vent key,\nnice! Climb on in."
+                "Took the janitor's \nkeys."
               ],
               "__section": "text",
               "avatarId": "",
@@ -56,14 +102,7 @@
               "closeDelayTime": 0.5,
               "closeDelayFrames": 30
             },
-            "id": "11368e2f-0ad7-4a1f-a8fd-860773a048e2"
-          },
-          {
-            "command": "EVENT_ACTOR_COLLISIONS_DISABLE",
-            "args": {
-              "actorId": "$self$"
-            },
-            "id": "90f6dd15-0969-4fce-854a-237f0dda9be2"
+            "id": "08ba6567-1130-4d78-988b-d42bc27c58cc"
           }
         ],
         "false": [
@@ -71,7 +110,8 @@
             "command": "EVENT_TEXT",
             "args": {
               "text": [
-                "It's a locked vent."
+                "Left the janitor's\nkeys. Don't want to  @",
+                "get in trouble..."
               ],
               "__section": "text",
               "avatarId": "",
@@ -90,18 +130,11 @@
               "closeDelayTime": 0.5,
               "closeDelayFrames": 30
             },
-            "id": "fe65084b-8ee3-4cd6-9318-621364252fc4"
-          },
-          {
-            "command": "EVENT_ACTOR_COLLISIONS_ENABLE",
-            "args": {
-              "actorId": "$self$"
-            },
-            "id": "b3eff165-5ada-461b-a889-0b121570e5fe"
+            "id": "f96236dd-6937-4e1b-9461-0cc8fa0a0ef0"
           }
         ]
       },
-      "id": "527010bf-c7bf-4d82-a6f3-114d29d7fb3c"
+      "id": "ef358f2c-2a8c-49c0-a20f-1980b897ca0f"
     }
   ],
   "startScript": [],
@@ -109,7 +142,7 @@
   "hit1Script": [],
   "hit2Script": [],
   "hit3Script": [],
-  "x": 4,
-  "y": 13,
+  "x": 8,
+  "y": 10,
   "_index": 0
 }
