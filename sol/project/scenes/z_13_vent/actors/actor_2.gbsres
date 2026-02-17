@@ -17,29 +17,104 @@
   "symbol": "actor_1",
   "script": [
     {
-      "command": "EVENT_TEXT",
+      "command": "EVENT_IF",
       "args": {
-        "text": [
-          "The vent key worked!"
-        ],
-        "__section": "text",
-        "avatarId": "",
-        "minHeight": 4,
-        "maxHeight": 7,
-        "textX": 1,
-        "textY": 1,
-        "textHeight": 5,
-        "position": "bottom",
-        "clearPrevious": true,
-        "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
-        "closeButton": "a",
-        "closeDelayTime": 0.5,
-        "closeDelayFrames": 30
+        "condition": {
+          "type": "not",
+          "value": {
+            "type": "variable",
+            "value": "84"
+          }
+        },
+        "__collapseElse": true
       },
-      "id": "09c6a6e0-4cef-4acc-bc22-8b003e8b8ac5"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "The key worked here\ntoo. The keys seem  @",
+                "to work throughout \nthe planetarium."
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "09c6a6e0-4cef-4acc-bc22-8b003e8b8ac5"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "84",
+              "value": {
+                "type": "true"
+              }
+            },
+            "id": "346de5e5-209f-4f7e-8253-f4b2cd4f255f"
+          }
+        ],
+        "false": []
+      },
+      "id": "222453e6-5414-416a-bf37-9f8d0d4212e6"
+    },
+    {
+      "command": "EVENT_REPLACE_TILE_XY",
+      "args": {
+        "x": {
+          "type": "number",
+          "value": 16
+        },
+        "y": {
+          "type": "number",
+          "value": 0
+        },
+        "tilesetId": "77c3c547-e83c-481c-b50d-7125ba2e9973",
+        "tileIndex": {
+          "type": "number",
+          "value": 0
+        },
+        "tileSize": "16px"
+      },
+      "id": "c50d2f7c-6dcb-42ac-b717-726d6c446016"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 0.7,
+        "frames": 30
+      },
+      "id": "08ec8166-242c-41fd-a6a6-f9e8ed72c6f1"
+    },
+    {
+      "command": "EVENT_ACTOR_MOVE_RELATIVE",
+      "args": {
+        "actorId": "player",
+        "x": {
+          "type": "number",
+          "value": 0
+        },
+        "y": {
+          "type": "number",
+          "value": -2
+        },
+        "moveType": "horizontal",
+        "useCollisions": false
+      },
+      "id": "6f2f0e80-2ad8-424f-983c-10111c39df40"
     },
     {
       "command": "EVENT_SWITCH_SCENE",
@@ -51,7 +126,7 @@
         },
         "y": {
           "type": "number",
-          "value": 17
+          "value": 18
         },
         "direction": "down",
         "fadeSpeed": "2"

@@ -34,31 +34,50 @@
       "children": {
         "true": [
           {
-            "command": "EVENT_TEXT",
+            "command": "EVENT_IF",
             "args": {
-              "text": [
-                "The vent is locked. \nMaybe the janitor's  @",
-                "keys can unlock it...  @",
-                "It worked!"
-              ],
-              "__section": "layout",
-              "avatarId": "",
-              "minHeight": 4,
-              "maxHeight": 7,
-              "textX": 1,
-              "textY": 1,
-              "textHeight": 5,
-              "position": "top",
-              "clearPrevious": true,
-              "showFrame": "true",
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
-              "closeButton": "a",
-              "closeDelayTime": 0.5,
-              "closeDelayFrames": 30
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "82"
+                }
+              },
+              "__collapseElse": true
             },
-            "id": "11368e2f-0ad7-4a1f-a8fd-860773a048e2"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "The vent is locked. \nMaybe the janitor's  @",
+                      "keys can unlock it...  @",
+                      "It worked!"
+                    ],
+                    "__section": "layout",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "top",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "11368e2f-0ad7-4a1f-a8fd-860773a048e2"
+                }
+              ],
+              "false": []
+            },
+            "id": "0d6c8998-0ca3-4af7-9b61-d54e3943fa0b"
           },
           {
             "command": "EVENT_REPLACE_TILE_XY",
@@ -120,6 +139,16 @@
               "useCollisions": false
             },
             "id": "43caafda-8edf-4d0b-8158-4dc63e325fcd"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "82",
+              "value": {
+                "type": "true"
+              }
+            },
+            "id": "372f69a2-f435-45db-9fea-10e95b9b81da"
           }
         ],
         "false": [
