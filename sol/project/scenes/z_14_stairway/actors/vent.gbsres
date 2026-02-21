@@ -38,10 +38,60 @@
       "id": "f814c27e-6b84-4304-8ee9-507600645794"
     },
     {
+      "command": "EVENT_IF_ACTOR_AT_POSITION",
+      "args": {
+        "actorId": "player",
+        "x": {
+          "type": "number",
+          "value": 16
+        },
+        "y": {
+          "type": "number",
+          "value": 19
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_MOVE_RELATIVE",
+            "args": {
+              "actorId": "player",
+              "x": {
+                "type": "number",
+                "value": 1
+              },
+              "y": {
+                "type": "number",
+                "value": 0
+              },
+              "moveType": "horizontal",
+              "useCollisions": false,
+              "__collapse": false
+            },
+            "id": "321f42ab-1c3d-4f43-8a58-a078a91466fc"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_DIRECTION",
+            "args": {
+              "actorId": "player",
+              "direction": {
+                "type": "direction",
+                "value": "up"
+              }
+            },
+            "id": "4440b6f3-b9ed-4775-af25-62a49b3692fb"
+          }
+        ],
+        "false": []
+      },
+      "id": "cf532e93-4cba-44fc-8b17-d536c269beeb"
+    },
+    {
       "command": "EVENT_ACTOR_COLLISIONS_DISABLE",
       "args": {
         "actorId": "$self$",
-        "__collapse": true
+        "__collapse": false
       },
       "id": "1d4e1709-9eed-4b37-a0c6-d4ba9617d7fd"
     },
@@ -50,8 +100,8 @@
       "args": {
         "actorId": "player",
         "spriteStateId": "Crawl up",
-        "loopAnim": true,
-        "__collapse": true
+        "loopAnim": false,
+        "__collapse": false
       },
       "id": "ff649ff2-6bca-446f-b873-739c22aff033"
     },
