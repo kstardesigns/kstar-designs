@@ -46,7 +46,7 @@
         "property": "camera_offset_y",
         "value": {
           "type": "number",
-          "value": 36
+          "value": 48
         },
         "__collapse": false,
         "__comment": false
@@ -54,46 +54,75 @@
       "id": "a0428c63-7441-45c8-a0da-4028cf947349"
     },
     {
-      "command": "EVENT_TEXT",
+      "command": "EVENT_IF",
       "args": {
-        "text": [
-          "Alright, everyone... \nWe're here! I'll wait \nout here until 9pm. "
+        "condition": {
+          "type": "not",
+          "value": {
+            "type": "variable",
+            "value": "62"
+          }
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Alright, everyone... \nWe're here! I'll wait \nout here until 9pm. "
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "top",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "d6b284e6-5396-4181-b783-189acb5abd14"
+          },
+          {
+            "command": "EVENT_ACTOR_MOVE_RELATIVE",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 0
+              },
+              "y": {
+                "type": "number",
+                "value": 2
+              },
+              "moveType": "horizontal",
+              "useCollisions": false
+            },
+            "id": "c5a13b6a-50a0-44a5-b679-0fb0a068f87a"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "62",
+              "value": {
+                "type": "true"
+              }
+            },
+            "id": "aa229790-f9c8-4a1a-9a3b-1de2f20ea2f9"
+          }
         ],
-        "__section": "layout",
-        "avatarId": "",
-        "minHeight": 4,
-        "maxHeight": 7,
-        "textX": 1,
-        "textY": 1,
-        "textHeight": 5,
-        "position": "top",
-        "clearPrevious": true,
-        "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
-        "closeButton": "a",
-        "closeDelayTime": 0.5,
-        "closeDelayFrames": 30
+        "false": []
       },
-      "id": "d6b284e6-5396-4181-b783-189acb5abd14"
-    },
-    {
-      "command": "EVENT_ACTOR_MOVE_RELATIVE",
-      "args": {
-        "actorId": "$self$",
-        "x": {
-          "type": "number",
-          "value": 0
-        },
-        "y": {
-          "type": "number",
-          "value": 2
-        },
-        "moveType": "horizontal",
-        "useCollisions": false
-      },
-      "id": "c5a13b6a-50a0-44a5-b679-0fb0a068f87a"
+      "id": "d4f43a45-a315-452f-a2bc-24bcffcdea53"
     },
     {
       "command": "EVENT_COMMENT",
