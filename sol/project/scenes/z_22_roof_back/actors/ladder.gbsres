@@ -1,0 +1,122 @@
+{
+  "_resourceType": "actor",
+  "id": "dad3f51e-998f-4a0b-8043-aeee522c5fe9",
+  "name": "Ladder",
+  "frame": 0,
+  "animate": false,
+  "spriteSheetId": "1e19b0a3-fafa-4a1d-aaa2-b72ceb15310f",
+  "prefabId": "",
+  "direction": "down",
+  "moveSpeed": 1,
+  "animSpeed": 15,
+  "paletteId": "",
+  "isPinned": false,
+  "persistent": false,
+  "collisionGroup": "",
+  "prefabScriptOverrides": {},
+  "symbol": "actor_83",
+  "script": [
+    {
+      "command": "EVENT_ACTOR_COLLISIONS_DISABLE",
+      "args": {
+        "actorId": "$self$"
+      },
+      "id": "4d8d956d-bd6b-4976-80a2-50e8aefa549f"
+    },
+    {
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": [
+          "This old ladder looks\na little rickety.  @",
+          "Climb down?"
+        ],
+        "__section": "text",
+        "avatarId": "",
+        "minHeight": 4,
+        "maxHeight": 7,
+        "textX": 1,
+        "textY": 1,
+        "textHeight": 5,
+        "position": "bottom",
+        "clearPrevious": true,
+        "showFrame": "true",
+        "speedIn": -1,
+        "speedOut": -1,
+        "closeWhen": "key",
+        "closeButton": "a",
+        "closeDelayTime": 0.5,
+        "closeDelayFrames": 30
+      },
+      "id": "65adcfe3-949e-43cb-a977-eadbb98d92b9"
+    },
+    {
+      "command": "EVENT_MENU",
+      "args": {
+        "variable": "30",
+        "items": 2,
+        "option1": "Climb down",
+        "option2": "Stay on roof",
+        "option3": "",
+        "option4": "",
+        "option5": "",
+        "option6": "",
+        "option7": "",
+        "option8": "",
+        "cancelOnB": true,
+        "layout": "dialogue",
+        "cancelOnLastOption": true
+      },
+      "id": "62daf6a7-a1cd-4414-9401-d9e9eeda5b0e"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "30"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "player",
+              "spriteStateId": "Leap to ladder",
+              "loopAnim": false
+            },
+            "id": "041f899f-968b-429c-b615-43e9f087e166"
+          },
+          {
+            "command": "EVENT_ACTOR_MOVE_RELATIVE",
+            "args": {
+              "actorId": "player",
+              "x": {
+                "type": "number",
+                "value": -2
+              },
+              "y": {
+                "type": "number",
+                "value": 0
+              },
+              "moveType": "horizontal",
+              "useCollisions": false
+            },
+            "id": "e40cca81-d7cc-4232-9d89-3e5cccee8b64"
+          }
+        ],
+        "false": []
+      },
+      "id": "b08c6dcf-b2e4-4652-84be-a163e4aa7fac"
+    }
+  ],
+  "startScript": [],
+  "updateScript": [],
+  "hit1Script": [],
+  "hit2Script": [],
+  "hit3Script": [],
+  "x": 5,
+  "y": 12,
+  "_index": 0
+}

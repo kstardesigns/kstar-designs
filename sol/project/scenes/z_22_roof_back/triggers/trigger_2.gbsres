@@ -1,0 +1,78 @@
+{
+  "_resourceType": "trigger",
+  "id": "78237a1c-4f06-40c6-8eea-e7be42c93088",
+  "name": "",
+  "prefabId": "",
+  "x": 4,
+  "y": 7,
+  "symbol": "trigger_30",
+  "prefabScriptOverrides": {},
+  "width": 2,
+  "height": 1,
+  "script": [
+    {
+      "command": "EVENT_ACTOR_SET_STATE",
+      "args": {
+        "actorId": "$self$",
+        "spriteStateId": "Crawl up",
+        "loopAnim": false
+      },
+      "id": "8fab8fda-eb0a-401e-b3c0-a1fa2e881906"
+    }
+  ],
+  "leaveScript": [
+    {
+      "command": "EVENT_IF_ACTOR_DIRECTION",
+      "args": {
+        "actorId": "$self$",
+        "direction": {
+          "type": "direction",
+          "value": "right"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "$self$",
+              "spriteStateId": "Leap",
+              "loopAnim": false
+            },
+            "id": "bcea5243-be6d-407c-b1ff-8b54148d6fc0"
+          },
+          {
+            "command": "EVENT_ACTOR_MOVE_RELATIVE",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 1
+              },
+              "y": {
+                "type": "number",
+                "value": 0
+              },
+              "moveType": "horizontal",
+              "useCollisions": false
+            },
+            "id": "86494551-2ed0-4bfb-9532-f12bbf2a13d6"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "$self$",
+              "spriteStateId": "",
+              "loopAnim": false
+            },
+            "id": "2854089b-8681-4d15-a964-3fba023df4cf"
+          }
+        ],
+        "false": []
+      },
+      "id": "6d3ccb6b-70d7-4091-b1af-54b3847230ef"
+    }
+  ],
+  "_index": 2
+}
