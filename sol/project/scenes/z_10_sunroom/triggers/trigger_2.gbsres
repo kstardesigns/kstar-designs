@@ -1,0 +1,137 @@
+{
+  "_resourceType": "trigger",
+  "id": "5f98a6b8-1f6f-469a-90ee-a6621a1a7ad6",
+  "name": "",
+  "prefabId": "",
+  "x": 0,
+  "y": 18,
+  "symbol": "trigger_32",
+  "prefabScriptOverrides": {},
+  "width": 20,
+  "height": 1,
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "not",
+          "value": {
+            "type": "variable",
+            "value": "50"
+          }
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_INPUT_SCRIPT",
+            "args": {
+              "input": [
+                "b",
+                "left",
+                "up",
+                "down",
+                "a",
+                "right",
+                "start",
+                "select"
+              ],
+              "override": true,
+              "__scriptTabs": "press",
+              "__collapse": true
+            },
+            "children": {
+              "true": []
+            },
+            "id": "1f008f9b-17ce-4a17-bb98-9c0b0f3a3b30"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "$self$",
+              "spriteStateId": "Stand still up",
+              "loopAnim": false,
+              "__collapse": true
+            },
+            "id": "a069017f-a1b0-4cfb-b276-fa1e2f7dac17"
+          },
+          {
+            "command": "EVENT_CAMERA_MOVE_TO",
+            "args": {
+              "x": {
+                "type": "number",
+                "value": 0
+              },
+              "y": {
+                "type": "number",
+                "value": 0
+              },
+              "speed": 1,
+              "__collapse": true
+            },
+            "id": "f9880dd0-a07c-4a36-9447-68bc5e014b4b"
+          },
+          {
+            "command": "EVENT_ACTOR_MOVE_RELATIVE",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 0
+              },
+              "y": {
+                "type": "number",
+                "value": -1
+              },
+              "moveType": "vertical",
+              "useCollisions": false,
+              "__collapse": false
+            },
+            "id": "23514234-e95e-4fe2-87eb-20f946f7d050"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "$self$",
+              "spriteStateId": "",
+              "loopAnim": true,
+              "__collapse": true
+            },
+            "id": "dcb1183d-c984-4a46-aed4-3d521b5b6e03"
+          },
+          {
+            "command": "EVENT_REMOVE_INPUT_SCRIPT",
+            "args": {
+              "input": [
+                "left",
+                "up",
+                "down",
+                "right",
+                "b",
+                "a"
+              ],
+              "__collapse": true
+            },
+            "id": "6a2c6bab-1b2b-4438-ad99-4e575dbcd5e5"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "50",
+              "value": {
+                "type": "true"
+              },
+              "__collapse": true
+            },
+            "id": "f7ae096e-7c6f-4841-9074-6df537dbfb88"
+          }
+        ],
+        "false": []
+      },
+      "id": "ed6bf9ac-e616-40e0-9d36-45deb1363a0a"
+    }
+  ],
+  "leaveScript": [],
+  "_index": 1
+}
