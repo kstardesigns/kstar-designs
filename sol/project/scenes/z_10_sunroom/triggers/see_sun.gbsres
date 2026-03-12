@@ -1,7 +1,7 @@
 {
   "_resourceType": "trigger",
   "id": "5f98a6b8-1f6f-469a-90ee-a6621a1a7ad6",
-  "name": "",
+  "name": "See Sun",
   "prefabId": "",
   "x": 0,
   "y": 18,
@@ -11,16 +11,14 @@
   "height": 1,
   "script": [
     {
-      "command": "EVENT_IF",
+      "command": "EVENT_IF_ACTOR_DIRECTION",
       "args": {
-        "condition": {
-          "type": "not",
-          "value": {
-            "type": "variable",
-            "value": "50"
-          }
+        "actorId": "$self$",
+        "direction": {
+          "type": "direction",
+          "value": "up"
         },
-        "__collapseElse": true
+        "__collapseElse": false
       },
       "children": {
         "true": [
@@ -28,14 +26,10 @@
             "command": "EVENT_SET_INPUT_SCRIPT",
             "args": {
               "input": [
-                "b",
                 "left",
                 "up",
                 "down",
-                "a",
-                "right",
-                "start",
-                "select"
+                "right"
               ],
               "override": true,
               "__scriptTabs": "press",
@@ -86,7 +80,7 @@
               },
               "moveType": "vertical",
               "useCollisions": false,
-              "__collapse": false
+              "__collapse": true
             },
             "id": "23514234-e95e-4fe2-87eb-20f946f7d050"
           },
@@ -101,20 +95,53 @@
             "id": "dcb1183d-c984-4a46-aed4-3d521b5b6e03"
           },
           {
+            "command": "EVENT_PALETTE_SET_SPRITE",
+            "args": {
+              "palette0": "b49f38ff-00fa-4447-9ebd-a38a283cb1aa",
+              "palette1": "keep",
+              "palette2": "keep",
+              "palette3": "keep",
+              "palette4": "keep",
+              "palette5": "keep",
+              "palette6": "keep",
+              "palette7": "keep"
+            },
+            "id": "1f5253e1-e263-48fc-96e7-784c33847526"
+          },
+          {
             "command": "EVENT_REMOVE_INPUT_SCRIPT",
             "args": {
               "input": [
                 "left",
                 "up",
                 "down",
-                "right",
-                "b",
-                "a"
+                "right"
               ],
-              "__collapse": true
+              "__collapse": false
             },
             "id": "6a2c6bab-1b2b-4438-ad99-4e575dbcd5e5"
-          },
+          }
+        ],
+        "false": []
+      },
+      "id": "a6f20341-520b-49c9-a0f5-b0617c12457c"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "not",
+          "value": {
+            "type": "variable",
+            "value": "50"
+          }
+        },
+        "__collapseElse": true,
+        "__collapse": false,
+        "__comment": true
+      },
+      "children": {
+        "true": [
           {
             "command": "EVENT_SET_VALUE",
             "args": {
@@ -130,6 +157,49 @@
         "false": []
       },
       "id": "ed6bf9ac-e616-40e0-9d36-45deb1363a0a"
+    },
+    {
+      "command": "EVENT_IF_ACTOR_DIRECTION",
+      "args": {
+        "actorId": "$self$",
+        "direction": {
+          "type": "direction",
+          "value": "down"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_PALETTE_SET_SPRITE",
+            "args": {
+              "palette0": "ea310c4e-4c24-42d3-a622-627fffdcfeee",
+              "palette1": "keep",
+              "palette2": "keep",
+              "palette3": "keep",
+              "palette4": "keep",
+              "palette5": "keep",
+              "palette6": "keep",
+              "palette7": "keep"
+            },
+            "id": "c3735584-b6e8-45d7-b455-5b0b2c86757a"
+          },
+          {
+            "command": "EVENT_CAMERA_LOCK",
+            "args": {
+              "speed": 2,
+              "axis": [
+                "x",
+                "y"
+              ],
+              "__collapse": false
+            },
+            "id": "246ae99e-50a8-477a-b4f6-919f925edd9d"
+          }
+        ],
+        "false": []
+      },
+      "id": "dcc8f830-e4e6-4e27-8836-95f62a87c4a3"
     }
   ],
   "leaveScript": [],
