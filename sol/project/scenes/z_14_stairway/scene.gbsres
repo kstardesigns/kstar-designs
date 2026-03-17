@@ -14,10 +14,17 @@
     "406210b2-ce75-4040-bfd4-9ace667af8b7",
     "fc01e86e-f93f-4571-b5b8-f7daf667f1e3",
     "2c40ff20-0e79-4ff9-86e3-509ca193a681",
-    "dbd283f7-e190-4c1a-bed2-db421c5b7403"
+    "dbd283f7-e190-4c1a-bed2-db421c5b7403",
+    "1124ca4f-7be7-4fcd-851d-5a9187bc6c4d"
   ],
   "spritePaletteIds": [
-    "d73adccf-4071-4012-b0a6-9c3973a2dc0e"
+    "d73adccf-4071-4012-b0a6-9c3973a2dc0e",
+    null,
+    null,
+    null,
+    null,
+    null,
+    "c4c7d799-18eb-4a17-8bb1-fd844ef55a80"
   ],
   "collisions": "0078+0f22+002+0f5+0012+0f2+0012+0f2+0012+0f2+004+0f10+004+0f!00e+0f!004+0f!00e+0f!004+0f!00e+0f!004+0f!00e+0f!004+0f!00e+0f!003+08!0f!00e+0f!003+08!0f7+002+0f3+002+0f2+003+08!04!00d+0f2+003+08!04!00d+0f2+003+08!04!00d+0f2+004+0fa+004+0f2+004+0f!008+0f!004+0f2+004+0f!008+0f!004+0f2+004+0f!008+0f!004+0f2+004+0f!008+0f!004+0f2+004+0f!008+0f!004+0f2+004+0f!008+0f!004+0f2+004+0fa+004+0f2+0012+0f2+0012+0f2+0012+0f15+0028+",
   "autoFadeSpeed": 1,
@@ -25,6 +32,21 @@
   "x": 3200,
   "y": 2048,
   "script": [
+    {
+      "command": "EVENT_ACTOR_DEACTIVATE",
+      "args": {
+        "actorId": "7648a510-11b4-4cee-93a1-d07c93e251b9",
+        "__collapse": true
+      },
+      "id": "62f842a2-1b7c-45ce-9222-c332c9a5045c"
+    },
+    {
+      "command": "EVENT_ACTOR_DEACTIVATE",
+      "args": {
+        "actorId": "843b044b-0edc-4322-a724-34a04c9156ac"
+      },
+      "id": "61dc434b-cca1-4047-8bf5-59e07f6babf0"
+    },
     {
       "command": "EVENT_SET_VALUE",
       "args": {
@@ -35,6 +57,63 @@
         }
       },
       "id": "25ceecf7-d776-415d-911b-1491c1d90501"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "not",
+          "value": {
+            "type": "variable",
+            "value": "495"
+          }
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "gte",
+                "valueA": {
+                  "type": "variable",
+                  "value": "70"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 30
+                }
+              },
+              "__collapseElse": false,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "30 means at least variable flags 2-5 are true. 2, 4, 8, 16 (and possibly 1 for variable flag 1)"
+                  },
+                  "id": "e6fbb0ed-c70a-481c-8b64-9a203bb81e5f"
+                },
+                {
+                  "command": "EVENT_ACTOR_ACTIVATE",
+                  "args": {
+                    "actorId": "843b044b-0edc-4322-a724-34a04c9156ac"
+                  },
+                  "id": "faa475c8-0e0b-4834-8a07-bfa30bb81ebc"
+                }
+              ],
+              "false": []
+            },
+            "id": "e575b54f-51c6-416f-a529-cf2a1a1dafde"
+          }
+        ],
+        "false": []
+      },
+      "id": "9180425f-ebe4-4e7e-b988-7e2bcd6db3a9"
     },
     {
       "command": "EVENT_ACTOR_SET_MOVEMENT_SPEED",
