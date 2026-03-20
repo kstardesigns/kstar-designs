@@ -27,8 +27,8 @@
     "dmg",
     "dmg",
     "9187744a-02a6-4c74-85c7-9cb6f2b93772",
-    "",
     "14984435-0ce6-4402-a59a-cc1cab069be5",
+    "c4c7d799-18eb-4a17-8bb1-fd844ef55a80",
     "5e536053-236d-4944-82bc-8204ce0292ea"
   ],
   "autoFadeSpeed": 1,
@@ -90,6 +90,64 @@
         "__collapse": true
       },
       "id": "3b81bdec-5f23-47d3-aad7-50095d0a3c27"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "33"
+        },
+        "__collapseElse": false,
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "493"
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_ACTIVATE",
+                  "args": {
+                    "actorId": "0c666f08-d7e3-4ce7-b03d-037cec1067ab"
+                  },
+                  "id": "c2d6d3bb-def1-4b73-afe7-94cfadca907a"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_POSITION",
+                  "args": {
+                    "actorId": "0c666f08-d7e3-4ce7-b03d-037cec1067ab",
+                    "x": {
+                      "type": "number",
+                      "value": 17
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 16
+                    }
+                  },
+                  "id": "8083b7b4-848f-4b7a-a144-46e0c0be5e3a"
+                }
+              ],
+              "false": []
+            },
+            "id": "6583ea9c-e635-4459-ad4e-62e048fc2723"
+          }
+        ],
+        "false": []
+      },
+      "id": "3fbfda97-c2df-417e-923a-302a91565f85"
     },
     {
       "command": "EVENT_IF",

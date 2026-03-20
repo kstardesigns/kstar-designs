@@ -171,89 +171,135 @@
                               "command": "EVENT_IF",
                               "args": {
                                 "condition": {
-                                  "type": "variable",
-                                  "value": "85"
+                                  "type": "not",
+                                  "value": {
+                                    "type": "variable",
+                                    "value": "33"
+                                  }
                                 },
-                                "__collapseElse": false,
-                                "__collapse": false
+                                "__collapseElse": false
                               },
                               "children": {
                                 "true": [
                                   {
-                                    "command": "EVENT_TEXT",
+                                    "command": "EVENT_IF",
                                     "args": {
-                                      "text": [
-                                        "We owe you one. Oh, I\nhave an idea.  @",
-                                        "We got a rare \nsticker from this  @",
-                                        "exhibit. You can have\nit."
+                                      "condition": {
+                                        "type": "variable",
+                                        "value": "85"
+                                      },
+                                      "__collapseElse": false,
+                                      "__collapse": true
+                                    },
+                                    "children": {
+                                      "true": [
+                                        {
+                                          "command": "EVENT_TEXT",
+                                          "args": {
+                                            "text": [
+                                              "We owe you one. Oh, I\nhave an idea.  @",
+                                              "We got a rare \nsticker from this  @",
+                                              "exhibit. You can have\nit."
+                                            ],
+                                            "__section": "text",
+                                            "avatarId": "",
+                                            "minHeight": 4,
+                                            "maxHeight": 7,
+                                            "textX": 1,
+                                            "textY": 1,
+                                            "textHeight": 5,
+                                            "position": "bottom",
+                                            "clearPrevious": true,
+                                            "showFrame": "true",
+                                            "speedIn": -1,
+                                            "speedOut": -1,
+                                            "closeWhen": "key",
+                                            "closeButton": "a",
+                                            "closeDelayTime": 0.5,
+                                            "closeDelayFrames": 30
+                                          },
+                                          "id": "fe3567e0-8270-4cc1-adce-42fcddae5e67"
+                                        },
+                                        {
+                                          "command": "EVENT_SET_VALUE",
+                                          "args": {
+                                            "variable": "33",
+                                            "value": {
+                                              "type": "true"
+                                            }
+                                          },
+                                          "id": "48f3ff11-9a81-4bd8-9738-7fc75e7aefce"
+                                        },
+                                        {
+                                          "command": "EVENT_ACTOR_ACTIVATE",
+                                          "args": {
+                                            "actorId": "0c666f08-d7e3-4ce7-b03d-037cec1067ab"
+                                          },
+                                          "id": "6c6a2484-f01e-4f44-85d3-43ed991ea0df"
+                                        },
+                                        {
+                                          "command": "EVENT_ACTOR_SET_POSITION",
+                                          "args": {
+                                            "actorId": "0c666f08-d7e3-4ce7-b03d-037cec1067ab",
+                                            "x": {
+                                              "type": "number",
+                                              "value": 21
+                                            },
+                                            "y": {
+                                              "type": "number",
+                                              "value": 16
+                                            }
+                                          },
+                                          "id": "68a615a9-41cb-4e4b-8af9-3f414cc3b44d"
+                                        },
+                                        {
+                                          "command": "EVENT_ACTOR_MOVE_RELATIVE",
+                                          "args": {
+                                            "actorId": "0c666f08-d7e3-4ce7-b03d-037cec1067ab",
+                                            "x": {
+                                              "type": "number",
+                                              "value": -4
+                                            },
+                                            "y": {
+                                              "type": "number",
+                                              "value": 0
+                                            },
+                                            "moveType": "horizontal",
+                                            "useCollisions": false
+                                          },
+                                          "id": "1d219f1a-6523-43c2-8252-697d8996abde"
+                                        }
                                       ],
-                                      "__section": "text",
-                                      "avatarId": "",
-                                      "minHeight": 4,
-                                      "maxHeight": 7,
-                                      "textX": 1,
-                                      "textY": 1,
-                                      "textHeight": 5,
-                                      "position": "bottom",
-                                      "clearPrevious": true,
-                                      "showFrame": "true",
-                                      "speedIn": -1,
-                                      "speedOut": -1,
-                                      "closeWhen": "key",
-                                      "closeButton": "a",
-                                      "closeDelayTime": 0.5,
-                                      "closeDelayFrames": 30
+                                      "false": [
+                                        {
+                                          "command": "EVENT_TEXT",
+                                          "args": {
+                                            "text": [
+                                              "Where was she? She's\nin trouble when she  @",
+                                              "gets home."
+                                            ],
+                                            "__section": "text",
+                                            "avatarId": "",
+                                            "minHeight": 4,
+                                            "maxHeight": 7,
+                                            "textX": 1,
+                                            "textY": 1,
+                                            "textHeight": 5,
+                                            "position": "bottom",
+                                            "clearPrevious": true,
+                                            "showFrame": "true",
+                                            "speedIn": -1,
+                                            "speedOut": -1,
+                                            "closeWhen": "key",
+                                            "closeButton": "a",
+                                            "closeDelayTime": 0.5,
+                                            "closeDelayFrames": 30
+                                          },
+                                          "id": "9316d093-4bc4-4c02-93cf-93f46ba22ff0"
+                                        }
+                                      ]
                                     },
-                                    "id": "fe3567e0-8270-4cc1-adce-42fcddae5e67"
-                                  },
-                                  {
-                                    "command": "EVENT_SET_VALUE",
-                                    "args": {
-                                      "variable": "33",
-                                      "value": {
-                                        "type": "true"
-                                      }
-                                    },
-                                    "id": "48f3ff11-9a81-4bd8-9738-7fc75e7aefce"
-                                  },
-                                  {
-                                    "command": "EVENT_ACTOR_ACTIVATE",
-                                    "args": {
-                                      "actorId": "0c666f08-d7e3-4ce7-b03d-037cec1067ab"
-                                    },
-                                    "id": "6c6a2484-f01e-4f44-85d3-43ed991ea0df"
-                                  },
-                                  {
-                                    "command": "EVENT_ACTOR_SET_POSITION",
-                                    "args": {
-                                      "actorId": "0c666f08-d7e3-4ce7-b03d-037cec1067ab",
-                                      "x": {
-                                        "type": "number",
-                                        "value": 21
-                                      },
-                                      "y": {
-                                        "type": "number",
-                                        "value": 16
-                                      }
-                                    },
-                                    "id": "68a615a9-41cb-4e4b-8af9-3f414cc3b44d"
-                                  },
-                                  {
-                                    "command": "EVENT_ACTOR_MOVE_RELATIVE",
-                                    "args": {
-                                      "actorId": "0c666f08-d7e3-4ce7-b03d-037cec1067ab",
-                                      "x": {
-                                        "type": "number",
-                                        "value": -4
-                                      },
-                                      "y": {
-                                        "type": "number",
-                                        "value": 0
-                                      },
-                                      "moveType": "horizontal",
-                                      "useCollisions": false
-                                    },
-                                    "id": "1d219f1a-6523-43c2-8252-697d8996abde"
+                                    "id": "cf93ef25-b461-424c-a603-1660d4f01e9a"
                                   }
                                 ],
                                 "false": [
@@ -261,8 +307,7 @@
                                     "command": "EVENT_TEXT",
                                     "args": {
                                       "text": [
-                                        "Where was she? She's\nin trouble when she  @",
-                                        "gets home."
+                                        "Thanks again! Enjoy \nthat sticker."
                                       ],
                                       "__section": "text",
                                       "avatarId": "",
@@ -281,11 +326,11 @@
                                       "closeDelayTime": 0.5,
                                       "closeDelayFrames": 30
                                     },
-                                    "id": "9316d093-4bc4-4c02-93cf-93f46ba22ff0"
+                                    "id": "93a7daa1-170e-47cd-b7ce-6d03a24e80b9"
                                   }
                                 ]
                               },
-                              "id": "cf93ef25-b461-424c-a603-1660d4f01e9a"
+                              "id": "25b04c4a-1392-4351-91a0-824bb7d4512c"
                             }
                           ]
                         },
