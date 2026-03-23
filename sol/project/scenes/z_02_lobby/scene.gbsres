@@ -46,6 +46,13 @@
       "id": "27f07007-cae9-464a-9fa8-6c622b17708a"
     },
     {
+      "command": "EVENT_ACTOR_DEACTIVATE",
+      "args": {
+        "actorId": "8d5285f5-fe83-4472-b329-21fdfbb7ec61"
+      },
+      "id": "144d1004-c73f-4513-9a3b-2c926258436c"
+    },
+    {
       "command": "EVENT_CALL_CUSTOM_EVENT",
       "args": {
         "customEventId": "ffc82f77-39a4-4b79-8751-e5f02489dcf3"
@@ -94,6 +101,14 @@
             "children": {
               "true": [
                 {
+                  "command": "EVENT_ACTOR_ACTIVATE",
+                  "args": {
+                    "actorId": "8d5285f5-fe83-4472-b329-21fdfbb7ec61",
+                    "__collapse": false
+                  },
+                  "id": "1b76d07e-0715-404d-aec1-1249088e7f7a"
+                },
+                {
                   "command": "EVENT_IF_ACTOR_DIRECTION",
                   "args": {
                     "actorId": "$self$",
@@ -101,7 +116,8 @@
                       "type": "direction",
                       "value": "down"
                     },
-                    "__collapseElse": false
+                    "__collapseElse": false,
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -126,6 +142,13 @@
                           "useCollisions": false
                         },
                         "id": "1e25e708-2c7f-4f6c-a1ee-9cc7e24a9af5"
+                      },
+                      {
+                        "command": "EVENT_MUSIC_PLAY",
+                        "args": {
+                          "musicId": "e4a1bd40-09c1-4ba5-9a9c-37d5f163d446"
+                        },
+                        "id": "9268da72-9536-4306-887e-9ace3e85c65e"
                       },
                       {
                         "command": "EVENT_TEXT",
@@ -154,19 +177,12 @@
                         "id": "3dd0003a-c242-445e-8860-29d3343d35a5"
                       },
                       {
-                        "command": "EVENT_MUSIC_PLAY",
-                        "args": {
-                          "musicId": "e4a1bd40-09c1-4ba5-9a9c-37d5f163d446"
-                        },
-                        "id": "9268da72-9536-4306-887e-9ace3e85c65e"
-                      },
-                      {
                         "command": "EVENT_TEXT",
                         "args": {
                           "text": [
                             "What was that noise?"
                           ],
-                          "__section": "layout",
+                          "__section": "text",
                           "avatarId": "",
                           "minHeight": 4,
                           "maxHeight": 7,
@@ -251,14 +267,17 @@
                 },
                 {
                   "command": "EVENT_MUSIC_STOP",
-                  "args": {},
+                  "args": {
+                    "__collapse": true
+                  },
                   "id": "fb0093a4-a165-4f6e-8e97-98e783776ea0"
                 },
                 {
                   "command": "EVENT_WAIT",
                   "args": {
                     "time": 1,
-                    "frames": 30
+                    "frames": 30,
+                    "__collapse": true
                   },
                   "id": "52685069-016e-407e-bc5d-ceeb304825c5"
                 },
@@ -267,7 +286,8 @@
                   "args": {
                     "actorId": "$self$",
                     "vectorX": "58",
-                    "vectorY": "59"
+                    "vectorY": "59",
+                    "__collapse": true
                   },
                   "id": "2e568d8b-2741-4715-a8b8-858842ca1362"
                 },
@@ -275,7 +295,8 @@
                   "command": "EVENT_ACTOR_GET_DIRECTION",
                   "args": {
                     "actorId": "$self$",
-                    "direction": "57"
+                    "direction": "57",
+                    "__collapse": true
                   },
                   "id": "08262d2d-1973-480f-9e67-149d75c294a2"
                 },
@@ -292,7 +313,8 @@
                       "value": 0
                     },
                     "direction": "",
-                    "fadeSpeed": "2"
+                    "fadeSpeed": "2",
+                    "__collapse": true
                   },
                   "id": "dba6d98c-cee8-46c1-913a-f225e99cd7ca"
                 }
@@ -387,6 +409,21 @@
                   "id": "ef84e786-2266-4473-b52c-995bf62ab80d"
                 },
                 {
+                  "command": "EVENT_ACTOR_SET_POSITION",
+                  "args": {
+                    "actorId": "8d5285f5-fe83-4472-b329-21fdfbb7ec61",
+                    "x": {
+                      "type": "number",
+                      "value": 6
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 14
+                    }
+                  },
+                  "id": "ff313f1d-b44a-418a-8d98-aabf4f1b3aa7"
+                },
+                {
                   "command": "EVENT_ACTOR_SET_DIRECTION",
                   "args": {
                     "actorId": "ee979499-347e-46ae-b9c2-fade9bf29a43",
@@ -407,7 +444,7 @@
                     },
                     "y": {
                       "type": "number",
-                      "value": 9
+                      "value": 10
                     }
                   },
                   "id": "4f4be834-276b-4654-9919-0dc8c84bb60f"
@@ -515,8 +552,8 @@
                   "command": "EVENT_TEXT",
                   "args": {
                     "text": [
-                      " Are you serious? \n Whose awful idea  @",
-                      " was that?"
+                      " Are you serious? \n Whose awful  @",
+                      " idea was that?"
                     ],
                     "__section": "text",
                     "avatarId": "d25bd1b7-c8c3-4c01-812a-cb2ee3f1ca0c",
@@ -571,7 +608,13 @@
                       " All the exhibits\n are still open... @",
                       " So please distract\n yourselves while  @",
                       " we get this inter-\n net situation  @",
-                      " sorted out."
+                      " sorted out.  @",
+                      " Actually... there\n is a way to  @",
+                      " manually unlock \n the front door.  @",
+                      " Each employee is \n supposed to have @",
+                      " a key. If we can \n find 4 keys, and  @",
+                      " put them all in that\n front door lock,  @",
+                      " we can unlock it."
                     ],
                     "__section": "text",
                     "avatarId": "54c7ec7c-329e-4d92-8204-26cfc73f97cd",
@@ -591,6 +634,16 @@
                     "closeDelayFrames": 30
                   },
                   "id": "8f43cdac-c254-47a7-b6e6-8391fe7e45d1"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "54",
+                    "value": {
+                      "type": "true"
+                    }
+                  },
+                  "id": "0de69886-57b7-45e9-a606-578c920ed034"
                 }
               ],
               "false": [
