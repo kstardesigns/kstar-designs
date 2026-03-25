@@ -62,7 +62,8 @@
     {
       "command": "EVENT_COMMENT",
       "args": {
-        "text": "BEGIN: Lights out event"
+        "text": "BEGIN: Lights out event",
+        "__collapse": false
       },
       "id": "2fd7c7bc-3067-4cef-8526-815a0e4d8efb"
     },
@@ -82,6 +83,14 @@
       "children": {
         "true": [
           {
+            "command": "EVENT_ACTOR_ACTIVATE",
+            "args": {
+              "actorId": "8d5285f5-fe83-4472-b329-21fdfbb7ec61",
+              "__collapse": false
+            },
+            "id": "1b76d07e-0715-404d-aec1-1249088e7f7a"
+          },
+          {
             "command": "EVENT_FADE_IN",
             "args": {
               "speed": "2"
@@ -95,19 +104,11 @@
                 "type": "expression",
                 "value": "$45$ && $46$ && $47$"
               },
-              "__collapseElse": true,
+              "__collapseElse": false,
               "__collapse": false
             },
             "children": {
               "true": [
-                {
-                  "command": "EVENT_ACTOR_ACTIVATE",
-                  "args": {
-                    "actorId": "8d5285f5-fe83-4472-b329-21fdfbb7ec61",
-                    "__collapse": false
-                  },
-                  "id": "1b76d07e-0715-404d-aec1-1249088e7f7a"
-                },
                 {
                   "command": "EVENT_IF_ACTOR_DIRECTION",
                   "args": {
@@ -117,7 +118,7 @@
                       "value": "down"
                     },
                     "__collapseElse": false,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -319,7 +320,15 @@
                   "id": "dba6d98c-cee8-46c1-913a-f225e99cd7ca"
                 }
               ],
-              "false": []
+              "false": [
+                {
+                  "command": "EVENT_FADE_IN",
+                  "args": {
+                    "speed": "2"
+                  },
+                  "id": "855a6f93-675c-4261-9d4a-4160c8a933b4"
+                }
+              ]
             },
             "id": "d0ef87fc-871b-4bee-b03d-bd76623e2de7"
           }
@@ -399,7 +408,7 @@
                     "actorId": "0499c45a-7f14-439a-99f9-1ced941c1877",
                     "x": {
                       "type": "number",
-                      "value": 10
+                      "value": 9
                     },
                     "y": {
                       "type": "number",
@@ -409,16 +418,24 @@
                   "id": "ef84e786-2266-4473-b52c-995bf62ab80d"
                 },
                 {
+                  "command": "EVENT_ACTOR_ACTIVATE",
+                  "args": {
+                    "actorId": "8d5285f5-fe83-4472-b329-21fdfbb7ec61",
+                    "__collapse": false
+                  },
+                  "id": "5a8b9375-d051-4065-904f-380e528e286c"
+                },
+                {
                   "command": "EVENT_ACTOR_SET_POSITION",
                   "args": {
                     "actorId": "8d5285f5-fe83-4472-b329-21fdfbb7ec61",
                     "x": {
                       "type": "number",
-                      "value": 6
+                      "value": 5
                     },
                     "y": {
                       "type": "number",
-                      "value": 14
+                      "value": 12
                     }
                   },
                   "id": "ff313f1d-b44a-418a-8d98-aabf4f1b3aa7"
@@ -674,6 +691,13 @@
                     "actorId": "0499c45a-7f14-439a-99f9-1ced941c1877"
                   },
                   "id": "6cb97aee-8bde-47c9-bca8-e03f1c063520"
+                },
+                {
+                  "command": "EVENT_FADE_IN",
+                  "args": {
+                    "speed": "2"
+                  },
+                  "id": "e0e8f404-9c66-4400-884f-6a0ecae7219d"
                 }
               ]
             },
