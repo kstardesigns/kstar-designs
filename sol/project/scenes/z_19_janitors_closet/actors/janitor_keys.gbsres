@@ -17,73 +17,23 @@
   "symbol": "actor_56",
   "script": [
     {
-      "command": "EVENT_TEXT",
-      "args": {
-        "text": [
-          "Looks like the janitor\nleft his keys...  @",
-          "Take them?"
-        ],
-        "__section": "text",
-        "avatarId": "",
-        "minHeight": 4,
-        "maxHeight": 7,
-        "textX": 1,
-        "textY": 1,
-        "textHeight": 5,
-        "position": "bottom",
-        "clearPrevious": true,
-        "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
-        "closeButton": "a",
-        "closeDelayTime": 0.5,
-        "closeDelayFrames": 30
-      },
-      "id": "64cc0146-1ac3-486c-92f3-15ac37c8c34b"
-    },
-    {
-      "command": "EVENT_MENU",
-      "args": {
-        "variable": "83",
-        "items": 2,
-        "option1": "Take keys",
-        "option2": "Leave them",
-        "option3": "",
-        "option4": "",
-        "option5": "",
-        "option6": "",
-        "option7": "",
-        "option8": "",
-        "cancelOnB": true,
-        "layout": "dialogue",
-        "cancelOnLastOption": true
-      },
-      "id": "333540eb-7600-4ad0-9955-ba8cafb5f851"
-    },
-    {
       "command": "EVENT_IF",
       "args": {
         "condition": {
           "type": "variable",
-          "value": "83"
+          "value": "64"
         },
-        "__collapseElse": false
+        "__collapseElse": false,
+        "__collapse": true
       },
       "children": {
         "true": [
           {
-            "command": "EVENT_ACTOR_DEACTIVATE",
-            "args": {
-              "actorId": "$self$"
-            },
-            "id": "2140b571-9aab-4103-958f-d85b183bffa7"
-          },
-          {
             "command": "EVENT_TEXT",
             "args": {
               "text": [
-                "Took the janitor's \nkeys."
+                "It's the janitor's keys.\nHe's still asleep...  @",
+                "Take them?"
               ],
               "__section": "text",
               "avatarId": "",
@@ -100,9 +50,264 @@
               "closeWhen": "key",
               "closeButton": "a",
               "closeDelayTime": 0.5,
-              "closeDelayFrames": 30
+              "closeDelayFrames": 30,
+              "__collapse": false
             },
-            "id": "08ba6567-1130-4d78-988b-d42bc27c58cc"
+            "id": "64cc0146-1ac3-486c-92f3-15ac37c8c34b"
+          },
+          {
+            "command": "EVENT_MENU",
+            "args": {
+              "variable": "83",
+              "items": 2,
+              "option1": "Take keys",
+              "option2": "Leave them",
+              "option3": "",
+              "option4": "",
+              "option5": "",
+              "option6": "",
+              "option7": "",
+              "option8": "",
+              "cancelOnB": true,
+              "layout": "dialogue",
+              "cancelOnLastOption": true,
+              "__collapse": false
+            },
+            "id": "333540eb-7600-4ad0-9955-ba8cafb5f851"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "83"
+              },
+              "__collapseElse": false,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_DEACTIVATE",
+                  "args": {
+                    "actorId": "$self$"
+                  },
+                  "id": "2140b571-9aab-4103-958f-d85b183bffa7"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Took the janitor's \nkeys."
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "08ba6567-1130-4d78-988b-d42bc27c58cc"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Left the janitor's\nkeys. Don't want to  @",
+                      "get in trouble..."
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "f96236dd-6937-4e1b-9461-0cc8fa0a0ef0"
+                }
+              ]
+            },
+            "id": "ef358f2c-2a8c-49c0-a20f-1980b897ca0f"
+          }
+        ],
+        "false": []
+      },
+      "id": "2f3193aa-3d1a-4c9a-8f59-d38550707a6a"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "48"
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "55"
+                }
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Looks like the janitor\nleft his keys...  @",
+                      "Take them?"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": false
+                  },
+                  "id": "a3f48bb2-fed2-4b44-abb7-0a1800329f4b"
+                },
+                {
+                  "command": "EVENT_MENU",
+                  "args": {
+                    "variable": "83",
+                    "items": 2,
+                    "option1": "Take keys",
+                    "option2": "Leave them",
+                    "option3": "",
+                    "option4": "",
+                    "option5": "",
+                    "option6": "",
+                    "option7": "",
+                    "option8": "",
+                    "cancelOnB": true,
+                    "layout": "dialogue",
+                    "cancelOnLastOption": true,
+                    "__collapse": false
+                  },
+                  "id": "206a3624-9ea6-432b-9ae1-25e417590d07"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "variable",
+                      "value": "83"
+                    },
+                    "__collapseElse": false,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_DEACTIVATE",
+                        "args": {
+                          "actorId": "$self$"
+                        },
+                        "id": "1772d2d1-c6cc-4881-99bc-5bc35a7cf822"
+                      },
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "Took the janitor's \nkeys."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "d12d9d37-77b8-4349-b064-b270f9221da9"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "Left the janitor's\nkeys. Don't want to  @",
+                            "get in trouble..."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "36269b76-d4e4-4d5f-8ea9-ee12c36b9cb6"
+                      }
+                    ]
+                  },
+                  "id": "83c59395-98c8-4cfe-bd36-6eee80c146cf"
+                }
+              ],
+              "false": []
+            },
+            "id": "d236bf42-4512-4ee5-a5b2-67165d272a13"
           }
         ],
         "false": [
@@ -110,8 +315,9 @@
             "command": "EVENT_TEXT",
             "args": {
               "text": [
-                "Left the janitor's\nkeys. Don't want to  @",
-                "get in trouble..."
+                "The janitor left his\nkeys on the hook.  @",
+                "Take them?\n@",
+                "The janitor's looking.\nBetter not."
               ],
               "__section": "text",
               "avatarId": "",
@@ -130,11 +336,11 @@
               "closeDelayTime": 0.5,
               "closeDelayFrames": 30
             },
-            "id": "f96236dd-6937-4e1b-9461-0cc8fa0a0ef0"
+            "id": "a2f74f95-5a9e-4740-b6c1-1e84dba93f1e"
           }
         ]
       },
-      "id": "ef358f2c-2a8c-49c0-a20f-1980b897ca0f"
+      "id": "bb149b6c-eae9-4347-be20-2c360fcb8a42"
     }
   ],
   "startScript": [],
