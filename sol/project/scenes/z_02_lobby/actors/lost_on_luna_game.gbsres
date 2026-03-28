@@ -17,21 +17,220 @@
   "symbol": "actor_66",
   "script": [
     {
-      "command": "EVENT_SWITCH_SCENE",
+      "command": "EVENT_IF",
       "args": {
-        "sceneId": "fc721ab0-6d1f-4399-bb48-ef00a5c3cfd5",
-        "x": {
-          "type": "number",
-          "value": 0
+        "condition": {
+          "type": "variable",
+          "value": "32"
         },
-        "y": {
-          "type": "number",
-          "value": 50
-        },
-        "direction": "",
-        "fadeSpeed": "2"
+        "__collapseElse": true,
+        "__collapse": false
       },
-      "id": "1e349c25-c54d-46c8-8916-5d691e6abb23"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Dropped a quarter\ninto the coin slot."
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "a81f36e4-a3e1-44e3-b331-ee763b4bbe33"
+          },
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 0.5,
+              "frames": 30
+            },
+            "id": "5c6adc25-4473-4d9f-98c9-165ffbf3a679"
+          },
+          {
+            "command": "EVENT_SWITCH_SCENE",
+            "args": {
+              "sceneId": "4c6ed374-ff40-44f0-9afd-ec4e95c71c77",
+              "x": {
+                "type": "number",
+                "value": 0
+              },
+              "y": {
+                "type": "number",
+                "value": 0
+              },
+              "direction": "",
+              "fadeSpeed": "2"
+            },
+            "id": "1e349c25-c54d-46c8-8916-5d691e6abb23"
+          }
+        ],
+        "false": []
+      },
+      "id": "cd279a60-aaec-4a9e-a062-ae910da6cf01"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "31"
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "gt",
+                "valueA": {
+                  "type": "variable",
+                  "value": "65"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 0
+                }
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_DEC_VALUE",
+                  "args": {
+                    "variable": "65"
+                  },
+                  "id": "e745e332-df9d-45e0-b438-26c383a8ba53"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Inserted a quarter\ninto the slot. @",
+                      "Remaining quarters:\n$65$"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "581ec9ee-1ca7-4188-ba4e-9bb29029aa7b"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.5,
+                    "frames": 30
+                  },
+                  "id": "13bb937f-ee50-48f2-8ce8-8a61f95356aa"
+                },
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "4c6ed374-ff40-44f0-9afd-ec4e95c71c77",
+                    "x": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "direction": "",
+                    "fadeSpeed": "2"
+                  },
+                  "id": "50b6fcea-14ce-45ae-adc1-ce830fece759"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Hmm. No more quarters.\nBetter find some more."
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "b59aa60a-8213-40eb-b4dd-c885d5b7d571"
+                }
+              ]
+            },
+            "id": "299215ce-aba0-4b1c-8ad4-9f522a1cc2ec"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "LOST ON LUNA\nInsert quarter to play"
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "caa2a8de-0c36-4dff-9490-43f9ea05f971"
+          }
+        ]
+      },
+      "id": "f29b61b8-b6f9-4883-8b6a-ec902b3c0a8d"
     }
   ],
   "startScript": [],
