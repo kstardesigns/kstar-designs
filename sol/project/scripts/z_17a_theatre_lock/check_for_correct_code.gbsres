@@ -1,0 +1,235 @@
+{
+  "_resourceType": "script",
+  "id": "396a7f6b-f4a6-4582-bd2b-69dd67a4cc31",
+  "name": "z 17a Theatre lock/Check for correct code",
+  "description": "After the user has typed 4 digits, check the code",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_0",
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$66$ == 4 && $68$ == 6 && $69$ == 2 && $71$ == 7"
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_MUSIC_PLAY",
+            "args": {
+              "musicId": "4e70bb53-9a1c-4236-8da8-5de56b3fbd6a"
+            },
+            "id": "70f1c559-f6ec-4b2c-becf-24c813f8e2d7"
+          },
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 0.5,
+              "frames": 30
+            },
+            "id": "a36475de-78c8-4bf0-b2a1-5480caea6378"
+          },
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "The code was correct!\nThe door unlocked."
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "bb14b469-efd9-48ca-9bc3-75ed2dd47609"
+          },
+          {
+            "command": "EVENT_MUSIC_STOP",
+            "args": {},
+            "id": "a54fb93e-efb6-4af4-a3e4-e8c0f8651411"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "24",
+              "value": {
+                "type": "true"
+              }
+            },
+            "id": "39935f77-0ee1-41c2-96d3-4b93f74e4fd4"
+          },
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 0.5,
+              "frames": 30
+            },
+            "id": "d011b911-75bf-44d0-a135-373a8108a590"
+          },
+          {
+            "command": "EVENT_SCENE_POP_STATE",
+            "args": {
+              "fadeSpeed": "2"
+            },
+            "id": "4961f653-fb89-438d-98f9-a7e6f5e6a4fe"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_MUSIC_PLAY",
+            "args": {
+              "musicId": "2fde4e03-8397-42a5-8d1e-a4f4e56816a1"
+            },
+            "id": "0276b73b-f503-45ad-a69f-e8097421f111"
+          },
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 0.5,
+              "frames": 30
+            },
+            "id": "ed14eec8-ca50-4db1-bea6-018a00f33e16"
+          },
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "The code didn't work.\nThe numbers reset."
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "4ef8aa10-120d-4b34-915b-ecec256b473c"
+          },
+          {
+            "command": "EVENT_MUSIC_STOP",
+            "args": {},
+            "id": "7d9cd5c6-343e-4a88-acc2-7ce97ff476d6"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "66",
+              "value": {
+                "type": "number",
+                "value": 0
+              },
+              "__collapse": true
+            },
+            "id": "50508a84-7e84-48ef-b6a8-1d0e4379e2bd"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "68",
+              "value": {
+                "type": "number",
+                "value": 0
+              },
+              "__collapse": true
+            },
+            "id": "d5c5ebd6-e443-479d-9e55-3ef3ec1edb6d"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "69",
+              "value": {
+                "type": "number",
+                "value": 0
+              },
+              "__collapse": true
+            },
+            "id": "fc5b7f8f-74db-4e5f-bb2c-2942c6b8ed36"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "71",
+              "value": {
+                "type": "number",
+                "value": 0
+              },
+              "__collapse": true
+            },
+            "id": "b599e35a-d504-47d5-9a38-5d46ae08ee74"
+          },
+          {
+            "command": "EVENT_TEXT_DRAW",
+            "args": {
+              "text": "!F:0c7c1705-dab6-476e-a5ce-17de23b3d591!0",
+              "x": 7,
+              "y": 16,
+              "location": "background",
+              "__collapse": true
+            },
+            "id": "9ef0f436-2719-4d21-bf2a-1a2c410af7a4"
+          },
+          {
+            "command": "EVENT_TEXT_DRAW",
+            "args": {
+              "text": "!F:0c7c1705-dab6-476e-a5ce-17de23b3d591!0",
+              "x": 9,
+              "y": 16,
+              "location": "background",
+              "__collapse": true
+            },
+            "id": "9eb932c3-8408-4ff5-9fb2-f8983f07b028"
+          },
+          {
+            "command": "EVENT_TEXT_DRAW",
+            "args": {
+              "text": "!F:0c7c1705-dab6-476e-a5ce-17de23b3d591!0",
+              "x": 11,
+              "y": 16,
+              "location": "background",
+              "__collapse": true
+            },
+            "id": "fc4fa38d-dcea-4380-9ec8-9186ef5d7f22"
+          },
+          {
+            "command": "EVENT_TEXT_DRAW",
+            "args": {
+              "text": "!F:0c7c1705-dab6-476e-a5ce-17de23b3d591!0",
+              "x": 13,
+              "y": 16,
+              "location": "background",
+              "__collapse": true
+            },
+            "id": "6068dd8d-e7a0-4896-9508-c3b81a19c18e"
+          }
+        ]
+      },
+      "id": "81d34ea9-10e2-41e1-873c-2303f3885bd3"
+    }
+  ]
+}

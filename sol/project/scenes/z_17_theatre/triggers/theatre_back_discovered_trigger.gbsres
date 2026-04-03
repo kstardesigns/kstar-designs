@@ -1,0 +1,91 @@
+{
+  "_resourceType": "trigger",
+  "id": "9472bf3e-bf45-49f1-9e79-be9b5898d2e3",
+  "name": "Theatre Back Discovered trigger",
+  "prefabId": "",
+  "x": 0,
+  "y": 19,
+  "symbol": "trigger_127",
+  "prefabScriptOverrides": {},
+  "width": 2,
+  "height": 1,
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "not",
+          "value": {
+            "type": "variable",
+            "value": "72"
+          }
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF_ACTOR_DIRECTION",
+            "args": {
+              "actorId": "$self$",
+              "direction": {
+                "type": "direction",
+                "value": "up"
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "$self$",
+                    "spriteStateId": "Stand still up",
+                    "loopAnim": true
+                  },
+                  "id": "50a449ff-099d-4432-b438-0e4943a99ba7"
+                },
+                {
+                  "command": "EVENT_CAMERA_LOCK",
+                  "args": {
+                    "speed": 1,
+                    "axis": [
+                      "x",
+                      "y"
+                    ]
+                  },
+                  "id": "bec65cc4-336a-43c5-97ce-b462b9c0f9b7"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "$self$",
+                    "spriteStateId": "",
+                    "loopAnim": true
+                  },
+                  "id": "be3e341e-a79d-4160-ac6b-72fab14752c5"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "72",
+                    "value": {
+                      "type": "true"
+                    }
+                  },
+                  "id": "e2604cd7-c13c-483b-8286-b60b6f3fcb4e"
+                }
+              ],
+              "false": []
+            },
+            "id": "fcdaad6e-e479-45d3-84ce-1ae95fa9385c"
+          }
+        ],
+        "false": []
+      },
+      "id": "65d8c124-600c-48a0-928a-cec55abccf40"
+    }
+  ],
+  "leaveScript": [],
+  "_index": 24
+}

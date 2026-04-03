@@ -12,7 +12,7 @@
   "backgroundId": "674d5cba-d034-4ee2-a8e3-49dd1ff76565",
   "tilesetId": "",
   "paletteIds": [
-    "dmg",
+    "f2bed82c-b2d8-434f-810f-f36fc482efb9",
     "",
     "",
     "678a657a-a12b-492a-ac12-a0668cf7f815",
@@ -39,6 +39,79 @@
         "actorId": "3dabae73-1406-43c0-a8f4-04cf1d0f2056"
       },
       "id": "e5084ecc-ce73-4247-b5ab-f63d88f02e7a"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "72"
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_CAMERA_LOCK",
+            "args": {
+              "speed": 0,
+              "axis": [
+                "x",
+                "y"
+              ]
+            },
+            "id": "b8012f26-b07d-4163-88d5-0e79835be698"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Intentionally don't show back of theatre until it's found"
+            },
+            "id": "f9a32ad8-1a9c-4b7e-bedf-0598c7eb1b8a"
+          },
+          {
+            "command": "EVENT_CAMERA_SET_POSITION",
+            "args": {
+              "x": {
+                "type": "number",
+                "value": 0
+              },
+              "y": {
+                "type": "number",
+                "value": 19
+              }
+            },
+            "id": "af70e478-31a4-4393-9676-e41ce3495ea6"
+          }
+        ]
+      },
+      "id": "726f6079-8ffe-40c0-9b00-2982446d307c"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "24"
+        },
+        "__collapseElse": false,
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_COLLISIONS_DISABLE",
+            "args": {
+              "actorId": "44b0b810-8d78-4aa9-81ae-e0f8cc4e4a52"
+            },
+            "id": "2526fc59-d2b3-4258-9e34-bad928a201f6"
+          }
+        ],
+        "false": []
+      },
+      "id": "b27d45af-3bb7-4466-8ad5-eeac1bff4c51"
     },
     {
       "command": "EVENT_IF",
@@ -106,7 +179,8 @@
     {
       "command": "EVENT_FADE_IN",
       "args": {
-        "speed": 1
+        "speed": 1,
+        "__collapse": true
       },
       "id": "90d4f800-5524-47bd-a2f0-9207f17895d0"
     },
@@ -117,7 +191,8 @@
           "type": "expression",
           "value": "$469$ == 2"
         },
-        "__collapseElse": true
+        "__collapseElse": true,
+        "__collapse": true
       },
       "children": {
         "true": [
