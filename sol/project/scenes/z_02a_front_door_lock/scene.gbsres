@@ -22,42 +22,1203 @@
     {
       "command": "EVENT_ACTOR_DEACTIVATE",
       "args": {
-        "actorId": "$self$"
+        "actorId": "$self$",
+        "__collapse": true
       },
-      "id": "0f191794-be81-40c8-849b-c020ff5e43f8"
+      "id": "ec85b153-dc77-4072-bbc4-6f68c2ae3e6a"
     },
     {
-      "command": "EVENT_FADE_IN",
+      "command": "EVENT_COMMENT",
       "args": {
-        "speed": "2"
+        "text": "TEST:",
+        "__collapse": true
       },
-      "id": "74340710-c530-40a2-8e3d-38e0ea1367fc"
+      "id": "2b69c414-d734-4d89-ba5a-49611724d8b9"
     },
     {
-      "command": "EVENT_SET_INPUT_SCRIPT",
+      "command": "EVENT_SET_VALUE",
       "args": {
-        "input": [
-          "b",
-          "a"
-        ],
-        "override": true,
-        "__scriptTabs": "press"
+        "variable": "93",
+        "value": {
+          "type": "true"
+        },
+        "__collapse": true,
+        "__comment": true
+      },
+      "id": "a62524fd-7b5e-46fb-9bf3-9a4441fa5815"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "75",
+        "value": {
+          "type": "true"
+        },
+        "__collapse": true,
+        "__comment": true
+      },
+      "id": "eebcb333-28bd-4539-809c-8841d7b16638"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "138",
+        "value": {
+          "type": "true"
+        },
+        "__collapse": true,
+        "__comment": true
+      },
+      "id": "c5d06eea-d400-4c48-98df-de18dcaa08a4"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "104",
+        "value": {
+          "type": "true"
+        },
+        "__collapse": true,
+        "__comment": true
+      },
+      "id": "a7887169-2994-4c7d-82dd-f7c009bcce60"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "END TEST",
+        "__collapse": true
+      },
+      "id": "431239e7-544c-440b-aa65-2640bdc04693"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "93"
+        },
+        "__collapseElse": false,
+        "__collapse": true
       },
       "children": {
         "true": [
           {
-            "command": "EVENT_SCENE_POP_STATE",
+            "command": "EVENT_COMMENT",
             "args": {
-              "fadeSpeed": "2"
+              "text": "If player has Key C, show it ",
+              "__collapse": true
             },
-            "id": "5f422fc8-f55a-43c2-b6b2-880ac2b27df7"
+            "id": "296b4b71-89cb-4413-9049-b61167447dac"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "108"
+              },
+              "__collapseElse": false,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "If key is already inserted, just show it there",
+                    "__collapse": true
+                  },
+                  "id": "1b582de3-e4b2-4c49-89d9-c9c29a1af0b3"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_POSITION_RELATIVE",
+                  "args": {
+                    "actorId": "70fce030-991d-41d7-97b3-fa11635c6bfb",
+                    "x": {
+                      "type": "number",
+                      "value": 3
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "__collapse": false
+                  },
+                  "id": "4e4d9dd6-8de2-42c2-8e79-29f34d327239"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "70fce030-991d-41d7-97b3-fa11635c6bfb",
+                    "spriteStateId": "Already in B",
+                    "loopAnim": false,
+                    "__collapse": false
+                  },
+                  "id": "b36a745c-284f-4720-822f-29006140d59d"
+                }
+              ],
+              "false": []
+            },
+            "id": "57c83a70-f012-4abc-a422-094141061c3a"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_ACTOR_DEACTIVATE",
+            "args": {
+              "actorId": "70fce030-991d-41d7-97b3-fa11635c6bfb",
+              "__collapse": false
+            },
+            "id": "8fd5521a-5f0c-44e4-a951-c1f9375682ad"
           }
         ]
       },
-      "id": "5f03e211-5298-4a6c-82e4-2685e756af48"
+      "id": "3cdf7081-887c-4c07-bdb5-f63dcd9030d6"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "138"
+        },
+        "__collapseElse": false,
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "If player has Key C, show it ",
+              "__collapse": true
+            },
+            "id": "0e37261e-fce7-4aaf-b9b7-40d1911fdc1e"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "87"
+              },
+              "__collapseElse": false,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "If key is already inserted, just show it there",
+                    "__collapse": true
+                  },
+                  "id": "19b69701-6258-4f05-81dd-cd664ad9f10a"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_POSITION_RELATIVE",
+                  "args": {
+                    "actorId": "8a68bc4a-984a-48e4-8f19-6872f79929cd",
+                    "x": {
+                      "type": "number",
+                      "value": 3
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "__collapse": true
+                  },
+                  "id": "45571322-d811-490d-9c59-dd707d7bf21a"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "8a68bc4a-984a-48e4-8f19-6872f79929cd",
+                    "spriteStateId": "Already in C",
+                    "loopAnim": false,
+                    "__collapse": true
+                  },
+                  "id": "6e9abb5f-b2bd-465f-bdd6-1573c98b7ad1"
+                }
+              ],
+              "false": []
+            },
+            "id": "80f30813-fe65-41ab-ab83-e2281c3c4800"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_ACTOR_DEACTIVATE",
+            "args": {
+              "actorId": "8a68bc4a-984a-48e4-8f19-6872f79929cd",
+              "__collapse": false
+            },
+            "id": "e04b0e17-b256-425c-8c53-5d1e06680479"
+          }
+        ]
+      },
+      "id": "1acef647-c9b6-4626-b393-02c553a4938e"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "75"
+        },
+        "__collapseElse": false,
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "If player has Key S, show it ",
+              "__collapse": true
+            },
+            "id": "6e070c33-15e2-4d29-b7af-2eb322db44f6"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "76"
+              },
+              "__collapseElse": false,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "If key is already inserted, just show it there",
+                    "__collapse": true
+                  },
+                  "id": "0ac338c1-17a1-4f66-a6b5-3883c6e99be6"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_POSITION_RELATIVE",
+                  "args": {
+                    "actorId": "e5144c76-3184-4d29-a8c0-4e44e7b7914f",
+                    "x": {
+                      "type": "number",
+                      "value": -3
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "__collapse": true
+                  },
+                  "id": "8e79d23d-2dbf-4460-a042-23248a7348cc"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "e5144c76-3184-4d29-a8c0-4e44e7b7914f",
+                    "spriteStateId": "Already in S",
+                    "loopAnim": false,
+                    "__collapse": true
+                  },
+                  "id": "25d2def8-f91f-4ac8-917b-4d6d5feb1e8b"
+                }
+              ],
+              "false": []
+            },
+            "id": "d13d9ff0-03a5-4bd7-b376-70ea41b8ffc2"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_ACTOR_DEACTIVATE",
+            "args": {
+              "actorId": "e5144c76-3184-4d29-a8c0-4e44e7b7914f",
+              "__collapse": true
+            },
+            "id": "0f191794-be81-40c8-849b-c020ff5e43f8"
+          }
+        ]
+      },
+      "id": "27d7946c-0cce-4432-8a93-aedc17bf7111"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "104"
+        },
+        "__collapseElse": false,
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "If player has Key L, show it ",
+              "__collapse": true
+            },
+            "id": "6c132d79-bb25-4dac-a7c0-8089ce78b4b1"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "92"
+              },
+              "__collapseElse": false,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "If key is already inserted, just show it there",
+                    "__collapse": true
+                  },
+                  "id": "92a9f57e-a70d-48d1-8098-20bab5dd2fc3"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_POSITION_RELATIVE",
+                  "args": {
+                    "actorId": "825d85ad-3652-41ce-8677-c2f053425fec",
+                    "x": {
+                      "type": "number",
+                      "value": -3
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "__collapse": false
+                  },
+                  "id": "aa93388b-af76-4802-9878-663506735e24"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "825d85ad-3652-41ce-8677-c2f053425fec",
+                    "spriteStateId": "Already in L",
+                    "loopAnim": false,
+                    "__collapse": false
+                  },
+                  "id": "bf4e3930-b2e7-42af-8a4b-8c421b006ada"
+                }
+              ],
+              "false": []
+            },
+            "id": "458c8cea-751e-43c7-8634-6e79ac70e7a7"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_ACTOR_DEACTIVATE",
+            "args": {
+              "actorId": "825d85ad-3652-41ce-8677-c2f053425fec",
+              "__collapse": false
+            },
+            "id": "fd685c65-5f40-4347-983f-f741c2dd8af2"
+          }
+        ]
+      },
+      "id": "5938e958-9589-4c13-ace9-d828c2bd2fdc"
+    },
+    {
+      "command": "EVENT_FADE_IN",
+      "args": {
+        "speed": "2",
+        "__collapse": true
+      },
+      "id": "74340710-c530-40a2-8e3d-38e0ea1367fc"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Key B",
+        "__collapse": true
+      },
+      "id": "e491cd1b-bc57-4403-ae13-14b042cff6ba"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "93"
+        },
+        "__collapseElse": true,
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "If player has Key B, show it ",
+              "__collapse": false
+            },
+            "id": "c6781a0f-e7b7-43c1-be20-b85569fe46f1"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "108"
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "If key isn't inserted, insert it & set vars",
+                    "__collapse": false
+                  },
+                  "id": "c9a64a9a-cca3-4191-8ce1-02d754e165dc"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.5,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "e329a3b1-337f-403a-8ddf-9eb89367560f"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "One key closer to \nescaping the @",
+                      "planetarium!"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": true
+                  },
+                  "id": "48373fee-b48a-47a8-b3f0-e22fb41fc5b6"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.5,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "f758ecc6-0d52-4a56-8af3-3d69f9d9810d"
+                },
+                {
+                  "command": "EVENT_ACTOR_MOVE_RELATIVE",
+                  "args": {
+                    "actorId": "70fce030-991d-41d7-97b3-fa11635c6bfb",
+                    "x": {
+                      "type": "number",
+                      "value": 3
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "moveType": "horizontal",
+                    "useCollisions": false,
+                    "__collapse": false
+                  },
+                  "id": "f29aab00-5a18-4529-92cd-d8427dba26d9"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.5,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "2822750f-7955-4ae6-a89e-c254dfed03c2"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "70fce030-991d-41d7-97b3-fa11635c6bfb",
+                    "spriteStateId": "Already in B",
+                    "loopAnim": false,
+                    "__collapse": false
+                  },
+                  "id": "76104234-9a18-473a-9256-f1c7bdcea94b"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 1,
+                    "frames": 30
+                  },
+                  "id": "831f2c6e-fe01-4919-acee-421a55eda5cd"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "108",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": false
+                  },
+                  "id": "b4ed244b-5072-4354-919f-19eb2252f331"
+                },
+                {
+                  "command": "EVENT_INC_VALUE",
+                  "args": {
+                    "variable": "74",
+                    "__collapse": true
+                  },
+                  "id": "7c39bc1a-0e80-45f3-830f-4fbde88e1a80"
+                }
+              ],
+              "false": []
+            },
+            "id": "619e6b27-0568-47be-a866-7847ceeb8ea0"
+          }
+        ],
+        "false": []
+      },
+      "id": "680ef8ef-6d56-4b9e-8794-bd85e1c0caa2"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Key C",
+        "__collapse": true
+      },
+      "id": "1988c976-fc03-4ce5-b17f-958df52f7f32"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "138"
+        },
+        "__collapseElse": true,
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "If player has Key C, show it ",
+              "__collapse": true
+            },
+            "id": "4b0fdaf9-0999-4b42-a650-08cf22891755"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "87"
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "If key isn't inserted, insert it & set vars",
+                    "__collapse": false
+                  },
+                  "id": "72f94e65-847d-4584-b2d8-e4def4feecd3"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.5,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "3c059127-47f7-40d4-b345-859612f9dfd3"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "One key closer to \nescaping the @",
+                      "planetarium!"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": true
+                  },
+                  "id": "34f66fd1-0b8a-4a83-a533-f7f382894a67"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.5,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "929337e1-dfc0-4088-835d-6c691e6682be"
+                },
+                {
+                  "command": "EVENT_ACTOR_MOVE_RELATIVE",
+                  "args": {
+                    "actorId": "8a68bc4a-984a-48e4-8f19-6872f79929cd",
+                    "x": {
+                      "type": "number",
+                      "value": 3
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "moveType": "horizontal",
+                    "useCollisions": false,
+                    "__collapse": false
+                  },
+                  "id": "33fb3623-4b89-417d-8d9b-7692eca57f27"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.5,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "f54babb3-91ca-4c99-bba8-9e05e00e62c3"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "8a68bc4a-984a-48e4-8f19-6872f79929cd",
+                    "spriteStateId": "Already in C",
+                    "loopAnim": false,
+                    "__collapse": false
+                  },
+                  "id": "08a747c8-4a7a-422b-acff-c1bfa5a2c37c"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 1,
+                    "frames": 30
+                  },
+                  "id": "a9b903e3-d83e-4b1d-a02c-49217d93a544"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "87",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": false
+                  },
+                  "id": "7c578617-e560-442d-ba9a-d7b2f9d06f72"
+                },
+                {
+                  "command": "EVENT_INC_VALUE",
+                  "args": {
+                    "variable": "74",
+                    "__collapse": true
+                  },
+                  "id": "0d0a6222-fc17-4831-b8da-066dc2d06e4c"
+                }
+              ],
+              "false": []
+            },
+            "id": "26606d11-4a39-4b53-a83d-65fb6f08ef42"
+          }
+        ],
+        "false": []
+      },
+      "id": "a6327dc5-f22b-4448-a76c-83ab234901e8"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Key S\n",
+        "__collapse": true
+      },
+      "id": "5f5955c6-0280-4da6-afa4-dac3f4ba6e7d"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "75"
+        },
+        "__collapseElse": true,
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "If player has Key S, show it ",
+              "__collapse": true
+            },
+            "id": "6e77095e-d0ea-4f4b-a31c-44bd9b7fd44c"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "76"
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "If key isn't inserted, insert it & set vars",
+                    "__collapse": true
+                  },
+                  "id": "49f1e5f8-cb77-430a-8753-4dcf4aa8eb4d"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.5,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "9eb70e7a-ca02-4388-83a5-fc5aa5927921"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "One key closer to \nescaping the @",
+                      "planetarium!"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": true
+                  },
+                  "id": "10cf3509-0332-4e91-b909-409433d7be1b"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.5,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "72b549b1-cd3a-4b3f-a238-8101c4b78acd"
+                },
+                {
+                  "command": "EVENT_ACTOR_MOVE_RELATIVE",
+                  "args": {
+                    "actorId": "e5144c76-3184-4d29-a8c0-4e44e7b7914f",
+                    "x": {
+                      "type": "number",
+                      "value": -3
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "moveType": "horizontal",
+                    "useCollisions": false,
+                    "__collapse": true
+                  },
+                  "id": "c7aae547-3144-4881-8e8f-f334e64237b2"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.5,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "5c28fa58-199a-46b1-9296-d590521b8499"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "e5144c76-3184-4d29-a8c0-4e44e7b7914f",
+                    "spriteStateId": "Slide in S",
+                    "loopAnim": false,
+                    "__collapse": true
+                  },
+                  "id": "94835a83-a2cb-48af-b13e-7363ca08421b"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 1,
+                    "frames": 30
+                  },
+                  "id": "7e8a5097-b4ab-40e8-aee3-5a8436c428f5"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "76",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "66a89492-033d-4df2-857b-a3d1de8b3c1b"
+                },
+                {
+                  "command": "EVENT_INC_VALUE",
+                  "args": {
+                    "variable": "74",
+                    "__collapse": true
+                  },
+                  "id": "14e1a332-99a1-4fa1-8da9-1b4b35260a4f"
+                }
+              ],
+              "false": []
+            },
+            "id": "9b38b66a-c4ac-431f-9bf1-7ebe8607057e"
+          }
+        ],
+        "false": []
+      },
+      "id": "2a593cef-f298-4366-b6d3-031a929cab8a"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Key L",
+        "__collapse": true
+      },
+      "id": "ae8d8280-67fa-4e3c-bac2-df69e3fb506b"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "104"
+        },
+        "__collapseElse": true,
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "If player has Key L, show it ",
+              "__collapse": false
+            },
+            "id": "a92c38cd-6ccc-4873-baca-410081f3d157"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "92"
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "If key isn't inserted, insert it & set vars",
+                    "__collapse": false
+                  },
+                  "id": "f580abd7-24fa-48e2-ab38-3e4a0b9baf21"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.5,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "a0e01243-498d-42bb-ba67-fc2cbf4964da"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "One key closer to \nescaping the @",
+                      "planetarium!"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": true
+                  },
+                  "id": "7a9a60d0-577a-4f07-967b-a047e4489332"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.5,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "6dd5752f-2f91-4d89-ad64-f4bd3efe197d"
+                },
+                {
+                  "command": "EVENT_ACTOR_MOVE_RELATIVE",
+                  "args": {
+                    "actorId": "825d85ad-3652-41ce-8677-c2f053425fec",
+                    "x": {
+                      "type": "number",
+                      "value": -3
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "moveType": "horizontal",
+                    "useCollisions": false,
+                    "__collapse": false
+                  },
+                  "id": "5036cd3f-402e-4c23-9ad1-23855e0770f6"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.5,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "4c18ee0f-a023-4ef8-a269-ff2e61688f64"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "825d85ad-3652-41ce-8677-c2f053425fec",
+                    "spriteStateId": "Slide in L",
+                    "loopAnim": false,
+                    "__collapse": false
+                  },
+                  "id": "d64dacf9-d468-4a8c-9285-f69478cf689f"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 1,
+                    "frames": 30
+                  },
+                  "id": "48de5f8e-797e-42c9-9123-4ea3658d8e8f"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "92",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": false
+                  },
+                  "id": "ccb2adbe-53cd-4586-ac43-b2a0f1efd2ef"
+                },
+                {
+                  "command": "EVENT_INC_VALUE",
+                  "args": {
+                    "variable": "74",
+                    "__collapse": true
+                  },
+                  "id": "b1d848fa-b04b-4b0c-bc08-11bd32063b36"
+                }
+              ],
+              "false": []
+            },
+            "id": "73de9c65-c41c-43b7-8c6c-d186d9edfffb"
+          }
+        ],
+        "false": []
+      },
+      "id": "4331863f-a1e5-40fd-a941-b8d46f1f6e75"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "After key check:\nShow the updated key count, go back to lobby",
+        "__collapse": true
+      },
+      "id": "e5931877-84f2-4a78-a7f0-5dd59ac93f04"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "eq",
+          "valueA": {
+            "type": "variable",
+            "value": "74"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 0
+          }
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Gotta find all 4 keys\nin order to get out  @",
+                "of here."
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "3b937734-5969-42b0-9d73-fcd8b87dcdef"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Keys found:\n$74$ / 4"
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30,
+              "__collapse": false
+            },
+            "id": "d2705b8c-019d-4815-91bb-2e2d2be11105"
+          }
+        ]
+      },
+      "id": "58703599-84e9-41d9-ab5b-9993ce538cb4"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 0.5,
+        "frames": 30,
+        "__collapse": true
+      },
+      "id": "6ac50569-d686-4113-8352-89e995ae4a21"
+    },
+    {
+      "command": "EVENT_SCENE_POP_STATE",
+      "args": {
+        "fadeSpeed": "2",
+        "__collapse": true
+      },
+      "id": "d173f22c-a7bf-45ef-b7a2-1051cae148fa"
     }
   ],
   "playerHit1Script": [],
   "playerHit2Script": [],
-  "playerHit3Script": []
+  "playerHit3Script": [],
+  "playerSpriteSheetId": "51702508-e325-436e-bbaf-b330451ac0f0"
 }
