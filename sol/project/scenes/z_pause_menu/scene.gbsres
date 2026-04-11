@@ -8,8 +8,15 @@
   "width": 20,
   "height": 18,
   "type": "TOPDOWN",
-  "paletteIds": [],
-  "spritePaletteIds": [],
+  "paletteIds": [
+    "9a66fd09-6eb4-4d4e-b41c-0848823057ec",
+    "b22e62e0-8b83-4965-a80e-8c15d16b8596",
+    "02904018-59db-4f4f-aea6-f1879f56d2e3"
+  ],
+  "spritePaletteIds": [
+    "fe518d38-1bee-4941-be99-d27b42d142de",
+    "6f7528c2-4ac6-4fa3-8a11-0ca752b41087"
+  ],
   "collisions": "",
   "autoFadeSpeed": 1,
   "symbol": "scene_33",
@@ -17,16 +24,214 @@
   "y": 1016,
   "script": [
     {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "b"
+        ],
+        "override": true,
+        "__scriptTabs": "press"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "c41ac1e6-a2a6-49e5-b7f0-05f9db372af6",
+              "spriteStateId": "B pressed",
+              "loopAnim": false
+            },
+            "id": "d2f6962f-8c68-4827-9df5-62dec7831fe2"
+          },
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 0.25,
+              "frames": 30
+            },
+            "id": "0f093125-3a7e-4090-a4a1-c3bf32355476"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "499",
+              "value": {
+                "type": "false"
+              }
+            },
+            "id": "c4b3a283-2dc2-491e-8c43-69e6d4671918"
+          },
+          {
+            "command": "EVENT_SCENE_POP_STATE",
+            "args": {
+              "fadeSpeed": "2"
+            },
+            "id": "9f187e55-993d-42eb-8157-4c84f4e1c3c8"
+          }
+        ]
+      },
+      "id": "a322debb-8b69-4e8b-aa92-1d2e3d3f07b0"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "select"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false,
+        "__comment": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "4d4d9901-b9b6-4ea8-be9b-d390760315eb",
+              "spriteStateId": "SEL pressed",
+              "loopAnim": false
+            },
+            "id": "b1f33377-470d-43aa-aef4-c1a7a5c00007"
+          },
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 0.25,
+              "frames": 30
+            },
+            "id": "aa37a1ff-513e-44f6-b026-570c1ffd36a4"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "508"
+              },
+              "__collapseElse": false,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "not",
+                      "value": {
+                        "type": "variable",
+                        "value": "498"
+                      }
+                    },
+                    "__collapseElse": false,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SCENE_PUSH_STATE",
+                        "args": {},
+                        "id": "2d33f63e-ac22-4cd4-b7bf-05c6ac8bd73c"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "498",
+                          "value": {
+                            "type": "true"
+                          }
+                        },
+                        "id": "1b73bb20-a790-495c-8035-8b36dbc26ce1"
+                      },
+                      {
+                        "command": "EVENT_SWITCH_SCENE",
+                        "args": {
+                          "sceneId": "c4eecf37-ddd2-45c3-920a-52ddffde0aa6",
+                          "x": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "direction": "",
+                          "fadeSpeed": "2"
+                        },
+                        "id": "60c33ba5-6f50-4449-a317-65071b078ed7"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "498",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "b0cda82d-4419-4ff4-ae27-f071aeb4818b"
+                      },
+                      {
+                        "command": "EVENT_SCENE_POP_STATE",
+                        "args": {
+                          "fadeSpeed": 1,
+                          "__collapse": false
+                        },
+                        "id": "7a9676ab-cb93-40b8-bc6e-fe4c66bf9155"
+                      }
+                    ]
+                  },
+                  "id": "2cfe45f2-ace7-4775-bd65-ae9ef55215f1"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Don't forget to pick up\nthe map from the front \ndesk!"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "78e9bfc0-09a1-4c35-86dc-b24e0a8f440e"
+                }
+              ]
+            },
+            "id": "0f70b667-58d1-4e43-9aaf-569e69a12fa4"
+          }
+        ]
+      },
+      "id": "25326325-c49e-4f21-b171-677c2ab9d2e3"
+    },
+    {
       "command": "EVENT_ACTOR_SET_POSITION",
       "args": {
         "actorId": "$self$",
         "x": {
           "type": "number",
-          "value": 2
+          "value": 5
         },
         "y": {
           "type": "number",
-          "value": 2
+          "value": 10
         },
         "__collapse": false
       },
