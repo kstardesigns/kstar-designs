@@ -17,89 +17,120 @@
   "symbol": "actor_93",
   "script": [
     {
-      "command": "EVENT_TEXT",
+      "command": "EVENT_IF_ACTOR_DIRECTION",
       "args": {
-        "text": [
-          "Someone wrote some-\nthing on the wall:  @",
-          "!F:d6f5a3ee-a2ad-4345-9b89-cff6108d7680!All of time spans\n@",
-          "!F:d6f5a3ee-a2ad-4345-9b89-cff6108d7680!All of space spans\n@",
-          "!F:d6f5a3ee-a2ad-4345-9b89-cff6108d7680!All of light spans\n@",
-          "!F:d6f5a3ee-a2ad-4345-9b89-cff6108d7680!All our life spans\n@"
+        "actorId": "player",
+        "direction": {
+          "type": "direction",
+          "value": "right"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Someone wrote some-\nthing on the wall:  @",
+                "!F:d6f5a3ee-a2ad-4345-9b89-cff6108d7680!All of time spans\n@",
+                "!F:d6f5a3ee-a2ad-4345-9b89-cff6108d7680!All of space spans\n@",
+                "!F:d6f5a3ee-a2ad-4345-9b89-cff6108d7680!All of light spans\n@",
+                "!F:d6f5a3ee-a2ad-4345-9b89-cff6108d7680!All our life spans\n@"
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30,
+              "__comment": false
+            },
+            "id": "e55ba56b-8424-4a63-86ae-16e72738296e"
+          },
+          {
+            "command": "EVENT_IF_FLAGS_COMPARE",
+            "args": {
+              "variable": "70",
+              "flag": 1,
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [],
+              "false": [
+                {
+                  "command": "EVENT_INC_VALUE",
+                  "args": {
+                    "variable": "51"
+                  },
+                  "id": "257c5995-fe3d-4000-aae4-fa2c197770ab"
+                }
+              ]
+            },
+            "id": "cb59aab3-4c80-466b-8cdb-4e9a261ec353"
+          },
+          {
+            "command": "EVENT_ADD_FLAGS",
+            "args": {
+              "variable": "70",
+              "flag1": false,
+              "flag2": true,
+              "flag3": false,
+              "flag4": false,
+              "flag5": false,
+              "flag6": false,
+              "flag7": false,
+              "flag8": false,
+              "flag9": false,
+              "flag10": false,
+              "flag11": false,
+              "flag12": false,
+              "flag13": false,
+              "flag14": false,
+              "flag15": false,
+              "flag16": false
+            },
+            "id": "a778f075-258e-4925-b408-89604b0dddb0"
+          },
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Lyrics found: \n$51$ / 5"
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "f8f4b860-6632-4168-ba18-8b868c1d83b9"
+          }
         ],
-        "__section": "text",
-        "avatarId": "",
-        "minHeight": 4,
-        "maxHeight": 7,
-        "textX": 1,
-        "textY": 1,
-        "textHeight": 5,
-        "position": "bottom",
-        "clearPrevious": true,
-        "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
-        "closeButton": "a",
-        "closeDelayTime": 0.5,
-        "closeDelayFrames": 30,
-        "__comment": false
+        "false": []
       },
-      "id": "e55ba56b-8424-4a63-86ae-16e72738296e"
-    },
-    {
-      "command": "EVENT_ADD_FLAGS",
-      "args": {
-        "variable": "70",
-        "flag1": false,
-        "flag2": true,
-        "flag3": false,
-        "flag4": false,
-        "flag5": false,
-        "flag6": false,
-        "flag7": false,
-        "flag8": false,
-        "flag9": false,
-        "flag10": false,
-        "flag11": false,
-        "flag12": false,
-        "flag13": false,
-        "flag14": false,
-        "flag15": false,
-        "flag16": false
-      },
-      "id": "a778f075-258e-4925-b408-89604b0dddb0"
-    },
-    {
-      "command": "EVENT_INC_VALUE",
-      "args": {
-        "variable": "51"
-      },
-      "id": "45239a39-a624-45ec-afb4-fe6e43a73de6"
-    },
-    {
-      "command": "EVENT_TEXT",
-      "args": {
-        "text": [
-          "Lyrics found: \n$51$ / 5"
-        ],
-        "__section": "text",
-        "avatarId": "",
-        "minHeight": 4,
-        "maxHeight": 7,
-        "textX": 1,
-        "textY": 1,
-        "textHeight": 5,
-        "position": "bottom",
-        "clearPrevious": true,
-        "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
-        "closeButton": "a",
-        "closeDelayTime": 0.5,
-        "closeDelayFrames": 30
-      },
-      "id": "f8f4b860-6632-4168-ba18-8b868c1d83b9"
+      "id": "5ba7d7d1-3b7c-412d-9b7a-a08acd7bccec"
     }
   ],
   "startScript": [],

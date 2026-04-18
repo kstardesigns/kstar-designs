@@ -27,12 +27,50 @@
     "",
     "",
     "",
-    "",
+    "bd98c6c7-5c85-4926-b276-554069a181a6",
     "e4fa17ef-92c5-4bb5-bcf4-d0d542825005",
     "5e536053-236d-4944-82bc-8204ce0292ea"
   ],
   "autoFadeSpeed": null,
   "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gte",
+          "valueA": {
+            "type": "variable",
+            "value": "70"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 30
+          }
+        },
+        "__collapseElse": false,
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "30 means at least variable flags 2-5 are true. 2, 4, 8, 16 (and possibly 1 for variable flag 1)"
+            },
+            "id": "900ecdfa-ad99-438d-9a40-bfdbdad8ebc5"
+          },
+          {
+            "command": "EVENT_ACTOR_DEACTIVATE",
+            "args": {
+              "actorId": "f675b164-7e3a-4065-82c0-0c815235bcf9"
+            },
+            "id": "dcfb488d-c556-475b-a2b1-64e94ee08f75"
+          }
+        ],
+        "false": []
+      },
+      "id": "3b819573-38d7-489d-a7b1-fb33614baa0f"
+    },
     {
       "command": "EVENT_IF",
       "args": {
