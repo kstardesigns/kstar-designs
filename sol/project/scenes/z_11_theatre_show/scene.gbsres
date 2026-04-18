@@ -27,7 +27,7 @@
     "",
     "",
     "",
-    "",
+    "f0ded933-04b6-4590-8c26-8aeed0b83a02",
     "36acf7e1-4a7f-417e-aa79-ff8bc4d35258",
     "79c0f91e-d91d-4c17-b74e-a059b6909d21"
   ],
@@ -95,6 +95,69 @@
         "__collapse": true
       },
       "id": "48a2a038-b76a-4538-8625-7a6269a768b5"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Theatre show breaks here if already watched once",
+        "__collapse": true
+      },
+      "id": "44f06d8a-00e6-49fc-8167-f4ecb9bbe7ad"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "147"
+        },
+        "__collapseElse": true,
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_CAMERA_SHAKE",
+            "args": {
+              "time": 1,
+              "frames": 30,
+              "shakeDirection": "horizontal",
+              "magnitude": {
+                "type": "number",
+                "value": 3
+              }
+            },
+            "id": "9dfe28b4-f634-4442-a502-d204d1cd433b"
+          },
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 1,
+              "frames": 30
+            },
+            "id": "57544acf-de64-4a28-8bd2-117b3ed78662"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "143",
+              "value": {
+                "type": "true"
+              }
+            },
+            "id": "5f0db757-6630-4ff0-95fb-d43bc3c4607a"
+          },
+          {
+            "command": "EVENT_SCENE_POP_STATE",
+            "args": {
+              "fadeSpeed": "2"
+            },
+            "id": "cf2a940b-7884-42ca-9b58-9b510aaa23c5"
+          }
+        ],
+        "false": []
+      },
+      "id": "25e14e5d-55e9-4079-a996-32202787b57d"
     },
     {
       "command": "EVENT_ACTOR_SET_STATE",

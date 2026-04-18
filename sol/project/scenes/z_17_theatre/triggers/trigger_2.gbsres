@@ -1,14 +1,14 @@
 {
   "_resourceType": "trigger",
-  "id": "55b5408e-0906-49a2-8c15-524169e6ae89",
+  "id": "6f0289b8-756c-40e9-8c59-2a591ee4b1de",
   "name": "",
   "prefabId": "",
-  "x": 17,
-  "y": 2,
-  "symbol": "trigger_64",
+  "x": 15,
+  "y": 34,
+  "symbol": "trigger_96",
   "prefabScriptOverrides": {},
-  "width": 2,
-  "height": 1,
+  "width": 1,
+  "height": 2,
   "script": [
     {
       "command": "EVENT_IF_ACTOR_DIRECTION",
@@ -16,7 +16,7 @@
         "actorId": "$self$",
         "direction": {
           "type": "direction",
-          "value": "up"
+          "value": "right"
         },
         "__collapseElse": true,
         "__collapse": false
@@ -24,78 +24,46 @@
       "children": {
         "true": [
           {
-            "command": "EVENT_SWITCH_SCENE",
+            "command": "EVENT_ACTOR_SET_STATE",
             "args": {
-              "sceneId": "e4c3257e-6c7a-4be2-8819-b8220912039e",
+              "actorId": "$self$",
+              "spriteStateId": "Leap",
+              "loopAnim": true
+            },
+            "id": "21ab6985-783f-470d-a29d-8fe11680dd9e"
+          },
+          {
+            "command": "EVENT_ACTOR_MOVE_RELATIVE",
+            "args": {
+              "actorId": "$self$",
               "x": {
                 "type": "number",
-                "value": 16
+                "value": 2
               },
               "y": {
                 "type": "number",
-                "value": 17
+                "value": 0
               },
-              "direction": "up",
-              "fadeSpeed": "2"
+              "moveType": "horizontal",
+              "useCollisions": false
             },
-            "id": "1140b56d-fd6e-4a5b-9206-feae52d70b7f"
-          }
-        ],
-        "false": []
-      },
-      "id": "2b2b08bf-ecc6-45d6-b372-bd80a89534b6"
-    },
-    {
-      "command": "EVENT_IF_ACTOR_DIRECTION",
-      "args": {
-        "actorId": "$self$",
-        "direction": {
-          "type": "direction",
-          "value": "down"
-        },
-        "__collapseElse": true,
-        "__collapse": false
-      },
-      "children": {
-        "true": [
+            "id": "be1affd6-cf1d-4ee2-a3a1-2938db27c565"
+          },
           {
-            "command": "EVENT_IF_INPUT",
+            "command": "EVENT_ACTOR_SET_STATE",
             "args": {
-              "input": [
-                "down"
-              ],
-              "__collapseElse": false
+              "actorId": "$self$",
+              "spriteStateId": "",
+              "loopAnim": true
             },
-            "children": {
-              "true": [],
-              "false": [
-                {
-                  "command": "EVENT_ACTOR_MOVE_RELATIVE",
-                  "args": {
-                    "actorId": "$self$",
-                    "x": {
-                      "type": "number",
-                      "value": 0
-                    },
-                    "y": {
-                      "type": "number",
-                      "value": 1
-                    },
-                    "moveType": "horizontal",
-                    "useCollisions": false
-                  },
-                  "id": "e1e64cef-fdb3-4887-8362-5ee0349540e4"
-                }
-              ]
-            },
-            "id": "8fdac3e0-26db-46cd-8813-dde99593b89a"
+            "id": "e08dc1fe-b6a4-479f-ba38-9de9e2dbd372"
           }
         ],
         "false": []
       },
-      "id": "61035e8c-9ebf-41f5-bdec-b25bfe78c2b7"
+      "id": "a1b9830e-edad-4f9f-ba89-70dc4f2b2dff"
     }
   ],
   "leaveScript": [],
-  "_index": 1
+  "_index": 2
 }
