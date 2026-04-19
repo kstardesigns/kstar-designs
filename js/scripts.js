@@ -14,12 +14,12 @@ $('nav ul a').click(function(){
 
 //list of portfolio items
 var portfolioItems = [
-    {
-      'proj': 'titledrops',
-      'itemname': 'Title Drops',
-      'itemdescription': 'A project that tells when a TV show or movie mentions its own title in its script. <a href="/titledrops" target="_blank" title="">View site <span>&rarr;</span></a>',
-      'projlink': '/titledrops'
-    },
+    // {
+    //   'proj': 'titledrops',
+    //   'itemname': 'Title Drops',
+    //   'itemdescription': 'A project that tells when a TV show or movie mentions its own title in its script. <a href="/titledrops" target="_blank" title="">View site <span>&rarr;</span></a>',
+    //   'projlink': '/titledrops'
+    // },
     {
       'proj': 'gatorade',
       'itemname': 'Gatorade Sports Shop',
