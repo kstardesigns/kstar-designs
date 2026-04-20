@@ -311,7 +311,121 @@
             "id": "83ce6519-5a3c-4df6-a08c-a854b62ec334"
           }
         ],
-        "false": []
+        "false": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "130"
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Would you like to watch\nthe show again?"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": true
+                  },
+                  "id": "cf82b544-0c3e-4305-8886-b409be6617bb"
+                },
+                {
+                  "command": "EVENT_MENU",
+                  "args": {
+                    "variable": "491",
+                    "items": 2,
+                    "option1": "Yep!",
+                    "option2": "Nope",
+                    "option3": "",
+                    "option4": "",
+                    "option5": "",
+                    "option6": "",
+                    "option7": "",
+                    "option8": "",
+                    "cancelOnB": true,
+                    "layout": "dialogue",
+                    "cancelOnLastOption": true,
+                    "__collapse": true
+                  },
+                  "id": "e8b3b3bd-f021-4536-8f37-95f998365ab3"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "variable",
+                      "value": "491"
+                    },
+                    "__collapseElse": false,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_GET_POSITION",
+                        "args": {
+                          "actorId": "$self$",
+                          "vectorX": "58",
+                          "vectorY": "59"
+                        },
+                        "id": "92c30d80-34de-4153-b06d-a29bb0b8c938"
+                      },
+                      {
+                        "command": "EVENT_SCENE_PUSH_STATE",
+                        "args": {
+                          "__collapse": false
+                        },
+                        "id": "81de0c1e-f0ee-4ad7-aa8e-ad3a32a61fa6"
+                      },
+                      {
+                        "command": "EVENT_SWITCH_SCENE",
+                        "args": {
+                          "sceneId": "9d05a8d2-f5d7-41ae-846a-8b24967c53c7",
+                          "x": {
+                            "type": "number",
+                            "value": 11
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 5
+                          },
+                          "direction": "",
+                          "fadeSpeed": "2",
+                          "__collapse": false
+                        },
+                        "id": "afdbb536-0ac1-4a4a-940e-36fcad74195f"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "240b8bdc-f6e5-4567-bb42-d1b12728aeb9"
+                }
+              ],
+              "false": []
+            },
+            "id": "b3e0ea73-167c-46bf-99a6-09254152b559"
+          }
+        ]
       },
       "id": "1457a0b1-8744-46b4-99cb-9f3471d9b7c8"
     }
