@@ -209,7 +209,7 @@
           "value": "116"
         },
         "__collapseElse": true,
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -372,37 +372,55 @@
               ],
               "false": [
                 {
-                  "command": "EVENT_ACTOR_SET_POSITION",
+                  "command": "EVENT_IF",
                   "args": {
-                    "actorId": "$self$",
-                    "x": {
+                    "condition": {
                       "type": "variable",
-                      "value": "58"
+                      "value": "105"
                     },
-                    "y": {
-                      "type": "sub",
-                      "valueA": {
-                        "type": "variable",
-                        "value": "59"
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_SET_POSITION",
+                        "args": {
+                          "actorId": "$self$",
+                          "x": {
+                            "type": "variable",
+                            "value": "58"
+                          },
+                          "y": {
+                            "type": "sub",
+                            "valueA": {
+                              "type": "variable",
+                              "value": "59"
+                            },
+                            "valueB": {
+                              "type": "number",
+                              "value": 1
+                            }
+                          },
+                          "__collapse": true
+                        },
+                        "id": "d06b76f9-e9bf-458c-89ca-cb42ea32c5b5"
                       },
-                      "valueB": {
-                        "type": "number",
-                        "value": 1
+                      {
+                        "command": "EVENT_ACTOR_SET_DIRECTION",
+                        "args": {
+                          "actorId": "$self$",
+                          "direction": {
+                            "type": "direction",
+                            "value": "up"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "e7feaa32-e6d4-437e-8503-59b12b2cf1e0"
                       }
-                    }
+                    ],
+                    "false": []
                   },
-                  "id": "d06b76f9-e9bf-458c-89ca-cb42ea32c5b5"
-                },
-                {
-                  "command": "EVENT_ACTOR_SET_DIRECTION",
-                  "args": {
-                    "actorId": "$self$",
-                    "direction": {
-                      "type": "direction",
-                      "value": "up"
-                    }
-                  },
-                  "id": "e7feaa32-e6d4-437e-8503-59b12b2cf1e0"
+                  "id": "4600e386-e262-4ac8-9b7d-4d4564248ca3"
                 }
               ]
             },
@@ -478,7 +496,7 @@
           "value": "143"
         },
         "__collapseElse": true,
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [

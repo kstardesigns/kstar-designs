@@ -378,19 +378,6 @@
                   "children": {
                     "true": [
                       {
-                        "command": "EVENT_ACTOR_SET_DIRECTION",
-                        "args": {
-                          "actorId": "$self$",
-                          "direction": {
-                            "type": "variable",
-                            "value": "57"
-                          },
-                          "__comment": false,
-                          "__collapse": true
-                        },
-                        "id": "d7c5eb70-71fd-4cd9-88d1-56aaa6789832"
-                      },
-                      {
                         "command": "EVENT_ACTOR_SET_POSITION",
                         "args": {
                           "actorId": "$self$",
@@ -403,9 +390,55 @@
                             "value": "59"
                           },
                           "__comment": false,
-                          "__collapse": true
+                          "__collapse": false
                         },
                         "id": "64a1dcb2-42b2-42ff-9953-93dd3a40e7b2"
+                      },
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "gt",
+                            "valueA": {
+                              "type": "variable",
+                              "value": "59"
+                            },
+                            "valueB": {
+                              "type": "number",
+                              "value": 12
+                            }
+                          },
+                          "__collapseElse": false
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_ACTOR_SET_DIRECTION",
+                              "args": {
+                                "actorId": "$self$",
+                                "direction": {
+                                  "type": "direction",
+                                  "value": "right"
+                                }
+                              },
+                              "id": "0ad25de8-3198-412f-afc3-d536c3ee1d22"
+                            }
+                          ],
+                          "false": [
+                            {
+                              "command": "EVENT_ACTOR_SET_DIRECTION",
+                              "args": {
+                                "actorId": "$self$",
+                                "direction": {
+                                  "type": "direction",
+                                  "value": "down"
+                                }
+                              },
+                              "id": "03775dec-1ef6-4653-a05a-a08d70cbee56"
+                            }
+                          ]
+                        },
+                        "id": "4709348b-5c15-444f-8406-789b49434c36"
                       },
                       {
                         "command": "EVENT_ACTOR_DEACTIVATE",
@@ -422,7 +455,8 @@
                           "direction": {
                             "type": "direction",
                             "value": "left"
-                          }
+                          },
+                          "__collapse": true
                         },
                         "id": "7399323b-171e-4c67-846e-0802a3d46883"
                       },
@@ -557,7 +591,7 @@
                             " back-up generator\n is working. There  @",
                             " is no need to worry.\n Except..."
                           ],
-                          "__section": "layout",
+                          "__section": "text",
                           "avatarId": "54c7ec7c-329e-4d92-8204-26cfc73f97cd",
                           "minHeight": 4,
                           "maxHeight": 7,
@@ -796,6 +830,18 @@
                           "__collapse": false
                         },
                         "id": "8b9653cf-33c5-4f91-9b61-78e2936b63b5"
+                      },
+                      {
+                        "command": "EVENT_ACTOR_SET_DIRECTION",
+                        "args": {
+                          "actorId": "ee979499-347e-46ae-b9c2-fade9bf29a43",
+                          "direction": {
+                            "type": "direction",
+                            "value": "down"
+                          },
+                          "__collapse": false
+                        },
+                        "id": "046bb291-c7e7-4d54-a67e-3c16ba062290"
                       },
                       {
                         "command": "EVENT_SET_VALUE",
