@@ -24,8 +24,8 @@
   "spritePaletteIds": [
     "d73adccf-4071-4012-b0a6-9c3973a2dc0e",
     "f45292fb-9ef6-47ae-b09f-c93a85a302d8",
-    "",
-    "",
+    "f45292fb-9ef6-47ae-b09f-c93a85a302d8",
+    "f45292fb-9ef6-47ae-b09f-c93a85a302d8",
     "",
     "bd98c6c7-5c85-4926-b276-554069a181a6",
     "e4fa17ef-92c5-4bb5-bcf4-d0d542825005",
@@ -78,7 +78,8 @@
           "type": "variable",
           "value": "55"
         },
-        "__collapseElse": true
+        "__collapseElse": true,
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -98,13 +99,78 @@
       "command": "EVENT_IF",
       "args": {
         "condition": {
+          "type": "variable",
+          "value": "18"
+        },
+        "__collapseElse": true,
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Move 2 guys in stalls to theatre"
+            },
+            "id": "460e2e1e-6de2-44f4-aab4-bf2b79c46835"
+          },
+          {
+            "command": "EVENT_REPLACE_TILE_XY",
+            "args": {
+              "x": {
+                "type": "number",
+                "value": 10
+              },
+              "y": {
+                "type": "number",
+                "value": 1
+              },
+              "tilesetId": "a3643810-ee5d-4ba2-8298-1ef33fed8c36",
+              "tileIndex": {
+                "type": "number",
+                "value": 0
+              },
+              "tileSize": "16px"
+            },
+            "id": "9f675843-3127-4a18-8828-156d9a3e6b9d"
+          },
+          {
+            "command": "EVENT_REPLACE_TILE_XY",
+            "args": {
+              "x": {
+                "type": "number",
+                "value": 12
+              },
+              "y": {
+                "type": "number",
+                "value": 1
+              },
+              "tilesetId": "a3643810-ee5d-4ba2-8298-1ef33fed8c36",
+              "tileIndex": {
+                "type": "number",
+                "value": 0
+              },
+              "tileSize": "16px"
+            },
+            "id": "21ce1abe-5d84-4bb8-bfc2-6481ec61a557"
+          }
+        ],
+        "false": []
+      },
+      "id": "cd729cf4-c517-4bcc-a040-63c365d0e584"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
           "type": "not",
           "value": {
             "type": "variable",
             "value": "48"
           }
         },
-        "__collapseElse": false
+        "__collapseElse": false,
+        "__collapse": true
       },
       "children": {
         "true": [

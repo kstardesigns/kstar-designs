@@ -6,7 +6,7 @@
   "animate": false,
   "spriteSheetId": "ac9740e8-ccb5-4aec-8ce0-f84c84ad6c4c",
   "prefabId": "",
-  "direction": "down",
+  "direction": "up",
   "moveSpeed": 1,
   "animSpeed": 15,
   "paletteId": "",
@@ -17,29 +17,135 @@
   "symbol": "actor_127",
   "script": [
     {
-      "command": "EVENT_TEXT",
+      "command": "EVENT_IF",
       "args": {
-        "text": [
-          "This is a reminder\nthat I need something \nto say"
-        ],
-        "__section": "layout",
-        "avatarId": "",
-        "minHeight": 4,
-        "maxHeight": 7,
-        "textX": 1,
-        "textY": 1,
-        "textHeight": 5,
-        "position": "top",
-        "clearPrevious": true,
-        "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
-        "closeButton": "a",
-        "closeDelayTime": 0.5,
-        "closeDelayFrames": 30
+        "condition": {
+          "type": "not",
+          "value": {
+            "type": "variable",
+            "value": "144"
+          }
+        },
+        "__collapseElse": false
       },
-      "id": "e09f71bb-465d-4904-be0a-078fe6f926c7"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Yes? I'm almost done."
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "top",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30,
+              "__collapse": false
+            },
+            "id": "e09f71bb-465d-4904-be0a-078fe6f926c7"
+          },
+          {
+            "command": "EVENT_SCRIPT_UNLOCK",
+            "args": {},
+            "id": "5b517aed-dd4a-4740-8730-b6ba2a5d4bc2"
+          },
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 1,
+              "frames": 30
+            },
+            "id": "f1005ad2-f06a-4760-aef9-37b3d3eb2d3c"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_DIRECTION",
+            "args": {
+              "actorId": "$self$",
+              "direction": {
+                "type": "direction",
+                "value": "up"
+              }
+            },
+            "id": "0ccfc82f-e24b-4554-a4fa-d46049858a36"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "144",
+              "value": {
+                "type": "true"
+              }
+            },
+            "id": "324ff704-0959-46f9-9ce6-98000b4d71f6"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Yes, I'm still washing\nmy hands. They were  @",
+                "covered in Sharpie...\ner, I'm not sure what  @",
+                "it is. But it's hard to\nget off."
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "9ef90ad5-530d-421b-b053-d6e29e33141c"
+          },
+          {
+            "command": "EVENT_SCRIPT_UNLOCK",
+            "args": {},
+            "id": "c80b169e-fc62-4bd0-99fb-a2279c010284"
+          },
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 1,
+              "frames": 30
+            },
+            "id": "4a283574-5239-4b40-90d4-879d14b68187"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_DIRECTION",
+            "args": {
+              "actorId": "$self$",
+              "direction": {
+                "type": "direction",
+                "value": "up"
+              }
+            },
+            "id": "f586ac3f-8f55-4f71-bb04-4f0bb7cd6967"
+          }
+        ]
+      },
+      "id": "33ce1070-531f-4bc0-ade8-3f8f4a4b2a04"
     }
   ],
   "startScript": [],
@@ -48,6 +154,6 @@
   "hit2Script": [],
   "hit3Script": [],
   "x": 6,
-  "y": 15,
+  "y": 14,
   "_index": 5
 }
