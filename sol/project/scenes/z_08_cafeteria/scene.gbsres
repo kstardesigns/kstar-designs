@@ -23,7 +23,7 @@
   ],
   "spritePaletteIds": [
     "d73adccf-4071-4012-b0a6-9c3973a2dc0e",
-    "",
+    "9187744a-02a6-4c74-85c7-9cb6f2b93772",
     "",
     "",
     "",
@@ -36,9 +36,18 @@
     {
       "command": "EVENT_ACTOR_DEACTIVATE",
       "args": {
-        "actorId": "b701b291-f954-47e5-b739-01fab289e3cb"
+        "actorId": "b701b291-f954-47e5-b739-01fab289e3cb",
+        "__collapse": true
       },
       "id": "92bcea64-ffd6-4462-8585-d0bbd6da8224"
+    },
+    {
+      "command": "EVENT_ACTOR_DEACTIVATE",
+      "args": {
+        "actorId": "49e8669f-0d46-490e-97ad-8ee92c227c3e",
+        "__collapse": true
+      },
+      "id": "46bd9b06-9552-44a9-93aa-9d481a5fc363"
     },
     {
       "command": "EVENT_IF",
@@ -62,6 +71,54 @@
         "false": []
       },
       "id": "4c877b42-a510-4e59-b41d-b45862cfddf9"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "465"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_ACTIVATE",
+            "args": {
+              "actorId": "49e8669f-0d46-490e-97ad-8ee92c227c3e"
+            },
+            "id": "bf5e9edb-945a-4986-ae91-f6c1b2722ef8"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "123"
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "49e8669f-0d46-490e-97ad-8ee92c227c3e",
+                    "spriteStateId": "Idle down with soda",
+                    "loopAnim": true
+                  },
+                  "id": "047c28bb-97b4-4805-b653-857fa53635f2"
+                }
+              ],
+              "false": []
+            },
+            "id": "01f8fe18-63e2-48ef-b944-02f736cfc0d9"
+          }
+        ],
+        "false": []
+      },
+      "id": "ff0ee937-de01-415e-8c61-9202fa515114"
     },
     {
       "command": "EVENT_FADE_IN",
@@ -163,5 +220,5 @@
   "playerHit1Script": [],
   "playerHit2Script": [],
   "playerHit3Script": [],
-  "collisions": "003c+0f!00!0f12+004b+0f5+00f+0f5+00f+0f5+00f+0f5+00f+0f5+003+0f2+00a+0f5+003+0f2+00a+0f5+003+0f2+00a+0f5+003+0f2+00a+0f5+00f+0f5+0023+0f5+00f+0f5+00f+0f5+00f+0f5+00f+0f5+00f+0f5+001a+0f2+0012+0f2+007+0f5+006+0f2+007+0f5+006+0f2+002f+0f5+0039+0f2+0012+0f2+0015+"
+  "collisions": "003c+0f14+004b+0f5+00f+0f5+00f+0f5+00f+0f5+00f+0f5+003+0f2+00a+0f5+003+0f2+0012+0f2+0012+0f2+00a+0f5+00f+0f5+00f+0f5+00f+0f5+00f+0f5+00f+0f5+0037+0f5+00f+0f5+006+0f2+007+0f5+006+0f2+007+0f5+006+0f2+007+0f5+006+0f2+007+0f5+0012+0f2+0012+0f2+0012+0f2+0012+0f2+003c+"
 }
