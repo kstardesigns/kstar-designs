@@ -1,0 +1,48 @@
+{
+  "_resourceType": "trigger",
+  "id": "d9b832ca-4415-4ec1-b973-70663a20f122",
+  "name": "Arrow trigger",
+  "prefabId": "",
+  "x": 2,
+  "y": 11,
+  "symbol": "trigger_79",
+  "prefabScriptOverrides": {},
+  "width": 1,
+  "height": 5,
+  "script": [
+    {
+      "command": "EVENT_IF_ACTOR_DIRECTION",
+      "args": {
+        "actorId": "$self$",
+        "direction": {
+          "type": "direction",
+          "value": "right"
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [],
+        "false": [
+          {
+            "command": "EVENT_ACTOR_ACTIVATE",
+            "args": {
+              "actorId": "c67d9cd0-9dec-4b9a-92ed-51770ac5fbac"
+            },
+            "id": "ce7c4356-982f-4aaa-8446-0e05e56ede78"
+          }
+        ]
+      },
+      "id": "77c11967-5377-4292-85d0-0a063fb1f572"
+    }
+  ],
+  "leaveScript": [
+    {
+      "command": "EVENT_ACTOR_DEACTIVATE",
+      "args": {
+        "actorId": "c67d9cd0-9dec-4b9a-92ed-51770ac5fbac"
+      },
+      "id": "5627ddbe-f8a8-4167-8e0b-33cab92b783d"
+    }
+  ],
+  "_index": 1
+}
