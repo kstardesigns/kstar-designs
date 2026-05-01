@@ -4,7 +4,7 @@
   "name": "Trash",
   "frame": 0,
   "animate": false,
-  "spriteSheetId": "af00b79b-c449-4caf-ae35-2253a6547695",
+  "spriteSheetId": "ef14abcc-081a-4fa2-b3e1-579c68b57509",
   "prefabId": "",
   "direction": "down",
   "moveSpeed": 1,
@@ -29,59 +29,13 @@
       "children": {
         "true": [
           {
-            "command": "EVENT_ACTOR_GET_POSITION",
+            "command": "EVENT_IF",
             "args": {
-              "actorId": "player",
-              "vectorX": "58",
-              "vectorY": "59"
-            },
-            "id": "68fb044c-6f5f-4008-99f9-9ce074d106fe"
-          },
-          {
-            "command": "EVENT_TEXT",
-            "args": {
-              "text": [
-                "($58$, $59$)"
-              ],
-              "__section": "text",
-              "avatarId": "",
-              "minHeight": 4,
-              "maxHeight": 7,
-              "textX": 1,
-              "textY": 1,
-              "textHeight": 5,
-              "position": "bottom",
-              "clearPrevious": true,
-              "showFrame": "true",
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
-              "closeButton": "a",
-              "closeDelayTime": 0.5,
-              "closeDelayFrames": 30
-            },
-            "id": "8d73bb66-5e21-46f8-9513-4ca82e5f68ac"
-          },
-          {
-            "command": "EVENT_IF_ACTOR_AT_POSITION",
-            "args": {
-              "actorId": "player",
-              "x": {
-                "type": "or",
-                "valueA": {
-                  "type": "number",
-                  "value": 3
-                },
-                "valueB": {
-                  "type": "number",
-                  "value": 2
-                }
+              "condition": {
+                "type": "variable",
+                "value": "48"
               },
-              "y": {
-                "type": "number",
-                "value": 4
-              },
-              "__collapseElse": true
+              "__collapseElse": false
             },
             "children": {
               "true": [
@@ -89,129 +43,88 @@
                   "command": "EVENT_IF",
                   "args": {
                     "condition": {
-                      "type": "variable",
-                      "value": "48"
+                      "type": "not",
+                      "value": {
+                        "type": "variable",
+                        "value": "31"
+                      }
                     },
-                    "__collapseElse": false
+                    "__collapseElse": true
                   },
                   "children": {
                     "true": [
                       {
-                        "command": "EVENT_IF",
+                        "command": "EVENT_TEXT",
                         "args": {
-                          "condition": {
-                            "type": "not",
-                            "value": {
-                              "type": "variable",
-                              "value": "31"
-                            }
-                          },
-                          "__collapseElse": true
-                        },
-                        "children": {
-                          "true": [
-                            {
-                              "command": "EVENT_TEXT",
-                              "args": {
-                                "text": [
-                                  "Just some garbage...\nOh, and there's also  @",
-                                  "three quarters!"
-                                ],
-                                "__section": "text",
-                                "avatarId": "",
-                                "minHeight": 4,
-                                "maxHeight": 7,
-                                "textX": 1,
-                                "textY": 1,
-                                "textHeight": 5,
-                                "position": "bottom",
-                                "clearPrevious": true,
-                                "showFrame": "true",
-                                "speedIn": -1,
-                                "speedOut": -1,
-                                "closeWhen": "key",
-                                "closeButton": "a",
-                                "closeDelayTime": 0.5,
-                                "closeDelayFrames": 30
-                              },
-                              "id": "ecf062aa-922e-48bd-9dc7-07929d0c20c8"
-                            },
-                            {
-                              "command": "EVENT_SET_VALUE",
-                              "args": {
-                                "variable": "31",
-                                "value": {
-                                  "type": "true"
-                                }
-                              },
-                              "id": "961fa3d8-77cc-42ab-bebc-9e70d42403c3"
-                            },
-                            {
-                              "command": "EVENT_SET_VALUE",
-                              "args": {
-                                "variable": "55",
-                                "value": {
-                                  "type": "true"
-                                }
-                              },
-                              "id": "3e3434dd-67ba-4fe1-9ba6-2ee37890f657"
-                            },
-                            {
-                              "command": "EVENT_INC_VALUE",
-                              "args": {
-                                "variable": "65"
-                              },
-                              "id": "d9b4f534-2f16-462b-9ffc-af6dbcf1081c"
-                            },
-                            {
-                              "command": "EVENT_INC_VALUE",
-                              "args": {
-                                "variable": "65"
-                              },
-                              "id": "09e98e5d-9283-4136-a0f7-96f32ea140b4"
-                            },
-                            {
-                              "command": "EVENT_INC_VALUE",
-                              "args": {
-                                "variable": "65"
-                              },
-                              "id": "756c0251-58d3-4720-8b66-39aab7a55a48"
-                            },
-                            {
-                              "command": "EVENT_TEXT",
-                              "args": {
-                                "text": [
-                                  "Quarter count:\n$65$"
-                                ],
-                                "__section": "text",
-                                "avatarId": "",
-                                "minHeight": 4,
-                                "maxHeight": 7,
-                                "textX": 1,
-                                "textY": 1,
-                                "textHeight": 5,
-                                "position": "bottom",
-                                "clearPrevious": true,
-                                "showFrame": "true",
-                                "speedIn": -1,
-                                "speedOut": -1,
-                                "closeWhen": "key",
-                                "closeButton": "a",
-                                "closeDelayTime": 0.5,
-                                "closeDelayFrames": 30
-                              },
-                              "id": "a65ee44e-5870-4b7e-832f-82eb72751e89"
-                            }
+                          "text": [
+                            "Just some garbage...\nOh, and there's also  @",
+                            "three quarters!"
                           ],
-                          "false": []
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
                         },
-                        "id": "4be06a79-396d-4fde-b68e-2713da1ef62c"
+                        "id": "ecf062aa-922e-48bd-9dc7-07929d0c20c8"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "31",
+                          "value": {
+                            "type": "true"
+                          }
+                        },
+                        "id": "961fa3d8-77cc-42ab-bebc-9e70d42403c3"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "55",
+                          "value": {
+                            "type": "true"
+                          }
+                        },
+                        "id": "3e3434dd-67ba-4fe1-9ba6-2ee37890f657"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "65"
+                        },
+                        "id": "d9b4f534-2f16-462b-9ffc-af6dbcf1081c"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "65"
+                        },
+                        "id": "09e98e5d-9283-4136-a0f7-96f32ea140b4"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "65"
+                        },
+                        "id": "756c0251-58d3-4720-8b66-39aab7a55a48"
                       },
                       {
                         "command": "EVENT_TEXT",
                         "args": {
                           "text": [
-                            "Nothing else useful\nin here."
+                            "Quarter count:\n$65$"
                           ],
                           "__section": "text",
                           "avatarId": "",
@@ -230,43 +143,68 @@
                           "closeDelayTime": 0.5,
                           "closeDelayFrames": 30
                         },
-                        "id": "d83c1e40-a762-4d89-9b34-9b1feeef1c0b"
+                        "id": "a65ee44e-5870-4b7e-832f-82eb72751e89"
                       }
                     ],
-                    "false": [
-                      {
-                        "command": "EVENT_TEXT",
-                        "args": {
-                          "text": [
-                            "Ew. Nothing useful in\nthere."
-                          ],
-                          "__section": "text",
-                          "avatarId": "",
-                          "minHeight": 4,
-                          "maxHeight": 7,
-                          "textX": 1,
-                          "textY": 1,
-                          "textHeight": 5,
-                          "position": "bottom",
-                          "clearPrevious": true,
-                          "showFrame": "true",
-                          "speedIn": -1,
-                          "speedOut": -1,
-                          "closeWhen": "key",
-                          "closeButton": "a",
-                          "closeDelayTime": 0.5,
-                          "closeDelayFrames": 30
-                        },
-                        "id": "47ceac4d-db5d-40d0-bfb3-67b3e4489ac9"
-                      }
-                    ]
+                    "false": []
                   },
-                  "id": "b5d4dc12-e4b4-4cd6-b853-5234585d88cf"
+                  "id": "4be06a79-396d-4fde-b68e-2713da1ef62c"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Nothing else useful\nin here."
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "d83c1e40-a762-4d89-9b34-9b1feeef1c0b"
                 }
               ],
-              "false": []
+              "false": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Ew. Nothing useful in\nthere."
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "47ceac4d-db5d-40d0-bfb3-67b3e4489ac9"
+                }
+              ]
             },
-            "id": "d6580d34-245c-49b1-b3a5-2b67c746554d"
+            "id": "b5d4dc12-e4b4-4cd6-b853-5234585d88cf"
           }
         ],
         "false": []
