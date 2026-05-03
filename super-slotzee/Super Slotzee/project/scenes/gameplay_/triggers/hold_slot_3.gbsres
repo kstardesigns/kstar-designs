@@ -1,0 +1,177 @@
+{
+  "_resourceType": "trigger",
+  "id": "14f40c79-51d8-42a4-a861-382fd1108a2a",
+  "name": "Hold slot 1",
+  "prefabId": "",
+  "x": 14,
+  "y": 5,
+  "symbol": "trigger_2",
+  "prefabScriptOverrides": {},
+  "width": 1,
+  "height": 4,
+  "script": [
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Hold functionality",
+        "__collapse": true
+      },
+      "id": "60991d69-d678-4254-8bd1-5ab962fae74e"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "a"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Reminder: A button\nwill HOLD slot 3."
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "bdad1e4d-7a69-4671-9953-93b48b7b69e5"
+          }
+        ]
+      },
+      "id": "28b5407d-874c-4397-9d10-8cc9875efd29"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Move to previous HOLD",
+        "__collapse": true
+      },
+      "id": "0daff00d-3989-464e-af05-02872fca1573"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "left"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 8
+              },
+              "y": {
+                "type": "number",
+                "value": 8
+              }
+            },
+            "id": "cb212e92-b168-4cb4-ae3d-535876d2ba42"
+          }
+        ]
+      },
+      "id": "97be1206-2cb8-4324-b662-3eae5110b4f6"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Move to HOLD below",
+        "__collapse": true
+      },
+      "id": "9d5d684b-f1e4-4690-89a4-1478fb104d79"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "down"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "$self$",
+              "spriteStateId": "Middle row cursor",
+              "loopAnim": true
+            },
+            "id": "a3f27364-e06d-4b22-bfaa-b62b4140abe1"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 14
+              },
+              "y": {
+                "type": "number",
+                "value": 14
+              },
+              "__collapse": false
+            },
+            "id": "3efc9d07-fc76-47da-a8c5-c16f44c3d4ba"
+          }
+        ]
+      },
+      "id": "c24b4e94-ec07-4bc8-9049-65e4404f9bb0"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Disabled these buttons\nNOTE: B is set on scene\nNOTE: Start/Select are set with global script",
+        "__collapse": true
+      },
+      "id": "815107f1-5c97-4f14-82fd-94f8573451ff"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "up",
+          "right"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": []
+      },
+      "id": "22be1200-948d-4c98-8810-da1fd3e6e523"
+    }
+  ],
+  "leaveScript": [],
+  "_index": 2
+}

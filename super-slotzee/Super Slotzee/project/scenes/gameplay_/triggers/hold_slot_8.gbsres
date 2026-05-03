@@ -1,0 +1,227 @@
+{
+  "_resourceType": "trigger",
+  "id": "334e3f0b-1fbc-4bb5-b1c8-78bc8ccd8fad",
+  "name": "Hold slot 1",
+  "prefabId": "",
+  "x": 14,
+  "y": 11,
+  "symbol": "trigger_7",
+  "prefabScriptOverrides": {},
+  "width": 1,
+  "height": 4,
+  "script": [
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Hold functionality",
+        "__collapse": true
+      },
+      "id": "ff1df9a7-c200-447e-adc8-1c71f22e67ec"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "a"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Reminder: A button\nwill HOLD dice 5."
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "e1e63079-12a5-41c1-bc94-b74b48796e70"
+          }
+        ]
+      },
+      "id": "15ed6361-c195-4878-9d15-5b500bb34962"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Move to previous HOLD\n",
+        "__collapse": true
+      },
+      "id": "4a55d6a7-337d-48b8-94fc-06066335cf80"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "left"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 11
+              },
+              "y": {
+                "type": "number",
+                "value": 14
+              },
+              "__collapse": false
+            },
+            "id": "442b2752-bd9c-4e7f-8c7e-357166b8dc19"
+          }
+        ]
+      },
+      "id": "5ea37ab5-5d02-4928-a39f-de6083f6c95d"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Move to HOLD above",
+        "__collapse": true
+      },
+      "id": "890a276b-5710-49c5-a60e-aff60e0c4f6e"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "up"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "$self$",
+              "spriteStateId": "",
+              "loopAnim": true,
+              "__collapse": false
+            },
+            "id": "decbe3c3-e156-4635-af26-1af94f1e8298"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 14
+              },
+              "y": {
+                "type": "number",
+                "value": 8
+              },
+              "__collapse": false
+            },
+            "id": "ffb43406-588c-4d1f-bd0f-7eecf848ffd4"
+          }
+        ]
+      },
+      "id": "8a95744e-0c4f-4add-84a1-7747f6bc2b04"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Move to Spin + Roll below",
+        "__collapse": true
+      },
+      "id": "9a65aa86-4903-43fa-968d-2a54107d2959"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "down"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "$self$",
+              "spriteStateId": "Spin button cursor",
+              "loopAnim": true
+            },
+            "id": "2cfc2586-f525-4a90-a949-bea9a4fdfc84"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 6
+              },
+              "y": {
+                "type": "number",
+                "value": 17
+              },
+              "__collapse": false
+            },
+            "id": "215a5d2a-9bef-4617-85d6-c5758cae00e9"
+          }
+        ]
+      },
+      "id": "7ee5bf30-8565-4b6f-a038-7f38689504cf"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Disabled these buttons\nNOTE: B is set on scene\nNOTE: Start/Select are set with global script",
+        "__collapse": true
+      },
+      "id": "13be9797-d1ed-4f9d-add2-2a9f8ff3f680"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "right"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": []
+      },
+      "id": "9705dc99-d1cf-475c-9c13-89ff7c82f8df"
+    }
+  ],
+  "leaveScript": [],
+  "_index": 7
+}
