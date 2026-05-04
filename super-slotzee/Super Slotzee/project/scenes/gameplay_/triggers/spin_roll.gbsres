@@ -31,39 +31,161 @@
       "children": {
         "true": [
           {
-            "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Below is an example of 3 spins in a row and their timing. TODO: get random numbers for each when A is pressed, then change the \"Lands on\" to the appropriate state"
+            },
+            "id": "129944f4-9d3c-41b2-9259-84c4ff937533"
+          },
+          {
+            "command": "EVENT_VARIABLE_MATH",
+            "args": {
+              "vectorX": "0",
+              "operation": "set",
+              "other": "rnd",
+              "vectorY": "L0",
+              "value": "0",
+              "minValue": "0",
+              "maxValue": 4,
+              "clamp": false
+            },
+            "id": "65d3da3b-9ff6-40f6-b007-4ee38942c3e2"
+          },
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "the value:\n$00$"
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "6cf7308d-faa8-4c3c-aaab-291fa96f40db"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
             "args": {
               "actorId": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
-              "speed": 63,
-              "__collapse": false,
-              "__comment": false
+              "spriteStateId": "Slot 1 offset 0",
+              "loopAnim": true,
+              "__comment": false,
+              "__collapse": true
             },
-            "id": "42cafaac-adec-49a2-bb45-fdeed978703b"
+            "id": "d3b3edc7-b44f-431e-8b02-42b8ddc3507d"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "36657c76-2944-4804-b137-c6ebcc4a9b10",
+              "spriteStateId": "Slot 2 | offset 4 | + 1 spin",
+              "loopAnim": true,
+              "__collapse": true
+            },
+            "id": "3b4feae9-c0f2-4187-ab43-b96aba7d9478"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "1a0898f6-a468-4539-84d1-b7975ef135d3",
+              "spriteStateId": "Slot 3 | offset 8 | + 2 spins",
+              "loopAnim": true,
+              "__collapse": true
+            },
+            "id": "4fd600e6-54eb-4644-ae09-f1afa31e18aa"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "length of 1 full spin (15 fps, 15 frames)",
+              "__collapse": true
+            },
+            "id": "371e8e85-adaf-4936-b510-4de9e67b3309"
           },
           {
             "command": "EVENT_WAIT",
             "args": {
               "time": 1,
               "frames": 30,
-              "__collapse": true,
-              "__comment": false
+              "__collapse": true
             },
-            "id": "cf01aa0c-0365-4cc8-b6b9-e4867fb3eda5"
+            "id": "889741e7-c4c4-4316-bde3-97d76b5a931d"
           },
           {
-            "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
+            "command": "EVENT_ACTOR_SET_STATE",
             "args": {
               "actorId": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
-              "speed": 3,
+              "spriteStateId": "Lands on Auto Bonus",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": true
+            },
+            "id": "e1acf4bd-3a4f-41c6-8a47-925ce591f12c"
+          },
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 1,
+              "frames": 30,
+              "__collapse": true
+            },
+            "id": "b36d3b03-702e-49a5-babe-da50090dee12"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "36657c76-2944-4804-b137-c6ebcc4a9b10",
+              "spriteStateId": "Lands on Auto Yahtzee",
+              "loopAnim": false,
+              "__collapse": true
+            },
+            "id": "0a2ec483-2d7f-4f67-abca-ee43c39ccd2e"
+          },
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 1,
+              "frames": 30,
+              "__collapse": true
+            },
+            "id": "109887b1-4e32-4ab9-90bf-cc480aadd0c6"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "1a0898f6-a468-4539-84d1-b7975ef135d3",
+              "spriteStateId": "Lands on Auto Zero",
+              "loopAnim": false,
+              "__collapse": true
+            },
+            "id": "02c08a8b-9ec3-4bb6-bdde-bc221869e350"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "After, sounds or something for match\nALSO note sounds after each one",
               "__collapse": false
             },
-            "id": "2ed9dd9b-369c-46f4-8252-5bd8bba35ddb"
+            "id": "4d53e6e1-82b8-49a1-a41c-0bf62c0cb150"
           },
           {
             "command": "EVENT_TEXT",
             "args": {
               "text": [
-                "Reminder: SPINROLL\nfunctionality"
+                "Reminder: SPINROLL\nWIP"
               ],
               "__section": "text",
               "avatarId": "",
@@ -81,7 +203,7 @@
               "closeButton": "a",
               "closeDelayTime": 0.5,
               "closeDelayFrames": 30,
-              "__collapse": true,
+              "__collapse": false,
               "__comment": true
             },
             "id": "c7d1c2b9-3a2c-4c98-bae2-20d3f9c689b2"
