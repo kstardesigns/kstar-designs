@@ -1,7 +1,7 @@
 {
   "_resourceType": "trigger",
   "id": "774a2b1f-7313-40b8-9e88-41dcfc6503c5",
-  "name": "Hold slot 1",
+  "name": "Spin + Roll",
   "prefabId": "",
   "x": 6,
   "y": 14,
@@ -26,10 +26,39 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
+          {
+            "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
+            "args": {
+              "actorId": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
+              "speed": 63,
+              "__collapse": false,
+              "__comment": false
+            },
+            "id": "42cafaac-adec-49a2-bb45-fdeed978703b"
+          },
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 1,
+              "frames": 30,
+              "__collapse": true,
+              "__comment": false
+            },
+            "id": "cf01aa0c-0365-4cc8-b6b9-e4867fb3eda5"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
+            "args": {
+              "actorId": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
+              "speed": 3,
+              "__collapse": false
+            },
+            "id": "2ed9dd9b-369c-46f4-8252-5bd8bba35ddb"
+          },
           {
             "command": "EVENT_TEXT",
             "args": {
@@ -52,7 +81,8 @@
               "closeButton": "a",
               "closeDelayTime": 0.5,
               "closeDelayFrames": 30,
-              "__collapse": true
+              "__collapse": true,
+              "__comment": true
             },
             "id": "c7d1c2b9-3a2c-4c98-bae2-20d3f9c689b2"
           }
