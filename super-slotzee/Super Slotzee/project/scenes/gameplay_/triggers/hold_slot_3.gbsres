@@ -31,33 +31,162 @@
       "children": {
         "true": [
           {
-            "command": "EVENT_TEXT",
+            "command": "EVENT_IF",
             "args": {
-              "text": [
-                "Reminder: A button\nwill HOLD slot 3."
-              ],
-              "__section": "text",
-              "avatarId": "",
-              "minHeight": 4,
-              "maxHeight": 7,
-              "textX": 1,
-              "textY": 1,
-              "textHeight": 5,
-              "position": "bottom",
-              "clearPrevious": true,
-              "showFrame": "true",
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
-              "closeButton": "a",
-              "closeDelayTime": 0.5,
-              "closeDelayFrames": 30
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "10"
+                }
+              },
+              "__collapseElse": false
             },
-            "id": "bdad1e4d-7a69-4671-9953-93b48b7b69e5"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "10",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": false
+                  },
+                  "id": "899383a1-e543-4317-963f-24a83bad3037"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "HOLD -> HELD",
+                    "__collapse": false
+                  },
+                  "id": "d8703153-2a07-4f8a-8960-c493124d5c8a"
+                },
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "number",
+                      "value": 15
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 7
+                    },
+                    "tilesetId": "632d4790-77b9-4492-95a8-4a3a40217284",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 2
+                    },
+                    "__collapse": false
+                  },
+                  "id": "f55b75b2-09de-4657-888a-8a7f4cde52f7"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "no lock -> lock\n",
+                    "__collapse": true
+                  },
+                  "id": "05653af1-07c8-4a08-adf9-0821f8731f1e"
+                },
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "number",
+                      "value": 18
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 4
+                    },
+                    "tilesetId": "632d4790-77b9-4492-95a8-4a3a40217284",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 8
+                    },
+                    "__collapse": false
+                  },
+                  "id": "b943381d-70cc-4b86-a4e7-532477affc6c"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "10",
+                    "value": {
+                      "type": "false"
+                    },
+                    "__collapse": false
+                  },
+                  "id": "9af5ec92-09cf-4ab7-aa9a-6a9efd80fa30"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "HELD -> HOLD",
+                    "__collapse": true
+                  },
+                  "id": "059d839f-f00a-4373-a739-2eaaffd65f73"
+                },
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "number",
+                      "value": 15
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 7
+                    },
+                    "tilesetId": "632d4790-77b9-4492-95a8-4a3a40217284",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 5
+                    },
+                    "__collapse": false
+                  },
+                  "id": "b46db7c0-546e-4bbf-b618-c1b783e9daed"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "no lock -> lock\n",
+                    "__collapse": false
+                  },
+                  "id": "af78ae99-ffc5-47f8-9bf6-6ac7e01275dc"
+                },
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "number",
+                      "value": 18
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 4
+                    },
+                    "tilesetId": "632d4790-77b9-4492-95a8-4a3a40217284",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 11
+                    },
+                    "__collapse": false
+                  },
+                  "id": "c1d464e6-5946-4df9-b387-30148b07c845"
+                }
+              ]
+            },
+            "id": "a339bf88-c5d8-4f47-933a-0e5f6a4744bb"
           }
         ]
       },
-      "id": "28b5407d-874c-4397-9d10-8cc9875efd29"
+      "id": "53581137-2adc-442c-bcab-6b7bfb2c7c03"
     },
     {
       "command": "EVENT_COMMENT",
