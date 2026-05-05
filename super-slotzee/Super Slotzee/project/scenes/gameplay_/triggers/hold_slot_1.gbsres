@@ -26,34 +26,97 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
           {
-            "command": "EVENT_TEXT",
+            "command": "EVENT_IF",
             "args": {
-              "text": [
-                "Reminder: A button\nwill HOLD slot 1."
-              ],
-              "__section": "text",
-              "avatarId": "",
-              "minHeight": 4,
-              "maxHeight": 7,
-              "textX": 1,
-              "textY": 1,
-              "textHeight": 5,
-              "position": "bottom",
-              "clearPrevious": true,
-              "showFrame": "true",
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
-              "closeButton": "a",
-              "closeDelayTime": 0.5,
-              "closeDelayFrames": 30
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "8"
+                }
+              },
+              "__collapseElse": false
             },
-            "id": "7c96f1dd-8872-45a4-94c0-e418b3e14b45"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "8",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "5198d585-3321-44a0-9245-c3a1a86bf1ad"
+                },
+                {
+                  "command": "EVENT_TEXT_DRAW",
+                  "args": {
+                    "text": "!F:6cdda0c7-4155-4e3c-b471-7040918ec92e!~",
+                    "x": 6,
+                    "y": 4,
+                    "location": "background",
+                    "__collapse": true,
+                    "__label": "Draw LOCK icon"
+                  },
+                  "id": "a8f19736-2030-41ce-bb35-6a98ecb551f9"
+                },
+                {
+                  "command": "EVENT_TEXT_DRAW",
+                  "args": {
+                    "text": "!F:6cdda0c7-4155-4e3c-b471-7040918ec92e!E",
+                    "x": 3,
+                    "y": 7,
+                    "location": "background",
+                    "__collapse": true,
+                    "__label": "Draw E in HELD"
+                  },
+                  "id": "67490f79-27f9-4798-9441-907ca66cb6a5"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "8",
+                    "value": {
+                      "type": "false"
+                    }
+                  },
+                  "id": "5937c7d7-692b-4431-84c4-6debfe2154e3"
+                },
+                {
+                  "command": "EVENT_TEXT_DRAW",
+                  "args": {
+                    "text": "!F:6cdda0c7-4155-4e3c-b471-7040918ec92e!O",
+                    "x": 3,
+                    "y": 7,
+                    "location": "background",
+                    "__collapse": true,
+                    "__label": "Draw O in HOLD"
+                  },
+                  "id": "798b5fd2-e3d3-468f-9a79-b695148b6f52"
+                },
+                {
+                  "command": "EVENT_TEXT_DRAW",
+                  "args": {
+                    "text": "!F:6cdda0c7-4155-4e3c-b471-7040918ec92e!#",
+                    "x": 6,
+                    "y": 4,
+                    "location": "background",
+                    "__label": "Draw blank space where lock goes"
+                  },
+                  "id": "0a87a8fd-3955-4f80-8a58-17ee947a759d"
+                }
+              ]
+            },
+            "id": "6151e5d8-4c52-4b0c-ad61-dc1833c1dfcd"
           }
         ]
       },

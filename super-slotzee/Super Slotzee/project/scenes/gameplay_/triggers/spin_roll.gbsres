@@ -33,29 +33,79 @@
           {
             "command": "EVENT_COMMENT",
             "args": {
-              "text": "Below is an example of 3 spins in a row and their timing. TODO: get random numbers for each when A is pressed, then change the \"Lands on\" to the appropriate state"
+              "text": "Get a random result for each slot"
             },
-            "id": "129944f4-9d3c-41b2-9259-84c4ff937533"
+            "id": "f86ff48f-41aa-41c7-b02d-bafbd565b0ce"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "8"
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_VARIABLE_MATH",
+                  "args": {
+                    "vectorX": "0",
+                    "operation": "set",
+                    "other": "rnd",
+                    "vectorY": "L0",
+                    "value": "0",
+                    "minValue": 1,
+                    "maxValue": 4,
+                    "clamp": false,
+                    "__collapse": true
+                  },
+                  "id": "65d3da3b-9ff6-40f6-b007-4ee38942c3e2"
+                }
+              ],
+              "false": []
+            },
+            "id": "f13a53d8-96c0-4d10-8ae5-7036cda26ce9"
           },
           {
             "command": "EVENT_VARIABLE_MATH",
             "args": {
-              "vectorX": "0",
+              "vectorX": "1",
               "operation": "set",
               "other": "rnd",
               "vectorY": "L0",
               "value": "0",
-              "minValue": "0",
+              "minValue": 1,
               "maxValue": 4,
-              "clamp": false
+              "clamp": false,
+              "__collapse": true
             },
-            "id": "65d3da3b-9ff6-40f6-b007-4ee38942c3e2"
+            "id": "a08c7821-2d17-46f6-97b1-4b1aeedfe166"
+          },
+          {
+            "command": "EVENT_VARIABLE_MATH",
+            "args": {
+              "vectorX": "2",
+              "operation": "set",
+              "other": "rnd",
+              "vectorY": "L0",
+              "value": "0",
+              "minValue": 1,
+              "maxValue": 4,
+              "clamp": false,
+              "__collapse": true
+            },
+            "id": "23785deb-6b90-45a1-8265-f53c6be85eb5"
           },
           {
             "command": "EVENT_TEXT",
             "args": {
               "text": [
-                "the value:\n$00$"
+                "the values:\n$00$ $01$ $02$"
               ],
               "__section": "text",
               "avatarId": "",
@@ -72,20 +122,40 @@
               "closeWhen": "key",
               "closeButton": "a",
               "closeDelayTime": 0.5,
-              "closeDelayFrames": 30
+              "closeDelayFrames": 30,
+              "__collapse": true
             },
             "id": "6cf7308d-faa8-4c3c-aaab-291fa96f40db"
           },
           {
-            "command": "EVENT_ACTOR_SET_STATE",
+            "command": "EVENT_IF",
             "args": {
-              "actorId": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
-              "spriteStateId": "Slot 1 offset 0",
-              "loopAnim": true,
-              "__comment": false,
-              "__collapse": true
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "8"
+                }
+              },
+              "__collapseElse": true
             },
-            "id": "d3b3edc7-b44f-431e-8b02-42b8ddc3507d"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
+                    "spriteStateId": "Slot 1 offset 0",
+                    "loopAnim": true,
+                    "__comment": false,
+                    "__collapse": true
+                  },
+                  "id": "d3b3edc7-b44f-431e-8b02-42b8ddc3507d"
+                }
+              ],
+              "false": []
+            },
+            "id": "1cf172ae-93e1-44f4-ab31-4d5e6042943b"
           },
           {
             "command": "EVENT_ACTOR_SET_STATE",
@@ -108,105 +178,391 @@
             "id": "4fd600e6-54eb-4644-ae09-f1afa31e18aa"
           },
           {
-            "command": "EVENT_COMMENT",
-            "args": {
-              "text": "length of 1 full spin (15 fps, 15 frames)",
-              "__collapse": true
-            },
-            "id": "371e8e85-adaf-4936-b510-4de9e67b3309"
-          },
-          {
             "command": "EVENT_WAIT",
             "args": {
               "time": 1,
               "frames": 30,
-              "__collapse": true
+              "__collapse": true,
+              "__label": "Wait for 1 Second (length of 1 full spin (15 fps, 15 frames)"
             },
             "id": "889741e7-c4c4-4316-bde3-97d76b5a931d"
           },
           {
-            "command": "EVENT_ACTOR_SET_STATE",
+            "command": "EVENT_IF",
             "args": {
-              "actorId": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
-              "spriteStateId": "Lands on Auto Bonus",
-              "loopAnim": false,
-              "__comment": false,
-              "__collapse": true
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "8"
+                }
+              },
+              "__collapseElse": true
             },
-            "id": "e1acf4bd-3a4f-41c6-8a47-925ce591f12c"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SWITCH",
+                  "args": {
+                    "variable": "0",
+                    "choices": 4,
+                    "__collapseCase0": false,
+                    "value0": 1,
+                    "__collapseCase1": false,
+                    "value1": 2,
+                    "__collapseCase2": false,
+                    "value2": 3,
+                    "__collapseCase3": false,
+                    "value3": 4,
+                    "__collapseCase4": false,
+                    "value4": 5,
+                    "__collapseCase5": false,
+                    "value5": 6,
+                    "__collapseCase6": false,
+                    "value6": 7,
+                    "__collapseCase7": false,
+                    "value7": 8,
+                    "__collapseCase8": false,
+                    "value8": 9,
+                    "__collapseCase9": false,
+                    "value9": 10,
+                    "__collapseCase10": false,
+                    "value10": 11,
+                    "__collapseCase11": false,
+                    "value11": 12,
+                    "__collapseCase12": false,
+                    "value12": 13,
+                    "__collapseCase13": false,
+                    "value13": 14,
+                    "__collapseCase14": false,
+                    "value14": 15,
+                    "__collapseCase15": false,
+                    "value15": 16,
+                    "__collapseElse": true,
+                    "__label": "[Switch] Slot 1 animation based on random",
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true0": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
+                          "spriteStateId": "Lands on Auto Bonus",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "0db0957a-4c30-44a5-a0a1-7545b610aab4"
+                      }
+                    ],
+                    "true1": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
+                          "spriteStateId": "Lands on Auto Yahtzee",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "71340bf3-ca7a-4d6c-9512-202750207b00"
+                      }
+                    ],
+                    "true2": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
+                          "spriteStateId": "Lands on Auto Zero",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "1157bec1-935d-4506-b8a8-64a865d1add9"
+                      }
+                    ],
+                    "true3": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
+                          "spriteStateId": "Lands on Wild",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "fee17f10-b410-46ec-be5c-64b5cfc738c4"
+                      }
+                    ],
+                    "true4": [],
+                    "true5": [],
+                    "true6": [],
+                    "true7": [],
+                    "true8": [],
+                    "true9": [],
+                    "true10": [],
+                    "true11": [],
+                    "true12": [],
+                    "true13": [],
+                    "true14": [],
+                    "true15": [],
+                    "false": []
+                  },
+                  "id": "ca55d54d-10ad-4252-874e-bd2ce1752f6c"
+                }
+              ],
+              "false": []
+            },
+            "id": "7c9b7de5-8866-4dbf-8cef-d280eca308a6"
           },
           {
             "command": "EVENT_WAIT",
             "args": {
               "time": 1,
               "frames": 30,
-              "__collapse": true
+              "__collapse": true,
+              "__label": "Wait for 1 Second (another full spin after slot 1, to stagger)"
             },
             "id": "b36d3b03-702e-49a5-babe-da50090dee12"
           },
           {
-            "command": "EVENT_ACTOR_SET_STATE",
+            "command": "EVENT_SWITCH",
             "args": {
-              "actorId": "36657c76-2944-4804-b137-c6ebcc4a9b10",
-              "spriteStateId": "Lands on Auto Yahtzee",
-              "loopAnim": false,
+              "variable": "1",
+              "choices": 4,
+              "__collapseCase0": false,
+              "value0": 1,
+              "__collapseCase1": false,
+              "value1": 2,
+              "__collapseCase2": false,
+              "value2": 3,
+              "__collapseCase3": false,
+              "value3": 4,
+              "__collapseCase4": false,
+              "value4": 5,
+              "__collapseCase5": false,
+              "value5": 6,
+              "__collapseCase6": false,
+              "value6": 7,
+              "__collapseCase7": false,
+              "value7": 8,
+              "__collapseCase8": false,
+              "value8": 9,
+              "__collapseCase9": false,
+              "value9": 10,
+              "__collapseCase10": false,
+              "value10": 11,
+              "__collapseCase11": false,
+              "value11": 12,
+              "__collapseCase12": false,
+              "value12": 13,
+              "__collapseCase13": false,
+              "value13": 14,
+              "__collapseCase14": false,
+              "value14": 15,
+              "__collapseCase15": false,
+              "value15": 16,
+              "__collapseElse": true,
+              "__label": "[Switch] Slot 2 animation based on random",
               "__collapse": true
             },
-            "id": "0a2ec483-2d7f-4f67-abca-ee43c39ccd2e"
+            "children": {
+              "true0": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "36657c76-2944-4804-b137-c6ebcc4a9b10",
+                    "spriteStateId": "Lands on Auto Bonus",
+                    "loopAnim": false,
+                    "__comment": false,
+                    "__collapse": false
+                  },
+                  "id": "145522be-78a0-419e-a5d2-201bb1458aaf"
+                }
+              ],
+              "true1": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "36657c76-2944-4804-b137-c6ebcc4a9b10",
+                    "spriteStateId": "Lands on Auto Yahtzee",
+                    "loopAnim": false,
+                    "__comment": false,
+                    "__collapse": false
+                  },
+                  "id": "9f5028d3-22e5-442e-ac7d-c255312644bc"
+                }
+              ],
+              "true2": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "36657c76-2944-4804-b137-c6ebcc4a9b10",
+                    "spriteStateId": "Lands on Auto Zero",
+                    "loopAnim": false,
+                    "__comment": false,
+                    "__collapse": false
+                  },
+                  "id": "3a168779-2583-4c2c-b1c6-42e5c33467ba"
+                }
+              ],
+              "true3": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "36657c76-2944-4804-b137-c6ebcc4a9b10",
+                    "spriteStateId": "Lands on Wild",
+                    "loopAnim": false,
+                    "__comment": false,
+                    "__collapse": false
+                  },
+                  "id": "e59351dc-e704-4ea5-99d1-b5dfd69e704e"
+                }
+              ],
+              "true4": [],
+              "true5": [],
+              "true6": [],
+              "true7": [],
+              "true8": [],
+              "true9": [],
+              "true10": [],
+              "true11": [],
+              "true12": [],
+              "true13": [],
+              "true14": [],
+              "true15": [],
+              "false": []
+            },
+            "id": "8aacf061-9b1e-4021-87e4-e5ef47592982"
           },
           {
             "command": "EVENT_WAIT",
             "args": {
               "time": 1,
               "frames": 30,
-              "__collapse": true
+              "__collapse": true,
+              "__label": "Wait for 1 Second (another full spin after slot 2, to stagger)"
             },
             "id": "109887b1-4e32-4ab9-90bf-cc480aadd0c6"
           },
           {
-            "command": "EVENT_ACTOR_SET_STATE",
+            "command": "EVENT_SWITCH",
             "args": {
-              "actorId": "1a0898f6-a468-4539-84d1-b7975ef135d3",
-              "spriteStateId": "Lands on Auto Zero",
-              "loopAnim": false,
+              "variable": "2",
+              "choices": 4,
+              "__collapseCase0": false,
+              "value0": 1,
+              "__collapseCase1": false,
+              "value1": 2,
+              "__collapseCase2": false,
+              "value2": 3,
+              "__collapseCase3": false,
+              "value3": 4,
+              "__collapseCase4": false,
+              "value4": 5,
+              "__collapseCase5": false,
+              "value5": 6,
+              "__collapseCase6": false,
+              "value6": 7,
+              "__collapseCase7": false,
+              "value7": 8,
+              "__collapseCase8": false,
+              "value8": 9,
+              "__collapseCase9": false,
+              "value9": 10,
+              "__collapseCase10": false,
+              "value10": 11,
+              "__collapseCase11": false,
+              "value11": 12,
+              "__collapseCase12": false,
+              "value12": 13,
+              "__collapseCase13": false,
+              "value13": 14,
+              "__collapseCase14": false,
+              "value14": 15,
+              "__collapseCase15": false,
+              "value15": 16,
+              "__collapseElse": true,
+              "__label": "[Switch] Slot 3 animation based on random",
               "__collapse": true
             },
-            "id": "02c08a8b-9ec3-4bb6-bdde-bc221869e350"
+            "children": {
+              "true0": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "1a0898f6-a468-4539-84d1-b7975ef135d3",
+                    "spriteStateId": "Lands on Auto Bonus",
+                    "loopAnim": false,
+                    "__comment": false,
+                    "__collapse": false
+                  },
+                  "id": "a76930ef-aa94-4155-bd81-6484c667de1e"
+                }
+              ],
+              "true1": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "1a0898f6-a468-4539-84d1-b7975ef135d3",
+                    "spriteStateId": "Lands on Auto Yahtzee",
+                    "loopAnim": false,
+                    "__comment": false,
+                    "__collapse": false
+                  },
+                  "id": "e5dd2cfa-3625-4f80-b4c1-f7a6123c099a"
+                }
+              ],
+              "true2": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "1a0898f6-a468-4539-84d1-b7975ef135d3",
+                    "spriteStateId": "Lands on Auto Zero",
+                    "loopAnim": false,
+                    "__comment": false,
+                    "__collapse": false
+                  },
+                  "id": "e0603894-a35f-4d48-bbc7-dea550dc3fd3"
+                }
+              ],
+              "true3": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "1a0898f6-a468-4539-84d1-b7975ef135d3",
+                    "spriteStateId": "Lands on Wild",
+                    "loopAnim": false,
+                    "__comment": false,
+                    "__collapse": false
+                  },
+                  "id": "a9280c53-9be0-48ef-8a2e-9e075498f4f4"
+                }
+              ],
+              "true4": [],
+              "true5": [],
+              "true6": [],
+              "true7": [],
+              "true8": [],
+              "true9": [],
+              "true10": [],
+              "true11": [],
+              "true12": [],
+              "true13": [],
+              "true14": [],
+              "true15": [],
+              "false": []
+            },
+            "id": "0c7ad4fe-bd2d-4d7b-aee8-c51c1af4f1d4"
           },
           {
             "command": "EVENT_COMMENT",
             "args": {
               "text": "After, sounds or something for match\nALSO note sounds after each one",
-              "__collapse": false
+              "__collapse": true
             },
             "id": "4d53e6e1-82b8-49a1-a41c-0bf62c0cb150"
-          },
-          {
-            "command": "EVENT_TEXT",
-            "args": {
-              "text": [
-                "Reminder: SPINROLL\nWIP"
-              ],
-              "__section": "text",
-              "avatarId": "",
-              "minHeight": 4,
-              "maxHeight": 7,
-              "textX": 1,
-              "textY": 1,
-              "textHeight": 5,
-              "position": "bottom",
-              "clearPrevious": true,
-              "showFrame": "true",
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
-              "closeButton": "a",
-              "closeDelayTime": 0.5,
-              "closeDelayFrames": 30,
-              "__collapse": false,
-              "__comment": true
-            },
-            "id": "c7d1c2b9-3a2c-4c98-bae2-20d3f9c689b2"
           }
         ]
       },
