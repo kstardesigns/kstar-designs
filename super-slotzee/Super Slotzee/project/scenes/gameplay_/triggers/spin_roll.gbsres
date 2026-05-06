@@ -33,8 +33,8 @@
           {
             "command": "EVENT_COMMENT",
             "args": {
-              "text": "Get a random result for each slot, if not held",
-              "__collapse": true
+              "text": "Get a random result for each slot & dice, if not held",
+              "__collapse": false
             },
             "id": "f86ff48f-41aa-41c7-b02d-bafbd565b0ce"
           },
@@ -134,7 +134,7 @@
                     "minValue": 1,
                     "maxValue": 4,
                     "clamp": false,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "id": "23785deb-6b90-45a1-8265-f53c6be85eb5"
                 }
@@ -144,10 +144,186 @@
             "id": "ff81ce71-21e6-4bc9-9bf9-6ab07938d9ab"
           },
           {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "11"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_VARIABLE_MATH",
+                  "args": {
+                    "vectorX": "3",
+                    "operation": "set",
+                    "other": "rnd",
+                    "vectorY": "L0",
+                    "value": "0",
+                    "minValue": 1,
+                    "maxValue": 6,
+                    "clamp": false,
+                    "__collapse": false
+                  },
+                  "id": "9e76d00c-c435-4ae2-bd1e-ed24afcc3458"
+                }
+              ],
+              "false": []
+            },
+            "id": "37a3a41b-2fb5-4018-af17-7ef6dc5ea8d6"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "12"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_VARIABLE_MATH",
+                  "args": {
+                    "vectorX": "4",
+                    "operation": "set",
+                    "other": "rnd",
+                    "vectorY": "L0",
+                    "value": "0",
+                    "minValue": 1,
+                    "maxValue": 6,
+                    "clamp": false,
+                    "__collapse": false
+                  },
+                  "id": "616e1782-1c5e-4488-9c06-84a452167c47"
+                }
+              ],
+              "false": []
+            },
+            "id": "d4a7dc3f-ba2f-4143-b0db-6aabc323a23a"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "15"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_VARIABLE_MATH",
+                  "args": {
+                    "vectorX": "5",
+                    "operation": "set",
+                    "other": "rnd",
+                    "vectorY": "L0",
+                    "value": "0",
+                    "minValue": 1,
+                    "maxValue": 6,
+                    "clamp": false,
+                    "__collapse": false
+                  },
+                  "id": "7142f578-62b4-4685-b285-a63886dca87f"
+                }
+              ],
+              "false": []
+            },
+            "id": "b844ddb2-cfd7-4290-a5af-06d0ac1e6746"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "13"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_VARIABLE_MATH",
+                  "args": {
+                    "vectorX": "6",
+                    "operation": "set",
+                    "other": "rnd",
+                    "vectorY": "L0",
+                    "value": "0",
+                    "minValue": 1,
+                    "maxValue": 6,
+                    "clamp": false,
+                    "__collapse": false
+                  },
+                  "id": "16854163-4176-466e-815e-1cc14ee1ab29"
+                }
+              ],
+              "false": []
+            },
+            "id": "dfba6e99-1df7-4d22-a76a-aa0fc9b05db2"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "14"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_VARIABLE_MATH",
+                  "args": {
+                    "vectorX": "7",
+                    "operation": "set",
+                    "other": "rnd",
+                    "vectorY": "L0",
+                    "value": "0",
+                    "minValue": 1,
+                    "maxValue": 6,
+                    "clamp": false,
+                    "__collapse": false
+                  },
+                  "id": "ad487e19-467f-4063-8834-b05e0982e42c"
+                }
+              ],
+              "false": []
+            },
+            "id": "341e3fc2-8a17-48ca-848c-5fa106719489"
+          },
+          {
             "command": "EVENT_TEXT",
             "args": {
               "text": [
-                "the values:\n$00$ $01$ $02$"
+                "slot values:\n$00$ $01$ $02$",
+                "dice values:\n$03$ $04$ $05$ $06$ $07$"
               ],
               "__section": "text",
               "avatarId": "",
@@ -166,7 +342,7 @@
               "closeDelayTime": 0.5,
               "closeDelayFrames": 30,
               "__collapse": true,
-              "__comment": true,
+              "__comment": false,
               "__label": "Dialogue: random numbers for each"
             },
             "id": "6cf7308d-faa8-4c3c-aaab-291fa96f40db"
@@ -231,7 +407,7 @@
                     "actorId": "36657c76-2944-4804-b137-c6ebcc4a9b10",
                     "spriteStateId": "Slot 2 | offset 4 | + 1 spin",
                     "loopAnim": true,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "id": "3b4feae9-c0f2-4187-ab43-b96aba7d9478"
                 }
@@ -271,14 +447,92 @@
             "id": "40db8f1f-7bf7-4b20-b565-c3836f5bf364"
           },
           {
-            "command": "EVENT_WAIT",
+            "command": "EVENT_COMMENT",
             "args": {
-              "time": 1,
-              "frames": 30,
-              "__collapse": true,
-              "__label": "Wait for 1 Second (length of 1 full spin (15 fps, 15 frames)"
+              "text": "If all slots are not held, wait (length of 1 full spin (15 fps, 15 frames) before starting to show results),\notherwise no wait so the dice can roll right away",
+              "__collapse": true
             },
-            "id": "889741e7-c4c4-4316-bde3-97d76b5a931d"
+            "id": "2846a5e8-1c40-434d-bdbc-de26ee02a3f0"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "!$08$ || !$09$ || !$10$"
+              },
+              "__collapseElse": false,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "TEST: one of them \nis not held, so \nwait a second for \nthe spin"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__comment": true
+                  },
+                  "id": "b3103c36-9aef-4cef-9424-791e0efd4ab9"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 1,
+                    "frames": 30,
+                    "__collapse": true,
+                    "__label": "Wait for 1 Second"
+                  },
+                  "id": "889741e7-c4c4-4316-bde3-97d76b5a931d"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "they're all held\nso no wait b4 dice"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__comment": true
+                  },
+                  "id": "67e858ac-cadb-4e35-8b38-aa5f9fcb8d2c"
+                }
+              ]
+            },
+            "id": "aedb9723-7b62-4c71-9a38-b1479bbdb0e3"
           },
           {
             "command": "EVENT_COMMENT",
@@ -342,7 +596,7 @@
                     "value15": 16,
                     "__collapseElse": true,
                     "__label": "[Switch] Slot 1 animation based on random",
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true0": [
@@ -697,6 +951,955 @@
               "false": []
             },
             "id": "1fea5c06-be31-4ba2-9480-cc92b780fa0f"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "11"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Set to default first, to make sure roll still happens if the number is a repeat of last roll",
+                    "__collapse": true
+                  },
+                  "id": "837436a3-77c2-49a4-baf5-ad67d81dda04"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_SPRITE",
+                  "args": {
+                    "actorId": "f4791597-54b2-4120-835b-ecd41940b012",
+                    "spriteSheetId": "ac094aa4-19d4-4290-972b-58d35131f5ba",
+                    "__comment": true
+                  },
+                  "id": "b4ee3374-009d-4c31-9bea-f762f9059c4e"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "f4791597-54b2-4120-835b-ecd41940b012",
+                    "spriteStateId": "",
+                    "loopAnim": false,
+                    "__collapse": false
+                  },
+                  "id": "73245853-1b17-4cdb-97db-f4780d364803"
+                },
+                {
+                  "command": "EVENT_SWITCH",
+                  "args": {
+                    "variable": "3",
+                    "choices": 6,
+                    "__collapseCase0": false,
+                    "value0": 1,
+                    "__collapseCase1": false,
+                    "value1": 2,
+                    "__collapseCase2": false,
+                    "value2": 3,
+                    "__collapseCase3": false,
+                    "value3": 4,
+                    "__collapseCase4": false,
+                    "value4": 5,
+                    "__collapseCase5": false,
+                    "value5": 6,
+                    "__collapseCase6": false,
+                    "value6": 7,
+                    "__collapseCase7": false,
+                    "value7": 8,
+                    "__collapseCase8": false,
+                    "value8": 9,
+                    "__collapseCase9": false,
+                    "value9": 10,
+                    "__collapseCase10": false,
+                    "value10": 11,
+                    "__collapseCase11": false,
+                    "value11": 12,
+                    "__collapseCase12": false,
+                    "value12": 13,
+                    "__collapseCase13": false,
+                    "value13": 14,
+                    "__collapseCase14": false,
+                    "value14": 15,
+                    "__collapseCase15": false,
+                    "value15": 16,
+                    "__collapseElse": true,
+                    "__label": "[Switch] Dice 1 animation based on random",
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true0": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "f4791597-54b2-4120-835b-ecd41940b012",
+                          "spriteStateId": "Lands on 1",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "08591b7e-4136-4af0-92bc-06e4309b70e9"
+                      }
+                    ],
+                    "true1": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "f4791597-54b2-4120-835b-ecd41940b012",
+                          "spriteStateId": "Lands on 2",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "171f2715-aaad-4734-9da4-6d0aa2db8b4f"
+                      }
+                    ],
+                    "true2": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "f4791597-54b2-4120-835b-ecd41940b012",
+                          "spriteStateId": "Lands on 3",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "52817fd0-7008-402e-9658-264f6779d120"
+                      }
+                    ],
+                    "true3": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "f4791597-54b2-4120-835b-ecd41940b012",
+                          "spriteStateId": "Lands on 4",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "b31e8a96-c610-47ff-864e-936fba1d2355"
+                      }
+                    ],
+                    "true4": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "f4791597-54b2-4120-835b-ecd41940b012",
+                          "spriteStateId": "Lands on 5",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "a01ca005-a456-4f4e-828a-5c1716ef17e3"
+                      }
+                    ],
+                    "true5": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "f4791597-54b2-4120-835b-ecd41940b012",
+                          "spriteStateId": "Lands on 6",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "9c6f426b-e4f3-4cc9-b5fb-25fa9db89d1b"
+                      }
+                    ],
+                    "true6": [],
+                    "true7": [],
+                    "true8": [],
+                    "true9": [],
+                    "true10": [],
+                    "true11": [],
+                    "true12": [],
+                    "true13": [],
+                    "true14": [],
+                    "true15": [],
+                    "false": []
+                  },
+                  "id": "dd44f966-77fb-40ba-b412-817c7f4c3bec"
+                }
+              ],
+              "false": []
+            },
+            "id": "4359aa64-650b-48a0-8a65-cd3d33f92756"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "12"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.25,
+                    "frames": 30,
+                    "__collapse": true,
+                    "__label": "Wait to stagger results",
+                    "__comment": false
+                  },
+                  "id": "2e850af4-6627-44ab-9e4d-eb56400a9bf8"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Set to default first, to make sure roll still happens if the number is a repeat of last roll",
+                    "__collapse": true
+                  },
+                  "id": "b60cab8a-aa4a-4f4b-915a-cb679747deea"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_SPRITE",
+                  "args": {
+                    "actorId": "5ee50987-2285-4aa3-baa1-4408a6b835e1",
+                    "spriteSheetId": "ac094aa4-19d4-4290-972b-58d35131f5ba",
+                    "__comment": true
+                  },
+                  "id": "6dd4a631-b5ac-4401-adb4-e40bc54b6eba"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "5ee50987-2285-4aa3-baa1-4408a6b835e1",
+                    "spriteStateId": "",
+                    "loopAnim": false,
+                    "__collapse": true
+                  },
+                  "id": "2bfa9a83-ea60-4919-a31f-946847291b05"
+                },
+                {
+                  "command": "EVENT_SWITCH",
+                  "args": {
+                    "variable": "4",
+                    "choices": 6,
+                    "__collapseCase0": false,
+                    "value0": 1,
+                    "__collapseCase1": false,
+                    "value1": 2,
+                    "__collapseCase2": false,
+                    "value2": 3,
+                    "__collapseCase3": false,
+                    "value3": 4,
+                    "__collapseCase4": false,
+                    "value4": 5,
+                    "__collapseCase5": false,
+                    "value5": 6,
+                    "__collapseCase6": false,
+                    "value6": 7,
+                    "__collapseCase7": false,
+                    "value7": 8,
+                    "__collapseCase8": false,
+                    "value8": 9,
+                    "__collapseCase9": false,
+                    "value9": 10,
+                    "__collapseCase10": false,
+                    "value10": 11,
+                    "__collapseCase11": false,
+                    "value11": 12,
+                    "__collapseCase12": false,
+                    "value12": 13,
+                    "__collapseCase13": false,
+                    "value13": 14,
+                    "__collapseCase14": false,
+                    "value14": 15,
+                    "__collapseCase15": false,
+                    "value15": 16,
+                    "__collapseElse": true,
+                    "__label": "[Switch] Dice 1 animation based on random",
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true0": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "5ee50987-2285-4aa3-baa1-4408a6b835e1",
+                          "spriteStateId": "Lands on 1",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "42bf2de7-3187-4e5c-bfd9-0f2a12d463fb"
+                      }
+                    ],
+                    "true1": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "5ee50987-2285-4aa3-baa1-4408a6b835e1",
+                          "spriteStateId": "Lands on 2",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "0e0da815-123c-474d-bea1-d6143c555a71"
+                      }
+                    ],
+                    "true2": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "5ee50987-2285-4aa3-baa1-4408a6b835e1",
+                          "spriteStateId": "Lands on 3",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "ce0340a5-8102-4121-869f-9956b277404b"
+                      }
+                    ],
+                    "true3": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "5ee50987-2285-4aa3-baa1-4408a6b835e1",
+                          "spriteStateId": "Lands on 4",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "b3ce6ff4-6652-4186-96ee-a4f108bfbaad"
+                      }
+                    ],
+                    "true4": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "5ee50987-2285-4aa3-baa1-4408a6b835e1",
+                          "spriteStateId": "Lands on 5",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "af368fdd-9a57-446c-a330-5d7f99793fe8"
+                      }
+                    ],
+                    "true5": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "5ee50987-2285-4aa3-baa1-4408a6b835e1",
+                          "spriteStateId": "Lands on 6",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "885f4f84-1042-4d6e-af0e-1cf4e9de90af"
+                      }
+                    ],
+                    "true6": [],
+                    "true7": [],
+                    "true8": [],
+                    "true9": [],
+                    "true10": [],
+                    "true11": [],
+                    "true12": [],
+                    "true13": [],
+                    "true14": [],
+                    "true15": [],
+                    "false": []
+                  },
+                  "id": "b9ebb935-9cba-4ac3-b049-56e88199dea0"
+                }
+              ],
+              "false": []
+            },
+            "id": "234b5ef4-b467-4dbd-b152-a6d6ec21561a"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "15"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.25,
+                    "frames": 30,
+                    "__collapse": true,
+                    "__label": "Wait to stagger results",
+                    "__comment": false
+                  },
+                  "id": "efc74f8c-7dc8-44d8-b584-ea0fd2d53ec2"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Set to default first, to make sure roll still happens if the number is a repeat of last roll",
+                    "__collapse": true
+                  },
+                  "id": "4f13bbe4-05c3-41e9-8756-0f18255ea184"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_SPRITE",
+                  "args": {
+                    "actorId": "960ff9ae-fa9f-441c-ab91-bda0bd0e6b79",
+                    "spriteSheetId": "ac094aa4-19d4-4290-972b-58d35131f5ba",
+                    "__comment": true
+                  },
+                  "id": "ff83eab4-1712-4f97-b6a7-b41040528ca7"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "960ff9ae-fa9f-441c-ab91-bda0bd0e6b79",
+                    "spriteStateId": "",
+                    "loopAnim": false,
+                    "__collapse": true
+                  },
+                  "id": "36ed449b-1c5e-4335-8648-90fa57bee4e4"
+                },
+                {
+                  "command": "EVENT_SWITCH",
+                  "args": {
+                    "variable": "5",
+                    "choices": 6,
+                    "__collapseCase0": false,
+                    "value0": 1,
+                    "__collapseCase1": false,
+                    "value1": 2,
+                    "__collapseCase2": false,
+                    "value2": 3,
+                    "__collapseCase3": false,
+                    "value3": 4,
+                    "__collapseCase4": false,
+                    "value4": 5,
+                    "__collapseCase5": false,
+                    "value5": 6,
+                    "__collapseCase6": false,
+                    "value6": 7,
+                    "__collapseCase7": false,
+                    "value7": 8,
+                    "__collapseCase8": false,
+                    "value8": 9,
+                    "__collapseCase9": false,
+                    "value9": 10,
+                    "__collapseCase10": false,
+                    "value10": 11,
+                    "__collapseCase11": false,
+                    "value11": 12,
+                    "__collapseCase12": false,
+                    "value12": 13,
+                    "__collapseCase13": false,
+                    "value13": 14,
+                    "__collapseCase14": false,
+                    "value14": 15,
+                    "__collapseCase15": false,
+                    "value15": 16,
+                    "__collapseElse": true,
+                    "__label": "[Switch] Dice 1 animation based on random",
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true0": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "960ff9ae-fa9f-441c-ab91-bda0bd0e6b79",
+                          "spriteStateId": "Lands on 1",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "96f96aac-f0e8-45ec-99cf-38d4fe2e4ed2"
+                      }
+                    ],
+                    "true1": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "960ff9ae-fa9f-441c-ab91-bda0bd0e6b79",
+                          "spriteStateId": "Lands on 2",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "574a2422-a1c4-40d3-9c12-05f663e2217e"
+                      }
+                    ],
+                    "true2": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "960ff9ae-fa9f-441c-ab91-bda0bd0e6b79",
+                          "spriteStateId": "Lands on 3",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "eddcd9e3-2ed1-4c0e-9906-db37df1aa783"
+                      }
+                    ],
+                    "true3": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "960ff9ae-fa9f-441c-ab91-bda0bd0e6b79",
+                          "spriteStateId": "Lands on 4",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "bbd8d76e-8f02-4a3f-9885-00636b8dbc78"
+                      }
+                    ],
+                    "true4": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "960ff9ae-fa9f-441c-ab91-bda0bd0e6b79",
+                          "spriteStateId": "Lands on 5",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "e4ea6774-6f20-4fec-9f6c-20189c17983c"
+                      }
+                    ],
+                    "true5": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "960ff9ae-fa9f-441c-ab91-bda0bd0e6b79",
+                          "spriteStateId": "Lands on 6",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "75bb29db-6444-48df-a259-6b7041137200"
+                      }
+                    ],
+                    "true6": [],
+                    "true7": [],
+                    "true8": [],
+                    "true9": [],
+                    "true10": [],
+                    "true11": [],
+                    "true12": [],
+                    "true13": [],
+                    "true14": [],
+                    "true15": [],
+                    "false": []
+                  },
+                  "id": "73e98f91-c061-46cf-bb25-543249e5a0fb"
+                }
+              ],
+              "false": []
+            },
+            "id": "e26f9c02-2f91-4542-984d-215da04352ef"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "13"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.25,
+                    "frames": 30,
+                    "__collapse": true,
+                    "__label": "Wait to stagger results",
+                    "__comment": false
+                  },
+                  "id": "136cb044-a9b1-4006-9b92-0c54dcb3aed3"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Set to default first, to make sure roll still happens if the number is a repeat of last roll",
+                    "__collapse": true
+                  },
+                  "id": "37959054-ace7-4a7b-bc28-43d1931c5ff2"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_SPRITE",
+                  "args": {
+                    "actorId": "861c6f30-7409-4664-a467-c3acac5ca55a",
+                    "spriteSheetId": "ac094aa4-19d4-4290-972b-58d35131f5ba",
+                    "__comment": true
+                  },
+                  "id": "b3f6b168-db61-49de-b61a-b2661ecb92db"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "861c6f30-7409-4664-a467-c3acac5ca55a",
+                    "spriteStateId": "",
+                    "loopAnim": false,
+                    "__collapse": true
+                  },
+                  "id": "545e2c16-57aa-4c7b-bcd0-a097b3eb40e7"
+                },
+                {
+                  "command": "EVENT_SWITCH",
+                  "args": {
+                    "variable": "6",
+                    "choices": 6,
+                    "__collapseCase0": false,
+                    "value0": 1,
+                    "__collapseCase1": false,
+                    "value1": 2,
+                    "__collapseCase2": false,
+                    "value2": 3,
+                    "__collapseCase3": false,
+                    "value3": 4,
+                    "__collapseCase4": false,
+                    "value4": 5,
+                    "__collapseCase5": false,
+                    "value5": 6,
+                    "__collapseCase6": false,
+                    "value6": 7,
+                    "__collapseCase7": false,
+                    "value7": 8,
+                    "__collapseCase8": false,
+                    "value8": 9,
+                    "__collapseCase9": false,
+                    "value9": 10,
+                    "__collapseCase10": false,
+                    "value10": 11,
+                    "__collapseCase11": false,
+                    "value11": 12,
+                    "__collapseCase12": false,
+                    "value12": 13,
+                    "__collapseCase13": false,
+                    "value13": 14,
+                    "__collapseCase14": false,
+                    "value14": 15,
+                    "__collapseCase15": false,
+                    "value15": 16,
+                    "__collapseElse": true,
+                    "__label": "[Switch] Dice 1 animation based on random",
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true0": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "861c6f30-7409-4664-a467-c3acac5ca55a",
+                          "spriteStateId": "Lands on 1",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "c79364c5-3a34-4300-93f3-01f0bf7b8507"
+                      }
+                    ],
+                    "true1": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "861c6f30-7409-4664-a467-c3acac5ca55a",
+                          "spriteStateId": "Lands on 2",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "2021f2a6-cea0-4c88-af48-25974f672f7f"
+                      }
+                    ],
+                    "true2": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "861c6f30-7409-4664-a467-c3acac5ca55a",
+                          "spriteStateId": "Lands on 3",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "fb6aea96-5032-4ec7-bda1-2ffbfc0092e5"
+                      }
+                    ],
+                    "true3": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "861c6f30-7409-4664-a467-c3acac5ca55a",
+                          "spriteStateId": "Lands on 4",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "a3521859-5ea8-42b4-900f-a633d2155ecc"
+                      }
+                    ],
+                    "true4": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "861c6f30-7409-4664-a467-c3acac5ca55a",
+                          "spriteStateId": "Lands on 5",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "fc5024d2-6dff-4ea7-b2df-36e9d22aba5e"
+                      }
+                    ],
+                    "true5": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "861c6f30-7409-4664-a467-c3acac5ca55a",
+                          "spriteStateId": "Lands on 6",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "77086465-2855-4233-bebd-4d202129fa37"
+                      }
+                    ],
+                    "true6": [],
+                    "true7": [],
+                    "true8": [],
+                    "true9": [],
+                    "true10": [],
+                    "true11": [],
+                    "true12": [],
+                    "true13": [],
+                    "true14": [],
+                    "true15": [],
+                    "false": []
+                  },
+                  "id": "6567dd79-cc85-4165-b6b2-b406c9431e57"
+                }
+              ],
+              "false": []
+            },
+            "id": "2db945e2-01be-45c7-b41c-1ae6e7f2ae0c"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "14"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.25,
+                    "frames": 30,
+                    "__collapse": true,
+                    "__label": "Wait to stagger results",
+                    "__comment": false
+                  },
+                  "id": "e20b9b29-44ed-4551-ae09-27843746c14f"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Set to default first, to make sure roll still happens if the number is a repeat of last roll",
+                    "__collapse": true
+                  },
+                  "id": "b18f15ac-96b0-4fab-a66b-01a579cd9e61"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_SPRITE",
+                  "args": {
+                    "actorId": "8227a800-afcc-459e-8414-f8cb74a37c08",
+                    "spriteSheetId": "ac094aa4-19d4-4290-972b-58d35131f5ba",
+                    "__comment": true
+                  },
+                  "id": "d41c6c32-c393-4974-bf80-d7bdf0ac5f05"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "8227a800-afcc-459e-8414-f8cb74a37c08",
+                    "spriteStateId": "",
+                    "loopAnim": false,
+                    "__collapse": true
+                  },
+                  "id": "f8b29728-d0fc-4d5a-b7cf-6aae7028be0f"
+                },
+                {
+                  "command": "EVENT_SWITCH",
+                  "args": {
+                    "variable": "7",
+                    "choices": 6,
+                    "__collapseCase0": false,
+                    "value0": 1,
+                    "__collapseCase1": false,
+                    "value1": 2,
+                    "__collapseCase2": false,
+                    "value2": 3,
+                    "__collapseCase3": false,
+                    "value3": 4,
+                    "__collapseCase4": false,
+                    "value4": 5,
+                    "__collapseCase5": false,
+                    "value5": 6,
+                    "__collapseCase6": false,
+                    "value6": 7,
+                    "__collapseCase7": false,
+                    "value7": 8,
+                    "__collapseCase8": false,
+                    "value8": 9,
+                    "__collapseCase9": false,
+                    "value9": 10,
+                    "__collapseCase10": false,
+                    "value10": 11,
+                    "__collapseCase11": false,
+                    "value11": 12,
+                    "__collapseCase12": false,
+                    "value12": 13,
+                    "__collapseCase13": false,
+                    "value13": 14,
+                    "__collapseCase14": false,
+                    "value14": 15,
+                    "__collapseCase15": false,
+                    "value15": 16,
+                    "__collapseElse": true,
+                    "__label": "[Switch] Dice 1 animation based on random",
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true0": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "8227a800-afcc-459e-8414-f8cb74a37c08",
+                          "spriteStateId": "Lands on 1",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "d59bed37-8200-45ab-8fc1-1da053c00be9"
+                      }
+                    ],
+                    "true1": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "8227a800-afcc-459e-8414-f8cb74a37c08",
+                          "spriteStateId": "Lands on 2",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "912a92e2-5671-4629-a934-a2de1c26bbb4"
+                      }
+                    ],
+                    "true2": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "8227a800-afcc-459e-8414-f8cb74a37c08",
+                          "spriteStateId": "Lands on 3",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "576c5fd8-5813-47f9-824f-c4a485744bc6"
+                      }
+                    ],
+                    "true3": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "8227a800-afcc-459e-8414-f8cb74a37c08",
+                          "spriteStateId": "Lands on 4",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "eee2c865-ce2d-4bda-8ddc-ef6e77e52f61"
+                      }
+                    ],
+                    "true4": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "8227a800-afcc-459e-8414-f8cb74a37c08",
+                          "spriteStateId": "Lands on 5",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "234cd838-9723-4dd6-a457-9feaaea5759b"
+                      }
+                    ],
+                    "true5": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "8227a800-afcc-459e-8414-f8cb74a37c08",
+                          "spriteStateId": "Lands on 6",
+                          "loopAnim": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "c31d734f-9224-448e-877b-bd286dc48c77"
+                      }
+                    ],
+                    "true6": [],
+                    "true7": [],
+                    "true8": [],
+                    "true9": [],
+                    "true10": [],
+                    "true11": [],
+                    "true12": [],
+                    "true13": [],
+                    "true14": [],
+                    "true15": [],
+                    "false": []
+                  },
+                  "id": "7f222e4f-54e3-4b87-b00b-9611c114358f"
+                }
+              ],
+              "false": []
+            },
+            "id": "2a1316db-d9c6-46a9-8c5b-a91696471193"
           },
           {
             "command": "EVENT_COMMENT",
