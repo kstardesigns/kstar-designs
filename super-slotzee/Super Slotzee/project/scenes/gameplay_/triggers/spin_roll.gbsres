@@ -45,23 +45,11 @@
                 }
               },
               "__collapseElse": false,
-              "__label": "Update roll # variable",
-              "__collapse": true
+              "__label": "Update roll # variable / reset turn",
+              "__collapse": false
             },
             "children": {
               "true": [
-                {
-                  "command": "EVENT_SET_VALUE",
-                  "args": {
-                    "variable": "16",
-                    "value": {
-                      "type": "number",
-                      "value": 1
-                    },
-                    "__collapse": false
-                  },
-                  "id": "5141fe57-21ff-4d7e-9c36-0ee1844149b7"
-                },
                 {
                   "command": "EVENT_IF",
                   "args": {
@@ -77,7 +65,7 @@
                       }
                     },
                     "__collapseElse": false,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -110,10 +98,18 @@
                     ],
                     "false": [
                       {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "Reset for new turn",
+                          "__collapse": true
+                        },
+                        "id": "fc67cf9b-72ac-4d85-ae02-ebce59fb318b"
+                      },
+                      {
                         "command": "EVENT_INC_VALUE",
                         "args": {
                           "variable": "17",
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "id": "dbb7a2b9-0797-4531-b667-a0af26c16319"
                       },
@@ -138,9 +134,110 @@
                           "closeWhen": "key",
                           "closeButton": "a",
                           "closeDelayTime": 0.5,
-                          "closeDelayFrames": 30
+                          "closeDelayFrames": 30,
+                          "__collapse": true
                         },
                         "id": "ef9047d0-8d6f-493b-bc66-e1ea04f80720"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "8",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "7b120acd-aadd-48a2-bc2b-a534627b666b"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "9",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "07982a07-c86d-46ae-9fd4-5d684a425294"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "10",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "8bfa5bc9-8b5a-4a0c-936e-dc47828e06e7"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "11",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "0f2e3de9-2fea-468b-9544-e54fc890b33e"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "12",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "cc70bbe8-ec6f-434c-947c-d90c59f5ccc4"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "15",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "d5968024-f598-4a94-9648-15a15d5f024c"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "13",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "62062bfe-2841-4e61-99e2-66927e7fdc94"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "14",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "fa3f8c8e-8ad9-4087-b759-0d08aba252e9"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "16",
+                          "value": {
+                            "type": "number",
+                            "value": 1
+                          },
+                          "__collapse": true
+                        },
+                        "id": "5141fe57-21ff-4d7e-9c36-0ee1844149b7"
                       }
                     ]
                   },
@@ -198,7 +295,7 @@
               "value15": 16,
               "__collapseElse": false,
               "__label": "(Switch) Update Roll # display",
-              "__collapse": true
+              "__collapse": false
             },
             "children": {
               "true0": [
@@ -219,7 +316,7 @@
                       "value": 0
                     },
                     "tileSize": "16px",
-                    "__collapse": true,
+                    "__collapse": false,
                     "__label": "Update Roll # in display"
                   },
                   "id": "ceb83eef-3c85-4c83-b980-5c67f99ddf02"
