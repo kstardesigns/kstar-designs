@@ -101,7 +101,7 @@
                 }
               },
               "__collapseElse": true,
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -132,7 +132,7 @@
                 }
               },
               "__collapseElse": true,
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -163,7 +163,7 @@
                 }
               },
               "__collapseElse": true,
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -242,6 +242,13 @@
             "id": "6429c2b0-a7fa-4781-9b20-723caaf2faf1"
           },
           {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Count pairs"
+            },
+            "id": "6ba05a1a-1ede-442d-b840-af5b14f7f532"
+          },
+          {
             "command": "EVENT_IF",
             "args": {
               "condition": {
@@ -266,6 +273,14 @@
             "id": "4f12973e-ff61-4239-a919-0e3be29a117f"
           },
           {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Check for 3 of a Kind\n",
+              "__collapse": true
+            },
+            "id": "9afe29fd-3a94-45ab-8e39-54acc0519014"
+          },
+          {
             "command": "EVENT_IF",
             "args": {
               "condition": {
@@ -273,7 +288,7 @@
                 "value": "$19$ >= 3"
               },
               "__collapseElse": true,
-              "__collapse": true
+              "__collapse": false
             },
             "children": {
               "true": [
@@ -291,6 +306,14 @@
               "false": []
             },
             "id": "1c764fcf-87d7-4e29-8c8e-90e825560090"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Check for 4 of a Kind",
+              "__collapse": true
+            },
+            "id": "ba726e1b-f2af-4c1e-bc2c-dba9a0f38384"
           },
           {
             "command": "EVENT_IF",
@@ -318,6 +341,48 @@
               "false": []
             },
             "id": "59aaa04d-bc13-4415-bcfb-c4ff133d03cf"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Check for Full House",
+              "__collapse": false
+            },
+            "id": "fffdf46d-f360-4d7c-826d-a756de958695"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "$28$ && ($27$ == 1)"
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "33",
+                    "value": {
+                      "type": "true"
+                    }
+                  },
+                  "id": "67c0a3c5-497e-4caf-b11b-398aeb8f6b90"
+                }
+              ],
+              "false": []
+            },
+            "id": "80ede1e6-70e1-4190-8138-533dcff0f455"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Set temp scores to variables",
+              "__collapse": true
+            },
+            "id": "4ccbb4f9-e4e0-4995-953c-ac50860cba74"
           },
           {
             "command": "EVENT_SET_VALUE",
@@ -545,6 +610,46 @@
               ]
             },
             "id": "7a72b50f-3c68-4e0c-bf87-a26c0231f03d"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "33"
+              },
+              "__collapseElse": false,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "34",
+                    "value": {
+                      "type": "number",
+                      "value": 25
+                    }
+                  },
+                  "id": "188afd94-a9fb-43c2-857d-b1f3dbb78b2c"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "34",
+                    "value": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  },
+                  "id": "ba7d4956-4bcf-4ee7-9a22-ddab5093652d"
+                }
+              ]
+            },
+            "id": "42e39718-5073-4667-96f0-cc74a7177c77"
           }
         ]
       },
@@ -557,7 +662,8 @@
           "temp scores:",
           "1's: $21$\n2's: $22$\n3's: $23$",
           "4's: $24$\n5's: $25$\n6's: $26$",
-          "Pairs count: $27$\n3oaK:  $29$\n4oaK: $31$"
+          "Pairs count: $27$\n3oaK:  $29$\n4oaK: $31$",
+          "full house: $34$"
         ],
         "__section": "text",
         "avatarId": "",
@@ -575,7 +681,7 @@
         "closeButton": "a",
         "closeDelayTime": 0.5,
         "closeDelayFrames": 30,
-        "__collapse": true
+        "__collapse": false
       },
       "id": "a926e99b-cbd8-419b-a265-176d6123e825"
     },
