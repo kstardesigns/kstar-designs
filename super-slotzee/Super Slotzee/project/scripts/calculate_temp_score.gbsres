@@ -244,7 +244,8 @@
           {
             "command": "EVENT_COMMENT",
             "args": {
-              "text": "Count pairs"
+              "text": "Count pairs",
+              "__collapse": true
             },
             "id": "6ba05a1a-1ede-442d-b840-af5b14f7f532"
           },
@@ -288,7 +289,7 @@
                 "value": "$19$ >= 3"
               },
               "__collapseElse": true,
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -346,7 +347,7 @@
             "command": "EVENT_COMMENT",
             "args": {
               "text": "Check for Full House",
-              "__collapse": false
+              "__collapse": true
             },
             "id": "fffdf46d-f360-4d7c-826d-a756de958695"
           },
@@ -357,7 +358,8 @@
                 "type": "expression",
                 "value": "$28$ && ($27$ == 1)"
               },
-              "__collapseElse": true
+              "__collapseElse": true,
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -375,6 +377,14 @@
               "false": []
             },
             "id": "80ede1e6-70e1-4190-8138-533dcff0f455"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Chance is automatically true",
+              "__collapse": true
+            },
+            "id": "f187d6b1-262f-43c3-8c32-adff1cea55b9"
           },
           {
             "command": "EVENT_COMMENT",
@@ -436,7 +446,7 @@
               "value15": 16,
               "__collapseElse": false,
               "__collapse": true,
-              "__label": "(Switch) Assign temp score to individual variables"
+              "__label": "(Switch) (1-6) Assign temp score to individual variables"
             },
             "children": {
               "true0": [
@@ -539,7 +549,8 @@
                 "value": "28"
               },
               "__collapseElse": false,
-              "__collapse": true
+              "__collapse": true,
+              "__label": "(If) (3 of a Kind)"
             },
             "children": {
               "true": [
@@ -579,7 +590,8 @@
                 "value": "30"
               },
               "__collapseElse": false,
-              "__collapse": true
+              "__collapse": true,
+              "__label": "(If) (4 of a Kind)"
             },
             "children": {
               "true": [
@@ -619,7 +631,8 @@
                 "value": "33"
               },
               "__collapseElse": false,
-              "__collapse": true
+              "__collapse": true,
+              "__label": "(If) (Full House)"
             },
             "children": {
               "true": [
@@ -650,6 +663,19 @@
               ]
             },
             "id": "42e39718-5073-4667-96f0-cc74a7177c77"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "35",
+              "value": {
+                "type": "expression",
+                "value": "$03$ + $04$ + $05$ + $06$ + $07$"
+              },
+              "__collapse": true,
+              "__label": "(Chance)"
+            },
+            "id": "57fa681f-43e3-4597-93c9-4ba67d65f89e"
           }
         ]
       },
@@ -663,7 +689,7 @@
           "1's: $21$\n2's: $22$\n3's: $23$",
           "4's: $24$\n5's: $25$\n6's: $26$",
           "Pairs count: $27$\n3oaK:  $29$\n4oaK: $31$",
-          "full house: $34$"
+          "full house: $34$\nchance: $35$"
         ],
         "__section": "text",
         "avatarId": "",
