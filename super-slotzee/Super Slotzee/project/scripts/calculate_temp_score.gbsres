@@ -381,6 +381,41 @@
           {
             "command": "EVENT_COMMENT",
             "args": {
+              "text": "Sm Straight & Lg Straight calculated below after #'s are assigned",
+              "__collapse": true
+            },
+            "id": "aa90d664-2a23-4272-bc3b-a6619161f2b3"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "$19$ >= 5"
+              },
+              "__collapseElse": true,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "39",
+                    "value": {
+                      "type": "true"
+                    }
+                  },
+                  "id": "616cfe36-3e57-48a2-8cac-f61ace7ff458"
+                }
+              ],
+              "false": []
+            },
+            "id": "c58ef27b-36ad-443f-9b59-de7a3b92feec"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
               "text": "Chance is automatically true",
               "__collapse": true
             },
@@ -665,6 +700,160 @@
             "id": "42e39718-5073-4667-96f0-cc74a7177c77"
           },
           {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "($21$ >=1 && $22$ >= 1 && $23$ >=1 && $24$ >= 1) || ($22$ >= 1 && $23$ >=1 && $24$ >= 1 && $25$ >= 1) || ($23$ >=1 && $24$ >= 1 && $25$ >= 1 && $26$ >= 1)"
+              },
+              "__collapseElse": false,
+              "__label": "(If) (Small Straight)",
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "37",
+                    "value": {
+                      "type": "number",
+                      "value": 30
+                    }
+                  },
+                  "id": "5ce13a0d-074e-4cc2-8eab-1267f600ff51"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "37",
+                    "value": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  },
+                  "id": "abcd13c7-4c5b-45e5-a84d-3b11cf8e5a7d"
+                }
+              ]
+            },
+            "id": "81d59d3a-aae7-4703-a8c3-bca3d506a5f7"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "($21$ >= 1 && $22$ >= 1 && $23$ >= 1 && $24$ >= 1 && $25$) || ($22$ >= 1 && $23$ >=1 && $24$ >= 1 && $25$ >= 1 && $26$ >= 1)"
+              },
+              "__collapseElse": false,
+              "__label": "(If) (Large Straight)",
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "38",
+                    "value": {
+                      "type": "number",
+                      "value": 40
+                    }
+                  },
+                  "id": "31d9f2bb-3f38-4f6c-9d82-be8465dbec45"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "38",
+                    "value": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  },
+                  "id": "2fdbc26f-7c33-4d06-be2c-dc646e2b8c6e"
+                }
+              ]
+            },
+            "id": "3108c625-3def-483b-8a33-c11a526d482e"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "39"
+              },
+              "__collapseElse": false,
+              "__collapse": false,
+              "__label": "(If) (Yotzee)"
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "eq",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "41"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 50
+                      }
+                    },
+                    "__collapseElse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "43"
+                        },
+                        "id": "6a8ceee5-5a62-4060-a22c-9984ad13af75"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "40",
+                          "value": {
+                            "type": "number",
+                            "value": 50
+                          }
+                        },
+                        "id": "1e9e42fc-5676-497b-bf42-8cc9bc80e6c6"
+                      }
+                    ]
+                  },
+                  "id": "af21c262-72ad-4da1-8c71-3102267d6c85"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "40",
+                    "value": {
+                      "type": "number",
+                      "value": 0
+                    }
+                  },
+                  "id": "42245dde-891b-4c37-9c35-1dea9b18c1b8"
+                }
+              ]
+            },
+            "id": "18b13ca2-42bf-45ce-9fee-769ab7eff9f1"
+          },
+          {
             "command": "EVENT_SET_VALUE",
             "args": {
               "variable": "35",
@@ -689,7 +878,8 @@
           "1's: $21$\n2's: $22$\n3's: $23$",
           "4's: $24$\n5's: $25$\n6's: $26$",
           "Pairs count: $27$\n3oaK:  $29$\n4oaK: $31$",
-          "full house: $34$\nchance: $35$"
+          "full house: $34$\nsm straight: $37$\nlg straight: $38$",
+          "yotzee: $40$\nchance: $35$"
         ],
         "__section": "text",
         "avatarId": "",
