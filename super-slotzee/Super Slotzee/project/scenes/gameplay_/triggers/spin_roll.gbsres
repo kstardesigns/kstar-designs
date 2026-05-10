@@ -46,7 +46,7 @@
               },
               "__collapseElse": false,
               "__label": "Update roll # variable / reset turn",
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -249,7 +249,7 @@
                     "value15": 16,
                     "__collapseElse": false,
                     "__label": "(Switch) Update Roll # display",
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true0": [
@@ -2683,6 +2683,21 @@
                   "id": "4d53e6e1-82b8-49a1-a41c-0bf62c0cb150"
                 },
                 {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "TODO: calculatetempscore should happen on all rolls, when done debugging.",
+                    "__collapse": true
+                  },
+                  "id": "e17df6e1-fd4a-4e3d-b8dc-8370454bce7e"
+                },
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "735debf0-782d-4027-a94a-3c845f866805"
+                  },
+                  "id": "f6226acc-a9d2-4538-befe-07926811f46f"
+                },
+                {
                   "command": "EVENT_IF",
                   "args": {
                     "condition": {
@@ -2697,16 +2712,81 @@
                       }
                     },
                     "__collapseElse": true,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
                       {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "DEBUG show temp scores",
+                          "__collapse": true
+                        },
+                        "id": "fdda135f-d81f-427b-9702-1c0d717b0874"
+                      },
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "temp scores:",
+                            "1's: $21$\n2's: $22$\n3's: $23$",
+                            "4's: $24$\n5's: $25$\n6's: $26$",
+                            "Pairs count: $27$\n3oaK:  $29$\n4oaK: $31$",
+                            "full house: $34$\nsm straight: $37$\nlg straight: $38$",
+                            "yotzee: $40$\nchance: $35$"
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30,
+                          "__collapse": true
+                        },
+                        "id": "6ec398b9-968a-46cb-8603-2d430c95842d"
+                      },
+                      {
                         "command": "EVENT_CALL_CUSTOM_EVENT",
                         "args": {
-                          "customEventId": "735debf0-782d-4027-a94a-3c845f866805"
+                          "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8",
+                          "__collapse": true
                         },
-                        "id": "f6226acc-a9d2-4538-befe-07926811f46f"
+                        "id": "25177a11-ba9b-448c-83cc-64b1edcb9826"
+                      },
+                      {
+                        "command": "EVENT_SCENE_PUSH_STATE",
+                        "args": {
+                          "__collapse": true
+                        },
+                        "id": "2c5d5474-e979-43e4-a480-2894a4cc5da0"
+                      },
+                      {
+                        "command": "EVENT_SWITCH_SCENE",
+                        "args": {
+                          "sceneId": "98029bff-92c0-4c95-842e-6c46f00c6b5f",
+                          "x": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "direction": "",
+                          "fadeSpeed": "2",
+                          "__collapse": true
+                        },
+                        "id": "6ed0d573-0fa8-45d8-9225-f939f0e8862d"
                       }
                     ],
                     "false": []
