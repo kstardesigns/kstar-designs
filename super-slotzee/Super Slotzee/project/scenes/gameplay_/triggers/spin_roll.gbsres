@@ -1131,184 +1131,6 @@
                   "id": "6cf7308d-faa8-4c3c-aaab-291fa96f40db"
                 },
                 {
-                  "command": "EVENT_COMMENT",
-                  "args": {
-                    "text": "Spin each slot if not held",
-                    "__collapse": true
-                  },
-                  "id": "834eeceb-234e-4657-93e1-ef1fc433f321"
-                },
-                {
-                  "command": "EVENT_IF",
-                  "args": {
-                    "condition": {
-                      "type": "not",
-                      "value": {
-                        "type": "variable",
-                        "value": "8"
-                      }
-                    },
-                    "__collapseElse": true,
-                    "__collapse": true
-                  },
-                  "children": {
-                    "true": [
-                      {
-                        "command": "EVENT_ACTOR_SET_STATE",
-                        "args": {
-                          "actorId": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
-                          "spriteStateId": "Slot 1 offset 0",
-                          "loopAnim": true,
-                          "__comment": false,
-                          "__collapse": true
-                        },
-                        "id": "d3b3edc7-b44f-431e-8b02-42b8ddc3507d"
-                      }
-                    ],
-                    "false": []
-                  },
-                  "id": "1cf172ae-93e1-44f4-ab31-4d5e6042943b"
-                },
-                {
-                  "command": "EVENT_IF",
-                  "args": {
-                    "condition": {
-                      "type": "not",
-                      "value": {
-                        "type": "variable",
-                        "value": "9"
-                      }
-                    },
-                    "__collapseElse": true,
-                    "__collapse": true
-                  },
-                  "children": {
-                    "true": [
-                      {
-                        "command": "EVENT_ACTOR_SET_STATE",
-                        "args": {
-                          "actorId": "36657c76-2944-4804-b137-c6ebcc4a9b10",
-                          "spriteStateId": "Slot 2 | offset 4 | + 1 spin",
-                          "loopAnim": true,
-                          "__collapse": false
-                        },
-                        "id": "3b4feae9-c0f2-4187-ab43-b96aba7d9478"
-                      }
-                    ],
-                    "false": []
-                  },
-                  "id": "af45fb27-d5bb-4eaf-8e3b-1e5f90864527"
-                },
-                {
-                  "command": "EVENT_IF",
-                  "args": {
-                    "condition": {
-                      "type": "not",
-                      "value": {
-                        "type": "variable",
-                        "value": "10"
-                      }
-                    },
-                    "__collapseElse": true,
-                    "__collapse": true
-                  },
-                  "children": {
-                    "true": [
-                      {
-                        "command": "EVENT_ACTOR_SET_STATE",
-                        "args": {
-                          "actorId": "1a0898f6-a468-4539-84d1-b7975ef135d3",
-                          "spriteStateId": "Slot 3 | offset 8 | + 2 spins",
-                          "loopAnim": true,
-                          "__collapse": true
-                        },
-                        "id": "4fd600e6-54eb-4644-ae09-f1afa31e18aa"
-                      }
-                    ],
-                    "false": []
-                  },
-                  "id": "40db8f1f-7bf7-4b20-b565-c3836f5bf364"
-                },
-                {
-                  "command": "EVENT_COMMENT",
-                  "args": {
-                    "text": "If all slots are not held, wait (length of 1 full spin (15 fps, 15 frames) before starting to show results),\notherwise no wait so the dice can roll right away",
-                    "__collapse": true
-                  },
-                  "id": "2846a5e8-1c40-434d-bdbc-de26ee02a3f0"
-                },
-                {
-                  "command": "EVENT_IF",
-                  "args": {
-                    "condition": {
-                      "type": "expression",
-                      "value": "!$08$ || !$09$ || !$10$"
-                    },
-                    "__collapseElse": false,
-                    "__collapse": true
-                  },
-                  "children": {
-                    "true": [
-                      {
-                        "command": "EVENT_WAIT",
-                        "args": {
-                          "time": 1,
-                          "frames": 30,
-                          "__collapse": true,
-                          "__label": "Wait for 1 Second"
-                        },
-                        "id": "889741e7-c4c4-4316-bde3-97d76b5a931d"
-                      }
-                    ],
-                    "false": [
-                      {
-                        "command": "EVENT_TEXT",
-                        "args": {
-                          "text": [
-                            "they're all held\nso no wait b4 dice"
-                          ],
-                          "__section": "text",
-                          "avatarId": "",
-                          "minHeight": 4,
-                          "maxHeight": 7,
-                          "textX": 1,
-                          "textY": 1,
-                          "textHeight": 5,
-                          "position": "bottom",
-                          "clearPrevious": true,
-                          "showFrame": "true",
-                          "speedIn": -1,
-                          "speedOut": -1,
-                          "closeWhen": "key",
-                          "closeButton": "a",
-                          "closeDelayTime": 0.5,
-                          "closeDelayFrames": 30,
-                          "__comment": true
-                        },
-                        "id": "67e858ac-cadb-4e35-8b38-aa5f9fcb8d2c"
-                      }
-                    ]
-                  },
-                  "id": "aedb9723-7b62-4c71-9a38-b1479bbdb0e3"
-                },
-                {
-                  "command": "EVENT_COMMENT",
-                  "args": {
-                    "text": "Set landing state for each slot if not held",
-                    "__collapse": true
-                  },
-                  "id": "6b2d5ae3-90ed-4aa3-9955-01c28e5d4ba7"
-                },
-                {
-                  "command": "EVENT_COMMENT",
-                  "args": {
-                    "text": "DEBUG:",
-                    "__collapse": true,
-                    "__label": "DEBUG: (turn these off/on in their Scripts)"
-                  },
-                  "id": "918e7d09-7a73-4829-9a0f-2825e9830e62"
-                },
-                {
                   "command": "EVENT_CALL_CUSTOM_EVENT",
                   "args": {
                     "customEventId": "9835a425-9f94-4558-8a31-058ab342f01c",
@@ -1318,12 +1140,12 @@
                   "id": "dc2e9882-c8b3-463d-9bfd-c87a992cd350"
                 },
                 {
-                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "command": "EVENT_COMMENT",
                   "args": {
-                    "customEventId": "1754f949-86cc-4bc7-9c22-c8484cbbd637",
+                    "text": "Roll each dice if not held\n",
                     "__collapse": true
                   },
-                  "id": "12464da1-4d08-44c8-a6d7-3dccc03365bd"
+                  "id": "d32a39af-5667-4669-98af-cabf94495f9c"
                 },
                 {
                   "command": "EVENT_IF",
@@ -1524,9 +1346,9 @@
                       {
                         "command": "EVENT_WAIT",
                         "args": {
-                          "time": 0.25,
+                          "time": 0.15,
                           "frames": 30,
-                          "__collapse": true,
+                          "__collapse": false,
                           "__label": "Wait to stagger results",
                           "__comment": false
                         },
@@ -1539,15 +1361,6 @@
                           "__collapse": true
                         },
                         "id": "b60cab8a-aa4a-4f4b-915a-cb679747deea"
-                      },
-                      {
-                        "command": "EVENT_ACTOR_SET_SPRITE",
-                        "args": {
-                          "actorId": "5ee50987-2285-4aa3-baa1-4408a6b835e1",
-                          "spriteSheetId": "ac094aa4-19d4-4290-972b-58d35131f5ba",
-                          "__comment": true
-                        },
-                        "id": "6dd4a631-b5ac-4401-adb4-e40bc54b6eba"
                       },
                       {
                         "command": "EVENT_ACTOR_SET_STATE",
@@ -1716,9 +1529,9 @@
                       {
                         "command": "EVENT_WAIT",
                         "args": {
-                          "time": 0.25,
+                          "time": 0.15,
                           "frames": 30,
-                          "__collapse": true,
+                          "__collapse": false,
                           "__label": "Wait to stagger results",
                           "__comment": false
                         },
@@ -1731,15 +1544,6 @@
                           "__collapse": true
                         },
                         "id": "4f13bbe4-05c3-41e9-8756-0f18255ea184"
-                      },
-                      {
-                        "command": "EVENT_ACTOR_SET_SPRITE",
-                        "args": {
-                          "actorId": "960ff9ae-fa9f-441c-ab91-bda0bd0e6b79",
-                          "spriteSheetId": "ac094aa4-19d4-4290-972b-58d35131f5ba",
-                          "__comment": true
-                        },
-                        "id": "ff83eab4-1712-4f97-b6a7-b41040528ca7"
                       },
                       {
                         "command": "EVENT_ACTOR_SET_STATE",
@@ -1908,9 +1712,9 @@
                       {
                         "command": "EVENT_WAIT",
                         "args": {
-                          "time": 0.25,
+                          "time": 0.15,
                           "frames": 30,
-                          "__collapse": true,
+                          "__collapse": false,
                           "__label": "Wait to stagger results",
                           "__comment": false
                         },
@@ -1923,15 +1727,6 @@
                           "__collapse": true
                         },
                         "id": "37959054-ace7-4a7b-bc28-43d1931c5ff2"
-                      },
-                      {
-                        "command": "EVENT_ACTOR_SET_SPRITE",
-                        "args": {
-                          "actorId": "861c6f30-7409-4664-a467-c3acac5ca55a",
-                          "spriteSheetId": "ac094aa4-19d4-4290-972b-58d35131f5ba",
-                          "__comment": true
-                        },
-                        "id": "b3f6b168-db61-49de-b61a-b2661ecb92db"
                       },
                       {
                         "command": "EVENT_ACTOR_SET_STATE",
@@ -2100,9 +1895,9 @@
                       {
                         "command": "EVENT_WAIT",
                         "args": {
-                          "time": 0.25,
+                          "time": 0.15,
                           "frames": 30,
-                          "__collapse": true,
+                          "__collapse": false,
                           "__label": "Wait to stagger results",
                           "__comment": false
                         },
@@ -2112,18 +1907,9 @@
                         "command": "EVENT_COMMENT",
                         "args": {
                           "text": "Set to default first, to make sure roll still happens if the number is a repeat of last roll",
-                          "__collapse": true
+                          "__collapse": false
                         },
                         "id": "b18f15ac-96b0-4fab-a66b-01a579cd9e61"
-                      },
-                      {
-                        "command": "EVENT_ACTOR_SET_SPRITE",
-                        "args": {
-                          "actorId": "8227a800-afcc-459e-8414-f8cb74a37c08",
-                          "spriteSheetId": "ac094aa4-19d4-4290-972b-58d35131f5ba",
-                          "__comment": true
-                        },
-                        "id": "d41c6c32-c393-4974-bf80-d7bdf0ac5f05"
                       },
                       {
                         "command": "EVENT_ACTOR_SET_STATE",
@@ -2273,6 +2059,157 @@
                     "false": []
                   },
                   "id": "2a1316db-d9c6-46a9-8c5b-a91696471193"
+                },
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "1754f949-86cc-4bc7-9c22-c8484cbbd637",
+                    "__collapse": true
+                  },
+                  "id": "12464da1-4d08-44c8-a6d7-3dccc03365bd"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Spin each slot if not held",
+                    "__collapse": true
+                  },
+                  "id": "834eeceb-234e-4657-93e1-ef1fc433f321"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "not",
+                      "value": {
+                        "type": "variable",
+                        "value": "8"
+                      }
+                    },
+                    "__collapseElse": true,
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
+                          "spriteStateId": "Slot 1 offset 0",
+                          "loopAnim": true,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "id": "d3b3edc7-b44f-431e-8b02-42b8ddc3507d"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "1cf172ae-93e1-44f4-ab31-4d5e6042943b"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "not",
+                      "value": {
+                        "type": "variable",
+                        "value": "9"
+                      }
+                    },
+                    "__collapseElse": true,
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "36657c76-2944-4804-b137-c6ebcc4a9b10",
+                          "spriteStateId": "Slot 2 | offset 4 | + 1 spin",
+                          "loopAnim": true,
+                          "__collapse": false
+                        },
+                        "id": "3b4feae9-c0f2-4187-ab43-b96aba7d9478"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "af45fb27-d5bb-4eaf-8e3b-1e5f90864527"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "not",
+                      "value": {
+                        "type": "variable",
+                        "value": "10"
+                      }
+                    },
+                    "__collapseElse": true,
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "1a0898f6-a468-4539-84d1-b7975ef135d3",
+                          "spriteStateId": "Slot 3 | offset 8 | + 2 spins",
+                          "loopAnim": true,
+                          "__collapse": false
+                        },
+                        "id": "4fd600e6-54eb-4644-ae09-f1afa31e18aa"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "40db8f1f-7bf7-4b20-b565-c3836f5bf364"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "If all slots are not held, wait (length of 1 full spin (15 fps, 15 frames) before starting to show results),\notherwise no wait so the dice can roll right away",
+                    "__collapse": false
+                  },
+                  "id": "2846a5e8-1c40-434d-bdbc-de26ee02a3f0"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "expression",
+                      "value": "!($08$ && $09$ && $10$)"
+                    },
+                    "__collapseElse": false,
+                    "__collapse": true,
+                    "__comment": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 1,
+                          "frames": 30,
+                          "__collapse": true,
+                          "__label": "Wait for 1 Second"
+                        },
+                        "id": "889741e7-c4c4-4316-bde3-97d76b5a931d"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "aedb9723-7b62-4c71-9a38-b1479bbdb0e3"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Set landing state for each slot if not held",
+                    "__collapse": true
+                  },
+                  "id": "6b2d5ae3-90ed-4aa3-9955-01c28e5d4ba7"
                 },
                 {
                   "command": "EVENT_IF",
@@ -2703,7 +2640,8 @@
                 {
                   "command": "EVENT_CALL_CUSTOM_EVENT",
                   "args": {
-                    "customEventId": "735debf0-782d-4027-a94a-3c845f866805"
+                    "customEventId": "735debf0-782d-4027-a94a-3c845f866805",
+                    "__collapse": true
                   },
                   "id": "f6226acc-a9d2-4538-befe-07926811f46f"
                 },
@@ -2722,7 +2660,7 @@
                       }
                     },
                     "__collapseElse": true,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
