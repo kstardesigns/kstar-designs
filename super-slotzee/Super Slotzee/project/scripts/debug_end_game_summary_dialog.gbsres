@@ -1,0 +1,97 @@
+{
+  "_resourceType": "script",
+  "id": "b1661b13-8b38-4231-bc46-37bb69043075",
+  "name": "DEBUG end game summary dialog",
+  "description": "This script is called at the end of turn 13 roll 3 . It currently displays a dialog with end game summary info. Turn it off and on below.",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_10",
+  "script": [
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "52",
+        "value": {
+          "type": "true"
+        },
+        "__comment": false
+      },
+      "id": "a5a2eb49-e48c-4dc2-b7f7-b59f42287406"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "52",
+        "value": {
+          "type": "false"
+        },
+        "__comment": true
+      },
+      "id": "5901726e-2b3c-48e2-a8a9-af26553ed619"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "52"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "17"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 13
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "end game summary:\n# of double stack \nbonuses: $49$"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "d6333872-5d3d-4b97-b1b2-9572cd032a38"
+                }
+              ],
+              "false": []
+            },
+            "id": "20c011f4-d86b-4a74-bcff-586cba95ff22"
+          }
+        ],
+        "false": []
+      },
+      "id": "38f5648c-b050-4c6a-920a-ddd5d21da4d3"
+    }
+  ]
+}

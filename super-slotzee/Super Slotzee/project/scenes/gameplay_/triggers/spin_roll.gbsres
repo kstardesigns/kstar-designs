@@ -1303,7 +1303,8 @@
                   "command": "EVENT_COMMENT",
                   "args": {
                     "text": "DEBUG:",
-                    "__collapse": true
+                    "__collapse": true,
+                    "__label": "DEBUG: (turn these off/on in their Scripts)"
                   },
                   "id": "918e7d09-7a73-4829-9a0f-2825e9830e62"
                 },
@@ -1311,14 +1312,16 @@
                   "command": "EVENT_CALL_CUSTOM_EVENT",
                   "args": {
                     "customEventId": "9835a425-9f94-4558-8a31-058ab342f01c",
-                    "__comment": false
+                    "__comment": false,
+                    "__collapse": true
                   },
                   "id": "dc2e9882-c8b3-463d-9bfd-c87a992cd350"
                 },
                 {
                   "command": "EVENT_CALL_CUSTOM_EVENT",
                   "args": {
-                    "customEventId": "1754f949-86cc-4bc7-9c22-c8484cbbd637"
+                    "customEventId": "1754f949-86cc-4bc7-9c22-c8484cbbd637",
+                    "__collapse": true
                   },
                   "id": "12464da1-4d08-44c8-a6d7-3dccc03365bd"
                 },
@@ -2732,35 +2735,19 @@
                         "id": "fdda135f-d81f-427b-9702-1c0d717b0874"
                       },
                       {
-                        "command": "EVENT_TEXT",
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
                         "args": {
-                          "text": [
-                            "temp scores:",
-                            "1's: $21$\n2's: $22$\n3's: $23$",
-                            "4's: $24$\n5's: $25$\n6's: $26$",
-                            "Pairs count: $27$\n3oaK:  $29$\n4oaK: $31$",
-                            "full house: $34$\nsm straight: $37$\nlg straight: $38$",
-                            "yotzee: $40$\nchance: $35$"
-                          ],
-                          "__section": "text",
-                          "avatarId": "",
-                          "minHeight": 4,
-                          "maxHeight": 7,
-                          "textX": 1,
-                          "textY": 1,
-                          "textHeight": 5,
-                          "position": "bottom",
-                          "clearPrevious": true,
-                          "showFrame": "true",
-                          "speedIn": -1,
-                          "speedOut": -1,
-                          "closeWhen": "key",
-                          "closeButton": "a",
-                          "closeDelayTime": 0.5,
-                          "closeDelayFrames": 30,
-                          "__collapse": true
+                          "customEventId": "0b922307-0547-4c9d-95f7-455979779cce"
                         },
-                        "id": "6ec398b9-968a-46cb-8603-2d430c95842d"
+                        "id": "6567e406-72fe-4499-a2da-c48bd1b5ca09"
+                      },
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "b1661b13-8b38-4231-bc46-37bb69043075",
+                          "__comment": false
+                        },
+                        "id": "789ac075-3795-4e95-ac48-c94a7dc45057"
                       },
                       {
                         "command": "EVENT_CALL_CUSTOM_EVENT",
@@ -2825,35 +2812,81 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
           {
-            "command": "EVENT_ACTOR_SET_STATE",
+            "command": "EVENT_IF",
             "args": {
-              "actorId": "$self$",
-              "spriteStateId": "Middle row cursor",
-              "loopAnim": true,
-              "__collapse": false
-            },
-            "id": "e29cffe7-8b69-4b6e-a6bf-71eb6f47a0dd"
-          },
-          {
-            "command": "EVENT_ACTOR_SET_POSITION",
-            "args": {
-              "actorId": "$self$",
-              "x": {
-                "type": "number",
-                "value": 8
+              "condition": {
+                "type": "ne",
+                "valueA": {
+                  "type": "variable",
+                  "value": "16"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 0
+                }
               },
-              "y": {
-                "type": "number",
-                "value": 14
-              },
-              "__collapse": false
+              "__collapseElse": true
             },
-            "id": "1a95cb89-c02e-4c1d-a56a-d5017167a1ba"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "ne",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "16"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 3
+                      }
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "$self$",
+                          "spriteStateId": "Middle row cursor",
+                          "loopAnim": true,
+                          "__collapse": true
+                        },
+                        "id": "e29cffe7-8b69-4b6e-a6bf-71eb6f47a0dd"
+                      },
+                      {
+                        "command": "EVENT_ACTOR_SET_POSITION",
+                        "args": {
+                          "actorId": "$self$",
+                          "x": {
+                            "type": "number",
+                            "value": 8
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 14
+                          },
+                          "__collapse": true
+                        },
+                        "id": "1a95cb89-c02e-4c1d-a56a-d5017167a1ba"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "213b3f39-baf6-47ed-974d-1ca9faa9a754"
+                }
+              ],
+              "false": []
+            },
+            "id": "84463792-9691-434d-bf94-164920ce3a53"
           }
         ]
       },

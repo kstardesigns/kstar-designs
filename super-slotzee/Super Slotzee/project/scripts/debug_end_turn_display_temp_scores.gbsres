@@ -1,0 +1,80 @@
+{
+  "_resourceType": "script",
+  "id": "0b922307-0547-4c9d-95f7-455979779cce",
+  "name": "DEBUG end turn display temp scores",
+  "description": "This script is called at the end of roll 3 of each turn (will eventually be end of each roll, for possible early scoring). It currently displays a dialog with all current temp scores. Turn it off and on below.",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_9",
+  "script": [
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "51",
+        "value": {
+          "type": "true"
+        },
+        "__comment": false
+      },
+      "id": "7db5003f-1c76-4e80-a9b3-3458d78cde61"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "51",
+        "value": {
+          "type": "false"
+        },
+        "__comment": true
+      },
+      "id": "c0e79aa3-5928-4fc2-8222-8ef6c1695065"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "51"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "temp scores:",
+                "1's: $21$\n2's: $22$\n3's: $23$",
+                "4's: $24$\n5's: $25$\n6's: $26$",
+                "Pairs count: $27$\n3oaK:  $29$\n4oaK: $31$",
+                "full house: $34$\nsm straight: $37$\nlg straight: $38$",
+                "yotzee: $40$\nchance: $35$"
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30,
+              "__collapse": false
+            },
+            "id": "72c2580c-a20a-40f0-b186-76620c863fea"
+          }
+        ],
+        "false": []
+      },
+      "id": "0d34daaf-0523-461f-8fe2-92d52a33ddac"
+    }
+  ]
+}
