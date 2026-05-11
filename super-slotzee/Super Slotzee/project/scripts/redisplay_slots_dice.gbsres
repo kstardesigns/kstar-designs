@@ -1,0 +1,563 @@
+{
+  "_resourceType": "script",
+  "id": "f608921d-498c-454b-882f-6a9b889935f2",
+  "name": "Redisplay slots & dice",
+  "description": "This gets the latest slot and dice results (from before scene change to scorecard) and instantly redisplays them since leaving the scene reset the actors to the original state",
+  "variables": {},
+  "actors": {
+    "0": {
+      "id": "0",
+      "name": "Actor A"
+    },
+    "1": {
+      "id": "1",
+      "name": "Actor B"
+    },
+    "2": {
+      "id": "2",
+      "name": "Actor C"
+    }
+  },
+  "symbol": "script_11",
+  "script": [
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Temporarily set slot speeds to 0 and force frame to show result from from before scene change to scorecard",
+        "__collapse": true
+      },
+      "id": "490be5c3-1969-4ca1-b8f5-cdd506965186"
+    },
+    {
+      "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
+      "args": {
+        "actorId": "0",
+        "speed": 255,
+        "__collapse": true
+      },
+      "id": "3f5b39f9-3be0-4d3e-8fda-617317fffb5b"
+    },
+    {
+      "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
+      "args": {
+        "actorId": "1",
+        "speed": 255,
+        "__collapse": true
+      },
+      "id": "0e5690a2-00e3-4167-9168-847c45f45e67"
+    },
+    {
+      "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
+      "args": {
+        "actorId": "2",
+        "speed": 255,
+        "__collapse": true
+      },
+      "id": "f21e6c84-23b9-4c92-b895-8a0cc19e0a07"
+    },
+    {
+      "command": "EVENT_SWITCH",
+      "args": {
+        "variable": "0",
+        "choices": 4,
+        "__collapseCase0": false,
+        "value0": 1,
+        "__collapseCase1": false,
+        "value1": 2,
+        "__collapseCase2": false,
+        "value2": 3,
+        "__collapseCase3": false,
+        "value3": 4,
+        "__collapseCase4": false,
+        "value4": 5,
+        "__collapseCase5": false,
+        "value5": 6,
+        "__collapseCase6": false,
+        "value6": 7,
+        "__collapseCase7": false,
+        "value7": 8,
+        "__collapseCase8": false,
+        "value8": 9,
+        "__collapseCase9": false,
+        "value9": 10,
+        "__collapseCase10": false,
+        "value10": 11,
+        "__collapseCase11": false,
+        "value11": 12,
+        "__collapseCase12": false,
+        "value12": 13,
+        "__collapseCase13": false,
+        "value13": 14,
+        "__collapseCase14": false,
+        "value14": 15,
+        "__collapseCase15": false,
+        "value15": 16,
+        "__collapseElse": true,
+        "__label": "[Switch] Slot 1 result redisplay instantly",
+        "__collapse": true
+      },
+      "children": {
+        "true0": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "0",
+              "spriteStateId": "Lands on 1 - Extra Roll",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "71cd4cd0-bbe5-4ed9-86cc-4569503d0c4d"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "0",
+              "frame": {
+                "type": "number",
+                "value": 4
+              }
+            },
+            "id": "4f3d0f0b-4ab6-4ee3-9531-ca1b73dd7bbe"
+          }
+        ],
+        "true1": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "0",
+              "spriteStateId": "Lands on 2 - Double Stack",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "959e91c8-32a4-4769-be0f-a242e70af21b"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "0",
+              "frame": {
+                "type": "number",
+                "value": 0
+              }
+            },
+            "id": "4db27f42-f48c-417b-bf98-6f55cb1ebbb8"
+          }
+        ],
+        "true2": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "0",
+              "spriteStateId": "Lands on 3 - Auto Zero",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "0cb5b26a-b094-4ff8-bb88-b8181fe33d26"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "0",
+              "frame": {
+                "type": "number",
+                "value": 8
+              }
+            },
+            "id": "0943293f-4b2b-46fc-9b0a-c743aef760cc"
+          }
+        ],
+        "true3": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "0",
+              "spriteStateId": "Lands on 4 - Slot Coin",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "27f2cc0e-ae1d-4971-baf9-edbea1c0752c"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "0",
+              "frame": {
+                "type": "number",
+                "value": 12
+              }
+            },
+            "id": "8189042a-2f7c-403e-8d20-c62d55795f06"
+          }
+        ],
+        "true4": [],
+        "true5": [],
+        "true6": [],
+        "true7": [],
+        "true8": [],
+        "true9": [],
+        "true10": [],
+        "true11": [],
+        "true12": [],
+        "true13": [],
+        "true14": [],
+        "true15": [],
+        "false": []
+      },
+      "id": "8f39da45-702d-4c7c-a7e9-6d30cb2691c6"
+    },
+    {
+      "command": "EVENT_SWITCH",
+      "args": {
+        "variable": "1",
+        "choices": 4,
+        "__collapseCase0": true,
+        "value0": 1,
+        "__collapseCase1": true,
+        "value1": 2,
+        "__collapseCase2": false,
+        "value2": 3,
+        "__collapseCase3": false,
+        "value3": 4,
+        "__collapseCase4": false,
+        "value4": 5,
+        "__collapseCase5": false,
+        "value5": 6,
+        "__collapseCase6": false,
+        "value6": 7,
+        "__collapseCase7": false,
+        "value7": 8,
+        "__collapseCase8": false,
+        "value8": 9,
+        "__collapseCase9": false,
+        "value9": 10,
+        "__collapseCase10": false,
+        "value10": 11,
+        "__collapseCase11": false,
+        "value11": 12,
+        "__collapseCase12": false,
+        "value12": 13,
+        "__collapseCase13": false,
+        "value13": 14,
+        "__collapseCase14": false,
+        "value14": 15,
+        "__collapseCase15": false,
+        "value15": 16,
+        "__collapseElse": true,
+        "__label": "[Switch] Slot 2 result redisplay instantly",
+        "__collapse": true
+      },
+      "children": {
+        "true0": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "1",
+              "spriteStateId": "Lands on 1 - Extra Roll",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "450abf9a-d535-4714-a0a5-dfe1c0fabc56"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "1",
+              "frame": {
+                "type": "number",
+                "value": 4
+              }
+            },
+            "id": "3df7defe-d523-42bb-a9d0-e631559e1f21"
+          }
+        ],
+        "true1": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "1",
+              "spriteStateId": "Lands on 2 - Double Stack",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "90483832-50d6-4d2c-b83a-7896d19dfde2"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "1",
+              "frame": {
+                "type": "number",
+                "value": 0
+              }
+            },
+            "id": "f7392d35-c78f-4dc3-8335-9b330b683a74"
+          }
+        ],
+        "true2": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "1",
+              "spriteStateId": "Lands on 3 - Auto Zero",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "4926a5fc-1397-4822-9e49-d2970d5f9db2"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "1",
+              "frame": {
+                "type": "number",
+                "value": 8
+              }
+            },
+            "id": "8800c161-9e0e-4286-9780-67d6cd8ce838"
+          }
+        ],
+        "true3": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "1",
+              "spriteStateId": "Lands on 4 - Slot Coin",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "23cce71c-5900-40b7-9210-0b65c9c43198"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "1",
+              "frame": {
+                "type": "number",
+                "value": 12
+              }
+            },
+            "id": "5dc35315-4ac4-4950-acd4-e6e9b6983eb9"
+          }
+        ],
+        "true4": [],
+        "true5": [],
+        "true6": [],
+        "true7": [],
+        "true8": [],
+        "true9": [],
+        "true10": [],
+        "true11": [],
+        "true12": [],
+        "true13": [],
+        "true14": [],
+        "true15": [],
+        "false": []
+      },
+      "id": "6a2113cd-9998-4cd5-afaf-f91fb5e53607"
+    },
+    {
+      "command": "EVENT_SWITCH",
+      "args": {
+        "variable": "2",
+        "choices": 4,
+        "__collapseCase0": true,
+        "value0": 1,
+        "__collapseCase1": true,
+        "value1": 2,
+        "__collapseCase2": false,
+        "value2": 3,
+        "__collapseCase3": false,
+        "value3": 4,
+        "__collapseCase4": false,
+        "value4": 5,
+        "__collapseCase5": false,
+        "value5": 6,
+        "__collapseCase6": false,
+        "value6": 7,
+        "__collapseCase7": false,
+        "value7": 8,
+        "__collapseCase8": false,
+        "value8": 9,
+        "__collapseCase9": false,
+        "value9": 10,
+        "__collapseCase10": false,
+        "value10": 11,
+        "__collapseCase11": false,
+        "value11": 12,
+        "__collapseCase12": false,
+        "value12": 13,
+        "__collapseCase13": false,
+        "value13": 14,
+        "__collapseCase14": false,
+        "value14": 15,
+        "__collapseCase15": false,
+        "value15": 16,
+        "__collapseElse": true,
+        "__label": "[Switch] Slot 3 result redisplay instantly",
+        "__collapse": true
+      },
+      "children": {
+        "true0": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "2",
+              "spriteStateId": "Lands on 1 - Extra Roll",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "5274e557-e60a-4d99-a6fa-42eb75149499"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "2",
+              "frame": {
+                "type": "number",
+                "value": 4
+              }
+            },
+            "id": "1ea2c18a-144c-41f8-97a0-c57961e40264"
+          }
+        ],
+        "true1": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "2",
+              "spriteStateId": "Lands on 2 - Double Stack",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "4f04f131-acab-45b9-aaa0-11e36ddc228b"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "2",
+              "frame": {
+                "type": "number",
+                "value": 0
+              }
+            },
+            "id": "d6c9d616-7b43-4e76-bd12-e242816be674"
+          }
+        ],
+        "true2": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "2",
+              "spriteStateId": "Lands on 3 - Auto Zero",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "5ba55e62-85e1-48a1-907c-9e697c4bd24f"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "2",
+              "frame": {
+                "type": "number",
+                "value": 8
+              }
+            },
+            "id": "8711ac7a-23b5-4d9f-ba34-221b36e878c9"
+          }
+        ],
+        "true3": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "2",
+              "spriteStateId": "Lands on 4 - Slot Coin",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "b100f2da-b5b9-41ef-bd33-c6f1afceb347"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "2",
+              "frame": {
+                "type": "number",
+                "value": 12
+              }
+            },
+            "id": "03346657-e972-41df-8a08-3e75d69aa5eb"
+          }
+        ],
+        "true4": [],
+        "true5": [],
+        "true6": [],
+        "true7": [],
+        "true8": [],
+        "true9": [],
+        "true10": [],
+        "true11": [],
+        "true12": [],
+        "true13": [],
+        "true14": [],
+        "true15": [],
+        "false": []
+      },
+      "id": "3296c2cf-076c-452d-9510-bfc83caac2c2"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Set slot speeds back to 6 for next spin",
+        "__collapse": true
+      },
+      "id": "fd3be9b7-4df7-40f4-81a9-3f2e92ddc54e"
+    },
+    {
+      "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
+      "args": {
+        "actorId": "0",
+        "speed": 3,
+        "__collapse": true
+      },
+      "id": "e19dec05-eca6-4410-aa2e-cdfd0fa45daa"
+    },
+    {
+      "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
+      "args": {
+        "actorId": "1",
+        "speed": 3,
+        "__collapse": true
+      },
+      "id": "92628900-a767-4a57-963e-a39ed12bef6f"
+    },
+    {
+      "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
+      "args": {
+        "actorId": "2",
+        "speed": 3,
+        "__collapse": true
+      },
+      "id": "2a3df032-8b5e-4932-9663-6f71fdccb4b3"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "LEFT OFF: do the same as above with dice"
+      },
+      "id": "5eba5b5f-cd80-464f-b03b-8f996a34c796"
+    }
+  ]
+}
