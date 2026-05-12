@@ -2750,15 +2750,6 @@
                 {
                   "command": "EVENT_COMMENT",
                   "args": {
-                    "text": "If on last roll & you have bonus roll, let user know",
-                    "__collapse": true,
-                    "__label": "If earned extra roll & on last turn, let user know"
-                  },
-                  "id": "e3dae4e1-dd59-48a5-9a08-dbcbfd3986ec"
-                },
-                {
-                  "command": "EVENT_COMMENT",
-                  "args": {
                     "text": "TODO: calculatetempscore should happen on all rolls, when done debugging.",
                     "__collapse": true
                   },
@@ -2771,6 +2762,100 @@
                     "__collapse": true
                   },
                   "id": "f6226acc-a9d2-4538-befe-07926811f46f"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Coin minigame immediately so coin can be used same turn",
+                    "__collapse": true
+                  },
+                  "id": "f29eb703-8e93-401d-b36b-7e01b0597059"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "variable",
+                      "value": "63"
+                    },
+                    "__collapseElse": true,
+                    "__label": "(If) Scene change to slot coin minigame if earned"
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "you matched 3\ncoins! mini game\ntime (placeholder)"
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30,
+                          "__collapse": true
+                        },
+                        "id": "9723c7e8-691e-4ef0-b2b7-efc7797e0939"
+                      },
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8",
+                          "__collapse": true
+                        },
+                        "id": "9cbb7924-3982-4ee2-9e48-adcfacab5f6d"
+                      },
+                      {
+                        "command": "EVENT_SCENE_PUSH_STATE",
+                        "args": {
+                          "__collapse": true
+                        },
+                        "id": "c7364009-08d8-45e8-b8bd-9ddbb9f6df47"
+                      },
+                      {
+                        "command": "EVENT_SWITCH_SCENE",
+                        "args": {
+                          "sceneId": "844538a4-ddbf-43c7-b42a-5970cab92f66",
+                          "x": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "direction": "",
+                          "fadeSpeed": "2",
+                          "__collapse": false
+                        },
+                        "id": "e94b295b-35cc-4659-843a-786bcd6b9461"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "f924e233-f161-4059-9513-b432f18b3423"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "If on last roll & you have bonus roll, let user know",
+                    "__collapse": true,
+                    "__label": "If earned extra roll & on last turn, let user know",
+                    "__comment": false
+                  },
+                  "id": "e3dae4e1-dd59-48a5-9a08-dbcbfd3986ec"
                 },
                 {
                   "command": "EVENT_IF",
@@ -2787,8 +2872,8 @@
                       }
                     },
                     "__collapseElse": false,
-                    "__collapse": true,
-                    "__label": "(If) End of turn scene stack"
+                    "__collapse": false,
+                    "__label": "(If) End of turn scene change to scorecard"
                   },
                   "children": {
                     "true": [

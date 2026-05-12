@@ -171,6 +171,107 @@
       "args": {
         "condition": {
           "type": "expression",
+          "value": "$00$ == 1 && $01$ == 1 && $02$ == 1"
+        },
+        "__collapseElse": true,
+        "__label": "(If) Check for Slots: Extra Roll",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "61",
+              "value": {
+                "type": "true"
+              },
+              "__collapse": false
+            },
+            "id": "3ca10d6b-1f8a-4b28-9011-7b3006ad4c7b"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "16"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 3
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_INC_VALUE",
+                  "args": {
+                    "variable": "53"
+                  },
+                  "id": "09262b0f-513c-43b8-a53e-c6e734e65402"
+                },
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "f792ce6f-7872-45de-afbb-9df1a0e710e6",
+                    "__collapse": false
+                  },
+                  "id": "77d30e34-1584-4cc8-aae8-653790083619"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Extra roll for\nthis turn!\n(placeholder noti)"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": false
+                  },
+                  "id": "fcd5810c-92f0-49cb-bef6-574208242aca"
+                },
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8"
+                  },
+                  "id": "eb831a34-ac58-4d4f-93ee-8c8e614b18ee"
+                }
+              ],
+              "false": []
+            },
+            "id": "7369c40d-7386-4f84-8077-7be0c789c4ea"
+          }
+        ],
+        "false": []
+      },
+      "id": "1e97a724-d34c-4bb4-b158-659a4daf0d75"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
           "value": "$00$ == 2 && $01$ == 2 && $02$ == 2"
         },
         "__collapseElse": true,
@@ -298,10 +399,10 @@
       "args": {
         "condition": {
           "type": "expression",
-          "value": "$00$ == 1 && $01$ == 1 && $02$ == 1"
+          "value": "$00$ == 4 && $01$ == 4 && $02$ == 4"
         },
         "__collapseElse": true,
-        "__label": "(If) Check for Slots: Extra Roll",
+        "__label": "(If) Check for Slots: Slot Coin (minigame triggered)",
         "__collapse": false
       },
       "children": {
@@ -309,13 +410,13 @@
           {
             "command": "EVENT_SET_VALUE",
             "args": {
-              "variable": "61",
+              "variable": "63",
               "value": {
                 "type": "true"
               },
               "__collapse": false
             },
-            "id": "3ca10d6b-1f8a-4b28-9011-7b3006ad4c7b"
+            "id": "88ed2b09-0416-4d00-9721-00f2107bd1a5"
           },
           {
             "command": "EVENT_IF",
@@ -331,68 +432,26 @@
                   "value": 3
                 }
               },
-              "__collapseElse": true,
-              "__collapse": false
+              "__collapseElse": true
             },
             "children": {
               "true": [
                 {
                   "command": "EVENT_INC_VALUE",
                   "args": {
-                    "variable": "53"
+                    "variable": "64"
                   },
-                  "id": "09262b0f-513c-43b8-a53e-c6e734e65402"
-                },
-                {
-                  "command": "EVENT_CALL_CUSTOM_EVENT",
-                  "args": {
-                    "customEventId": "f792ce6f-7872-45de-afbb-9df1a0e710e6",
-                    "__collapse": false
-                  },
-                  "id": "77d30e34-1584-4cc8-aae8-653790083619"
-                },
-                {
-                  "command": "EVENT_TEXT",
-                  "args": {
-                    "text": [
-                      "Extra roll for\nthis turn!\n(placeholder noti)"
-                    ],
-                    "__section": "text",
-                    "avatarId": "",
-                    "minHeight": 4,
-                    "maxHeight": 7,
-                    "textX": 1,
-                    "textY": 1,
-                    "textHeight": 5,
-                    "position": "bottom",
-                    "clearPrevious": true,
-                    "showFrame": "true",
-                    "speedIn": -1,
-                    "speedOut": -1,
-                    "closeWhen": "key",
-                    "closeButton": "a",
-                    "closeDelayTime": 0.5,
-                    "closeDelayFrames": 30,
-                    "__collapse": false
-                  },
-                  "id": "fcd5810c-92f0-49cb-bef6-574208242aca"
-                },
-                {
-                  "command": "EVENT_CALL_CUSTOM_EVENT",
-                  "args": {
-                    "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8"
-                  },
-                  "id": "eb831a34-ac58-4d4f-93ee-8c8e614b18ee"
+                  "id": "42a6cd29-efa7-45f9-9384-27caa7984bb1"
                 }
               ],
               "false": []
             },
-            "id": "7369c40d-7386-4f84-8077-7be0c789c4ea"
+            "id": "97fd0c44-79ad-4773-be20-e179f653b70b"
           }
         ],
         "false": []
       },
-      "id": "1e97a724-d34c-4bb4-b158-659a4daf0d75"
+      "id": "33440f31-950d-40f3-8bcd-f92d4479c1ef"
     },
     {
       "command": "EVENT_IF",
