@@ -14,7 +14,8 @@
       "command": "EVENT_COMMENT",
       "args": {
         "text": "Hold functionality",
-        "__collapse": true
+        "__collapse": true,
+        "__label": "Spin & roll functionality"
       },
       "id": "b8846eac-09ee-43dd-b618-4497f1cd0b34"
     },
@@ -46,7 +47,7 @@
               },
               "__collapseElse": false,
               "__label": "Update roll # variable / reset turn",
-              "__collapse": true
+              "__collapse": false
             },
             "children": {
               "true": [
@@ -1457,7 +1458,7 @@
                       }
                     },
                     "__collapseElse": true,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -2205,7 +2206,7 @@
                       }
                     },
                     "__collapseElse": true,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -2340,7 +2341,7 @@
                       }
                     },
                     "__collapseElse": true,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -2784,63 +2785,82 @@
                   "children": {
                     "true": [
                       {
-                        "command": "EVENT_TEXT",
+                        "command": "EVENT_IF",
                         "args": {
-                          "text": [
-                            "you matched 3\ncoins! mini game\ntime (placeholder)"
+                          "condition": {
+                            "type": "not",
+                            "value": {
+                              "type": "variable",
+                              "value": "65"
+                            }
+                          },
+                          "__collapseElse": true
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_TEXT",
+                              "args": {
+                                "text": [
+                                  "you matched 3\ncoins! mini game\ntime (placeholder)"
+                                ],
+                                "__section": "text",
+                                "avatarId": "",
+                                "minHeight": 4,
+                                "maxHeight": 7,
+                                "textX": 1,
+                                "textY": 1,
+                                "textHeight": 5,
+                                "position": "bottom",
+                                "clearPrevious": true,
+                                "showFrame": "true",
+                                "speedIn": -1,
+                                "speedOut": -1,
+                                "closeWhen": "key",
+                                "closeButton": "a",
+                                "closeDelayTime": 0.5,
+                                "closeDelayFrames": 30,
+                                "__collapse": true
+                              },
+                              "id": "9723c7e8-691e-4ef0-b2b7-efc7797e0939"
+                            },
+                            {
+                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "args": {
+                                "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8",
+                                "__collapse": true
+                              },
+                              "id": "9cbb7924-3982-4ee2-9e48-adcfacab5f6d"
+                            },
+                            {
+                              "command": "EVENT_SCENE_PUSH_STATE",
+                              "args": {
+                                "__collapse": true
+                              },
+                              "id": "c7364009-08d8-45e8-b8bd-9ddbb9f6df47"
+                            },
+                            {
+                              "command": "EVENT_SWITCH_SCENE",
+                              "args": {
+                                "sceneId": "844538a4-ddbf-43c7-b42a-5970cab92f66",
+                                "x": {
+                                  "type": "number",
+                                  "value": 0
+                                },
+                                "y": {
+                                  "type": "number",
+                                  "value": 0
+                                },
+                                "direction": "",
+                                "fadeSpeed": "2",
+                                "__collapse": true
+                              },
+                              "id": "e94b295b-35cc-4659-843a-786bcd6b9461"
+                            }
                           ],
-                          "__section": "text",
-                          "avatarId": "",
-                          "minHeight": 4,
-                          "maxHeight": 7,
-                          "textX": 1,
-                          "textY": 1,
-                          "textHeight": 5,
-                          "position": "bottom",
-                          "clearPrevious": true,
-                          "showFrame": "true",
-                          "speedIn": -1,
-                          "speedOut": -1,
-                          "closeWhen": "key",
-                          "closeButton": "a",
-                          "closeDelayTime": 0.5,
-                          "closeDelayFrames": 30,
-                          "__collapse": true
+                          "false": []
                         },
-                        "id": "9723c7e8-691e-4ef0-b2b7-efc7797e0939"
-                      },
-                      {
-                        "command": "EVENT_CALL_CUSTOM_EVENT",
-                        "args": {
-                          "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8",
-                          "__collapse": true
-                        },
-                        "id": "9cbb7924-3982-4ee2-9e48-adcfacab5f6d"
-                      },
-                      {
-                        "command": "EVENT_SCENE_PUSH_STATE",
-                        "args": {
-                          "__collapse": true
-                        },
-                        "id": "c7364009-08d8-45e8-b8bd-9ddbb9f6df47"
-                      },
-                      {
-                        "command": "EVENT_SWITCH_SCENE",
-                        "args": {
-                          "sceneId": "844538a4-ddbf-43c7-b42a-5970cab92f66",
-                          "x": {
-                            "type": "number",
-                            "value": 0
-                          },
-                          "y": {
-                            "type": "number",
-                            "value": 0
-                          },
-                          "direction": "",
-                          "fadeSpeed": "2",
-                          "__collapse": false
-                        },
-                        "id": "e94b295b-35cc-4659-843a-786bcd6b9461"
+                        "id": "46515e26-c2ae-4144-b3c9-77c55c822328"
                       }
                     ],
                     "false": []
@@ -2901,6 +2921,17 @@
                           "__collapse": true
                         },
                         "id": "76118eb7-2608-483e-bcd3-43f2746a6c9d"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "65",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "2381c6ae-50af-430d-bf5b-447b320a9523"
                       },
                       {
                         "command": "EVENT_CALL_CUSTOM_EVENT",
@@ -2992,6 +3023,17 @@
                                       "__comment": false
                                     },
                                     "id": "789ac075-3795-4e95-ac48-c94a7dc45057"
+                                  },
+                                  {
+                                    "command": "EVENT_SET_VALUE",
+                                    "args": {
+                                      "variable": "65",
+                                      "value": {
+                                        "type": "false"
+                                      },
+                                      "__collapse": true
+                                    },
+                                    "id": "6b9bf2ee-3bcd-4e39-86e3-b9ecc672e94b"
                                   },
                                   {
                                     "command": "EVENT_CALL_CUSTOM_EVENT",
