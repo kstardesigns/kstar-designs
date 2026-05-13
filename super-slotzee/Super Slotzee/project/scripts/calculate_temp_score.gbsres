@@ -175,7 +175,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) Check for Slots: Extra Roll",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -261,7 +261,211 @@
               "false": []
             },
             "id": "7369c40d-7386-4f84-8077-7be0c789c4ea"
+          }
+        ],
+        "false": []
+      },
+      "id": "1e97a724-d34c-4bb4-b158-659a4daf0d75"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$00$ == 2 && $01$ == 2 && $02$ == 2"
+        },
+        "__collapseElse": true,
+        "__label": "(If) Check for Slots: Double Stack (2x score)",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "45",
+              "value": {
+                "type": "true"
+              },
+              "__collapse": false
+            },
+            "id": "8df53034-c8fe-4a24-8268-f14340fcf724"
           },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "16"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 3
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_INC_VALUE",
+                  "args": {
+                    "variable": "49"
+                  },
+                  "id": "37c4ce4e-f0fd-4760-9f9b-797e903b7393"
+                }
+              ],
+              "false": []
+            },
+            "id": "f2940df4-63e6-437f-ab5c-9e8f59f35f6f"
+          }
+        ],
+        "false": []
+      },
+      "id": "89563eae-5aac-41d4-a34c-76bc92373414"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$00$ == 3 && $01$ == 3 && $02$ == 3"
+        },
+        "__collapseElse": true,
+        "__label": "(If) Check for Slots: Auto Zero (all zeroes)",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "44",
+              "value": {
+                "type": "true"
+              },
+              "__collapse": true
+            },
+            "id": "c9d44426-9105-48a5-9912-677a73149b2c"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "16"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 3
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_INC_VALUE",
+                  "args": {
+                    "variable": "53"
+                  },
+                  "id": "305dceb7-fbba-45ca-8a75-a72a9da19ac2"
+                }
+              ],
+              "false": []
+            },
+            "id": "57c4a0ea-931a-400f-957b-0003526d6f75"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "f792ce6f-7872-45de-afbb-9df1a0e710e6",
+              "__collapse": true
+            },
+            "id": "89e4ec38-31ad-4190-90a9-a8789c354a3b"
+          }
+        ],
+        "false": []
+      },
+      "id": "6d664c5d-f0d0-4b74-b612-170e6d7e48d0"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$00$ == 4 && $01$ == 4 && $02$ == 4"
+        },
+        "__collapseElse": true,
+        "__label": "(If) Check for Slots: Slot Coin (minigame triggered)",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "63",
+              "value": {
+                "type": "true"
+              },
+              "__collapse": false
+            },
+            "id": "88ed2b09-0416-4d00-9721-00f2107bd1a5"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "16"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 3
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_INC_VALUE",
+                  "args": {
+                    "variable": "64"
+                  },
+                  "id": "42a6cd29-efa7-45f9-9384-27caa7984bb1"
+                }
+              ],
+              "false": []
+            },
+            "id": "97fd0c44-79ad-4773-be20-e179f653b70b"
+          }
+        ],
+        "false": []
+      },
+      "id": "33440f31-950d-40f3-8bcd-f92d4479c1ef"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$61$ || $45$ || $63$"
+        },
+        "__collapseElse": true,
+        "__label": "(If) Matching good slots & all not held already",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
           {
             "command": "EVENT_IF",
             "args": {
@@ -269,7 +473,9 @@
                 "type": "expression",
                 "value": "!($08$ && $09$ && $10$)"
               },
-              "__collapseElse": true
+              "__collapseElse": true,
+              "__collapse": false,
+              "__label": "(If) not held already"
             },
             "children": {
               "true": [
@@ -307,7 +513,8 @@
                       "type": "expression",
                       "value": "$66$ > 0"
                     },
-                    "__label": "(Loop while) Light tile replacement animation"
+                    "__label": "(Loop while) Light tile replacement animation",
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -764,193 +971,528 @@
         ],
         "false": []
       },
-      "id": "1e97a724-d34c-4bb4-b158-659a4daf0d75"
+      "id": "5a7f95f2-1d8b-4348-80e8-ad764a957293"
     },
     {
       "command": "EVENT_IF",
       "args": {
         "condition": {
           "type": "expression",
-          "value": "$00$ == 2 && $01$ == 2 && $02$ == 2"
+          "value": "$44$"
         },
         "__collapseElse": true,
-        "__label": "(If) Check for Slots: Double Stack (2x score)",
-        "__collapse": true
+        "__label": "(If) Matching bad slots & all not held already",
+        "__collapse": false,
+        "__comment": true
       },
       "children": {
         "true": [
           {
-            "command": "EVENT_SET_VALUE",
-            "args": {
-              "variable": "45",
-              "value": {
-                "type": "true"
-              },
-              "__collapse": false
-            },
-            "id": "8df53034-c8fe-4a24-8268-f14340fcf724"
-          },
-          {
             "command": "EVENT_IF",
             "args": {
               "condition": {
-                "type": "eq",
-                "valueA": {
-                  "type": "variable",
-                  "value": "16"
-                },
-                "valueB": {
-                  "type": "number",
-                  "value": 3
-                }
-              },
-              "__collapseElse": true
-            },
-            "children": {
-              "true": [
-                {
-                  "command": "EVENT_INC_VALUE",
-                  "args": {
-                    "variable": "49"
-                  },
-                  "id": "37c4ce4e-f0fd-4760-9f9b-797e903b7393"
-                }
-              ],
-              "false": []
-            },
-            "id": "f2940df4-63e6-437f-ab5c-9e8f59f35f6f"
-          }
-        ],
-        "false": []
-      },
-      "id": "89563eae-5aac-41d4-a34c-76bc92373414"
-    },
-    {
-      "command": "EVENT_IF",
-      "args": {
-        "condition": {
-          "type": "expression",
-          "value": "$00$ == 3 && $01$ == 3 && $02$ == 3"
-        },
-        "__collapseElse": true,
-        "__label": "(If) Check for Slots: Auto Zero (all zeroes)",
-        "__collapse": true
-      },
-      "children": {
-        "true": [
-          {
-            "command": "EVENT_SET_VALUE",
-            "args": {
-              "variable": "44",
-              "value": {
-                "type": "true"
-              },
-              "__collapse": true
-            },
-            "id": "c9d44426-9105-48a5-9912-677a73149b2c"
-          },
-          {
-            "command": "EVENT_IF",
-            "args": {
-              "condition": {
-                "type": "eq",
-                "valueA": {
-                  "type": "variable",
-                  "value": "16"
-                },
-                "valueB": {
-                  "type": "number",
-                  "value": 3
-                }
+                "type": "expression",
+                "value": "!($08$ && $09$ && $10$)"
               },
               "__collapseElse": true,
-              "__collapse": true
+              "__collapse": false,
+              "__label": "(If) not held already"
             },
             "children": {
               "true": [
                 {
-                  "command": "EVENT_INC_VALUE",
+                  "command": "EVENT_SET_VALUE",
                   "args": {
-                    "variable": "53"
+                    "variable": "66",
+                    "value": {
+                      "type": "number",
+                      "value": 2
+                    },
+                    "__collapse": false
                   },
-                  "id": "305dceb7-fbba-45ca-8a75-a72a9da19ac2"
-                }
-              ],
-              "false": []
-            },
-            "id": "57c4a0ea-931a-400f-957b-0003526d6f75"
-          },
-          {
-            "command": "EVENT_CALL_CUSTOM_EVENT",
-            "args": {
-              "customEventId": "f792ce6f-7872-45de-afbb-9df1a0e710e6",
-              "__collapse": true
-            },
-            "id": "89e4ec38-31ad-4190-90a9-a8789c354a3b"
-          }
-        ],
-        "false": []
-      },
-      "id": "6d664c5d-f0d0-4b74-b612-170e6d7e48d0"
-    },
-    {
-      "command": "EVENT_IF",
-      "args": {
-        "condition": {
-          "type": "expression",
-          "value": "$00$ == 4 && $01$ == 4 && $02$ == 4"
-        },
-        "__collapseElse": true,
-        "__label": "(If) Check for Slots: Slot Coin (minigame triggered)",
-        "__collapse": false
-      },
-      "children": {
-        "true": [
-          {
-            "command": "EVENT_SET_VALUE",
-            "args": {
-              "variable": "63",
-              "value": {
-                "type": "true"
-              },
-              "__collapse": false
-            },
-            "id": "88ed2b09-0416-4d00-9721-00f2107bd1a5"
-          },
-          {
-            "command": "EVENT_IF",
-            "args": {
-              "condition": {
-                "type": "eq",
-                "valueA": {
-                  "type": "variable",
-                  "value": "16"
+                  "id": "594c887f-59ee-4ca6-a426-49e96049d762"
                 },
-                "valueB": {
-                  "type": "number",
-                  "value": 3
-                }
-              },
-              "__collapseElse": true
-            },
-            "children": {
-              "true": [
                 {
-                  "command": "EVENT_INC_VALUE",
+                  "command": "EVENT_PALETTE_SET_BACKGROUND",
                   "args": {
-                    "variable": "64"
+                    "palette0": "keep",
+                    "palette1": "keep",
+                    "palette2": "keep",
+                    "palette3": "keep",
+                    "palette4": "keep",
+                    "palette5": "38aa234f-d216-4c3d-9ace-77c5a5e7a8dd",
+                    "palette6": "keep",
+                    "palette7": "keep",
+                    "__collapse": false
                   },
-                  "id": "42a6cd29-efa7-45f9-9384-27caa7984bb1"
+                  "id": "59538d85-42a5-49a9-84cf-059c49dfbae0"
+                },
+                {
+                  "command": "EVENT_LOOP_WHILE",
+                  "args": {
+                    "condition": {
+                      "type": "expression",
+                      "value": "$66$ > 0"
+                    },
+                    "__label": "(Loop while) Light tile replacement animation",
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 19
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 1
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "__collapse": true
+                        },
+                        "id": "45133c0c-1287-4f37-a157-41335ed8a279"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 19
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 2
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 1
+                          },
+                          "__collapse": true
+                        },
+                        "id": "297bb4b6-293d-44ea-ba5a-8527d327f20b"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 16
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 5
+                          },
+                          "__collapse": true
+                        },
+                        "id": "01b1c704-ec07-45c0-82f2-02186c4631d5"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 17
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 4
+                          },
+                          "__collapse": true
+                        },
+                        "id": "869bff22-8688-4c5c-81c2-fe4378d6ca24"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 1
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 3
+                          },
+                          "__collapse": true
+                        },
+                        "id": "e1b2f844-1072-4e8c-bb4d-24e3b7fa8a6f"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 2
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 2
+                          },
+                          "__collapse": true
+                        },
+                        "id": "1e2f7ec7-d75f-4568-975d-27ab97141dab"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 19
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 5
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 8
+                          },
+                          "__collapse": true
+                        },
+                        "id": "0307a72d-865a-4db4-8fd2-0c293f7f05c5"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 19
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 6
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 9
+                          },
+                          "__collapse": true
+                        },
+                        "id": "eb324b2e-54b0-415f-b092-19cb8c473f9d"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 5
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 7
+                          },
+                          "__collapse": true
+                        },
+                        "id": "a5f01e3c-61dd-4374-a44b-5fba8bb2f814"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 6
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 6
+                          },
+                          "__collapse": true
+                        },
+                        "id": "e4de3a6d-24a3-4095-971a-a63f95a76b51"
+                      },
+                      {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 0.75,
+                          "frames": 30,
+                          "__collapse": false
+                        },
+                        "id": "e1f97596-b69b-4c41-ab5e-e431311338e2"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 19
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 1
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 1
+                          },
+                          "__collapse": true
+                        },
+                        "id": "4d8a9e51-9c6c-4a17-8f05-9fdd5c1c28b8"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 19
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 2
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "__collapse": true
+                        },
+                        "id": "c7da560a-201c-4cef-8d2d-8db789d11bba"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 16
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 4
+                          },
+                          "__collapse": true
+                        },
+                        "id": "855c9432-0819-4798-8f02-417c260448f0"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 17
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 5
+                          },
+                          "__collapse": true
+                        },
+                        "id": "4e11a3b9-d681-421d-bee8-92946798a61d"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 1
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 2
+                          },
+                          "__collapse": true
+                        },
+                        "id": "428a9228-05e3-4d52-9845-0de67269572c"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 2
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 3
+                          },
+                          "__collapse": true
+                        },
+                        "id": "260492b2-a14a-4173-982e-41905abec78b"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 19
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 5
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 9
+                          },
+                          "__collapse": true
+                        },
+                        "id": "dfebe6f7-97ab-4997-ae2b-3bb4d4498066"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 19
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 6
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 8
+                          },
+                          "__collapse": true
+                        },
+                        "id": "3b90e9a7-3019-4366-8f82-d8c28b919b8b"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 5
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 6
+                          },
+                          "__collapse": true
+                        },
+                        "id": "122b5dfb-3136-4e8f-a27d-5ed7a13f57ac"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 6
+                          },
+                          "tilesetId": "fe4d91b6-70f0-4da5-8bd2-a595200747b8",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 7
+                          },
+                          "__collapse": true
+                        },
+                        "id": "63d5f525-621e-4898-8dcd-cf3fcdb0bdd2"
+                      },
+                      {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 0.75,
+                          "frames": 30,
+                          "__collapse": false
+                        },
+                        "id": "0f861276-204a-4d3e-b948-bc7d7223c132"
+                      },
+                      {
+                        "command": "EVENT_DEC_VALUE",
+                        "args": {
+                          "variable": "66",
+                          "__collapse": true
+                        },
+                        "id": "7e38f2b9-2774-4371-9f99-4428f6408dc6"
+                      }
+                    ]
+                  },
+                  "id": "63cfa666-738e-42c1-92b0-95508544849b"
+                },
+                {
+                  "command": "EVENT_PALETTE_SET_BACKGROUND",
+                  "args": {
+                    "palette0": "keep",
+                    "palette1": "keep",
+                    "palette2": "keep",
+                    "palette3": "keep",
+                    "palette4": "keep",
+                    "palette5": "9bc03367-0a66-4d4e-b95b-3c8790fc9eb5",
+                    "palette6": "keep",
+                    "palette7": "keep",
+                    "__collapse": true
+                  },
+                  "id": "809094d0-d898-414c-b32e-cf26f745b4bb"
                 }
               ],
               "false": []
             },
-            "id": "97fd0c44-79ad-4773-be20-e179f653b70b"
+            "id": "3fc1410d-ab59-4664-b27d-73bc9cc4797b"
           }
         ],
         "false": []
       },
-      "id": "33440f31-950d-40f3-8bcd-f92d4479c1ef"
+      "id": "75827fc9-8b14-437a-9913-cf14d75ea659"
     },
     {
       "command": "EVENT_IF",
@@ -963,7 +1505,7 @@
           }
         },
         "__collapseElse": false,
-        "__collapse": false,
+        "__collapse": true,
         "__label": "(If) NOT bonus_auto_zero: score everything"
       },
       "children": {
