@@ -2000,7 +2000,7 @@
                       }
                     },
                     "__collapseElse": true,
-                    "__collapse": true,
+                    "__collapse": false,
                     "__comment": false
                   },
                   "children": {
@@ -2213,7 +2213,7 @@
                       }
                     },
                     "__collapseElse": true,
-                    "__collapse": true,
+                    "__collapse": false,
                     "__comment": false
                   },
                   "children": {
@@ -2227,24 +2227,35 @@
                         "children": {
                           "true": [
                             {
-                              "command": "EVENT_WAIT",
+                              "command": "EVENT_IF",
                               "args": {
-                                "time": 0.5,
-                                "frames": 30,
-                                "__collapse": false,
-                                "__label": "Wait to stagger results",
-                                "__comment": false,
-                                "units": "time"
+                                "condition": {
+                                  "type": "not",
+                                  "value": {
+                                    "type": "variable",
+                                    "value": "11"
+                                  }
+                                },
+                                "__collapseElse": true
                               },
-                              "id": "2e850af4-6627-44ab-9e4d-eb56400a9bf8"
-                            },
-                            {
-                              "command": "EVENT_CALL_CUSTOM_EVENT",
-                              "args": {
-                                "customEventId": "cf8cebd3-f587-420d-981e-defb31355d9d",
-                                "__comment": true
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_WAIT",
+                                    "args": {
+                                      "time": 0.7,
+                                      "frames": 30,
+                                      "__collapse": false,
+                                      "__label": "Wait to stagger results",
+                                      "__comment": false,
+                                      "units": "time"
+                                    },
+                                    "id": "2e850af4-6627-44ab-9e4d-eb56400a9bf8"
+                                  }
+                                ],
+                                "false": []
                               },
-                              "id": "d66d70b9-6b8b-483f-96c2-d37e589e8ba3"
+                              "id": "79a132c5-ea5e-4057-ab85-664e0d772ae5"
                             },
                             {
                               "command": "EVENT_COMMENT",
@@ -2446,7 +2457,7 @@
                       }
                     },
                     "__collapseElse": true,
-                    "__collapse": true,
+                    "__collapse": false,
                     "__comment": false
                   },
                   "children": {
@@ -2460,23 +2471,93 @@
                         "children": {
                           "true": [
                             {
-                              "command": "EVENT_WAIT",
+                              "command": "EVENT_VARIABLE_MATH_EVALUATE",
                               "args": {
-                                "time": 1,
-                                "frames": 30,
-                                "__collapse": false,
-                                "__label": "Wait to stagger results",
-                                "__comment": false
+                                "variable": "77",
+                                "expression": "$11$ + $12$",
+                                "__collapse": true
                               },
-                              "id": "efc74f8c-7dc8-44d8-b584-ea0fd2d53ec2"
+                              "id": "d97e325f-a163-4b8d-bacb-67ad38945e7d"
                             },
                             {
-                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "command": "EVENT_SWITCH",
                               "args": {
-                                "customEventId": "cf8cebd3-f587-420d-981e-defb31355d9d",
-                                "__comment": true
+                                "variable": "77",
+                                "choices": 2,
+                                "__collapseCase0": false,
+                                "value0": 0,
+                                "__collapseCase1": false,
+                                "value1": 1,
+                                "__collapseCase2": false,
+                                "value2": 2,
+                                "__collapseCase3": false,
+                                "value3": 4,
+                                "__collapseCase4": false,
+                                "value4": 5,
+                                "__collapseCase5": false,
+                                "value5": 6,
+                                "__collapseCase6": false,
+                                "value6": 7,
+                                "__collapseCase7": false,
+                                "value7": 8,
+                                "__collapseCase8": false,
+                                "value8": 9,
+                                "__collapseCase9": false,
+                                "value9": 10,
+                                "__collapseCase10": false,
+                                "value10": 11,
+                                "__collapseCase11": false,
+                                "value11": 12,
+                                "__collapseCase12": false,
+                                "value12": 13,
+                                "__collapseCase13": false,
+                                "value13": 14,
+                                "__collapseCase14": false,
+                                "value14": 15,
+                                "__collapseCase15": false,
+                                "value15": 16,
+                                "__collapseElse": false,
+                                "__label": "[Switch] Stagger dice finish",
+                                "__collapse": false
                               },
-                              "id": "8e1ea999-9e3a-45ce-bbff-16a28f7d74f7"
+                              "children": {
+                                "true0": [
+                                  {
+                                    "command": "EVENT_WAIT",
+                                    "args": {
+                                      "time": 1.4,
+                                      "frames": 30
+                                    },
+                                    "id": "18e84b60-ed2e-4850-9912-331842e836e7"
+                                  }
+                                ],
+                                "true1": [
+                                  {
+                                    "command": "EVENT_WAIT",
+                                    "args": {
+                                      "time": 0.7,
+                                      "frames": 30
+                                    },
+                                    "id": "06cfda8f-37f9-4321-a465-60131e8165f1"
+                                  }
+                                ],
+                                "true2": [],
+                                "true3": [],
+                                "true4": [],
+                                "true5": [],
+                                "true6": [],
+                                "true7": [],
+                                "true8": [],
+                                "true9": [],
+                                "true10": [],
+                                "true11": [],
+                                "true12": [],
+                                "true13": [],
+                                "true14": [],
+                                "true15": [],
+                                "false": []
+                              },
+                              "id": "7eec89b2-bea8-4e0f-bc6c-08b5b7e2f081"
                             },
                             {
                               "command": "EVENT_COMMENT",
@@ -2679,7 +2760,7 @@
                       }
                     },
                     "__collapseElse": true,
-                    "__collapse": true,
+                    "__collapse": false,
                     "__comment": false
                   },
                   "children": {
@@ -2693,23 +2774,102 @@
                         "children": {
                           "true": [
                             {
-                              "command": "EVENT_WAIT",
+                              "command": "EVENT_VARIABLE_MATH_EVALUATE",
                               "args": {
-                                "time": 1.5,
-                                "frames": 30,
-                                "__collapse": false,
-                                "__label": "Wait to stagger results",
-                                "__comment": false
+                                "variable": "78",
+                                "expression": "$11$ + $12$ + $15$",
+                                "__collapse": false
                               },
-                              "id": "136cb044-a9b1-4006-9b92-0c54dcb3aed3"
+                              "id": "ca41edfe-7051-465d-a3ca-b5539d6b5893"
                             },
                             {
-                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "command": "EVENT_SWITCH",
                               "args": {
-                                "customEventId": "cf8cebd3-f587-420d-981e-defb31355d9d",
-                                "__comment": true
+                                "variable": "77",
+                                "choices": 3,
+                                "__collapseCase0": false,
+                                "value0": 0,
+                                "__collapseCase1": false,
+                                "value1": 1,
+                                "__collapseCase2": false,
+                                "value2": 2,
+                                "__collapseCase3": false,
+                                "value3": 4,
+                                "__collapseCase4": false,
+                                "value4": 5,
+                                "__collapseCase5": false,
+                                "value5": 6,
+                                "__collapseCase6": false,
+                                "value6": 7,
+                                "__collapseCase7": false,
+                                "value7": 8,
+                                "__collapseCase8": false,
+                                "value8": 9,
+                                "__collapseCase9": false,
+                                "value9": 10,
+                                "__collapseCase10": false,
+                                "value10": 11,
+                                "__collapseCase11": false,
+                                "value11": 12,
+                                "__collapseCase12": false,
+                                "value12": 13,
+                                "__collapseCase13": false,
+                                "value13": 14,
+                                "__collapseCase14": false,
+                                "value14": 15,
+                                "__collapseCase15": false,
+                                "value15": 16,
+                                "__collapseElse": false,
+                                "__label": "[Switch] Stagger dice finish",
+                                "__collapse": false
                               },
-                              "id": "ead0723b-027a-47bf-9649-1e755edca918"
+                              "children": {
+                                "true0": [
+                                  {
+                                    "command": "EVENT_WAIT",
+                                    "args": {
+                                      "time": 2.1,
+                                      "frames": 30
+                                    },
+                                    "id": "b6d4248e-7d4c-4dd4-99b8-29a574a21ba8"
+                                  }
+                                ],
+                                "true1": [
+                                  {
+                                    "command": "EVENT_WAIT",
+                                    "args": {
+                                      "time": 1.4,
+                                      "frames": 30
+                                    },
+                                    "id": "9a09c6d6-f441-4f84-94da-f3afcbed2097"
+                                  }
+                                ],
+                                "true2": [
+                                  {
+                                    "command": "EVENT_WAIT",
+                                    "args": {
+                                      "time": 0.7,
+                                      "frames": 30
+                                    },
+                                    "id": "9c167e37-6ed7-4451-9670-33753949b21a"
+                                  }
+                                ],
+                                "true3": [],
+                                "true4": [],
+                                "true5": [],
+                                "true6": [],
+                                "true7": [],
+                                "true8": [],
+                                "true9": [],
+                                "true10": [],
+                                "true11": [],
+                                "true12": [],
+                                "true13": [],
+                                "true14": [],
+                                "true15": [],
+                                "false": []
+                              },
+                              "id": "3ec2bcc5-cea3-4093-a274-ba76247a2184"
                             },
                             {
                               "command": "EVENT_COMMENT",
@@ -2912,7 +3072,7 @@
                       }
                     },
                     "__collapseElse": true,
-                    "__collapse": true,
+                    "__collapse": false,
                     "__comment": false
                   },
                   "children": {
@@ -2926,23 +3086,111 @@
                         "children": {
                           "true": [
                             {
-                              "command": "EVENT_WAIT",
+                              "command": "EVENT_VARIABLE_MATH_EVALUATE",
                               "args": {
-                                "time": 2,
-                                "frames": 30,
-                                "__collapse": false,
-                                "__label": "Wait to stagger results",
-                                "__comment": false
+                                "variable": "79",
+                                "expression": "$11$ + $12$ + $15$ + $13$",
+                                "__collapse": false
                               },
-                              "id": "e20b9b29-44ed-4551-ae09-27843746c14f"
+                              "id": "9e65b0bf-7efa-4257-a132-3051cd9c3b95"
                             },
                             {
-                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "command": "EVENT_SWITCH",
                               "args": {
-                                "customEventId": "cf8cebd3-f587-420d-981e-defb31355d9d",
-                                "__comment": true
+                                "variable": "77",
+                                "choices": 4,
+                                "__collapseCase0": false,
+                                "value0": 0,
+                                "__collapseCase1": false,
+                                "value1": 1,
+                                "__collapseCase2": false,
+                                "value2": 2,
+                                "__collapseCase3": false,
+                                "value3": 4,
+                                "__collapseCase4": false,
+                                "value4": 5,
+                                "__collapseCase5": false,
+                                "value5": 6,
+                                "__collapseCase6": false,
+                                "value6": 7,
+                                "__collapseCase7": false,
+                                "value7": 8,
+                                "__collapseCase8": false,
+                                "value8": 9,
+                                "__collapseCase9": false,
+                                "value9": 10,
+                                "__collapseCase10": false,
+                                "value10": 11,
+                                "__collapseCase11": false,
+                                "value11": 12,
+                                "__collapseCase12": false,
+                                "value12": 13,
+                                "__collapseCase13": false,
+                                "value13": 14,
+                                "__collapseCase14": false,
+                                "value14": 15,
+                                "__collapseCase15": false,
+                                "value15": 16,
+                                "__collapseElse": false,
+                                "__label": "[Switch] Stagger dice finish",
+                                "__collapse": false
                               },
-                              "id": "9abad127-b081-41d3-af10-f3e0e4d3b538"
+                              "children": {
+                                "true0": [
+                                  {
+                                    "command": "EVENT_WAIT",
+                                    "args": {
+                                      "time": 2.8,
+                                      "frames": 30
+                                    },
+                                    "id": "41d93065-3dd9-4836-8ed9-1caf7befc328"
+                                  }
+                                ],
+                                "true1": [
+                                  {
+                                    "command": "EVENT_WAIT",
+                                    "args": {
+                                      "time": 2.1,
+                                      "frames": 30
+                                    },
+                                    "id": "80912f02-ab0d-4c7b-86e0-e0ae700f930b"
+                                  }
+                                ],
+                                "true2": [
+                                  {
+                                    "command": "EVENT_WAIT",
+                                    "args": {
+                                      "time": 1.4,
+                                      "frames": 30
+                                    },
+                                    "id": "2778de9d-5942-4a61-a862-6c4dce7006e0"
+                                  }
+                                ],
+                                "true3": [
+                                  {
+                                    "command": "EVENT_WAIT",
+                                    "args": {
+                                      "time": 0.7,
+                                      "frames": 30
+                                    },
+                                    "id": "542aa6e6-e43d-4842-af25-5b1d84a622e5"
+                                  }
+                                ],
+                                "true4": [],
+                                "true5": [],
+                                "true6": [],
+                                "true7": [],
+                                "true8": [],
+                                "true9": [],
+                                "true10": [],
+                                "true11": [],
+                                "true12": [],
+                                "true13": [],
+                                "true14": [],
+                                "true15": [],
+                                "false": []
+                              },
+                              "id": "ff8e2c14-a23c-4b7b-820a-5b669b37e221"
                             },
                             {
                               "command": "EVENT_COMMENT",
