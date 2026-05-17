@@ -7,107 +7,57 @@
     "V0": {
       "id": "V0",
       "name": "score_to_draw",
-      "passByReference": true
+      "passByReference": false
     },
     "V1": {
       "id": "V1",
       "name": "bg_tile_x",
-      "passByReference": true
+      "passByReference": false
     },
     "V2": {
       "id": "V2",
       "name": "bg_tile_y",
-      "passByReference": true
+      "passByReference": false
     }
   },
   "actors": {},
   "symbol": "script_15",
   "script": [
     {
-      "command": "EVENT_IF",
+      "command": "EVENT_SET_VALUE",
       "args": {
-        "condition": {
+        "variable": "118",
+        "value": {
           "type": "expression",
-          "value": "$V0$ >= 1000"
+          "value": "$V0$ / 1000"
         },
-        "__collapseElse": true,
-        "__comment": false
+        "__collapse": false
       },
-      "children": {
-        "true": [
-          {
-            "command": "EVENT_SET_VALUE",
-            "args": {
-              "variable": "118",
-              "value": {
-                "type": "expression",
-                "value": "$V0$ / 1000"
-              },
-              "__collapse": false
-            },
-            "id": "a0d29703-825d-4e4f-a0f9-95e10a1fa43a"
-          }
-        ],
-        "false": []
-      },
-      "id": "959c3bd9-dc2c-49dd-a154-b44e2e3eee25"
+      "id": "a0d29703-825d-4e4f-a0f9-95e10a1fa43a"
     },
     {
-      "command": "EVENT_IF",
+      "command": "EVENT_SET_VALUE",
       "args": {
-        "condition": {
+        "variable": "85",
+        "value": {
           "type": "expression",
-          "value": "$V0$ >= 100"
+          "value": "$V0$ / 100"
         },
-        "__collapseElse": true,
-        "__comment": false
+        "__collapse": false
       },
-      "children": {
-        "true": [
-          {
-            "command": "EVENT_SET_VALUE",
-            "args": {
-              "variable": "85",
-              "value": {
-                "type": "expression",
-                "value": "$V0$ / 100"
-              },
-              "__collapse": false
-            },
-            "id": "293b5dd7-36ae-44ac-ab22-2f7d8885be1e"
-          }
-        ],
-        "false": []
-      },
-      "id": "a843b27f-e110-4720-8d40-ea1d88eafcf6"
+      "id": "293b5dd7-36ae-44ac-ab22-2f7d8885be1e"
     },
     {
-      "command": "EVENT_IF",
+      "command": "EVENT_SET_VALUE",
       "args": {
-        "condition": {
+        "variable": "86",
+        "value": {
           "type": "expression",
-          "value": "$V0$ >= 10"
+          "value": "($V0$ / 10) % 10"
         },
-        "__collapseElse": true
+        "__collapse": false
       },
-      "children": {
-        "true": [
-          {
-            "command": "EVENT_SET_VALUE",
-            "args": {
-              "variable": "86",
-              "value": {
-                "type": "expression",
-                "value": "($V0$ / 10) % 10"
-              },
-              "__collapse": false
-            },
-            "id": "6d4cc928-13ff-48c7-886c-3babf6e05115"
-          }
-        ],
-        "false": []
-      },
-      "id": "3d2494d1-42d5-490e-8757-13e227145ca4"
+      "id": "6d4cc928-13ff-48c7-886c-3babf6e05115"
     },
     {
       "command": "EVENT_SET_VALUE",
