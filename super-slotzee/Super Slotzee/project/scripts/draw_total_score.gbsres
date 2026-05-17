@@ -1,28 +1,57 @@
 {
   "_resourceType": "script",
-  "id": "a2a963d3-8540-4a30-b6cb-ed694ee04208",
-  "name": "Draw Upper Score",
-  "description": "This draws the upper score on the scorecard scene",
+  "id": "de62d8fb-4adb-4ccf-8ed9-50813e05828f",
+  "name": "Draw Total Score",
+  "description": "This draws the total score on the scorecard scene",
   "variables": {
     "V0": {
       "id": "V0",
       "name": "score_to_draw",
-      "passByReference": false
+      "passByReference": true
     },
     "V1": {
       "id": "V1",
       "name": "bg_tile_x",
-      "passByReference": false
+      "passByReference": true
     },
     "V2": {
       "id": "V2",
       "name": "bg_tile_y",
-      "passByReference": false
+      "passByReference": true
     }
   },
   "actors": {},
-  "symbol": "script_0",
+  "symbol": "script_15",
   "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$V0$ >= 1000"
+        },
+        "__collapseElse": true,
+        "__comment": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "118",
+              "value": {
+                "type": "expression",
+                "value": "$V0$ / 1000"
+              },
+              "__collapse": false
+            },
+            "id": "a0d29703-825d-4e4f-a0f9-95e10a1fa43a"
+          }
+        ],
+        "false": []
+      },
+      "id": "959c3bd9-dc2c-49dd-a154-b44e2e3eee25"
+    },
     {
       "command": "EVENT_IF",
       "args": {
@@ -45,12 +74,12 @@
               },
               "__collapse": false
             },
-            "id": "727a15c5-5bdc-421f-8daf-7cb934b0f7af"
+            "id": "293b5dd7-36ae-44ac-ab22-2f7d8885be1e"
           }
         ],
         "false": []
       },
-      "id": "04a43e25-b628-462a-b41b-4ee1d13de2eb"
+      "id": "a843b27f-e110-4720-8d40-ea1d88eafcf6"
     },
     {
       "command": "EVENT_IF",
@@ -73,12 +102,12 @@
               },
               "__collapse": false
             },
-            "id": "da84a657-5e26-4594-b242-2da611c3b951"
+            "id": "6d4cc928-13ff-48c7-886c-3babf6e05115"
           }
         ],
         "false": []
       },
-      "id": "7b1acdd6-a0c5-4cfb-b17b-481877df5b7c"
+      "id": "3d2494d1-42d5-490e-8757-13e227145ca4"
     },
     {
       "command": "EVENT_SET_VALUE",
@@ -90,7 +119,7 @@
         },
         "__collapse": false
       },
-      "id": "3a80acfc-0907-469e-b98e-9edabab1a882"
+      "id": "f7d0aa62-e97f-4ce7-a607-fd6638649c75"
     },
     {
       "command": "EVENT_CALL_CUSTOM_EVENT",
@@ -110,7 +139,7 @@
         },
         "__label": "(Call Script) Draw 1's digit"
       },
-      "id": "4f077603-39a1-4933-9a40-a5355750cf24"
+      "id": "be51f1d3-cc16-417a-aee8-377d7f0baa7d"
     },
     {
       "command": "EVENT_IF",
@@ -141,7 +170,7 @@
               },
               "__label": "(Call Script) Draw 10's digit"
             },
-            "id": "bb3bc176-188d-4dee-8e28-b6974a1638bb"
+            "id": "37932e0b-68ca-4a37-a03b-149b842f51ec"
           }
         ],
         "false": [
@@ -163,11 +192,11 @@
               },
               "__label": "(Call Script) Draw 10's digit"
             },
-            "id": "e8aa020a-194c-4ca1-929a-c067be9551bb"
+            "id": "63529d8d-d0b9-452e-9f69-7b060ac4d2d7"
           }
         ]
       },
-      "id": "6f901355-0c7d-48fb-a842-3a0b69d74ea7"
+      "id": "9d09cb22-1134-4b6a-aec8-948cf50f623d"
     },
     {
       "command": "EVENT_IF",
@@ -199,7 +228,7 @@
               },
               "__label": "(Call Script) Draw 100's digit"
             },
-            "id": "e9d3d6ad-967c-4e17-bdd5-859df3b6b9f8"
+            "id": "7db5138b-aeff-4727-8076-14dc80db4d57"
           }
         ],
         "false": [
@@ -221,11 +250,69 @@
               },
               "__label": "(Call Script) Draw 100's digit"
             },
-            "id": "ef210846-7e33-4ee0-b6f1-127ed7475ad8"
+            "id": "4fa5a02a-f5c3-4bd1-982d-075c0946de41"
           }
         ]
       },
-      "id": "590382f0-484e-4216-9438-94368292e020"
+      "id": "eeb2dea8-6fd7-4a43-a952-4f9ca104730d"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$V0$ >= 1000"
+        },
+        "__collapseElse": false,
+        "__comment": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "118"
+              },
+              "$variable[V1]$": {
+                "type": "expression",
+                "value": "$V1$ - 3"
+              },
+              "$variable[V2]$": {
+                "type": "variable",
+                "value": "V2"
+              },
+              "__label": "(Call Script) Draw 1000's digit"
+            },
+            "id": "fd609475-b647-464f-841e-4ab7a9195c28"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
+              "$variable[V0]$": {
+                "type": "number",
+                "value": 999
+              },
+              "$variable[V1]$": {
+                "type": "expression",
+                "value": "$V1$ - 3"
+              },
+              "$variable[V2]$": {
+                "type": "variable",
+                "value": "V2"
+              },
+              "__label": "(Call Script) Draw 100's digit"
+            },
+            "id": "89ce1925-7662-4f85-8864-ab06a9f1dd5c"
+          }
+        ]
+      },
+      "id": "a915be63-bb65-4da4-9014-c83cc3e73c05"
     }
   ]
 }
