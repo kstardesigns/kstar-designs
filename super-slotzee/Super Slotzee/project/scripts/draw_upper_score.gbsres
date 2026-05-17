@@ -1,0 +1,231 @@
+{
+  "_resourceType": "script",
+  "id": "a2a963d3-8540-4a30-b6cb-ed694ee04208",
+  "name": "Draw Upper Score",
+  "description": "",
+  "variables": {
+    "V0": {
+      "id": "V0",
+      "name": "score_to_draw",
+      "passByReference": false
+    },
+    "V1": {
+      "id": "V1",
+      "name": "bg_tile_x",
+      "passByReference": false
+    },
+    "V2": {
+      "id": "V2",
+      "name": "bg_tile_y",
+      "passByReference": false
+    }
+  },
+  "actors": {},
+  "symbol": "script_0",
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$V0$ >= 100"
+        },
+        "__collapseElse": true,
+        "__comment": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "85",
+              "value": {
+                "type": "expression",
+                "value": "$V0$ / 100"
+              },
+              "__collapse": false
+            },
+            "id": "727a15c5-5bdc-421f-8daf-7cb934b0f7af"
+          }
+        ],
+        "false": []
+      },
+      "id": "04a43e25-b628-462a-b41b-4ee1d13de2eb"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$V0$ >= 10"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "86",
+              "value": {
+                "type": "expression",
+                "value": "($V0$ / 10) % 10"
+              },
+              "__collapse": false
+            },
+            "id": "da84a657-5e26-4594-b242-2da611c3b951"
+          }
+        ],
+        "false": []
+      },
+      "id": "7b1acdd6-a0c5-4cfb-b17b-481877df5b7c"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "87",
+        "value": {
+          "type": "expression",
+          "value": "$V0$ % 10"
+        },
+        "__collapse": false
+      },
+      "id": "3a80acfc-0907-469e-b98e-9edabab1a882"
+    },
+    {
+      "command": "EVENT_CALL_CUSTOM_EVENT",
+      "args": {
+        "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
+        "$variable[V0]$": {
+          "type": "variable",
+          "value": "87"
+        },
+        "$variable[V1]$": {
+          "type": "variable",
+          "value": "V1"
+        },
+        "$variable[V2]$": {
+          "type": "variable",
+          "value": "V2"
+        },
+        "__label": "(Call Script) Draw 1's digit"
+      },
+      "id": "4f077603-39a1-4933-9a40-a5355750cf24"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$V0$ >= 10"
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "86"
+              },
+              "$variable[V1]$": {
+                "type": "expression",
+                "value": "$V1$ - 1"
+              },
+              "$variable[V2]$": {
+                "type": "variable",
+                "value": "V2"
+              },
+              "__label": "(Call Script) Draw 10's digit"
+            },
+            "id": "bb3bc176-188d-4dee-8e28-b6974a1638bb"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
+              "$variable[V0]$": {
+                "type": "number",
+                "value": 999
+              },
+              "$variable[V1]$": {
+                "type": "expression",
+                "value": "$V1$ - 1"
+              },
+              "$variable[V2]$": {
+                "type": "variable",
+                "value": "V2"
+              },
+              "__label": "(Call Script) Draw 10's digit"
+            },
+            "id": "e8aa020a-194c-4ca1-929a-c067be9551bb"
+          }
+        ]
+      },
+      "id": "6f901355-0c7d-48fb-a842-3a0b69d74ea7"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$V0$ >= 100"
+        },
+        "__collapseElse": false,
+        "__comment": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "85"
+              },
+              "$variable[V1]$": {
+                "type": "expression",
+                "value": "$V1$ - 2"
+              },
+              "$variable[V2]$": {
+                "type": "variable",
+                "value": "V2"
+              },
+              "__label": "(Call Script) Draw 100's digit"
+            },
+            "id": "e9d3d6ad-967c-4e17-bdd5-859df3b6b9f8"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
+              "$variable[V0]$": {
+                "type": "number",
+                "value": 999
+              },
+              "$variable[V1]$": {
+                "type": "expression",
+                "value": "$V1$ - 2"
+              },
+              "$variable[V2]$": {
+                "type": "variable",
+                "value": "V2"
+              },
+              "__label": "(Call Script) Draw 100's digit"
+            },
+            "id": "ef210846-7e33-4ee0-b6f1-127ed7475ad8"
+          }
+        ]
+      },
+      "id": "590382f0-484e-4216-9438-94368292e020"
+    }
+  ]
+}
