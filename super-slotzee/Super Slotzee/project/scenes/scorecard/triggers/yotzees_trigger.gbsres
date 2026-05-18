@@ -11,6 +11,148 @@
   "height": 1,
   "script": [
     {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "111"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "$41$ > 0"
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Currently, you \nhave 1 Yotzee",
+                      "scored at $41$\npoints."
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": true,
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "83963f53-6872-428d-ab65-8ebffc5086fc"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "variable",
+                      "value": "42"
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "You have $42$\nbonus Yotzee(s)",
+                            "scored at 100\npoints."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": true,
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "9d1d0955-2816-47dc-b620-b5afdb922d83"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "0d649020-af4e-43c1-bd3c-7bcee858ff7d"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "variable",
+                      "value": "116"
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "You have $116$\nbonus Yotzee(s)",
+                            "scored at 200\npoints."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": true,
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "a94780e0-d46c-45b4-b91e-99c8c9ef71bb"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "62d8dc53-3e95-4b95-9620-1af5af8b9eb2"
+                }
+              ],
+              "false": []
+            },
+            "id": "bc6efef3-5786-487b-baa4-69a97f50afd6"
+          }
+        ],
+        "false": []
+      },
+      "id": "634838f1-2d3b-41fc-be2d-42a6dea9f0e5"
+    },
+    {
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
@@ -33,7 +175,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -43,11 +185,11 @@
               "actorId": "$self$",
               "x": {
                 "type": "number",
-                "value": 12
+                "value": 11
               },
               "y": {
                 "type": "number",
-                "value": 2
+                "value": 3
               },
               "moveType": "horizontal",
               "useCollisions": false
@@ -257,6 +399,14 @@
                           "__collapse": true
                         },
                         "id": "e8ed855a-a0f4-48ff-b501-73d91f3b66e5"
+                      },
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "551a872a-5e2d-4eda-ba63-872c25681bfc",
+                          "$actor[0]$": "aacea7e3-5f35-44ff-a371-5c04a05c14e9"
+                        },
+                        "id": "06e27499-9ce3-4851-a1a9-ae95f280d37e"
                       },
                       {
                         "command": "EVENT_SWITCH",
