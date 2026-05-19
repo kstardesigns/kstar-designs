@@ -527,7 +527,7 @@
                     "text": [
                       "Score $24$ \nfor fours?"
                     ],
-                    "__section": "layout",
+                    "__section": "text",
                     "avatarId": "",
                     "minHeight": 4,
                     "maxHeight": 7,
@@ -546,6 +546,13 @@
                     "__collapse": false
                   },
                   "id": "1a2a5f73-52ac-49a3-84e4-c887fd2ea736"
+                },
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "9963b3b8-a749-42c6-99c7-850bc91418a7"
+                  },
+                  "id": "09757e91-2352-4061-a55b-2afee68363c1"
                 },
                 {
                   "command": "EVENT_MENU",
@@ -670,9 +677,63 @@
                         "command": "EVENT_CALL_CUSTOM_EVENT",
                         "args": {
                           "customEventId": "551a872a-5e2d-4eda-ba63-872c25681bfc",
+                          "$actor[0]$": "aacea7e3-5f35-44ff-a371-5c04a05c14e9",
+                          "__collapse": true
+                        },
+                        "id": "f7790498-fae6-4608-9a37-b69fce5873c1"
+                      },
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "feb192c7-5d1a-4dee-abef-9c9bc0d57542"
+                        },
+                        "id": "e9cb24e5-7ffc-4731-a22c-83464bdb2f12"
+                      },
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "551a872a-5e2d-4eda-ba63-872c25681bfc",
                           "$actor[0]$": "aacea7e3-5f35-44ff-a371-5c04a05c14e9"
                         },
                         "id": "76763fd8-4eb5-46f9-ac78-f9d1adad2aa9"
+                      },
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "expression",
+                            "value": "($16$ < 4 && $61$) || ($16$ < 3 && !$61$)"
+                          },
+                          "__collapseElse": true,
+                          "__label": "Set roll number to 3 so next turn can start"
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_SET_VALUE",
+                              "args": {
+                                "variable": "16",
+                                "value": {
+                                  "type": "number",
+                                  "value": 3
+                                }
+                              },
+                              "id": "e264216f-5f25-4268-af86-489583b23793"
+                            },
+                            {
+                              "command": "EVENT_SET_VALUE",
+                              "args": {
+                                "variable": "81",
+                                "value": {
+                                  "type": "false"
+                                }
+                              },
+                              "id": "84f1dcd5-30a2-4189-ae1b-e3e3dbfe6f7d"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "8b6fca31-d620-415d-980f-fc1303bebbca"
                       },
                       {
                         "command": "EVENT_SET_VALUE",

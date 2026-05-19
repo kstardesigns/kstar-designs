@@ -549,6 +549,13 @@
                   "id": "582e9058-7335-4993-acb1-0b90e9b6fb9c"
                 },
                 {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "9963b3b8-a749-42c6-99c7-850bc91418a7"
+                  },
+                  "id": "d3f23446-ea8b-48ea-82db-51c347f0eda3"
+                },
+                {
                   "command": "EVENT_MENU",
                   "args": {
                     "variable": "112",
@@ -674,6 +681,44 @@
                           "$actor[0]$": "aacea7e3-5f35-44ff-a371-5c04a05c14e9"
                         },
                         "id": "de09a1ab-f09d-4f99-bd7f-c9821a0d14eb"
+                      },
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "expression",
+                            "value": "($16$ < 4 && $61$) || ($16$ < 3 && !$61$)"
+                          },
+                          "__collapseElse": true,
+                          "__label": "Set roll number to 3 so next turn can start"
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_SET_VALUE",
+                              "args": {
+                                "variable": "16",
+                                "value": {
+                                  "type": "number",
+                                  "value": 3
+                                }
+                              },
+                              "id": "27c3eec7-8eac-4de3-8fb3-cf1c5630492a"
+                            },
+                            {
+                              "command": "EVENT_SET_VALUE",
+                              "args": {
+                                "variable": "81",
+                                "value": {
+                                  "type": "false"
+                                }
+                              },
+                              "id": "46bdb30d-85e8-4552-a996-b34eca83e9b7"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "88612b71-6bf1-4ea6-ace8-a7714a0a874c"
                       },
                       {
                         "command": "EVENT_SET_VALUE",

@@ -1,0 +1,92 @@
+{
+  "_resourceType": "script",
+  "id": "9963b3b8-a749-42c6-99c7-850bc91418a7",
+  "name": "Check for rolls left",
+  "description": "",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_25",
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "($16$ < 4 && $61$) || ($16$ < 3 && !$61$)"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "61"
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "121",
+                    "value": {
+                      "type": "expression",
+                      "value": "4 - $16$"
+                    }
+                  },
+                  "id": "f100bd09-d238-4411-b25c-78ce3b5d3394"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "121",
+                    "value": {
+                      "type": "expression",
+                      "value": "3 - $16$"
+                    }
+                  },
+                  "id": "530abea1-90bc-4420-9248-983daaf0296d"
+                }
+              ]
+            },
+            "id": "5c85d236-c337-4674-abb5-b3a6356e5d11"
+          },
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "You have $121$ roll(s)\nleft in this turn."
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "top",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30,
+              "__collapse": false
+            },
+            "id": "f291be52-0f63-4970-b34a-bbecc332bddc"
+          }
+        ],
+        "false": []
+      },
+      "id": "42ade822-a3b6-4bd4-a73e-3c0b55800583"
+    }
+  ]
+}

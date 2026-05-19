@@ -1,0 +1,94 @@
+{
+  "_resourceType": "script",
+  "id": "feb192c7-5d1a-4dee-abef-9c9bc0d57542",
+  "name": "Check for Upper 35 bonus",
+  "description": "",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_24",
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "ne",
+          "valueA": {
+            "type": "variable",
+            "value": "120"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 35
+          }
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "gte",
+                "valueA": {
+                  "type": "variable",
+                  "value": "114"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 63
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "You got 35 bonus \npoints for reaching  @",
+                      "63 on your upper \nscore!"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "00997878-c34f-4bc2-a3c9-f1414f5e9a3b"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "120",
+                    "value": {
+                      "type": "number",
+                      "value": 35
+                    }
+                  },
+                  "id": "52800bf0-a143-4795-9fe2-168b19e530f8"
+                }
+              ],
+              "false": []
+            },
+            "id": "4adbcb1f-f9ba-4be4-8bb1-9e63d5258a95"
+          }
+        ],
+        "false": []
+      },
+      "id": "8483e73f-d1bb-48ac-9215-c5433fff13bb"
+    }
+  ]
+}
