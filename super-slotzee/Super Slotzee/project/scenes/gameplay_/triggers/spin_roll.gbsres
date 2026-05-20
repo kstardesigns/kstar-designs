@@ -62,6 +62,16 @@
                   "id": "2ef13eb7-ccda-4d1c-9798-578c11540784"
                 },
                 {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "125",
+                    "value": {
+                      "type": "false"
+                    }
+                  },
+                  "id": "ec8c43ea-4f8b-49da-a4a5-3f05fe3fbfae"
+                },
+                {
                   "command": "EVENT_IF",
                   "args": {
                     "condition": {
@@ -4874,7 +4884,7 @@
                                                 "value": 3
                                               }
                                             },
-                                            "__collapseElse": true,
+                                            "__collapseElse": false,
                                             "__collapse": false
                                           },
                                           "children": {
@@ -4969,7 +4979,20 @@
                                                 "id": "e4b5adcd-a029-4d84-9a43-bffb7a7b4af8"
                                               }
                                             ],
-                                            "false": []
+                                            "false": [
+                                              {
+                                                "command": "EVENT_COMMENT",
+                                                "args": {
+                                                  "text": "If it's a joker Yotzee, force an early scorecard and change the roll to 3. They must pick a score"
+                                                },
+                                                "id": "04234225-626e-488d-8dd4-f809fca5a03a"
+                                              },
+                                              {
+                                                "command": "EVENT_CALL_CUSTOM_EVENT",
+                                                "args": {},
+                                                "id": "697531e0-91d4-497a-ac6c-57e081320ede"
+                                              }
+                                            ]
                                           },
                                           "id": "c4caf7d8-1c68-452d-ad89-4c9b4535145e"
                                         }
