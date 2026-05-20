@@ -1,0 +1,124 @@
+{
+  "_resourceType": "script",
+  "id": "d4a7dcd5-5e2a-421c-8fce-9f8109a09bfb",
+  "name": "Scorecard choosing score scene change",
+  "description": "",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_28",
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "($16$ < 4 && $61$) || ($16$ < 3 && !$61$)"
+        },
+        "__collapseElse": true,
+        "__label": "Set roll number to 3 so next turn can start",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "16",
+              "value": {
+                "type": "number",
+                "value": 3
+              }
+            },
+            "id": "12cf419f-d508-4f78-9fb6-2e5a543c9a63"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "81",
+              "value": {
+                "type": "false"
+              }
+            },
+            "id": "410fed48-c97f-4a8f-8da9-f8bc94be00f1"
+          }
+        ],
+        "false": []
+      },
+      "id": "b9bda99a-1d39-4539-b014-37250b8807bc"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "123",
+        "value": {
+          "type": "true"
+        },
+        "__collapse": true
+      },
+      "id": "ce27c295-9b4e-4a6b-bad4-0d2e0408dad4"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "eq",
+          "valueA": {
+            "type": "variable",
+            "value": "17"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 13
+          }
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SCENE_PUSH_STATE",
+            "args": {},
+            "id": "d42db544-fdc9-4924-93c9-6d3eda871c52"
+          },
+          {
+            "command": "EVENT_SWITCH_SCENE",
+            "args": {
+              "sceneId": "333589fa-d29c-441c-a74a-ed4b19b75ba5",
+              "x": {
+                "type": "number",
+                "value": 0
+              },
+              "y": {
+                "type": "number",
+                "value": 0
+              },
+              "direction": "",
+              "fadeSpeed": "2"
+            },
+            "id": "1e08ea53-464d-438a-b2cb-e4af63c75937"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_SCENE_POP_STATE",
+            "args": {
+              "fadeSpeed": "2",
+              "__collapse": true
+            },
+            "id": "55e0ff10-1a3b-44a8-b1a1-3253c4ca642e"
+          }
+        ]
+      },
+      "id": "69639355-eb0a-4669-b01a-a5b07be92bb7"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 1,
+        "frames": 30,
+        "__collapse": true
+      },
+      "id": "53a93fbb-66bb-4731-bde6-e93fd317fe88"
+    }
+  ]
+}

@@ -66,21 +66,48 @@
       "id": "0a9b8025-7ea4-4eef-a15f-1c5cc79ff199"
     },
     {
-      "command": "EVENT_ACTOR_SET_POSITION",
+      "command": "EVENT_IF",
       "args": {
-        "actorId": "$self$",
-        "x": {
-          "type": "number",
-          "value": 3
+        "condition": {
+          "type": "not",
+          "value": {
+            "type": "variable",
+            "value": "123"
+          }
         },
-        "y": {
-          "type": "number",
-          "value": 8
-        },
-        "__collapse": true,
-        "__label": "Start pencil at 1's"
+        "__collapseElse": false
       },
-      "id": "a8e735f3-8fe6-4dfa-a687-c1b9d5eb6dd2"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 3
+              },
+              "y": {
+                "type": "number",
+                "value": 8
+              },
+              "__collapse": true,
+              "__label": "Start pencil at 1's"
+            },
+            "id": "a8e735f3-8fe6-4dfa-a687-c1b9d5eb6dd2"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_ACTOR_DEACTIVATE",
+            "args": {
+              "actorId": "$self$"
+            },
+            "id": "0c8475ec-1936-4ac8-801d-612e48bace35"
+          }
+        ]
+      },
+      "id": "eff3a0e4-514a-4fe7-9b77-5f8b56685967"
     },
     {
       "command": "EVENT_SET_INPUT_SCRIPT",
@@ -90,79 +117,54 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
           {
-            "command": "EVENT_ACTOR_SET_STATE",
+            "command": "EVENT_IF",
             "args": {
-              "actorId": "$self$",
-              "spriteStateId": "",
-              "loopAnim": true,
-              "__collapse": true
-            },
-            "id": "c59ebdfc-42f7-4e61-bf78-20d59dfb3dab"
-          },
-          {
-            "command": "EVENT_COMMENT",
-            "args": {
-              "text": "TEMP:",
-              "__collapse": true
-            },
-            "id": "7439faee-828d-4b4b-90b3-b7c1ace4812d"
-          },
-          {
-            "command": "EVENT_COMMENT",
-            "args": {
-              "text": "below 4 vars would be reset after user has chos scoring",
-              "__collapse": true
-            },
-            "id": "ec453efe-7b25-4e00-9252-d9e3d561b1f7"
-          },
-          {
-            "command": "EVENT_SET_VALUE",
-            "args": {
-              "variable": "44",
-              "value": {
-                "type": "false"
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "123"
+                }
               },
-              "__collapse": true
+              "__collapseElse": false
             },
-            "id": "3b6a1859-b7de-4a57-bf5f-9f7d56270757"
-          },
-          {
-            "command": "EVENT_SET_VALUE",
-            "args": {
-              "variable": "45",
-              "value": {
-                "type": "false"
-              },
-              "__collapse": true
+            "children": {
+              "true": [],
+              "false": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "You have already\nchosen a score for  @",
+                      "this turn. Press B to\nstart your next turn."
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "9e2388dc-cde2-4ef4-8848-de837f826f81"
+                }
+              ]
             },
-            "id": "7d619727-8e86-4726-b218-27931dec4c64"
-          },
-          {
-            "command": "EVENT_SET_VALUE",
-            "args": {
-              "variable": "61",
-              "value": {
-                "type": "false"
-              },
-              "__collapse": true
-            },
-            "id": "4fb30344-bddf-4d0c-8518-47ee88994884"
-          },
-          {
-            "command": "EVENT_SET_VALUE",
-            "args": {
-              "variable": "63",
-              "value": {
-                "type": "false"
-              },
-              "__collapse": true
-            },
-            "id": "118e9773-e2e1-491c-b9d9-c114927bda59"
+            "id": "8463f0fb-52c6-485b-b451-956f7f6434d6"
           }
         ]
       },
