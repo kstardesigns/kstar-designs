@@ -57,7 +57,8 @@
                     "variable": "123",
                     "value": {
                       "type": "false"
-                    }
+                    },
+                    "__collapse": true
                   },
                   "id": "2ef13eb7-ccda-4d1c-9798-578c11540784"
                 },
@@ -67,7 +68,8 @@
                     "variable": "125",
                     "value": {
                       "type": "false"
-                    }
+                    },
+                    "__collapse": true
                   },
                   "id": "ec8c43ea-4f8b-49da-a4a5-3f05fe3fbfae"
                 },
@@ -81,7 +83,7 @@
                         "value": "81"
                       }
                     },
-                    "__collapseElse": true,
+                    "__collapseElse": false,
                     "__collapse": false
                   },
                   "children": {
@@ -127,7 +129,7 @@
                           },
                           "__collapseElse": false,
                           "__label": "Update roll # variable / reset turn",
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "children": {
                           "true": [
@@ -232,6 +234,17 @@
                                             "__collapse": true
                                           },
                                           "id": "fc67cf9b-72ac-4d85-ae02-ebce59fb318b"
+                                        },
+                                        {
+                                          "command": "EVENT_SET_VALUE",
+                                          "args": {
+                                            "variable": "127",
+                                            "value": {
+                                              "type": "false"
+                                            },
+                                            "__collapse": true
+                                          },
+                                          "id": "a49c468e-cb06-49b5-bd65-135ad9e16ab2"
                                         },
                                         {
                                           "command": "EVENT_INC_VALUE",
@@ -4661,7 +4674,7 @@
                                       },
                                       "__collapseElse": true,
                                       "__label": "(If) Scene change to slot coin minigame if earned",
-                                      "__collapse": false
+                                      "__collapse": true
                                     },
                                     "children": {
                                       "true": [
@@ -4763,7 +4776,7 @@
                                     "command": "EVENT_COMMENT",
                                     "args": {
                                       "text": "If on last roll & you have bonus roll, let user know",
-                                      "__collapse": false,
+                                      "__collapse": true,
                                       "__label": "If earned extra roll & on last turn, let user know",
                                       "__comment": false
                                     },
@@ -4864,7 +4877,7 @@
                                             },
                                             "direction": "",
                                             "fadeSpeed": 1,
-                                            "__collapse": false
+                                            "__collapse": true
                                           },
                                           "id": "8accf908-10ef-40ed-9aee-298c119969c3"
                                         }
@@ -4903,15 +4916,6 @@
                                                 },
                                                 "children": {
                                                   "true": [
-                                                    {
-                                                      "command": "EVENT_CALL_CUSTOM_EVENT",
-                                                      "args": {
-                                                        "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762",
-                                                        "__collapse": true,
-                                                        "__comment": true
-                                                      },
-                                                      "id": "a6193319-1544-4c2e-b04b-a3c9d0147dde"
-                                                    },
                                                     {
                                                       "command": "EVENT_COMMENT",
                                                       "args": {
@@ -4983,14 +4987,100 @@
                                               {
                                                 "command": "EVENT_COMMENT",
                                                 "args": {
-                                                  "text": "If it's a joker Yotzee, force an early scorecard and change the roll to 3. They must pick a score"
+                                                  "text": "If it's a joker Yotzee, force hold all dice and let player know."
                                                 },
                                                 "id": "04234225-626e-488d-8dd4-f809fca5a03a"
                                               },
                                               {
-                                                "command": "EVENT_CALL_CUSTOM_EVENT",
-                                                "args": {},
-                                                "id": "697531e0-91d4-497a-ac6c-57e081320ede"
+                                                "command": "EVENT_IF",
+                                                "args": {
+                                                  "condition": {
+                                                    "type": "expression",
+                                                    "value": "$39$ && ($41$ == 50 || $41$ == 100)"
+                                                  },
+                                                  "__collapseElse": true
+                                                },
+                                                "children": {
+                                                  "true": [
+                                                    {
+                                                      "command": "EVENT_IF",
+                                                      "args": {
+                                                        "condition": {
+                                                          "type": "not",
+                                                          "value": {
+                                                            "type": "variable",
+                                                            "value": "127"
+                                                          }
+                                                        },
+                                                        "__collapseElse": true
+                                                      },
+                                                      "children": {
+                                                        "true": [
+                                                          {
+                                                            "command": "EVENT_CALL_CUSTOM_EVENT",
+                                                            "args": {
+                                                              "customEventId": "6145b3c0-ceb7-480c-bf11-ca46f03a8402",
+                                                              "__collapse": true
+                                                            },
+                                                            "id": "c3874a82-2475-4aa7-a2b0-0e77da2a8cbc"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_SET_VALUE",
+                                                            "args": {
+                                                              "variable": "127",
+                                                              "value": {
+                                                                "type": "true"
+                                                              },
+                                                              "__collapse": true
+                                                            },
+                                                            "id": "5dffa4af-23df-401c-b7ba-1c83c637e518"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_TEXT",
+                                                            "args": {
+                                                              "text": [
+                                                                "JOKER!\n@",
+                                                                "This Yotzee is\nautomatically  @",
+                                                                "scored, and you will \nalso score another  @",
+                                                                "box at the end of the \nturn. You can still  @",
+                                                                "spin the slots!"
+                                                              ],
+                                                              "__section": "text",
+                                                              "avatarId": "",
+                                                              "minHeight": 4,
+                                                              "maxHeight": 7,
+                                                              "textX": 1,
+                                                              "textY": 1,
+                                                              "textHeight": 5,
+                                                              "position": "bottom",
+                                                              "clearPrevious": true,
+                                                              "showFrame": "true",
+                                                              "speedIn": -1,
+                                                              "speedOut": -1,
+                                                              "closeWhen": "key",
+                                                              "closeButton": "a",
+                                                              "closeDelayTime": 0.5,
+                                                              "closeDelayFrames": 30,
+                                                              "__collapse": false
+                                                            },
+                                                            "id": "0b33106b-d017-4a32-a4cd-5f5ce11956be"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_CALL_CUSTOM_EVENT",
+                                                            "args": {
+                                                              "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8"
+                                                            },
+                                                            "id": "c9872e8a-0e5a-452c-941f-f8a1cdc8c87d"
+                                                          }
+                                                        ],
+                                                        "false": []
+                                                      },
+                                                      "id": "7a63f8be-95dd-4d44-876f-21bb6e721e1f"
+                                                    }
+                                                  ],
+                                                  "false": []
+                                                },
+                                                "id": "b81272bf-1874-42e6-8bb7-6dc1f96089bf"
                                               }
                                             ]
                                           },
@@ -5018,7 +5108,33 @@
                         "id": "64185c1d-ed3f-4be4-8079-a9468f30c99a"
                       }
                     ],
-                    "false": []
+                    "false": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "spin not active"
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "dd98d311-c989-47ff-9258-f557ad6e2936"
+                      }
+                    ]
                   },
                   "id": "728a46e6-5af4-4bd8-923d-54ff6f458f34"
                 }
