@@ -69,14 +69,11 @@
       "command": "EVENT_IF",
       "args": {
         "condition": {
-          "type": "not",
-          "value": {
-            "type": "variable",
-            "value": "123"
-          }
+          "type": "expression",
+          "value": "!$123$ && $03$ != 0"
         },
         "__collapseElse": false,
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -99,6 +96,38 @@
           }
         ],
         "false": [
+          {
+            "command": "EVENT_SET_INPUT_SCRIPT",
+            "args": {
+              "input": [
+                "left",
+                "up",
+                "down",
+                "right"
+              ],
+              "override": true,
+              "__scriptTabs": "press"
+            },
+            "children": {
+              "true": []
+            },
+            "id": "3ff59fb9-2f87-41ac-9604-a41460f5944e"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 0
+              },
+              "y": {
+                "type": "number",
+                "value": 0
+              }
+            },
+            "id": "cbb26f7a-7e60-4747-a664-18b9e572997c"
+          },
           {
             "command": "EVENT_ACTOR_DEACTIVATE",
             "args": {
@@ -528,7 +557,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -546,7 +575,57 @@
               "__collapse": false
             },
             "children": {
-              "true": [],
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "eq",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "16"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 0
+                      }
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "You haven't rolled\nyet! Press B to go  @",
+                            "back to start the \ngame."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "d6e6355c-bb56-4080-b31c-1a50e8f8a91d"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "94355516-d2bb-4a15-b815-d7869451189f"
+                }
+              ],
               "false": [
                 {
                   "command": "EVENT_TEXT",
@@ -590,7 +669,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -648,7 +727,7 @@
       "command": "EVENT_CALL_CUSTOM_EVENT",
       "args": {
         "customEventId": "6e1675f1-fcae-439b-8337-e639aa842bca",
-        "__collapse": false,
+        "__collapse": true,
         "$actor[0]$": "357b22fa-7842-4200-9e0f-50b436f8ef7b"
       },
       "id": "0cb71b1c-b4cb-40f8-879b-ae0d96190180"
@@ -691,7 +770,8 @@
       "command": "EVENT_COMMENT",
       "args": {
         "text": "If user already has scored a Yotzee, and currently has a Yotzee on this turn, show joker dialog. Asterisk will already be added for bonus so they can pick another score",
-        "__label": "JOKER stuff: If user already has scored a Yotzee, and currently has a Yotzee on this turn, show joker dialog. Asterisk will already be added for bonus so they can pick another score"
+        "__label": "JOKER stuff: If user already has scored a Yotzee, and currently has a Yotzee on this turn, show joker dialog. Asterisk will already be added for bonus so they can pick another score",
+        "__collapse": true
       },
       "id": "66a817d5-2161-4011-adac-8760e06494d2"
     },
@@ -703,7 +783,7 @@
           "value": "$111$ && ($41$ == 50 || $41$ == 100) && $39$ && !$123$"
         },
         "__collapseElse": false,
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
