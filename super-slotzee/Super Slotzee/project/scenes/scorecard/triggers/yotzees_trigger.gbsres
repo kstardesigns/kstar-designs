@@ -18,10 +18,17 @@
           "value": "111"
         },
         "__collapseElse": true,
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Tell user the Yotzee count and how many points each is worth\n"
+            },
+            "id": "89e6364e-29e5-474e-9947-129db0b33c8b"
+          },
           {
             "command": "EVENT_IF",
             "args": {
@@ -30,7 +37,7 @@
                 "value": "$41$ > 0"
               },
               "__collapseElse": true,
-              "__collapse": true
+              "__collapse": false
             },
             "children": {
               "true": [
@@ -38,8 +45,8 @@
                   "command": "EVENT_TEXT",
                   "args": {
                     "text": [
-                      "Currently, you \nhave 1 Yotzee",
-                      "scored at $41$\npoints."
+                      "Currently, you \nhave 1 Yotzee  @",
+                      "scored at $41$ points."
                     ],
                     "__section": "text",
                     "avatarId": "",
@@ -61,11 +68,22 @@
                   "id": "83963f53-6872-428d-ab65-8ebffc5086fc"
                 },
                 {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "126",
+                    "value": {
+                      "type": "expression",
+                      "value": "$42$ - $116$"
+                    }
+                  },
+                  "id": "f3410223-7451-41c0-ad23-2ca30043984c"
+                },
+                {
                   "command": "EVENT_IF",
                   "args": {
                     "condition": {
-                      "type": "variable",
-                      "value": "42"
+                      "type": "expression",
+                      "value": "$126$ > 0"
                     },
                     "__collapseElse": true
                   },
@@ -75,8 +93,8 @@
                         "command": "EVENT_TEXT",
                         "args": {
                           "text": [
-                            "You have $42$\nbonus Yotzee(s)",
-                            "scored at 100\npoints."
+                            "You have $126$\n bonus Yotzee(s)  @",
+                            "scored at 100 points."
                           ],
                           "__section": "text",
                           "avatarId": "",
@@ -117,7 +135,7 @@
                         "command": "EVENT_TEXT",
                         "args": {
                           "text": [
-                            "You have $116$\nbonus Yotzee(s)",
+                            "You have $116$\n bonus Yotzee(s)  @",
                             "scored at 200\npoints."
                           ],
                           "__section": "text",
@@ -849,7 +867,7 @@
                                 "__collapseCase15": false,
                                 "value15": 16,
                                 "__collapseElse": true,
-                                "__collapse": true
+                                "__collapse": false
                               },
                               "children": {
                                 "true0": [
