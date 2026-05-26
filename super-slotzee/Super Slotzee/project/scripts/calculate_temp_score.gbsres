@@ -186,7 +186,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) Check for Slots: Extra Roll",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -223,58 +223,78 @@
                 {
                   "command": "EVENT_COMMENT",
                   "args": {
-                    "text": "Forcing hold on turn 3 so extra roll will hit"
+                    "text": "Forcing hold on turn 3 so extra roll will hit",
+                    "__collapse": true
                   },
                   "id": "406fe1a0-41e7-454c-b69d-d478de49090a"
                 },
                 {
-                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "command": "EVENT_THREAD_START",
                   "args": {
-                    "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762"
+                    "variable": "128",
+                    "__scriptTabs": "true"
                   },
-                  "id": "4ac7dc9c-9ffc-4785-9f6d-04eb850cad07"
-                },
-                {
-                  "command": "EVENT_CALL_CUSTOM_EVENT",
-                  "args": {
-                    "customEventId": "f792ce6f-7872-45de-afbb-9df1a0e710e6",
-                    "__collapse": false
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762"
+                        },
+                        "id": "24f6b865-0722-49d8-9ae3-88e17ce8214d"
+                      },
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "f792ce6f-7872-45de-afbb-9df1a0e710e6",
+                          "__collapse": false
+                        },
+                        "id": "bbf11753-419e-4cb9-9c5c-c49482227ed1"
+                      },
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "You got an extra roll\n for this turn!"
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30,
+                          "__collapse": true,
+                          "__comment": false
+                        },
+                        "id": "fcd5810c-92f0-49cb-bef6-574208242aca"
+                      },
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8"
+                        },
+                        "id": "eb831a34-ac58-4d4f-93ee-8c8e614b18ee"
+                      },
+                      {
+                        "command": "EVENT_THREAD_STOP",
+                        "args": {
+                          "variable": "128"
+                        },
+                        "id": "f573e703-d111-4c5f-8ab1-4e0e343952d8"
+                      }
+                    ]
                   },
-                  "id": "77d30e34-1584-4cc8-aae8-653790083619"
-                },
-                {
-                  "command": "EVENT_TEXT",
-                  "args": {
-                    "text": [
-                      "You got an extra roll\n for this turn!"
-                    ],
-                    "__section": "text",
-                    "avatarId": "",
-                    "minHeight": 4,
-                    "maxHeight": 7,
-                    "textX": 1,
-                    "textY": 1,
-                    "textHeight": 5,
-                    "position": "bottom",
-                    "clearPrevious": true,
-                    "showFrame": "true",
-                    "speedIn": -1,
-                    "speedOut": -1,
-                    "closeWhen": "key",
-                    "closeButton": "a",
-                    "closeDelayTime": 0.5,
-                    "closeDelayFrames": 30,
-                    "__collapse": false,
-                    "__comment": false
-                  },
-                  "id": "fcd5810c-92f0-49cb-bef6-574208242aca"
-                },
-                {
-                  "command": "EVENT_CALL_CUSTOM_EVENT",
-                  "args": {
-                    "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8"
-                  },
-                  "id": "eb831a34-ac58-4d4f-93ee-8c8e614b18ee"
+                  "id": "688afbda-7d7b-44fd-9c89-4a4204b2b4e6"
                 }
               ],
               "false": [
@@ -290,19 +310,38 @@
                   "children": {
                     "true": [
                       {
-                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "command": "EVENT_THREAD_START",
                         "args": {
-                          "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762"
+                          "variable": "128",
+                          "__scriptTabs": "true"
                         },
-                        "id": "e0880451-3801-44d9-ad31-50d1c580b5e1"
-                      },
-                      {
-                        "command": "EVENT_CALL_CUSTOM_EVENT",
-                        "args": {
-                          "customEventId": "f792ce6f-7872-45de-afbb-9df1a0e710e6",
-                          "__collapse": false
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "args": {
+                                "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762"
+                              },
+                              "id": "197ee279-7563-4dc1-aebf-7ef3ee39fd06"
+                            },
+                            {
+                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "args": {
+                                "customEventId": "f792ce6f-7872-45de-afbb-9df1a0e710e6",
+                                "__collapse": false
+                              },
+                              "id": "228bfce8-72de-4ec5-b73b-79a2253d39f7"
+                            },
+                            {
+                              "command": "EVENT_THREAD_STOP",
+                              "args": {
+                                "variable": "128"
+                              },
+                              "id": "0e004589-ede7-43ac-88b2-4d0c95b76c88"
+                            }
+                          ]
                         },
-                        "id": "ab1f0423-7bad-41f0-b995-bfe9e078055a"
+                        "id": "78077301-41e0-44cf-8c34-cfedc3f00a45"
                       }
                     ],
                     "false": []
@@ -372,19 +411,38 @@
             "id": "c9d44426-9105-48a5-9912-677a73149b2c"
           },
           {
-            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "command": "EVENT_THREAD_START",
             "args": {
-              "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762"
+              "variable": "128",
+              "__scriptTabs": "true"
             },
-            "id": "b7e428bc-2148-4d78-8268-36ce0c2a4ac5"
-          },
-          {
-            "command": "EVENT_CALL_CUSTOM_EVENT",
-            "args": {
-              "customEventId": "f792ce6f-7872-45de-afbb-9df1a0e710e6",
-              "__collapse": false
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762"
+                  },
+                  "id": "b182c1d0-0d26-4664-ad8d-eacb87222a0b"
+                },
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "f792ce6f-7872-45de-afbb-9df1a0e710e6",
+                    "__collapse": false
+                  },
+                  "id": "2809e360-4bbe-4581-8d0f-ce0c287ac7c9"
+                },
+                {
+                  "command": "EVENT_THREAD_STOP",
+                  "args": {
+                    "variable": "128"
+                  },
+                  "id": "99961b8c-25ba-47c4-b77f-a8672619dcdf"
+                }
+              ]
             },
-            "id": "89e4ec38-31ad-4190-90a9-a8789c354a3b"
+            "id": "ca141b03-72e4-46ec-8a32-c1258aaddda6"
           }
         ],
         "false": []
@@ -400,7 +458,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) Check for Slots: Slot Coin (minigame triggered)",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -414,6 +472,40 @@
               "__collapse": false
             },
             "id": "88ed2b09-0416-4d00-9721-00f2107bd1a5"
+          },
+          {
+            "command": "EVENT_THREAD_START",
+            "args": {
+              "variable": "128",
+              "__scriptTabs": "true"
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762"
+                  },
+                  "id": "5cd019c0-f0a2-4e58-ba99-a29bc926ad29"
+                },
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "f792ce6f-7872-45de-afbb-9df1a0e710e6",
+                    "__collapse": false
+                  },
+                  "id": "f1332c9a-e681-4186-b49b-f0d69fc96915"
+                },
+                {
+                  "command": "EVENT_THREAD_STOP",
+                  "args": {
+                    "variable": "128"
+                  },
+                  "id": "841c4a60-4ccb-45a6-b8da-ed1e6da01b48"
+                }
+              ]
+            },
+            "id": "ec8dc9fc-ee4f-4cdc-b79d-3aa6b5e2c438"
           }
         ],
         "false": []
@@ -431,7 +523,7 @@
           }
         },
         "__collapseElse": false,
-        "__collapse": false,
+        "__collapse": true,
         "__label": "(If) Score everything (if NOT bonus_auto_zero)"
       },
       "children": {
@@ -454,7 +546,7 @@
                 "type": "number",
                 "value": 1
               },
-              "__collapse": true,
+              "__collapse": false,
               "__label": "(For) Scoring 1, 2, 3, 4, 5, 6"
             },
             "children": {
@@ -787,7 +879,7 @@
                       "value": "$19$ == 5"
                     },
                     "__collapseElse": true,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -1711,7 +1803,7 @@
                 "value": "39"
               },
               "__collapseElse": false,
-              "__collapse": false,
+              "__collapse": true,
               "__label": "(If) (Yotzee)"
             },
             "children": {
@@ -1797,7 +1889,7 @@
               },
               "__collapseElse": false,
               "__label": "(If) Chance",
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true": [
