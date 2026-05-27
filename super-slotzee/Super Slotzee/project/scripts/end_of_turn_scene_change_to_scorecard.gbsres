@@ -2,11 +2,45 @@
   "_resourceType": "script",
   "id": "ad3ec2a3-7c73-4364-b56a-180129e66468",
   "name": "End of Turn Scene Change to Scorecard",
-  "description": "",
+  "description": "This script is at the end of spin & roll button. It checks if an animation should play and waits for it, before an automatic scene change.",
   "variables": {},
   "actors": {},
   "symbol": "script_31",
   "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "129"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "81",
+              "value": {
+                "type": "false"
+              }
+            },
+            "id": "48f6796e-a336-4214-a129-bea7d488de2f"
+          },
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 3,
+              "frames": 30
+            },
+            "id": "f0647264-5234-42fc-a117-5b55fb9cca7b"
+          }
+        ],
+        "false": []
+      },
+      "id": "e04d75c2-dd1f-4e67-a89b-19a3f7b0065c"
+    },
     {
       "command": "EVENT_IF",
       "args": {
@@ -35,15 +69,6 @@
               "__collapse": true
             },
             "id": "fbe8b8e8-dce3-46a5-ba3e-e38f39c0def2"
-          },
-          {
-            "command": "EVENT_CALL_CUSTOM_EVENT",
-            "args": {
-              "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762",
-              "__collapse": true,
-              "__comment": true
-            },
-            "id": "1f3703d7-61e7-43bd-908c-9f42d0d7a44d"
           },
           {
             "command": "EVENT_CALL_CUSTOM_EVENT",
@@ -80,6 +105,40 @@
               "__collapse": true
             },
             "id": "629e1093-055a-4982-8c78-ee3d0fbbb820"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Waiting a bit extra on last turn to give player time to look at dice & slots before change to scorecard"
+            },
+            "id": "e83f745c-67f4-4b63-99d0-68fd4c4c128b"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "129"
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 1,
+                    "frames": 30
+                  },
+                  "id": "48021547-cd2d-4eba-8853-e1441d3b1c02"
+                }
+              ],
+              "false": []
+            },
+            "id": "50b85766-b0f3-4ccf-9834-9336634c1821"
           },
           {
             "command": "EVENT_SCENE_PUSH_STATE",
@@ -150,15 +209,6 @@
                         "id": "3df94fc7-7528-4246-a761-bd131dc68a14"
                       },
                       {
-                        "command": "EVENT_CALL_CUSTOM_EVENT",
-                        "args": {
-                          "customEventId": "0b922307-0547-4c9d-95f7-455979779cce",
-                          "__collapse": true,
-                          "__comment": true
-                        },
-                        "id": "e1bd9094-2f96-4f61-b7cf-54cf96cf3116"
-                      },
-                      {
                         "command": "EVENT_SET_VALUE",
                         "args": {
                           "variable": "65",
@@ -176,6 +226,40 @@
                           "__collapse": true
                         },
                         "id": "895408ed-93d2-4463-ba72-ace18cd3ead2"
+                      },
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "Waiting a bit extra on last turn to give player time to look at dice & slots before change to scorecard"
+                        },
+                        "id": "148024c3-d696-4297-9a6c-75de1b678ecd"
+                      },
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "not",
+                            "value": {
+                              "type": "variable",
+                              "value": "129"
+                            }
+                          },
+                          "__collapseElse": true
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_WAIT",
+                              "args": {
+                                "time": 1,
+                                "frames": 30
+                              },
+                              "id": "89d7d05b-c391-4128-9fcd-b3b24d4d1b59"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "88276c66-a5cc-402c-907f-22401a46d9d9"
                       },
                       {
                         "command": "EVENT_SCENE_PUSH_STATE",
