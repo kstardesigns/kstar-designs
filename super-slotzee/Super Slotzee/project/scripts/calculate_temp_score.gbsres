@@ -186,7 +186,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) Check for Slots: Extra Roll",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -252,6 +252,13 @@
                         "id": "bbf11753-419e-4cb9-9c5c-c49482227ed1"
                       },
                       {
+                        "command": "EVENT_PALETTE_SET_UI",
+                        "args": {
+                          "palette": "c3c4db38-97c5-4290-9cc0-d1e1a0fe3189"
+                        },
+                        "id": "5b81aecf-9740-4e3d-80b5-db388ddada35"
+                      },
+                      {
                         "command": "EVENT_TEXT",
                         "args": {
                           "text": [
@@ -277,6 +284,13 @@
                           "__comment": false
                         },
                         "id": "fcd5810c-92f0-49cb-bef6-574208242aca"
+                      },
+                      {
+                        "command": "EVENT_PALETTE_SET_UI",
+                        "args": {
+                          "palette": "9fcb5064-c312-44bc-93cc-fb93df58005f"
+                        },
+                        "id": "f4fb400b-70f6-474f-8783-4cceb5d5dfd1"
                       },
                       {
                         "command": "EVENT_CALL_CUSTOM_EVENT",
@@ -366,7 +380,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) Check for Slots: Double Stack (2x score)",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -380,6 +394,156 @@
               "__collapse": false
             },
             "id": "8df53034-c8fe-4a24-8268-f14340fcf724"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "16"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 3
+                }
+              },
+              "__collapseElse": false,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_THREAD_START",
+                  "args": {
+                    "variable": "128",
+                    "__scriptTabs": "true"
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762"
+                        },
+                        "id": "ece9bfa4-5577-4319-a26c-a123e661a457"
+                      },
+                      {
+                        "command": "EVENT_PALETTE_SET_UI",
+                        "args": {
+                          "palette": "c3c4db38-97c5-4290-9cc0-d1e1a0fe3189"
+                        },
+                        "id": "4b91ab32-4d2f-45d7-a36e-4f23418116b1"
+                      },
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "Double stack!\nScores are doubled  @",
+                            "this turn!"
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30,
+                          "__collapse": false,
+                          "__comment": false
+                        },
+                        "id": "82a087fb-1f8c-4ead-88cb-91f1ff5c2bad"
+                      },
+                      {
+                        "command": "EVENT_PALETTE_SET_UI",
+                        "args": {
+                          "palette": "9fcb5064-c312-44bc-93cc-fb93df58005f"
+                        },
+                        "id": "4fe13075-c973-4284-bbea-56d639914c58"
+                      },
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8"
+                        },
+                        "id": "0068cbdd-54f0-4c95-b6af-3060bdc49848"
+                      },
+                      {
+                        "command": "EVENT_THREAD_STOP",
+                        "args": {
+                          "variable": "128"
+                        },
+                        "id": "6e88206c-27aa-4c9a-a840-1147945b985d"
+                      }
+                    ]
+                  },
+                  "id": "02c246b7-7196-45f0-8069-b59b73cd5089"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "variable",
+                      "value": "119"
+                    },
+                    "__collapseElse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_THREAD_START",
+                        "args": {
+                          "variable": "128",
+                          "__scriptTabs": "true"
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "args": {
+                                "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762"
+                              },
+                              "id": "0a567cdf-98e4-4e27-8715-c1607fb94e88"
+                            },
+                            {
+                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "args": {
+                                "customEventId": "f792ce6f-7872-45de-afbb-9df1a0e710e6",
+                                "__collapse": false
+                              },
+                              "id": "4914956c-ed43-4e40-9f88-a38658bcdd6d"
+                            },
+                            {
+                              "command": "EVENT_THREAD_STOP",
+                              "args": {
+                                "variable": "128"
+                              },
+                              "id": "ab43be51-9596-4629-b546-bc370a6a38a5"
+                            }
+                          ]
+                        },
+                        "id": "aac5af3c-894c-468f-9c03-84fedf322056"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "9dae5208-31d8-4685-a354-c6ab0cdcc815"
+                }
+              ]
+            },
+            "id": "762ebcde-6043-4852-aae3-da4fd1b0a4a9"
           }
         ],
         "false": []
@@ -395,7 +559,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) Check for Slots: Auto Zero (all zeroes)",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
