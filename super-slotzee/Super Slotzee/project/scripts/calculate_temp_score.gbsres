@@ -186,7 +186,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) Check for Slots: Extra Roll",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -395,7 +395,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) Check for Slots: Auto Zero (all zeroes)",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -432,6 +432,68 @@
                     "__collapse": false
                   },
                   "id": "2809e360-4bbe-4581-8d0f-ce0c287ac7c9"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Oops! You cannot score\nyour dice this turn.  @",
+                      "You must score a zero\nin one of the boxes."
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": false,
+                    "__comment": false
+                  },
+                  "id": "d2139873-7bff-4674-bc2b-bd002885ec55"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "ne",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "16"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 3
+                      }
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "16",
+                          "value": {
+                            "type": "number",
+                            "value": 3
+                          }
+                        },
+                        "id": "cc123c89-4dc5-4e32-9a80-d62adea32c25"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "36b54e94-ff11-46bf-832d-ad76e7a444ba"
                 },
                 {
                   "command": "EVENT_THREAD_STOP",
@@ -879,7 +941,7 @@
                       "value": "$19$ == 5"
                     },
                     "__collapseElse": true,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [

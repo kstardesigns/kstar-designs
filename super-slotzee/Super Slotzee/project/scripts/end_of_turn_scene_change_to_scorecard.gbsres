@@ -29,12 +29,37 @@
             "id": "48f6796e-a336-4214-a129-bea7d488de2f"
           },
           {
-            "command": "EVENT_WAIT",
+            "command": "EVENT_IF",
             "args": {
-              "time": 3,
-              "frames": 30
+              "condition": {
+                "type": "variable",
+                "value": "44"
+              },
+              "__collapseElse": false
             },
-            "id": "f0647264-5234-42fc-a117-5b55fb9cca7b"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 1,
+                    "frames": 30
+                  },
+                  "id": "f99c9a8c-f8ec-4e9c-97ba-672b5e44f2d8"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 3,
+                    "frames": 30
+                  },
+                  "id": "f0647264-5234-42fc-a117-5b55fb9cca7b"
+                }
+              ]
+            },
+            "id": "7da37b67-de02-4024-a84d-d8cd8a555e4a"
           }
         ],
         "false": []
