@@ -1,11 +1,11 @@
 {
   "_resourceType": "trigger",
-  "id": "86ae04c3-dcdd-4878-89d7-adf6c3840392",
-  "name": "Wild token trigger",
+  "id": "e623850c-7704-4dcd-bdc6-ee55acdb38f6",
+  "name": "Super Yotzee trigger",
   "prefabId": "",
-  "x": 4,
-  "y": 9,
-  "symbol": "trigger_22",
+  "x": 14,
+  "y": 14,
+  "symbol": "trigger_28",
   "prefabScriptOverrides": {},
   "width": 2,
   "height": 1,
@@ -14,7 +14,7 @@
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
-          "right"
+          "left"
         ],
         "override": true,
         "__scriptTabs": "press",
@@ -29,48 +29,48 @@
               "x": {
                 "type": "number",
                 "value": 9
-              },
-              "y": {
-                "type": "number",
-                "value": 9
-              }
-            },
-            "id": "b3075c94-0ef9-454e-aed0-3f576df27d80"
-          }
-        ]
-      },
-      "id": "56529bd3-26b6-4d86-980e-6de8c453fe30"
-    },
-    {
-      "command": "EVENT_SET_INPUT_SCRIPT",
-      "args": {
-        "input": [
-          "down"
-        ],
-        "override": true,
-        "__scriptTabs": "press",
-        "__collapse": true
-      },
-      "children": {
-        "true": [
-          {
-            "command": "EVENT_ACTOR_SET_POSITION",
-            "args": {
-              "actorId": "$self$",
-              "x": {
-                "type": "number",
-                "value": 4
               },
               "y": {
                 "type": "number",
                 "value": 14
               }
             },
-            "id": "0302de39-22a5-4072-809e-38466a43d1f5"
+            "id": "7b41b032-ce5d-4b8c-9ee3-af9440d3a7a9"
           }
         ]
       },
-      "id": "e89811f7-dd62-488e-8a85-987f3ddb0d92"
+      "id": "4e44369b-e892-4f33-ab6f-435aaec3339f"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "up"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 14
+              },
+              "y": {
+                "type": "number",
+                "value": 9
+              }
+            },
+            "id": "0c9e486c-f162-4415-a1ac-ddaefefecab9"
+          }
+        ]
+      },
+      "id": "af3b6aa6-0cc0-4164-b9eb-543c974846e3"
     },
     {
       "command": "EVENT_SET_INPUT_SCRIPT",
@@ -91,15 +91,16 @@
               "spriteStateId": "Animated up still",
               "loopAnim": false
             },
-            "id": "331315ea-34bf-4c56-a883-4180c75e0f01"
+            "id": "3259641a-d1e8-48ef-9adb-72c154d029c0"
           },
           {
             "command": "EVENT_TEXT",
             "args": {
               "text": [
-                "WILD token. \nWhen used, it  @",
-                "converts one die to a \nWILD die for one turn. @",
-                "WILD dice can be used\nas any number.  @",
+                "DOUBLE DOWN token. \nWhen used, it will  @",
+                "start a minigame where\nyou can bet a Yotzee  @",
+                "for a chance to win\nanother Yotzee. It  @",
+                "can only be used if you\nhave at least 1 Yotzee.",
                 "Choose this token?"
               ],
               "__section": "text",
@@ -119,7 +120,7 @@
               "closeDelayTime": 0.5,
               "closeDelayFrames": 30
             },
-            "id": "4e985605-a054-469e-8108-1e81cc9cd533"
+            "id": "9ebd3626-720e-4824-bf65-564bbaa3e538"
           },
           {
             "command": "EVENT_MENU",
@@ -138,7 +139,7 @@
               "layout": "dialogue",
               "cancelOnLastOption": true
             },
-            "id": "6b5feaf5-c9c5-4373-a8f0-06d8ce72e821"
+            "id": "729e1746-a279-4b2c-921c-de86b1c9dabd"
           },
           {
             "command": "EVENT_IF",
@@ -154,16 +155,16 @@
                 {
                   "command": "EVENT_INC_VALUE",
                   "args": {
-                    "variable": "140"
+                    "variable": "145"
                   },
-                  "id": "146473b0-867a-4055-939d-868cae9231ca"
+                  "id": "b37f8d7f-db92-4e20-85a0-76c3eb444599"
                 },
                 {
                   "command": "EVENT_TEXT",
                   "args": {
                     "text": [
-                      "A WILD token has been\nadded to your  @",
-                      "inventory."
+                      "A DOUBLE DOWN token \nhas been added to  @",
+                      "your inventory."
                     ],
                     "__section": "text",
                     "avatarId": "",
@@ -182,7 +183,7 @@
                     "closeDelayTime": 0.5,
                     "closeDelayFrames": 30
                   },
-                  "id": "dfa525ea-8278-42f6-8ab2-500e817738a2"
+                  "id": "15b406bd-6d4c-44f8-87a9-d81bc1df71b9"
                 },
                 {
                   "command": "EVENT_WAIT",
@@ -190,7 +191,7 @@
                     "time": 0.5,
                     "frames": 30
                   },
-                  "id": "37c5edb9-c5c1-463f-a0ad-63ec9450e372"
+                  "id": "689e97b2-dd1c-452c-a6d2-bbdd73da6503"
                 },
                 {
                   "command": "EVENT_SET_VALUE",
@@ -202,14 +203,14 @@
                     "__comment": false,
                     "__collapse": true
                   },
-                  "id": "d367ddc1-17cc-4a98-875b-c1f3e6a450da"
+                  "id": "9ae0aa50-be14-4697-9443-dcf5d91fe915"
                 },
                 {
                   "command": "EVENT_SCENE_POP_STATE",
                   "args": {
                     "fadeSpeed": "2"
                   },
-                  "id": "18729d10-1bae-4c39-94be-fa7b78941ebf"
+                  "id": "b21cbf57-52ee-4458-bfbc-ea865da5c94d"
                 }
               ],
               "false": [
@@ -220,23 +221,23 @@
                     "spriteStateId": "",
                     "loopAnim": true
                   },
-                  "id": "2af7f55d-9ed2-4588-9f36-b28564d3c6db"
+                  "id": "247a97d7-2dcf-4675-bfa5-4275de1f8587"
                 }
               ]
             },
-            "id": "21d0ef0b-d475-49a8-8aea-072710de71bb"
+            "id": "0980d9ad-0ef7-4fe7-9d41-42f45eae0028"
           }
         ]
       },
-      "id": "dbdc4b66-2e2d-4447-a752-2c9cd87c0e51"
+      "id": "5e3f96f9-6274-40e5-8769-af2e64d2cec7"
     },
     {
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
           "b",
-          "up",
-          "left"
+          "right",
+          "down"
         ],
         "override": true,
         "__scriptTabs": "press",
@@ -245,9 +246,9 @@
       "children": {
         "true": []
       },
-      "id": "a4a232e7-b5f7-4055-b648-9337d86dc610"
+      "id": "bfbd7508-1fc9-4d3d-8886-5e0a7df4ae26"
     }
   ],
   "leaveScript": [],
-  "_index": 0
+  "_index": 5
 }
