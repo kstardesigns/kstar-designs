@@ -46,11 +46,8 @@
                   "command": "EVENT_IF",
                   "args": {
                     "condition": {
-                      "type": "not",
-                      "value": {
-                        "type": "variable",
-                        "value": "127"
-                      }
+                      "type": "expression",
+                      "value": "!$127$ && !$150$"
                     },
                     "__collapseElse": false,
                     "__collapse": false
@@ -81,7 +78,7 @@
                             }
                           },
                           "__collapseElse": false,
-                          "__collapse": true
+                          "__collapse": false
                         },
                         "children": {
                           "true": [
@@ -308,38 +305,104 @@
                     ],
                     "false": [
                       {
-                        "command": "EVENT_TEXT",
+                        "command": "EVENT_IF",
                         "args": {
-                          "text": [
-                            "Yotzee jokers are auto\nscored. You can  @",
-                            "continue to spin the \nslots. You will also  @",
-                            "choose another score \nbox at the end of turn."
+                          "condition": {
+                            "type": "variable",
+                            "value": "127"
+                          },
+                          "__collapseElse": false
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_TEXT",
+                              "args": {
+                                "text": [
+                                  "Yotzee jokers are auto\nscored. You can  @",
+                                  "continue to spin the \nslots. You will also  @",
+                                  "choose another score \nbox at the end of turn."
+                                ],
+                                "__section": "text",
+                                "avatarId": "",
+                                "minHeight": 4,
+                                "maxHeight": 7,
+                                "textX": 1,
+                                "textY": 1,
+                                "textHeight": 5,
+                                "position": "bottom",
+                                "clearPrevious": true,
+                                "showFrame": "true",
+                                "speedIn": -1,
+                                "speedOut": -1,
+                                "closeWhen": "key",
+                                "closeButton": "a",
+                                "closeDelayTime": 0.5,
+                                "closeDelayFrames": 30
+                              },
+                              "id": "9b9eef7d-84db-4440-b6fe-1757e8bc4ef2"
+                            },
+                            {
+                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "args": {
+                                "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8"
+                              },
+                              "id": "cd2d1c53-0d88-417e-9d8f-9733544c5055"
+                            }
                           ],
-                          "__section": "text",
-                          "avatarId": "",
-                          "minHeight": 4,
-                          "maxHeight": 7,
-                          "textX": 1,
-                          "textY": 1,
-                          "textHeight": 5,
-                          "position": "bottom",
-                          "clearPrevious": true,
-                          "showFrame": "true",
-                          "speedIn": -1,
-                          "speedOut": -1,
-                          "closeWhen": "key",
-                          "closeButton": "a",
-                          "closeDelayTime": 0.5,
-                          "closeDelayFrames": 30
+                          "false": [
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "variable",
+                                  "value": "150"
+                                },
+                                "__collapseElse": true
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_TEXT",
+                                    "args": {
+                                      "text": [
+                                        "This WILD die is auto-\nheld for this turn.  @",
+                                        "It can be used as any\nnumber."
+                                      ],
+                                      "__section": "text",
+                                      "avatarId": "",
+                                      "minHeight": 4,
+                                      "maxHeight": 7,
+                                      "textX": 1,
+                                      "textY": 1,
+                                      "textHeight": 5,
+                                      "position": "bottom",
+                                      "clearPrevious": true,
+                                      "showFrame": "true",
+                                      "speedIn": -1,
+                                      "speedOut": -1,
+                                      "closeWhen": "key",
+                                      "closeButton": "a",
+                                      "closeDelayTime": 0.5,
+                                      "closeDelayFrames": 30
+                                    },
+                                    "id": "8db4c7b2-c630-43d0-a712-34cc844a4b79"
+                                  },
+                                  {
+                                    "command": "EVENT_CALL_CUSTOM_EVENT",
+                                    "args": {
+                                      "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8"
+                                    },
+                                    "id": "5da8bfa8-08b9-4d97-b490-504bcb871979"
+                                  }
+                                ],
+                                "false": []
+                              },
+                              "id": "1139e8a5-515f-424f-acac-6d4086702aad"
+                            }
+                          ]
                         },
-                        "id": "481ba00c-a423-464f-b6eb-82f35a0e722c"
-                      },
-                      {
-                        "command": "EVENT_CALL_CUSTOM_EVENT",
-                        "args": {
-                          "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8"
-                        },
-                        "id": "3ddcc8a7-d321-439c-8f3e-239471ac0ece"
+                        "id": "50d2de6e-9ae1-4562-82ce-d258580aeacf"
                       }
                     ]
                   },

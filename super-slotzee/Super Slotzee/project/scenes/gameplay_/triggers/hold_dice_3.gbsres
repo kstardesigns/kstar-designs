@@ -26,7 +26,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -46,11 +46,8 @@
                   "command": "EVENT_IF",
                   "args": {
                     "condition": {
-                      "type": "not",
-                      "value": {
-                        "type": "variable",
-                        "value": "127"
-                      }
+                      "type": "expression",
+                      "value": "!$127$ && !$148$"
                     },
                     "__collapseElse": false,
                     "__collapse": false
@@ -81,7 +78,7 @@
                             }
                           },
                           "__collapseElse": false,
-                          "__collapse": true
+                          "__collapse": false
                         },
                         "children": {
                           "true": [
@@ -308,38 +305,104 @@
                     ],
                     "false": [
                       {
-                        "command": "EVENT_TEXT",
+                        "command": "EVENT_IF",
                         "args": {
-                          "text": [
-                            "Yotzee jokers are auto\nscored. You can  @",
-                            "continue to spin the \nslots. You will also  @",
-                            "choose another score \nbox at the end of turn."
+                          "condition": {
+                            "type": "variable",
+                            "value": "127"
+                          },
+                          "__collapseElse": false
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_TEXT",
+                              "args": {
+                                "text": [
+                                  "Yotzee jokers are auto\nscored. You can  @",
+                                  "continue to spin the \nslots. You will also  @",
+                                  "choose another score \nbox at the end of turn."
+                                ],
+                                "__section": "text",
+                                "avatarId": "",
+                                "minHeight": 4,
+                                "maxHeight": 7,
+                                "textX": 1,
+                                "textY": 1,
+                                "textHeight": 5,
+                                "position": "bottom",
+                                "clearPrevious": true,
+                                "showFrame": "true",
+                                "speedIn": -1,
+                                "speedOut": -1,
+                                "closeWhen": "key",
+                                "closeButton": "a",
+                                "closeDelayTime": 0.5,
+                                "closeDelayFrames": 30
+                              },
+                              "id": "9d673537-8bc2-4d18-9411-f07e5301e04b"
+                            },
+                            {
+                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "args": {
+                                "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8"
+                              },
+                              "id": "95574ee1-e457-49ef-8b47-66a5db82a3e8"
+                            }
                           ],
-                          "__section": "text",
-                          "avatarId": "",
-                          "minHeight": 4,
-                          "maxHeight": 7,
-                          "textX": 1,
-                          "textY": 1,
-                          "textHeight": 5,
-                          "position": "bottom",
-                          "clearPrevious": true,
-                          "showFrame": "true",
-                          "speedIn": -1,
-                          "speedOut": -1,
-                          "closeWhen": "key",
-                          "closeButton": "a",
-                          "closeDelayTime": 0.5,
-                          "closeDelayFrames": 30
+                          "false": [
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "variable",
+                                  "value": "148"
+                                },
+                                "__collapseElse": true
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_TEXT",
+                                    "args": {
+                                      "text": [
+                                        "This WILD die is auto-\nheld for this turn.  @",
+                                        "It can be used as any\nnumber."
+                                      ],
+                                      "__section": "text",
+                                      "avatarId": "",
+                                      "minHeight": 4,
+                                      "maxHeight": 7,
+                                      "textX": 1,
+                                      "textY": 1,
+                                      "textHeight": 5,
+                                      "position": "bottom",
+                                      "clearPrevious": true,
+                                      "showFrame": "true",
+                                      "speedIn": -1,
+                                      "speedOut": -1,
+                                      "closeWhen": "key",
+                                      "closeButton": "a",
+                                      "closeDelayTime": 0.5,
+                                      "closeDelayFrames": 30
+                                    },
+                                    "id": "44f9302c-83b6-4664-b204-380c7a280f09"
+                                  },
+                                  {
+                                    "command": "EVENT_CALL_CUSTOM_EVENT",
+                                    "args": {
+                                      "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8"
+                                    },
+                                    "id": "6859c574-a649-4c2e-9943-377db1c96bcc"
+                                  }
+                                ],
+                                "false": []
+                              },
+                              "id": "1b8073f7-d4fb-4980-a8fb-0360a48fd9ef"
+                            }
+                          ]
                         },
-                        "id": "37007e28-144d-4e28-8a3a-2ac4823275ab"
-                      },
-                      {
-                        "command": "EVENT_CALL_CUSTOM_EVENT",
-                        "args": {
-                          "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8"
-                        },
-                        "id": "6e5febd7-db0e-40e0-bda0-1ffbf046e549"
+                        "id": "1e3f500e-b119-44a9-aa51-75cff7cf9dbf"
                       }
                     ]
                   },
