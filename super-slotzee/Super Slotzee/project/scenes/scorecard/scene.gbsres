@@ -66,14 +66,22 @@
       "id": "0a9b8025-7ea4-4eef-a15f-1c5cc79ff199"
     },
     {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Set starting position of pencil to 1's box, if not scored this turn and not on turn 1 / roll 1 (dice1result of 0). ALso checking if dice 1 is wild since we are using 0 for wild",
+        "__collapse": true
+      },
+      "id": "dd28becd-753b-4119-a09f-ae84271be65c"
+    },
+    {
       "command": "EVENT_IF",
       "args": {
         "condition": {
           "type": "expression",
-          "value": "!$123$ && $03$ != 0"
+          "value": "(!$123$ && $03$ != 0) || (!$123$ && $146$)"
         },
         "__collapseElse": false,
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [

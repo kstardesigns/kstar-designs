@@ -91,7 +91,29 @@
         },
         "__collapse": true
       },
+      "id": "b9fa925b-dac4-4b20-8f7c-5dcb5e66ccec"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "36",
+        "value": {
+          "type": "false"
+        },
+        "__collapse": true
+      },
       "id": "c54dd1ba-10ad-4b9a-ada3-4ea5ea0c4ba4"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "153",
+        "value": {
+          "type": "false"
+        },
+        "__collapse": true
+      },
+      "id": "60452fb2-862a-4b7c-b440-ac0066e2d787"
     },
     {
       "command": "EVENT_SET_VALUE",
@@ -794,7 +816,7 @@
                   "args": {
                     "condition": {
                       "type": "expression",
-                      "value": "($03$ == $18$) || $03$ == 0"
+                      "value": "$03$ == $18$"
                     },
                     "__collapseElse": true,
                     "__collapse": false
@@ -818,7 +840,7 @@
                   "args": {
                     "condition": {
                       "type": "expression",
-                      "value": "($04$ == $18$) || $04$ == 0"
+                      "value": "$04$ == $18$"
                     },
                     "__collapseElse": true,
                     "__collapse": false
@@ -842,7 +864,7 @@
                   "args": {
                     "condition": {
                       "type": "expression",
-                      "value": "($05$ == $18$) || $05$ == 0"
+                      "value": "$05$ == $18$"
                     },
                     "__collapseElse": true,
                     "__collapse": false
@@ -866,7 +888,7 @@
                   "args": {
                     "condition": {
                       "type": "expression",
-                      "value": "($06$ == $18$) || $06$ == 0"
+                      "value": "$06$ == $18$"
                     },
                     "__collapseElse": true,
                     "__collapse": false
@@ -890,7 +912,7 @@
                   "args": {
                     "condition": {
                       "type": "expression",
-                      "value": "($07$ == $18$) || $07$ == 0"
+                      "value": "$07$ == $18$"
                     },
                     "__collapseElse": true,
                     "__collapse": false
@@ -1274,6 +1296,17 @@
                   "id": "4d951802-7efe-4a78-8a63-9eff2e977322"
                 },
                 {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "151",
+                    "value": {
+                      "type": "expression",
+                      "value": "$146$ + $147$ + $148$ + $149$ + $150$"
+                    }
+                  },
+                  "id": "2d60156a-1b4b-4a05-967d-dbeca3c29797"
+                },
+                {
                   "command": "EVENT_SWITCH",
                   "args": {
                     "variable": "18",
@@ -1311,7 +1344,7 @@
                     "__collapseCase15": false,
                     "value15": 16,
                     "__collapseElse": true,
-                    "__collapse": false,
+                    "__collapse": true,
                     "__label": "(Switch) (1-6) Assign temp score to individual variables"
                   },
                   "children": {
@@ -1336,7 +1369,7 @@
                             "value": "45"
                           },
                           "__collapseElse": false,
-                          "__collapse": true
+                          "__collapse": false
                         },
                         "children": {
                           "true": [
@@ -1346,7 +1379,7 @@
                                 "variable": "21",
                                 "value": {
                                   "type": "expression",
-                                  "value": "$20$ * 2"
+                                  "value": "($20$ + $151$) * 2"
                                 }
                               },
                               "id": "b9c88519-e44f-48af-9147-b0ead617ad85"
@@ -1358,11 +1391,11 @@
                               "args": {
                                 "variable": "21",
                                 "value": {
-                                  "type": "variable",
-                                  "value": "20"
+                                  "type": "expression",
+                                  "value": "$20$ + $151$"
                                 }
                               },
-                              "id": "d79c09fa-16f7-4334-97cd-8ff8ddf2e69e"
+                              "id": "286e8455-52ca-4c34-9f52-72188c33cf14"
                             }
                           ]
                         },
@@ -1390,7 +1423,7 @@
                             "value": "45"
                           },
                           "__collapseElse": false,
-                          "__collapse": true
+                          "__collapse": false
                         },
                         "children": {
                           "true": [
@@ -1400,7 +1433,7 @@
                                 "variable": "22",
                                 "value": {
                                   "type": "expression",
-                                  "value": "$20$ * 2"
+                                  "value": "($20$ + ($151$ * 2)) * 2"
                                 }
                               },
                               "id": "c8ac2670-c62b-4a11-9b01-ede989a02d11"
@@ -1412,8 +1445,8 @@
                               "args": {
                                 "variable": "22",
                                 "value": {
-                                  "type": "variable",
-                                  "value": "20"
+                                  "type": "expression",
+                                  "value": "$20$ + ($151$ * 2)"
                                 }
                               },
                               "id": "9ee1e5d8-9021-479c-967f-2bba7d176076"
@@ -1444,7 +1477,7 @@
                             "value": "45"
                           },
                           "__collapseElse": false,
-                          "__collapse": true
+                          "__collapse": false
                         },
                         "children": {
                           "true": [
@@ -1454,7 +1487,7 @@
                                 "variable": "23",
                                 "value": {
                                   "type": "expression",
-                                  "value": "$20$ * 2"
+                                  "value": "($20$ + ($151$ * 3)) * 2"
                                 }
                               },
                               "id": "3c25f37c-5d68-4c94-b0db-597607b74301"
@@ -1466,8 +1499,8 @@
                               "args": {
                                 "variable": "23",
                                 "value": {
-                                  "type": "variable",
-                                  "value": "20"
+                                  "type": "expression",
+                                  "value": "$20$ + ($151$ * 3)"
                                 }
                               },
                               "id": "596cdc11-8eb1-44b7-91b8-656572b80e13"
@@ -1507,7 +1540,7 @@
                                 "variable": "24",
                                 "value": {
                                   "type": "expression",
-                                  "value": "$20$ * 2"
+                                  "value": "($20$ + ($151$ * 4)) * 2"
                                 }
                               },
                               "id": "f4b73a99-42da-4871-a752-212c926acf9e"
@@ -1519,8 +1552,8 @@
                               "args": {
                                 "variable": "24",
                                 "value": {
-                                  "type": "variable",
-                                  "value": "20"
+                                  "type": "expression",
+                                  "value": "$20$ + ($151$ * 4)"
                                 }
                               },
                               "id": "2ab3e658-f76c-4ffe-8111-a9c7afcad80c"
@@ -1560,7 +1593,7 @@
                                 "variable": "25",
                                 "value": {
                                   "type": "expression",
-                                  "value": "$20$ * 2"
+                                  "value": "($20$ + ($151$ * 5)) * 2"
                                 }
                               },
                               "id": "cff0171e-7e26-4fb5-b795-ee01710a2a45"
@@ -1572,8 +1605,8 @@
                               "args": {
                                 "variable": "25",
                                 "value": {
-                                  "type": "variable",
-                                  "value": "20"
+                                  "type": "expression",
+                                  "value": "$20$ + ($151$ * 5)"
                                 }
                               },
                               "id": "ec6cc76a-bf48-4779-a911-98493c0fcc81"
@@ -1613,7 +1646,7 @@
                                 "variable": "26",
                                 "value": {
                                   "type": "expression",
-                                  "value": "$20$ * 2"
+                                  "value": "($20$ + ($151$ * 6)) * 2"
                                 }
                               },
                               "id": "0c57215e-84be-4eb8-8494-5f3bd4103bfc"
@@ -1625,8 +1658,8 @@
                               "args": {
                                 "variable": "26",
                                 "value": {
-                                  "type": "variable",
-                                  "value": "20"
+                                  "type": "expression",
+                                  "value": "$20$ + ($151$ * 6)"
                                 }
                               },
                               "id": "c9b2afcc-3d6e-4256-9294-f4b0f09b8bec"
@@ -1655,6 +1688,13 @@
             "id": "6a21a7ef-f601-4a59-be2c-fdd9d9c668e4"
           },
           {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "3485840c-dab9-41c4-9c46-c336e39cadce"
+            },
+            "id": "14b63593-d943-4184-929e-15ac127700ea"
+          },
+          {
             "command": "EVENT_IF",
             "args": {
               "condition": {
@@ -1663,7 +1703,8 @@
               },
               "__collapseElse": false,
               "__label": "(If) (Small Straight)",
-              "__collapse": false
+              "__collapse": false,
+              "__comment": true
             },
             "children": {
               "true": [

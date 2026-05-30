@@ -123,7 +123,7 @@
         "value15": 16,
         "__collapseElse": true,
         "__label": "[Switch] Slot 1 result redisplay instantly",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true0": [
@@ -277,7 +277,7 @@
         "value15": 16,
         "__collapseElse": true,
         "__label": "[Switch] Slot 2 result redisplay instantly",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true0": [
@@ -431,7 +431,7 @@
         "value15": 16,
         "__collapseElse": true,
         "__label": "[Switch] Slot 3 result redisplay instantly",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true0": [
@@ -650,7 +650,7 @@
       "command": "EVENT_SWITCH",
       "args": {
         "variable": "3",
-        "choices": 6,
+        "choices": 7,
         "__collapseCase0": false,
         "value0": 1,
         "__collapseCase1": false,
@@ -664,7 +664,7 @@
         "__collapseCase5": false,
         "value5": 6,
         "__collapseCase6": false,
-        "value6": 7,
+        "value6": 0,
         "__collapseCase7": false,
         "value7": 8,
         "__collapseCase8": false,
@@ -685,7 +685,7 @@
         "value15": 16,
         "__collapseElse": true,
         "__label": "[Switch] Dice 1 result redisplay instantly",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true0": [
@@ -766,7 +766,19 @@
             "id": "bd9a9dad-6992-45bc-9c8d-386d2b24e680"
           }
         ],
-        "true6": [],
+        "true6": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "3",
+              "spriteStateId": "WILD die",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "253bc49b-f844-46bb-81ac-59fe68dea9cb"
+          }
+        ],
         "true7": [],
         "true8": [],
         "true9": [],
@@ -781,23 +793,53 @@
       "id": "522f0dd8-6376-45e4-860b-92f8ab11bd80"
     },
     {
-      "command": "EVENT_ACTOR_SET_FRAME",
+      "command": "EVENT_IF",
       "args": {
-        "actorId": "3",
-        "frame": {
-          "type": "number",
-          "value": 12
+        "condition": {
+          "type": "variable",
+          "value": "146"
         },
-        "__label": "Set Dice 1 to 12th (landing) frame",
-        "__collapse": true
+        "__collapseElse": false
       },
-      "id": "a2ff42a0-73ef-4fcf-9989-0a3ea3cc3d1b"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "3",
+              "frame": {
+                "type": "number",
+                "value": 0
+              },
+              "__label": "Set Dice 1 to 0 (wild) frame",
+              "__collapse": false
+            },
+            "id": "901659c8-b5dc-4d70-94f7-e76a1185c6b5"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "3",
+              "frame": {
+                "type": "number",
+                "value": 12
+              },
+              "__label": "Set Dice 1 to 12th (landing) frame",
+              "__collapse": true
+            },
+            "id": "a2ff42a0-73ef-4fcf-9989-0a3ea3cc3d1b"
+          }
+        ]
+      },
+      "id": "a55dc3f1-94ac-41ab-a98e-4a7ca8f8b3cf"
     },
     {
       "command": "EVENT_SWITCH",
       "args": {
         "variable": "4",
-        "choices": 6,
+        "choices": 7,
         "__collapseCase0": false,
         "value0": 1,
         "__collapseCase1": false,
@@ -811,7 +853,7 @@
         "__collapseCase5": false,
         "value5": 6,
         "__collapseCase6": false,
-        "value6": 7,
+        "value6": 0,
         "__collapseCase7": false,
         "value7": 8,
         "__collapseCase8": false,
@@ -913,7 +955,19 @@
             "id": "dd7f7b30-de6d-4977-8012-92c17c4e947b"
           }
         ],
-        "true6": [],
+        "true6": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "4",
+              "spriteStateId": "WILD die",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "063ef28d-09c3-4b56-a660-0f24f660677d"
+          }
+        ],
         "true7": [],
         "true8": [],
         "true9": [],
@@ -928,23 +982,54 @@
       "id": "07850b32-9264-4944-8dba-e84dec90e0af"
     },
     {
-      "command": "EVENT_ACTOR_SET_FRAME",
+      "command": "EVENT_IF",
       "args": {
-        "actorId": "4",
-        "frame": {
-          "type": "number",
-          "value": 12
+        "condition": {
+          "type": "variable",
+          "value": "147"
         },
-        "__label": "Set Dice 2 to 12th (landing) frame",
-        "__collapse": true
+        "__collapseElse": false,
+        "__collapse": false
       },
-      "id": "890bc47d-8721-4690-8dfc-df83f685791b"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "4",
+              "frame": {
+                "type": "number",
+                "value": 0
+              },
+              "__label": "Set Dice 2 to 0 (wild) frame",
+              "__collapse": false
+            },
+            "id": "33da71bb-be28-4b1b-bab7-e15c81eb5627"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "4",
+              "frame": {
+                "type": "number",
+                "value": 12
+              },
+              "__label": "Set Dice 2 to 12th (landing) frame",
+              "__collapse": true
+            },
+            "id": "890bc47d-8721-4690-8dfc-df83f685791b"
+          }
+        ]
+      },
+      "id": "758bb09a-9d8a-480d-bb0a-d129e1db9ec9"
     },
     {
       "command": "EVENT_SWITCH",
       "args": {
         "variable": "5",
-        "choices": 6,
+        "choices": 7,
         "__collapseCase0": false,
         "value0": 1,
         "__collapseCase1": false,
@@ -958,7 +1043,7 @@
         "__collapseCase5": false,
         "value5": 6,
         "__collapseCase6": false,
-        "value6": 7,
+        "value6": 0,
         "__collapseCase7": false,
         "value7": 8,
         "__collapseCase8": false,
@@ -1060,7 +1145,19 @@
             "id": "7135a47f-4ad9-4378-9057-81a8053879f6"
           }
         ],
-        "true6": [],
+        "true6": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "5",
+              "spriteStateId": "WILD die",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "507f7a57-1a5e-4558-bfd8-c3a088b452b9"
+          }
+        ],
         "true7": [],
         "true8": [],
         "true9": [],
@@ -1075,23 +1172,54 @@
       "id": "fa0c05be-7cec-4006-b565-6727ae3b7c8f"
     },
     {
-      "command": "EVENT_ACTOR_SET_FRAME",
+      "command": "EVENT_IF",
       "args": {
-        "actorId": "5",
-        "frame": {
-          "type": "number",
-          "value": 12
+        "condition": {
+          "type": "variable",
+          "value": "148"
         },
-        "__label": "Set Dice 3 to 12th (landing) frame",
-        "__collapse": true
+        "__collapseElse": false,
+        "__collapse": false
       },
-      "id": "ca9ab669-9f53-4db0-b6a9-2b654f26e8dc"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "5",
+              "frame": {
+                "type": "number",
+                "value": 0
+              },
+              "__label": "Set Dice 3 to 0 (wild) frame",
+              "__collapse": false
+            },
+            "id": "5df4d806-72ce-4a28-91cf-8a1a519c20ee"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "5",
+              "frame": {
+                "type": "number",
+                "value": 12
+              },
+              "__label": "Set Dice 3 to 12th (landing) frame",
+              "__collapse": true
+            },
+            "id": "ca9ab669-9f53-4db0-b6a9-2b654f26e8dc"
+          }
+        ]
+      },
+      "id": "460ac515-1990-4686-8c8f-f53cd7dab567"
     },
     {
       "command": "EVENT_SWITCH",
       "args": {
         "variable": "6",
-        "choices": 6,
+        "choices": 7,
         "__collapseCase0": false,
         "value0": 1,
         "__collapseCase1": false,
@@ -1105,7 +1233,7 @@
         "__collapseCase5": false,
         "value5": 6,
         "__collapseCase6": false,
-        "value6": 7,
+        "value6": 0,
         "__collapseCase7": false,
         "value7": 8,
         "__collapseCase8": false,
@@ -1126,7 +1254,7 @@
         "value15": 16,
         "__collapseElse": true,
         "__label": "[Switch] Dice 4 result redisplay instantly",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true0": [
@@ -1207,7 +1335,19 @@
             "id": "02c584fa-bd71-42d3-9e54-99b167bb0d5f"
           }
         ],
-        "true6": [],
+        "true6": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "6",
+              "spriteStateId": "WILD die",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "ed4215b9-fd3c-4dad-ab37-4c6a3a60ecbe"
+          }
+        ],
         "true7": [],
         "true8": [],
         "true9": [],
@@ -1222,23 +1362,54 @@
       "id": "b736e859-4228-4fc5-b0b7-052b41f780c5"
     },
     {
-      "command": "EVENT_ACTOR_SET_FRAME",
+      "command": "EVENT_IF",
       "args": {
-        "actorId": "6",
-        "frame": {
-          "type": "number",
-          "value": 12
+        "condition": {
+          "type": "variable",
+          "value": "149"
         },
-        "__label": "Set Dice 4 to 12th (landing) frame",
-        "__collapse": true
+        "__collapseElse": false,
+        "__collapse": false
       },
-      "id": "6cadf6cf-d98f-4905-939e-6759d4440aee"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "6",
+              "frame": {
+                "type": "number",
+                "value": 0
+              },
+              "__label": "Set Dice 4 to 0 (wild) frame",
+              "__collapse": false
+            },
+            "id": "6e77e8f6-1224-4959-ab26-6a39f7c0b619"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "6",
+              "frame": {
+                "type": "number",
+                "value": 12
+              },
+              "__label": "Set Dice 4 to 12th (landing) frame",
+              "__collapse": true
+            },
+            "id": "6cadf6cf-d98f-4905-939e-6759d4440aee"
+          }
+        ]
+      },
+      "id": "65ccaa24-da01-4f63-a63a-f2a4f7b9299d"
     },
     {
       "command": "EVENT_SWITCH",
       "args": {
         "variable": "7",
-        "choices": 6,
+        "choices": 7,
         "__collapseCase0": false,
         "value0": 1,
         "__collapseCase1": false,
@@ -1252,7 +1423,7 @@
         "__collapseCase5": false,
         "value5": 6,
         "__collapseCase6": false,
-        "value6": 7,
+        "value6": 0,
         "__collapseCase7": false,
         "value7": 8,
         "__collapseCase8": false,
@@ -1354,7 +1525,19 @@
             "id": "838c0449-5a8d-4e60-93d7-3c787b640b22"
           }
         ],
-        "true6": [],
+        "true6": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "7",
+              "spriteStateId": "WILD die",
+              "loopAnim": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "75bf5296-d0f2-4adc-aff3-d938c2dfaeb8"
+          }
+        ],
         "true7": [],
         "true8": [],
         "true9": [],
@@ -1369,17 +1552,48 @@
       "id": "16a17673-7c5b-465d-9c23-c0e3f9e858f2"
     },
     {
-      "command": "EVENT_ACTOR_SET_FRAME",
+      "command": "EVENT_IF",
       "args": {
-        "actorId": "7",
-        "frame": {
-          "type": "number",
-          "value": 12
+        "condition": {
+          "type": "variable",
+          "value": "150"
         },
-        "__label": "Set Dice 5 to 12th (landing) frame",
+        "__collapseElse": false,
         "__collapse": true
       },
-      "id": "f93df481-bfd0-44a5-84c2-08e6b56761d4"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "7",
+              "frame": {
+                "type": "number",
+                "value": 0
+              },
+              "__label": "Set Dice 5 to 0 (wild) frame",
+              "__collapse": false
+            },
+            "id": "2121abbd-cf9b-437c-a373-ee745d616bc8"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_ACTOR_SET_FRAME",
+            "args": {
+              "actorId": "7",
+              "frame": {
+                "type": "number",
+                "value": 12
+              },
+              "__label": "Set Dice 5 to 12th (landing) frame",
+              "__collapse": false
+            },
+            "id": "f93df481-bfd0-44a5-84c2-08e6b56761d4"
+          }
+        ]
+      },
+      "id": "e0d6bca3-c0f4-42ac-8caa-a451a37efb9b"
     },
     {
       "command": "EVENT_COMMENT",
