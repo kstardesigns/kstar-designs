@@ -1179,9 +1179,9 @@
                   "args": {
                     "condition": {
                       "type": "expression",
-                      "value": "$28$ && ($27$ == 1)"
+                      "value": "$28$ && $27$ == 1 && $151$ == 0"
                     },
-                    "__collapseElse": true,
+                    "__collapseElse": false,
                     "__collapse": false
                   },
                   "children": {
@@ -1197,7 +1197,116 @@
                         "id": "67c0a3c5-497e-4caf-b11b-398aeb8f6b90"
                       }
                     ],
-                    "false": []
+                    "false": [
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "For tracking 1 wild with full house:\nif there are exactly 2 pairs (+ the wild), it's a full house\nif 4oak_boolean is true & yotzee is false, that means there are 3 matching numbers + wild card. \nThe wild card then pairs with the 5th other die, making a full house"
+                        },
+                        "id": "736510a2-20bb-4b4a-ae2d-326cd9d1e33d"
+                      },
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "expression",
+                            "value": "$151$ == 1 && ($27$ == 2 || ($30$ && !$39$))"
+                          },
+                          "__collapseElse": false
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_SET_VALUE",
+                              "args": {
+                                "variable": "33",
+                                "value": {
+                                  "type": "true"
+                                }
+                              },
+                              "id": "4cf84363-1ca6-4a62-a129-50c600d3494f"
+                            }
+                          ],
+                          "false": [
+                            {
+                              "command": "EVENT_COMMENT",
+                              "args": {
+                                "text": "For tracking 2 wilds with full house:\nIf there's exactly 1 pair, then the 2 wilds can match the 1 unknown to form a full house"
+                              },
+                              "id": "e02ee75b-9acf-498e-a612-0642a5e7d196"
+                            },
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "expression",
+                                  "value": "$151$ == 2 && $27$ == 1"
+                                },
+                                "__collapseElse": false
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_SET_VALUE",
+                                    "args": {
+                                      "variable": "33",
+                                      "value": {
+                                        "type": "true"
+                                      }
+                                    },
+                                    "id": "c7e26211-b334-4ce8-a7dc-4c5ee6de95ef"
+                                  }
+                                ],
+                                "false": [
+                                  {
+                                    "command": "EVENT_COMMENT",
+                                    "args": {
+                                      "text": "For tracking with 3 or more wilds, they can split up with the 2 remaining dice as needed to make a full house"
+                                    },
+                                    "id": "7e6da630-6b1a-4fd5-a682-19853bee9b3d"
+                                  },
+                                  {
+                                    "command": "EVENT_IF",
+                                    "args": {
+                                      "condition": {
+                                        "type": "gte",
+                                        "valueA": {
+                                          "type": "variable",
+                                          "value": "151"
+                                        },
+                                        "valueB": {
+                                          "type": "number",
+                                          "value": 3
+                                        }
+                                      },
+                                      "__collapseElse": true
+                                    },
+                                    "children": {
+                                      "true": [
+                                        {
+                                          "command": "EVENT_SET_VALUE",
+                                          "args": {
+                                            "variable": "33",
+                                            "value": {
+                                              "type": "true"
+                                            }
+                                          },
+                                          "id": "fd7820bb-c092-47df-80fe-75e726d2c7e6"
+                                        }
+                                      ],
+                                      "false": []
+                                    },
+                                    "id": "c759adce-6356-43aa-85b6-990e10922482"
+                                  }
+                                ]
+                              },
+                              "id": "e22b9045-aa62-4120-8c9f-55adabfd1c0f"
+                            }
+                          ]
+                        },
+                        "id": "b0bf27dd-4385-4a75-8ca1-e8c1dd744270"
+                      }
+                    ]
                   },
                   "id": "80ede1e6-70e1-4190-8138-533dcff0f455"
                 },
@@ -1983,7 +2092,7 @@
                 "value": "33"
               },
               "__collapseElse": false,
-              "__collapse": true,
+              "__collapse": false,
               "__label": "(If) (Full House)"
             },
             "children": {
@@ -2138,7 +2247,7 @@
               },
               "__collapseElse": false,
               "__label": "(If) Chance",
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true": [
