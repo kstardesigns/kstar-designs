@@ -932,10 +932,22 @@
                   "id": "9997b9f4-2227-48b6-950c-023ddd5509fb"
                 },
                 {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "151",
+                    "value": {
+                      "type": "expression",
+                      "value": "$146$ + $147$ + $148$ + $149$ + $150$"
+                    }
+                  },
+                  "id": "2d60156a-1b4b-4a05-967d-dbeca3c29797"
+                },
+                {
                   "command": "EVENT_COMMENT",
                   "args": {
                     "text": "Count pairs",
-                    "__collapse": true
+                    "__collapse": true,
+                    "__label": "Count pairs (and 3 oak w/wilds and 4 oak w/wilds)"
                   },
                   "id": "6ba05a1a-1ede-442d-b840-af5b14f7f532"
                 },
@@ -947,7 +959,7 @@
                       "value": "$19$ == 2"
                     },
                     "__collapseElse": true,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -957,6 +969,93 @@
                           "variable": "27"
                         },
                         "id": "212b9137-10c2-4f88-8655-eac673f19388"
+                      },
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "gte",
+                            "valueA": {
+                              "type": "variable",
+                              "value": "151"
+                            },
+                            "valueB": {
+                              "type": "number",
+                              "value": 2
+                            }
+                          },
+                          "__collapseElse": true
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_SET_VALUE",
+                              "args": {
+                                "variable": "28",
+                                "value": {
+                                  "type": "true"
+                                }
+                              },
+                              "id": "ec7e68e0-c160-4aa7-b2bc-e058ea99eb12"
+                            },
+                            {
+                              "command": "EVENT_SET_VALUE",
+                              "args": {
+                                "variable": "30",
+                                "value": {
+                                  "type": "true"
+                                }
+                              },
+                              "id": "2d89f771-bdc3-44eb-a95d-f8bb3b24444e"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "2b977015-59dc-416d-8df9-ef3e2707b39c"
+                      },
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "gte",
+                            "valueA": {
+                              "type": "variable",
+                              "value": "151"
+                            },
+                            "valueB": {
+                              "type": "number",
+                              "value": 1
+                            }
+                          },
+                          "__collapseElse": true
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_SET_VALUE",
+                              "args": {
+                                "variable": "155",
+                                "value": {
+                                  "type": "variable",
+                                  "value": "18"
+                                }
+                              },
+                              "id": "3ee6288f-b11f-4636-8fb1-226f09fcd03f"
+                            },
+                            {
+                              "command": "EVENT_SET_VALUE",
+                              "args": {
+                                "variable": "28",
+                                "value": {
+                                  "type": "true"
+                                }
+                              },
+                              "id": "9acd7ac8-1819-44f6-8ed7-c20c2273c3ff"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "4f5e983c-0180-4843-b08a-31415ce54bbd"
                       }
                     ],
                     "false": []
@@ -967,7 +1066,8 @@
                   "command": "EVENT_COMMENT",
                   "args": {
                     "text": "Check for 3 of a Kind\n",
-                    "__collapse": true
+                    "__collapse": true,
+                    "__label": "Check for 3 of a Kind (and 4 oak w/wilds)"
                   },
                   "id": "9afe29fd-3a94-45ab-8e39-54acc0519014"
                 },
@@ -979,7 +1079,7 @@
                       "value": "$19$ >= 3"
                     },
                     "__collapseElse": true,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -992,6 +1092,39 @@
                           }
                         },
                         "id": "755ce13e-6ea9-4d3e-a2ea-a6370134cbd7"
+                      },
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "gte",
+                            "valueA": {
+                              "type": "variable",
+                              "value": "151"
+                            },
+                            "valueB": {
+                              "type": "number",
+                              "value": 1
+                            }
+                          },
+                          "__collapseElse": true
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_SET_VALUE",
+                              "args": {
+                                "variable": "30",
+                                "value": {
+                                  "type": "true"
+                                }
+                              },
+                              "id": "729b9815-1e1f-4059-90d9-7940653f45fe"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "54345af6-0757-4883-a7ad-913f82ed893c"
                       }
                     ],
                     "false": []
@@ -1014,7 +1147,7 @@
                       "value": "$19$ >= 4"
                     },
                     "__collapseElse": true,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -1049,7 +1182,7 @@
                       "value": "$28$ && ($27$ == 1)"
                     },
                     "__collapseElse": true,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -1296,17 +1429,6 @@
                   "id": "4d951802-7efe-4a78-8a63-9eff2e977322"
                 },
                 {
-                  "command": "EVENT_SET_VALUE",
-                  "args": {
-                    "variable": "151",
-                    "value": {
-                      "type": "expression",
-                      "value": "$146$ + $147$ + $148$ + $149$ + $150$"
-                    }
-                  },
-                  "id": "2d60156a-1b4b-4a05-967d-dbeca3c29797"
-                },
-                {
                   "command": "EVENT_SWITCH",
                   "args": {
                     "variable": "18",
@@ -1344,7 +1466,7 @@
                     "__collapseCase15": false,
                     "value15": 16,
                     "__collapseElse": true,
-                    "__collapse": true,
+                    "__collapse": false,
                     "__label": "(Switch) (1-6) Assign temp score to individual variables"
                   },
                   "children": {
@@ -1709,11 +1831,18 @@
                 "value": "28"
               },
               "__collapseElse": false,
-              "__collapse": true,
+              "__collapse": false,
               "__label": "(If) (3 of a Kind)"
             },
             "children": {
               "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "adding all dice, + the parentheses part to account for wild dice. The die will be the same number as the highest pair (2 3 3 2 W) would make the W count as 3"
+                  },
+                  "id": "0b832461-1dfe-40a1-a159-e081c26edd8b"
+                },
                 {
                   "command": "EVENT_IF",
                   "args": {
@@ -1731,7 +1860,7 @@
                           "variable": "29",
                           "value": {
                             "type": "expression",
-                            "value": "($03$ + $04$ + $05$ + $06$ + $07$) * 2"
+                            "value": "($03$ + $04$ + $05$ + $06$ + $07$ + ($155$ * $151$)) * 2"
                           }
                         },
                         "id": "d515de22-0bc0-4dfd-84ae-fbff802cbcfc"
@@ -1744,7 +1873,7 @@
                           "variable": "29",
                           "value": {
                             "type": "expression",
-                            "value": "$03$ + $04$ + $05$ + $06$ + $07$"
+                            "value": "$03$ + $04$ + $05$ + $06$ + $07$ + ($155$ * $151$)"
                           }
                         },
                         "id": "91336ca7-13c6-41bc-ae08-0ec34062cce6"
@@ -1778,11 +1907,18 @@
                 "value": "30"
               },
               "__collapseElse": false,
-              "__collapse": true,
+              "__collapse": false,
               "__label": "(If) (4 of a Kind)"
             },
             "children": {
               "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "adding all dice, + the parentheses part to account for wild dice. The die will be the same number as the highest pair (2 3 3 2 W) would make the W count as 3"
+                  },
+                  "id": "8c2bff21-9845-48bf-ae79-cfb5c10bc07c"
+                },
                 {
                   "command": "EVENT_IF",
                   "args": {
@@ -1800,7 +1936,7 @@
                           "variable": "31",
                           "value": {
                             "type": "expression",
-                            "value": "($03$ + $04$ + $05$ + $06$ + $07$) * 2"
+                            "value": "($03$ + $04$ + $05$ + $06$ + $07$ + ($155$ * $151$)) * 2"
                           }
                         },
                         "id": "0957e713-c630-4bf4-abac-abf01bb1a3b1"
@@ -1813,7 +1949,7 @@
                           "variable": "31",
                           "value": {
                             "type": "expression",
-                            "value": "$03$ + $04$ + $05$ + $06$ + $07$"
+                            "value": "$03$ + $04$ + $05$ + $06$ + $07$ + ($155$ * $151$)"
                           }
                         },
                         "id": "e5b0fe4a-cdaf-4aec-aa44-07688d41a697"
@@ -1916,7 +2052,7 @@
                 "value": "39"
               },
               "__collapseElse": false,
-              "__collapse": false,
+              "__collapse": true,
               "__label": "(If) (Yotzee)"
             },
             "children": {
@@ -2002,7 +2138,7 @@
               },
               "__collapseElse": false,
               "__label": "(If) Chance",
-              "__collapse": true
+              "__collapse": false
             },
             "children": {
               "true": [
@@ -2012,7 +2148,7 @@
                     "variable": "35",
                     "value": {
                       "type": "expression",
-                      "value": "($03$ + $04$ + $05$ + $06$ + $07$) * 2"
+                      "value": "($03$ + $04$ + $05$ + $06$ + $07$ + ($155$ * $151$)) * 2"
                     },
                     "__collapse": false,
                     "__label": "(Chance)"
@@ -2027,7 +2163,7 @@
                     "variable": "35",
                     "value": {
                       "type": "expression",
-                      "value": "$03$ + $04$ + $05$ + $06$ + $07$"
+                      "value": "$03$ + $04$ + $05$ + $06$ + $07$ + ($155$ * $151$)"
                     },
                     "__collapse": false,
                     "__label": "(Chance)"
