@@ -126,13 +126,36 @@
         ],
         "true6": [
           {
-            "command": "EVENT_ACTOR_SET_STATE",
+            "command": "EVENT_IF",
             "args": {
-              "actorId": "0",
-              "spriteStateId": "Scorecard Dice Wild",
-              "loopAnim": false
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "16"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 0
+                }
+              },
+              "__collapseElse": false
             },
-            "id": "c020d4ff-360b-4a41-b3bb-60a9bdd8dad5"
+            "children": {
+              "true": [],
+              "false": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "0",
+                    "spriteStateId": "Scorecard Dice Wild",
+                    "loopAnim": false
+                  },
+                  "id": "c020d4ff-360b-4a41-b3bb-60a9bdd8dad5"
+                }
+              ]
+            },
+            "id": "29a2bbfb-caf1-4c15-b9ee-f107d5ff042f"
           }
         ],
         "true7": [],

@@ -43,9 +43,9 @@
             "command": "EVENT_TEXT",
             "args": {
               "text": [
-                "Bonus active:\n- Double stack\n(2x score)"
+                "Bonus active:\nDouble stack\n(2x score)"
               ],
-              "__section": "behavior",
+              "__section": "text",
               "avatarId": "",
               "minHeight": 4,
               "maxHeight": 7,
@@ -82,9 +82,9 @@
                   "command": "EVENT_TEXT",
                   "args": {
                     "text": [
-                      "Bonus active:\n- No scoring dice\n(Must score a zero)"
+                      "Penalty active:\nNo scoring dice\n(Must score a zero)"
                     ],
-                    "__section": "behavior",
+                    "__section": "text",
                     "avatarId": "",
                     "minHeight": 4,
                     "maxHeight": 7,
@@ -121,9 +121,9 @@
                         "command": "EVENT_TEXT",
                         "args": {
                           "text": [
-                            "Bonuses active:\n- Extra roll\n(4th roll this turn)"
+                            "Bonus active:\nExtra roll\n(4th roll this turn)"
                           ],
-                          "__section": "behavior",
+                          "__section": "text",
                           "avatarId": "",
                           "minHeight": 4,
                           "maxHeight": 7,
@@ -150,7 +150,7 @@
                           "text": [
                             "No bonuses active."
                           ],
-                          "__section": "behavior",
+                          "__section": "text",
                           "avatarId": "",
                           "minHeight": 4,
                           "maxHeight": 7,
@@ -176,6 +176,47 @@
               ]
             },
             "id": "cbe72ed4-5542-4685-8910-bb0430197a59"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "$146$ || $147$ || $148$ || $149$ || $150$"
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "$151$ WILD dice active."
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "e14da689-baa2-40b0-8e8c-a03a56bbd716"
+                }
+              ],
+              "false": []
+            },
+            "id": "f12ca964-3f50-43b5-af1e-88ff9fdccc4e"
           }
         ]
       },
