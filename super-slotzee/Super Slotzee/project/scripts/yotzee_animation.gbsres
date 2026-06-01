@@ -1,0 +1,154 @@
+{
+  "_resourceType": "script",
+  "id": "d5266c15-fd43-4464-b8e3-b9c9fc242cd1",
+  "name": "Yotzee animation",
+  "description": "This is called in a few places in calculate score where Yotzees are checked",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_37",
+  "script": [
+    {
+      "command": "EVENT_THREAD_START",
+      "args": {
+        "variable": "84",
+        "__scriptTabs": "true",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "!($11$ && $12$ && $15$ && $13$ && $14$)"
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762"
+                  },
+                  "id": "1765fe70-1a1f-4259-9a9c-5d437e648b8d"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "68",
+                    "value": {
+                      "type": "number",
+                      "value": 3
+                    },
+                    "__collapse": false
+                  },
+                  "id": "63384d84-73af-485c-8eb5-ab34828c5a8e"
+                },
+                {
+                  "command": "EVENT_SOUND_PLAY_EFFECT",
+                  "args": {
+                    "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
+                    "priority": "high",
+                    "pitch": 4,
+                    "frequency": 200,
+                    "duration": 0.5,
+                    "wait": true,
+                    "effect": 4,
+                    "__collapse": true
+                  },
+                  "id": "bea03961-1b39-40e1-a183-2a7092a440ce"
+                },
+                {
+                  "command": "EVENT_LOOP_WHILE",
+                  "args": {
+                    "condition": {
+                      "type": "gt",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "68"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 0
+                      }
+                    },
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_PALETTE_SET_SPRITE",
+                        "args": {
+                          "palette0": "keep",
+                          "palette1": "keep",
+                          "palette2": "keep",
+                          "palette3": "keep",
+                          "palette4": "keep",
+                          "palette5": "723b7dff-57d5-4b21-b77e-8f68b2bedc82",
+                          "palette6": "keep",
+                          "palette7": "keep"
+                        },
+                        "id": "eca0097a-9283-4c45-9064-9691b7c79ba4"
+                      },
+                      {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 0.5,
+                          "frames": 30
+                        },
+                        "id": "bee72899-7bcc-4a7f-b63a-93c059e80662"
+                      },
+                      {
+                        "command": "EVENT_PALETTE_SET_SPRITE",
+                        "args": {
+                          "palette0": "keep",
+                          "palette1": "keep",
+                          "palette2": "keep",
+                          "palette3": "keep",
+                          "palette4": "keep",
+                          "palette5": "cc8857ac-3850-4956-a130-94e280a186d1",
+                          "palette6": "keep",
+                          "palette7": "keep"
+                        },
+                        "id": "be186d07-388c-4bf6-b9f1-f134374840c6"
+                      },
+                      {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 0.5,
+                          "frames": 30
+                        },
+                        "id": "97cfddd4-529d-428d-be7d-1364d96f0440"
+                      },
+                      {
+                        "command": "EVENT_DEC_VALUE",
+                        "args": {
+                          "variable": "68"
+                        },
+                        "id": "657408fc-7572-441a-bc94-b2291d6e04f9"
+                      }
+                    ]
+                  },
+                  "id": "b9f1b042-c60b-4e99-adb3-63b24b459aca"
+                },
+                {
+                  "command": "EVENT_THREAD_STOP",
+                  "args": {
+                    "variable": "84"
+                  },
+                  "id": "303df8e7-9dc3-4b2e-8fcd-474b63a43bd0"
+                }
+              ],
+              "false": []
+            },
+            "id": "d9996a17-cac3-46e5-a980-b528a6c18418"
+          }
+        ]
+      },
+      "id": "1a16aff2-4bab-49b2-b929-2daa6d21f839"
+    }
+  ]
+}
