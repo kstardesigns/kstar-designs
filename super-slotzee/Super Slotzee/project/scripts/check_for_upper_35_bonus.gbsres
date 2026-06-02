@@ -21,7 +21,7 @@
             "value": 35
           }
         },
-        "__collapseElse": true
+        "__collapseElse": false
       },
       "children": {
         "true": [
@@ -86,7 +86,66 @@
             "id": "4adbcb1f-f9ba-4be4-8bb1-9e63d5258a95"
           }
         ],
-        "false": []
+        "false": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "157"
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "If score IS 35, check if we need to deduct 35 bonus due to what was erased."
+                  },
+                  "id": "1eab73d8-53b4-489f-8159-63f5c5b909a2"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "lt",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "114"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 63
+                      }
+                    },
+                    "__collapseElse": true,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "120",
+                          "value": {
+                            "type": "number",
+                            "value": 0
+                          }
+                        },
+                        "id": "267a6db2-bcdb-4a35-8f26-62d3898b264c"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "d6ace8bb-ca03-4eb4-98a8-01d7351e2b9a"
+                }
+              ],
+              "false": []
+            },
+            "id": "bd195a8e-060f-482d-82cd-1cdfeccd8b00"
+          }
+        ]
       },
       "id": "8483e73f-d1bb-48ac-9215-c5433fff13bb"
     }
