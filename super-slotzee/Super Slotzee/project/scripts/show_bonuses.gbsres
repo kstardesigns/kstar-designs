@@ -43,7 +43,7 @@
             "command": "EVENT_TEXT",
             "args": {
               "text": [
-                "Bonus active:\nDouble stack\n(2x score)"
+                "Slot bonus active:\nDouble stack\n(2x score)"
               ],
               "__section": "text",
               "avatarId": "",
@@ -82,7 +82,7 @@
                   "command": "EVENT_TEXT",
                   "args": {
                     "text": [
-                      "Penalty active:\nNo scoring dice\n(Must score a zero)"
+                      "Slot penalty active:\nNo scoring dice\n(Must score a zero)"
                     ],
                     "__section": "text",
                     "avatarId": "",
@@ -121,7 +121,7 @@
                         "command": "EVENT_TEXT",
                         "args": {
                           "text": [
-                            "Bonus active:\nExtra roll\n(4th roll this turn)"
+                            "Slot bonus active:\nExtra roll\n(4th roll this turn)"
                           ],
                           "__section": "text",
                           "avatarId": "",
@@ -145,29 +145,46 @@
                     ],
                     "false": [
                       {
-                        "command": "EVENT_TEXT",
+                        "command": "EVENT_IF",
                         "args": {
-                          "text": [
-                            "No bonuses active."
-                          ],
-                          "__section": "text",
-                          "avatarId": "",
-                          "minHeight": 4,
-                          "maxHeight": 7,
-                          "textX": 1,
-                          "textY": 1,
-                          "textHeight": 5,
-                          "position": "bottom",
-                          "clearPrevious": true,
-                          "showFrame": "true",
-                          "speedIn": -1,
-                          "speedOut": -1,
-                          "closeWhen": "key",
-                          "closeButton": "any",
-                          "closeDelayTime": 0.5,
-                          "closeDelayFrames": 30
+                          "condition": {
+                            "type": "variable",
+                            "value": "63"
+                          },
+                          "__collapseElse": false,
+                          "__collapse": false
                         },
-                        "id": "3a7e7677-9b6a-478c-8f4c-cbd3dc80ab44"
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_TEXT",
+                              "args": {
+                                "text": [
+                                  "Slot bonus active:\nSlot token earned\nthis turn"
+                                ],
+                                "__section": "text",
+                                "avatarId": "",
+                                "minHeight": 4,
+                                "maxHeight": 7,
+                                "textX": 1,
+                                "textY": 1,
+                                "textHeight": 5,
+                                "position": "bottom",
+                                "clearPrevious": true,
+                                "showFrame": true,
+                                "speedIn": -1,
+                                "speedOut": -1,
+                                "closeWhen": "key",
+                                "closeButton": "any",
+                                "closeDelayTime": 0.5,
+                                "closeDelayFrames": 30
+                              },
+                              "id": "be7676b2-4728-4942-87d2-7f95ff42b64c"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "387d168f-2f2e-4310-93b6-6759b8f11aaf"
                       }
                     ]
                   },
@@ -221,6 +238,47 @@
         ]
       },
       "id": "c9edaf99-9f78-4b90-b4ec-6ea4caacd662"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "!$44$ && !$45$ && !$61$ && !$146$ && !$147$ && !$148$ && !$149$ && !$150$"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "No bonuses active."
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "any",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "80812448-ba4b-4d77-9d6d-d8b8f6a98242"
+          }
+        ],
+        "false": []
+      },
+      "id": "4341be67-c174-4a52-b767-57054f47efb0"
     }
   ]
 }
