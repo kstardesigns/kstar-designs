@@ -208,7 +208,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) Check for Slots: Extra Roll",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -227,34 +227,22 @@
             "command": "EVENT_IF",
             "args": {
               "condition": {
-                "type": "eq",
-                "valueA": {
+                "type": "not",
+                "value": {
                   "type": "variable",
-                  "value": "16"
-                },
-                "valueB": {
-                  "type": "number",
-                  "value": 3
+                  "value": "156"
                 }
               },
-              "__collapseElse": false,
-              "__collapse": false
+              "__collapseElse": true
             },
             "children": {
               "true": [
                 {
-                  "command": "EVENT_COMMENT",
-                  "args": {
-                    "text": "Forcing hold on turn 3 so extra roll will hit",
-                    "__collapse": true
-                  },
-                  "id": "406fe1a0-41e7-454c-b69d-d478de49090a"
-                },
-                {
                   "command": "EVENT_THREAD_START",
                   "args": {
                     "variable": "128",
-                    "__scriptTabs": "true"
+                    "__scriptTabs": "true",
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -284,7 +272,8 @@
                         "command": "EVENT_TEXT",
                         "args": {
                           "text": [
-                            "You got an extra roll\n for this turn!"
+                            "You got an extra roll\non this turn!  @",
+                            "Keep slots held to be\nable to roll on roll 4."
                           ],
                           "__section": "text",
                           "avatarId": "",
@@ -302,10 +291,20 @@
                           "closeButton": "a",
                           "closeDelayTime": 0.5,
                           "closeDelayFrames": 30,
-                          "__collapse": true,
+                          "__collapse": false,
                           "__comment": false
                         },
                         "id": "fcd5810c-92f0-49cb-bef6-574208242aca"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "156",
+                          "value": {
+                            "type": "true"
+                          }
+                        },
+                        "id": "dc3292ad-ca51-4b3a-992c-d2250b7ef66c"
                       },
                       {
                         "command": "EVENT_PALETTE_SET_UI",
@@ -333,6 +332,30 @@
                   "id": "688afbda-7d7b-44fd-9c89-4a4204b2b4e6"
                 }
               ],
+              "false": []
+            },
+            "id": "b25b6218-9144-49ea-8828-fb66b07d50f7"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "16"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 3
+                }
+              },
+              "__collapseElse": false,
+              "__collapse": true,
+              "__comment": true
+            },
+            "children": {
+              "true": [],
               "false": [
                 {
                   "command": "EVENT_IF",
@@ -402,7 +425,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) Check for Slots: Double Stack (2x score)",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -421,18 +444,13 @@
             "command": "EVENT_IF",
             "args": {
               "condition": {
-                "type": "eq",
-                "valueA": {
+                "type": "not",
+                "value": {
                   "type": "variable",
-                  "value": "16"
-                },
-                "valueB": {
-                  "type": "number",
-                  "value": 3
+                  "value": "156"
                 }
               },
-              "__collapseElse": false,
-              "__collapse": false
+              "__collapseElse": true
             },
             "children": {
               "true": [
@@ -440,7 +458,8 @@
                   "command": "EVENT_THREAD_START",
                   "args": {
                     "variable": "128",
-                    "__scriptTabs": "true"
+                    "__scriptTabs": "true",
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -450,6 +469,14 @@
                           "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762"
                         },
                         "id": "ece9bfa4-5577-4319-a26c-a123e661a457"
+                      },
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "f792ce6f-7872-45de-afbb-9df1a0e710e6",
+                          "__collapse": false
+                        },
+                        "id": "244fc334-36c0-40a8-9231-a2ff3f4cb53a"
                       },
                       {
                         "command": "EVENT_PALETTE_SET_UI",
@@ -463,7 +490,8 @@
                         "args": {
                           "text": [
                             "Double stack!\nScores are doubled  @",
-                            "this turn!"
+                            "this turn!  @",
+                            "Keep slots held to \nkeep scores doubled."
                           ],
                           "__section": "text",
                           "avatarId": "",
@@ -485,6 +513,16 @@
                           "__comment": false
                         },
                         "id": "82a087fb-1f8c-4ead-88cb-91f1ff5c2bad"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "156",
+                          "value": {
+                            "type": "true"
+                          }
+                        },
+                        "id": "1c584dfd-135c-4915-b08a-e40e5f705f2b"
                       },
                       {
                         "command": "EVENT_PALETTE_SET_UI",
@@ -512,6 +550,30 @@
                   "id": "02c246b7-7196-45f0-8069-b59b73cd5089"
                 }
               ],
+              "false": []
+            },
+            "id": "03d9c7f4-5b62-42a8-9797-db7f68108720"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "16"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 3
+                }
+              },
+              "__collapseElse": false,
+              "__collapse": true,
+              "__comment": true
+            },
+            "children": {
+              "true": [],
               "false": [
                 {
                   "command": "EVENT_IF",
