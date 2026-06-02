@@ -1,11 +1,11 @@
 {
   "_resourceType": "trigger",
-  "id": "ebbb0bee-f48a-4bfb-98d5-eb27ee703a3f",
+  "id": "0b01e63e-149e-4ec0-b94d-854b6650512d",
   "name": "Super Yotzee trigger",
   "prefabId": "",
-  "x": 14,
-  "y": 9,
-  "symbol": "trigger_25",
+  "x": 9,
+  "y": 14,
+  "symbol": "trigger_27",
   "prefabScriptOverrides": {},
   "width": 2,
   "height": 1,
@@ -28,24 +28,24 @@
               "actorId": "$self$",
               "x": {
                 "type": "number",
-                "value": 9
+                "value": 4
               },
               "y": {
                 "type": "number",
-                "value": 9
+                "value": 14
               }
             },
-            "id": "5bebb2cd-350e-4071-9e2d-1870e23deaf9"
+            "id": "c6d24eee-c6ed-4dc1-a0d4-9d046b911717"
           }
         ]
       },
-      "id": "a2ec6c57-5e9d-4421-a574-aecad84f717b"
+      "id": "94eeb8e5-4a72-457e-8611-d819efc85500"
     },
     {
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
-          "down"
+          "right"
         ],
         "override": true,
         "__scriptTabs": "press",
@@ -66,11 +66,42 @@
                 "value": 14
               }
             },
-            "id": "cbed429e-2b08-473b-946d-e635bb9ad08d"
+            "id": "d6917334-ca06-4fcd-999a-bdc4ffed6034"
           }
         ]
       },
-      "id": "1ad76294-8b2d-47e0-be0d-e22e994056cb"
+      "id": "ea291016-5a8d-4e23-83e7-18d6b6aa2982"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "up"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 9
+              },
+              "y": {
+                "type": "number",
+                "value": 9
+              }
+            },
+            "id": "fd3c48cd-9a5f-455d-b589-8daaca7a7a74"
+          }
+        ]
+      },
+      "id": "df2e6bbd-00b6-4529-8e10-d5ef6626a338"
     },
     {
       "command": "EVENT_SET_INPUT_SCRIPT",
@@ -89,18 +120,17 @@
             "args": {
               "actorId": "player",
               "spriteStateId": "Animated up still",
-              "loopAnim": false
+              "loopAnim": false,
+              "__collapse": true
             },
-            "id": "6230bf8e-3388-494f-93c0-c9c589d60f16"
+            "id": "bdc51ef9-b24f-4467-b044-ab94d0d732a1"
           },
           {
             "command": "EVENT_TEXT",
             "args": {
               "text": [
-                "ERASER token. \nWhen used, it will  @",
-                "allow you to erase a \nzero from your  @",
-                "scorecard. The turn \nnumber will be  @",
-                "reduced by 1.\nChoose this token?"
+                "CONVERSION token. \nThis coin needs to\nbe replaced.......",
+                "Choose this token?"
               ],
               "__section": "text",
               "avatarId": "",
@@ -119,7 +149,7 @@
               "closeDelayTime": 0.5,
               "closeDelayFrames": 30
             },
-            "id": "2231b63e-8563-455f-a373-2adf30230948"
+            "id": "d26939c3-7393-48fc-94a9-5f72ed834e9e"
           },
           {
             "command": "EVENT_MENU",
@@ -138,7 +168,7 @@
               "layout": "dialogue",
               "cancelOnLastOption": true
             },
-            "id": "346342ad-6c7a-48b3-b09f-2e71b90b3201"
+            "id": "8e8489f1-a01d-48c1-a4c4-67054aa4bec2"
           },
           {
             "command": "EVENT_IF",
@@ -154,16 +184,16 @@
                 {
                   "command": "EVENT_INC_VALUE",
                   "args": {
-                    "variable": "142"
+                    "variable": "144"
                   },
-                  "id": "e018bcf5-6b73-4d99-bcd2-8ca72079a595"
+                  "id": "de77d036-9c36-460c-8075-1a5fa3ae8f38"
                 },
                 {
                   "command": "EVENT_TEXT",
                   "args": {
                     "text": [
-                      "An ERASER token has \nbeen added to your  @",
-                      "inventory."
+                      "A CONVERSION token \nhas been added to  @",
+                      "your inventory."
                     ],
                     "__section": "text",
                     "avatarId": "",
@@ -182,7 +212,7 @@
                     "closeDelayTime": 0.5,
                     "closeDelayFrames": 30
                   },
-                  "id": "99075c11-af1a-4511-9939-f6c87a9fa191"
+                  "id": "4b42e028-7ec5-4a7f-9c33-cc1981d2ab77"
                 },
                 {
                   "command": "EVENT_WAIT",
@@ -190,7 +220,7 @@
                     "time": 0.5,
                     "frames": 30
                   },
-                  "id": "2aa8a6c0-75c0-4526-b850-7236b17f1d3e"
+                  "id": "8033ef98-c569-4039-944e-6e4f677e64dd"
                 },
                 {
                   "command": "EVENT_SET_VALUE",
@@ -202,14 +232,14 @@
                     "__comment": false,
                     "__collapse": true
                   },
-                  "id": "e823fbaa-e2ed-4fe8-bafb-871e64234f93"
+                  "id": "2db93bf0-5a7a-4458-bfd8-fb8e4fcecd7e"
                 },
                 {
                   "command": "EVENT_SCENE_POP_STATE",
                   "args": {
                     "fadeSpeed": "2"
                   },
-                  "id": "c0c12855-c784-4891-9928-2d656c109352"
+                  "id": "a6db147b-f6be-4d4a-b1ab-60caaec42f55"
                 }
               ],
               "false": [
@@ -220,23 +250,22 @@
                     "spriteStateId": "",
                     "loopAnim": true
                   },
-                  "id": "41d3dd9e-4794-4339-a8bc-1d4c27e03898"
+                  "id": "a0d7b23d-c897-4907-9dd2-b503848e9622"
                 }
               ]
             },
-            "id": "f027697e-a553-4025-aaef-779a7488eae2"
+            "id": "0da4f61b-4946-4399-a55c-cc300fdd3361"
           }
         ]
       },
-      "id": "b45b7160-581a-4800-9a91-11eeadaceeed"
+      "id": "c7043ce8-4165-4703-9af8-bf895b97c1d6"
     },
     {
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
           "b",
-          "up",
-          "right"
+          "down"
         ],
         "override": true,
         "__scriptTabs": "press",
@@ -245,9 +274,9 @@
       "children": {
         "true": []
       },
-      "id": "90ab7ca2-e3c9-4546-ac32-a7d36ffe74b5"
+      "id": "d1463fbb-5b00-4a3e-b92d-b446cc74f4ca"
     }
   ],
   "leaveScript": [],
-  "_index": 2
+  "_index": 4
 }
