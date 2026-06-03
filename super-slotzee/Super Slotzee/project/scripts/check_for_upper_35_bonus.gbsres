@@ -8,6 +8,16 @@
   "symbol": "script_24",
   "script": [
     {
+      "command": "EVENT_VARIABLE_MATH_EVALUATE",
+      "args": {
+        "variable": "114",
+        "expression": "$88$ + $89$ + $90$ + $91$ + $92$ + $93$",
+        "__label": "Get upper bonus total",
+        "__collapse": true
+      },
+      "id": "da564dd6-2f73-4c99-9200-479a412a036f"
+    },
+    {
       "command": "EVENT_IF",
       "args": {
         "condition": {
@@ -39,7 +49,8 @@
                   "value": 63
                 }
               },
-              "__collapseElse": true
+              "__collapseElse": true,
+              "__collapse": false
             },
             "children": {
               "true": [
@@ -94,14 +105,16 @@
                 "type": "variable",
                 "value": "157"
               },
-              "__collapseElse": true
+              "__collapseElse": true,
+              "__collapse": false
             },
             "children": {
               "true": [
                 {
                   "command": "EVENT_COMMENT",
                   "args": {
-                    "text": "If score IS 35, check if we need to deduct 35 bonus due to what was erased."
+                    "text": "If score IS 35, check if we need to deduct 35 bonus due to what was erased.",
+                    "__collapse": true
                   },
                   "id": "1eab73d8-53b4-489f-8159-63f5c5b909a2"
                 },
@@ -124,6 +137,32 @@
                   },
                   "children": {
                     "true": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "Your top section has\ndropped below 63,  @",
+                            "so your 35-point bonus\nhas been lost"
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "top",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "4c1289e2-23ba-42c6-ac88-c533e5620a98"
+                      },
                       {
                         "command": "EVENT_SET_VALUE",
                         "args": {
