@@ -27,7 +27,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -340,6 +340,17 @@
                                             "__collapse": true
                                           },
                                           "id": "bd9486cc-d507-471f-8404-f7cf379c3749"
+                                        },
+                                        {
+                                          "command": "EVENT_SET_VALUE",
+                                          "args": {
+                                            "variable": "160",
+                                            "value": {
+                                              "type": "false"
+                                            },
+                                            "__collapse": true
+                                          },
+                                          "id": "fec90bac-5605-4efc-b0b2-65ac95ac8a51"
                                         },
                                         {
                                           "command": "EVENT_TEXT",
@@ -4513,7 +4524,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -4521,15 +4532,8 @@
             "command": "EVENT_IF",
             "args": {
               "condition": {
-                "type": "ne",
-                "valueA": {
-                  "type": "variable",
-                  "value": "16"
-                },
-                "valueB": {
-                  "type": "number",
-                  "value": 0
-                }
+                "type": "expression",
+                "value": "$16$ != 0 || ($16$ == 0 && $160$)"
               },
               "__collapseElse": true,
               "__collapse": false
