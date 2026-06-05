@@ -517,13 +517,13 @@
                     "choices": 6,
                     "__collapseCase0": true,
                     "value0": 1,
-                    "__collapseCase1": true,
+                    "__collapseCase1": false,
                     "value1": 2,
                     "__collapseCase2": true,
                     "value2": 3,
                     "__collapseCase3": true,
                     "value3": 4,
-                    "__collapseCase4": false,
+                    "__collapseCase4": true,
                     "value4": 5,
                     "__collapseCase5": true,
                     "value5": 6,
@@ -2249,7 +2249,7 @@
                                         "value": "!$123$"
                                       },
                                       "__collapseElse": false,
-                                      "__collapse": true
+                                      "__collapse": false
                                     },
                                     "children": {
                                       "true": [
@@ -2420,21 +2420,24 @@
                                         {
                                           "command": "EVENT_CALL_CUSTOM_EVENT",
                                           "args": {
-                                            "customEventId": "d5266c15-fd43-4464-b8e3-b9c9fc242cd1"
+                                            "customEventId": "d5266c15-fd43-4464-b8e3-b9c9fc242cd1",
+                                            "__collapse": true
                                           },
                                           "id": "f250a997-cac1-4112-8f11-13b610abee04"
                                         },
                                         {
                                           "command": "EVENT_CALL_CUSTOM_EVENT",
                                           "args": {
-                                            "customEventId": "735debf0-782d-4027-a94a-3c845f866805"
+                                            "customEventId": "735debf0-782d-4027-a94a-3c845f866805",
+                                            "__collapse": true
                                           },
                                           "id": "51f34482-b9a8-4d2c-906a-709ad7b98af0"
                                         },
                                         {
                                           "command": "EVENT_CALL_CUSTOM_EVENT",
                                           "args": {
-                                            "customEventId": "ad3ec2a3-7c73-4364-b56a-180129e66468"
+                                            "customEventId": "ad3ec2a3-7c73-4364-b56a-180129e66468",
+                                            "__collapse": true
                                           },
                                           "id": "78331361-54ff-4ac6-bba7-67833951961e"
                                         },
@@ -3534,11 +3537,138 @@
                               "children": {
                                 "true": [
                                   {
-                                    "command": "EVENT_DEC_VALUE",
+                                    "command": "EVENT_IF",
                                     "args": {
-                                      "variable": "144"
+                                      "condition": {
+                                        "type": "not",
+                                        "value": {
+                                          "type": "variable",
+                                          "value": "161"
+                                        }
+                                      },
+                                      "__collapseElse": false
                                     },
-                                    "id": "397617c2-02b5-4cd5-bf49-1365437bef76"
+                                    "children": {
+                                      "true": [
+                                        {
+                                          "command": "EVENT_IF",
+                                          "args": {
+                                            "condition": {
+                                              "type": "expression",
+                                              "value": "(($16$ == 3 && !$61$) || ($16$ == 4 && $61$)) && !$123$"
+                                            },
+                                            "__collapseElse": false,
+                                            "__collapse": true
+                                          },
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_TEXT",
+                                                "args": {
+                                                  "text": [
+                                                    "The turn is over. You \ncan use HEAVY  @",
+                                                    "tokens for your next\nturn, after you  @",
+                                                    "score a box."
+                                                  ],
+                                                  "__section": "text",
+                                                  "avatarId": "",
+                                                  "minHeight": 4,
+                                                  "maxHeight": 7,
+                                                  "textX": 1,
+                                                  "textY": 1,
+                                                  "textHeight": 5,
+                                                  "position": "bottom",
+                                                  "clearPrevious": true,
+                                                  "showFrame": "true",
+                                                  "speedIn": -1,
+                                                  "speedOut": -1,
+                                                  "closeWhen": "key",
+                                                  "closeButton": "a",
+                                                  "closeDelayTime": 0.5,
+                                                  "closeDelayFrames": 30
+                                                },
+                                                "id": "149a95c3-cdd2-4126-8d9a-ef335a9a3297"
+                                              }
+                                            ],
+                                            "false": [
+                                              {
+                                                "command": "EVENT_TEXT",
+                                                "args": {
+                                                  "text": [
+                                                    "HEAVY token has been\napplied. Dice will  @",
+                                                    "only roll 4, 5, or 6\nthis turn."
+                                                  ],
+                                                  "__section": "text",
+                                                  "avatarId": "",
+                                                  "minHeight": 4,
+                                                  "maxHeight": 7,
+                                                  "textX": 1,
+                                                  "textY": 1,
+                                                  "textHeight": 5,
+                                                  "position": "bottom",
+                                                  "clearPrevious": true,
+                                                  "showFrame": "true",
+                                                  "speedIn": -1,
+                                                  "speedOut": -1,
+                                                  "closeWhen": "key",
+                                                  "closeButton": "a",
+                                                  "closeDelayTime": 0.5,
+                                                  "closeDelayFrames": 30
+                                                },
+                                                "id": "56c6a647-c777-4ac6-92d3-2a96e56e04b1"
+                                              },
+                                              {
+                                                "command": "EVENT_SET_VALUE",
+                                                "args": {
+                                                  "variable": "161",
+                                                  "value": {
+                                                    "type": "true"
+                                                  }
+                                                },
+                                                "id": "9f8baf0f-a96f-4f50-af3b-d5f2d9dbfe7e"
+                                              },
+                                              {
+                                                "command": "EVENT_DEC_VALUE",
+                                                "args": {
+                                                  "variable": "144"
+                                                },
+                                                "id": "397617c2-02b5-4cd5-bf49-1365437bef76"
+                                              }
+                                            ]
+                                          },
+                                          "id": "67be332f-6016-44f0-87e1-1b515d54ffda"
+                                        }
+                                      ],
+                                      "false": [
+                                        {
+                                          "command": "EVENT_TEXT",
+                                          "args": {
+                                            "text": [
+                                              "There's a HEAVY token\nalready active for  @",
+                                              "this turn!"
+                                            ],
+                                            "__section": "text",
+                                            "avatarId": "",
+                                            "minHeight": 4,
+                                            "maxHeight": 7,
+                                            "textX": 1,
+                                            "textY": 1,
+                                            "textHeight": 5,
+                                            "position": "bottom",
+                                            "clearPrevious": true,
+                                            "showFrame": "true",
+                                            "speedIn": -1,
+                                            "speedOut": -1,
+                                            "closeWhen": "key",
+                                            "closeButton": "a",
+                                            "closeDelayTime": 0.5,
+                                            "closeDelayFrames": 30
+                                          },
+                                          "id": "c5590851-b27e-4fcd-b2b0-d29f5f05874f"
+                                        }
+                                      ]
+                                    },
+                                    "id": "a35bbe9c-a69f-444e-a02f-12c223531c1c"
                                   },
                                   {
                                     "command": "EVENT_PALETTE_SET_UI",
@@ -3547,16 +3677,6 @@
                                       "__collapse": true
                                     },
                                     "id": "6316899d-1e66-45d9-a019-729a1a1b2c93"
-                                  },
-                                  {
-                                    "command": "EVENT_SET_VALUE",
-                                    "args": {
-                                      "variable": "161",
-                                      "value": {
-                                        "type": "true"
-                                      }
-                                    },
-                                    "id": "9f8baf0f-a96f-4f50-af3b-d5f2d9dbfe7e"
                                   }
                                 ],
                                 "false": [
