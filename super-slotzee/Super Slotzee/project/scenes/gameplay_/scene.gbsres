@@ -517,11 +517,11 @@
                     "choices": 6,
                     "__collapseCase0": true,
                     "value0": 1,
-                    "__collapseCase1": false,
+                    "__collapseCase1": true,
                     "value1": 2,
                     "__collapseCase2": true,
                     "value2": 3,
-                    "__collapseCase3": true,
+                    "__collapseCase3": false,
                     "value3": 4,
                     "__collapseCase4": true,
                     "value4": 5,
@@ -2235,7 +2235,7 @@
                                   }
                                 },
                                 "__collapseElse": false,
-                                "__collapse": false,
+                                "__collapse": true,
                                 "__label": "(If) Confirmed using SUPER YOTZEE",
                                 "__comment": false
                               },
@@ -2765,56 +2765,111 @@
                                   }
                                 },
                                 "__collapseElse": false,
-                                "__collapse": false,
+                                "__collapse": true,
                                 "__label": "(If) Confirmed using ERASER"
                               },
                               "children": {
                                 "true": [
                                   {
-                                    "command": "EVENT_DEC_VALUE",
+                                    "command": "EVENT_IF",
                                     "args": {
-                                      "variable": "142"
-                                    },
-                                    "id": "e121e8e2-7ca5-468d-9a7a-3cdf15a4c850"
-                                  },
-                                  {
-                                    "command": "EVENT_PALETTE_SET_UI",
-                                    "args": {
-                                      "palette": "9fcb5064-c312-44bc-93cc-fb93df58005f"
-                                    },
-                                    "id": "ba79db90-6892-4069-a797-5b9007dc6ac9"
-                                  },
-                                  {
-                                    "command": "EVENT_SET_VALUE",
-                                    "args": {
-                                      "variable": "157",
-                                      "value": {
-                                        "type": "true"
-                                      }
-                                    },
-                                    "id": "b0a93796-a8a2-4e94-8ea8-5f8cfd9bf723"
-                                  },
-                                  {
-                                    "command": "EVENT_SCENE_PUSH_STATE",
-                                    "args": {},
-                                    "id": "f0516b48-6f68-42ef-9694-525a68cdabe5"
-                                  },
-                                  {
-                                    "command": "EVENT_SWITCH_SCENE",
-                                    "args": {
-                                      "sceneId": "98029bff-92c0-4c95-842e-6c46f00c6b5f",
-                                      "x": {
-                                        "type": "number",
-                                        "value": 0
+                                      "condition": {
+                                        "type": "ne",
+                                        "valueA": {
+                                          "type": "variable",
+                                          "value": "17"
+                                        },
+                                        "valueB": {
+                                          "type": "number",
+                                          "value": 1
+                                        }
                                       },
-                                      "y": {
-                                        "type": "number",
-                                        "value": 0
-                                      },
-                                      "direction": "",
-                                      "fadeSpeed": "2"
+                                      "__collapseElse": false
                                     },
-                                    "id": "c732679c-9e47-45eb-bad0-2e61c2a2ad53"
+                                    "children": {
+                                      "true": [
+                                        {
+                                          "command": "EVENT_DEC_VALUE",
+                                          "args": {
+                                            "variable": "142",
+                                            "__collapse": true
+                                          },
+                                          "id": "e121e8e2-7ca5-468d-9a7a-3cdf15a4c850"
+                                        },
+                                        {
+                                          "command": "EVENT_PALETTE_SET_UI",
+                                          "args": {
+                                            "palette": "9fcb5064-c312-44bc-93cc-fb93df58005f",
+                                            "__collapse": true
+                                          },
+                                          "id": "ba79db90-6892-4069-a797-5b9007dc6ac9"
+                                        },
+                                        {
+                                          "command": "EVENT_SET_VALUE",
+                                          "args": {
+                                            "variable": "157",
+                                            "value": {
+                                              "type": "true"
+                                            },
+                                            "__collapse": true
+                                          },
+                                          "id": "b0a93796-a8a2-4e94-8ea8-5f8cfd9bf723"
+                                        },
+                                        {
+                                          "command": "EVENT_SCENE_PUSH_STATE",
+                                          "args": {
+                                            "__collapse": true
+                                          },
+                                          "id": "f0516b48-6f68-42ef-9694-525a68cdabe5"
+                                        },
+                                        {
+                                          "command": "EVENT_SWITCH_SCENE",
+                                          "args": {
+                                            "sceneId": "98029bff-92c0-4c95-842e-6c46f00c6b5f",
+                                            "x": {
+                                              "type": "number",
+                                              "value": 0
+                                            },
+                                            "y": {
+                                              "type": "number",
+                                              "value": 0
+                                            },
+                                            "direction": "",
+                                            "fadeSpeed": "2"
+                                          },
+                                          "id": "c732679c-9e47-45eb-bad0-2e61c2a2ad53"
+                                        }
+                                      ],
+                                      "false": [
+                                        {
+                                          "command": "EVENT_TEXT",
+                                          "args": {
+                                            "text": [
+                                              "You haven't scored a \nbox yet. There's  @",
+                                              "nothing to erase!"
+                                            ],
+                                            "__section": "text",
+                                            "avatarId": "",
+                                            "minHeight": 4,
+                                            "maxHeight": 7,
+                                            "textX": 1,
+                                            "textY": 1,
+                                            "textHeight": 5,
+                                            "position": "bottom",
+                                            "clearPrevious": true,
+                                            "showFrame": "true",
+                                            "speedIn": -1,
+                                            "speedOut": -1,
+                                            "closeWhen": "key",
+                                            "closeButton": "a",
+                                            "closeDelayTime": 0.5,
+                                            "closeDelayFrames": 30
+                                          },
+                                          "id": "dadabd9c-65de-4bfa-bd60-599a8bc22857"
+                                        }
+                                      ]
+                                    },
+                                    "id": "d3598ae5-2a9b-4e82-875d-4a403a0139d6"
                                   }
                                 ],
                                 "false": [
@@ -3195,7 +3250,7 @@
                                           "args": {
                                             "text": [
                                               "The turn has been\nrewound. All held  @",
-                                              "dice stay held."
+                                              "slots and dice \nremain held."
                                             ],
                                             "__section": "text",
                                             "avatarId": "",
