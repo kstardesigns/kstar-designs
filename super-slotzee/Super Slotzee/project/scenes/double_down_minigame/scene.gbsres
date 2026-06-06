@@ -1,0 +1,300 @@
+{
+  "_resourceType": "scene",
+  "id": "9531a118-8610-4e15-81d0-f23b78508ccc",
+  "_index": 8,
+  "name": "Double down minigame",
+  "backgroundId": "6c24ae5c-d0b2-435c-bf09-e71f8bcf7883",
+  "tilesetId": "",
+  "width": 20,
+  "height": 18,
+  "type": "TOPDOWN",
+  "paletteIds": [
+    "dmg"
+  ],
+  "spritePaletteIds": [],
+  "collisions": "",
+  "autoFadeSpeed": 1,
+  "symbol": "scene_9",
+  "x": 640,
+  "y": 376,
+  "script": [
+    {
+      "command": "EVENT_VARIABLE_MATH",
+      "args": {
+        "vectorX": "174",
+        "operation": "set",
+        "other": "rnd",
+        "vectorY": "L0",
+        "value": "0",
+        "minValue": 1,
+        "maxValue": 2,
+        "clamp": false,
+        "__collapse": true
+      },
+      "id": "87c087ed-3167-4948-afff-35593ed30f7f"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "a"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "174"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 1
+                }
+              },
+              "__collapseElse": false,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Win coin flip\n"
+                  },
+                  "id": "b9d12e3b-f78c-47af-8033-8785f515dca5"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "(this is where coin would flip)\n(1 second wait is for length of animation)"
+                  },
+                  "id": "d35d6015-51da-4061-991b-c4e485e3db66"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 1,
+                    "frames": 30
+                  },
+                  "id": "b6164d69-8761-4910-8c54-bfee235a0469"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "176",
+                    "value": {
+                      "type": "true"
+                    }
+                  },
+                  "id": "aa2bd34a-abfa-48ce-8e1d-d2418ef28679"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "DOUBLE DOWN SUCCESS!\nYou won a Yotzee!"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "1e57702c-193e-48e7-9cb5-81b2ec4af747"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Lose coin flip"
+                  },
+                  "id": "0937a870-63ec-40ec-ba30-d806577c8f6e"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "(this is where coin would flip)\n(1 second wait is for length of animation)"
+                  },
+                  "id": "b832f4be-4537-48f4-a083-16f3eca74c3b"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "177",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "d3ac84ff-20bb-4165-b2d2-b919e3420565"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 1,
+                    "frames": 30
+                  },
+                  "id": "8d90c2fa-878a-4d80-94a0-7e8d0593f1e6"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Take away a Yotzee"
+                  },
+                  "id": "45a8d8ee-b598-4246-a3fd-e13f59c54f6e"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "expression",
+                      "value": "($41$ == 50 || $41$ == 100) && $42$ == 0"
+                    },
+                    "__collapseElse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "41",
+                          "value": {
+                            "type": "number",
+                            "value": 0
+                          }
+                        },
+                        "id": "b310be10-d929-4254-a9ba-90240af434fd"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "expression",
+                            "value": "($41$ == 50 || $41$ == 100) && $42$ >= 1"
+                          },
+                          "__collapseElse": true
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_COMMENT",
+                              "args": {
+                                "text": "If all bonus Yotzees are doubled, we must take away a doubled one."
+                              },
+                              "id": "b06c8a47-662f-48fb-8779-8592e3ce0425"
+                            },
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "expression",
+                                  "value": "$42$ == $116$"
+                                },
+                                "__collapseElse": true
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_DEC_VALUE",
+                                    "args": {
+                                      "variable": "116"
+                                    },
+                                    "id": "95be8d7a-d1be-432c-8c02-e6820c2d4c5c"
+                                  }
+                                ],
+                                "false": []
+                              },
+                              "id": "34ef401d-495d-4966-853a-2d8e8ba7f1cb"
+                            },
+                            {
+                              "command": "EVENT_COMMENT",
+                              "args": {
+                                "text": "Also decrement the main bonus yotzee count either way"
+                              },
+                              "id": "52cb0fd7-ac90-4e54-b99b-088eb9f68ac8"
+                            },
+                            {
+                              "command": "EVENT_DEC_VALUE",
+                              "args": {
+                                "variable": "42"
+                              },
+                              "id": "8228c85f-240c-47db-a2cd-b4434970a10f"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "c57bcfab-48c2-408c-8789-ec1d5718587c"
+                      }
+                    ]
+                  },
+                  "id": "40a22b67-a1e4-43f6-820e-345e69ae6ecf"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Unfortunately you lost\nthe coin flip, and  @",
+                      "lost your Yotzee.\nMaybe next time!  @",
+                      "Your scorecard has\nbeen updated."
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "640d71c2-c7f7-4d82-9a2c-cafea20d216b"
+                }
+              ]
+            },
+            "id": "ca835362-3507-4316-ba77-6207f49179c0"
+          },
+          {
+            "command": "EVENT_SCENE_POP_STATE",
+            "args": {
+              "fadeSpeed": "2"
+            },
+            "id": "42de8be2-f47c-4d01-84e4-c2f377d97397"
+          }
+        ]
+      },
+      "id": "29152859-9fc0-411c-84fa-5c83d4374092"
+    }
+  ],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": []
+}

@@ -352,7 +352,7 @@
           "value": "$65$ && !$160$"
         },
         "__collapseElse": true,
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -367,6 +367,305 @@
         "false": []
       },
       "id": "5d57edb6-34b5-44e7-ae0e-2068a89cfb8d"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$176$ == true"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "61"
+              },
+              "__collapseElse": false,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "16",
+                    "value": {
+                      "type": "number",
+                      "value": 4
+                    }
+                  },
+                  "id": "349ff57d-2d4d-4f7b-a8b3-1e18b635b417"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "16",
+                    "value": {
+                      "type": "number",
+                      "value": 3
+                    }
+                  },
+                  "id": "f564e254-dbef-4164-9131-8050b2020d67"
+                }
+              ]
+            },
+            "id": "c156b8a4-f50d-4b24-8e10-57b7c5b83852"
+          },
+          {
+            "command": "EVENT_GROUP",
+            "args": {
+              "__label": "Set all dice to 5 for forced Yotzee",
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "3",
+                    "value": {
+                      "type": "number",
+                      "value": 5
+                    },
+                    "__collapse": true
+                  },
+                  "id": "292482a8-328b-482e-bfa9-bbb3471b4ecd"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "4",
+                    "value": {
+                      "type": "number",
+                      "value": 5
+                    },
+                    "__collapse": true
+                  },
+                  "id": "4877f743-d5df-47cc-b383-0d5e1b981728"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "5",
+                    "value": {
+                      "type": "number",
+                      "value": 5
+                    },
+                    "__collapse": true
+                  },
+                  "id": "421c94c7-c00f-4eaf-82a8-7824ffd5a56d"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "6",
+                    "value": {
+                      "type": "number",
+                      "value": 5
+                    },
+                    "__collapse": true
+                  },
+                  "id": "34053eae-7529-4eed-bc5e-ce1c0e7a350c"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "7",
+                    "value": {
+                      "type": "number",
+                      "value": 5
+                    },
+                    "__collapse": true
+                  },
+                  "id": "29cbb7a8-2cb0-43d3-bb24-3e31178e5b85"
+                }
+              ]
+            },
+            "id": "1c0932ec-121b-4adf-80b3-0d3e2d45276c"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "f608921d-498c-454b-882f-6a9b889935f2",
+              "$actor[0]$": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
+              "$actor[1]$": "36657c76-2944-4804-b137-c6ebcc4a9b10",
+              "$actor[2]$": "1a0898f6-a468-4539-84d1-b7975ef135d3",
+              "$actor[3]$": "f4791597-54b2-4120-835b-ecd41940b012",
+              "$actor[4]$": "5ee50987-2285-4aa3-baa1-4408a6b835e1",
+              "$actor[5]$": "960ff9ae-fa9f-441c-ab91-bda0bd0e6b79",
+              "$actor[6]$": "861c6f30-7409-4664-a467-c3acac5ca55a",
+              "$actor[7]$": "8227a800-afcc-459e-8414-f8cb74a37c08",
+              "__collapse": true
+            },
+            "id": "40d9ab7a-effe-41a1-bbf9-02587811c237"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "129",
+              "value": {
+                "type": "true"
+              }
+            },
+            "id": "e650d344-5269-4792-b049-f929828915d6"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "d5266c15-fd43-4464-b8e3-b9c9fc242cd1",
+              "__collapse": true
+            },
+            "id": "935681b1-7710-4e86-8910-c3eb1a67b0e6"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "44"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Double down overrides auto zero so it still scores"
+                  },
+                  "id": "8ad175c7-8bd7-4811-a54f-892b20ef168f"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "44",
+                    "value": {
+                      "type": "false"
+                    }
+                  },
+                  "id": "8b0e1045-ddc1-4258-8e4d-b8455633069c"
+                }
+              ],
+              "false": []
+            },
+            "id": "fc1e7d18-4f72-4f4e-b7b7-dceb0264ecc5"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "735debf0-782d-4027-a94a-3c845f866805",
+              "__collapse": true
+            },
+            "id": "c2c46e3e-9dba-4148-9b67-67c191855b9b"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "ad3ec2a3-7c73-4364-b56a-180129e66468",
+              "__collapse": false,
+              "__comment": false
+            },
+            "id": "4dbd83bb-18d9-425b-b180-06bc89f4c33a"
+          }
+        ],
+        "false": []
+      },
+      "id": "ee244128-3e9a-45ea-8e19-c034542d4e34"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$177$ == true"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Recalculate total score and redraw it, to account for lost Yotzee points"
+            },
+            "id": "51cd4f94-865e-4ef4-b628-2a1093b3a35a"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "53449fc8-5d0a-49e4-8601-e91810792c1f"
+            },
+            "id": "bde1728c-e8a8-476e-bfc5-fae2e4e357b0"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "122",
+              "value": {
+                "type": "true"
+              },
+              "__collapse": true
+            },
+            "id": "1f6c2893-b99f-402d-a986-183266960d92"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "de62d8fb-4adb-4ccf-8ed9-50813e05828f",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "115"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 18
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 16
+              },
+              "__collapse": false
+            },
+            "id": "e4477702-9b32-45e6-8704-b03b856337b5"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "122",
+              "value": {
+                "type": "false"
+              },
+              "__collapse": false
+            },
+            "id": "58652a75-f882-448f-a799-d6a49a5c69c2"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "177",
+              "value": {
+                "type": "false"
+              },
+              "__collapse": true
+            },
+            "id": "001131a5-02b7-4ed5-a857-f37486a30463"
+          }
+        ],
+        "false": []
+      },
+      "id": "850ec380-0db9-44ef-ba3d-96f04251e2af"
     },
     {
       "command": "EVENT_SET_INPUT_SCRIPT",
@@ -397,7 +696,8 @@
                 {
                   "command": "EVENT_SET_DIALOGUE_FRAME",
                   "args": {
-                    "tilesetId": "82ab6a0f-f7b7-4004-9f66-0d0cf83533ac"
+                    "tilesetId": "82ab6a0f-f7b7-4004-9f66-0d0cf83533ac",
+                    "__collapse": true
                   },
                   "id": "c1a29548-be21-4c9f-8806-ac7f8561577d"
                 },
@@ -405,7 +705,7 @@
                   "command": "EVENT_PALETTE_SET_UI",
                   "args": {
                     "palette": "94479793-5290-42c4-9b35-671f6b50ea41",
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "id": "1889012c-f19c-4d73-96cc-7ceb10fbec3a"
                 },
@@ -538,7 +838,7 @@
                     "option16_d": 0,
                     "cancelOnB": true,
                     "cancelOnLastOption": false,
-                    "__collapse": false,
+                    "__collapse": true,
                     "__label": "(Display advanced menu) Inventory menu"
                   },
                   "id": "1dd7a6af-32eb-4ce6-9415-66c8eaa95dae"
@@ -550,11 +850,11 @@
                     "choices": 6,
                     "__collapseCase0": true,
                     "value0": 1,
-                    "__collapseCase1": true,
+                    "__collapseCase1": false,
                     "value1": 2,
                     "__collapseCase2": true,
                     "value2": 3,
-                    "__collapseCase3": false,
+                    "__collapseCase3": true,
                     "value3": 4,
                     "__collapseCase4": true,
                     "value4": 5,
@@ -2385,7 +2685,7 @@
                                           "command": "EVENT_INC_VALUE",
                                           "args": {
                                             "variable": "172",
-                                            "__collapse": false
+                                            "__collapse": true
                                           },
                                           "id": "8b566509-3d0f-431a-b51b-2a8de37a3f83"
                                         },
@@ -2393,7 +2693,7 @@
                                           "command": "EVENT_DEC_VALUE",
                                           "args": {
                                             "variable": "141",
-                                            "__collapse": false
+                                            "__collapse": true
                                           },
                                           "id": "d1f8ec52-e7c4-4e57-974a-5a05a19b764d"
                                         },
@@ -2403,7 +2703,8 @@
                                             "variable": "159",
                                             "value": {
                                               "type": "true"
-                                            }
+                                            },
+                                            "__collapse": true
                                           },
                                           "id": "288f8b34-b125-4fd3-bf3f-046b1bef6217"
                                         },
@@ -2422,7 +2723,8 @@
                                               "type": "variable",
                                               "value": "63"
                                             },
-                                            "__collapseElse": true
+                                            "__collapseElse": true,
+                                            "__collapse": true
                                           },
                                           "children": {
                                             "true": [
@@ -2485,7 +2787,8 @@
                                         {
                                           "command": "EVENT_GROUP",
                                           "args": {
-                                            "__label": "Set all dice to 5 for forced Yotzee"
+                                            "__label": "Set all dice to 5 for forced Yotzee",
+                                            "__collapse": true
                                           },
                                           "children": {
                                             "true": [
@@ -2627,7 +2930,7 @@
                                           "command": "EVENT_TEXT",
                                           "args": {
                                             "text": [
-                                              "Super Yotzee tokens \nmust be played  @",
+                                              "SUPER YOTZEE tokens \nmust be played  @",
                                               "before the turn has\nbeen scored."
                                             ],
                                             "__section": "text",
@@ -3772,7 +4075,7 @@
                                 "option16_u": 0,
                                 "option16_d": 0,
                                 "cancelOnB": true,
-                                "__collapse": false,
+                                "__collapse": true,
                                 "__label": "(Display advanced menu) Confirm use"
                               },
                               "id": "ecb3afbb-085d-476b-a750-9a8e12bc05d2"
@@ -4046,7 +4349,488 @@
                         "id": "e1fc3967-bfb7-4cca-a2fa-f73fdb52a916"
                       }
                     ],
-                    "true5": [],
+                    "true5": [
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "DOUBLE DOWN token chosen"
+                        },
+                        "id": "6b1035c4-c554-455f-b08b-c5fccb633877"
+                      },
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "gte",
+                            "valueA": {
+                              "type": "variable",
+                              "value": "145"
+                            },
+                            "valueB": {
+                              "type": "number",
+                              "value": 1
+                            }
+                          },
+                          "__collapseElse": false,
+                          "__collapse": false
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "PT_EVENT_ADVANCED_MENU",
+                              "args": {
+                                "__scriptTabs": "items",
+                                "width": 20,
+                                "height": 8,
+                                "position": "bottom",
+                                "from": "bottom",
+                                "clearPrevious": true,
+                                "showFrame": true,
+                                "speedIn": 0,
+                                "speedOut": 0,
+                                "variable": "L0",
+                                "setStartValue": false,
+                                "items": 5,
+                                "option_1_text": "Confirm",
+                                "option1_x": 1,
+                                "option1_y": 4,
+                                "option1_l": 0,
+                                "option1_r": 0,
+                                "option1_u": 0,
+                                "option1_d": 4,
+                                "option_2_text": "Use DOUBLE DOWN",
+                                "option2_x": 1,
+                                "option2_y": 1,
+                                "option2_l": 0,
+                                "option2_r": 0,
+                                "option2_u": 0,
+                                "option2_d": 0,
+                                "option_3_text": "Cancel",
+                                "option3_x": 1,
+                                "option3_y": 6,
+                                "option3_l": 0,
+                                "option3_r": 0,
+                                "option3_u": 4,
+                                "option3_d": 0,
+                                "option_4_text": "Info",
+                                "option4_x": 1,
+                                "option4_y": 5,
+                                "option4_l": 0,
+                                "option4_r": 0,
+                                "option4_u": 1,
+                                "option4_d": 3,
+                                "option_5_text": "token?",
+                                "option5_x": 1,
+                                "option5_y": 2,
+                                "option5_l": 0,
+                                "option5_r": 0,
+                                "option5_u": 0,
+                                "option5_d": 0,
+                                "option_6_text": "",
+                                "option6_x": 0,
+                                "option6_y": 0,
+                                "option6_l": 0,
+                                "option6_r": 0,
+                                "option6_u": 0,
+                                "option6_d": 0,
+                                "option_7_text": "",
+                                "option7_x": 0,
+                                "option7_y": 0,
+                                "option7_l": 0,
+                                "option7_r": 0,
+                                "option7_u": 0,
+                                "option7_d": 0,
+                                "option_8_text": "",
+                                "option8_x": 0,
+                                "option8_y": 0,
+                                "option8_l": 0,
+                                "option8_r": 0,
+                                "option8_u": 0,
+                                "option8_d": 0,
+                                "option_9_text": "",
+                                "option9_x": 0,
+                                "option9_y": 0,
+                                "option9_l": 0,
+                                "option9_r": 0,
+                                "option9_u": 0,
+                                "option9_d": 0,
+                                "option_10_text": "",
+                                "option10_x": 0,
+                                "option10_y": 0,
+                                "option10_l": 0,
+                                "option10_r": 0,
+                                "option10_u": 0,
+                                "option10_d": 0,
+                                "option_11_text": "",
+                                "option11_x": 0,
+                                "option11_y": 0,
+                                "option11_l": 0,
+                                "option11_r": 0,
+                                "option11_u": 0,
+                                "option11_d": 0,
+                                "option_12_text": "",
+                                "option12_x": 0,
+                                "option12_y": 0,
+                                "option12_l": 0,
+                                "option12_r": 0,
+                                "option12_u": 0,
+                                "option12_d": 0,
+                                "option_13_text": "",
+                                "option13_x": 0,
+                                "option13_y": 0,
+                                "option13_l": 0,
+                                "option13_r": 0,
+                                "option13_u": 0,
+                                "option13_d": 0,
+                                "option_14_text": "",
+                                "option14_x": 0,
+                                "option14_y": 0,
+                                "option14_l": 0,
+                                "option14_r": 0,
+                                "option14_u": 0,
+                                "option14_d": 0,
+                                "option_15_text": "",
+                                "option15_x": 0,
+                                "option15_y": 0,
+                                "option15_l": 0,
+                                "option15_r": 0,
+                                "option15_u": 0,
+                                "option15_d": 0,
+                                "option_16_text": "",
+                                "option16_x": 0,
+                                "option16_y": 0,
+                                "option16_l": 0,
+                                "option16_r": 0,
+                                "option16_u": 0,
+                                "option16_d": 0,
+                                "cancelOnB": true,
+                                "__collapse": false,
+                                "__label": "(Display advanced menu) Confirm use"
+                              },
+                              "id": "64d4292f-0ba4-481e-b912-ee0991a8bb35"
+                            },
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "eq",
+                                  "valueA": {
+                                    "type": "variable",
+                                    "value": "L0"
+                                  },
+                                  "valueB": {
+                                    "type": "number",
+                                    "value": 1
+                                  }
+                                },
+                                "__collapseElse": false,
+                                "__collapse": false,
+                                "__label": "(If) Confirmed using DOUBLE DOWN"
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_IF",
+                                    "args": {
+                                      "condition": {
+                                        "type": "not",
+                                        "value": {
+                                          "type": "variable",
+                                          "value": "123"
+                                        }
+                                      },
+                                      "__collapseElse": false
+                                    },
+                                    "children": {
+                                      "true": [
+                                        {
+                                          "command": "EVENT_IF",
+                                          "args": {
+                                            "condition": {
+                                              "type": "expression",
+                                              "value": "$41$ == 50 || $41$ == 100"
+                                            },
+                                            "__collapseElse": false,
+                                            "__collapse": true
+                                          },
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_INC_VALUE",
+                                                "args": {
+                                                  "variable": "168",
+                                                  "__collapse": true
+                                                },
+                                                "id": "23211edf-2593-43fc-94f6-076346e9c59b"
+                                              },
+                                              {
+                                                "command": "EVENT_DEC_VALUE",
+                                                "args": {
+                                                  "variable": "145",
+                                                  "__collapse": true
+                                                },
+                                                "id": "c1ab9039-eaf0-43c3-b725-0c646c8cffe9"
+                                              },
+                                              {
+                                                "command": "EVENT_COMMENT",
+                                                "args": {
+                                                  "text": "Setting this so minigame isnt played again",
+                                                  "__collapse": true
+                                                },
+                                                "id": "385a8c28-5e60-4ee3-8e45-fe1b1b309ef8"
+                                              },
+                                              {
+                                                "command": "EVENT_IF",
+                                                "args": {
+                                                  "condition": {
+                                                    "type": "variable",
+                                                    "value": "63"
+                                                  },
+                                                  "__collapseElse": true
+                                                },
+                                                "children": {
+                                                  "true": [
+                                                    {
+                                                      "command": "EVENT_SET_VALUE",
+                                                      "args": {
+                                                        "variable": "65",
+                                                        "value": {
+                                                          "type": "true"
+                                                        },
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "973c9211-90ea-4b8c-9aca-22d13e7cb877"
+                                                    }
+                                                  ],
+                                                  "false": []
+                                                },
+                                                "id": "bf0ea0db-afa0-4536-86b1-fa61206ae00a"
+                                              },
+                                              {
+                                                "command": "EVENT_TEXT",
+                                                "args": {
+                                                  "text": [
+                                                    "Time to... \n               DOUBLE DOWN!"
+                                                  ],
+                                                  "__section": "text",
+                                                  "avatarId": "",
+                                                  "minHeight": 4,
+                                                  "maxHeight": 7,
+                                                  "textX": 1,
+                                                  "textY": 1,
+                                                  "textHeight": 5,
+                                                  "position": "bottom",
+                                                  "clearPrevious": true,
+                                                  "showFrame": "true",
+                                                  "speedIn": -1,
+                                                  "speedOut": -1,
+                                                  "closeWhen": "key",
+                                                  "closeButton": "a",
+                                                  "closeDelayTime": 0.5,
+                                                  "closeDelayFrames": 30,
+                                                  "__collapse": true
+                                                },
+                                                "id": "7a837e2e-abce-4788-a713-58edc3a8d9ef"
+                                              },
+                                              {
+                                                "command": "EVENT_SCENE_PUSH_STATE",
+                                                "args": {
+                                                  "__collapse": true
+                                                },
+                                                "id": "9f66e3a8-f486-43ae-a090-a34a76c21b65"
+                                              },
+                                              {
+                                                "command": "EVENT_SWITCH_SCENE",
+                                                "args": {
+                                                  "sceneId": "9531a118-8610-4e15-81d0-f23b78508ccc",
+                                                  "x": {
+                                                    "type": "number",
+                                                    "value": 0
+                                                  },
+                                                  "y": {
+                                                    "type": "number",
+                                                    "value": 0
+                                                  },
+                                                  "direction": "",
+                                                  "fadeSpeed": "2"
+                                                },
+                                                "id": "141f1fa6-c324-4126-986a-8d20eaae7e70"
+                                              }
+                                            ],
+                                            "false": [
+                                              {
+                                                "command": "EVENT_TEXT",
+                                                "args": {
+                                                  "text": [
+                                                    "DOUBLE DOWN token\ncan only be played  @",
+                                                    "if you already have a\nYotzee to bet."
+                                                  ],
+                                                  "__section": "text",
+                                                  "avatarId": "",
+                                                  "minHeight": 4,
+                                                  "maxHeight": 7,
+                                                  "textX": 1,
+                                                  "textY": 1,
+                                                  "textHeight": 5,
+                                                  "position": "bottom",
+                                                  "clearPrevious": true,
+                                                  "showFrame": "true",
+                                                  "speedIn": -1,
+                                                  "speedOut": -1,
+                                                  "closeWhen": "key",
+                                                  "closeButton": "a",
+                                                  "closeDelayTime": 0.5,
+                                                  "closeDelayFrames": 30
+                                                },
+                                                "id": "785aa79d-d4a4-4822-900e-d3577aa9b4f9"
+                                              }
+                                            ]
+                                          },
+                                          "id": "5de555c5-5f74-4b96-8a4e-24c045a64e7d"
+                                        }
+                                      ],
+                                      "false": [
+                                        {
+                                          "command": "EVENT_TEXT",
+                                          "args": {
+                                            "text": [
+                                              "DOUBLE DOWN tokens \nmust be played  @",
+                                              "before the turn has\nbeen scored, in case  @",
+                                              "you win and need to\nscore a JOKER."
+                                            ],
+                                            "__section": "text",
+                                            "avatarId": "",
+                                            "minHeight": 4,
+                                            "maxHeight": 7,
+                                            "textX": 1,
+                                            "textY": 1,
+                                            "textHeight": 5,
+                                            "position": "bottom",
+                                            "clearPrevious": true,
+                                            "showFrame": "true",
+                                            "speedIn": -1,
+                                            "speedOut": -1,
+                                            "closeWhen": "key",
+                                            "closeButton": "a",
+                                            "closeDelayTime": 0.5,
+                                            "closeDelayFrames": 30,
+                                            "__collapse": false
+                                          },
+                                          "id": "b4b018dc-97ed-4bcd-bf9b-bd11bd394576"
+                                        }
+                                      ]
+                                    },
+                                    "id": "7fcad6d8-3e99-4ca4-a5e7-43d8df873e9e"
+                                  },
+                                  {
+                                    "command": "EVENT_PALETTE_SET_UI",
+                                    "args": {
+                                      "palette": "9fcb5064-c312-44bc-93cc-fb93df58005f",
+                                      "__collapse": true
+                                    },
+                                    "id": "b66048eb-153b-4f67-a972-30ce632cb3e2"
+                                  }
+                                ],
+                                "false": [
+                                  {
+                                    "command": "EVENT_IF",
+                                    "args": {
+                                      "condition": {
+                                        "type": "eq",
+                                        "valueA": {
+                                          "type": "variable",
+                                          "value": "L0"
+                                        },
+                                        "valueB": {
+                                          "type": "number",
+                                          "value": 4
+                                        }
+                                      },
+                                      "__collapseElse": false
+                                    },
+                                    "children": {
+                                      "true": [
+                                        {
+                                          "command": "EVENT_TEXT",
+                                          "args": {
+                                            "text": [
+                                              " DOUBLE DOWN token. \n If you have a  @",
+                                              " Yotzee, using this\n token will start  @",
+                                              " a minigame where\n you can bet your  @",
+                                              " Yotzee for a chance\n to win another."
+                                            ],
+                                            "__section": "text",
+                                            "avatarId": "0296b18d-e672-4b93-b4e7-585adfd9212c",
+                                            "minHeight": 4,
+                                            "maxHeight": 7,
+                                            "textX": 1,
+                                            "textY": 1,
+                                            "textHeight": 5,
+                                            "position": "bottom",
+                                            "clearPrevious": true,
+                                            "showFrame": "true",
+                                            "speedIn": -1,
+                                            "speedOut": -1,
+                                            "closeWhen": "key",
+                                            "closeButton": "any",
+                                            "closeDelayTime": 0.5,
+                                            "closeDelayFrames": 30,
+                                            "__comment": false
+                                          },
+                                          "id": "490f6e6e-0068-4b99-833c-36638a7726f8"
+                                        }
+                                      ],
+                                      "false": []
+                                    },
+                                    "id": "975e6499-3b33-4125-9919-cf5384473905"
+                                  },
+                                  {
+                                    "command": "EVENT_PALETTE_SET_UI",
+                                    "args": {
+                                      "palette": "9fcb5064-c312-44bc-93cc-fb93df58005f"
+                                    },
+                                    "id": "5b6c77d1-69cf-4c37-9d17-9464d2966e34"
+                                  }
+                                ]
+                              },
+                              "id": "c3687c1e-2245-4bdc-93ca-a9c774b0ea68"
+                            }
+                          ],
+                          "false": [
+                            {
+                              "command": "EVENT_TEXT",
+                              "args": {
+                                "text": [
+                                  " DOUBLE DOWN token. \n If you have a  @",
+                                  " Yotzee, using this\n token will start  @",
+                                  " a minigame where\n you can bet your  @",
+                                  " Yotzee for a chance\n to win another."
+                                ],
+                                "__section": "text",
+                                "avatarId": "0296b18d-e672-4b93-b4e7-585adfd9212c",
+                                "minHeight": 4,
+                                "maxHeight": 7,
+                                "textX": 1,
+                                "textY": 1,
+                                "textHeight": 5,
+                                "position": "bottom",
+                                "clearPrevious": true,
+                                "showFrame": "true",
+                                "speedIn": -1,
+                                "speedOut": -1,
+                                "closeWhen": "key",
+                                "closeButton": "any",
+                                "closeDelayTime": 0.5,
+                                "closeDelayFrames": 30,
+                                "__comment": false
+                              },
+                              "id": "69ab8f20-f85f-443a-a304-7c95c8a172d0"
+                            }
+                          ]
+                        },
+                        "id": "6f09484e-1159-4647-b308-5b82bf24ef0b"
+                      }
+                    ],
                     "true6": [],
                     "true7": [],
                     "true8": [],
