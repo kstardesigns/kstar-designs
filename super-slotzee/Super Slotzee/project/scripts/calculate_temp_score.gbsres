@@ -643,7 +643,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) Check for Slots: Auto Zero (all zeroes)",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -682,32 +682,51 @@
                   "id": "2809e360-4bbe-4581-8d0f-ce0c287ac7c9"
                 },
                 {
-                  "command": "EVENT_TEXT",
+                  "command": "EVENT_IF",
                   "args": {
-                    "text": [
-                      "Oops! You cannot score\nyour dice this turn.  @",
-                      "You must score a zero\nin one of the boxes."
-                    ],
-                    "__section": "text",
-                    "avatarId": "",
-                    "minHeight": 4,
-                    "maxHeight": 7,
-                    "textX": 1,
-                    "textY": 1,
-                    "textHeight": 5,
-                    "position": "bottom",
-                    "clearPrevious": true,
-                    "showFrame": "true",
-                    "speedIn": -1,
-                    "speedOut": -1,
-                    "closeWhen": "key",
-                    "closeButton": "a",
-                    "closeDelayTime": 0.5,
-                    "closeDelayFrames": 30,
-                    "__collapse": false,
-                    "__comment": false
+                    "condition": {
+                      "type": "not",
+                      "value": {
+                        "type": "variable",
+                        "value": "159"
+                      }
+                    },
+                    "__collapseElse": true
                   },
-                  "id": "d2139873-7bff-4674-bc2b-bd002885ec55"
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "Oops! You cannot score\nyour dice this turn.  @",
+                            "You must score a zero\nin one of the boxes."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30,
+                          "__collapse": false,
+                          "__comment": false
+                        },
+                        "id": "d2139873-7bff-4674-bc2b-bd002885ec55"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "634d039f-8733-4c4d-a55d-e68a486760ab"
                 },
                 {
                   "command": "EVENT_IF",
