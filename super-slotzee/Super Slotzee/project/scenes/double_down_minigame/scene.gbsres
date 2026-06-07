@@ -56,7 +56,7 @@
                 },
                 "valueB": {
                   "type": "number",
-                  "value": 1
+                  "value": 2
                 }
               },
               "__collapseElse": false,
@@ -67,75 +67,28 @@
                 {
                   "command": "EVENT_COMMENT",
                   "args": {
-                    "text": "Win coin flip\n"
-                  },
-                  "id": "b9d12e3b-f78c-47af-8033-8785f515dca5"
-                },
-                {
-                  "command": "EVENT_COMMENT",
-                  "args": {
-                    "text": "(this is where coin would flip)\n(1 second wait is for length of animation)"
-                  },
-                  "id": "d35d6015-51da-4061-991b-c4e485e3db66"
-                },
-                {
-                  "command": "EVENT_WAIT",
-                  "args": {
-                    "time": 1,
-                    "frames": 30
-                  },
-                  "id": "b6164d69-8761-4910-8c54-bfee235a0469"
-                },
-                {
-                  "command": "EVENT_SET_VALUE",
-                  "args": {
-                    "variable": "176",
-                    "value": {
-                      "type": "true"
-                    }
-                  },
-                  "id": "aa2bd34a-abfa-48ce-8e1d-d2418ef28679"
-                },
-                {
-                  "command": "EVENT_TEXT",
-                  "args": {
-                    "text": [
-                      "DOUBLE DOWN SUCCESS!\nYou won a Yotzee!"
-                    ],
-                    "__section": "text",
-                    "avatarId": "",
-                    "minHeight": 4,
-                    "maxHeight": 7,
-                    "textX": 1,
-                    "textY": 1,
-                    "textHeight": 5,
-                    "position": "bottom",
-                    "clearPrevious": true,
-                    "showFrame": "true",
-                    "speedIn": -1,
-                    "speedOut": -1,
-                    "closeWhen": "key",
-                    "closeButton": "a",
-                    "closeDelayTime": 0.5,
-                    "closeDelayFrames": 30
-                  },
-                  "id": "1e57702c-193e-48e7-9cb5-81b2ec4af747"
-                }
-              ],
-              "false": [
-                {
-                  "command": "EVENT_COMMENT",
-                  "args": {
-                    "text": "Lose coin flip"
+                    "text": "Lose coin flip",
+                    "__collapse": true
                   },
                   "id": "0937a870-63ec-40ec-ba30-d806577c8f6e"
                 },
                 {
-                  "command": "EVENT_COMMENT",
+                  "command": "EVENT_ACTOR_SET_STATE",
                   "args": {
-                    "text": "(this is where coin would flip)\n(1 second wait is for length of animation)"
+                    "actorId": "eadbe384-d1f7-4814-910d-db4647f0783d",
+                    "spriteStateId": "Coin flip lose",
+                    "loopAnim": false
                   },
-                  "id": "b832f4be-4537-48f4-a083-16f3eca74c3b"
+                  "id": "62540710-38b7-4e2d-a3b3-a1c809e8f978"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 1.5,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "8d90c2fa-878a-4d80-94a0-7e8d0593f1e6"
                 },
                 {
                   "command": "EVENT_SET_VALUE",
@@ -149,17 +102,10 @@
                   "id": "d3ac84ff-20bb-4165-b2d2-b919e3420565"
                 },
                 {
-                  "command": "EVENT_WAIT",
-                  "args": {
-                    "time": 1,
-                    "frames": 30
-                  },
-                  "id": "8d90c2fa-878a-4d80-94a0-7e8d0593f1e6"
-                },
-                {
                   "command": "EVENT_COMMENT",
                   "args": {
-                    "text": "Take away a Yotzee"
+                    "text": "Take away a Yotzee",
+                    "__collapse": true
                   },
                   "id": "45a8d8ee-b598-4246-a3fd-e13f59c54f6e"
                 },
@@ -170,7 +116,8 @@
                       "type": "expression",
                       "value": "($41$ == 50 || $41$ == 100) && $42$ == 0"
                     },
-                    "__collapseElse": false
+                    "__collapseElse": false,
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -181,7 +128,8 @@
                           "value": {
                             "type": "number",
                             "value": 0
-                          }
+                          },
+                          "__collapse": false
                         },
                         "id": "b310be10-d929-4254-a9ba-90240af434fd"
                       }
@@ -201,7 +149,8 @@
                             {
                               "command": "EVENT_COMMENT",
                               "args": {
-                                "text": "If all bonus Yotzees are doubled, we must take away a doubled one."
+                                "text": "If all bonus Yotzees are doubled, we must take away a doubled one.",
+                                "__collapse": true
                               },
                               "id": "b06c8a47-662f-48fb-8779-8592e3ce0425"
                             },
@@ -219,7 +168,8 @@
                                   {
                                     "command": "EVENT_DEC_VALUE",
                                     "args": {
-                                      "variable": "116"
+                                      "variable": "116",
+                                      "__collapse": true
                                     },
                                     "id": "95be8d7a-d1be-432c-8c02-e6820c2d4c5c"
                                   }
@@ -231,14 +181,16 @@
                             {
                               "command": "EVENT_COMMENT",
                               "args": {
-                                "text": "Also decrement the main bonus yotzee count either way"
+                                "text": "Also decrement the main bonus yotzee count either way",
+                                "__collapse": true
                               },
                               "id": "52cb0fd7-ac90-4e54-b99b-088eb9f68ac8"
                             },
                             {
                               "command": "EVENT_DEC_VALUE",
                               "args": {
-                                "variable": "42"
+                                "variable": "42",
+                                "__collapse": true
                               },
                               "id": "8228c85f-240c-47db-a2cd-b4434970a10f"
                             }
@@ -266,7 +218,7 @@
                     "textX": 1,
                     "textY": 1,
                     "textHeight": 5,
-                    "position": "bottom",
+                    "position": "top",
                     "clearPrevious": true,
                     "showFrame": "true",
                     "speedIn": -1,
@@ -274,9 +226,75 @@
                     "closeWhen": "key",
                     "closeButton": "a",
                     "closeDelayTime": 0.5,
-                    "closeDelayFrames": 30
+                    "closeDelayFrames": 30,
+                    "__collapse": true
                   },
                   "id": "640d71c2-c7f7-4d82-9a2c-cafea20d216b"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Win coin flip",
+                    "__collapse": true
+                  },
+                  "id": "aa977f24-66ef-4cdc-8943-fb42f857dc7d"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "eadbe384-d1f7-4814-910d-db4647f0783d",
+                    "spriteStateId": "Coin flip win",
+                    "loopAnim": false
+                  },
+                  "id": "7d20ea53-3523-4970-a9f7-9c2b0b74bae0"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 1.5,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "b6164d69-8761-4910-8c54-bfee235a0469"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "176",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "aa2bd34a-abfa-48ce-8e1d-d2418ef28679"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "DOUBLE DOWN SUCCESS!\nYou won a Yotzee!"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "top",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": true
+                  },
+                  "id": "1e57702c-193e-48e7-9cb5-81b2ec4af747"
                 }
               ]
             },
@@ -285,7 +303,8 @@
           {
             "command": "EVENT_SCENE_POP_STATE",
             "args": {
-              "fadeSpeed": "2"
+              "fadeSpeed": "2",
+              "__comment": false
             },
             "id": "42de8be2-f47c-4d01-84e4-c2f377d97397"
           }
@@ -296,5 +315,6 @@
   ],
   "playerHit1Script": [],
   "playerHit2Script": [],
-  "playerHit3Script": []
+  "playerHit3Script": [],
+  "playerSpriteSheetId": "820764ac-2cc4-4708-89c9-14f344c81f80"
 }
