@@ -22,6 +22,190 @@
   "y": 656,
   "script": [
     {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Set card 1 & 2 as a match"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_VARIABLE_MATH",
+            "args": {
+              "vectorX": "178",
+              "operation": "set",
+              "other": "rnd",
+              "vectorY": "L0",
+              "value": "0",
+              "minValue": 1,
+              "maxValue": 3,
+              "clamp": false,
+              "__collapse": true
+            },
+            "id": "351e0df4-1e49-42e7-9f2f-6d6fb0cae7bb"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "179",
+              "value": {
+                "type": "variable",
+                "value": "178"
+              },
+              "__collapse": true
+            },
+            "id": "b7fd946a-71c9-4482-8fc1-27df1d53d34e"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "3cd5104b-da55-4ee0-b8b7-1e308e83544b",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "178"
+              },
+              "$actor[0]$": "7ea78467-e93d-40e1-a41b-8178c3034ae8",
+              "__label": "(Call script) Set card 1 randomly",
+              "__collapse": true
+            },
+            "id": "87ab7756-7ac8-46b4-910b-c06240f68474"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "3cd5104b-da55-4ee0-b8b7-1e308e83544b",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "178"
+              },
+              "$actor[0]$": "598c0523-e32b-40d0-9f26-20b06ef82a09",
+              "__label": "(Call script) Set card 2 to match card 1",
+              "__collapse": true
+            },
+            "id": "e6c32dc1-2d9a-4512-8fb3-51d326a45d70"
+          }
+        ]
+      },
+      "id": "20c0382f-2ab1-4300-aa6f-adabc2591406"
+    },
+    {
+      "command": "EVENT_SWITCH",
+      "args": {
+        "variable": "178",
+        "choices": 3,
+        "__collapseCase0": false,
+        "value0": 1,
+        "__collapseCase1": false,
+        "value1": 2,
+        "__collapseCase2": false,
+        "value2": 3,
+        "__collapseCase3": false,
+        "value3": 4,
+        "__collapseCase4": false,
+        "value4": 5,
+        "__collapseCase5": false,
+        "value5": 6,
+        "__collapseCase6": false,
+        "value6": 7,
+        "__collapseCase7": false,
+        "value7": 8,
+        "__collapseCase8": false,
+        "value8": 9,
+        "__collapseCase9": false,
+        "value9": 10,
+        "__collapseCase10": false,
+        "value10": 11,
+        "__collapseCase11": false,
+        "value11": 12,
+        "__collapseCase12": false,
+        "value12": 13,
+        "__collapseCase13": false,
+        "value13": 14,
+        "__collapseCase14": false,
+        "value14": 15,
+        "__collapseCase15": false,
+        "value15": 16,
+        "__collapseElse": false,
+        "__label": "(Switch) Pick card 1 result",
+        "__comment": true
+      },
+      "children": {
+        "true0": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "7ea78467-e93d-40e1-a41b-8178c3034ae8",
+              "spriteStateId": "Minigame Card 1 Wild Hide",
+              "loopAnim": false
+            },
+            "id": "a195c0d7-10c1-4eb1-8e71-2dab7059f980"
+          }
+        ],
+        "true1": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "7ea78467-e93d-40e1-a41b-8178c3034ae8",
+              "spriteStateId": "Minigame Card 2 Super Hide",
+              "loopAnim": false
+            },
+            "id": "183beed2-8f41-4508-b16c-08f7f1ea2289"
+          }
+        ],
+        "true2": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "7ea78467-e93d-40e1-a41b-8178c3034ae8",
+              "spriteStateId": "Minigame Card 3 Eraser Hide",
+              "loopAnim": false
+            },
+            "id": "8dbdab49-78a9-4176-93e8-bde9e72b4d5c"
+          }
+        ],
+        "true3": [],
+        "true4": [],
+        "true5": [],
+        "true6": [],
+        "true7": [],
+        "true8": [],
+        "true9": [],
+        "true10": [],
+        "true11": [],
+        "true12": [],
+        "true13": [],
+        "true14": [],
+        "true15": [],
+        "false": []
+      },
+      "id": "4e7f79ad-b25b-4616-8a85-03b9056e49c5"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "do all the move to's as a reusable function",
+        "__collapse": true
+      },
+      "id": "3d9b5c23-d30d-47da-abf8-6c352f53c606"
+    },
+    {
+      "command": "EVENT_ACTOR_MOVE_TO",
+      "args": {
+        "actorId": "7ea78467-e93d-40e1-a41b-8178c3034ae8",
+        "x": {
+          "type": "number",
+          "value": 0
+        },
+        "y": {
+          "type": "number",
+          "value": 0
+        },
+        "moveType": "horizontal",
+        "useCollisions": false,
+        "__comment": true
+      },
+      "id": "48bf4cac-ae92-4c82-8766-20a392cfe456"
+    },
+    {
       "command": "EVENT_ACTOR_SET_POSITION",
       "args": {
         "actorId": "$self$",
@@ -32,14 +216,16 @@
         "y": {
           "type": "number",
           "value": 7
-        }
+        },
+        "__collapse": true
       },
       "id": "f7667e0a-d4bb-492c-af1b-afd01f39b115"
     },
     {
       "command": "EVENT_COMMENT",
       "args": {
-        "text": "MOVE THIS so it happens after game is done:"
+        "text": "MOVE THIS so it happens after game is done:",
+        "__collapse": true
       },
       "id": "e4bf12b0-c40d-448a-a85a-99f860e067ac"
     },
@@ -49,7 +235,8 @@
         "variable": "65",
         "value": {
           "type": "true"
-        }
+        },
+        "__collapse": true
       },
       "id": "c7ec718d-2e88-4ca5-b6ff-1f06112bc021"
     },
@@ -117,5 +304,6 @@
   "playerHit1Script": [],
   "playerHit2Script": [],
   "playerHit3Script": [],
-  "playerSpriteSheetId": "539911f6-7150-4f88-b692-63e0e16f89d6"
+  "playerSpriteSheetId": "cc237d53-e131-4ab8-9db1-26a2a76fc4d8",
+  "autoFadeEventCollapse": false
 }
