@@ -39,6 +39,30 @@
       "id": "0572dd4d-d442-4626-976c-ba0a5b8f4616"
     },
     {
+      "command": "EVENT_ACTOR_DEACTIVATE",
+      "args": {
+        "actorId": "b6d1731b-e9cb-4c56-8cf3-af39e83ece6a",
+        "__comment": true
+      },
+      "id": "f42ea59a-5066-4d9d-a1c8-982fc21ade9f"
+    },
+    {
+      "command": "EVENT_ACTOR_DEACTIVATE",
+      "args": {
+        "actorId": "b6dbf476-3afe-4721-98b4-f9262697eb0e",
+        "__comment": true
+      },
+      "id": "8b5e2729-0cca-43e7-aee0-1d0725598c28"
+    },
+    {
+      "command": "EVENT_ACTOR_DEACTIVATE",
+      "args": {
+        "actorId": "$self$",
+        "__collapse": true
+      },
+      "id": "90f8bab2-8f0e-46d1-ad01-42fd383e753b"
+    },
+    {
       "command": "EVENT_GROUP",
       "args": {
         "__label": "Get random tokens for each cup",
@@ -160,7 +184,7 @@
                       {
                         "command": "EVENT_ACTOR_SET_STATE",
                         "args": {
-                          "actorId": "2784771b-981a-4e2f-8d69-5ede031894cc",
+                          "actorId": "b6d1731b-e9cb-4c56-8cf3-af39e83ece6a",
                           "spriteStateId": "Minigame Cup Show Wild",
                           "loopAnim": false
                         },
@@ -171,7 +195,7 @@
                       {
                         "command": "EVENT_ACTOR_SET_STATE",
                         "args": {
-                          "actorId": "2784771b-981a-4e2f-8d69-5ede031894cc",
+                          "actorId": "b6d1731b-e9cb-4c56-8cf3-af39e83ece6a",
                           "spriteStateId": "Minigame Cup Show Super Yotzee",
                           "loopAnim": false
                         },
@@ -223,7 +247,7 @@
                       {
                         "command": "EVENT_ACTOR_SET_STATE",
                         "args": {
-                          "actorId": "b6d1731b-e9cb-4c56-8cf3-af39e83ece6a",
+                          "actorId": "2784771b-981a-4e2f-8d69-5ede031894cc",
                           "spriteStateId": "Minigame Cup Show Eraser",
                           "loopAnim": false
                         },
@@ -234,7 +258,7 @@
                       {
                         "command": "EVENT_ACTOR_SET_STATE",
                         "args": {
-                          "actorId": "b6d1731b-e9cb-4c56-8cf3-af39e83ece6a",
+                          "actorId": "2784771b-981a-4e2f-8d69-5ede031894cc",
                           "spriteStateId": "Minigame Cup Show Rewind",
                           "loopAnim": false
                         },
@@ -335,7 +359,7 @@
       "command": "EVENT_GROUP",
       "args": {
         "__label": "Hide tokens before shuffle",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -344,7 +368,8 @@
             "args": {
               "variable": "L0",
               "__scriptTabs": "true",
-              "__collapse": true
+              "__collapse": true,
+              "__label": "(Thread start) Cup 1"
             },
             "children": {
               "true": [
@@ -370,7 +395,7 @@
                       {
                         "command": "EVENT_ACTOR_SET_STATE",
                         "args": {
-                          "actorId": "2784771b-981a-4e2f-8d69-5ede031894cc",
+                          "actorId": "b6d1731b-e9cb-4c56-8cf3-af39e83ece6a",
                           "spriteStateId": "Minigame Cup Hide WIld",
                           "loopAnim": false
                         },
@@ -381,7 +406,7 @@
                       {
                         "command": "EVENT_ACTOR_SET_STATE",
                         "args": {
-                          "actorId": "2784771b-981a-4e2f-8d69-5ede031894cc",
+                          "actorId": "b6d1731b-e9cb-4c56-8cf3-af39e83ece6a",
                           "spriteStateId": "Minigame Cup Hide Super Yotzee",
                           "loopAnim": false
                         },
@@ -407,7 +432,8 @@
             "args": {
               "variable": "L1",
               "__scriptTabs": "true",
-              "__collapse": true
+              "__collapse": true,
+              "__label": "(Thread start) Cup 2"
             },
             "children": {
               "true": [
@@ -433,7 +459,7 @@
                       {
                         "command": "EVENT_ACTOR_SET_STATE",
                         "args": {
-                          "actorId": "b6d1731b-e9cb-4c56-8cf3-af39e83ece6a",
+                          "actorId": "2784771b-981a-4e2f-8d69-5ede031894cc",
                           "spriteStateId": "Minigame Cup Hide Eraser",
                           "loopAnim": false
                         },
@@ -444,7 +470,7 @@
                       {
                         "command": "EVENT_ACTOR_SET_STATE",
                         "args": {
-                          "actorId": "b6d1731b-e9cb-4c56-8cf3-af39e83ece6a",
+                          "actorId": "2784771b-981a-4e2f-8d69-5ede031894cc",
                           "spriteStateId": "Minigame Cup Hide Rewind",
                           "loopAnim": false
                         },
@@ -470,7 +496,8 @@
             "args": {
               "variable": "L2",
               "__scriptTabs": "true",
-              "__collapse": true
+              "__collapse": true,
+              "__label": "(Thread start) Cup 3"
             },
             "children": {
               "true": [
@@ -533,6 +560,322 @@
       "id": "d404a54c-a66b-4583-85a9-685cc45c9cb3"
     },
     {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 0.5,
+        "frames": 30,
+        "__collapse": true
+      },
+      "id": "fe3529d2-5134-4df8-a631-9934fe38c425"
+    },
+    {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Move cup 1",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_THREAD_START",
+            "args": {
+              "variable": "L0",
+              "__scriptTabs": "true"
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Start: 3, 14",
+                    "__collapse": true
+                  },
+                  "id": "50e957c7-4eb6-4bcd-8a35-304c6a3af04c"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Move 3",
+                    "__collapse": true,
+                    "__label": "Move 9"
+                  },
+                  "id": "5cc9b4f1-63c5-457b-aaaa-2e6a6b214721"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.3,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "06ccd7ce-5e1d-4704-8110-04216c65a33c"
+                },
+                {
+                  "command": "EVENT_ACTOR_MOVE_TO",
+                  "args": {
+                    "actorId": "b6d1731b-e9cb-4c56-8cf3-af39e83ece6a",
+                    "x": {
+                      "type": "number",
+                      "value": 3
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 11
+                    },
+                    "moveType": "horizontal",
+                    "useCollisions": false,
+                    "__collapse": true
+                  },
+                  "id": "240e14ba-b586-447a-8a74-a931827972dd"
+                },
+                {
+                  "command": "EVENT_ACTOR_MOVE_TO",
+                  "args": {
+                    "actorId": "b6d1731b-e9cb-4c56-8cf3-af39e83ece6a",
+                    "x": {
+                      "type": "number",
+                      "value": 9
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 11
+                    },
+                    "moveType": "horizontal",
+                    "useCollisions": false,
+                    "__collapse": true
+                  },
+                  "id": "68664fb6-9d71-41a1-9fd0-e32f3b679538"
+                },
+                {
+                  "command": "EVENT_THREAD_STOP",
+                  "args": {
+                    "variable": "L0",
+                    "__collapse": true
+                  },
+                  "id": "d162f334-54e4-4b64-9463-b0943dd64df3"
+                }
+              ]
+            },
+            "id": "ccf751c9-cef8-467e-913a-d5895bfac31d"
+          }
+        ]
+      },
+      "id": "418b5b4d-debd-4352-9f51-f122e8d241c6"
+    },
+    {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Move cup 2",
+        "__collapse": false,
+        "__comment": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_THREAD_START",
+            "args": {
+              "variable": "L1",
+              "__scriptTabs": "true"
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Start: 9, 11",
+                    "__collapse": true
+                  },
+                  "id": "8ecd4791-0876-46c1-b6e5-8eccfd016153"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Move 3",
+                    "__collapse": true,
+                    "__label": "Move 9"
+                  },
+                  "id": "e35a1356-11d3-4af5-8ce7-9508fef31773"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.3,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "4a0a0e59-9d67-49d5-b00f-258851c76360"
+                },
+                {
+                  "command": "EVENT_ACTOR_MOVE_TO",
+                  "args": {
+                    "actorId": "2784771b-981a-4e2f-8d69-5ede031894cc",
+                    "x": {
+                      "type": "number",
+                      "value": 9
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 8
+                    },
+                    "moveType": "horizontal",
+                    "useCollisions": false,
+                    "__collapse": true
+                  },
+                  "id": "4303bf88-abf0-42fa-8180-3d3ccb160b70"
+                },
+                {
+                  "command": "EVENT_ACTOR_MOVE_TO",
+                  "args": {
+                    "actorId": "2784771b-981a-4e2f-8d69-5ede031894cc",
+                    "x": {
+                      "type": "number",
+                      "value": 9
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 14
+                    },
+                    "moveType": "horizontal",
+                    "useCollisions": false,
+                    "__collapse": true
+                  },
+                  "id": "b1e82880-9d60-49f4-8678-afcfeeedd811"
+                },
+                {
+                  "command": "EVENT_THREAD_STOP",
+                  "args": {
+                    "variable": "L1",
+                    "__collapse": true
+                  },
+                  "id": "507452be-f52c-4e61-91dd-c5d3493c7f2b"
+                }
+              ]
+            },
+            "id": "994e4b1d-decc-4fde-b48d-ff8a5c6082ae"
+          }
+        ]
+      },
+      "id": "bb9c2172-5759-4461-be97-f9b1f68af60d"
+    },
+    {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Move cup 3"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_THREAD_START",
+            "args": {
+              "variable": "L2",
+              "__scriptTabs": "true"
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Start: 15, 14",
+                    "__collapse": true
+                  },
+                  "id": "e0d3a17b-47a4-4153-9e34-3b53f5398c57"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Move 9\n",
+                    "__collapse": true,
+                    "__label": "Move 9"
+                  },
+                  "id": "0c1a4e42-72de-40ea-bfaa-514097000315"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.3,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "0ab6d517-f8a4-4228-a747-aa9273d7688e"
+                },
+                {
+                  "command": "EVENT_ACTOR_MOVE_TO",
+                  "args": {
+                    "actorId": "b6dbf476-3afe-4721-98b4-f9262697eb0e",
+                    "x": {
+                      "type": "number",
+                      "value": 15
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 16
+                    },
+                    "moveType": "horizontal",
+                    "useCollisions": false,
+                    "__collapse": true
+                  },
+                  "id": "7b32c6cb-f211-408c-b208-6cb4a407ce7e"
+                },
+                {
+                  "command": "EVENT_ACTOR_MOVE_TO",
+                  "args": {
+                    "actorId": "b6dbf476-3afe-4721-98b4-f9262697eb0e",
+                    "x": {
+                      "type": "number",
+                      "value": 9
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 16
+                    },
+                    "moveType": "horizontal",
+                    "useCollisions": false,
+                    "__collapse": true
+                  },
+                  "id": "9731c6ab-6c5a-403d-b5ad-e23e9c42b931"
+                },
+                {
+                  "command": "EVENT_THREAD_STOP",
+                  "args": {
+                    "variable": "L2",
+                    "__collapse": false
+                  },
+                  "id": "d6cdb089-de4b-46b0-9e6f-f1f88c6ee408"
+                }
+              ]
+            },
+            "id": "cf44a2c1-f9d6-4211-a1e5-6d6b1653b68e"
+          }
+        ]
+      },
+      "id": "dad0b149-3ba1-473a-9809-d6e247abe6a9"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Below wait will be updated based on length of cup animation\n",
+        "__collapse": true
+      },
+      "id": "4f570254-d75a-4e25-8cf8-7563587fe5b0"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 3,
+        "frames": 30,
+        "__collapse": true
+      },
+      "id": "5011b5aa-38ac-4f36-8a58-a2927fb9d94d"
+    },
+    {
+      "command": "EVENT_ACTOR_ACTIVATE",
+      "args": {
+        "actorId": "$self$",
+        "__collapse": false
+      },
+      "id": "fb58c71d-d9ad-43e7-81ee-7a9b1091db15"
+    },
+    {
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
@@ -580,5 +923,6 @@
   "playerHit1Script": [],
   "playerHit2Script": [],
   "playerHit3Script": [],
-  "collisions": ""
+  "collisions": "",
+  "autoFadeEventCollapse": true
 }
