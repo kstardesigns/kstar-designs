@@ -2,26 +2,536 @@
   "_resourceType": "scene",
   "id": "07186494-64bc-49db-9a1a-6b231e09be22",
   "_index": 5,
+  "type": "TOPDOWN",
   "name": "Slot Token Minigame 2",
-  "backgroundId": "880689a4-10ee-48fd-b6e8-76e7a0537605",
-  "tilesetId": "",
+  "symbol": "scene_6",
+  "x": 448,
+  "y": 288,
   "width": 20,
   "height": 18,
-  "type": "TOPDOWN",
+  "backgroundId": "880689a4-10ee-48fd-b6e8-76e7a0537605",
+  "tilesetId": "",
   "paletteIds": [
     "dmg",
     ""
   ],
   "spritePaletteIds": [
-    null,
+    "",
     "18b93e5a-4d50-4876-89ad-751dc23ed17e"
   ],
-  "collisions": "",
   "autoFadeSpeed": 1,
-  "symbol": "scene_6",
-  "x": 448,
-  "y": 288,
+  "playerSpriteSheetId": "539911f6-7150-4f88-b692-63e0e16f89d6",
   "script": [
+    {
+      "command": "EVENT_ACTOR_SET_POSITION",
+      "args": {
+        "actorId": "$self$",
+        "x": {
+          "type": "number",
+          "value": 3
+        },
+        "y": {
+          "type": "number",
+          "value": 16
+        },
+        "__collapse": true
+      },
+      "id": "0572dd4d-d442-4626-976c-ba0a5b8f4616"
+    },
+    {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Get random tokens for each cup",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_VARIABLE_MATH",
+            "args": {
+              "vectorX": "199",
+              "operation": "set",
+              "other": "rnd",
+              "vectorY": "L0",
+              "value": "0",
+              "minValue": 1,
+              "maxValue": 2,
+              "clamp": false,
+              "__collapse": true
+            },
+            "id": "9d5cdf82-7809-4549-956c-3945f8022971"
+          },
+          {
+            "command": "EVENT_VARIABLE_MATH",
+            "args": {
+              "vectorX": "200",
+              "operation": "set",
+              "other": "rnd",
+              "vectorY": "L0",
+              "value": "0",
+              "minValue": 3,
+              "maxValue": 4,
+              "clamp": false,
+              "__collapse": true
+            },
+            "id": "d92b02dd-073b-4d5d-8b83-10a1f844d464"
+          },
+          {
+            "command": "EVENT_VARIABLE_MATH",
+            "args": {
+              "vectorX": "201",
+              "operation": "set",
+              "other": "rnd",
+              "vectorY": "L0",
+              "value": "0",
+              "minValue": 5,
+              "maxValue": 6,
+              "clamp": false,
+              "__collapse": true
+            },
+            "id": "2679b2d0-54c5-4222-958d-61fca548a3ee"
+          }
+        ]
+      },
+      "id": "d706375f-a180-4b4a-ba6b-47926a719455"
+    },
+    {
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": [
+          "Follow the cups!"
+        ],
+        "__section": "layout",
+        "avatarId": "",
+        "minHeight": 4,
+        "maxHeight": 7,
+        "textX": 1,
+        "textY": 1,
+        "textHeight": 5,
+        "position": "top",
+        "clearPrevious": true,
+        "showFrame": "true",
+        "speedIn": -1,
+        "speedOut": -1,
+        "closeWhen": "key",
+        "closeButton": "a",
+        "closeDelayTime": 0.5,
+        "closeDelayFrames": 30,
+        "__collapse": true
+      },
+      "id": "150fd6aa-80b6-499c-bdc3-e1bf1aff96ca"
+    },
+    {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Show tokens under cup",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_THREAD_START",
+            "args": {
+              "variable": "L0",
+              "__scriptTabs": "true",
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "eq",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "199"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 1
+                      }
+                    },
+                    "__collapseElse": false,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "2784771b-981a-4e2f-8d69-5ede031894cc",
+                          "spriteStateId": "Minigame Cup Show Wild",
+                          "loopAnim": false
+                        },
+                        "id": "3ccf5dd4-f814-4cf8-8dea-70c3061852fd"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "2784771b-981a-4e2f-8d69-5ede031894cc",
+                          "spriteStateId": "Minigame Cup Show Super Yotzee",
+                          "loopAnim": false
+                        },
+                        "id": "1783644a-110d-4fb2-86ee-b73440210787"
+                      }
+                    ]
+                  },
+                  "id": "7ab2a8fc-7864-43c4-8893-0e9e610b184a"
+                },
+                {
+                  "command": "EVENT_THREAD_STOP",
+                  "args": {
+                    "variable": "L0"
+                  },
+                  "id": "b1b1ce91-d656-4bf6-bdab-91ff09f28be0"
+                }
+              ]
+            },
+            "id": "12f24808-e4c1-4e5a-8f69-1b1bc532833d"
+          },
+          {
+            "command": "EVENT_THREAD_START",
+            "args": {
+              "variable": "L1",
+              "__scriptTabs": "true",
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "eq",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "200"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 3
+                      }
+                    },
+                    "__collapseElse": false,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "b6d1731b-e9cb-4c56-8cf3-af39e83ece6a",
+                          "spriteStateId": "Minigame Cup Show Eraser",
+                          "loopAnim": false
+                        },
+                        "id": "c453a62e-c069-4c15-84cc-fb998a164cc8"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "b6d1731b-e9cb-4c56-8cf3-af39e83ece6a",
+                          "spriteStateId": "Minigame Cup Show Rewind",
+                          "loopAnim": false
+                        },
+                        "id": "9092b8ef-4f38-44e3-8400-9f452c7634c5"
+                      }
+                    ]
+                  },
+                  "id": "d3dc1cd7-abe2-45fa-b4a5-2fd898a2a40c"
+                },
+                {
+                  "command": "EVENT_THREAD_STOP",
+                  "args": {
+                    "variable": "L1"
+                  },
+                  "id": "5a270d12-d3b1-4cb2-af04-7d558b300e2e"
+                }
+              ]
+            },
+            "id": "f98666b0-424a-4967-8014-00fd22f72d1a"
+          },
+          {
+            "command": "EVENT_THREAD_START",
+            "args": {
+              "variable": "L2",
+              "__scriptTabs": "true",
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "eq",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "201"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 5
+                      }
+                    },
+                    "__collapseElse": false,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "b6dbf476-3afe-4721-98b4-f9262697eb0e",
+                          "spriteStateId": "Minigame Cup Show Heavy",
+                          "loopAnim": false
+                        },
+                        "id": "6ddba9a8-cfe9-4934-ab38-37222dc85357"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "b6dbf476-3afe-4721-98b4-f9262697eb0e",
+                          "spriteStateId": "Minigame Cup Show Double Down",
+                          "loopAnim": false
+                        },
+                        "id": "bfd865db-f9be-48c8-aeb4-926a4b6c9985"
+                      }
+                    ]
+                  },
+                  "id": "7ca80443-abf2-49ba-a944-a706c60188ef"
+                },
+                {
+                  "command": "EVENT_THREAD_STOP",
+                  "args": {
+                    "variable": "L2"
+                  },
+                  "id": "c53f5ba2-19d8-48fd-a368-f34566c72c62"
+                }
+              ]
+            },
+            "id": "6b2992b1-4f83-490b-9b1b-69fa5c472f0d"
+          }
+        ]
+      },
+      "id": "3e5a76e0-5cb5-439d-9095-92ed4f5c42bc"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 1,
+        "frames": 30,
+        "__collapse": true
+      },
+      "id": "93fef4f9-11ee-43a1-826e-0b245a486d89"
+    },
+    {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Hide tokens before shuffle",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_THREAD_START",
+            "args": {
+              "variable": "L0",
+              "__scriptTabs": "true",
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "eq",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "199"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 1
+                      }
+                    },
+                    "__collapseElse": false,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "2784771b-981a-4e2f-8d69-5ede031894cc",
+                          "spriteStateId": "Minigame Cup Hide WIld",
+                          "loopAnim": false
+                        },
+                        "id": "f85d8bf6-a840-43a3-af3a-c111b5666562"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "2784771b-981a-4e2f-8d69-5ede031894cc",
+                          "spriteStateId": "Minigame Cup Hide Super Yotzee",
+                          "loopAnim": false
+                        },
+                        "id": "787cb8ed-e00b-40dd-8dd0-a36fe5f42eed"
+                      }
+                    ]
+                  },
+                  "id": "e9ae917c-9cb6-4e7a-912c-36c4aad2effd"
+                },
+                {
+                  "command": "EVENT_THREAD_STOP",
+                  "args": {
+                    "variable": "L0"
+                  },
+                  "id": "639d37fd-ce03-4fe7-ba65-dde5322856b5"
+                }
+              ]
+            },
+            "id": "ab370e5a-8990-432b-9436-d30439ee5265"
+          },
+          {
+            "command": "EVENT_THREAD_START",
+            "args": {
+              "variable": "L1",
+              "__scriptTabs": "true",
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "eq",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "200"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 3
+                      }
+                    },
+                    "__collapseElse": false,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "b6d1731b-e9cb-4c56-8cf3-af39e83ece6a",
+                          "spriteStateId": "Minigame Cup Hide Eraser",
+                          "loopAnim": false
+                        },
+                        "id": "cb9724f1-251d-4916-a8c2-63e4acb7a9c3"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "b6d1731b-e9cb-4c56-8cf3-af39e83ece6a",
+                          "spriteStateId": "Minigame Cup Hide Rewind",
+                          "loopAnim": false
+                        },
+                        "id": "373cbd10-095c-4fdc-b2ab-776c19d0e782"
+                      }
+                    ]
+                  },
+                  "id": "5bee25ca-0daa-475b-9ac4-ee945b86422f"
+                },
+                {
+                  "command": "EVENT_THREAD_STOP",
+                  "args": {
+                    "variable": "L1"
+                  },
+                  "id": "17bceb95-f073-44b0-94ce-7386cc74f3ce"
+                }
+              ]
+            },
+            "id": "cccee6d0-368e-4dc1-960a-ee7b16e6c27a"
+          },
+          {
+            "command": "EVENT_THREAD_START",
+            "args": {
+              "variable": "L2",
+              "__scriptTabs": "true",
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "eq",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "201"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 5
+                      }
+                    },
+                    "__collapseElse": false,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "b6dbf476-3afe-4721-98b4-f9262697eb0e",
+                          "spriteStateId": "Minigame Cup Hide Heavy",
+                          "loopAnim": false
+                        },
+                        "id": "8371d66e-90c2-436d-9da1-b839dfce70cc"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "b6dbf476-3afe-4721-98b4-f9262697eb0e",
+                          "spriteStateId": "Minigame Cup Hide Double Down",
+                          "loopAnim": false
+                        },
+                        "id": "b5d6832c-238c-4333-80d2-775b71793439"
+                      }
+                    ]
+                  },
+                  "id": "43d81a18-3b9a-4d21-af4a-91ea939ad536"
+                },
+                {
+                  "command": "EVENT_THREAD_STOP",
+                  "args": {
+                    "variable": "L2"
+                  },
+                  "id": "d5b49e90-1f08-45aa-aa64-97f0d8b0675a"
+                }
+              ]
+            },
+            "id": "e92ad0ec-3bb1-4df5-8723-6b16093a9ca0"
+          }
+        ]
+      },
+      "id": "d404a54c-a66b-4583-85a9-685cc45c9cb3"
+    },
     {
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
@@ -30,44 +540,17 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
           {
             "command": "EVENT_COMMENT",
             "args": {
-              "text": "TEMP:",
+              "text": "Add these after awarding coin",
               "__collapse": true
             },
             "id": "53efa4a0-08c5-499d-ba5f-07f14413c1b5"
-          },
-          {
-            "command": "EVENT_TEXT",
-            "args": {
-              "text": [
-                "minigame would be\nplayed here to",
-                "win a coin. then\nback to game"
-              ],
-              "__section": "text",
-              "avatarId": "",
-              "minHeight": 4,
-              "maxHeight": 7,
-              "textX": 1,
-              "textY": 1,
-              "textHeight": 5,
-              "position": "bottom",
-              "clearPrevious": true,
-              "showFrame": "true",
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
-              "closeButton": "a",
-              "closeDelayTime": 0.5,
-              "closeDelayFrames": 30,
-              "__collapse": false
-            },
-            "id": "006186f1-9ca9-414a-8dbf-e1ade724c5f9"
           },
           {
             "command": "EVENT_SET_VALUE",
@@ -75,7 +558,8 @@
               "variable": "65",
               "value": {
                 "type": "true"
-              }
+              },
+              "__comment": true
             },
             "id": "7fedb5d0-52ee-4f60-a38e-35db5ba06745"
           },
@@ -83,7 +567,8 @@
             "command": "EVENT_SCENE_POP_STATE",
             "args": {
               "fadeSpeed": "2",
-              "__collapse": true
+              "__collapse": true,
+              "__comment": true
             },
             "id": "06cbde57-3eb8-4836-9240-922f318b8657"
           }
@@ -95,5 +580,5 @@
   "playerHit1Script": [],
   "playerHit2Script": [],
   "playerHit3Script": [],
-  "playerSpriteSheetId": "539911f6-7150-4f88-b692-63e0e16f89d6"
+  "collisions": ""
 }
