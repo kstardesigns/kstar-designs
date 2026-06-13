@@ -2,28 +2,35 @@
   "_resourceType": "scene",
   "id": "333589fa-d29c-441c-a74a-ed4b19b75ba5",
   "_index": 4,
-  "name": "Endgame Summary",
-  "backgroundId": "1c9cd0c8-f6a3-46a6-aa4b-927435c5df9a",
-  "tilesetId": "",
-  "width": 20,
-  "height": 18,
   "type": "TOPDOWN",
-  "paletteIds": [
-    "dmg"
-  ],
-  "spritePaletteIds": [],
-  "collisions": "",
-  "autoFadeSpeed": 1,
+  "name": "Endgame Summary 1",
   "symbol": "scene_5",
+  "labelColor": "yellow",
   "x": 80,
   "y": 600,
+  "width": 20,
+  "height": 18,
+  "backgroundId": "1c9cd0c8-f6a3-46a6-aa4b-927435c5df9a",
+  "tilesetId": "",
+  "paletteIds": [
+    "04128967-96f7-47bc-8258-38c7837397f2",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "9fcb5064-c312-44bc-93cc-fb93df58005f"
+  ],
+  "spritePaletteIds": [],
+  "autoFadeSpeed": 1,
   "script": [
     {
       "command": "EVENT_GROUP",
       "args": {
         "__label": "TESTING",
         "__collapse": true,
-        "__comment": true
+        "__comment": false
       },
       "children": {
         "true": [
@@ -33,7 +40,8 @@
               "variable": "206",
               "value": {
                 "type": "true"
-              }
+              },
+              "__collapse": true
             },
             "id": "5b7984b8-ddfe-40a8-853d-defa7ce9f279"
           },
@@ -317,7 +325,7 @@
             "args": {
               "x": {
                 "type": "number",
-                "value": 12
+                "value": 13
               },
               "y": {
                 "type": "number",
@@ -513,6 +521,49 @@
       "id": "e8313389-e1fd-425a-a2de-7d80301a1c03"
     },
     {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Hide/show high score ribbon",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "206"
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_ACTIVATE",
+                  "args": {
+                    "actorId": "daf5a586-390b-4d12-9560-46cdc1c38e5b"
+                  },
+                  "id": "c6c1bfec-f012-4da3-a615-e3a3b6eae625"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_ACTOR_DEACTIVATE",
+                  "args": {
+                    "actorId": "daf5a586-390b-4d12-9560-46cdc1c38e5b"
+                  },
+                  "id": "cb2a0bf5-4d07-492c-bb7a-8a8b11e622b6"
+                }
+              ]
+            },
+            "id": "02ce9f5a-c835-4841-9b39-4c5b732c81dc"
+          }
+        ]
+      },
+      "id": "7efbd4d6-8a95-4cb6-9cbf-d3ce10c3b85c"
+    },
+    {
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
@@ -549,9 +600,342 @@
         ]
       },
       "id": "c842c1a0-b585-4d58-8156-a084abc11cba"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "select"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SCENE_PUSH_STATE",
+            "args": {},
+            "id": "ab54fbfe-640d-47b5-97d6-9939e58458de"
+          },
+          {
+            "command": "EVENT_SWITCH_SCENE",
+            "args": {
+              "sceneId": "98029bff-92c0-4c95-842e-6c46f00c6b5f",
+              "x": {
+                "type": "number",
+                "value": 3
+              },
+              "y": {
+                "type": "number",
+                "value": 8
+              },
+              "direction": "",
+              "fadeSpeed": 1
+            },
+            "id": "e8ac969f-844a-4a17-9f21-60c872449b83"
+          }
+        ]
+      },
+      "id": "b48e3fcc-7828-487d-a583-e3f66783c338"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "a"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Need to manually keep this A button in sync with Endgame Summary 2. Call Script wouldn't work for reuse here"
+            },
+            "id": "ab046a9e-7fde-4e41-9736-af0ab0b53a4d"
+          },
+          {
+            "command": "PT_EVENT_ADVANCED_MENU",
+            "args": {
+              "__scriptTabs": "items",
+              "width": 20,
+              "height": 5,
+              "position": "bottom",
+              "from": "bottom",
+              "clearPrevious": true,
+              "showFrame": true,
+              "speedIn": -1,
+              "speedOut": -1,
+              "variable": "L0",
+              "setStartValue": false,
+              "items": 3,
+              "option_1_text": "New game",
+              "option1_x": 1,
+              "option1_y": 1,
+              "option1_l": 0,
+              "option1_r": 0,
+              "option1_u": 0,
+              "option1_d": 2,
+              "option_2_text": "Main menu",
+              "option2_x": 1,
+              "option2_y": 2,
+              "option2_l": 0,
+              "option2_r": 0,
+              "option2_u": 1,
+              "option2_d": 3,
+              "option_3_text": "High scores",
+              "option3_x": 1,
+              "option3_y": 3,
+              "option3_l": 0,
+              "option3_r": 0,
+              "option3_u": 2,
+              "option3_d": 0,
+              "option_4_text": "",
+              "option4_x": 0,
+              "option4_y": 0,
+              "option4_l": 0,
+              "option4_r": 0,
+              "option4_u": 0,
+              "option4_d": 0,
+              "option_5_text": "",
+              "option5_x": 0,
+              "option5_y": 0,
+              "option5_l": 0,
+              "option5_r": 0,
+              "option5_u": 0,
+              "option5_d": 0,
+              "option_6_text": "",
+              "option6_x": 0,
+              "option6_y": 0,
+              "option6_l": 0,
+              "option6_r": 0,
+              "option6_u": 0,
+              "option6_d": 0,
+              "option_7_text": "",
+              "option7_x": 0,
+              "option7_y": 0,
+              "option7_l": 0,
+              "option7_r": 0,
+              "option7_u": 0,
+              "option7_d": 0,
+              "option_8_text": "",
+              "option8_x": 0,
+              "option8_y": 0,
+              "option8_l": 0,
+              "option8_r": 0,
+              "option8_u": 0,
+              "option8_d": 0,
+              "option_9_text": "",
+              "option9_x": 0,
+              "option9_y": 0,
+              "option9_l": 0,
+              "option9_r": 0,
+              "option9_u": 0,
+              "option9_d": 0,
+              "option_10_text": "",
+              "option10_x": 0,
+              "option10_y": 0,
+              "option10_l": 0,
+              "option10_r": 0,
+              "option10_u": 0,
+              "option10_d": 0,
+              "option_11_text": "",
+              "option11_x": 0,
+              "option11_y": 0,
+              "option11_l": 0,
+              "option11_r": 0,
+              "option11_u": 0,
+              "option11_d": 0,
+              "option_12_text": "",
+              "option12_x": 0,
+              "option12_y": 0,
+              "option12_l": 0,
+              "option12_r": 0,
+              "option12_u": 0,
+              "option12_d": 0,
+              "option_13_text": "",
+              "option13_x": 0,
+              "option13_y": 0,
+              "option13_l": 0,
+              "option13_r": 0,
+              "option13_u": 0,
+              "option13_d": 0,
+              "option_14_text": "",
+              "option14_x": 0,
+              "option14_y": 0,
+              "option14_l": 0,
+              "option14_r": 0,
+              "option14_u": 0,
+              "option14_d": 0,
+              "option_15_text": "",
+              "option15_x": 0,
+              "option15_y": 0,
+              "option15_l": 0,
+              "option15_r": 0,
+              "option15_u": 0,
+              "option15_d": 0,
+              "option_16_text": "",
+              "option16_x": 0,
+              "option16_y": 0,
+              "option16_l": 0,
+              "option16_r": 0,
+              "option16_u": 0,
+              "option16_d": 0,
+              "cancelOnB": true,
+              "__collapse": true
+            },
+            "id": "226f1854-5a96-421a-b8f7-7b4c42e255af"
+          },
+          {
+            "command": "EVENT_SWITCH",
+            "args": {
+              "variable": "L0",
+              "choices": 3,
+              "__collapseCase0": false,
+              "value0": 1,
+              "__collapseCase1": false,
+              "value1": 2,
+              "__collapseCase2": false,
+              "value2": 3,
+              "__collapseCase3": false,
+              "value3": 4,
+              "__collapseCase4": false,
+              "value4": 5,
+              "__collapseCase5": false,
+              "value5": 6,
+              "__collapseCase6": false,
+              "value6": 7,
+              "__collapseCase7": false,
+              "value7": 8,
+              "__collapseCase8": false,
+              "value8": 9,
+              "__collapseCase9": false,
+              "value9": 10,
+              "__collapseCase10": false,
+              "value10": 11,
+              "__collapseCase11": false,
+              "value11": 12,
+              "__collapseCase12": false,
+              "value12": 13,
+              "__collapseCase13": false,
+              "value13": 14,
+              "__collapseCase14": false,
+              "value14": 15,
+              "__collapseCase15": false,
+              "value15": 16,
+              "__collapseElse": false,
+              "__collapse": true
+            },
+            "children": {
+              "true0": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "New game",
+                    "__collapse": true
+                  },
+                  "id": "df52d2fd-5ddd-4b2a-8659-598fb527fbf3"
+                },
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "e5d970c7-6555-447f-a475-89cf6e9969b7",
+                    "x": {
+                      "type": "number",
+                      "value": 4
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 9
+                    },
+                    "direction": "",
+                    "fadeSpeed": "2"
+                  },
+                  "id": "a63e2069-bef5-4a49-884c-931576c2080c"
+                }
+              ],
+              "true1": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Main menu",
+                    "__collapse": true
+                  },
+                  "id": "21baaa2a-ea20-48f1-9ba5-419b13c54ec9"
+                },
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "e4e90a7f-3caa-435a-bd3c-b38e152d95ef",
+                    "x": {
+                      "type": "number",
+                      "value": 1
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 13
+                    },
+                    "direction": "",
+                    "fadeSpeed": "2"
+                  },
+                  "id": "6cedcb29-7221-4a76-b31b-65623176bc19"
+                }
+              ],
+              "true2": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "High score",
+                    "__collapse": true
+                  },
+                  "id": "b18ac6ce-a344-4985-bc3e-f10452249dcf"
+                },
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "c0baec7c-b6ca-4a3c-b61a-97fd014bcd9f",
+                    "x": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "direction": "",
+                    "fadeSpeed": "2"
+                  },
+                  "id": "3a987663-b342-41d2-8912-1f6cef89dc39"
+                }
+              ],
+              "true3": [],
+              "true4": [],
+              "true5": [],
+              "true6": [],
+              "true7": [],
+              "true8": [],
+              "true9": [],
+              "true10": [],
+              "true11": [],
+              "true12": [],
+              "true13": [],
+              "true14": [],
+              "true15": [],
+              "false": []
+            },
+            "id": "5e48603d-eaf0-45b6-a5ae-8e055cf8de2f"
+          }
+        ]
+      },
+      "id": "965f0161-ad3d-4cb6-8db2-3a9169b8f17d"
     }
   ],
   "playerHit1Script": [],
   "playerHit2Script": [],
-  "playerHit3Script": []
+  "playerHit3Script": [],
+  "collisions": ""
 }
