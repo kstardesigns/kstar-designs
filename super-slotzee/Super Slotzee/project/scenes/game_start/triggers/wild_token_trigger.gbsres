@@ -63,7 +63,7 @@
               },
               "y": {
                 "type": "number",
-                "value": 14
+                "value": 15
               }
             },
             "id": "0302de39-22a5-4072-809e-38466a43d1f5"
@@ -85,92 +85,34 @@
       "children": {
         "true": [
           {
-            "command": "EVENT_ACTOR_SET_STATE",
-            "args": {
-              "actorId": "player",
-              "spriteStateId": "Animated up still",
-              "loopAnim": false
-            },
-            "id": "331315ea-34bf-4c56-a883-4180c75e0f01"
-          },
-          {
-            "command": "EVENT_TEXT",
-            "args": {
-              "text": [
-                "WILD token. \nWhen used, it  @",
-                "converts one die to a \nWILD die for one turn. @",
-                "WILD dice can be used\nas any number.  @",
-                "Choose this token?"
-              ],
-              "__section": "text",
-              "avatarId": "",
-              "minHeight": 4,
-              "maxHeight": 7,
-              "textX": 1,
-              "textY": 1,
-              "textHeight": 5,
-              "position": "bottom",
-              "clearPrevious": true,
-              "showFrame": "true",
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
-              "closeButton": "a",
-              "closeDelayTime": 0.5,
-              "closeDelayFrames": 30
-            },
-            "id": "4e985605-a054-469e-8108-1e81cc9cd533"
-          },
-          {
-            "command": "EVENT_MENU",
-            "args": {
-              "variable": "L0",
-              "items": 2,
-              "option1": "Confirm",
-              "option2": "Cancel",
-              "option3": "",
-              "option4": "",
-              "option5": "",
-              "option6": "",
-              "option7": "",
-              "option8": "",
-              "cancelOnB": true,
-              "layout": "dialogue",
-              "cancelOnLastOption": true
-            },
-            "id": "6b5feaf5-c9c5-4373-a8f0-06d8ce72e821"
-          },
-          {
             "command": "EVENT_IF",
             "args": {
               "condition": {
                 "type": "variable",
-                "value": "L0"
+                "value": "208"
               },
               "__collapseElse": false
             },
             "children": {
               "true": [
                 {
-                  "command": "EVENT_INC_VALUE",
+                  "command": "EVENT_ACTOR_SET_STATE",
                   "args": {
-                    "variable": "140"
+                    "actorId": "player",
+                    "spriteStateId": "Animated up still",
+                    "loopAnim": false,
+                    "__collapse": true
                   },
-                  "id": "146473b0-867a-4055-939d-868cae9231ca"
-                },
-                {
-                  "command": "EVENT_INC_VALUE",
-                  "args": {
-                    "variable": "162"
-                  },
-                  "id": "6361773d-9fa7-45e9-aafa-64f62110d8d6"
+                  "id": "331315ea-34bf-4c56-a883-4180c75e0f01"
                 },
                 {
                   "command": "EVENT_TEXT",
                   "args": {
                     "text": [
-                      "A WILD token has been\nadded to your  @",
-                      "inventory."
+                      "WILD token. \nWhen used, it  @",
+                      "converts one die to a \nWILD die for one turn. @",
+                      "WILD dice can be used\nas any number.  @",
+                      "Choose this token?"
                     ],
                     "__section": "text",
                     "avatarId": "",
@@ -187,49 +129,175 @@
                     "closeWhen": "key",
                     "closeButton": "a",
                     "closeDelayTime": 0.5,
-                    "closeDelayFrames": 30
+                    "closeDelayFrames": 30,
+                    "__collapse": true
                   },
-                  "id": "dfa525ea-8278-42f6-8ab2-500e817738a2"
+                  "id": "4e985605-a054-469e-8108-1e81cc9cd533"
                 },
                 {
-                  "command": "EVENT_WAIT",
+                  "command": "EVENT_MENU",
                   "args": {
-                    "time": 0.5,
-                    "frames": 30
+                    "variable": "L0",
+                    "items": 2,
+                    "option1": "Confirm",
+                    "option2": "Cancel",
+                    "option3": "",
+                    "option4": "",
+                    "option5": "",
+                    "option6": "",
+                    "option7": "",
+                    "option8": "",
+                    "cancelOnB": true,
+                    "layout": "dialogue",
+                    "cancelOnLastOption": true,
+                    "__collapse": true
                   },
-                  "id": "37c5edb9-c5c1-463f-a0ad-63ec9450e372"
+                  "id": "6b5feaf5-c9c5-4373-a8f0-06d8ce72e821"
                 },
                 {
-                  "command": "EVENT_SWITCH_SCENE",
+                  "command": "EVENT_IF",
                   "args": {
-                    "sceneId": "5a5fca72-8d96-45d2-9f47-f418c5d5a21d",
-                    "x": {
-                      "type": "number",
-                      "value": 6
+                    "condition": {
+                      "type": "variable",
+                      "value": "L0"
                     },
-                    "y": {
-                      "type": "number",
-                      "value": 17
-                    },
-                    "direction": "",
-                    "fadeSpeed": "2"
+                    "__collapseElse": false,
+                    "__collapse": true
                   },
-                  "id": "d826bedf-86ca-42cb-8b1e-3c2653f5f8d5"
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "140"
+                        },
+                        "id": "146473b0-867a-4055-939d-868cae9231ca"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "162"
+                        },
+                        "id": "6361773d-9fa7-45e9-aafa-64f62110d8d6"
+                      },
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "A WILD token has been\nadded to your  @",
+                            "inventory."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "dfa525ea-8278-42f6-8ab2-500e817738a2"
+                      },
+                      {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 0.5,
+                          "frames": 30
+                        },
+                        "id": "37c5edb9-c5c1-463f-a0ad-63ec9450e372"
+                      },
+                      {
+                        "command": "EVENT_SWITCH_SCENE",
+                        "args": {
+                          "sceneId": "5a5fca72-8d96-45d2-9f47-f418c5d5a21d",
+                          "x": {
+                            "type": "number",
+                            "value": 6
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 17
+                          },
+                          "direction": "",
+                          "fadeSpeed": "2"
+                        },
+                        "id": "d826bedf-86ca-42cb-8b1e-3c2653f5f8d5"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "player",
+                          "spriteStateId": "",
+                          "loopAnim": true
+                        },
+                        "id": "2af7f55d-9ed2-4588-9f36-b28564d3c6db"
+                      }
+                    ]
+                  },
+                  "id": "21d0ef0b-d475-49a8-8aea-072710de71bb"
                 }
               ],
               "false": [
                 {
-                  "command": "EVENT_ACTOR_SET_STATE",
+                  "id": "8cde60fc-08e6-41d2-bcb3-a0e538e235a2",
+                  "command": "EVENT_GROUP",
                   "args": {
-                    "actorId": "player",
-                    "spriteStateId": "",
-                    "loopAnim": true
+                    "__label": "Out of stock state"
                   },
-                  "id": "2af7f55d-9ed2-4588-9f36-b28564d3c6db"
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "player",
+                          "spriteStateId": "Animated up still",
+                          "loopAnim": false,
+                          "__collapse": true
+                        },
+                        "id": "b48d2edd-f5fd-4ada-bef6-93428143798d"
+                      },
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "Sorry, this token is\ncurrently out of stock."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30,
+                          "__collapse": true
+                        },
+                        "id": "3ec5cad3-2a18-40c5-b303-ba3c9d15c081"
+                      }
+                    ]
+                  }
                 }
               ]
             },
-            "id": "21d0ef0b-d475-49a8-8aea-072710de71bb"
+            "id": "32e93a4b-503b-4d4f-aa10-c8b14c4bda77"
           }
         ]
       },

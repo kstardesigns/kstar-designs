@@ -4,7 +4,7 @@
   "name": "Wild token trigger",
   "prefabId": "",
   "x": 4,
-  "y": 14,
+  "y": 15,
   "symbol": "trigger_26",
   "prefabScriptOverrides": {},
   "width": 2,
@@ -32,7 +32,7 @@
               },
               "y": {
                 "type": "number",
-                "value": 14
+                "value": 15
               }
             },
             "id": "1e002574-fd53-4bbf-98f0-f08e7e73d5f3"
@@ -85,92 +85,34 @@
       "children": {
         "true": [
           {
-            "command": "EVENT_ACTOR_SET_STATE",
-            "args": {
-              "actorId": "player",
-              "spriteStateId": "Animated up still",
-              "loopAnim": false
-            },
-            "id": "d333a32a-5e8f-42ef-a1e1-b78ab5d9b90d"
-          },
-          {
-            "command": "EVENT_TEXT",
-            "args": {
-              "text": [
-                "REWIND token. \nWhen used, it  @",
-                "rewinds the current\nturn to roll 1,  @",
-                "allowing you to start \nthe turn over.  @",
-                "Choose this token?"
-              ],
-              "__section": "text",
-              "avatarId": "",
-              "minHeight": 4,
-              "maxHeight": 7,
-              "textX": 1,
-              "textY": 1,
-              "textHeight": 5,
-              "position": "bottom",
-              "clearPrevious": true,
-              "showFrame": "true",
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
-              "closeButton": "a",
-              "closeDelayTime": 0.5,
-              "closeDelayFrames": 30
-            },
-            "id": "ba51718d-aadf-4033-9958-c2954c699271"
-          },
-          {
-            "command": "EVENT_MENU",
-            "args": {
-              "variable": "L0",
-              "items": 2,
-              "option1": "Confirm",
-              "option2": "Cancel",
-              "option3": "",
-              "option4": "",
-              "option5": "",
-              "option6": "",
-              "option7": "",
-              "option8": "",
-              "cancelOnB": true,
-              "layout": "dialogue",
-              "cancelOnLastOption": true
-            },
-            "id": "4ef9d094-1356-4150-a84c-41af6a6764e1"
-          },
-          {
             "command": "EVENT_IF",
             "args": {
               "condition": {
                 "type": "variable",
-                "value": "L0"
+                "value": "210"
               },
               "__collapseElse": false
             },
             "children": {
               "true": [
                 {
-                  "command": "EVENT_INC_VALUE",
+                  "command": "EVENT_ACTOR_SET_STATE",
                   "args": {
-                    "variable": "143"
+                    "actorId": "player",
+                    "spriteStateId": "Animated up still",
+                    "loopAnim": false,
+                    "__collapse": true
                   },
-                  "id": "c835b155-f5fe-4816-a394-71a0858e66d2"
-                },
-                {
-                  "command": "EVENT_INC_VALUE",
-                  "args": {
-                    "variable": "165"
-                  },
-                  "id": "eadc7a7c-7cea-4211-a9e0-8cc603e211a7"
+                  "id": "d333a32a-5e8f-42ef-a1e1-b78ab5d9b90d"
                 },
                 {
                   "command": "EVENT_TEXT",
                   "args": {
                     "text": [
-                      "A REWIND token has\nbeen added to your  @",
-                      "inventory."
+                      "REWIND token. \nWhen used, it  @",
+                      "rewinds the current\nturn to roll 1,  @",
+                      "allowing you to start \nthe turn over.  @",
+                      "Choose this token?"
                     ],
                     "__section": "text",
                     "avatarId": "",
@@ -187,49 +129,175 @@
                     "closeWhen": "key",
                     "closeButton": "a",
                     "closeDelayTime": 0.5,
-                    "closeDelayFrames": 30
+                    "closeDelayFrames": 30,
+                    "__collapse": true
                   },
-                  "id": "527bb7a5-69fb-4038-9691-b0bc43b03827"
+                  "id": "ba51718d-aadf-4033-9958-c2954c699271"
                 },
                 {
-                  "command": "EVENT_WAIT",
+                  "command": "EVENT_MENU",
                   "args": {
-                    "time": 0.5,
-                    "frames": 30
+                    "variable": "L0",
+                    "items": 2,
+                    "option1": "Confirm",
+                    "option2": "Cancel",
+                    "option3": "",
+                    "option4": "",
+                    "option5": "",
+                    "option6": "",
+                    "option7": "",
+                    "option8": "",
+                    "cancelOnB": true,
+                    "layout": "dialogue",
+                    "cancelOnLastOption": true,
+                    "__collapse": true
                   },
-                  "id": "b6073f82-cad8-40ce-ab9c-81888e6b8161"
+                  "id": "4ef9d094-1356-4150-a84c-41af6a6764e1"
                 },
                 {
-                  "command": "EVENT_SWITCH_SCENE",
+                  "command": "EVENT_IF",
                   "args": {
-                    "sceneId": "5a5fca72-8d96-45d2-9f47-f418c5d5a21d",
-                    "x": {
-                      "type": "number",
-                      "value": 6
+                    "condition": {
+                      "type": "variable",
+                      "value": "L0"
                     },
-                    "y": {
-                      "type": "number",
-                      "value": 17
-                    },
-                    "direction": "",
-                    "fadeSpeed": "2"
+                    "__collapseElse": false,
+                    "__collapse": true
                   },
-                  "id": "979f336d-a1d3-4ac2-a099-1453a0d5af44"
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "143"
+                        },
+                        "id": "c835b155-f5fe-4816-a394-71a0858e66d2"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "165"
+                        },
+                        "id": "eadc7a7c-7cea-4211-a9e0-8cc603e211a7"
+                      },
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "A REWIND token has\nbeen added to your  @",
+                            "inventory."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "527bb7a5-69fb-4038-9691-b0bc43b03827"
+                      },
+                      {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 0.5,
+                          "frames": 30
+                        },
+                        "id": "b6073f82-cad8-40ce-ab9c-81888e6b8161"
+                      },
+                      {
+                        "command": "EVENT_SWITCH_SCENE",
+                        "args": {
+                          "sceneId": "5a5fca72-8d96-45d2-9f47-f418c5d5a21d",
+                          "x": {
+                            "type": "number",
+                            "value": 6
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 17
+                          },
+                          "direction": "",
+                          "fadeSpeed": "2"
+                        },
+                        "id": "979f336d-a1d3-4ac2-a099-1453a0d5af44"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "player",
+                          "spriteStateId": "",
+                          "loopAnim": true
+                        },
+                        "id": "97f31d8d-2e97-42ed-81ad-1d0ed0d6ea0c"
+                      }
+                    ]
+                  },
+                  "id": "93bfa154-0c51-4f80-8186-d251b7fdc11d"
                 }
               ],
               "false": [
                 {
-                  "command": "EVENT_ACTOR_SET_STATE",
+                  "id": "15309caf-0159-4f30-a0e9-27a1c7296800",
+                  "command": "EVENT_GROUP",
                   "args": {
-                    "actorId": "player",
-                    "spriteStateId": "",
-                    "loopAnim": true
+                    "__label": "Out of stock state"
                   },
-                  "id": "97f31d8d-2e97-42ed-81ad-1d0ed0d6ea0c"
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "player",
+                          "spriteStateId": "Animated up still",
+                          "loopAnim": false,
+                          "__collapse": true
+                        },
+                        "id": "cdd5a957-6835-402c-a14c-f33bde4ab3ee"
+                      },
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "Sorry, this token is\ncurrently out of stock."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30,
+                          "__collapse": true
+                        },
+                        "id": "fc5edb31-3a53-42de-a345-8eca204b1367"
+                      }
+                    ]
+                  }
                 }
               ]
             },
-            "id": "93bfa154-0c51-4f80-8186-d251b7fdc11d"
+            "id": "0979103c-8e98-45d8-9932-21a58177f3a6"
           }
         ]
       },

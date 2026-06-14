@@ -11,7 +11,10 @@
   "paletteIds": [
     "dmg"
   ],
-  "spritePaletteIds": [],
+  "spritePaletteIds": [
+    null,
+    "6c2b2095-3db0-40b6-91d2-0f0d0ca1249f"
+  ],
   "collisions": "",
   "autoFadeSpeed": null,
   "symbol": "scene_7",
@@ -30,7 +33,7 @@
           "type": "number",
           "value": 9
         },
-        "__collapse": false
+        "__collapse": true
       },
       "id": "6c4c8abe-1082-4757-ae36-1cbc1aebaf98"
     },
@@ -46,81 +49,117 @@
       "id": "6d211bda-5b10-4ef3-8e90-f20fd0c915f7"
     },
     {
+      "command": "EVENT_INC_VALUE",
+      "args": {
+        "variable": "32",
+        "__label": "Increment overall game number",
+        "__collapse": true
+      },
+      "id": "ffc08df0-1a81-45ba-af24-663a9d72412f"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "NOTE: Cannot have all 3 out of stock at once due to 10-tile horizontal limit."
+      },
+      "id": "fa0ad013-1bee-44a8-b993-5ecbf9f496ed"
+    },
+    {
       "command": "EVENT_GROUP",
       "args": {
-        "__label": "[Set actor states]",
-        "__collapse": true
+        "__label": "Disable some token choices"
       },
       "children": {
         "true": [
           {
-            "command": "EVENT_ACTOR_SET_STATE",
+            "command": "EVENT_IF",
             "args": {
-              "actorId": "f295d3a6-c0f7-4c75-97d2-0db92e16d461",
-              "spriteStateId": "Pick - 1 Wild token",
-              "loopAnim": false,
-              "__collapse": true
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "32"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 1
+                }
+              },
+              "__collapseElse": false
             },
-            "id": "619cbfc7-be38-429c-8e16-b313ac0adccf"
-          },
-          {
-            "command": "EVENT_ACTOR_SET_STATE",
-            "args": {
-              "actorId": "fd0f1c88-dd28-4592-b80b-b37238e016a6",
-              "spriteStateId": "Pick - 2 Super Yotzee token",
-              "loopAnim": false,
-              "__collapse": true
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_DEACTIVATE",
+                  "args": {
+                    "actorId": "0263a8be-77cd-4d24-8e4a-21e578487f96",
+                    "__collapse": true
+                  },
+                  "id": "4817f059-d367-4937-b7dd-eeed588e501d"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "208",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "031851d8-adb7-4525-a640-186f1450bf26"
+                },
+                {
+                  "command": "EVENT_ACTOR_DEACTIVATE",
+                  "args": {
+                    "actorId": "5987ff7b-5fbe-44a3-ae8e-1ac0bdadc027",
+                    "__collapse": true
+                  },
+                  "id": "eedaf50c-074c-4060-806b-79ab09841299"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "209",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "14ff072b-6f90-4a7b-9b31-41a60e87c3b5"
+                },
+                {
+                  "command": "EVENT_ACTOR_DEACTIVATE",
+                  "args": {
+                    "actorId": "7fb49061-d7eb-4d99-91aa-b33e89dd7aa5",
+                    "__collapse": true
+                  },
+                  "id": "62c101da-5064-4645-bfca-3c3667d665e2"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "211",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "7f7dff91-9cbc-4302-9988-58fec85c2b87"
+                }
+              ],
+              "false": []
             },
-            "id": "040336ff-0b34-4c58-99f0-1c0d2005d77d"
-          },
-          {
-            "command": "EVENT_ACTOR_SET_STATE",
-            "args": {
-              "actorId": "efb19864-ebbe-4361-a88f-2e22c99445ba",
-              "spriteStateId": "Pick - 3 Eraser token",
-              "loopAnim": false,
-              "__collapse": true
-            },
-            "id": "ea9029ac-10b2-4b1a-9a1e-41dc1422f56f"
-          },
-          {
-            "command": "EVENT_ACTOR_SET_STATE",
-            "args": {
-              "actorId": "1c478d84-0e51-4953-a9b6-f31a7a2b02d8",
-              "spriteStateId": "Pick - 4 Rewind token",
-              "loopAnim": false,
-              "__collapse": true
-            },
-            "id": "588dd6b3-a356-4aeb-bc0d-9c035e2ccd14"
-          },
-          {
-            "command": "EVENT_ACTOR_SET_STATE",
-            "args": {
-              "actorId": "6e087e7c-32b2-40ab-9307-ea3bc9e2ca3c",
-              "spriteStateId": "Pick - 5 Conversion token",
-              "loopAnim": false,
-              "__collapse": true
-            },
-            "id": "e4dfcbb1-ff51-42fa-9eb2-983aadf27874"
-          },
-          {
-            "command": "EVENT_ACTOR_SET_STATE",
-            "args": {
-              "actorId": "4cf6423f-69cc-4536-b7a3-ab1dfc7d8fc3",
-              "spriteStateId": "Pick - 6 Double Down token",
-              "loopAnim": false,
-              "__collapse": true
-            },
-            "id": "9b6efded-cfeb-4e8f-97fb-d66e498ff32c"
+            "id": "ce91e8ab-92f1-4025-a6a4-53d4a13927ad"
           }
         ]
       },
-      "id": "26c91b2b-be6c-40eb-85da-efd3eb4ff7b0"
+      "id": "7aa76b6a-fc3e-46ea-b1ee-8591edf6c2d4"
     },
     {
       "command": "EVENT_FADE_IN",
       "args": {
-        "speed": "2"
+        "speed": "2",
+        "__collapse": true
       },
       "id": "8c44408b-2da5-4811-ad0b-96ffe9802ab5"
     },
@@ -131,80 +170,11 @@
         "__collapse": true
       },
       "id": "568896bf-2c6e-4efc-bad0-484f933f8f94"
-    },
-    {
-      "command": "EVENT_SET_INPUT_SCRIPT",
-      "args": {
-        "input": [
-          "a"
-        ],
-        "override": true,
-        "__scriptTabs": "press",
-        "__collapse": true
-      },
-      "children": {
-        "true": [
-          {
-            "command": "EVENT_COMMENT",
-            "args": {
-              "text": "TEMP:",
-              "__collapse": true
-            },
-            "id": "fd1d15eb-b808-40ad-b06d-43abf01bac5b"
-          },
-          {
-            "command": "EVENT_TEXT",
-            "args": {
-              "text": [
-                "minigame would be\nplayed here to",
-                "win a coin. then\nback to game"
-              ],
-              "__section": "text",
-              "avatarId": "",
-              "minHeight": 4,
-              "maxHeight": 7,
-              "textX": 1,
-              "textY": 1,
-              "textHeight": 5,
-              "position": "bottom",
-              "clearPrevious": true,
-              "showFrame": "true",
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
-              "closeButton": "a",
-              "closeDelayTime": 0.5,
-              "closeDelayFrames": 30,
-              "__collapse": true
-            },
-            "id": "ecb42443-f20b-4029-bbb1-a456807ffc34"
-          },
-          {
-            "command": "EVENT_SET_VALUE",
-            "args": {
-              "variable": "65",
-              "value": {
-                "type": "true"
-              }
-            },
-            "id": "c8012e58-8f7f-4f2c-89f5-f9cea92123e1"
-          },
-          {
-            "command": "EVENT_SCENE_POP_STATE",
-            "args": {
-              "fadeSpeed": "2",
-              "__collapse": true
-            },
-            "id": "bcc7c159-65cc-41c5-9540-f374d04ff73d"
-          }
-        ]
-      },
-      "id": "0e8ad9f5-d479-4106-9cee-eb0fa58b5531"
     }
   ],
   "playerHit1Script": [],
   "playerHit2Script": [],
   "playerHit3Script": [],
-  "playerSpriteSheetId": "539911f6-7150-4f88-b692-63e0e16f89d6",
+  "playerSpriteSheetId": "e33d5b2a-47aa-4d31-9cc9-ef786d187fe1",
   "labelColor": "purple"
 }

@@ -4,7 +4,7 @@
   "name": "Super Yotzee trigger",
   "prefabId": "",
   "x": 9,
-  "y": 14,
+  "y": 15,
   "symbol": "trigger_27",
   "prefabScriptOverrides": {},
   "width": 2,
@@ -32,7 +32,7 @@
               },
               "y": {
                 "type": "number",
-                "value": 14
+                "value": 15
               }
             },
             "id": "c6d24eee-c6ed-4dc1-a0d4-9d046b911717"
@@ -63,7 +63,7 @@
               },
               "y": {
                 "type": "number",
-                "value": 14
+                "value": 15
               }
             },
             "id": "d6917334-ca06-4fcd-999a-bdc4ffed6034"
@@ -116,97 +116,34 @@
       "children": {
         "true": [
           {
-            "command": "EVENT_ACTOR_SET_STATE",
-            "args": {
-              "actorId": "player",
-              "spriteStateId": "Animated up still",
-              "loopAnim": false,
-              "__collapse": true
-            },
-            "id": "bdc51ef9-b24f-4467-b044-ab94d0d732a1"
-          },
-          {
-            "command": "EVENT_TEXT",
-            "args": {
-              "text": [
-                "HEAVY token. \nWhen used, all dice  @",
-                "will only roll\n4, 5, or 6 for the  @",
-                "rest of the turn.",
-                "Choose this token?"
-              ],
-              "__section": "text",
-              "avatarId": "",
-              "minHeight": 4,
-              "maxHeight": 7,
-              "textX": 1,
-              "textY": 1,
-              "textHeight": 5,
-              "position": "bottom",
-              "clearPrevious": true,
-              "showFrame": "true",
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
-              "closeButton": "any",
-              "closeDelayTime": 0.5,
-              "closeDelayFrames": 30,
-              "__comment": false,
-              "__collapse": true
-            },
-            "id": "7aac6ae6-9857-4c10-b08a-8d90bab23f41"
-          },
-          {
-            "command": "EVENT_MENU",
-            "args": {
-              "variable": "L0",
-              "items": 2,
-              "option1": "Confirm",
-              "option2": "Cancel",
-              "option3": "",
-              "option4": "",
-              "option5": "",
-              "option6": "",
-              "option7": "",
-              "option8": "",
-              "cancelOnB": true,
-              "layout": "dialogue",
-              "cancelOnLastOption": true,
-              "__collapse": true
-            },
-            "id": "8e8489f1-a01d-48c1-a4c4-67054aa4bec2"
-          },
-          {
             "command": "EVENT_IF",
             "args": {
               "condition": {
                 "type": "variable",
-                "value": "L0"
+                "value": "211"
               },
-              "__collapseElse": false,
-              "__collapse": true
+              "__collapseElse": false
             },
             "children": {
               "true": [
                 {
-                  "command": "EVENT_INC_VALUE",
+                  "command": "EVENT_ACTOR_SET_STATE",
                   "args": {
-                    "variable": "144"
+                    "actorId": "player",
+                    "spriteStateId": "Animated up still",
+                    "loopAnim": false,
+                    "__collapse": true
                   },
-                  "id": "de77d036-9c36-460c-8075-1a5fa3ae8f38"
-                },
-                {
-                  "command": "EVENT_INC_VALUE",
-                  "args": {
-                    "variable": "166"
-                  },
-                  "id": "1621dc88-7990-45cd-bcd0-5ca379d17d2c"
+                  "id": "bdc51ef9-b24f-4467-b044-ab94d0d732a1"
                 },
                 {
                   "command": "EVENT_TEXT",
                   "args": {
                     "text": [
-                      "A HEAVY token \nhas been added to  @",
-                      "your inventory."
+                      "HEAVY token. \nWhen used, all dice  @",
+                      "will only roll\n4, 5, or 6 for the  @",
+                      "rest of the turn.",
+                      "Choose this token?"
                     ],
                     "__section": "text",
                     "avatarId": "",
@@ -221,51 +158,178 @@
                     "speedIn": -1,
                     "speedOut": -1,
                     "closeWhen": "key",
-                    "closeButton": "a",
+                    "closeButton": "any",
                     "closeDelayTime": 0.5,
-                    "closeDelayFrames": 30
+                    "closeDelayFrames": 30,
+                    "__comment": false,
+                    "__collapse": true
                   },
-                  "id": "4b42e028-7ec5-4a7f-9c33-cc1981d2ab77"
+                  "id": "7aac6ae6-9857-4c10-b08a-8d90bab23f41"
                 },
                 {
-                  "command": "EVENT_WAIT",
+                  "command": "EVENT_MENU",
                   "args": {
-                    "time": 0.5,
-                    "frames": 30
+                    "variable": "L0",
+                    "items": 2,
+                    "option1": "Confirm",
+                    "option2": "Cancel",
+                    "option3": "",
+                    "option4": "",
+                    "option5": "",
+                    "option6": "",
+                    "option7": "",
+                    "option8": "",
+                    "cancelOnB": true,
+                    "layout": "dialogue",
+                    "cancelOnLastOption": true,
+                    "__collapse": true
                   },
-                  "id": "8033ef98-c569-4039-944e-6e4f677e64dd"
+                  "id": "8e8489f1-a01d-48c1-a4c4-67054aa4bec2"
                 },
                 {
-                  "command": "EVENT_SWITCH_SCENE",
+                  "command": "EVENT_IF",
                   "args": {
-                    "sceneId": "5a5fca72-8d96-45d2-9f47-f418c5d5a21d",
-                    "x": {
-                      "type": "number",
-                      "value": 6
+                    "condition": {
+                      "type": "variable",
+                      "value": "L0"
                     },
-                    "y": {
-                      "type": "number",
-                      "value": 17
-                    },
-                    "direction": "",
-                    "fadeSpeed": "2"
+                    "__collapseElse": false,
+                    "__collapse": true
                   },
-                  "id": "3ed0a54e-438f-4c5b-ac19-36e11f4d6db3"
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "144"
+                        },
+                        "id": "de77d036-9c36-460c-8075-1a5fa3ae8f38"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "166"
+                        },
+                        "id": "1621dc88-7990-45cd-bcd0-5ca379d17d2c"
+                      },
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "A HEAVY token \nhas been added to  @",
+                            "your inventory."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "4b42e028-7ec5-4a7f-9c33-cc1981d2ab77"
+                      },
+                      {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 0.5,
+                          "frames": 30
+                        },
+                        "id": "8033ef98-c569-4039-944e-6e4f677e64dd"
+                      },
+                      {
+                        "command": "EVENT_SWITCH_SCENE",
+                        "args": {
+                          "sceneId": "5a5fca72-8d96-45d2-9f47-f418c5d5a21d",
+                          "x": {
+                            "type": "number",
+                            "value": 6
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 17
+                          },
+                          "direction": "",
+                          "fadeSpeed": "2"
+                        },
+                        "id": "3ed0a54e-438f-4c5b-ac19-36e11f4d6db3"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "player",
+                          "spriteStateId": "",
+                          "loopAnim": true
+                        },
+                        "id": "a0d7b23d-c897-4907-9dd2-b503848e9622"
+                      }
+                    ]
+                  },
+                  "id": "0da4f61b-4946-4399-a55c-cc300fdd3361"
                 }
               ],
               "false": [
                 {
-                  "command": "EVENT_ACTOR_SET_STATE",
+                  "id": "b7e2cd03-0850-4791-afdf-86563c9aa08f",
+                  "command": "EVENT_GROUP",
                   "args": {
-                    "actorId": "player",
-                    "spriteStateId": "",
-                    "loopAnim": true
+                    "__label": "Out of stock state"
                   },
-                  "id": "a0d7b23d-c897-4907-9dd2-b503848e9622"
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "player",
+                          "spriteStateId": "Animated up still",
+                          "loopAnim": false,
+                          "__collapse": true
+                        },
+                        "id": "bd3a3719-cdba-4a4b-8197-e61f9e804dc7"
+                      },
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "Sorry, this token is\ncurrently out of stock."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30,
+                          "__collapse": true
+                        },
+                        "id": "a8d2dcdf-128f-4a9d-8abf-151c7c4e3b0f"
+                      }
+                    ]
+                  }
                 }
               ]
             },
-            "id": "0da4f61b-4946-4399-a55c-cc300fdd3361"
+            "id": "64f7f0cc-8832-4336-a663-0b3a661d2d17"
           }
         ]
       },

@@ -94,7 +94,7 @@
               },
               "y": {
                 "type": "number",
-                "value": 14
+                "value": 15
               }
             },
             "id": "f8475073-6c1e-46d4-8362-c4b39e47ea77"
@@ -116,94 +116,35 @@
       "children": {
         "true": [
           {
-            "command": "EVENT_ACTOR_SET_STATE",
-            "args": {
-              "actorId": "player",
-              "spriteStateId": "Animated up still",
-              "loopAnim": false,
-              "__collapse": true
-            },
-            "id": "243ab78a-9553-4b74-ba1d-4fe413890f2a"
-          },
-          {
-            "command": "EVENT_TEXT",
-            "args": {
-              "text": [
-                "SUPER YOTZEE token. \nWhen used, it will  @",
-                "end the current turn \nand automatically  @",
-                "score a Yotzee, even \nif you already  @",
-                "scored zero for \nYotzee.  @",
-                "Choose this token?"
-              ],
-              "__section": "text",
-              "avatarId": "",
-              "minHeight": 4,
-              "maxHeight": 7,
-              "textX": 1,
-              "textY": 1,
-              "textHeight": 5,
-              "position": "bottom",
-              "clearPrevious": true,
-              "showFrame": "true",
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
-              "closeButton": "a",
-              "closeDelayTime": 0.5,
-              "closeDelayFrames": 30
-            },
-            "id": "86c2c96d-bf8f-4f8b-a47d-e842aefb4039"
-          },
-          {
-            "command": "EVENT_MENU",
-            "args": {
-              "variable": "L0",
-              "items": 2,
-              "option1": "Confirm",
-              "option2": "Cancel",
-              "option3": "",
-              "option4": "",
-              "option5": "",
-              "option6": "",
-              "option7": "",
-              "option8": "",
-              "cancelOnB": true,
-              "layout": "dialogue",
-              "cancelOnLastOption": true
-            },
-            "id": "92963ac1-5775-4920-af48-fcbf58102555"
-          },
-          {
             "command": "EVENT_IF",
             "args": {
               "condition": {
                 "type": "variable",
-                "value": "L0"
+                "value": "117"
               },
               "__collapseElse": false
             },
             "children": {
               "true": [
                 {
-                  "command": "EVENT_INC_VALUE",
+                  "command": "EVENT_ACTOR_SET_STATE",
                   "args": {
-                    "variable": "141"
+                    "actorId": "player",
+                    "spriteStateId": "Animated up still",
+                    "loopAnim": false,
+                    "__collapse": true
                   },
-                  "id": "a1d0acc0-391d-4b22-9337-22dde86b98a0"
-                },
-                {
-                  "command": "EVENT_INC_VALUE",
-                  "args": {
-                    "variable": "163"
-                  },
-                  "id": "5970bec0-8cd1-4172-8abe-6bf11a7a8420"
+                  "id": "243ab78a-9553-4b74-ba1d-4fe413890f2a"
                 },
                 {
                   "command": "EVENT_TEXT",
                   "args": {
                     "text": [
-                      "A SUPER YOTZEE token \nhas been added to  @",
-                      "your inventory."
+                      "SUPER YOTZEE token. \nWhen used, it will  @",
+                      "end the current turn \nand automatically  @",
+                      "score a Yotzee, even \nif you already  @",
+                      "scored zero for \nYotzee.  @",
+                      "Choose this token?"
                     ],
                     "__section": "text",
                     "avatarId": "",
@@ -220,49 +161,176 @@
                     "closeWhen": "key",
                     "closeButton": "a",
                     "closeDelayTime": 0.5,
-                    "closeDelayFrames": 30
+                    "closeDelayFrames": 30,
+                    "__collapse": true
                   },
-                  "id": "620c4e73-cda3-44a9-9e36-e22538800747"
+                  "id": "86c2c96d-bf8f-4f8b-a47d-e842aefb4039"
                 },
                 {
-                  "command": "EVENT_WAIT",
+                  "command": "EVENT_MENU",
                   "args": {
-                    "time": 0.5,
-                    "frames": 30
+                    "variable": "L0",
+                    "items": 2,
+                    "option1": "Confirm",
+                    "option2": "Cancel",
+                    "option3": "",
+                    "option4": "",
+                    "option5": "",
+                    "option6": "",
+                    "option7": "",
+                    "option8": "",
+                    "cancelOnB": true,
+                    "layout": "dialogue",
+                    "cancelOnLastOption": true,
+                    "__collapse": true
                   },
-                  "id": "f9c35d10-1d4f-42e1-a9c4-04cc0896cc29"
+                  "id": "92963ac1-5775-4920-af48-fcbf58102555"
                 },
                 {
-                  "command": "EVENT_SWITCH_SCENE",
+                  "command": "EVENT_IF",
                   "args": {
-                    "sceneId": "5a5fca72-8d96-45d2-9f47-f418c5d5a21d",
-                    "x": {
-                      "type": "number",
-                      "value": 6
+                    "condition": {
+                      "type": "variable",
+                      "value": "L0"
                     },
-                    "y": {
-                      "type": "number",
-                      "value": 17
-                    },
-                    "direction": "",
-                    "fadeSpeed": "2"
+                    "__collapseElse": false,
+                    "__collapse": true
                   },
-                  "id": "cb33ebf7-c6ca-4037-bbf4-aabcab67f172"
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "141"
+                        },
+                        "id": "a1d0acc0-391d-4b22-9337-22dde86b98a0"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "163"
+                        },
+                        "id": "5970bec0-8cd1-4172-8abe-6bf11a7a8420"
+                      },
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "A SUPER YOTZEE token \nhas been added to  @",
+                            "your inventory."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "620c4e73-cda3-44a9-9e36-e22538800747"
+                      },
+                      {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 0.5,
+                          "frames": 30
+                        },
+                        "id": "f9c35d10-1d4f-42e1-a9c4-04cc0896cc29"
+                      },
+                      {
+                        "command": "EVENT_SWITCH_SCENE",
+                        "args": {
+                          "sceneId": "5a5fca72-8d96-45d2-9f47-f418c5d5a21d",
+                          "x": {
+                            "type": "number",
+                            "value": 6
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 17
+                          },
+                          "direction": "",
+                          "fadeSpeed": "2"
+                        },
+                        "id": "cb33ebf7-c6ca-4037-bbf4-aabcab67f172"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "player",
+                          "spriteStateId": "",
+                          "loopAnim": true
+                        },
+                        "id": "118c7770-ea89-4dc2-ad79-0bd7c19cadac"
+                      }
+                    ]
+                  },
+                  "id": "d39ba31a-c214-454d-828a-bce483860e00"
                 }
               ],
               "false": [
                 {
-                  "command": "EVENT_ACTOR_SET_STATE",
+                  "id": "d5b70bbb-ba55-43d5-9da2-a3bd1e63819a",
+                  "command": "EVENT_GROUP",
                   "args": {
-                    "actorId": "player",
-                    "spriteStateId": "",
-                    "loopAnim": true
+                    "__label": "Out of stock state",
+                    "__collapse": false
                   },
-                  "id": "118c7770-ea89-4dc2-ad79-0bd7c19cadac"
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "player",
+                          "spriteStateId": "Animated up still",
+                          "loopAnim": false,
+                          "__collapse": true
+                        },
+                        "id": "88ffd377-b93c-4bad-9d04-791a67cd54b9"
+                      },
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "Sorry, this token is\ncurrently out of stock."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30,
+                          "__collapse": true
+                        },
+                        "id": "4b5dd46e-bc0a-4446-9a4c-1bd61d25e0e7"
+                      }
+                    ]
+                  }
                 }
               ]
             },
-            "id": "d39ba31a-c214-454d-828a-bce483860e00"
+            "id": "efab2ec5-5e11-4c0d-afa9-f6713db58fed"
           }
         ]
       },
