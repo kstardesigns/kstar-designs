@@ -121,7 +121,8 @@
               "actorId": "5987ff7b-5fbe-44a3-ae8e-1ac0bdadc027",
               "spriteStateId": "Out of stock right",
               "loopAnim": true,
-              "__collapse": true
+              "__collapse": true,
+              "__comment": false
             },
             "id": "8357f964-114c-4e44-99f2-82b8d06426ce"
           },
@@ -131,7 +132,8 @@
               "actorId": "b8e9a0e3-911d-45f5-b081-4df4d14da1cf",
               "spriteStateId": "Out of stock right",
               "loopAnim": true,
-              "__collapse": true
+              "__collapse": true,
+              "__comment": false
             },
             "id": "818690c5-51bf-4a69-a3e7-95231f05d371"
           }
@@ -170,8 +172,125 @@
     {
       "command": "EVENT_GROUP",
       "args": {
+        "__label": "test",
+        "__collapse": false,
+        "__comment": false
+      },
+      "children": {
+        "true": [
+          {
+            "id": "70a08923-ffed-46fa-875a-a91099e82eee",
+            "command": "EVENT_GROUP",
+            "args": {
+              "__label": ">= 90"
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_DEACTIVATE",
+                  "args": {
+                    "actorId": "0263a8be-77cd-4d24-8e4a-21e578487f96",
+                    "__collapse": true
+                  },
+                  "id": "1b58d1cb-ff69-41f2-9603-9f108fcdb01f"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "208",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "e86aa47a-00a2-47e8-ac20-21c40ded9776"
+                },
+                {
+                  "command": "EVENT_ACTOR_DEACTIVATE",
+                  "args": {
+                    "actorId": "9bdc1555-1a53-4663-b400-ede55ddda913",
+                    "__collapse": true
+                  },
+                  "id": "792ec149-b89f-4623-91c0-d92b99b0d7a9"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "117",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "635a8358-b48f-4d99-8e26-fc8eb807f0de"
+                },
+                {
+                  "command": "EVENT_ACTOR_DEACTIVATE",
+                  "args": {
+                    "actorId": "9a0767d9-6d9a-497b-8de9-61790b4b41d5",
+                    "__collapse": true
+                  },
+                  "id": "66f4df1d-ab9d-4471-8f59-1815db7d47f6"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "210",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "78baa011-4a77-4d4e-b4fe-fbcd4e0bbd43"
+                },
+                {
+                  "command": "EVENT_ACTOR_DEACTIVATE",
+                  "args": {
+                    "actorId": "7fb49061-d7eb-4d99-91aa-b33e89dd7aa5",
+                    "__collapse": true
+                  },
+                  "id": "cb4c42f8-d6ac-4ca3-8477-104812905fa2"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "161",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "7924ca2d-5187-48d6-8288-0bcbbbe8affd"
+                },
+                {
+                  "command": "EVENT_PALETTE_SET_BACKGROUND",
+                  "args": {
+                    "palette0": "keep",
+                    "palette1": "fb8d859f-4bd6-438f-b407-73abfa5fd7fa",
+                    "palette2": "fc2207db-5f81-4f90-8856-85765bb6919a",
+                    "palette3": "keep",
+                    "palette4": "4f7e5de8-1358-4c14-90ea-2be653c29929",
+                    "palette5": "fcb2528c-5140-4889-bbe4-3e251db9307b",
+                    "palette6": "keep",
+                    "palette7": "keep",
+                    "__collapse": false,
+                    "__label": "Set background palettes for all 3 above"
+                  },
+                  "id": "d8a536ae-45a8-4c2c-adfa-a5dd33e48446"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "id": "b9a484fd-fad8-4751-a324-1dff3aa8d0c0"
+    },
+    {
+      "command": "EVENT_GROUP",
+      "args": {
         "__label": "Disable some token choices",
-        "__collapse": true
+        "__collapse": false,
+        "__comment": true
       },
       "children": {
         "true": [
@@ -277,183 +396,53 @@
               ],
               "false": [
                 {
-                  "command": "EVENT_GROUP",
+                  "command": "EVENT_VARIABLE_MATH",
                   "args": {
-                    "__label": "Activate Super Yotzee 20% of time",
+                    "vectorX": "219",
+                    "operation": "set",
+                    "other": "rnd",
+                    "vectorY": "L0",
+                    "value": "0",
+                    "minValue": 1,
+                    "maxValue": 100,
+                    "clamp": false,
                     "__collapse": false
                   },
-                  "children": {
-                    "true": [
-                      {
-                        "command": "EVENT_VARIABLE_MATH",
-                        "args": {
-                          "vectorX": "213",
-                          "operation": "set",
-                          "other": "rnd",
-                          "vectorY": "L0",
-                          "value": "0",
-                          "minValue": 1,
-                          "maxValue": 5,
-                          "clamp": false,
-                          "__collapse": true
-                        },
-                        "id": "001f5ad1-a6fb-4584-967d-96d1cf5771a7"
-                      },
-                      {
-                        "command": "EVENT_IF",
-                        "args": {
-                          "condition": {
-                            "type": "eq",
-                            "valueA": {
-                              "type": "variable",
-                              "value": "213"
-                            },
-                            "valueB": {
-                              "type": "number",
-                              "value": 5
-                            }
-                          },
-                          "__collapseElse": true,
-                          "__collapse": true
-                        },
-                        "children": {
-                          "true": [
-                            {
-                              "command": "EVENT_ACTOR_DEACTIVATE",
-                              "args": {
-                                "actorId": "9bdc1555-1a53-4663-b400-ede55ddda913",
-                                "__collapse": true
-                              },
-                              "id": "0ebc659a-5b74-4509-a1a4-1d60a0b9ebe7"
-                            },
-                            {
-                              "command": "EVENT_SET_VALUE",
-                              "args": {
-                                "variable": "117",
-                                "value": {
-                                  "type": "true"
-                                },
-                                "__collapse": true
-                              },
-                              "id": "87711911-3179-407b-9782-a818d9f67254"
-                            },
-                            {
-                              "command": "EVENT_PALETTE_SET_BACKGROUND",
-                              "args": {
-                                "palette0": "keep",
-                                "palette1": "keep",
-                                "palette2": "fc2207db-5f81-4f90-8856-85765bb6919a",
-                                "palette3": "keep",
-                                "palette4": "keep",
-                                "palette5": "keep",
-                                "palette6": "keep",
-                                "palette7": "keep",
-                                "__collapse": true
-                              },
-                              "id": "03523f40-b2d3-4e9e-bda7-692b8af99567"
-                            }
-                          ],
-                          "false": []
-                        },
-                        "id": "1c5acd71-30e9-425b-ba3f-0486f7d0db1d"
-                      }
-                    ]
-                  },
-                  "id": "e5524a39-fef1-4fc3-8b6c-dedb95037e86"
+                  "id": "06f5894d-166d-4b38-8a5a-68ca5a8a207e"
                 },
                 {
-                  "command": "EVENT_GROUP",
+                  "command": "EVENT_IF",
                   "args": {
-                    "__label": "Activate Eraser 80% of time",
-                    "__collapse": false
+                    "condition": {
+                      "type": "gte",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "219"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 90
+                      }
+                    },
+                    "__collapseElse": false
                   },
                   "children": {
                     "true": [
                       {
-                        "command": "EVENT_VARIABLE_MATH",
+                        "id": "d06ecd52-c213-42ad-8584-b3768a030b50",
+                        "command": "EVENT_GROUP",
                         "args": {
-                          "vectorX": "214",
-                          "operation": "set",
-                          "other": "rnd",
-                          "vectorY": "L0",
-                          "value": "0",
-                          "minValue": 1,
-                          "maxValue": 5,
-                          "clamp": false,
-                          "__collapse": true
-                        },
-                        "id": "0590c22d-a3cc-40cf-9688-e774ba9ca452"
-                      },
-                      {
-                        "command": "EVENT_IF",
-                        "args": {
-                          "condition": {
-                            "type": "gte",
-                            "valueA": {
-                              "type": "variable",
-                              "value": "214"
-                            },
-                            "valueB": {
-                              "type": "number",
-                              "value": 2
-                            }
-                          },
-                          "__collapseElse": false,
-                          "__collapse": false
+                          "__label": ">= 90"
                         },
                         "children": {
                           "true": [
-                            {
-                              "command": "EVENT_ACTOR_DEACTIVATE",
-                              "args": {
-                                "actorId": "5987ff7b-5fbe-44a3-ae8e-1ac0bdadc027",
-                                "__collapse": true
-                              },
-                              "id": "04a2b009-a0b8-4573-a00d-223445daa894"
-                            },
-                            {
-                              "command": "EVENT_SET_VALUE",
-                              "args": {
-                                "variable": "209",
-                                "value": {
-                                  "type": "true"
-                                },
-                                "__collapse": true
-                              },
-                              "id": "a5394e5a-f0be-4f42-83f8-566b158d438d"
-                            },
-                            {
-                              "command": "EVENT_PALETTE_SET_BACKGROUND",
-                              "args": {
-                                "palette0": "keep",
-                                "palette1": "keep",
-                                "palette2": "keep",
-                                "palette3": "7fe0a232-24b1-44f9-bb87-1bca68bea2ec",
-                                "palette4": "keep",
-                                "palette5": "keep",
-                                "palette6": "keep",
-                                "palette7": "keep",
-                                "__collapse": true
-                              },
-                              "id": "b7ed5653-d480-4d1b-9b2f-5277d4e7eada"
-                            }
-                          ],
-                          "false": [
-                            {
-                              "command": "EVENT_COMMENT",
-                              "args": {
-                                "text": "If Eraser is not active, activate Wild so we don't go over 10 sprite limit with both outer Out of Stocks active",
-                                "__collapse": true
-                              },
-                              "id": "d782a766-9b1c-48b7-be61-5fb3d2aadf50"
-                            },
                             {
                               "command": "EVENT_ACTOR_DEACTIVATE",
                               "args": {
                                 "actorId": "0263a8be-77cd-4d24-8e4a-21e578487f96",
                                 "__collapse": true
                               },
-                              "id": "cc78253b-8369-4c69-b031-a14e8e13b46a"
+                              "id": "d631bb27-00eb-4d0c-8f20-c6b5da378729"
                             },
                             {
                               "command": "EVENT_SET_VALUE",
@@ -464,80 +453,109 @@
                                 },
                                 "__collapse": true
                               },
-                              "id": "8fb0167b-d563-4332-860e-4fccd96bdfeb"
+                              "id": "03e52c50-507b-4d69-8026-f02719ca3f55"
+                            },
+                            {
+                              "command": "EVENT_ACTOR_DEACTIVATE",
+                              "args": {
+                                "actorId": "9bdc1555-1a53-4663-b400-ede55ddda913",
+                                "__collapse": true
+                              },
+                              "id": "27fd7159-a1d1-4730-beb3-285a7b61e116"
+                            },
+                            {
+                              "command": "EVENT_SET_VALUE",
+                              "args": {
+                                "variable": "117",
+                                "value": {
+                                  "type": "true"
+                                },
+                                "__collapse": true
+                              },
+                              "id": "b107d862-5a94-485f-83a3-ff2fada8e950"
+                            },
+                            {
+                              "command": "EVENT_ACTOR_DEACTIVATE",
+                              "args": {
+                                "actorId": "5987ff7b-5fbe-44a3-ae8e-1ac0bdadc027",
+                                "__collapse": true
+                              },
+                              "id": "8607a5af-de20-4a72-8dc0-d7085ed5abd8"
+                            },
+                            {
+                              "command": "EVENT_SET_VALUE",
+                              "args": {
+                                "variable": "209",
+                                "value": {
+                                  "type": "true"
+                                },
+                                "__collapse": true
+                              },
+                              "id": "8d1cd057-ad8c-4609-87e2-8bc9c104d720"
+                            },
+                            {
+                              "command": "EVENT_ACTOR_DEACTIVATE",
+                              "args": {
+                                "actorId": "7fb49061-d7eb-4d99-91aa-b33e89dd7aa5",
+                                "__collapse": true
+                              },
+                              "id": "caa45947-f3f1-4258-8a7e-529a1eb8eba0"
+                            },
+                            {
+                              "command": "EVENT_SET_VALUE",
+                              "args": {
+                                "variable": "161",
+                                "value": {
+                                  "type": "true"
+                                },
+                                "__collapse": true
+                              },
+                              "id": "55b2df76-7ba1-4da4-827a-d8f62af5d443"
                             },
                             {
                               "command": "EVENT_PALETTE_SET_BACKGROUND",
                               "args": {
                                 "palette0": "keep",
                                 "palette1": "fb8d859f-4bd6-438f-b407-73abfa5fd7fa",
-                                "palette2": "keep",
+                                "palette2": "fc2207db-5f81-4f90-8856-85765bb6919a",
                                 "palette3": "keep",
-                                "palette4": "keep",
-                                "palette5": "keep",
+                                "palette4": "7fe0a232-24b1-44f9-bb87-1bca68bea2ec",
+                                "palette5": "fcb2528c-5140-4889-bbe4-3e251db9307b",
                                 "palette6": "keep",
                                 "palette7": "keep",
                                 "__collapse": true,
-                                "__label": "Set background palettes "
+                                "__label": "Set background palettes for all 3 above"
                               },
-                              "id": "e5e30729-df92-437a-babf-92faf669b682"
+                              "id": "1730e274-af54-4545-b708-653b56bda1e4"
                             }
                           ]
-                        },
-                        "id": "57ac9c0f-f21e-47e5-99af-3d876dae51fa"
+                        }
                       }
-                    ]
+                    ],
+                    "false": []
                   },
-                  "id": "6c9ef163-87ec-47bf-bdb5-260759d3a7c0"
+                  "id": "aad5e011-5240-4939-8098-67839788d258"
                 },
                 {
-                  "command": "EVENT_IF",
+                  "command": "EVENT_GROUP",
                   "args": {
-                    "condition": {
-                      "type": "expression",
-                      "value": "$117$ || $209$"
-                    },
-                    "__collapseElse": false,
-                    "__label": "(If) either Super Yotzee or Eraser are active",
-                    "__collapse": false
+                    "__label": "Original odds",
+                    "__comment": true
                   },
                   "children": {
                     "true": [
                       {
-                        "command": "EVENT_IF",
+                        "command": "EVENT_GROUP",
                         "args": {
-                          "condition": {
-                            "type": "expression",
-                            "value": "$117$ && $209$"
-                          },
-                          "__collapseElse": false,
+                          "__label": "Activate Super Yotzee 20% of time",
                           "__collapse": false
                         },
                         "children": {
                           "true": [
                             {
-                              "command": "EVENT_COMMENT",
-                              "args": {
-                                "text": "If both are active, don't activate Wild",
-                                "__collapse": true
-                              },
-                              "id": "72fb80d4-93f1-4ef2-bb52-236174a868d7"
-                            }
-                          ],
-                          "false": [
-                            {
-                              "command": "EVENT_COMMENT",
-                              "args": {
-                                "text": "Activate Wild 80% of time",
-                                "__collapse": true,
-                                "__label": "Activate Wild 80% of time"
-                              },
-                              "id": "ee0dabb5-b4ce-4b75-815e-9bd9991693c1"
-                            },
-                            {
                               "command": "EVENT_VARIABLE_MATH",
                               "args": {
-                                "vectorX": "215",
+                                "vectorX": "213",
                                 "operation": "set",
                                 "other": "rnd",
                                 "vectorY": "L0",
@@ -547,7 +565,92 @@
                                 "clamp": false,
                                 "__collapse": true
                               },
-                              "id": "6c12e941-7eba-4508-bc8f-5e42cfc1f97f"
+                              "id": "001f5ad1-a6fb-4584-967d-96d1cf5771a7"
+                            },
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "eq",
+                                  "valueA": {
+                                    "type": "variable",
+                                    "value": "213"
+                                  },
+                                  "valueB": {
+                                    "type": "number",
+                                    "value": 5
+                                  }
+                                },
+                                "__collapseElse": true,
+                                "__collapse": true
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_ACTOR_DEACTIVATE",
+                                    "args": {
+                                      "actorId": "9bdc1555-1a53-4663-b400-ede55ddda913",
+                                      "__collapse": true
+                                    },
+                                    "id": "0ebc659a-5b74-4509-a1a4-1d60a0b9ebe7"
+                                  },
+                                  {
+                                    "command": "EVENT_SET_VALUE",
+                                    "args": {
+                                      "variable": "117",
+                                      "value": {
+                                        "type": "true"
+                                      },
+                                      "__collapse": true
+                                    },
+                                    "id": "87711911-3179-407b-9782-a818d9f67254"
+                                  },
+                                  {
+                                    "command": "EVENT_PALETTE_SET_BACKGROUND",
+                                    "args": {
+                                      "palette0": "keep",
+                                      "palette1": "keep",
+                                      "palette2": "fc2207db-5f81-4f90-8856-85765bb6919a",
+                                      "palette3": "keep",
+                                      "palette4": "keep",
+                                      "palette5": "keep",
+                                      "palette6": "keep",
+                                      "palette7": "keep",
+                                      "__collapse": true
+                                    },
+                                    "id": "03523f40-b2d3-4e9e-bda7-692b8af99567"
+                                  }
+                                ],
+                                "false": []
+                              },
+                              "id": "1c5acd71-30e9-425b-ba3f-0486f7d0db1d"
+                            }
+                          ]
+                        },
+                        "id": "e5524a39-fef1-4fc3-8b6c-dedb95037e86"
+                      },
+                      {
+                        "command": "EVENT_GROUP",
+                        "args": {
+                          "__label": "Activate Eraser 80% of time",
+                          "__collapse": true
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_VARIABLE_MATH",
+                              "args": {
+                                "vectorX": "214",
+                                "operation": "set",
+                                "other": "rnd",
+                                "vectorY": "L0",
+                                "value": "0",
+                                "minValue": 1,
+                                "maxValue": 5,
+                                "clamp": false,
+                                "__collapse": true
+                              },
+                              "id": "0590c22d-a3cc-40cf-9688-e774ba9ca452"
                             },
                             {
                               "command": "EVENT_IF",
@@ -556,14 +659,14 @@
                                   "type": "gte",
                                   "valueA": {
                                     "type": "variable",
-                                    "value": "215"
+                                    "value": "214"
                                   },
                                   "valueB": {
                                     "type": "number",
                                     "value": 2
                                   }
                                 },
-                                "__collapseElse": true,
+                                "__collapseElse": false,
                                 "__collapse": false
                               },
                               "children": {
@@ -571,10 +674,54 @@
                                   {
                                     "command": "EVENT_ACTOR_DEACTIVATE",
                                     "args": {
+                                      "actorId": "5987ff7b-5fbe-44a3-ae8e-1ac0bdadc027",
+                                      "__collapse": true
+                                    },
+                                    "id": "04a2b009-a0b8-4573-a00d-223445daa894"
+                                  },
+                                  {
+                                    "command": "EVENT_SET_VALUE",
+                                    "args": {
+                                      "variable": "209",
+                                      "value": {
+                                        "type": "true"
+                                      },
+                                      "__collapse": true
+                                    },
+                                    "id": "a5394e5a-f0be-4f42-83f8-566b158d438d"
+                                  },
+                                  {
+                                    "command": "EVENT_PALETTE_SET_BACKGROUND",
+                                    "args": {
+                                      "palette0": "keep",
+                                      "palette1": "keep",
+                                      "palette2": "keep",
+                                      "palette3": "7fe0a232-24b1-44f9-bb87-1bca68bea2ec",
+                                      "palette4": "keep",
+                                      "palette5": "keep",
+                                      "palette6": "keep",
+                                      "palette7": "keep",
+                                      "__collapse": true
+                                    },
+                                    "id": "b7ed5653-d480-4d1b-9b2f-5277d4e7eada"
+                                  }
+                                ],
+                                "false": [
+                                  {
+                                    "command": "EVENT_COMMENT",
+                                    "args": {
+                                      "text": "If Eraser is not active, activate Wild so we don't go over 10 sprite limit with both outer Out of Stocks active",
+                                      "__collapse": true
+                                    },
+                                    "id": "d782a766-9b1c-48b7-be61-5fb3d2aadf50"
+                                  },
+                                  {
+                                    "command": "EVENT_ACTOR_DEACTIVATE",
+                                    "args": {
                                       "actorId": "0263a8be-77cd-4d24-8e4a-21e578487f96",
                                       "__collapse": true
                                     },
-                                    "id": "173220e8-736c-46e2-aed1-aeac4f65c7ac"
+                                    "id": "cc78253b-8369-4c69-b031-a14e8e13b46a"
                                   },
                                   {
                                     "command": "EVENT_SET_VALUE",
@@ -585,7 +732,7 @@
                                       },
                                       "__collapse": true
                                     },
-                                    "id": "504dc4f4-1da5-42a2-9253-134a78dbf65f"
+                                    "id": "8fb0167b-d563-4332-860e-4fccd96bdfeb"
                                   },
                                   {
                                     "command": "EVENT_PALETTE_SET_BACKGROUND",
@@ -598,160 +745,157 @@
                                       "palette5": "keep",
                                       "palette6": "keep",
                                       "palette7": "keep",
-                                      "__collapse": true
+                                      "__collapse": true,
+                                      "__label": "Set background palettes "
                                     },
-                                    "id": "bf767caf-86f3-4f75-954c-5884da247fc3"
+                                    "id": "e5e30729-df92-437a-babf-92faf669b682"
                                   }
-                                ],
-                                "false": []
+                                ]
                               },
-                              "id": "bdf1dd2d-a957-4dc7-863e-fa4cb6ea78f5"
+                              "id": "57ac9c0f-f21e-47e5-99af-3d876dae51fa"
                             }
                           ]
                         },
-                        "id": "2a5185a4-6774-467a-b825-9db726ede9ee"
-                      }
-                    ],
-                    "false": [
-                      {
-                        "command": "EVENT_COMMENT",
-                        "args": {
-                          "text": "If neither super yotzee or eraser are active, make sure at least wild is active",
-                          "__collapse": false
-                        },
-                        "id": "62f8b23a-2c0c-415a-90bb-4fffc043833d"
-                      },
-                      {
-                        "command": "EVENT_ACTOR_DEACTIVATE",
-                        "args": {
-                          "actorId": "0263a8be-77cd-4d24-8e4a-21e578487f96",
-                          "__collapse": true
-                        },
-                        "id": "df1eab9c-da4f-41b2-93c3-fa7ecd537bbd"
-                      },
-                      {
-                        "command": "EVENT_SET_VALUE",
-                        "args": {
-                          "variable": "208",
-                          "value": {
-                            "type": "true"
-                          },
-                          "__collapse": true
-                        },
-                        "id": "3dddfaa3-c1e6-41be-a0b0-cb00854a863a"
-                      },
-                      {
-                        "command": "EVENT_PALETTE_SET_BACKGROUND",
-                        "args": {
-                          "palette0": "keep",
-                          "palette1": "fb8d859f-4bd6-438f-b407-73abfa5fd7fa",
-                          "palette2": "keep",
-                          "palette3": "keep",
-                          "palette4": "keep",
-                          "palette5": "keep",
-                          "palette6": "keep",
-                          "palette7": "keep",
-                          "__collapse": true
-                        },
-                        "id": "fd85538a-1954-4e34-bdf5-472997ae22d9"
-                      }
-                    ]
-                  },
-                  "id": "21d0d88d-cd9c-4e03-bda8-8748bc68c215"
-                },
-                {
-                  "command": "EVENT_GROUP",
-                  "args": {
-                    "__label": "Activate Double Down 40% of time",
-                    "__collapse": false
-                  },
-                  "children": {
-                    "true": [
-                      {
-                        "command": "EVENT_VARIABLE_MATH",
-                        "args": {
-                          "vectorX": "216",
-                          "operation": "set",
-                          "other": "rnd",
-                          "vectorY": "L0",
-                          "value": "0",
-                          "minValue": 1,
-                          "maxValue": 5,
-                          "clamp": false,
-                          "__collapse": true
-                        },
-                        "id": "ce054c59-e797-4fc2-ac13-33498ce7364e"
+                        "id": "6c9ef163-87ec-47bf-bdb5-260759d3a7c0"
                       },
                       {
                         "command": "EVENT_IF",
                         "args": {
                           "condition": {
-                            "type": "gte",
-                            "valueA": {
-                              "type": "variable",
-                              "value": "216"
-                            },
-                            "valueB": {
-                              "type": "number",
-                              "value": 4
-                            }
+                            "type": "expression",
+                            "value": "$117$ || $209$"
                           },
                           "__collapseElse": false,
-                          "__collapse": false
+                          "__label": "(If) either Super Yotzee or Eraser are active",
+                          "__collapse": true
                         },
                         "children": {
                           "true": [
                             {
-                              "command": "EVENT_ACTOR_DEACTIVATE",
+                              "command": "EVENT_IF",
                               "args": {
-                                "actorId": "b8e9a0e3-911d-45f5-b081-4df4d14da1cf",
-                                "__collapse": true
-                              },
-                              "id": "87e12a25-ef6d-4bf3-a751-e8f7354cf025"
-                            },
-                            {
-                              "command": "EVENT_SET_VALUE",
-                              "args": {
-                                "variable": "212",
-                                "value": {
-                                  "type": "true"
+                                "condition": {
+                                  "type": "expression",
+                                  "value": "$117$ && $209$"
                                 },
-                                "__collapse": true
+                                "__collapseElse": false,
+                                "__collapse": false
                               },
-                              "id": "4ead1a22-0718-4cb3-9993-51932879dbf8"
-                            },
-                            {
-                              "command": "EVENT_PALETTE_SET_BACKGROUND",
-                              "args": {
-                                "palette0": "keep",
-                                "palette1": "keep",
-                                "palette2": "keep",
-                                "palette3": "keep",
-                                "palette4": "keep",
-                                "palette5": "keep",
-                                "palette6": "21af3757-72b1-4d3d-a2fe-605a3f86aae0",
-                                "palette7": "keep",
-                                "__collapse": true
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_COMMENT",
+                                    "args": {
+                                      "text": "If both are active, don't activate Wild",
+                                      "__collapse": true
+                                    },
+                                    "id": "72fb80d4-93f1-4ef2-bb52-236174a868d7"
+                                  }
+                                ],
+                                "false": [
+                                  {
+                                    "command": "EVENT_COMMENT",
+                                    "args": {
+                                      "text": "Activate Wild 80% of time",
+                                      "__collapse": true,
+                                      "__label": "Activate Wild 80% of time"
+                                    },
+                                    "id": "ee0dabb5-b4ce-4b75-815e-9bd9991693c1"
+                                  },
+                                  {
+                                    "command": "EVENT_VARIABLE_MATH",
+                                    "args": {
+                                      "vectorX": "215",
+                                      "operation": "set",
+                                      "other": "rnd",
+                                      "vectorY": "L0",
+                                      "value": "0",
+                                      "minValue": 1,
+                                      "maxValue": 5,
+                                      "clamp": false,
+                                      "__collapse": true
+                                    },
+                                    "id": "6c12e941-7eba-4508-bc8f-5e42cfc1f97f"
+                                  },
+                                  {
+                                    "command": "EVENT_IF",
+                                    "args": {
+                                      "condition": {
+                                        "type": "gte",
+                                        "valueA": {
+                                          "type": "variable",
+                                          "value": "215"
+                                        },
+                                        "valueB": {
+                                          "type": "number",
+                                          "value": 2
+                                        }
+                                      },
+                                      "__collapseElse": true,
+                                      "__collapse": false
+                                    },
+                                    "children": {
+                                      "true": [
+                                        {
+                                          "command": "EVENT_ACTOR_DEACTIVATE",
+                                          "args": {
+                                            "actorId": "0263a8be-77cd-4d24-8e4a-21e578487f96",
+                                            "__collapse": true
+                                          },
+                                          "id": "173220e8-736c-46e2-aed1-aeac4f65c7ac"
+                                        },
+                                        {
+                                          "command": "EVENT_SET_VALUE",
+                                          "args": {
+                                            "variable": "208",
+                                            "value": {
+                                              "type": "true"
+                                            },
+                                            "__collapse": true
+                                          },
+                                          "id": "504dc4f4-1da5-42a2-9253-134a78dbf65f"
+                                        },
+                                        {
+                                          "command": "EVENT_PALETTE_SET_BACKGROUND",
+                                          "args": {
+                                            "palette0": "keep",
+                                            "palette1": "fb8d859f-4bd6-438f-b407-73abfa5fd7fa",
+                                            "palette2": "keep",
+                                            "palette3": "keep",
+                                            "palette4": "keep",
+                                            "palette5": "keep",
+                                            "palette6": "keep",
+                                            "palette7": "keep",
+                                            "__collapse": true
+                                          },
+                                          "id": "bf767caf-86f3-4f75-954c-5884da247fc3"
+                                        }
+                                      ],
+                                      "false": []
+                                    },
+                                    "id": "bdf1dd2d-a957-4dc7-863e-fa4cb6ea78f5"
+                                  }
+                                ]
                               },
-                              "id": "4009688a-804e-4fed-9414-335b6e873edc"
+                              "id": "2a5185a4-6774-467a-b825-9db726ede9ee"
                             }
                           ],
                           "false": [
                             {
                               "command": "EVENT_COMMENT",
                               "args": {
-                                "text": "If Double Down is not active, activate Rewind so we don't go over 10 sprite limit with both outer Out of Stocks active",
-                                "__collapse": true
+                                "text": "If neither super yotzee or eraser are active, make sure at least wild is active",
+                                "__collapse": false
                               },
-                              "id": "b9e2449a-4061-46a0-a042-021696019b5a"
+                              "id": "62f8b23a-2c0c-415a-90bb-4fffc043833d"
                             },
                             {
                               "command": "EVENT_ACTOR_DEACTIVATE",
                               "args": {
-                                "actorId": "9a0767d9-6d9a-497b-8de9-61790b4b41d5",
+                                "actorId": "0263a8be-77cd-4d24-8e4a-21e578487f96",
                                 "__collapse": true
                               },
-                              "id": "a3ad0a42-d8d0-490d-818d-40564ad12cdf"
+                              "id": "df1eab9c-da4f-41b2-93c3-fa7ecd537bbd"
                             },
                             {
                               "command": "EVENT_SET_VALUE",
@@ -762,164 +906,39 @@
                                 },
                                 "__collapse": true
                               },
-                              "id": "57f0142c-6b43-4f31-87e1-943c8d9b0c2f"
+                              "id": "3dddfaa3-c1e6-41be-a0b0-cb00854a863a"
                             },
                             {
                               "command": "EVENT_PALETTE_SET_BACKGROUND",
                               "args": {
                                 "palette0": "keep",
-                                "palette1": "keep",
-                                "palette2": "keep",
-                                "palette3": "keep",
-                                "palette4": "4f7e5de8-1358-4c14-90ea-2be653c29929",
-                                "palette5": "keep",
-                                "palette6": "keep",
-                                "palette7": "keep",
-                                "__collapse": true,
-                                "__label": "Set background palettes "
-                              },
-                              "id": "50f3d989-d0ee-4f92-8564-8442ee11b5d4"
-                            }
-                          ]
-                        },
-                        "id": "b3a57ca8-88ee-4ab4-99d0-ed9b8984095c"
-                      }
-                    ]
-                  },
-                  "id": "2fed3b1b-e870-4397-84f3-f8cb770c6f5e"
-                },
-                {
-                  "command": "EVENT_GROUP",
-                  "args": {
-                    "__label": "Activate Heavy 80% of time",
-                    "__collapse": true
-                  },
-                  "children": {
-                    "true": [
-                      {
-                        "command": "EVENT_VARIABLE_MATH",
-                        "args": {
-                          "vectorX": "217",
-                          "operation": "set",
-                          "other": "rnd",
-                          "vectorY": "L0",
-                          "value": "0",
-                          "minValue": 1,
-                          "maxValue": 5,
-                          "clamp": false,
-                          "__collapse": true
-                        },
-                        "id": "6cc640ab-196d-4cc9-a736-f68775b4d0f7"
-                      },
-                      {
-                        "command": "EVENT_IF",
-                        "args": {
-                          "condition": {
-                            "type": "gte",
-                            "valueA": {
-                              "type": "variable",
-                              "value": "217"
-                            },
-                            "valueB": {
-                              "type": "number",
-                              "value": 2
-                            }
-                          },
-                          "__collapseElse": true,
-                          "__collapse": false
-                        },
-                        "children": {
-                          "true": [
-                            {
-                              "command": "EVENT_ACTOR_DEACTIVATE",
-                              "args": {
-                                "actorId": "7fb49061-d7eb-4d99-91aa-b33e89dd7aa5",
-                                "__collapse": false
-                              },
-                              "id": "75301dd1-ae5e-4c35-973e-146bbc23d016"
-                            },
-                            {
-                              "command": "EVENT_SET_VALUE",
-                              "args": {
-                                "variable": "211",
-                                "value": {
-                                  "type": "true"
-                                },
-                                "__collapse": true
-                              },
-                              "id": "c360e746-ef6e-43c0-984a-54dd4a054c5a"
-                            },
-                            {
-                              "command": "EVENT_PALETTE_SET_BACKGROUND",
-                              "args": {
-                                "palette0": "keep",
-                                "palette1": "keep",
+                                "palette1": "fb8d859f-4bd6-438f-b407-73abfa5fd7fa",
                                 "palette2": "keep",
                                 "palette3": "keep",
                                 "palette4": "keep",
-                                "palette5": "fcb2528c-5140-4889-bbe4-3e251db9307b",
+                                "palette5": "keep",
                                 "palette6": "keep",
                                 "palette7": "keep",
                                 "__collapse": true
                               },
-                              "id": "37f77656-ce22-420a-a13f-46ad03e0e297"
+                              "id": "fd85538a-1954-4e34-bdf5-472997ae22d9"
                             }
-                          ],
-                          "false": []
+                          ]
                         },
-                        "id": "c34c796c-0a10-4b72-aa7f-6ce3890616f4"
-                      }
-                    ]
-                  },
-                  "id": "b967787c-6c46-4800-be97-8c3f80fd452a"
-                },
-                {
-                  "command": "EVENT_IF",
-                  "args": {
-                    "condition": {
-                      "type": "expression",
-                      "value": "$212$ || $211$"
-                    },
-                    "__collapseElse": false,
-                    "__label": "(If) either Double Down & Heavy are active",
-                    "__collapse": true
-                  },
-                  "children": {
-                    "true": [
+                        "id": "21d0d88d-cd9c-4e03-bda8-8748bc68c215"
+                      },
                       {
-                        "command": "EVENT_IF",
+                        "command": "EVENT_GROUP",
                         "args": {
-                          "condition": {
-                            "type": "expression",
-                            "value": "$212$ && $211$"
-                          },
-                          "__collapseElse": false
+                          "__label": "Activate Double Down 40% of time",
+                          "__collapse": true
                         },
                         "children": {
                           "true": [
                             {
-                              "command": "EVENT_COMMENT",
-                              "args": {
-                                "text": "If both are active, don't activate Rewind",
-                                "__collapse": true
-                              },
-                              "id": "58db38a5-0e08-49f5-af04-bdcdc7c86d5d"
-                            }
-                          ],
-                          "false": [
-                            {
-                              "command": "EVENT_COMMENT",
-                              "args": {
-                                "text": "Activate Rewind 80% of time",
-                                "__collapse": true,
-                                "__label": "Activate Rewind 80% of time"
-                              },
-                              "id": "50abf56f-a92c-4b80-9b24-b2bc439c5d7c"
-                            },
-                            {
                               "command": "EVENT_VARIABLE_MATH",
                               "args": {
-                                "vectorX": "218",
+                                "vectorX": "216",
                                 "operation": "set",
                                 "other": "rnd",
                                 "vectorY": "L0",
@@ -929,7 +948,7 @@
                                 "clamp": false,
                                 "__collapse": true
                               },
-                              "id": "0023212f-a2ee-4bdb-b932-3377910849c2"
+                              "id": "ce054c59-e797-4fc2-ac13-33498ce7364e"
                             },
                             {
                               "command": "EVENT_IF",
@@ -938,7 +957,136 @@
                                   "type": "gte",
                                   "valueA": {
                                     "type": "variable",
-                                    "value": "218"
+                                    "value": "216"
+                                  },
+                                  "valueB": {
+                                    "type": "number",
+                                    "value": 4
+                                  }
+                                },
+                                "__collapseElse": false,
+                                "__collapse": false
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_ACTOR_DEACTIVATE",
+                                    "args": {
+                                      "actorId": "b8e9a0e3-911d-45f5-b081-4df4d14da1cf",
+                                      "__collapse": true
+                                    },
+                                    "id": "87e12a25-ef6d-4bf3-a751-e8f7354cf025"
+                                  },
+                                  {
+                                    "command": "EVENT_SET_VALUE",
+                                    "args": {
+                                      "variable": "212",
+                                      "value": {
+                                        "type": "true"
+                                      },
+                                      "__collapse": true
+                                    },
+                                    "id": "4ead1a22-0718-4cb3-9993-51932879dbf8"
+                                  },
+                                  {
+                                    "command": "EVENT_PALETTE_SET_BACKGROUND",
+                                    "args": {
+                                      "palette0": "keep",
+                                      "palette1": "keep",
+                                      "palette2": "keep",
+                                      "palette3": "keep",
+                                      "palette4": "keep",
+                                      "palette5": "keep",
+                                      "palette6": "21af3757-72b1-4d3d-a2fe-605a3f86aae0",
+                                      "palette7": "keep",
+                                      "__collapse": true
+                                    },
+                                    "id": "4009688a-804e-4fed-9414-335b6e873edc"
+                                  }
+                                ],
+                                "false": [
+                                  {
+                                    "command": "EVENT_COMMENT",
+                                    "args": {
+                                      "text": "If Double Down is not active, activate Rewind so we don't go over 10 sprite limit with both outer Out of Stocks active",
+                                      "__collapse": true
+                                    },
+                                    "id": "b9e2449a-4061-46a0-a042-021696019b5a"
+                                  },
+                                  {
+                                    "command": "EVENT_ACTOR_DEACTIVATE",
+                                    "args": {
+                                      "actorId": "9a0767d9-6d9a-497b-8de9-61790b4b41d5",
+                                      "__collapse": true
+                                    },
+                                    "id": "a3ad0a42-d8d0-490d-818d-40564ad12cdf"
+                                  },
+                                  {
+                                    "command": "EVENT_SET_VALUE",
+                                    "args": {
+                                      "variable": "208",
+                                      "value": {
+                                        "type": "true"
+                                      },
+                                      "__collapse": true
+                                    },
+                                    "id": "57f0142c-6b43-4f31-87e1-943c8d9b0c2f"
+                                  },
+                                  {
+                                    "command": "EVENT_PALETTE_SET_BACKGROUND",
+                                    "args": {
+                                      "palette0": "keep",
+                                      "palette1": "keep",
+                                      "palette2": "keep",
+                                      "palette3": "keep",
+                                      "palette4": "4f7e5de8-1358-4c14-90ea-2be653c29929",
+                                      "palette5": "keep",
+                                      "palette6": "keep",
+                                      "palette7": "keep",
+                                      "__collapse": true,
+                                      "__label": "Set background palettes "
+                                    },
+                                    "id": "50f3d989-d0ee-4f92-8564-8442ee11b5d4"
+                                  }
+                                ]
+                              },
+                              "id": "b3a57ca8-88ee-4ab4-99d0-ed9b8984095c"
+                            }
+                          ]
+                        },
+                        "id": "2fed3b1b-e870-4397-84f3-f8cb770c6f5e"
+                      },
+                      {
+                        "command": "EVENT_GROUP",
+                        "args": {
+                          "__label": "Activate Heavy 80% of time",
+                          "__collapse": true
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_VARIABLE_MATH",
+                              "args": {
+                                "vectorX": "217",
+                                "operation": "set",
+                                "other": "rnd",
+                                "vectorY": "L0",
+                                "value": "0",
+                                "minValue": 1,
+                                "maxValue": 5,
+                                "clamp": false,
+                                "__collapse": true
+                              },
+                              "id": "6cc640ab-196d-4cc9-a736-f68775b4d0f7"
+                            },
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "gte",
+                                  "valueA": {
+                                    "type": "variable",
+                                    "value": "217"
                                   },
                                   "valueB": {
                                     "type": "number",
@@ -953,21 +1101,21 @@
                                   {
                                     "command": "EVENT_ACTOR_DEACTIVATE",
                                     "args": {
-                                      "actorId": "9a0767d9-6d9a-497b-8de9-61790b4b41d5",
+                                      "actorId": "7fb49061-d7eb-4d99-91aa-b33e89dd7aa5",
                                       "__collapse": false
                                     },
-                                    "id": "ccdee9cc-5a96-4c38-95e9-b6ab8b429a73"
+                                    "id": "75301dd1-ae5e-4c35-973e-146bbc23d016"
                                   },
                                   {
                                     "command": "EVENT_SET_VALUE",
                                     "args": {
-                                      "variable": "210",
+                                      "variable": "211",
                                       "value": {
                                         "type": "true"
                                       },
-                                      "__collapse": false
+                                      "__collapse": true
                                     },
-                                    "id": "23ab7a0f-16be-4cd8-9aa6-ef8fe3c50f28"
+                                    "id": "c360e746-ef6e-43c0-984a-54dd4a054c5a"
                                   },
                                   {
                                     "command": "EVENT_PALETTE_SET_BACKGROUND",
@@ -976,70 +1124,194 @@
                                       "palette1": "keep",
                                       "palette2": "keep",
                                       "palette3": "keep",
-                                      "palette4": "4f7e5de8-1358-4c14-90ea-2be653c29929",
-                                      "palette5": "keep",
+                                      "palette4": "keep",
+                                      "palette5": "fcb2528c-5140-4889-bbe4-3e251db9307b",
                                       "palette6": "keep",
                                       "palette7": "keep",
-                                      "__collapse": false
+                                      "__collapse": true
                                     },
-                                    "id": "f1d7ac86-6322-42dd-a5ed-37bbff9ec349"
+                                    "id": "37f77656-ce22-420a-a13f-46ad03e0e297"
                                   }
                                 ],
                                 "false": []
                               },
-                              "id": "4dc0f3a3-a68f-4e36-a8ed-ed1667dc58bb"
+                              "id": "c34c796c-0a10-4b72-aa7f-6ce3890616f4"
                             }
                           ]
                         },
-                        "id": "e941fd3d-051e-49f3-9339-d8036ce1065b"
-                      }
-                    ],
-                    "false": [
-                      {
-                        "command": "EVENT_COMMENT",
-                        "args": {
-                          "text": "If neither double down or heavy are active, make sure at least rewind is active",
-                          "__collapse": false
-                        },
-                        "id": "6c38c47b-9ff1-453d-9e70-6cbabd8e3954"
+                        "id": "b967787c-6c46-4800-be97-8c3f80fd452a"
                       },
                       {
-                        "command": "EVENT_ACTOR_DEACTIVATE",
+                        "command": "EVENT_IF",
                         "args": {
-                          "actorId": "9a0767d9-6d9a-497b-8de9-61790b4b41d5",
-                          "__collapse": false
-                        },
-                        "id": "e7223fee-c033-419f-8d04-ab30d79b41d1"
-                      },
-                      {
-                        "command": "EVENT_SET_VALUE",
-                        "args": {
-                          "variable": "210",
-                          "value": {
-                            "type": "true"
+                          "condition": {
+                            "type": "expression",
+                            "value": "$212$ || $211$"
                           },
-                          "__collapse": false
+                          "__collapseElse": false,
+                          "__label": "(If) either Double Down & Heavy are active",
+                          "__collapse": true
                         },
-                        "id": "1c144b6c-f062-46fd-874e-52577c8bcd13"
-                      },
-                      {
-                        "command": "EVENT_PALETTE_SET_BACKGROUND",
-                        "args": {
-                          "palette0": "keep",
-                          "palette1": "keep",
-                          "palette2": "keep",
-                          "palette3": "keep",
-                          "palette4": "4f7e5de8-1358-4c14-90ea-2be653c29929",
-                          "palette5": "keep",
-                          "palette6": "keep",
-                          "palette7": "keep",
-                          "__collapse": false
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "expression",
+                                  "value": "$212$ && $211$"
+                                },
+                                "__collapseElse": false
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_COMMENT",
+                                    "args": {
+                                      "text": "If both are active, don't activate Rewind",
+                                      "__collapse": true
+                                    },
+                                    "id": "58db38a5-0e08-49f5-af04-bdcdc7c86d5d"
+                                  }
+                                ],
+                                "false": [
+                                  {
+                                    "command": "EVENT_COMMENT",
+                                    "args": {
+                                      "text": "Activate Rewind 80% of time",
+                                      "__collapse": true,
+                                      "__label": "Activate Rewind 80% of time"
+                                    },
+                                    "id": "50abf56f-a92c-4b80-9b24-b2bc439c5d7c"
+                                  },
+                                  {
+                                    "command": "EVENT_VARIABLE_MATH",
+                                    "args": {
+                                      "vectorX": "218",
+                                      "operation": "set",
+                                      "other": "rnd",
+                                      "vectorY": "L0",
+                                      "value": "0",
+                                      "minValue": 1,
+                                      "maxValue": 5,
+                                      "clamp": false,
+                                      "__collapse": true
+                                    },
+                                    "id": "0023212f-a2ee-4bdb-b932-3377910849c2"
+                                  },
+                                  {
+                                    "command": "EVENT_IF",
+                                    "args": {
+                                      "condition": {
+                                        "type": "gte",
+                                        "valueA": {
+                                          "type": "variable",
+                                          "value": "218"
+                                        },
+                                        "valueB": {
+                                          "type": "number",
+                                          "value": 2
+                                        }
+                                      },
+                                      "__collapseElse": true,
+                                      "__collapse": false
+                                    },
+                                    "children": {
+                                      "true": [
+                                        {
+                                          "command": "EVENT_ACTOR_DEACTIVATE",
+                                          "args": {
+                                            "actorId": "9a0767d9-6d9a-497b-8de9-61790b4b41d5",
+                                            "__collapse": false
+                                          },
+                                          "id": "ccdee9cc-5a96-4c38-95e9-b6ab8b429a73"
+                                        },
+                                        {
+                                          "command": "EVENT_SET_VALUE",
+                                          "args": {
+                                            "variable": "210",
+                                            "value": {
+                                              "type": "true"
+                                            },
+                                            "__collapse": false
+                                          },
+                                          "id": "23ab7a0f-16be-4cd8-9aa6-ef8fe3c50f28"
+                                        },
+                                        {
+                                          "command": "EVENT_PALETTE_SET_BACKGROUND",
+                                          "args": {
+                                            "palette0": "keep",
+                                            "palette1": "keep",
+                                            "palette2": "keep",
+                                            "palette3": "keep",
+                                            "palette4": "4f7e5de8-1358-4c14-90ea-2be653c29929",
+                                            "palette5": "keep",
+                                            "palette6": "keep",
+                                            "palette7": "keep",
+                                            "__collapse": false
+                                          },
+                                          "id": "f1d7ac86-6322-42dd-a5ed-37bbff9ec349"
+                                        }
+                                      ],
+                                      "false": []
+                                    },
+                                    "id": "4dc0f3a3-a68f-4e36-a8ed-ed1667dc58bb"
+                                  }
+                                ]
+                              },
+                              "id": "e941fd3d-051e-49f3-9339-d8036ce1065b"
+                            }
+                          ],
+                          "false": [
+                            {
+                              "command": "EVENT_COMMENT",
+                              "args": {
+                                "text": "If neither double down or heavy are active, make sure at least rewind is active",
+                                "__collapse": false
+                              },
+                              "id": "6c38c47b-9ff1-453d-9e70-6cbabd8e3954"
+                            },
+                            {
+                              "command": "EVENT_ACTOR_DEACTIVATE",
+                              "args": {
+                                "actorId": "9a0767d9-6d9a-497b-8de9-61790b4b41d5",
+                                "__collapse": false
+                              },
+                              "id": "e7223fee-c033-419f-8d04-ab30d79b41d1"
+                            },
+                            {
+                              "command": "EVENT_SET_VALUE",
+                              "args": {
+                                "variable": "210",
+                                "value": {
+                                  "type": "true"
+                                },
+                                "__collapse": false
+                              },
+                              "id": "1c144b6c-f062-46fd-874e-52577c8bcd13"
+                            },
+                            {
+                              "command": "EVENT_PALETTE_SET_BACKGROUND",
+                              "args": {
+                                "palette0": "keep",
+                                "palette1": "keep",
+                                "palette2": "keep",
+                                "palette3": "keep",
+                                "palette4": "4f7e5de8-1358-4c14-90ea-2be653c29929",
+                                "palette5": "keep",
+                                "palette6": "keep",
+                                "palette7": "keep",
+                                "__collapse": false
+                              },
+                              "id": "94cdf16c-3b96-4630-b00c-808717a5586a"
+                            }
+                          ]
                         },
-                        "id": "94cdf16c-3b96-4630-b00c-808717a5586a"
+                        "id": "c04a6249-c37c-48dd-8740-6d5d6280fd90"
                       }
                     ]
                   },
-                  "id": "c04a6249-c37c-48dd-8740-6d5d6280fd90"
+                  "id": "06e05beb-b7b7-4349-8b07-8137e3d15b2b"
                 }
               ]
             },
