@@ -4,7 +4,12 @@
   "name": "Scorecard choosing score scene change",
   "description": "",
   "variables": {},
-  "actors": {},
+  "actors": {
+    "0": {
+      "id": "0",
+      "name": "BonusCharacter"
+    }
+  },
   "symbol": "script_28",
   "script": [
     {
@@ -16,7 +21,7 @@
         },
         "__collapseElse": true,
         "__label": "Set roll number to 3 so next turn can start",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -78,6 +83,44 @@
         "__collapse": true
       },
       "id": "65e8d78b-510c-439a-b9f8-0448ef0e22a9"
+    },
+    {
+      "command": "EVENT_SAVE_DATA",
+      "args": {
+        "saveSlot": 0,
+        "__scriptTabs": "save"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
+            "args": {
+              "actorId": "0",
+              "speed": 127
+            },
+            "id": "aad8d413-a2af-414c-82cb-7e2a5c97a6e2"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "0",
+              "spriteStateId": "Scorecard saved",
+              "loopAnim": false
+            },
+            "id": "0b02ea28-3023-4115-9128-3041f19b994c"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
+            "args": {
+              "actorId": "0",
+              "speed": 7
+            },
+            "id": "20e8f272-297e-4204-bb44-d1a9bfddfc0d"
+          }
+        ],
+        "load": []
+      },
+      "id": "ef326705-3d8a-431a-891a-80cd385fb100"
     },
     {
       "command": "EVENT_IF",
