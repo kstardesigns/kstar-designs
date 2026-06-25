@@ -12,7 +12,8 @@
       "args": {
         "variable": "80",
         "expression": "$08$ + $09$ + $10$",
-        "__collapse": false
+        "__collapse": false,
+        "__comment": true
       },
       "id": "6c38dac7-9319-4eaa-8412-602d8e895d99"
     },
@@ -54,7 +55,8 @@
         "__collapseCase15": false,
         "value15": 16,
         "__collapseElse": false,
-        "__collapse": false
+        "__collapse": true,
+        "__comment": true
       },
       "children": {
         "true0": [
@@ -103,6 +105,91 @@
         "false": []
       },
       "id": "4d4beac4-6b85-4b5e-83de-ad7d534184f0"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "not",
+          "value": {
+            "type": "variable",
+            "value": "10"
+          }
+        },
+        "__collapseElse": false,
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 2.9,
+              "frames": 30,
+              "__collapse": false
+            },
+            "id": "24ff2ac1-7df5-4e75-bc51-7b0425614044"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "9"
+                }
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 2.3,
+                    "frames": 30
+                  },
+                  "id": "d07b7dc5-0475-4084-94b6-9ab4e75cbc95"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "not",
+                      "value": {
+                        "type": "variable",
+                        "value": "8"
+                      }
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 1.7,
+                          "frames": 30
+                        },
+                        "id": "778158ef-137f-499e-946e-c1cc3de788d8"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "e3e99bb4-5420-4c43-8e44-e15d78676842"
+                }
+              ]
+            },
+            "id": "c77e2cfe-1d8e-4b9f-8563-4ca86c2e4ef9"
+          }
+        ]
+      },
+      "id": "e5a19d09-376c-4867-ba57-30e1505b83e3"
     }
   ]
 }

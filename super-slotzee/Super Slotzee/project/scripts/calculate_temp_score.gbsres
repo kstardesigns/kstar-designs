@@ -208,7 +208,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) Check for Slots: Extra Roll",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -249,7 +249,8 @@
                       {
                         "command": "EVENT_CALL_CUSTOM_EVENT",
                         "args": {
-                          "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762"
+                          "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762",
+                          "__collapse": true
                         },
                         "id": "24f6b865-0722-49d8-9ae3-88e17ce8214d"
                       },
@@ -257,44 +258,89 @@
                         "command": "EVENT_CALL_CUSTOM_EVENT",
                         "args": {
                           "customEventId": "f792ce6f-7872-45de-afbb-9df1a0e710e6",
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "id": "bbf11753-419e-4cb9-9c5c-c49482227ed1"
                       },
                       {
                         "command": "EVENT_PALETTE_SET_UI",
                         "args": {
-                          "palette": "c3c4db38-97c5-4290-9cc0-d1e1a0fe3189"
+                          "palette": "c3c4db38-97c5-4290-9cc0-d1e1a0fe3189",
+                          "__collapse": true
                         },
                         "id": "5b81aecf-9740-4e3d-80b5-db388ddada35"
                       },
                       {
-                        "command": "EVENT_TEXT",
+                        "command": "EVENT_IF",
                         "args": {
-                          "text": [
-                            "You got an extra roll\non this turn!  @",
-                            "Keep slots held to be\nable to roll on roll 4."
-                          ],
-                          "__section": "text",
-                          "avatarId": "",
-                          "minHeight": 4,
-                          "maxHeight": 7,
-                          "textX": 1,
-                          "textY": 1,
-                          "textHeight": 5,
-                          "position": "bottom",
-                          "clearPrevious": true,
-                          "showFrame": "true",
-                          "speedIn": -1,
-                          "speedOut": -1,
-                          "closeWhen": "key",
-                          "closeButton": "a",
-                          "closeDelayTime": 0.5,
-                          "closeDelayFrames": 30,
-                          "__collapse": false,
-                          "__comment": false
+                          "condition": {
+                            "type": "expression",
+                            "value": "$16$ == 3"
+                          },
+                          "__collapseElse": false
                         },
-                        "id": "fcd5810c-92f0-49cb-bef6-574208242aca"
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_TEXT",
+                              "args": {
+                                "text": [
+                                  "You got an extra roll\non this turn!"
+                                ],
+                                "__section": "text",
+                                "avatarId": "",
+                                "minHeight": 4,
+                                "maxHeight": 7,
+                                "textX": 1,
+                                "textY": 1,
+                                "textHeight": 5,
+                                "position": "bottom",
+                                "clearPrevious": true,
+                                "showFrame": "true",
+                                "speedIn": -1,
+                                "speedOut": -1,
+                                "closeWhen": "key",
+                                "closeButton": "a",
+                                "closeDelayTime": 0.5,
+                                "closeDelayFrames": 30,
+                                "__collapse": false,
+                                "__comment": false
+                              },
+                              "id": "5f7d197a-85e2-4bc7-a947-f688653a1e5d"
+                            }
+                          ],
+                          "false": [
+                            {
+                              "command": "EVENT_TEXT",
+                              "args": {
+                                "text": [
+                                  "You got an extra roll\non this turn!  @",
+                                  "Keep slots held to be\nable to roll on roll 4."
+                                ],
+                                "__section": "text",
+                                "avatarId": "",
+                                "minHeight": 4,
+                                "maxHeight": 7,
+                                "textX": 1,
+                                "textY": 1,
+                                "textHeight": 5,
+                                "position": "bottom",
+                                "clearPrevious": true,
+                                "showFrame": "true",
+                                "speedIn": -1,
+                                "speedOut": -1,
+                                "closeWhen": "key",
+                                "closeButton": "a",
+                                "closeDelayTime": 0.5,
+                                "closeDelayFrames": 30,
+                                "__collapse": false,
+                                "__comment": false
+                              },
+                              "id": "fcd5810c-92f0-49cb-bef6-574208242aca"
+                            }
+                          ]
+                        },
+                        "id": "d66881d9-fa0b-46ff-874a-547af35e8c9f"
                       },
                       {
                         "command": "EVENT_SET_VALUE",
@@ -302,14 +348,16 @@
                           "variable": "156",
                           "value": {
                             "type": "true"
-                          }
+                          },
+                          "__collapse": true
                         },
                         "id": "dc3292ad-ca51-4b3a-992c-d2250b7ef66c"
                       },
                       {
                         "command": "EVENT_PALETTE_SET_UI",
                         "args": {
-                          "palette": "9fcb5064-c312-44bc-93cc-fb93df58005f"
+                          "palette": "9fcb5064-c312-44bc-93cc-fb93df58005f",
+                          "__collapse": true
                         },
                         "id": "f4fb400b-70f6-474f-8783-4cceb5d5dfd1"
                       },
@@ -411,33 +459,77 @@
                         "id": "4b91ab32-4d2f-45d7-a36e-4f23418116b1"
                       },
                       {
-                        "command": "EVENT_TEXT",
+                        "command": "EVENT_IF",
                         "args": {
-                          "text": [
-                            "Double stack!\nScores are doubled  @",
-                            "this turn!  @",
-                            "Keep slots held to \nkeep scores doubled."
-                          ],
-                          "__section": "text",
-                          "avatarId": "",
-                          "minHeight": 4,
-                          "maxHeight": 7,
-                          "textX": 1,
-                          "textY": 1,
-                          "textHeight": 5,
-                          "position": "bottom",
-                          "clearPrevious": true,
-                          "showFrame": "true",
-                          "speedIn": -1,
-                          "speedOut": -1,
-                          "closeWhen": "key",
-                          "closeButton": "a",
-                          "closeDelayTime": 0.5,
-                          "closeDelayFrames": 30,
-                          "__collapse": false,
-                          "__comment": false
+                          "condition": {
+                            "type": "expression",
+                            "value": "$16$ == 3"
+                          },
+                          "__collapseElse": false
                         },
-                        "id": "82a087fb-1f8c-4ead-88cb-91f1ff5c2bad"
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_TEXT",
+                              "args": {
+                                "text": [
+                                  "Double stack! Scores \nare doubled this turn!"
+                                ],
+                                "__section": "text",
+                                "avatarId": "",
+                                "minHeight": 4,
+                                "maxHeight": 7,
+                                "textX": 1,
+                                "textY": 1,
+                                "textHeight": 5,
+                                "position": "bottom",
+                                "clearPrevious": true,
+                                "showFrame": "true",
+                                "speedIn": -1,
+                                "speedOut": -1,
+                                "closeWhen": "key",
+                                "closeButton": "a",
+                                "closeDelayTime": 0.5,
+                                "closeDelayFrames": 30,
+                                "__collapse": false,
+                                "__comment": false
+                              },
+                              "id": "878136b9-919c-408f-8473-914646ac0e8c"
+                            }
+                          ],
+                          "false": [
+                            {
+                              "command": "EVENT_TEXT",
+                              "args": {
+                                "text": [
+                                  "Double stack!\nScores are doubled  @",
+                                  "this turn!  @",
+                                  "Keep slots held to \nkeep scores doubled."
+                                ],
+                                "__section": "text",
+                                "avatarId": "",
+                                "minHeight": 4,
+                                "maxHeight": 7,
+                                "textX": 1,
+                                "textY": 1,
+                                "textHeight": 5,
+                                "position": "bottom",
+                                "clearPrevious": true,
+                                "showFrame": "true",
+                                "speedIn": -1,
+                                "speedOut": -1,
+                                "closeWhen": "key",
+                                "closeButton": "a",
+                                "closeDelayTime": 0.5,
+                                "closeDelayFrames": 30,
+                                "__collapse": false,
+                                "__comment": false
+                              },
+                              "id": "82a087fb-1f8c-4ead-88cb-91f1ff5c2bad"
+                            }
+                          ]
+                        },
+                        "id": "d55987b1-d3ab-4153-8c72-bbea3ed2c692"
                       },
                       {
                         "command": "EVENT_SET_VALUE",
@@ -568,7 +660,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) Check for Slots: Auto Zero (all zeroes)",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -734,7 +826,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) Check for Slots: Slot Token (minigame triggered)",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -822,7 +914,7 @@
                 "type": "number",
                 "value": 1
               },
-              "__collapse": false,
+              "__collapse": true,
               "__label": "(For) Scoring 1, 2, 3, 4, 5, 6"
             },
             "children": {
@@ -847,7 +939,7 @@
                       "value": "$03$ == $18$"
                     },
                     "__collapseElse": true,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -871,7 +963,7 @@
                       "value": "$04$ == $18$"
                     },
                     "__collapseElse": true,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -895,7 +987,7 @@
                       "value": "$05$ == $18$"
                     },
                     "__collapseElse": true,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -919,7 +1011,7 @@
                       "value": "$06$ == $18$"
                     },
                     "__collapseElse": true,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -943,7 +1035,7 @@
                       "value": "$07$ == $18$"
                     },
                     "__collapseElse": true,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -966,7 +1058,8 @@
                     "value": {
                       "type": "expression",
                       "value": "$146$ + $147$ + $148$ + $149$ + $150$"
-                    }
+                    },
+                    "__collapse": true
                   },
                   "id": "2d60156a-1b4b-4a05-967d-dbeca3c29797"
                 },
@@ -1440,7 +1533,7 @@
                       "value": "$28$ && $27$ == 1 && $151$ == 0"
                     },
                     "__collapseElse": false,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -1592,7 +1685,7 @@
                       "value": "$19$ == 5"
                     },
                     "__collapseElse": true,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -1633,7 +1726,7 @@
                               "command": "EVENT_CALL_CUSTOM_EVENT",
                               "args": {
                                 "customEventId": "d5266c15-fd43-4464-b8e3-b9c9fc242cd1",
-                                "__collapse": true
+                                "__collapse": false
                               },
                               "id": "2ce7fc08-fe69-4bd5-bfff-f95caebbe1a6"
                             }
@@ -1714,7 +1807,7 @@
                     "__collapseCase15": false,
                     "value15": 16,
                     "__collapseElse": true,
-                    "__collapse": false,
+                    "__collapse": true,
                     "__label": "(Switch) (1-6) Assign temp score to individual variables"
                   },
                   "children": {
@@ -2081,7 +2174,7 @@
                 "value": "28"
               },
               "__collapseElse": false,
-              "__collapse": false,
+              "__collapse": true,
               "__label": "(If) (3 of a Kind)"
             },
             "children": {
@@ -2157,7 +2250,7 @@
                 "value": "30"
               },
               "__collapseElse": false,
-              "__collapse": false,
+              "__collapse": true,
               "__label": "(If) (4 of a Kind)"
             },
             "children": {
@@ -2388,7 +2481,7 @@
               },
               "__collapseElse": false,
               "__label": "(If) Chance",
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true": [
