@@ -1,0 +1,146 @@
+{
+  "_resourceType": "trigger",
+  "id": "e74c0e75-68f3-4acc-bdfd-8f8b3d695411",
+  "name": "Temp continue trigger",
+  "prefabId": "",
+  "x": 11,
+  "y": 12,
+  "symbol": "trigger_39",
+  "prefabScriptOverrides": {},
+  "width": 1,
+  "height": 4,
+  "script": [
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "left"
+        ],
+        "override": true,
+        "__scriptTabs": "press"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 2
+              },
+              "y": {
+                "type": "number",
+                "value": 13
+              }
+            },
+            "id": "e9a6cb20-5c48-456f-8101-e8049d6f456d"
+          }
+        ]
+      },
+      "id": "aec2de67-7d12-4871-9010-767e4b250cca"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "a"
+        ],
+        "override": true,
+        "__scriptTabs": "press"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "There's already a\ngame in progress.  @",
+                "Would you like to\ndelete that saved  @",
+                "game and start a\nnew one?"
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "f10f7f5d-f093-413f-adcb-c4497012cdc1"
+          },
+          {
+            "command": "EVENT_MENU",
+            "args": {
+              "variable": "L0",
+              "items": 2,
+              "option1": "Delete saved game",
+              "option2": "Cancel",
+              "option3": "",
+              "option4": "",
+              "option5": "",
+              "option6": "",
+              "option7": "",
+              "option8": "",
+              "cancelOnB": true,
+              "layout": "dialogue",
+              "cancelOnLastOption": true
+            },
+            "id": "ee86665a-1ca0-46af-9c88-27430f6fd16c"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "L0"
+              },
+              "__collapseElse": true,
+              "__comment": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_RNG_SEED",
+                  "args": {},
+                  "id": "ccd46411-bf7d-4467-ad61-f2ac80f6d633"
+                },
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "e5d970c7-6555-447f-a475-89cf6e9969b7",
+                    "x": {
+                      "type": "number",
+                      "value": 4
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 9
+                    },
+                    "direction": "",
+                    "fadeSpeed": "2"
+                  },
+                  "id": "c186b9ad-9997-41f3-8ffd-0230be1417e6"
+                }
+              ],
+              "false": []
+            },
+            "id": "400f8755-e3f4-4509-a527-502768e4589e"
+          }
+        ]
+      },
+      "id": "1cd84d13-75e8-4ee3-8c17-5a264351f57f"
+    }
+  ],
+  "leaveScript": [],
+  "_index": 1
+}

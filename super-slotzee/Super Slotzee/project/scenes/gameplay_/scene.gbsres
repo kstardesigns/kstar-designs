@@ -34,6 +34,116 @@
   "autoFadeEventCollapse": true,
   "script": [
     {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "220"
+        },
+        "__collapseElse": true,
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_THREAD_START",
+            "args": {
+              "variable": "L1",
+              "__scriptTabs": "true"
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "220",
+                    "value": {
+                      "type": "false"
+                    }
+                  },
+                  "id": "b6b4c37f-1dbc-4a95-af6c-41d610c678f8"
+                },
+                {
+                  "command": "EVENT_SAVE_DATA",
+                  "args": {
+                    "saveSlot": 0,
+                    "__scriptTabs": "save",
+                    "__comment": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "Saved!"
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30,
+                          "__comment": true
+                        },
+                        "id": "d100b1ce-4a68-4dc8-9bcd-ef2ea2a8e929"
+                      },
+                      {
+                        "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
+                        "args": {
+                          "actorId": "0",
+                          "speed": 127,
+                          "__collapse": true,
+                          "__comment": true
+                        },
+                        "id": "0480cf91-1fde-442e-b9c4-15a6035743bc"
+                      },
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "0",
+                          "spriteStateId": "Scorecard saved",
+                          "loopAnim": false,
+                          "__collapse": true,
+                          "__comment": true
+                        },
+                        "id": "a1f98b8f-994d-48c9-a2fe-403a4bdc08e4"
+                      },
+                      {
+                        "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
+                        "args": {
+                          "actorId": "0",
+                          "speed": 7,
+                          "__collapse": true,
+                          "__comment": true
+                        },
+                        "id": "5b7bfb8c-aa00-465a-8e05-5890e5136811"
+                      }
+                    ],
+                    "load": []
+                  },
+                  "id": "42bd3393-64cb-4752-92bb-fd61cf81f426"
+                }
+              ]
+            },
+            "id": "3b48f461-40fa-419a-8fe0-129d1b3ba68e"
+          }
+        ],
+        "false": []
+      },
+      "id": "d08b7383-6278-452d-b2ce-318b8fec895e"
+    },
+    {
       "command": "EVENT_COMMENT",
       "args": {
         "text": "Set var for scoring later",
@@ -98,8 +208,8 @@
           "type": "variable",
           "value": "207"
         },
-        "__collapseElse": true,
-        "__collapse": false
+        "__collapseElse": false,
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -228,7 +338,7 @@
           }
         },
         "__collapseElse": true,
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [

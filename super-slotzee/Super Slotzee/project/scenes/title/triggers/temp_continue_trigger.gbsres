@@ -1,0 +1,86 @@
+{
+  "_resourceType": "trigger",
+  "id": "2dbb302e-e1f3-4151-a559-d0b6a986b362",
+  "name": "Temp continue trigger",
+  "prefabId": "",
+  "x": 2,
+  "y": 12,
+  "symbol": "trigger_38",
+  "prefabScriptOverrides": {},
+  "width": 1,
+  "height": 4,
+  "script": [
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "right"
+        ],
+        "override": true,
+        "__scriptTabs": "press"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 11
+              },
+              "y": {
+                "type": "number",
+                "value": 13
+              }
+            },
+            "id": "b07860f5-f54c-4737-ba9e-f4ec9e1c2b87"
+          }
+        ]
+      },
+      "id": "323b8ab1-5577-45a5-9b9b-d93ac2265cd6"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "a"
+        ],
+        "override": true,
+        "__scriptTabs": "press"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_RNG_SEED",
+            "args": {},
+            "id": "830c3b42-5b23-4f79-89db-eef4f7577bfa"
+          },
+          {
+            "command": "EVENT_IF_SAVED_DATA",
+            "args": {
+              "saveSlot": 0,
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_LOAD_DATA",
+                  "args": {
+                    "saveSlot": 0
+                  },
+                  "id": "767de7eb-f720-4097-83e6-0ec7061e0c6c"
+                }
+              ],
+              "false": []
+            },
+            "id": "b7555031-f1ef-4b2f-9aa6-eb955e16f4f8"
+          }
+        ]
+      },
+      "id": "2249092b-b5f1-4d75-8420-229c6691b181"
+    }
+  ],
+  "leaveScript": [],
+  "_index": 0
+}
