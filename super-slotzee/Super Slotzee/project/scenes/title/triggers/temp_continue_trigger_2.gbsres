@@ -52,67 +52,118 @@
       "children": {
         "true": [
           {
-            "command": "EVENT_TEXT",
+            "command": "EVENT_PEEK_DATA",
             "args": {
-              "text": [
-                "There's already a\ngame in progress.  @",
-                "Would you like to\ndelete that saved  @",
-                "game and start a\nnew one?"
-              ],
-              "__section": "text",
-              "avatarId": "",
-              "minHeight": 4,
-              "maxHeight": 7,
-              "textX": 1,
-              "textY": 1,
-              "textHeight": 5,
-              "position": "bottom",
-              "clearPrevious": true,
-              "showFrame": "true",
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
-              "closeButton": "a",
-              "closeDelayTime": 0.5,
-              "closeDelayFrames": 30
+              "variableDest": "222",
+              "variableSource": "222",
+              "saveSlot": 0
             },
-            "id": "f10f7f5d-f093-413f-adcb-c4497012cdc1"
-          },
-          {
-            "command": "EVENT_MENU",
-            "args": {
-              "variable": "L0",
-              "items": 2,
-              "option1": "Delete saved game",
-              "option2": "Cancel",
-              "option3": "",
-              "option4": "",
-              "option5": "",
-              "option6": "",
-              "option7": "",
-              "option8": "",
-              "cancelOnB": true,
-              "layout": "dialogue",
-              "cancelOnLastOption": true
-            },
-            "id": "ee86665a-1ca0-46af-9c88-27430f6fd16c"
+            "id": "c253af03-bcee-4afa-b4e1-b1c4937aeab3"
           },
           {
             "command": "EVENT_IF",
             "args": {
               "condition": {
                 "type": "variable",
-                "value": "L0"
+                "value": "222"
               },
-              "__collapseElse": true,
-              "__comment": false
+              "__collapseElse": false
             },
             "children": {
               "true": [
                 {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "There's already a\ngame in progress.  @",
+                      "Would you like to\ndelete that saved  @",
+                      "game and start a\nnew one?"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": true
+                  },
+                  "id": "f10f7f5d-f093-413f-adcb-c4497012cdc1"
+                },
+                {
+                  "command": "EVENT_MENU",
+                  "args": {
+                    "variable": "L0",
+                    "items": 2,
+                    "option1": "Delete saved game",
+                    "option2": "Cancel",
+                    "option3": "",
+                    "option4": "",
+                    "option5": "",
+                    "option6": "",
+                    "option7": "",
+                    "option8": "",
+                    "cancelOnB": true,
+                    "layout": "dialogue",
+                    "cancelOnLastOption": true,
+                    "__collapse": true
+                  },
+                  "id": "ee86665a-1ca0-46af-9c88-27430f6fd16c"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "variable",
+                      "value": "L0"
+                    },
+                    "__collapseElse": true,
+                    "__comment": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_RNG_SEED",
+                        "args": {},
+                        "id": "ccd46411-bf7d-4467-ad61-f2ac80f6d633"
+                      },
+                      {
+                        "command": "EVENT_SWITCH_SCENE",
+                        "args": {
+                          "sceneId": "e5d970c7-6555-447f-a475-89cf6e9969b7",
+                          "x": {
+                            "type": "number",
+                            "value": 4
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 9
+                          },
+                          "direction": "",
+                          "fadeSpeed": "2"
+                        },
+                        "id": "c186b9ad-9997-41f3-8ffd-0230be1417e6"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "400f8755-e3f4-4509-a527-502768e4589e"
+                }
+              ],
+              "false": [
+                {
                   "command": "EVENT_RNG_SEED",
                   "args": {},
-                  "id": "ccd46411-bf7d-4467-ad61-f2ac80f6d633"
+                  "id": "a9b8664a-241a-4343-904d-fc33f36ef285"
                 },
                 {
                   "command": "EVENT_SWITCH_SCENE",
@@ -129,12 +180,11 @@
                     "direction": "",
                     "fadeSpeed": "2"
                   },
-                  "id": "c186b9ad-9997-41f3-8ffd-0230be1417e6"
+                  "id": "76ab1dce-4a49-4f94-80e7-58e0e9c6a660"
                 }
-              ],
-              "false": []
+              ]
             },
-            "id": "400f8755-e3f4-4509-a527-502768e4589e"
+            "id": "429af5d0-00a4-4269-985d-42c7edb1ca3f"
           }
         ]
       },

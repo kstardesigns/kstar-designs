@@ -218,6 +218,58 @@
       "id": "8d4de6cf-3316-44c0-9ded-d52d62f561e9"
     },
     {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "220"
+        },
+        "__collapseElse": true,
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_THREAD_START",
+            "args": {
+              "variable": "L1",
+              "__scriptTabs": "true"
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "220",
+                    "value": {
+                      "type": "false"
+                    }
+                  },
+                  "id": "fe5569d8-b646-4501-b51f-af919da9a0e4"
+                },
+                {
+                  "command": "EVENT_SAVE_DATA",
+                  "args": {
+                    "saveSlot": 0,
+                    "__scriptTabs": "save",
+                    "__comment": false
+                  },
+                  "children": {
+                    "true": [],
+                    "load": []
+                  },
+                  "id": "2dfbaa3f-875a-4fbb-8163-9b6f30d13667"
+                }
+              ]
+            },
+            "id": "3f56362f-4ba0-4016-8fbe-931727a2cdf0"
+          }
+        ],
+        "false": []
+      },
+      "id": "acf6c2dc-843e-4b65-80fa-5595a1bd4822"
+    },
+    {
       "id": "1c97fa22-2da5-424f-a1f2-b6d99e05fea0",
       "command": "EVENT_GROUP",
       "args": {
@@ -564,6 +616,25 @@
       "id": "7efbd4d6-8a95-4cb6-9cbf-d3ce10c3b85c"
     },
     {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "tracks if game is currently active for title screen continue/new game",
+        "__collapse": true
+      },
+      "id": "95b8456c-b8ca-4dfc-a1f3-91b8d75a4c2f"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "222",
+        "value": {
+          "type": "false"
+        },
+        "__collapse": true
+      },
+      "id": "4bb1385b-a75a-4d57-8990-cc3bed8e7075"
+    },
+    {
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
@@ -828,7 +899,7 @@
               "__collapseCase15": false,
               "value15": 16,
               "__collapseElse": false,
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true0": [
@@ -896,7 +967,9 @@
                 },
                 {
                   "command": "EVENT_SCENE_PUSH_STATE",
-                  "args": {},
+                  "args": {
+                    "__collapse": true
+                  },
                   "id": "b8710f04-7b0f-4add-bab0-48b56294ec13"
                 },
                 {
