@@ -1,0 +1,95 @@
+{
+  "_resourceType": "trigger",
+  "id": "4dc670e3-aaab-4c76-ae04-bfbc9ee17d2d",
+  "name": "Temp continue trigger",
+  "prefabId": "",
+  "x": 6,
+  "y": 13,
+  "symbol": "trigger_40",
+  "prefabScriptOverrides": {},
+  "width": 1,
+  "height": 2,
+  "script": [
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "left",
+          "down",
+          "right"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": []
+      },
+      "id": "8ecb417b-8408-429f-8734-da9f7f236404"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "up"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "$self$",
+              "spriteStateId": "TItle Cursor New Game",
+              "loopAnim": true
+            },
+            "id": "236a00fe-4171-432f-9493-0f2093f57a12"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 5
+              },
+              "y": {
+                "type": "number",
+                "value": 12
+              }
+            },
+            "id": "645584f8-636c-4532-bb1a-b27e7cfac863"
+          }
+        ]
+      },
+      "id": "6ec2664e-bdbc-49c5-aebd-42a53e9959a9"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "a"
+        ],
+        "override": true,
+        "__scriptTabs": "press"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "520a138e-49a3-4b39-ad4e-46c4f7b45e7d"
+            },
+            "id": "3fdd87a3-ce8e-4f31-96a4-3c2d6373bcf5"
+          }
+        ]
+      },
+      "id": "409e52b6-c7a2-4e3b-94a1-4a679e78ec05"
+    }
+  ],
+  "leaveScript": [],
+  "_index": 2
+}

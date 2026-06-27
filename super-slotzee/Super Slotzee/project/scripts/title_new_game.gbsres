@@ -1,0 +1,159 @@
+{
+  "_resourceType": "script",
+  "id": "ad51e87e-8afb-4181-b7b9-a1e7ddf0b179",
+  "name": "Title New Game",
+  "description": "What happens when New game is chosen on the title screen",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_45",
+  "script": [
+    {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Title New Game script"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "222",
+              "variableSource": "222",
+              "saveSlot": 0,
+              "__collapse": false
+            },
+            "id": "0348b2a9-dcb9-4a39-9034-7f94629bd833"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "222"
+              },
+              "__collapseElse": false,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "There's already a\ngame in progress.  @",
+                      "Would you like to\ndelete that saved  @",
+                      "game and start a\nnew one?"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": true
+                  },
+                  "id": "d97edb93-f911-431a-bfce-409ffb5e8f06"
+                },
+                {
+                  "command": "EVENT_MENU",
+                  "args": {
+                    "variable": "223",
+                    "items": 2,
+                    "option1": "Delete saved game",
+                    "option2": "Cancel",
+                    "option3": "",
+                    "option4": "",
+                    "option5": "",
+                    "option6": "",
+                    "option7": "",
+                    "option8": "",
+                    "cancelOnB": true,
+                    "layout": "dialogue",
+                    "cancelOnLastOption": true,
+                    "__collapse": false
+                  },
+                  "id": "c33e0234-672e-4f77-900a-cc25f6166cfb"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "variable",
+                      "value": "223"
+                    },
+                    "__collapseElse": true,
+                    "__comment": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_RNG_SEED",
+                        "args": {},
+                        "id": "ed140de7-2d2f-40d5-857d-eea993a5c785"
+                      },
+                      {
+                        "command": "EVENT_SWITCH_SCENE",
+                        "args": {
+                          "sceneId": "e5d970c7-6555-447f-a475-89cf6e9969b7",
+                          "x": {
+                            "type": "number",
+                            "value": 4
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 9
+                          },
+                          "direction": "",
+                          "fadeSpeed": "2"
+                        },
+                        "id": "88191f24-85cf-4503-a315-5129f58a3cb6"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "fd1f21c2-8e45-404d-9c68-b1e7e79754f2"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_RNG_SEED",
+                  "args": {},
+                  "id": "da8f30be-4b08-4c45-87dd-eb16e4e38094"
+                },
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "e5d970c7-6555-447f-a475-89cf6e9969b7",
+                    "x": {
+                      "type": "number",
+                      "value": 4
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 9
+                    },
+                    "direction": "",
+                    "fadeSpeed": "2"
+                  },
+                  "id": "740c1262-0838-4393-b209-6d932a67cc43"
+                }
+              ]
+            },
+            "id": "0e7e4ba4-ed10-41e1-9a02-b546b56f9143"
+          }
+        ]
+      },
+      "id": "0dc5d340-8cc1-4dd4-90a2-6e9fae54cc18"
+    }
+  ]
+}
