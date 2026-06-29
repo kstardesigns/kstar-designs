@@ -31,7 +31,7 @@
           "type": "expression",
           "value": "($V0$ / 1000) % 10"
         },
-        "__collapse": false
+        "__collapse": true
       },
       "id": "a0d29703-825d-4e4f-a0f9-95e10a1fa43a"
     },
@@ -43,7 +43,7 @@
           "type": "expression",
           "value": "($V0$ / 100) % 10"
         },
-        "__collapse": false
+        "__collapse": true
       },
       "id": "293b5dd7-36ae-44ac-ab22-2f7d8885be1e"
     },
@@ -55,7 +55,7 @@
           "type": "expression",
           "value": "($V0$ / 10) % 10"
         },
-        "__collapse": false
+        "__collapse": true
       },
       "id": "6d4cc928-13ff-48c7-886c-3babf6e05115"
     },
@@ -67,7 +67,7 @@
           "type": "expression",
           "value": "$V0$ % 10"
         },
-        "__collapse": false
+        "__collapse": true
       },
       "id": "f7d0aa62-e97f-4ce7-a607-fd6638649c75"
     },
@@ -84,7 +84,8 @@
             "type": "true"
           }
         },
-        "__collapseElse": false
+        "__collapseElse": false,
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -103,7 +104,8 @@
               "$variable[V2]$": {
                 "type": "variable",
                 "value": "V2"
-              }
+              },
+              "__collapse": true
             },
             "id": "90dcdf3d-3a8f-486f-bafc-bf5a6ff28103"
           },
@@ -115,7 +117,7 @@
                 "value": "$V0$ >= 10"
               },
               "__collapseElse": false,
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -172,7 +174,7 @@
               },
               "__collapseElse": false,
               "__comment": false,
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -229,7 +231,7 @@
               },
               "__collapseElse": false,
               "__comment": false,
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -280,57 +282,117 @@
         ],
         "false": [
           {
-            "command": "EVENT_CALL_CUSTOM_EVENT",
-            "args": {
-              "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
-              "$variable[V0]$": {
-                "type": "variable",
-                "value": "87"
-              },
-              "$variable[V1]$": {
-                "type": "variable",
-                "value": "V1"
-              },
-              "$variable[V2]$": {
-                "type": "variable",
-                "value": "V2"
-              },
-              "__label": "(Call Script) Draw 1's digit",
-              "__collapse": false
-            },
-            "id": "be51f1d3-cc16-417a-aee8-377d7f0baa7d"
-          },
-          {
             "command": "EVENT_IF",
             "args": {
               "condition": {
-                "type": "expression",
-                "value": "$V0$ >= 10"
+                "type": "variable",
+                "value": "224"
               },
-              "__collapseElse": false,
-              "__collapse": false
+              "__collapseElse": false
             },
             "children": {
               "true": [
                 {
-                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "command": "EVENT_IF",
                   "args": {
-                    "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
-                    "$variable[V0]$": {
-                      "type": "variable",
-                      "value": "86"
-                    },
-                    "$variable[V1]$": {
+                    "condition": {
                       "type": "expression",
-                      "value": "$V1$ - 1"
+                      "value": "$V0$ >= 10"
                     },
-                    "$variable[V2]$": {
-                      "type": "variable",
-                      "value": "V2"
-                    },
-                    "__label": "(Call Script) Draw 10's digit"
+                    "__collapseElse": false,
+                    "__collapse": false
                   },
-                  "id": "37932e0b-68ca-4a37-a03b-149b842f51ec"
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
+                          "$variable[V0]$": {
+                            "type": "variable",
+                            "value": "87"
+                          },
+                          "$variable[V1]$": {
+                            "type": "expression",
+                            "value": "$V1$"
+                          },
+                          "$variable[V2]$": {
+                            "type": "variable",
+                            "value": "V2"
+                          },
+                          "__label": "(Call Script) Draw 1's digit",
+                          "__collapse": false
+                        },
+                        "id": "f263c1bd-299d-4be5-8be3-273c3f3aec11"
+                      },
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
+                          "$variable[V0]$": {
+                            "type": "variable",
+                            "value": "86"
+                          },
+                          "$variable[V1]$": {
+                            "type": "expression",
+                            "value": "$V1$ - 1"
+                          },
+                          "$variable[V2]$": {
+                            "type": "variable",
+                            "value": "V2"
+                          },
+                          "__label": "(Call Script) Draw 10's digit",
+                          "__collapse": false
+                        },
+                        "id": "72184440-cb51-4bbd-82e8-fc6bb3f17a27"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
+                          "$variable[V0]$": {
+                            "type": "variable",
+                            "value": "87"
+                          },
+                          "$variable[V1]$": {
+                            "type": "expression",
+                            "value": "$V1$ - 1"
+                          },
+                          "$variable[V2]$": {
+                            "type": "variable",
+                            "value": "V2"
+                          },
+                          "__label": "(Call Script) Draw 1's digit",
+                          "__collapse": true
+                        },
+                        "id": "b918f84d-cb12-4bad-8080-cccbadd66321"
+                      },
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
+                          "$variable[V0]$": {
+                            "type": "number",
+                            "value": 999
+                          },
+                          "$variable[V1]$": {
+                            "type": "expression",
+                            "value": "$V1$"
+                          },
+                          "$variable[V2]$": {
+                            "type": "variable",
+                            "value": "V2"
+                          },
+                          "__label": "(Call Script) Draw 10's digit",
+                          "__collapse": true
+                        },
+                        "id": "1f3ac5f0-1325-45e9-af22-1fd646a88f4b"
+                      }
+                    ]
+                  },
+                  "id": "7d0afbfb-f7bf-40f6-9a8b-9e1989a4f081"
                 }
               ],
               "false": [
@@ -339,142 +401,201 @@
                   "args": {
                     "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
                     "$variable[V0]$": {
-                      "type": "number",
-                      "value": 999
+                      "type": "variable",
+                      "value": "87"
                     },
                     "$variable[V1]$": {
-                      "type": "expression",
-                      "value": "$V1$ - 1"
+                      "type": "variable",
+                      "value": "V1"
                     },
                     "$variable[V2]$": {
                       "type": "variable",
                       "value": "V2"
                     },
-                    "__label": "(Call Script) Draw 10's digit"
+                    "__label": "(Call Script) Draw 1's digit",
+                    "__collapse": true
                   },
-                  "id": "63529d8d-d0b9-452e-9f69-7b060ac4d2d7"
+                  "id": "be51f1d3-cc16-417a-aee8-377d7f0baa7d"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "expression",
+                      "value": "$V0$ >= 10"
+                    },
+                    "__collapseElse": false,
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
+                          "$variable[V0]$": {
+                            "type": "variable",
+                            "value": "86"
+                          },
+                          "$variable[V1]$": {
+                            "type": "expression",
+                            "value": "$V1$ - 1"
+                          },
+                          "$variable[V2]$": {
+                            "type": "variable",
+                            "value": "V2"
+                          },
+                          "__label": "(Call Script) Draw 10's digit"
+                        },
+                        "id": "37932e0b-68ca-4a37-a03b-149b842f51ec"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
+                          "$variable[V0]$": {
+                            "type": "number",
+                            "value": 999
+                          },
+                          "$variable[V1]$": {
+                            "type": "expression",
+                            "value": "$V1$ - 1"
+                          },
+                          "$variable[V2]$": {
+                            "type": "variable",
+                            "value": "V2"
+                          },
+                          "__label": "(Call Script) Draw 10's digit"
+                        },
+                        "id": "63529d8d-d0b9-452e-9f69-7b060ac4d2d7"
+                      }
+                    ]
+                  },
+                  "id": "9d09cb22-1134-4b6a-aec8-948cf50f623d"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "expression",
+                      "value": "$V0$ >= 100"
+                    },
+                    "__collapseElse": false,
+                    "__comment": false,
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
+                          "$variable[V0]$": {
+                            "type": "variable",
+                            "value": "85"
+                          },
+                          "$variable[V1]$": {
+                            "type": "expression",
+                            "value": "$V1$ - 2"
+                          },
+                          "$variable[V2]$": {
+                            "type": "variable",
+                            "value": "V2"
+                          },
+                          "__label": "(Call Script) Draw 100's digit"
+                        },
+                        "id": "7db5138b-aeff-4727-8076-14dc80db4d57"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
+                          "$variable[V0]$": {
+                            "type": "number",
+                            "value": 999
+                          },
+                          "$variable[V1]$": {
+                            "type": "expression",
+                            "value": "$V1$ - 2"
+                          },
+                          "$variable[V2]$": {
+                            "type": "variable",
+                            "value": "V2"
+                          },
+                          "__label": "(Call Script) Draw 100's digit"
+                        },
+                        "id": "4fa5a02a-f5c3-4bd1-982d-075c0946de41"
+                      }
+                    ]
+                  },
+                  "id": "eeb2dea8-6fd7-4a43-a952-4f9ca104730d"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "expression",
+                      "value": "$V0$ >= 1000"
+                    },
+                    "__collapseElse": false,
+                    "__comment": false,
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
+                          "$variable[V0]$": {
+                            "type": "variable",
+                            "value": "118"
+                          },
+                          "$variable[V1]$": {
+                            "type": "expression",
+                            "value": "$V1$ - 3"
+                          },
+                          "$variable[V2]$": {
+                            "type": "variable",
+                            "value": "V2"
+                          },
+                          "__label": "(Call Script) Draw 1000's digit"
+                        },
+                        "id": "fd609475-b647-464f-841e-4ab7a9195c28"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
+                          "$variable[V0]$": {
+                            "type": "number",
+                            "value": 999
+                          },
+                          "$variable[V1]$": {
+                            "type": "expression",
+                            "value": "$V1$ - 3"
+                          },
+                          "$variable[V2]$": {
+                            "type": "variable",
+                            "value": "V2"
+                          },
+                          "__label": "(Call Script) Draw 100's digit"
+                        },
+                        "id": "89ce1925-7662-4f85-8864-ab06a9f1dd5c"
+                      }
+                    ]
+                  },
+                  "id": "a915be63-bb65-4da4-9014-c83cc3e73c05"
                 }
               ]
             },
-            "id": "9d09cb22-1134-4b6a-aec8-948cf50f623d"
-          },
-          {
-            "command": "EVENT_IF",
-            "args": {
-              "condition": {
-                "type": "expression",
-                "value": "$V0$ >= 100"
-              },
-              "__collapseElse": false,
-              "__comment": false,
-              "__collapse": false
-            },
-            "children": {
-              "true": [
-                {
-                  "command": "EVENT_CALL_CUSTOM_EVENT",
-                  "args": {
-                    "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
-                    "$variable[V0]$": {
-                      "type": "variable",
-                      "value": "85"
-                    },
-                    "$variable[V1]$": {
-                      "type": "expression",
-                      "value": "$V1$ - 2"
-                    },
-                    "$variable[V2]$": {
-                      "type": "variable",
-                      "value": "V2"
-                    },
-                    "__label": "(Call Script) Draw 100's digit"
-                  },
-                  "id": "7db5138b-aeff-4727-8076-14dc80db4d57"
-                }
-              ],
-              "false": [
-                {
-                  "command": "EVENT_CALL_CUSTOM_EVENT",
-                  "args": {
-                    "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
-                    "$variable[V0]$": {
-                      "type": "number",
-                      "value": 999
-                    },
-                    "$variable[V1]$": {
-                      "type": "expression",
-                      "value": "$V1$ - 2"
-                    },
-                    "$variable[V2]$": {
-                      "type": "variable",
-                      "value": "V2"
-                    },
-                    "__label": "(Call Script) Draw 100's digit"
-                  },
-                  "id": "4fa5a02a-f5c3-4bd1-982d-075c0946de41"
-                }
-              ]
-            },
-            "id": "eeb2dea8-6fd7-4a43-a952-4f9ca104730d"
-          },
-          {
-            "command": "EVENT_IF",
-            "args": {
-              "condition": {
-                "type": "expression",
-                "value": "$V0$ >= 1000"
-              },
-              "__collapseElse": false,
-              "__comment": false,
-              "__collapse": true
-            },
-            "children": {
-              "true": [
-                {
-                  "command": "EVENT_CALL_CUSTOM_EVENT",
-                  "args": {
-                    "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
-                    "$variable[V0]$": {
-                      "type": "variable",
-                      "value": "118"
-                    },
-                    "$variable[V1]$": {
-                      "type": "expression",
-                      "value": "$V1$ - 3"
-                    },
-                    "$variable[V2]$": {
-                      "type": "variable",
-                      "value": "V2"
-                    },
-                    "__label": "(Call Script) Draw 1000's digit"
-                  },
-                  "id": "fd609475-b647-464f-841e-4ab7a9195c28"
-                }
-              ],
-              "false": [
-                {
-                  "command": "EVENT_CALL_CUSTOM_EVENT",
-                  "args": {
-                    "customEventId": "d6091329-b064-4b01-9003-94606c2d81dd",
-                    "$variable[V0]$": {
-                      "type": "number",
-                      "value": 999
-                    },
-                    "$variable[V1]$": {
-                      "type": "expression",
-                      "value": "$V1$ - 3"
-                    },
-                    "$variable[V2]$": {
-                      "type": "variable",
-                      "value": "V2"
-                    },
-                    "__label": "(Call Script) Draw 100's digit"
-                  },
-                  "id": "89ce1925-7662-4f85-8864-ab06a9f1dd5c"
-                }
-              ]
-            },
-            "id": "a915be63-bb65-4da4-9014-c83cc3e73c05"
+            "id": "06b8a2d8-b56e-4e5a-8bcd-aa10d703c1de"
           }
         ]
       },

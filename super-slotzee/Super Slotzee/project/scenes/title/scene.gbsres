@@ -30,9 +30,91 @@
         "variableDest": "222",
         "variableSource": "222",
         "saveSlot": 0,
-        "__collapse": true
+        "__collapse": false
       },
       "id": "42f43c47-fc68-4376-98aa-0776db425d56"
+    },
+    {
+      "id": "e0bdec76-c793-4694-a986-59444818e535",
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "DEBUG continue turn and pts",
+        "__collapse": false,
+        "__comment": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "222",
+              "value": {
+                "type": "true"
+              },
+              "__collapse": true,
+              "__comment": false
+            },
+            "id": "2debe483-6e6f-4c45-b804-3d9e3daa22d4"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "17",
+              "value": {
+                "type": "number",
+                "value": 13
+              },
+              "__comment": false,
+              "__collapse": false
+            },
+            "id": "d0e433ba-24a1-408d-ba7a-8341f89654d6"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "also disable \"Store variable from game data in variable\" (turn_number) below"
+            },
+            "id": "333fac9b-b43c-4a69-8ab2-68e4f6054663"
+          }
+        ]
+      }
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "222"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "115",
+              "variableSource": "115",
+              "saveSlot": 0,
+              "__collapse": false
+            },
+            "id": "22e9507b-d8c3-4d4c-9c98-ca867ad49af0"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "17",
+              "variableSource": "17",
+              "saveSlot": 0,
+              "__collapse": false,
+              "__comment": false
+            },
+            "id": "609415ba-e679-46a0-8462-37e8327d7218"
+          }
+        ],
+        "false": []
+      },
+      "id": "5a39afc2-f079-4adf-9fe6-7a4f0183cc73"
     },
     {
       "command": "EVENT_GROUP",
@@ -357,7 +439,93 @@
                   }
                 }
               ],
-              "false": []
+              "false": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "224",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "6cbd9ef7-e0e5-4e7b-83a4-7681381765b9"
+                },
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "de62d8fb-4adb-4ccf-8ed9-50813e05828f",
+                    "$variable[V0]$": {
+                      "type": "variable",
+                      "value": "17"
+                    },
+                    "$variable[V1]$": {
+                      "type": "number",
+                      "value": 8
+                    },
+                    "$variable[V2]$": {
+                      "type": "number",
+                      "value": 10
+                    },
+                    "__collapse": true,
+                    "__label": "Draw turn number"
+                  },
+                  "id": "9a931267-ccc4-4a78-a306-86d4df6a6a64"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "224",
+                    "value": {
+                      "type": "false"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "14cf735f-7f26-41c7-a55c-0203ab52808a"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "112",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "ac74c45f-f58e-4b4d-9378-5a37e22de6aa"
+                },
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "de62d8fb-4adb-4ccf-8ed9-50813e05828f",
+                    "$variable[V0]$": {
+                      "type": "variable",
+                      "value": "115"
+                    },
+                    "$variable[V1]$": {
+                      "type": "number",
+                      "value": 12
+                    },
+                    "$variable[V2]$": {
+                      "type": "number",
+                      "value": 10
+                    },
+                    "__collapse": true
+                  },
+                  "id": "3f010164-343e-48e5-97b4-013f29afda1e"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "112",
+                    "value": {
+                      "type": "false"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "21cf37e4-ff52-4cba-9f3d-005365a3cf8f"
+                }
+              ]
             },
             "id": "5d91640d-2598-43c5-8a0a-9500e40833c8"
           }
@@ -385,7 +553,7 @@
       "command": "EVENT_GROUP",
       "args": {
         "__label": "Animate border dice",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -400,7 +568,7 @@
                 {
                   "command": "EVENT_LOOP",
                   "args": {
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -829,7 +997,7 @@
                         "args": {
                           "time": 0.8,
                           "frames": 30,
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "id": "1b47ba5e-e80d-4e41-b164-e3965bd0218c"
                       },
@@ -919,46 +1087,6 @@
         ]
       },
       "id": "5cb28b21-f997-46c9-b3a3-a6fd120714e9"
-    },
-    {
-      "command": "EVENT_SET_INPUT_SCRIPT",
-      "args": {
-        "input": [
-          "a",
-          "start"
-        ],
-        "override": true,
-        "__scriptTabs": "press",
-        "__collapse": false,
-        "__comment": true
-      },
-      "children": {
-        "true": [
-          {
-            "command": "EVENT_RNG_SEED",
-            "args": {},
-            "id": "fa6f1573-8e8f-4945-ba81-909ff935db1a"
-          },
-          {
-            "command": "EVENT_SWITCH_SCENE",
-            "args": {
-              "sceneId": "e5d970c7-6555-447f-a475-89cf6e9969b7",
-              "x": {
-                "type": "number",
-                "value": 4
-              },
-              "y": {
-                "type": "number",
-                "value": 9
-              },
-              "direction": "",
-              "fadeSpeed": "2"
-            },
-            "id": "e18d0ac8-30a7-42a0-b03f-7d6b93d6a2b8"
-          }
-        ]
-      },
-      "id": "4a5ea22e-96a0-4a85-a1bc-0bf9ac9e6e0b"
     }
   ],
   "playerHit1Script": [],
