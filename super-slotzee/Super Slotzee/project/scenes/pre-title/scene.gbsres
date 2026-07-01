@@ -5,7 +5,7 @@
   "name": "Pre-Title",
   "backgroundId": "b68f5ae4-095c-4acc-88bd-010a66c20baf",
   "tilesetId": "",
-  "width": 20,
+  "width": 40,
   "height": 18,
   "type": "TOPDOWN",
   "paletteIds": [
@@ -18,13 +18,143 @@
     "fcb2528c-5140-4889-bbe4-3e251db9307b",
     "6b71047e-abbd-4651-bc07-d9590e5bb36b"
   ],
-  "spritePaletteIds": [],
+  "spritePaletteIds": [
+    null,
+    "6c2b2095-3db0-40b6-91d2-0f0d0ca1249f"
+  ],
   "collisions": "",
   "autoFadeSpeed": 1,
   "symbol": "scene_20",
   "x": 280,
   "y": 30,
   "script": [
+    {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Debug"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "testing K A S, the 11th, 1st, 19th letters of alphabet"
+            },
+            "id": "226c5859-a8e7-4a80-a82c-be63e7605297"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "227",
+              "value": {
+                "type": "number",
+                "value": 11
+              }
+            },
+            "id": "ae5101f5-9820-428c-b633-11004ba36042"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "228",
+              "value": {
+                "type": "number",
+                "value": 1
+              }
+            },
+            "id": "5b7dfccc-ec50-4183-a278-042b42d652bb"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "229",
+              "value": {
+                "type": "number",
+                "value": 19
+              }
+            },
+            "id": "8dae6bff-6f62-4913-ae5d-795a60f150a8"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "230",
+              "value": {
+                "type": "number",
+                "value": 675
+              }
+            },
+            "id": "ec6d7209-b90b-4cae-97d5-95f6958e2076"
+          }
+        ]
+      },
+      "id": "4061970c-b873-489d-b8fe-2fb2e6cca296"
+    },
+    {
+      "command": "EVENT_CAMERA_SET_POSITION",
+      "args": {
+        "x": {
+          "type": "number",
+          "value": 10
+        },
+        "y": {
+          "type": "number",
+          "value": 0
+        },
+        "__collapse": true
+      },
+      "id": "11be8b3f-fa4f-4aed-8919-6862ed70109d"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Set initials on balloon\n(for numbers, indexes for 3 digits were 42-38-30",
+        "__collapse": true
+      },
+      "id": "7e90ba8c-c230-403d-8497-22a22c22203c"
+    },
+    {
+      "command": "EVENT_GBVM_SCRIPT",
+      "args": {
+        "references": [
+          {
+            "type": "tileset",
+            "id": "59c61960-2ca5-49fb-9d44-630ea5c562b1"
+          },
+          {
+            "type": "variable",
+            "id": "227"
+          },
+          {
+            "type": "variable",
+            "id": "228"
+          },
+          {
+            "type": "variable",
+            "id": "229"
+          }
+        ],
+        "script": "VM_ACTOR_REPLACE_TILE 1, 45, ___bank_tileset_title_letters, _tileset_title_letters, 11, 1;\nVM_ACTOR_REPLACE_TILE 1, 41, ___bank_tileset_title_letters, _tileset_title_letters, VAR_HIGH_SCORE1_INITIAL2, 1;\nVM_ACTOR_REPLACE_TILE 1, 33, ___bank_tileset_title_letters, _tileset_title_letters, VAR_HIGH_SCORE1_INITIAL3, 1;"
+      },
+      "id": "71217699-c5e8-48c5-a599-cfedf8be27cf"
+    },
+    {
+      "command": "EVENT_ACTOR_MOVE_TO",
+      "args": {
+        "actorId": "19bc6017-c362-4392-a952-14473433255e",
+        "x": {
+          "type": "number",
+          "value": 19
+        },
+        "y": {
+          "type": "number",
+          "value": 9
+        },
+        "moveType": "horizontal",
+        "useCollisions": false
+      },
+      "id": "0b56d3ca-a9a0-4240-a307-6018315332a3"
+    },
     {
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
@@ -37,21 +167,7 @@
         "__comment": false
       },
       "children": {
-        "true": [
-          {
-            "command": "EVENT_GBVM_SCRIPT",
-            "args": {
-              "references": [
-                {
-                  "type": "tileset",
-                  "id": "7c23aba2-d85a-41c3-bcbf-da5ed9dabd1f"
-                }
-              ],
-              "script": "VM_ACTOR_REPLACE_TILE 2, 22, ___bank_tileset_scorecard_numbers, _tileset_scorecard_numbers, 3, 1"
-            },
-            "id": "71217699-c5e8-48c5-a599-cfedf8be27cf"
-          }
-        ]
+        "true": []
       },
       "id": "fd315266-13c0-4e42-8d0e-514bdc3ceb64"
     }
