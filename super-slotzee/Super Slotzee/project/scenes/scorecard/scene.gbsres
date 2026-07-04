@@ -94,7 +94,8 @@
                 "type": "variable",
                 "value": "3"
               },
-              "$actor[0]$": "a83b5f1e-301f-40a6-b9c7-b226cf176545"
+              "$actor[0]$": "a83b5f1e-301f-40a6-b9c7-b226cf176545",
+              "__collapse": true
             },
             "id": "c24fbaf1-7001-4936-b579-156edca6ec0c"
           },
@@ -170,7 +171,7 @@
           "value": "(!$123$ && $03$ != 0) || (!$123$ && $146$) || $157$"
         },
         "__collapseElse": false,
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -1845,7 +1846,7 @@
           "type": "variable",
           "value": "157"
         },
-        "__collapseElse": true,
+        "__collapseElse": false,
         "__collapse": true,
         "__comment": false
       },
@@ -1912,6 +1913,55 @@
         "false": []
       },
       "id": "5ec1188a-9f89-42bd-a799-21111f8f63c1"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$32$ == 1 && $17$ == 1"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 0.5,
+              "frames": 30
+            },
+            "id": "50d3d194-02ce-4ef2-87f4-64cc81a3a262"
+          },
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Choose a box to score\nfor this turn."
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "55ca673a-6cb4-4703-8761-0315d33971bc"
+          }
+        ],
+        "false": []
+      },
+      "id": "3b810466-ee07-4c1a-90b8-ae1e72127aa4"
     }
   ],
   "playerHit1Script": [],
