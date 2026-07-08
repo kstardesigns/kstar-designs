@@ -27,12 +27,68 @@
   "playerSpriteSheetId": "418b85f4-d402-4738-b200-2a7e01374d7d",
   "script": [
     {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "not",
+          "value": {
+            "type": "variable",
+            "value": "235"
+          }
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Select a box to\nlearn more."
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30
+            },
+            "id": "5f5fcb6b-3c44-4964-8e17-c98e75e5cb75"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "235",
+              "value": {
+                "type": "true"
+              },
+              "__collapse": true
+            },
+            "id": "65ef6c68-fc93-4480-a231-4da19248bcc6"
+          }
+        ],
+        "false": []
+      },
+      "id": "7234d08e-5ecf-47cc-bf4e-0d4ead888f08"
+    },
+    {
       "command": "EVENT_TEXT_DRAW",
       "args": {
-        "text": "!F:62b48530-6ba0-4beb-a55d-0db2f9705c02!   SELECT A BOX \n TO LEARN MORE",
+        "text": "!F:62b48530-6ba0-4beb-a55d-0db2f9705c02!  SELECT A BOX \n TO LEARN MORE",
         "x": 7,
         "y": 2,
-        "location": "background"
+        "location": "background",
+        "__comment": true
       },
       "id": "f748c980-0ee6-4672-9036-0f5e72630766"
     },
