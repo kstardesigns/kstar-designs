@@ -14,14 +14,13 @@
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
-          "up",
           "down",
           "right"
         ],
         "override": true,
         "__scriptTabs": "press",
         "__comment": false,
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": []
@@ -32,11 +31,195 @@
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
+          "up"
+        ],
+        "override": true,
+        "__scriptTabs": "press"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "$16$ != 0 || ($16$ == 0 && $160$)"
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "ne",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "16"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 4
+                      }
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "ne",
+                            "valueA": {
+                              "type": "variable",
+                              "value": "16"
+                            },
+                            "valueB": {
+                              "type": "number",
+                              "value": 3
+                            }
+                          },
+                          "__collapseElse": false
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_COMMENT",
+                              "args": {
+                                "text": "Rolls 1 & 2",
+                                "__collapse": true
+                              },
+                              "id": "312d395f-ef59-4785-bc27-6a2212fe9919"
+                            },
+                            {
+                              "command": "EVENT_ACTOR_SET_STATE",
+                              "args": {
+                                "actorId": "$self$",
+                                "spriteStateId": "Middle row cursor",
+                                "loopAnim": true,
+                                "__collapse": true
+                              },
+                              "id": "e36f844a-169c-46e8-8e34-034c04f25723"
+                            },
+                            {
+                              "command": "EVENT_ACTOR_SET_STATE",
+                              "args": {
+                                "actorId": "64f79545-2ac4-4e81-a893-4999e31a2aae",
+                                "spriteStateId": "",
+                                "loopAnim": false,
+                                "__collapse": true
+                              },
+                              "id": "f5bdd42b-b6bd-482e-b0c1-542388272dbf"
+                            },
+                            {
+                              "command": "EVENT_ACTOR_SET_POSITION",
+                              "args": {
+                                "actorId": "$self$",
+                                "x": {
+                                  "type": "number",
+                                  "value": 11
+                                },
+                                "y": {
+                                  "type": "number",
+                                  "value": 14
+                                },
+                                "__collapse": true
+                              },
+                              "id": "d41d3158-8842-4e79-88f7-b7dc53a75554"
+                            }
+                          ],
+                          "false": [
+                            {
+                              "command": "EVENT_COMMENT",
+                              "args": {
+                                "text": "If turn 3 has the bonus roll applied, allow the cursor to move ",
+                                "__collapse": true
+                              },
+                              "id": "3b85d00d-7750-4614-9f12-5ba502128b4d"
+                            },
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "variable",
+                                  "value": "61"
+                                },
+                                "__collapseElse": true,
+                                "__collapse": false
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_ACTOR_SET_STATE",
+                                    "args": {
+                                      "actorId": "$self$",
+                                      "spriteStateId": "Middle row cursor",
+                                      "loopAnim": true,
+                                      "__collapse": true
+                                    },
+                                    "id": "3a87cec7-e04a-42b5-84e8-6a1229d0356b"
+                                  },
+                                  {
+                                    "command": "EVENT_ACTOR_SET_STATE",
+                                    "args": {
+                                      "actorId": "64f79545-2ac4-4e81-a893-4999e31a2aae",
+                                      "spriteStateId": "",
+                                      "loopAnim": false,
+                                      "__collapse": true
+                                    },
+                                    "id": "c28c7a49-81a0-4fdf-b2dd-82d1d10e8768"
+                                  },
+                                  {
+                                    "command": "EVENT_ACTOR_SET_POSITION",
+                                    "args": {
+                                      "actorId": "$self$",
+                                      "x": {
+                                        "type": "number",
+                                        "value": 11
+                                      },
+                                      "y": {
+                                        "type": "number",
+                                        "value": 14
+                                      },
+                                      "__collapse": true
+                                    },
+                                    "id": "d3c55231-4b66-4358-9655-e5e746d122d3"
+                                  }
+                                ],
+                                "false": []
+                              },
+                              "id": "5a822542-3092-4412-917e-508ddcc26bc5"
+                            }
+                          ]
+                        },
+                        "id": "8ff9b9e3-4298-4191-a490-8b2267c8f0fd"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "b76e414a-40cf-405c-80fb-67b58b4afa9d"
+                }
+              ],
+              "false": []
+            },
+            "id": "a033cb48-3602-4282-b81e-3536a781e086"
+          }
+        ]
+      },
+      "id": "f8aa4216-d463-44c0-ba7c-fc27dd878522"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
           "left"
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -56,7 +239,7 @@
               "actorId": "64f79545-2ac4-4e81-a893-4999e31a2aae",
               "spriteStateId": "",
               "loopAnim": false,
-              "__collapse": true
+              "__collapse": false
             },
             "id": "3e30a91d-5aab-425f-a7aa-f7cea9c6ce1c"
           },
@@ -87,7 +270,8 @@
           "a"
         ],
         "override": true,
-        "__scriptTabs": "press"
+        "__scriptTabs": "press",
+        "__collapse": true
       },
       "children": {
         "true": [

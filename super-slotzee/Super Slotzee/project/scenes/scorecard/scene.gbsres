@@ -282,6 +282,39 @@
       "id": "eff3a0e4-514a-4fe7-9b77-5f8b56685967"
     },
     {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "39"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 4
+              },
+              "y": {
+                "type": "number",
+                "value": 3
+              },
+              "__collapse": true,
+              "__label": "Start pencil at yotzees"
+            },
+            "id": "f9bc07b2-cd85-4bf6-a8e6-f63c0dcadb8b"
+          }
+        ],
+        "false": []
+      },
+      "id": "4079adf5-038a-4e0c-aec9-d8cc54066aa8"
+    },
+    {
       "command": "EVENT_COMMENT",
       "args": {
         "text": "JOKER stuff: manually set joker score to be written as temp scores",
@@ -924,7 +957,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -932,14 +965,10 @@
             "command": "EVENT_IF",
             "args": {
               "condition": {
-                "type": "not",
-                "value": {
-                  "type": "variable",
-                  "value": "123"
-                }
+                "type": "variable",
+                "value": "222"
               },
-              "__collapseElse": false,
-              "__collapse": false
+              "__collapseElse": false
             },
             "children": {
               "true": [
@@ -947,26 +976,75 @@
                   "command": "EVENT_IF",
                   "args": {
                     "condition": {
-                      "type": "eq",
-                      "valueA": {
+                      "type": "not",
+                      "value": {
                         "type": "variable",
-                        "value": "16"
-                      },
-                      "valueB": {
-                        "type": "number",
-                        "value": 0
+                        "value": "123"
                       }
                     },
-                    "__collapseElse": true
+                    "__collapseElse": false,
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
                       {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "eq",
+                            "valueA": {
+                              "type": "variable",
+                              "value": "16"
+                            },
+                            "valueB": {
+                              "type": "number",
+                              "value": 0
+                            }
+                          },
+                          "__collapseElse": true,
+                          "__collapse": true
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_TEXT",
+                              "args": {
+                                "text": [
+                                  "You haven't rolled\nyet! Press B to go  @",
+                                  "back to start the \ngame."
+                                ],
+                                "__section": "text",
+                                "avatarId": "",
+                                "minHeight": 4,
+                                "maxHeight": 7,
+                                "textX": 1,
+                                "textY": 1,
+                                "textHeight": 5,
+                                "position": "bottom",
+                                "clearPrevious": true,
+                                "showFrame": "true",
+                                "speedIn": -1,
+                                "speedOut": -1,
+                                "closeWhen": "key",
+                                "closeButton": "a",
+                                "closeDelayTime": 0.5,
+                                "closeDelayFrames": 30
+                              },
+                              "id": "d6e6355c-bb56-4080-b31c-1a50e8f8a91d"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "94355516-d2bb-4a15-b815-d7869451189f"
+                      }
+                    ],
+                    "false": [
+                      {
                         "command": "EVENT_TEXT",
                         "args": {
                           "text": [
-                            "You haven't rolled\nyet! Press B to go  @",
-                            "back to start the \ngame."
+                            "You have already\nchosen a score for  @",
+                            "this turn. Press B to\nstart your next turn."
                           ],
                           "__section": "text",
                           "avatarId": "",
@@ -985,44 +1063,32 @@
                           "closeDelayTime": 0.5,
                           "closeDelayFrames": 30
                         },
-                        "id": "d6e6355c-bb56-4080-b31c-1a50e8f8a91d"
+                        "id": "9e2388dc-cde2-4ef4-8848-de837f826f81"
                       }
-                    ],
-                    "false": []
+                    ]
                   },
-                  "id": "94355516-d2bb-4a15-b815-d7869451189f"
+                  "id": "8463f0fb-52c6-485b-b451-956f7f6434d6"
                 }
               ],
               "false": [
                 {
-                  "command": "EVENT_TEXT",
+                  "command": "EVENT_COMMENT",
                   "args": {
-                    "text": [
-                      "You have already\nchosen a score for  @",
-                      "this turn. Press B to\nstart your next turn."
-                    ],
-                    "__section": "text",
-                    "avatarId": "",
-                    "minHeight": 4,
-                    "maxHeight": 7,
-                    "textX": 1,
-                    "textY": 1,
-                    "textHeight": 5,
-                    "position": "bottom",
-                    "clearPrevious": true,
-                    "showFrame": "true",
-                    "speedIn": -1,
-                    "speedOut": -1,
-                    "closeWhen": "key",
-                    "closeButton": "a",
-                    "closeDelayTime": 0.5,
-                    "closeDelayFrames": 30
+                    "text": "From endgame summary, so just go back"
                   },
-                  "id": "9e2388dc-cde2-4ef4-8848-de837f826f81"
+                  "id": "3f796d69-96ed-4f37-8e54-b15d8b5e7647"
+                },
+                {
+                  "command": "EVENT_SCENE_POP_STATE",
+                  "args": {
+                    "fadeSpeed": "2",
+                    "__collapse": false
+                  },
+                  "id": "8810bb02-0150-4941-9b5b-fb63f7e9dd55"
                 }
               ]
             },
-            "id": "8463f0fb-52c6-485b-b451-956f7f6434d6"
+            "id": "9192b7d7-a48b-4752-9c9e-a76c09b17d5a"
           }
         ]
       },
@@ -1037,7 +1103,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
