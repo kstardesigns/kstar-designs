@@ -82,7 +82,7 @@
       "command": "EVENT_GROUP",
       "args": {
         "__label": "Set bottom dice to their values",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -1068,6 +1068,47 @@
       "id": "857465d9-f011-467a-933f-c20875cefe05"
     },
     {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "start"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SCENE_PUSH_STATE",
+            "args": {
+              "__collapse": true
+            },
+            "id": "00206557-25a1-4b0a-96e9-2946df078e54"
+          },
+          {
+            "command": "EVENT_SWITCH_SCENE",
+            "args": {
+              "sceneId": "73d567b1-2ace-405d-b54b-2d98a621d362",
+              "x": {
+                "type": "number",
+                "value": 0
+              },
+              "y": {
+                "type": "number",
+                "value": 0
+              },
+              "direction": "",
+              "fadeSpeed": "2",
+              "__collapse": true
+            },
+            "id": "d6437c0d-1f18-40fa-ab5e-992d0e48e807"
+          }
+        ]
+      },
+      "id": "6d77dc98-0728-4ccb-af1b-4a8bc6765b00"
+    },
+    {
       "command": "EVENT_COMMENT",
       "args": {
         "text": "Intentionally fading in before numbers show, so the fade in doesn't take forever. This changes color palette to show the numbers after they're loaded",
@@ -1919,9 +1960,10 @@
       "args": {
         "condition": {
           "type": "expression",
-          "value": "$32$ == 1 && $17$ == 1"
+          "value": "$32$ == 1 && $17$ == 1 && $16$ > 0"
         },
-        "__collapseElse": true
+        "__collapseElse": true,
+        "__collapse": false
       },
       "children": {
         "true": [
