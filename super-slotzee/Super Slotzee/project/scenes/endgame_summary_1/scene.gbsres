@@ -236,7 +236,7 @@
           "value": "220"
         },
         "__collapseElse": true,
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -284,7 +284,7 @@
       "command": "EVENT_ACTOR_DEACTIVATE",
       "args": {
         "actorId": "$self$",
-        "__collapse": false
+        "__collapse": true
       },
       "id": "a406cee2-83b3-42bb-bc48-31305b893d5e"
     },
@@ -293,7 +293,7 @@
       "command": "EVENT_GROUP",
       "args": {
         "__label": "Draw total score",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -594,49 +594,6 @@
       "id": "e8313389-e1fd-425a-a2de-7d80301a1c03"
     },
     {
-      "command": "EVENT_GROUP",
-      "args": {
-        "__label": "Hide/show high score ribbon",
-        "__collapse": true
-      },
-      "children": {
-        "true": [
-          {
-            "command": "EVENT_IF",
-            "args": {
-              "condition": {
-                "type": "variable",
-                "value": "206"
-              },
-              "__collapseElse": false
-            },
-            "children": {
-              "true": [
-                {
-                  "command": "EVENT_ACTOR_ACTIVATE",
-                  "args": {
-                    "actorId": "daf5a586-390b-4d12-9560-46cdc1c38e5b"
-                  },
-                  "id": "c6c1bfec-f012-4da3-a615-e3a3b6eae625"
-                }
-              ],
-              "false": [
-                {
-                  "command": "EVENT_ACTOR_DEACTIVATE",
-                  "args": {
-                    "actorId": "daf5a586-390b-4d12-9560-46cdc1c38e5b"
-                  },
-                  "id": "cb2a0bf5-4d07-492c-bb7a-8a8b11e622b6"
-                }
-              ]
-            },
-            "id": "02ce9f5a-c835-4841-9b39-4c5b732c81dc"
-          }
-        ]
-      },
-      "id": "7efbd4d6-8a95-4cb6-9cbf-d3ce10c3b85c"
-    },
-    {
       "command": "EVENT_COMMENT",
       "args": {
         "text": "tracks if game is currently active for title screen continue/new game",
@@ -728,14 +685,15 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
           {
             "command": "EVENT_COMMENT",
             "args": {
-              "text": "Need to manually keep this A button in sync with Endgame Summary 2. Call Script wouldn't work for reuse here"
+              "text": "Need to manually keep this A button in sync with Endgame Summary 2. Call Script wouldn't work for reuse here",
+              "__collapse": true
             },
             "id": "ab046a9e-7fde-4e41-9736-af0ab0b53a4d"
           },
@@ -909,7 +867,7 @@
               "__collapseCase15": false,
               "value15": 16,
               "__collapseElse": false,
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true0": [
@@ -1020,10 +978,62 @@
         ]
       },
       "id": "965f0161-ad3d-4cb6-8db2-3a9169b8f17d"
+    },
+    {
+      "command": "EVENT_CALL_CUSTOM_EVENT",
+      "args": {
+        "customEventId": "044420d7-40f8-4222-b7d0-8abdcb718d6c",
+        "__collapse": true
+      },
+      "id": "f6b33772-89cc-4981-8e84-ef75ed6d8fe0"
+    },
+    {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Hide/show high score ribbon",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "206"
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_ACTIVATE",
+                  "args": {
+                    "actorId": "daf5a586-390b-4d12-9560-46cdc1c38e5b"
+                  },
+                  "id": "c6c1bfec-f012-4da3-a615-e3a3b6eae625"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_ACTOR_DEACTIVATE",
+                  "args": {
+                    "actorId": "daf5a586-390b-4d12-9560-46cdc1c38e5b"
+                  },
+                  "id": "cb2a0bf5-4d07-492c-bb7a-8a8b11e622b6"
+                }
+              ]
+            },
+            "id": "02ce9f5a-c835-4841-9b39-4c5b732c81dc"
+          }
+        ]
+      },
+      "id": "7efbd4d6-8a95-4cb6-9cbf-d3ce10c3b85c"
     }
   ],
   "playerHit1Script": [],
   "playerHit2Script": [],
   "playerHit3Script": [],
-  "collisions": ""
+  "collisions": "",
+  "autoFadeEventCollapse": true
 }
