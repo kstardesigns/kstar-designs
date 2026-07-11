@@ -9,51 +9,28 @@
   "height": 18,
   "type": "TOPDOWN",
   "paletteIds": [
-    "dmg"
+    "24c71b0f-2daa-4f3f-9b0c-897931536e6d",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    "24c71b0f-2daa-4f3f-9b0c-897931536e6d"
   ],
   "spritePaletteIds": [],
   "collisions": "",
-  "autoFadeSpeed": 1,
+  "autoFadeSpeed": null,
   "symbol": "scene_12",
   "x": 264,
   "y": 600,
   "script": [
     {
-      "command": "EVENT_IF",
-      "args": {
-        "condition": {
-          "type": "eq",
-          "valueA": {
-            "type": "variable",
-            "value": "230"
-          },
-          "valueB": {
-            "type": "number",
-            "value": 0
-          }
-        },
-        "__collapseElse": true
-      },
-      "children": {
-        "true": [
-          {
-            "command": "EVENT_COMMENT",
-            "args": {
-              "text": "need to load high scores",
-              "__collapse": true
-            },
-            "id": "507ab9da-2c19-4f43-966c-b70945ded5ea"
-          }
-        ],
-        "false": []
-      },
-      "id": "c7cf349d-424c-4440-be66-e5af238a40d6"
-    },
-    {
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
-          "b"
+          "b",
+          "a"
         ],
         "override": true,
         "__scriptTabs": "press"
@@ -70,6 +47,129 @@
         ]
       },
       "id": "6d71fdce-0111-49d4-bc62-311e9a598e03"
+    },
+    {
+      "command": "EVENT_FADE_IN",
+      "args": {
+        "speed": "2"
+      },
+      "id": "b742bfa0-f745-4896-ac62-4a346853a6d1"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "eq",
+          "valueA": {
+            "type": "variable",
+            "value": "230"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 0
+          }
+        },
+        "__collapseElse": false,
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Need to load high scores",
+              "__collapse": true
+            },
+            "id": "507ab9da-2c19-4f43-966c-b70945ded5ea"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "230",
+              "variableSource": "230",
+              "saveSlot": 0,
+              "__collapse": false
+            },
+            "id": "c28519c4-e7ad-449b-90e4-38561519e37d"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "If high score 1 is still 0 after loading, then there are no high scores yet",
+              "__collapse": true
+            },
+            "id": "4a738675-a179-4d86-afc5-26af389c4a67"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "230"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 0
+                }
+              },
+              "__collapseElse": false,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_TEXT_DRAW",
+                  "args": {
+                    "text": "use this for \nwhen there\nare no scores yet",
+                    "x": 6,
+                    "y": 5,
+                    "location": "background",
+                    "__collapse": true
+                  },
+                  "id": "f9346ff5-c41f-4e94-ac29-1fb345d82b80"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Load the rest of the variables",
+                    "__collapse": true
+                  },
+                  "id": "56f789b3-96ef-4cac-b092-49b233d47514"
+                },
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "ec0ccd89-2846-4fe0-9e76-609843ca7b35"
+                  },
+                  "id": "8dc83e05-f929-41bd-aeea-c9e18170d489"
+                },
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "fe54d0a8-dd02-43c8-8a0f-78134aef0fa3"
+                  },
+                  "id": "405cb15d-dc70-4d92-8c6d-9b9a3bbd3474"
+                }
+              ]
+            },
+            "id": "44e4bda2-6523-4a29-a2f2-ca4b8f514fec"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "fe54d0a8-dd02-43c8-8a0f-78134aef0fa3"
+            },
+            "id": "02ea9fc2-c89a-4316-bceb-885f1a5fbd2c"
+          }
+        ]
+      },
+      "id": "c7cf349d-424c-4440-be66-e5af238a40d6"
     }
   ],
   "playerHit1Script": [],
