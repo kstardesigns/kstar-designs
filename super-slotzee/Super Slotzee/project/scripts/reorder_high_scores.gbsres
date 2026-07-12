@@ -11,7 +11,8 @@
       "command": "EVENT_GROUP",
       "args": {
         "__label": "manual variables for testing",
-        "__comment": true
+        "__comment": true,
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -115,59 +116,6 @@
       "id": "39aff015-4ddc-444f-958b-dd47768a1cb3"
     },
     {
-      "command": "EVENT_TEXT",
-      "args": {
-        "text": [
-          "this game:\n$115$"
-        ],
-        "__section": "text",
-        "avatarId": "",
-        "minHeight": 4,
-        "maxHeight": 7,
-        "textX": 1,
-        "textY": 1,
-        "textHeight": 5,
-        "position": "bottom",
-        "clearPrevious": true,
-        "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
-        "closeButton": "a",
-        "closeDelayTime": 0.5,
-        "closeDelayFrames": 30,
-        "__comment": true
-      },
-      "id": "199f16ba-5ea8-4202-8522-2ecc43004fff"
-    },
-    {
-      "command": "EVENT_TEXT",
-      "args": {
-        "text": [
-          "before reorder:\n1. $230$\n2. $236$\n3. $237$\n4. $238$",
-          "5. $239$\n6. $240$\n7. $241$"
-        ],
-        "__section": "text",
-        "avatarId": "",
-        "minHeight": 4,
-        "maxHeight": 7,
-        "textX": 1,
-        "textY": 1,
-        "textHeight": 5,
-        "position": "bottom",
-        "clearPrevious": true,
-        "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
-        "closeButton": "a",
-        "closeDelayTime": 0.5,
-        "closeDelayFrames": 30,
-        "__comment": true
-      },
-      "id": "e257f934-8c4e-4854-9091-6a2b6c7cf20b"
-    },
-    {
       "command": "EVENT_COMMENT",
       "args": {
         "text": "Check if on high score list at all before checking for specifics",
@@ -211,10 +159,21 @@
                 {
                   "command": "EVENT_COMMENT",
                   "args": {
-                    "text": "If on high score list, check which one",
-                    "__collapse": true
+                    "text": "If on high score list, check which one. Also set new_high_score to true to show ribbon on endgame summary",
+                    "__collapse": false
                   },
                   "id": "b8fd2f80-712e-4344-b9a4-c9c27ecf209d"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "206",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "db06ca08-772f-4b76-bac3-a50521335b29"
                 },
                 {
                   "command": "EVENT_IF",
@@ -231,7 +190,7 @@
                       }
                     },
                     "__collapseElse": false,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -582,17 +541,6 @@
                           "__collapse": true
                         },
                         "id": "28180890-7e4f-4fce-a60d-bef407791a9c"
-                      },
-                      {
-                        "command": "EVENT_SET_VALUE",
-                        "args": {
-                          "variable": "206",
-                          "value": {
-                            "type": "true"
-                          },
-                          "__collapse": true
-                        },
-                        "id": "3ceb1475-a1bd-4524-b43e-6ae3ace0349f"
                       }
                     ],
                     "false": [
@@ -887,7 +835,7 @@
                                   "type": "number",
                                   "value": 0
                                 },
-                                "__collapse": false
+                                "__collapse": true
                               },
                               "id": "374984c1-aee8-42d6-85bb-a9d16f745e69"
                             },
@@ -1855,33 +1803,6 @@
         "false": []
       },
       "id": "164531e9-7a03-4e78-ac00-a21a335d6344"
-    },
-    {
-      "command": "EVENT_TEXT",
-      "args": {
-        "text": [
-          "high scores:\n1. $230$\n2. $236$\n3. $237$\n4. $238$",
-          "5. $239$\n6. $240$\n7. $241$"
-        ],
-        "__section": "text",
-        "avatarId": "",
-        "minHeight": 4,
-        "maxHeight": 7,
-        "textX": 1,
-        "textY": 1,
-        "textHeight": 5,
-        "position": "bottom",
-        "clearPrevious": true,
-        "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
-        "closeButton": "a",
-        "closeDelayTime": 0.5,
-        "closeDelayFrames": 30,
-        "__comment": true
-      },
-      "id": "4bdc210a-7c1d-4f0c-bb58-a3a01994abc4"
     }
   ]
 }

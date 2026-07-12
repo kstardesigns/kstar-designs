@@ -30,7 +30,7 @@
         "variableDest": "222",
         "variableSource": "222",
         "saveSlot": 0,
-        "__collapse": false
+        "__collapse": true
       },
       "id": "42f43c47-fc68-4376-98aa-0776db425d56"
     },
@@ -40,54 +40,9 @@
         "variableDest": "32",
         "variableSource": "32",
         "saveSlot": 0,
-        "__collapse": false
+        "__collapse": true
       },
       "id": "784b1f92-46f0-4e91-b950-dbc6eab942d6"
-    },
-    {
-      "id": "e0bdec76-c793-4694-a986-59444818e535",
-      "command": "EVENT_GROUP",
-      "args": {
-        "__label": "DEBUG continue turn and pts",
-        "__collapse": false,
-        "__comment": true
-      },
-      "children": {
-        "true": [
-          {
-            "command": "EVENT_SET_VALUE",
-            "args": {
-              "variable": "222",
-              "value": {
-                "type": "true"
-              },
-              "__collapse": true,
-              "__comment": false
-            },
-            "id": "2debe483-6e6f-4c45-b804-3d9e3daa22d4"
-          },
-          {
-            "command": "EVENT_SET_VALUE",
-            "args": {
-              "variable": "17",
-              "value": {
-                "type": "number",
-                "value": 13
-              },
-              "__comment": false,
-              "__collapse": false
-            },
-            "id": "d0e433ba-24a1-408d-ba7a-8341f89654d6"
-          },
-          {
-            "command": "EVENT_COMMENT",
-            "args": {
-              "text": "also disable \"Store variable from game data in variable\" (turn_number) below"
-            },
-            "id": "333fac9b-b43c-4a69-8ab2-68e4f6054663"
-          }
-        ]
-      }
     },
     {
       "command": "EVENT_IF",
@@ -97,7 +52,8 @@
           "value": "222"
         },
         "__collapseElse": true,
-        "__collapse": true
+        "__collapse": true,
+        "__label": "(If) game_active, show turns and current score"
       },
       "children": {
         "true": [
@@ -580,6 +536,14 @@
       },
       "children": {
         "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "This will later to be changed to happen after leaving screen for 20-30 seconds",
+              "__collapse": true
+            },
+            "id": "78ce08e5-f5a5-487c-8771-be1b8f1a8d2a"
+          },
           {
             "command": "EVENT_SCENE_PUSH_STATE",
             "args": {},
