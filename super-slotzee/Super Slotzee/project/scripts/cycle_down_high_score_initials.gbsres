@@ -1,0 +1,58 @@
+{
+  "_resourceType": "script",
+  "id": "7ee064b7-d7ec-442c-9a22-a400a9f846f2",
+  "name": "Cycle down high score initials",
+  "description": "This is reused a lot for each initial you can cycle through when entering high scores",
+  "variables": {
+    "V0": {
+      "id": "V0",
+      "name": "initial_to_decrement",
+      "passByReference": true
+    }
+  },
+  "actors": {},
+  "symbol": "script_55",
+  "script": [
+    {
+      "command": "EVENT_DEC_VALUE",
+      "args": {
+        "variable": "V0"
+      },
+      "id": "68a06a93-628b-4c19-9877-4767306393a1"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "eq",
+          "valueA": {
+            "type": "variable",
+            "value": "V0"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 0
+          }
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "V0",
+              "value": {
+                "type": "number",
+                "value": 26
+              }
+            },
+            "id": "ca2501e9-3f6c-458c-bb70-32a9631ff71f"
+          }
+        ],
+        "false": []
+      },
+      "id": "beb7ffbc-fe3b-4387-b3e0-d56c24a0900a"
+    }
+  ]
+}
