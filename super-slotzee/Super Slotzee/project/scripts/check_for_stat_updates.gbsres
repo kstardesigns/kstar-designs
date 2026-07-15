@@ -1,0 +1,40 @@
+{
+  "_resourceType": "script",
+  "id": "69c00e7a-1e97-4b6e-ab72-ec6a042b5045",
+  "name": "Check for stat updates",
+  "description": "Called when a game ends on either endgame summary or when quitting early on title screen by starting a new game while one is in progress",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_57",
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$115$ < $267$ || $267$ == 0"
+        },
+        "__collapseElse": true,
+        "__label": "(If) update lowest score"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "267",
+              "value": {
+                "type": "variable",
+                "value": "115"
+              },
+              "__collapse": true
+            },
+            "id": "e8efbfc5-2e93-4dbc-a92f-643abba0f35f"
+          }
+        ],
+        "false": []
+      },
+      "id": "8437cb11-5673-41a3-bc28-f1a198059440"
+    }
+  ]
+}
