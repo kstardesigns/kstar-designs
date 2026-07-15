@@ -2,12 +2,16 @@
   "_resourceType": "scene",
   "id": "cb80a93a-7d95-4300-ac78-5e3a8936f14a",
   "_index": 17,
+  "type": "TOPDOWN",
   "name": "Stats",
-  "backgroundId": "f59a96c6-2ce4-432a-952a-2dbe69348181",
-  "tilesetId": "",
+  "symbol": "scene_18",
+  "labelColor": "yellow",
+  "x": 1248,
+  "y": 336,
   "width": 20,
   "height": 36,
-  "type": "TOPDOWN",
+  "backgroundId": "f59a96c6-2ce4-432a-952a-2dbe69348181",
+  "tilesetId": "",
   "paletteIds": [
     "dmg",
     "0cef988f-3d9f-40f6-833d-d577f67f135d",
@@ -17,14 +21,11 @@
     "e7a1d42c-a198-45d4-8561-276e1e0aacf5"
   ],
   "spritePaletteIds": [
-    null,
+    "",
     "6cc1d70f-2917-46be-9b51-eb1c2ebb74f8"
   ],
-  "collisions": "002d0+",
-  "autoFadeSpeed": 1,
-  "symbol": "scene_18",
-  "x": 1248,
-  "y": 336,
+  "autoFadeSpeed": null,
+  "playerSpriteSheetId": "820764ac-2cc4-4708-89c9-14f344c81f80",
   "script": [
     {
       "command": "EVENT_ACTOR_DEACTIVATE",
@@ -56,7 +57,8 @@
         "y": {
           "type": "variable",
           "value": "L0"
-        }
+        },
+        "__collapse": true
       },
       "id": "0ed66ab4-c6b5-427c-84d3-031315b7057e"
     },
@@ -90,7 +92,8 @@
           "up"
         ],
         "override": true,
-        "__scriptTabs": "press"
+        "__scriptTabs": "press",
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -154,7 +157,8 @@
           "down"
         ],
         "override": true,
-        "__scriptTabs": "press"
+        "__scriptTabs": "press",
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -210,11 +214,68 @@
         ]
       },
       "id": "fdc5aab1-10c2-4b31-bf2b-446ada1f0ed7"
+    },
+    {
+      "command": "EVENT_FADE_IN",
+      "args": {
+        "speed": "2"
+      },
+      "id": "5693f1a5-e914-484c-b3c4-9c6bca1d2d44"
+    },
+    {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Draw stats to page"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "6ba6706f-6991-44eb-9af7-1bed77d232a0",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "266"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 14
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 3
+              },
+              "__label": "(Script) Games played"
+            },
+            "id": "bfa01183-dc91-4906-b345-09b138e3db89"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "6ba6706f-6991-44eb-9af7-1bed77d232a0",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "230"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 12
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 5
+              },
+              "__label": "(Script) High score"
+            },
+            "id": "513c2961-4b3a-4825-abdc-ab6530115a0b"
+          }
+        ]
+      },
+      "id": "c9894f41-92f3-462f-803a-68565022cc05"
     }
   ],
   "playerHit1Script": [],
   "playerHit2Script": [],
   "playerHit3Script": [],
-  "labelColor": "yellow",
-  "playerSpriteSheetId": "820764ac-2cc4-4708-89c9-14f344c81f80"
+  "collisions": "002d0+"
 }

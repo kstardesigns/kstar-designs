@@ -1,0 +1,102 @@
+{
+  "_resourceType": "script",
+  "id": "5fc88111-eaac-4b12-94c4-947394727ad9",
+  "name": "Load settings and high scores and stats",
+  "description": "",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_13",
+  "script": [
+    {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Load game settings",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "67",
+              "variableSource": "67",
+              "saveSlot": 0,
+              "__collapse": false
+            },
+            "id": "66460351-a0e7-4f19-94db-7ea48938be6f"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "119",
+              "variableSource": "119",
+              "saveSlot": 0,
+              "__collapse": false
+            },
+            "id": "d3c5d656-9669-4eaf-9f38-412f42f90585"
+          }
+        ]
+      },
+      "id": "64e9d5b3-7eb3-4f9a-b36d-3d35330f8895"
+    },
+    {
+      "command": "EVENT_CALL_CUSTOM_EVENT",
+      "args": {
+        "customEventId": "ec0ccd89-2846-4fe0-9e76-609843ca7b35",
+        "__collapse": true
+      },
+      "id": "973e0525-bd46-4f63-b5a4-981075fd6b80"
+    },
+    {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Load and calc stats",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "222"
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "266",
+                    "value": {
+                      "type": "expression",
+                      "value": "$32$ - 1"
+                    }
+                  },
+                  "id": "16b763d0-9d29-4912-8568-958fdd538a82"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "266",
+                    "value": {
+                      "type": "variable",
+                      "value": "32"
+                    }
+                  },
+                  "id": "4b381dc0-65f8-4503-a6ac-8d3539bfc97b"
+                }
+              ]
+            },
+            "id": "1548e1f7-2edf-46bc-9d8d-19b18c9b2730"
+          }
+        ]
+      },
+      "id": "b3c2651a-f403-424d-b131-69e93c5056a4"
+    }
+  ]
+}
