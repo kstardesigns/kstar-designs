@@ -43,9 +43,110 @@
         "value": {
           "type": "expression",
           "value": "$268$ + $115$"
-        }
+        },
+        "__label": "update running total score"
       },
       "id": "672708d6-3332-47d9-b0c6-042f86afc0c9"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gte",
+          "valueA": {
+            "type": "variable",
+            "value": "42"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 1
+          }
+        },
+        "__collapseElse": false,
+        "__collapse": false,
+        "__label": "(If) update running yotzee count"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "1 represents the initial 50/100 yotzee to get total count",
+              "__collapse": true
+            },
+            "id": "d6313548-0b0c-4ec1-9871-bf8dd66a093a"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "270",
+              "value": {
+                "type": "expression",
+                "value": "$270$ + 1 + $42$"
+              },
+              "__label": "update running total yotzees",
+              "__collapse": false
+            },
+            "id": "7106d6fe-00e5-4567-a2e1-089ceccd81a0"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "gte",
+                "valueA": {
+                  "type": "variable",
+                  "value": "41"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 50
+                }
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "1 represents the 50/100 yotzee for the lone yotzee",
+                    "__collapse": false
+                  },
+                  "id": "2a14baae-367a-49f3-aeac-6033c3158fb7"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "270",
+                    "value": {
+                      "type": "expression",
+                      "value": "$270$ + 1"
+                    },
+                    "__label": "update running total yotzees",
+                    "__collapse": false
+                  },
+                  "id": "ae564009-c3db-4294-a088-2f344c56b986"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "No need to update running total if it didn't change",
+                    "__collapse": true
+                  },
+                  "id": "be1975c5-d2b7-4889-b958-81558fe3041a"
+                }
+              ]
+            },
+            "id": "460324f8-5926-47da-9031-80f3c1a9c18b"
+          }
+        ]
+      },
+      "id": "d9de7ff5-c3ca-42fc-a39c-ddba202fc399"
     }
   ]
 }
