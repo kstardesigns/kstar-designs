@@ -64,7 +64,7 @@
         },
         "__collapseElse": false,
         "__collapse": false,
-        "__label": "(If) update running yotzee count"
+        "__label": "(If) update running yotzee count / most yotzees in a game"
       },
       "children": {
         "true": [
@@ -88,6 +88,40 @@
               "__collapse": false
             },
             "id": "7106d6fe-00e5-4567-a2e1-089ceccd81a0"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "gt",
+                "valueA": {
+                  "type": "expression",
+                  "value": "1 + $42$"
+                },
+                "valueB": {
+                  "type": "variable",
+                  "value": "271"
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "271",
+                    "value": {
+                      "type": "expression",
+                      "value": "1 + $42$"
+                    }
+                  },
+                  "id": "1c6d2e53-ad1d-46b2-aac5-5fa0075e9a1b"
+                }
+              ],
+              "false": []
+            },
+            "id": "6fa1a12a-eb5e-497d-9674-17f374b5a559"
           }
         ],
         "false": [
@@ -129,6 +163,40 @@
                     "__collapse": false
                   },
                   "id": "ae564009-c3db-4294-a088-2f344c56b986"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "gt",
+                      "valueA": {
+                        "type": "expression",
+                        "value": "1"
+                      },
+                      "valueB": {
+                        "type": "variable",
+                        "value": "271"
+                      }
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "271",
+                          "value": {
+                            "type": "expression",
+                            "value": "1"
+                          }
+                        },
+                        "id": "01785578-0d11-4513-a08f-6b2447e33948"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "dae9ba89-794f-4bc3-a531-fa0816cbe197"
                 }
               ],
               "false": [
@@ -139,6 +207,14 @@
                     "__collapse": true
                   },
                   "id": "be1975c5-d2b7-4889-b958-81558fe3041a"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "No need to check most yotzees if at 0",
+                    "__collapse": true
+                  },
+                  "id": "97a105df-014a-44a9-81c5-46888135c577"
                 }
               ]
             },
