@@ -65,7 +65,7 @@
           }
         },
         "__collapseElse": false,
-        "__collapse": false,
+        "__collapse": true,
         "__label": "(If) update running yotzee count / most yotzees in a game"
       },
       "children": {
@@ -234,7 +234,8 @@
           "type": "expression",
           "value": "$272$ + $62$ + $49$ + $53$ + $64$"
         },
-        "__label": "update running total slot wins"
+        "__label": "update running total slot wins",
+        "__collapse": true
       },
       "id": "262b0284-48a6-4875-9efd-12cff02b3d4f"
     },
@@ -252,7 +253,8 @@
             "value": "273"
           }
         },
-        "__collapseElse": true
+        "__collapseElse": true,
+        "__label": "(If) update most slot wins in a game"
       },
       "children": {
         "true": [
@@ -271,6 +273,53 @@
         "false": []
       },
       "id": "7b5da53e-7933-4eb8-9d82-7571caf9016e"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "274",
+        "value": {
+          "type": "expression",
+          "value": "$274$ + $173$ + $172$ + $169$ + $171$ + $170$ + $168$"
+        },
+        "__label": "update running total tokens used"
+      },
+      "id": "3e7e9505-f6c8-4773-b678-3889397233ae"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gt",
+          "valueA": {
+            "type": "expression",
+            "value": "($173$ + $172$ + $169$ + $171$ + $170$ + $168$)"
+          },
+          "valueB": {
+            "type": "variable",
+            "value": "275"
+          }
+        },
+        "__collapseElse": true,
+        "__label": "(If) update most tokens used in a game"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "275",
+              "value": {
+                "type": "expression",
+                "value": "($173$ + $172$ + $169$ + $171$ + $170$ + $168$)"
+              }
+            },
+            "id": "25465561-17ca-44b9-ab2d-7b668e6ecf16"
+          }
+        ],
+        "false": []
+      },
+      "id": "182b8494-99dc-4e2c-8736-59fac529c068"
     }
   ]
 }
