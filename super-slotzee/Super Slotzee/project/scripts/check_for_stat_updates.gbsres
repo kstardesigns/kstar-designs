@@ -65,7 +65,7 @@
           }
         },
         "__collapseElse": false,
-        "__collapse": true,
+        "__collapse": false,
         "__label": "(If) update running yotzee count / most yotzees in a game"
       },
       "children": {
@@ -233,9 +233,44 @@
         "value": {
           "type": "expression",
           "value": "$272$ + $62$ + $49$ + $53$ + $64$"
-        }
+        },
+        "__label": "update running total slot wins"
       },
       "id": "262b0284-48a6-4875-9efd-12cff02b3d4f"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gt",
+          "valueA": {
+            "type": "expression",
+            "value": "($62$ + $49$ + $53$ + $64$)"
+          },
+          "valueB": {
+            "type": "variable",
+            "value": "273"
+          }
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "273",
+              "value": {
+                "type": "expression",
+                "value": "($62$ + $49$ + $53$ + $64$)"
+              }
+            },
+            "id": "2cdd6ad8-6a69-4003-8cd5-5c9069d13fbc"
+          }
+        ],
+        "false": []
+      },
+      "id": "7b5da53e-7933-4eb8-9d82-7571caf9016e"
     }
   ]
 }
