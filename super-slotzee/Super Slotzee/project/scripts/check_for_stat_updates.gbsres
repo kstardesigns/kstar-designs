@@ -379,14 +379,16 @@
           }
         },
         "__collapseElse": false,
-        "__label": "(If) update 300 streak"
+        "__label": "(If) update 300 streak",
+        "__collapse": true
       },
       "children": {
         "true": [
           {
             "command": "EVENT_INC_VALUE",
             "args": {
-              "variable": "284"
+              "variable": "284",
+              "__collapse": true
             },
             "id": "ec1f2d9a-90db-4ca9-8518-6f85c1251d2e"
           },
@@ -404,7 +406,8 @@
                   "value": "281"
                 }
               },
-              "__collapseElse": true
+              "__collapseElse": true,
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -456,7 +459,8 @@
           }
         },
         "__collapseElse": false,
-        "__label": "(If) update 500 streak"
+        "__label": "(If) update 500 streak",
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -517,6 +521,166 @@
         ]
       },
       "id": "c5d251bc-96de-44c2-813b-54fcc52947d9"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gte",
+          "valueA": {
+            "type": "variable",
+            "value": "41"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 50
+          }
+        },
+        "__collapseElse": false,
+        "__label": "(If) update yotzee streak",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_INC_VALUE",
+            "args": {
+              "variable": "286",
+              "__collapse": false
+            },
+            "id": "be103014-175d-4839-bb8f-308eed04ab45"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "gt",
+                "valueA": {
+                  "type": "variable",
+                  "value": "286"
+                },
+                "valueB": {
+                  "type": "variable",
+                  "value": "283"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "283",
+                    "value": {
+                      "type": "variable",
+                      "value": "286"
+                    }
+                  },
+                  "id": "2498184d-386a-4179-8d3d-d168e84c420d"
+                }
+              ],
+              "false": []
+            },
+            "id": "74997b73-2d1a-4118-bfba-ea760c8f640a"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "286",
+              "value": {
+                "type": "number",
+                "value": 0
+              }
+            },
+            "id": "411b36c0-9f6b-44e9-87a7-c32cad7a7017"
+          }
+        ]
+      },
+      "id": "1f4d6b0a-eb4d-4ca4-87a5-4bdba2d06d38"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "eq",
+          "valueA": {
+            "type": "variable",
+            "value": "120"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 35
+          }
+        },
+        "__collapseElse": false,
+        "__label": "(If) update top bonus streak",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_INC_VALUE",
+            "args": {
+              "variable": "287",
+              "__collapse": false
+            },
+            "id": "f6e9db3b-6ba1-4a50-9106-c892b95a401e"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "gt",
+                "valueA": {
+                  "type": "variable",
+                  "value": "287"
+                },
+                "valueB": {
+                  "type": "variable",
+                  "value": "288"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "288",
+                    "value": {
+                      "type": "variable",
+                      "value": "287"
+                    }
+                  },
+                  "id": "c25cf438-b2f4-4653-9c8d-cf1bb5596d42"
+                }
+              ],
+              "false": []
+            },
+            "id": "7b9125f4-5956-4542-bdcd-9353c4647757"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "287",
+              "value": {
+                "type": "number",
+                "value": 0
+              }
+            },
+            "id": "1a5bd0e7-3a30-4ab2-8873-73ece647f834"
+          }
+        ]
+      },
+      "id": "041d76b4-f57a-4edd-b792-7a4a8e9e21fa"
     }
   ]
 }
