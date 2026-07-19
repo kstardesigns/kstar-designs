@@ -52,16 +52,26 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
           {
-            "command": "EVENT_SCENE_POP_STATE",
+            "command": "EVENT_SWITCH_SCENE",
             "args": {
+              "sceneId": "e4e90a7f-3caa-435a-bd3c-b38e152d95ef",
+              "x": {
+                "type": "number",
+                "value": 5
+              },
+              "y": {
+                "type": "number",
+                "value": 9
+              },
+              "direction": "",
               "fadeSpeed": "2"
             },
-            "id": "55daf8a5-be2d-4c2c-9e6f-b492f44ca903"
+            "id": "225aa3cf-7136-4681-ba10-95699694a7fe"
           }
         ]
       },
@@ -399,7 +409,8 @@
     {
       "command": "EVENT_CALL_CUSTOM_EVENT",
       "args": {
-        "customEventId": "fe54d0a8-dd02-43c8-8a0f-78134aef0fa3"
+        "customEventId": "fe54d0a8-dd02-43c8-8a0f-78134aef0fa3",
+        "__collapse": true
       },
       "id": "02ea9fc2-c89a-4316-bceb-885f1a5fbd2c"
     },
@@ -439,6 +450,7 @@
             "command": "EVENT_TEXT",
             "args": {
               "text": [
+                "You got a new high \nscore!  @",
                 "Enter your initials."
               ],
               "__section": "text",
@@ -457,7 +469,7 @@
               "closeButton": "a",
               "closeDelayTime": 0.5,
               "closeDelayFrames": 30,
-              "__collapse": true,
+              "__collapse": false,
               "__comment": false
             },
             "id": "0d1f2c62-fc2c-4144-badc-86ebaa66774e"
@@ -477,19 +489,19 @@
             "args": {
               "variable": "262",
               "choices": 7,
-              "__collapseCase0": false,
+              "__collapseCase0": true,
               "value0": 1,
-              "__collapseCase1": false,
+              "__collapseCase1": true,
               "value1": 2,
-              "__collapseCase2": false,
+              "__collapseCase2": true,
               "value2": 3,
-              "__collapseCase3": false,
+              "__collapseCase3": true,
               "value3": 4,
-              "__collapseCase4": false,
+              "__collapseCase4": true,
               "value4": 5,
-              "__collapseCase5": false,
+              "__collapseCase5": true,
               "value5": 6,
-              "__collapseCase6": false,
+              "__collapseCase6": true,
               "value6": 7,
               "__collapseCase7": false,
               "value7": 8,
@@ -3814,32 +3826,82 @@
                         "id": "b14aeb7f-0cf1-405a-95e8-63f02b2fc9f7"
                       },
                       {
-                        "command": "EVENT_SET_VALUE",
+                        "command": "EVENT_SAVE_DATA",
                         "args": {
-                          "variable": "220",
-                          "value": {
-                            "type": "true"
-                          },
-                          "__collapse": true
+                          "saveSlot": 0,
+                          "__scriptTabs": "save"
                         },
-                        "id": "e0f0c8cb-53be-4c87-8c91-2db6cbc619d5"
+                        "children": {
+                          "true": [],
+                          "load": []
+                        },
+                        "id": "4a52642e-dfc3-4f0a-b0e9-6463590ca11e"
                       },
                       {
                         "command": "EVENT_WAIT",
                         "args": {
                           "time": 0.5,
                           "frames": 30,
-                          "__collapse": true
+                          "__collapse": true,
+                          "__comment": false
                         },
                         "id": "1ce67727-e884-4195-9dbf-c4ada274eef1"
                       },
                       {
-                        "command": "EVENT_SCENE_POP_STATE",
+                        "command": "EVENT_IF",
                         "args": {
-                          "fadeSpeed": "2",
-                          "__collapse": true
+                          "condition": {
+                            "type": "variable",
+                            "value": "292"
+                          },
+                          "__collapseElse": false
                         },
-                        "id": "56f3cf28-f0b1-49ab-8158-1d7c0546fff9"
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_RNG_SEED",
+                              "args": {},
+                              "id": "4c2ffe18-36ef-4a10-81ba-123b1db228d7"
+                            },
+                            {
+                              "command": "EVENT_SWITCH_SCENE",
+                              "args": {
+                                "sceneId": "e5d970c7-6555-447f-a475-89cf6e9969b7",
+                                "x": {
+                                  "type": "number",
+                                  "value": 4
+                                },
+                                "y": {
+                                  "type": "number",
+                                  "value": 9
+                                },
+                                "direction": "",
+                                "fadeSpeed": "2"
+                              },
+                              "id": "27e144fd-d25d-427a-973b-2b5231323f5e"
+                            }
+                          ],
+                          "false": [
+                            {
+                              "command": "EVENT_SWITCH_SCENE",
+                              "args": {
+                                "sceneId": "e4e90a7f-3caa-435a-bd3c-b38e152d95ef",
+                                "x": {
+                                  "type": "number",
+                                  "value": 5
+                                },
+                                "y": {
+                                  "type": "number",
+                                  "value": 9
+                                },
+                                "direction": "",
+                                "fadeSpeed": "2"
+                              },
+                              "id": "54fbd374-0b7e-4f36-85bb-12dbb89a692d"
+                            }
+                          ]
+                        },
+                        "id": "37dda437-4886-4e7c-b0fa-e08ec7eb76d2"
                       }
                     ],
                     "false": [
