@@ -11,12 +11,46 @@
       "command": "EVENT_IF",
       "args": {
         "condition": {
+          "type": "gt",
+          "valueA": {
+            "type": "variable",
+            "value": "115"
+          },
+          "valueB": {
+            "type": "variable",
+            "value": "291"
+          }
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "291",
+              "value": {
+                "type": "variable",
+                "value": "115"
+              }
+            },
+            "id": "f2515839-457c-4499-bcc0-0b2072406b82"
+          }
+        ],
+        "false": []
+      },
+      "id": "1b3fd6f3-a841-435b-8e21-02450c320644"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
           "type": "expression",
           "value": "$115$ < $267$ || $267$ == 0"
         },
         "__collapseElse": true,
         "__label": "(If) update lowest score",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -357,12 +391,39 @@
       "id": "2072912e-f35d-4f1f-875e-02a0c99e31d8"
     },
     {
-      "command": "EVENT_COMMENT",
+      "id": "d39398fc-490c-409a-a10f-370b86317437",
+      "command": "EVENT_GROUP",
       "args": {
-        "text": "double down updates happen in double down scene",
-        "__collapse": true
+        "__label": "update double down wins and plays"
       },
-      "id": "e4683e02-0728-4db1-983d-279f80e9a4a9"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "279",
+              "value": {
+                "type": "expression",
+                "value": "$279$ + $290$"
+              },
+              "__collapse": true
+            },
+            "id": "67ba0fe5-b925-41c1-b194-db07c4607766"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "278",
+              "value": {
+                "type": "expression",
+                "value": "$278$ + $289$"
+              },
+              "__collapse": true
+            },
+            "id": "f4381284-8875-448f-93f9-5b87ec1037c3"
+          }
+        ]
+      }
     },
     {
       "command": "EVENT_IF",
@@ -538,7 +599,7 @@
         },
         "__collapseElse": false,
         "__label": "(If) update yotzee streak",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [

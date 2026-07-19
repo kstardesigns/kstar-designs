@@ -229,58 +229,6 @@
       "id": "4bb1385b-a75a-4d57-8990-cc3bed8e7075"
     },
     {
-      "command": "EVENT_IF",
-      "args": {
-        "condition": {
-          "type": "variable",
-          "value": "220"
-        },
-        "__collapseElse": true,
-        "__collapse": true
-      },
-      "children": {
-        "true": [
-          {
-            "command": "EVENT_THREAD_START",
-            "args": {
-              "variable": "L1",
-              "__scriptTabs": "true"
-            },
-            "children": {
-              "true": [
-                {
-                  "command": "EVENT_SET_VALUE",
-                  "args": {
-                    "variable": "220",
-                    "value": {
-                      "type": "false"
-                    }
-                  },
-                  "id": "fe5569d8-b646-4501-b51f-af919da9a0e4"
-                },
-                {
-                  "command": "EVENT_SAVE_DATA",
-                  "args": {
-                    "saveSlot": 0,
-                    "__scriptTabs": "save",
-                    "__comment": false
-                  },
-                  "children": {
-                    "true": [],
-                    "load": []
-                  },
-                  "id": "2dfbaa3f-875a-4fbb-8163-9b6f30d13667"
-                }
-              ]
-            },
-            "id": "3f56362f-4ba0-4016-8fbe-931727a2cdf0"
-          }
-        ],
-        "false": []
-      },
-      "id": "acf6c2dc-843e-4b65-80fa-5595a1bd4822"
-    },
-    {
       "command": "EVENT_ACTOR_DEACTIVATE",
       "args": {
         "actorId": "$self$",
@@ -373,7 +321,7 @@
           }
         },
         "__collapseElse": false,
-        "__collapse": false,
+        "__collapse": true,
         "__label": "(If) Draw bonus check or X"
       },
       "children": {
@@ -439,7 +387,7 @@
           }
         },
         "__collapseElse": false,
-        "__collapse": false,
+        "__collapse": true,
         "__label": "(If) Draw Yotzee count"
       },
       "children": {
@@ -574,7 +522,7 @@
       "command": "EVENT_GROUP",
       "args": {
         "__label": "Draw tokens used",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -988,6 +936,58 @@
       "id": "965f0161-ad3d-4cb6-8db2-3a9169b8f17d"
     },
     {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "220"
+        },
+        "__collapseElse": true,
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_THREAD_START",
+            "args": {
+              "variable": "L1",
+              "__scriptTabs": "true"
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "220",
+                    "value": {
+                      "type": "false"
+                    }
+                  },
+                  "id": "fe5569d8-b646-4501-b51f-af919da9a0e4"
+                },
+                {
+                  "command": "EVENT_SAVE_DATA",
+                  "args": {
+                    "saveSlot": 0,
+                    "__scriptTabs": "save",
+                    "__comment": false
+                  },
+                  "children": {
+                    "true": [],
+                    "load": []
+                  },
+                  "id": "2dfbaa3f-875a-4fbb-8163-9b6f30d13667"
+                }
+              ]
+            },
+            "id": "3f56362f-4ba0-4016-8fbe-931727a2cdf0"
+          }
+        ],
+        "false": []
+      },
+      "id": "acf6c2dc-843e-4b65-80fa-5595a1bd4822"
+    },
+    {
       "command": "EVENT_CALL_CUSTOM_EVENT",
       "args": {
         "customEventId": "044420d7-40f8-4222-b7d0-8abdcb718d6c",
@@ -1002,6 +1002,42 @@
         "__collapse": true
       },
       "id": "c4b5d24f-00b2-4297-8220-77a61e3b6df1"
+    },
+    {
+      "command": "EVENT_THREAD_START",
+      "args": {
+        "variable": "L1",
+        "__scriptTabs": "true"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "220",
+              "value": {
+                "type": "false"
+              },
+              "__comment": false
+            },
+            "id": "d5011310-5a42-447c-9fa4-8fd1716d898d"
+          },
+          {
+            "command": "EVENT_SAVE_DATA",
+            "args": {
+              "saveSlot": 0,
+              "__scriptTabs": "save",
+              "__comment": false
+            },
+            "children": {
+              "true": [],
+              "load": []
+            },
+            "id": "da682bed-95d3-4500-8c92-dd3a16fa289f"
+          }
+        ]
+      },
+      "id": "b033a70a-d977-460d-bc22-9cf4630b0f0e"
     },
     {
       "command": "EVENT_IF",
