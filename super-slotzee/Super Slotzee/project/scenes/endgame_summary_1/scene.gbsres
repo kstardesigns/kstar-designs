@@ -23,7 +23,7 @@
     "9fcb5064-c312-44bc-93cc-fb93df58005f"
   ],
   "spritePaletteIds": [
-    null,
+    "",
     "6cc1d70f-2917-46be-9b51-eb1c2ebb74f8",
     "969f92f3-84fd-4572-ad2a-725ef8091b23",
     "9546e1fa-fe6e-4464-a919-ff1992507f9a",
@@ -31,6 +31,7 @@
     ""
   ],
   "autoFadeSpeed": null,
+  "autoFadeEventCollapse": true,
   "script": [
     {
       "command": "EVENT_GROUP",
@@ -656,7 +657,7 @@
           "value": "220"
         },
         "__collapseElse": true,
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -709,38 +710,68 @@
       "id": "f6b33772-89cc-4981-8e84-ef75ed6d8fe0"
     },
     {
-      "command": "EVENT_CALL_CUSTOM_EVENT",
+      "command": "EVENT_IF",
       "args": {
-        "customEventId": "69c00e7a-1e97-4b6e-ab72-ec6a042b5045",
-        "__collapse": true
-      },
-      "id": "c4b5d24f-00b2-4297-8220-77a61e3b6df1"
-    },
-    {
-      "command": "EVENT_THREAD_START",
-      "args": {
-        "variable": "L1",
-        "__scriptTabs": "true",
-        "__collapse": true
+        "condition": {
+          "type": "not",
+          "value": {
+            "type": "variable",
+            "value": "295"
+          }
+        },
+        "__collapseElse": true,
+        "__comment": false
       },
       "children": {
         "true": [
           {
-            "command": "EVENT_SAVE_DATA",
+            "command": "EVENT_CALL_CUSTOM_EVENT",
             "args": {
-              "saveSlot": 0,
-              "__scriptTabs": "save",
-              "__comment": false
+              "customEventId": "69c00e7a-1e97-4b6e-ab72-ec6a042b5045",
+              "__collapse": true
+            },
+            "id": "c4b5d24f-00b2-4297-8220-77a61e3b6df1"
+          },
+          {
+            "command": "EVENT_THREAD_START",
+            "args": {
+              "variable": "L1",
+              "__scriptTabs": "true",
+              "__collapse": true
             },
             "children": {
-              "true": [],
-              "load": []
+              "true": [
+                {
+                  "command": "EVENT_SAVE_DATA",
+                  "args": {
+                    "saveSlot": 0,
+                    "__scriptTabs": "save",
+                    "__comment": false
+                  },
+                  "children": {
+                    "true": [],
+                    "load": []
+                  },
+                  "id": "da682bed-95d3-4500-8c92-dd3a16fa289f"
+                }
+              ]
             },
-            "id": "da682bed-95d3-4500-8c92-dd3a16fa289f"
+            "id": "b033a70a-d977-460d-bc22-9cf4630b0f0e"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "295",
+              "value": {
+                "type": "true"
+              }
+            },
+            "id": "079b4d19-426c-4788-827a-ad6a4f2f4ea7"
           }
-        ]
+        ],
+        "false": []
       },
-      "id": "b033a70a-d977-460d-bc22-9cf4630b0f0e"
+      "id": "42dac932-ad11-44e2-a6e9-42bb8b14456d"
     },
     {
       "command": "EVENT_SET_INPUT_SCRIPT",
@@ -1198,7 +1229,7 @@
         "palette5": "keep",
         "palette6": "0cef988f-3d9f-40f6-833d-d577f67f135d",
         "palette7": "keep",
-        "__collapse": false
+        "__collapse": true
       },
       "id": "1cb8a6a0-4b70-44b0-9790-531628af4565"
     }
@@ -1206,6 +1237,5 @@
   "playerHit1Script": [],
   "playerHit2Script": [],
   "playerHit3Script": [],
-  "collisions": "",
-  "autoFadeEventCollapse": true
+  "collisions": ""
 }
