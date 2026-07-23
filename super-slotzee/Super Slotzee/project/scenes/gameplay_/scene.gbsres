@@ -594,10 +594,57 @@
           "value": "$65$ && !$160$"
         },
         "__collapseElse": true,
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "($16$ == 1 || $16$ == 2) && !$123$"
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Set cursor to first die after a slot token game is played earlier in the turn, to let user know they can still hold before spinning again (since they were taken away before holding to play the game)"
+                  },
+                  "id": "f16970f5-0704-4fab-aa5b-520196e30d42"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "$self$",
+                    "spriteStateId": "Middle row cursor",
+                    "loopAnim": true
+                  },
+                  "id": "0241bbce-134a-4d77-92f8-8b261c24465a"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_POSITION",
+                  "args": {
+                    "actorId": "$self$",
+                    "x": {
+                      "type": "number",
+                      "value": 2
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 14
+                    }
+                  },
+                  "id": "51c1a4c7-d8c4-415d-a390-6d8f73755ee8"
+                }
+              ],
+              "false": []
+            },
+            "id": "fdd4f509-46e3-46b2-bda0-62fe8529b6a4"
+          },
           {
             "command": "EVENT_CALL_CUSTOM_EVENT",
             "args": {
@@ -924,54 +971,176 @@
       "id": "850ec380-0db9-44ef-ba3d-96f04251e2af"
     },
     {
-      "command": "EVENT_IF",
+      "id": "1af994fc-3f87-4ef0-a212-cb874b068c69",
+      "command": "EVENT_GROUP",
       "args": {
-        "condition": {
-          "type": "expression",
-          "value": "$32$ == 1 && $16$ == 0"
-        },
-        "__collapseElse": true,
+        "__label": "Tutorial dialogs",
         "__collapse": true
       },
       "children": {
         "true": [
           {
-            "command": "EVENT_WAIT",
+            "command": "EVENT_IF",
             "args": {
-              "time": 0.5,
-              "frames": 30
+              "condition": {
+                "type": "expression",
+                "value": "$32$ == 1 && $17$ == 1 && $16$ == 0"
+              },
+              "__collapseElse": true,
+              "__collapse": false
             },
-            "id": "aae0c5d0-3cd1-4cd3-a8f7-f31bb5d1ca42"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "not",
+                      "value": {
+                        "type": "variable",
+                        "value": "296"
+                      }
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 0.5,
+                          "frames": 30
+                        },
+                        "id": "aae0c5d0-3cd1-4cd3-a8f7-f31bb5d1ca42"
+                      },
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "Press \"Spin + Roll\" to\nstart your first turn!"
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "top",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "eb43bb73-c314-45b7-9b9d-c978c2e9acfd"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "296",
+                          "value": {
+                            "type": "true"
+                          }
+                        },
+                        "id": "5f6539d1-21fb-4c0c-b6e8-b5a69ebb0173"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "19d935d2-8f3b-4a39-84da-5251e5db7dd1"
+                }
+              ],
+              "false": []
+            },
+            "id": "3975068a-394d-43f2-a2e7-4be019769edb"
           },
           {
-            "command": "EVENT_TEXT",
+            "command": "EVENT_IF",
             "args": {
-              "text": [
-                "Press \"Spin + Roll\" to\nstart your first turn!"
-              ],
-              "__section": "text",
-              "avatarId": "",
-              "minHeight": 4,
-              "maxHeight": 7,
-              "textX": 1,
-              "textY": 1,
-              "textHeight": 5,
-              "position": "top",
-              "clearPrevious": true,
-              "showFrame": "true",
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
-              "closeButton": "a",
-              "closeDelayTime": 0.5,
-              "closeDelayFrames": 30
+              "condition": {
+                "type": "expression",
+                "value": "$32$ == 1 && $17$ == 1 && $123$"
+              },
+              "__collapseElse": true,
+              "__collapse": false
             },
-            "id": "eb43bb73-c314-45b7-9b9d-c978c2e9acfd"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "not",
+                      "value": {
+                        "type": "variable",
+                        "value": "298"
+                      }
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 0.5,
+                          "frames": 30
+                        },
+                        "id": "6ab530fa-e082-4cd3-8c93-202d077c86dc"
+                      },
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "You can access your \nslot token inventory  @",
+                            "by selecting the token\nnext to \"Spin + Roll\"  @",
+                            "or by pressing B."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "top",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "1ed70dc3-2ce5-4164-a2fd-8ee9c7d540af"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "298",
+                          "value": {
+                            "type": "true"
+                          }
+                        },
+                        "id": "df586468-c2f8-4c7e-9fa7-c2c1853a6275"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "a2fb4a54-3f8f-4bba-951e-03466b357a3d"
+                }
+              ],
+              "false": []
+            },
+            "id": "6a9b75fc-cc8f-403b-826d-c0d4fc06263d"
           }
-        ],
-        "false": []
-      },
-      "id": "3975068a-394d-43f2-a2e7-4be019769edb"
+        ]
+      }
     },
     {
       "command": "EVENT_SET_INPUT_SCRIPT",
@@ -981,7 +1150,8 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": false
+        "__collapse": true,
+        "__label": "B button"
       },
       "children": {
         "true": [
@@ -1014,7 +1184,8 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": true,
+        "__label": "SEL button"
       },
       "children": {
         "true": [
@@ -1052,7 +1223,8 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": true,
+        "__label": "START button"
       },
       "children": {
         "true": [

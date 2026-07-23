@@ -15,7 +15,7 @@
           "value": "129"
         },
         "__collapseElse": true,
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -93,39 +93,16 @@
       "command": "EVENT_IF",
       "args": {
         "condition": {
-          "type": "eq",
-          "valueA": {
-            "type": "variable",
-            "value": "16"
-          },
-          "valueB": {
-            "type": "number",
-            "value": 4
-          }
+          "type": "expression",
+          "value": "$16$ == 4 && !$123$"
         },
         "__collapseElse": false,
-        "__collapse": false,
+        "__collapse": true,
         "__label": "(If) End of turn scene change to scorecard",
         "__comment": false
       },
       "children": {
         "true": [
-          {
-            "command": "EVENT_COMMENT",
-            "args": {
-              "text": "DEBUG show temp scores",
-              "__collapse": true
-            },
-            "id": "fbe8b8e8-dce3-46a5-ba3e-e38f39c0def2"
-          },
-          {
-            "command": "EVENT_CALL_CUSTOM_EVENT",
-            "args": {
-              "customEventId": "0b922307-0547-4c9d-95f7-455979779cce",
-              "__collapse": true
-            },
-            "id": "ed3dce74-26d2-49ef-939a-ac35114db7dd"
-          },
           {
             "command": "EVENT_SET_VALUE",
             "args": {
@@ -149,7 +126,8 @@
           {
             "command": "EVENT_COMMENT",
             "args": {
-              "text": "Waiting a bit extra on last turn to give player time to look at dice & slots before change to scorecard"
+              "text": "Waiting a bit extra on last turn to give player time to look at dice & slots before change to scorecard",
+              "__collapse": true
             },
             "id": "e83f745c-67f4-4b63-99d0-68fd4c4c128b"
           },
@@ -212,15 +190,8 @@
             "command": "EVENT_IF",
             "args": {
               "condition": {
-                "type": "eq",
-                "valueA": {
-                  "type": "variable",
-                  "value": "16"
-                },
-                "valueB": {
-                  "type": "number",
-                  "value": 3
-                }
+                "type": "expression",
+                "value": "$16$ == 3 && !$123$"
               },
               "__collapseElse": false,
               "__collapse": false
@@ -241,14 +212,6 @@
                   },
                   "children": {
                     "true": [
-                      {
-                        "command": "EVENT_COMMENT",
-                        "args": {
-                          "text": "DEBUG show temp scores",
-                          "__collapse": true
-                        },
-                        "id": "3df94fc7-7528-4246-a761-bd131dc68a14"
-                      },
                       {
                         "command": "EVENT_SET_VALUE",
                         "args": {
@@ -272,7 +235,8 @@
                       {
                         "command": "EVENT_COMMENT",
                         "args": {
-                          "text": "Waiting a bit extra on last turn to give player time to look at dice & slots before change to scorecard"
+                          "text": "Waiting a bit extra on last turn to give player time to look at dice & slots before change to scorecard",
+                          "__collapse": true
                         },
                         "id": "148024c3-d696-4297-9a6c-75de1b678ecd"
                       },
@@ -286,7 +250,8 @@
                               "value": "129"
                             }
                           },
-                          "__collapseElse": true
+                          "__collapseElse": true,
+                          "__collapse": true
                         },
                         "children": {
                           "true": [
@@ -338,7 +303,8 @@
                 {
                   "command": "EVENT_COMMENT",
                   "args": {
-                    "text": "If it's a joker Yotzee, force hold all dice and let player know."
+                    "text": "If it's a joker Yotzee, force hold all dice and let player know.",
+                    "__collapse": true
                   },
                   "id": "0c33f3a1-9d20-4b7c-8beb-a61d91864b55"
                 },

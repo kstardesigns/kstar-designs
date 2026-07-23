@@ -2043,37 +2043,67 @@
       "children": {
         "true": [
           {
-            "command": "EVENT_WAIT",
+            "command": "EVENT_IF",
             "args": {
-              "time": 0.5,
-              "frames": 30
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "297"
+                }
+              },
+              "__collapseElse": true
             },
-            "id": "50d3d194-02ce-4ef2-87f4-64cc81a3a262"
-          },
-          {
-            "command": "EVENT_TEXT",
-            "args": {
-              "text": [
-                "Choose a box to score\nfor this turn."
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.5,
+                    "frames": 30,
+                    "__comment": false
+                  },
+                  "id": "50d3d194-02ce-4ef2-87f4-64cc81a3a262"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Choose a box to score\nfor this turn."
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "55ca673a-6cb4-4703-8761-0315d33971bc"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "297",
+                    "value": {
+                      "type": "true"
+                    }
+                  },
+                  "id": "dc9e20ce-eefc-4574-a393-e716589d00a9"
+                }
               ],
-              "__section": "text",
-              "avatarId": "",
-              "minHeight": 4,
-              "maxHeight": 7,
-              "textX": 1,
-              "textY": 1,
-              "textHeight": 5,
-              "position": "bottom",
-              "clearPrevious": true,
-              "showFrame": "true",
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
-              "closeButton": "a",
-              "closeDelayTime": 0.5,
-              "closeDelayFrames": 30
+              "false": []
             },
-            "id": "55ca673a-6cb4-4703-8761-0315d33971bc"
+            "id": "d3f22b0a-7072-44db-9ef1-a3a28ac180df"
           }
         ],
         "false": []
