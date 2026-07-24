@@ -531,13 +531,37 @@
                   "id": "0c878a44-23ab-4870-af5f-43a07be16855"
                 },
                 {
-                  "command": "EVENT_WAIT",
+                  "command": "EVENT_IF",
                   "args": {
-                    "time": 1.5,
-                    "frames": 30,
+                    "condition": {
+                      "type": "expression",
+                      "value": "$32$ == 1 && $17$ == 1 && $123$"
+                    },
+                    "__collapseElse": false,
                     "__collapse": false
                   },
-                  "id": "ff7cfdac-1468-4ab0-b6a6-5d2465846b0e"
+                  "children": {
+                    "true": [],
+                    "false": [
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "If it's not going to show the tutorial, wait before showing save animation"
+                        },
+                        "id": "0624e3de-b467-41a9-877d-14a2716a276e"
+                      },
+                      {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 1.5,
+                          "frames": 30,
+                          "__collapse": false
+                        },
+                        "id": "ff7cfdac-1468-4ab0-b6a6-5d2465846b0e"
+                      }
+                    ]
+                  },
+                  "id": "207d73a7-dcc5-458e-8e06-0f45204345c5"
                 },
                 {
                   "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
