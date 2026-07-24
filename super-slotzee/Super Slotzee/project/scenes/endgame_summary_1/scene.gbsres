@@ -28,7 +28,8 @@
     "969f92f3-84fd-4572-ad2a-725ef8091b23",
     "9546e1fa-fe6e-4464-a919-ff1992507f9a",
     "0bea1270-c6d6-4ac0-af35-81f659857fc2",
-    ""
+    "",
+    "48a4d365-a9b0-4a08-b8ed-1792f6f6bf58"
   ],
   "autoFadeSpeed": null,
   "autoFadeEventCollapse": true,
@@ -261,6 +262,116 @@
       "id": "ba7c3352-c5e7-4787-8c99-cfae7b67a843"
     },
     {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gte",
+          "valueA": {
+            "type": "variable",
+            "value": "115"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 500
+          }
+        },
+        "__collapseElse": false,
+        "__label": "(If) set Pokie animation state",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "6e96c227-f9a1-4497-86e1-e0d84815006d",
+              "spriteStateId": "Endgame great score",
+              "loopAnim": true
+            },
+            "id": "78b52be8-d46f-47b9-b5e3-6be01611864f"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "gte",
+                "valueA": {
+                  "type": "variable",
+                  "value": "115"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 300
+                }
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "6e96c227-f9a1-4497-86e1-e0d84815006d",
+                    "spriteStateId": "Endgame good score",
+                    "loopAnim": true
+                  },
+                  "id": "5ebd45f3-c460-4ae4-ba79-d2dd4c7f89b7"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "gte",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "115"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 100
+                      }
+                    },
+                    "__collapseElse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "6e96c227-f9a1-4497-86e1-e0d84815006d",
+                          "spriteStateId": "Endgame ok score",
+                          "loopAnim": true
+                        },
+                        "id": "0acf9168-e964-4250-aa5f-2237da6b2a2d"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "6e96c227-f9a1-4497-86e1-e0d84815006d",
+                          "spriteStateId": "Endgame bad score",
+                          "loopAnim": true
+                        },
+                        "id": "b7829297-13c6-4442-a3f3-537a6fe1ebd0"
+                      }
+                    ]
+                  },
+                  "id": "997ef898-3008-4d2b-9fb5-404e50dc8ec3"
+                }
+              ]
+            },
+            "id": "29015bd3-dbc4-492b-845f-c07c43207d81"
+          }
+        ]
+      },
+      "id": "8085140f-14fc-4e1c-a667-508b43ed6c2d"
+    },
+    {
       "command": "EVENT_FADE_IN",
       "args": {
         "speed": "2",
@@ -273,7 +384,7 @@
       "command": "EVENT_GROUP",
       "args": {
         "__label": "Draw total score",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -304,7 +415,7 @@
                 "type": "number",
                 "value": 4
               },
-              "__collapse": false
+              "__collapse": true
             },
             "id": "e549e653-048c-4bf2-8902-f967f94b5185"
           },
@@ -323,7 +434,7 @@
               "value": {
                 "type": "false"
               },
-              "__collapse": false
+              "__collapse": true
             },
             "id": "f62634f2-9c4f-4dba-af07-55b5a12fe79e"
           }
