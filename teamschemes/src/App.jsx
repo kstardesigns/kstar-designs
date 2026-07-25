@@ -493,7 +493,7 @@ function App() {
                 </div>
               </div>
               <p className="disclaimer">Official colors from team branding guides, press releases, and Wikipedia. Contact: kyleastark@gmail.com</p>
-              <p className="disclaimer">Site last updated: 8/23/2025</p>
+              <p className="disclaimer">Site last updated: 7/25/2026</p>
             </div>
           </details>
         </div>

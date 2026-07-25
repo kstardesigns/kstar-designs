@@ -1,6 +1,7 @@
 # Run project locally
-1. npm run dev
-2. Open http://localhost:5173/teamschemes/
+1. cd to src
+2. npm run dev
+3. Open http://localhost:5173/teamschemes/
 
 # Latest to live site
 1. npm run build
