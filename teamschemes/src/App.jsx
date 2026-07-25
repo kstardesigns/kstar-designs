@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import colorData from './colors.json';
+import colorData from './colors.json?=d=2026-7-25';
 import './_styles.scss'; 
 
 function App() {
