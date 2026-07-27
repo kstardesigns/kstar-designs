@@ -1,0 +1,140 @@
+{
+  "_resourceType": "trigger",
+  "id": "0ac6b247-237d-4d1a-8f63-28411747306e",
+  "name": "Music trigger",
+  "prefabId": "",
+  "x": 0,
+  "y": 2,
+  "symbol": "trigger_66",
+  "prefabScriptOverrides": {},
+  "width": 2,
+  "height": 2,
+  "script": [
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "up",
+          "left",
+          "right",
+          "start",
+          "select"
+        ],
+        "override": true,
+        "__scriptTabs": "press"
+      },
+      "children": {
+        "true": []
+      },
+      "id": "5ad38c25-2368-4871-aaac-b8f3d71ea12b"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "down"
+        ],
+        "override": true,
+        "__scriptTabs": "press"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 0
+              },
+              "y": {
+                "type": "number",
+                "value": 5
+              }
+            },
+            "id": "f754dade-0122-42f9-bae5-271174a81978"
+          }
+        ]
+      },
+      "id": "2f273d6b-7adb-43f9-abc0-7cb5039ef8fe"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "a"
+        ],
+        "override": true,
+        "__scriptTabs": "press"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "299"
+                },
+                "valueB": {
+                  "type": "true"
+                }
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "78d03cb4-81b3-48b6-b839-f578bb171bce",
+                    "spriteStateId": "",
+                    "loopAnim": true
+                  },
+                  "id": "62f4e862-e021-43ef-8201-86e81f30b8a3"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "299",
+                    "value": {
+                      "type": "false"
+                    }
+                  },
+                  "id": "484d551f-83ad-415d-97f9-abcc63abf824"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "78d03cb4-81b3-48b6-b839-f578bb171bce",
+                    "spriteStateId": "Settings on",
+                    "loopAnim": true
+                  },
+                  "id": "edacf8d1-72df-4e53-90a9-f3076eaea867"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "299",
+                    "value": {
+                      "type": "true"
+                    }
+                  },
+                  "id": "5c591f41-eb45-44ef-a5cf-bb3a4c5e9772"
+                }
+              ]
+            },
+            "id": "de81ca1f-d31a-442d-82f4-128bc1fe2005"
+          }
+        ]
+      },
+      "id": "6c287cda-9b08-40ad-9a82-6ac9c4c00c06"
+    }
+  ],
+  "leaveScript": [],
+  "_index": 0
+}

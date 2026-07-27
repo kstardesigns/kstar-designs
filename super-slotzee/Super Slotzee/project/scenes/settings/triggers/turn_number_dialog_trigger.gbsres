@@ -1,0 +1,161 @@
+{
+  "_resourceType": "trigger",
+  "id": "32d28e6a-57be-42d5-ade6-ca75802d9293",
+  "name": "Turn number dialog trigger",
+  "prefabId": "",
+  "x": 1,
+  "y": 14,
+  "symbol": "trigger_72",
+  "prefabScriptOverrides": {},
+  "width": 2,
+  "height": 2,
+  "script": [
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "left",
+          "right",
+          "start",
+          "select",
+          "down"
+        ],
+        "override": true,
+        "__scriptTabs": "press"
+      },
+      "children": {
+        "true": []
+      },
+      "id": "2da21a4f-3320-445e-8e1c-a42ba3b74f25"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "up"
+        ],
+        "override": true,
+        "__scriptTabs": "press"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 1
+              },
+              "y": {
+                "type": "number",
+                "value": 13
+              }
+            },
+            "id": "fdfd4b8e-73c1-4601-a918-94a2f9d8957a"
+          }
+        ]
+      },
+      "id": "18da207b-ceb8-4fa2-a97f-83ac221acef6"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "a"
+        ],
+        "override": true,
+        "__scriptTabs": "press"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "303"
+                },
+                "valueB": {
+                  "type": "true"
+                }
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "2bcce82e-48fc-4ca2-964d-3933bc023e7e",
+                    "spriteStateId": "",
+                    "loopAnim": true
+                  },
+                  "id": "b574feba-330c-4394-8985-342f8dbbf707"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "303",
+                    "value": {
+                      "type": "false"
+                    }
+                  },
+                  "id": "2227bb65-5635-4532-98f7-b0dc340b4f41"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "2bcce82e-48fc-4ca2-964d-3933bc023e7e",
+                    "spriteStateId": "Settings on",
+                    "loopAnim": true
+                  },
+                  "id": "ca0b802f-45dd-4bf7-ae0d-5c2c42e1f7b8"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "303",
+                    "value": {
+                      "type": "true"
+                    }
+                  },
+                  "id": "5d0fdf6c-fac3-4047-9ea6-f7372d2377ca"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "2862a8ca-ed01-4f25-9874-c7aa49534637",
+                    "spriteStateId": "",
+                    "loopAnim": true,
+                    "__collapse": true
+                  },
+                  "id": "951cf551-d03c-4920-97f6-43f998f6e904"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "304",
+                    "value": {
+                      "type": "false"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "0bf961bf-898d-4016-842b-40f8fae923e4"
+                }
+              ]
+            },
+            "id": "637a457b-8943-439f-bb26-bebaf8ccbb88"
+          }
+        ]
+      },
+      "id": "89693f75-0ede-4c08-af30-e47cba17b918"
+    }
+  ],
+  "leaveScript": [],
+  "_index": 6
+}
