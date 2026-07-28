@@ -11,8 +11,8 @@
       "command": "EVENT_IF",
       "args": {
         "condition": {
-          "type": "expression",
-          "value": "($16$ < 4 && $61$) || ($16$ < 3 && !$61$)"
+          "type": "variable",
+          "value": "300"
         },
         "__collapseElse": true
       },
@@ -22,71 +22,88 @@
             "command": "EVENT_IF",
             "args": {
               "condition": {
-                "type": "variable",
-                "value": "61"
+                "type": "expression",
+                "value": "($16$ < 4 && $61$) || ($16$ < 3 && !$61$)"
               },
-              "__collapseElse": false
+              "__collapseElse": true
             },
             "children": {
               "true": [
                 {
-                  "command": "EVENT_SET_VALUE",
+                  "command": "EVENT_IF",
                   "args": {
-                    "variable": "121",
-                    "value": {
-                      "type": "expression",
-                      "value": "4 - $16$"
-                    }
+                    "condition": {
+                      "type": "variable",
+                      "value": "61"
+                    },
+                    "__collapseElse": false,
+                    "__collapse": true
                   },
-                  "id": "d93b026a-1169-4cc6-943f-e2ced1f19ec8"
-                }
-              ],
-              "false": [
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "121",
+                          "value": {
+                            "type": "expression",
+                            "value": "4 - $16$"
+                          }
+                        },
+                        "id": "d93b026a-1169-4cc6-943f-e2ced1f19ec8"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "121",
+                          "value": {
+                            "type": "expression",
+                            "value": "3 - $16$"
+                          }
+                        },
+                        "id": "597e1125-7e24-44f4-bbb4-4cdb8e20e2b0"
+                      }
+                    ]
+                  },
+                  "id": "6b83eac1-5ded-4178-9864-044d5361a167"
+                },
                 {
-                  "command": "EVENT_SET_VALUE",
+                  "command": "EVENT_TEXT",
                   "args": {
-                    "variable": "121",
-                    "value": {
-                      "type": "expression",
-                      "value": "3 - $16$"
-                    }
+                    "text": [
+                      "You have $121$ roll(s)\nleft in this turn."
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": false
                   },
-                  "id": "597e1125-7e24-44f4-bbb4-4cdb8e20e2b0"
+                  "id": "5c6c6a65-8ecd-4a6c-b9e6-06799f7765f9"
                 }
-              ]
-            },
-            "id": "6b83eac1-5ded-4178-9864-044d5361a167"
-          },
-          {
-            "command": "EVENT_TEXT",
-            "args": {
-              "text": [
-                "You have $121$ roll(s)\nleft in this turn."
               ],
-              "__section": "text",
-              "avatarId": "",
-              "minHeight": 4,
-              "maxHeight": 7,
-              "textX": 1,
-              "textY": 1,
-              "textHeight": 5,
-              "position": "bottom",
-              "clearPrevious": true,
-              "showFrame": "true",
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
-              "closeButton": "a",
-              "closeDelayTime": 0.5,
-              "closeDelayFrames": 30,
-              "__collapse": false
+              "false": []
             },
-            "id": "5c6c6a65-8ecd-4a6c-b9e6-06799f7765f9"
+            "id": "309ca47a-b011-48a9-baea-f6f2d81e7ff8"
           }
         ],
         "false": []
       },
-      "id": "309ca47a-b011-48a9-baea-f6f2d81e7ff8"
+      "id": "3b9b54ef-a798-4d96-972e-7baf2e635e01"
     }
   ]
 }

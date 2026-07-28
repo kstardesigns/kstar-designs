@@ -41,7 +41,8 @@
         "y": {
           "type": "number",
           "value": 3
-        }
+        },
+        "__collapse": true
       },
       "id": "6e097143-ff8e-4049-b8e0-15fff4b2c9b5"
     },
@@ -317,7 +318,7 @@
           }
         },
         "__collapseElse": false,
-        "__collapse": false,
+        "__collapse": true,
         "__label": "(If) quick play checkbox"
       },
       "children": {
@@ -412,7 +413,7 @@
               "value": {
                 "type": "false"
               },
-              "__collapse": false
+              "__collapse": true
             },
             "id": "4f4e4f21-0c52-4f0d-af51-0b3899b56b8a"
           }
@@ -440,15 +441,29 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
           {
-            "command": "EVENT_SAVE_DATA",
+            "command": "EVENT_SET_VALUE",
             "args": {
-              "saveSlot": 0,
-              "__scriptTabs": "save"
+              "variable": "305",
+              "value": {
+                "type": "true"
+              },
+              "__collapse": true
+            },
+            "id": "ac370211-62c8-4ced-bab2-b1d1eddea706"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "222"
+              },
+              "__collapseElse": false
             },
             "children": {
               "true": [
@@ -456,7 +471,8 @@
                   "command": "EVENT_TEXT",
                   "args": {
                     "text": [
-                      "Settings have been\nsaved."
+                      "Settings will be saved\nwhen you continue  @",
+                      "your in-progress game."
                     ],
                     "__section": "text",
                     "avatarId": "",
@@ -475,12 +491,62 @@
                     "closeDelayTime": 0.5,
                     "closeDelayFrames": 30
                   },
-                  "id": "27339696-17d5-47a8-a486-6046db7f2779"
+                  "id": "4f6ce910-cb3c-4a90-8853-441596cfb041"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "220",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": false
+                  },
+                  "id": "2560cb4f-ca6b-4750-a18a-0a4f68d9134e"
                 }
               ],
-              "load": []
+              "false": [
+                {
+                  "command": "EVENT_SAVE_DATA",
+                  "args": {
+                    "saveSlot": 0,
+                    "__scriptTabs": "save"
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "Settings have been\nsaved."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "27339696-17d5-47a8-a486-6046db7f2779"
+                      }
+                    ],
+                    "load": []
+                  },
+                  "id": "eca4a376-43db-40d2-bb55-3496d8ed77dc"
+                }
+              ]
             },
-            "id": "eca4a376-43db-40d2-bb55-3496d8ed77dc"
+            "id": "cfd7f98e-c063-47e9-b672-57eba2185275"
           },
           {
             "command": "EVENT_SCENE_POP_STATE",
