@@ -163,7 +163,7 @@
                                   "value": "61"
                                 },
                                 "__collapseElse": false,
-                                "__collapse": false
+                                "__collapse": true
                               },
                               "children": {
                                 "true": [
@@ -403,7 +403,7 @@
                                   }
                                 },
                                 "__collapseElse": false,
-                                "__collapse": false
+                                "__collapse": true
                               },
                               "children": {
                                 "true": [
@@ -708,7 +708,7 @@
                               "command": "EVENT_GROUP",
                               "args": {
                                 "__label": "Generate random slot numbers",
-                                "__collapse": true
+                                "__collapse": false
                               },
                               "children": {
                                 "true": [
@@ -730,17 +730,166 @@
                                         {
                                           "command": "EVENT_VARIABLE_MATH",
                                           "args": {
-                                            "vectorX": "0",
+                                            "vectorX": "307",
                                             "operation": "set",
                                             "other": "rnd",
                                             "vectorY": "L0",
                                             "value": "0",
                                             "minValue": 1,
-                                            "maxValue": 4,
+                                            "maxValue": 100,
                                             "clamp": false,
+                                            "__collapse": true
+                                          },
+                                          "id": "5bee7776-ae43-44df-ab67-3605bdfd211d"
+                                        },
+                                        {
+                                          "command": "EVENT_IF",
+                                          "args": {
+                                            "condition": {
+                                              "type": "gt",
+                                              "valueA": {
+                                                "type": "variable",
+                                                "value": "307"
+                                              },
+                                              "valueB": {
+                                                "type": "number",
+                                                "value": 72
+                                              }
+                                            },
+                                            "__collapseElse": false,
                                             "__collapse": false
                                           },
-                                          "id": "65d3da3b-9ff6-40f6-b007-4ee38942c3e2"
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_COMMENT",
+                                                "args": {
+                                                  "text": "One extra turn",
+                                                  "__collapse": true
+                                                },
+                                                "id": "55ca7a23-e7cc-4028-9a58-9abe42f981b6"
+                                              },
+                                              {
+                                                "command": "EVENT_SET_VALUE",
+                                                "args": {
+                                                  "variable": "0",
+                                                  "value": {
+                                                    "type": "number",
+                                                    "value": 1
+                                                  }
+                                                },
+                                                "id": "9b6d6ce8-0036-402f-a1ad-25e0c7cae6e2"
+                                              }
+                                            ],
+                                            "false": [
+                                              {
+                                                "command": "EVENT_IF",
+                                                "args": {
+                                                  "condition": {
+                                                    "type": "gt",
+                                                    "valueA": {
+                                                      "type": "variable",
+                                                      "value": "307"
+                                                    },
+                                                    "valueB": {
+                                                      "type": "number",
+                                                      "value": 44
+                                                    }
+                                                  },
+                                                  "__collapseElse": false
+                                                },
+                                                "children": {
+                                                  "true": [
+                                                    {
+                                                      "command": "EVENT_COMMENT",
+                                                      "args": {
+                                                        "text": "Double cherries",
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "57f38b37-fdd3-4560-9de6-fc4771175e07"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_SET_VALUE",
+                                                      "args": {
+                                                        "variable": "0",
+                                                        "value": {
+                                                          "type": "number",
+                                                          "value": 2
+                                                        }
+                                                      },
+                                                      "id": "820b4e03-ec10-4382-9d62-73a4312f1cfa"
+                                                    }
+                                                  ],
+                                                  "false": [
+                                                    {
+                                                      "command": "EVENT_COMMENT",
+                                                      "args": {
+                                                        "text": "Lemons",
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "04700bf1-4d12-4bca-b80d-b3cd2fbff32e"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_IF",
+                                                      "args": {
+                                                        "condition": {
+                                                          "type": "gt",
+                                                          "valueA": {
+                                                            "type": "variable",
+                                                            "value": "307"
+                                                          },
+                                                          "valueB": {
+                                                            "type": "number",
+                                                            "value": 29
+                                                          }
+                                                        },
+                                                        "__collapseElse": false
+                                                      },
+                                                      "children": {
+                                                        "true": [
+                                                          {
+                                                            "command": "EVENT_SET_VALUE",
+                                                            "args": {
+                                                              "variable": "0",
+                                                              "value": {
+                                                                "type": "number",
+                                                                "value": 3
+                                                              }
+                                                            },
+                                                            "id": "ec8c7daa-3e86-46f1-b9ec-16e947fd6963"
+                                                          }
+                                                        ],
+                                                        "false": [
+                                                          {
+                                                            "command": "EVENT_COMMENT",
+                                                            "args": {
+                                                              "text": "Tokens",
+                                                              "__collapse": true
+                                                            },
+                                                            "id": "275e673c-9db8-4b25-b887-a205ef79528a"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_SET_VALUE",
+                                                            "args": {
+                                                              "variable": "0",
+                                                              "value": {
+                                                                "type": "number",
+                                                                "value": 4
+                                                              }
+                                                            },
+                                                            "id": "25f4cf54-bad5-4eb1-9446-89be544d4572"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "id": "9033f8a9-5ced-446d-bc00-92aef001006a"
+                                                    }
+                                                  ]
+                                                },
+                                                "id": "2a57ab21-f796-43c6-97ca-e129dd1bd1ab"
+                                              }
+                                            ]
+                                          },
+                                          "id": "af409278-41fa-4091-a5a4-a55efde5c79e"
                                         }
                                       ],
                                       "false": []
@@ -758,24 +907,173 @@
                                         }
                                       },
                                       "__collapseElse": true,
-                                      "__collapse": true
+                                      "__collapse": false
                                     },
                                     "children": {
                                       "true": [
                                         {
                                           "command": "EVENT_VARIABLE_MATH",
                                           "args": {
-                                            "vectorX": "1",
+                                            "vectorX": "308",
                                             "operation": "set",
                                             "other": "rnd",
                                             "vectorY": "L0",
                                             "value": "0",
                                             "minValue": 1,
-                                            "maxValue": 4,
+                                            "maxValue": 100,
                                             "clamp": false,
                                             "__collapse": true
                                           },
-                                          "id": "a08c7821-2d17-46f6-97b1-4b1aeedfe166"
+                                          "id": "bf06d0bf-5e55-44cb-8c03-55136f869264"
+                                        },
+                                        {
+                                          "command": "EVENT_IF",
+                                          "args": {
+                                            "condition": {
+                                              "type": "gt",
+                                              "valueA": {
+                                                "type": "variable",
+                                                "value": "308"
+                                              },
+                                              "valueB": {
+                                                "type": "number",
+                                                "value": 72
+                                              }
+                                            },
+                                            "__collapseElse": false,
+                                            "__collapse": false
+                                          },
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_COMMENT",
+                                                "args": {
+                                                  "text": "One extra turn",
+                                                  "__collapse": true
+                                                },
+                                                "id": "97fd3f5a-0bec-409c-8073-18332d17d5c5"
+                                              },
+                                              {
+                                                "command": "EVENT_SET_VALUE",
+                                                "args": {
+                                                  "variable": "1",
+                                                  "value": {
+                                                    "type": "number",
+                                                    "value": 1
+                                                  }
+                                                },
+                                                "id": "b36c6300-64ef-4c3b-8b20-8f9b22cac1a3"
+                                              }
+                                            ],
+                                            "false": [
+                                              {
+                                                "command": "EVENT_IF",
+                                                "args": {
+                                                  "condition": {
+                                                    "type": "gt",
+                                                    "valueA": {
+                                                      "type": "variable",
+                                                      "value": "308"
+                                                    },
+                                                    "valueB": {
+                                                      "type": "number",
+                                                      "value": 44
+                                                    }
+                                                  },
+                                                  "__collapseElse": false
+                                                },
+                                                "children": {
+                                                  "true": [
+                                                    {
+                                                      "command": "EVENT_COMMENT",
+                                                      "args": {
+                                                        "text": "Double cherries",
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "9a31f71f-01d6-4f8e-9740-4a405cd47fc5"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_SET_VALUE",
+                                                      "args": {
+                                                        "variable": "1",
+                                                        "value": {
+                                                          "type": "number",
+                                                          "value": 2
+                                                        }
+                                                      },
+                                                      "id": "9abcdf73-ab18-4eb8-922f-454bc2d28b70"
+                                                    }
+                                                  ],
+                                                  "false": [
+                                                    {
+                                                      "command": "EVENT_COMMENT",
+                                                      "args": {
+                                                        "text": "Lemons",
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "752b26b5-3b06-49c6-ada4-5ceb7561a63c"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_IF",
+                                                      "args": {
+                                                        "condition": {
+                                                          "type": "gt",
+                                                          "valueA": {
+                                                            "type": "variable",
+                                                            "value": "308"
+                                                          },
+                                                          "valueB": {
+                                                            "type": "number",
+                                                            "value": 29
+                                                          }
+                                                        },
+                                                        "__collapseElse": false
+                                                      },
+                                                      "children": {
+                                                        "true": [
+                                                          {
+                                                            "command": "EVENT_SET_VALUE",
+                                                            "args": {
+                                                              "variable": "1",
+                                                              "value": {
+                                                                "type": "number",
+                                                                "value": 3
+                                                              }
+                                                            },
+                                                            "id": "86dabc47-d71c-460e-b424-5c3edac5e7c8"
+                                                          }
+                                                        ],
+                                                        "false": [
+                                                          {
+                                                            "command": "EVENT_COMMENT",
+                                                            "args": {
+                                                              "text": "Tokens",
+                                                              "__collapse": true
+                                                            },
+                                                            "id": "79b31389-a5de-4b18-ad10-479511c87921"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_SET_VALUE",
+                                                            "args": {
+                                                              "variable": "1",
+                                                              "value": {
+                                                                "type": "number",
+                                                                "value": 4
+                                                              }
+                                                            },
+                                                            "id": "c84bc70d-fad5-42ab-88c8-0330ddbd78ec"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "id": "bd7ee2d6-bc21-45af-be72-d61964652308"
+                                                    }
+                                                  ]
+                                                },
+                                                "id": "d0964f38-2f1c-4d3a-8650-a993326d4c38"
+                                              }
+                                            ]
+                                          },
+                                          "id": "8de00b4d-7144-4e63-ac9e-35dddb3b109f"
                                         }
                                       ],
                                       "false": []
@@ -793,24 +1091,173 @@
                                         }
                                       },
                                       "__collapseElse": true,
-                                      "__collapse": true
+                                      "__collapse": false
                                     },
                                     "children": {
                                       "true": [
                                         {
                                           "command": "EVENT_VARIABLE_MATH",
                                           "args": {
-                                            "vectorX": "2",
+                                            "vectorX": "309",
                                             "operation": "set",
                                             "other": "rnd",
                                             "vectorY": "L0",
                                             "value": "0",
                                             "minValue": 1,
-                                            "maxValue": 4,
+                                            "maxValue": 100,
                                             "clamp": false,
                                             "__collapse": false
                                           },
-                                          "id": "23785deb-6b90-45a1-8265-f53c6be85eb5"
+                                          "id": "4003eb89-16f0-4343-8c93-a8186f12ded5"
+                                        },
+                                        {
+                                          "command": "EVENT_IF",
+                                          "args": {
+                                            "condition": {
+                                              "type": "gt",
+                                              "valueA": {
+                                                "type": "variable",
+                                                "value": "309"
+                                              },
+                                              "valueB": {
+                                                "type": "number",
+                                                "value": 72
+                                              }
+                                            },
+                                            "__collapseElse": false,
+                                            "__collapse": false
+                                          },
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_COMMENT",
+                                                "args": {
+                                                  "text": "One extra turn",
+                                                  "__collapse": true
+                                                },
+                                                "id": "d4d70e6a-1089-4471-9a4d-34013a8c3d05"
+                                              },
+                                              {
+                                                "command": "EVENT_SET_VALUE",
+                                                "args": {
+                                                  "variable": "2",
+                                                  "value": {
+                                                    "type": "number",
+                                                    "value": 1
+                                                  }
+                                                },
+                                                "id": "c768bc98-9a74-4b74-92ff-6867b9a08429"
+                                              }
+                                            ],
+                                            "false": [
+                                              {
+                                                "command": "EVENT_IF",
+                                                "args": {
+                                                  "condition": {
+                                                    "type": "gt",
+                                                    "valueA": {
+                                                      "type": "variable",
+                                                      "value": "309"
+                                                    },
+                                                    "valueB": {
+                                                      "type": "number",
+                                                      "value": 44
+                                                    }
+                                                  },
+                                                  "__collapseElse": false
+                                                },
+                                                "children": {
+                                                  "true": [
+                                                    {
+                                                      "command": "EVENT_COMMENT",
+                                                      "args": {
+                                                        "text": "Double cherries",
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "5e2f5ec5-3215-4619-9ad0-6e480ca12f85"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_SET_VALUE",
+                                                      "args": {
+                                                        "variable": "2",
+                                                        "value": {
+                                                          "type": "number",
+                                                          "value": 2
+                                                        }
+                                                      },
+                                                      "id": "fcb04d98-cfdd-4608-9648-1ba5ab1311aa"
+                                                    }
+                                                  ],
+                                                  "false": [
+                                                    {
+                                                      "command": "EVENT_COMMENT",
+                                                      "args": {
+                                                        "text": "Lemons",
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "5bc9ebb7-3f50-4716-80a9-692c3abf0633"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_IF",
+                                                      "args": {
+                                                        "condition": {
+                                                          "type": "gt",
+                                                          "valueA": {
+                                                            "type": "variable",
+                                                            "value": "309"
+                                                          },
+                                                          "valueB": {
+                                                            "type": "number",
+                                                            "value": 29
+                                                          }
+                                                        },
+                                                        "__collapseElse": false
+                                                      },
+                                                      "children": {
+                                                        "true": [
+                                                          {
+                                                            "command": "EVENT_SET_VALUE",
+                                                            "args": {
+                                                              "variable": "2",
+                                                              "value": {
+                                                                "type": "number",
+                                                                "value": 3
+                                                              }
+                                                            },
+                                                            "id": "c244c0b0-f56f-411d-bb03-92dc5f2b5eeb"
+                                                          }
+                                                        ],
+                                                        "false": [
+                                                          {
+                                                            "command": "EVENT_COMMENT",
+                                                            "args": {
+                                                              "text": "Tokens",
+                                                              "__collapse": true
+                                                            },
+                                                            "id": "664e513f-0d09-4ad4-9c76-093a3d84c957"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_SET_VALUE",
+                                                            "args": {
+                                                              "variable": "2",
+                                                              "value": {
+                                                                "type": "number",
+                                                                "value": 4
+                                                              }
+                                                            },
+                                                            "id": "8a61f5ab-79d0-4638-b66f-58bc624311ac"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "id": "ccf4803b-10d1-4f33-bcb7-ec2fea5560a0"
+                                                    }
+                                                  ]
+                                                },
+                                                "id": "48cda4c6-b8e8-4e34-9312-de839384cf6f"
+                                              }
+                                            ]
+                                          },
+                                          "id": "d6679e7c-b530-444d-80cf-178828441e1f"
                                         }
                                       ],
                                       "false": []

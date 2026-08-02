@@ -1,0 +1,2607 @@
+{
+  "_resourceType": "script",
+  "id": "146e84d3-5a83-469f-9ae0-f8a0c12e1d25",
+  "name": "Pick random briefcase",
+  "description": "",
+  "variables": {
+    "V0": {
+      "id": "V0",
+      "name": "tile_x",
+      "passByReference": false
+    },
+    "V1": {
+      "id": "V1",
+      "name": "tile_y",
+      "passByReference": false
+    }
+  },
+  "actors": {},
+  "symbol": "script_62",
+  "script": [
+    {
+      "command": "EVENT_INC_VALUE",
+      "args": {
+        "variable": "311",
+        "__collapse": true
+      },
+      "id": "ba7e5841-1ae1-436a-9f84-77188b85dfa7"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "eq",
+          "valueA": {
+            "type": "variable",
+            "value": "311"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 1
+          }
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Prevent first pick from being empty",
+              "__collapse": true
+            },
+            "id": "89ac7258-520f-43f3-8621-a16323eeda51"
+          },
+          {
+            "command": "EVENT_VARIABLE_MATH",
+            "args": {
+              "vectorX": "310",
+              "operation": "set",
+              "other": "rnd",
+              "vectorY": "L0",
+              "value": "0",
+              "minValue": 1,
+              "maxValue": 80,
+              "clamp": false,
+              "__collapse": false
+            },
+            "id": "64db39a2-182f-407e-b516-1e4ca264ba8f"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_VARIABLE_MATH",
+            "args": {
+              "vectorX": "310",
+              "operation": "set",
+              "other": "rnd",
+              "vectorY": "L0",
+              "value": "0",
+              "minValue": 1,
+              "maxValue": 100,
+              "clamp": false,
+              "__collapse": true
+            },
+            "id": "0024103f-9ca4-40e7-a216-acc63e9bdf28"
+          }
+        ]
+      },
+      "id": "4602f3f0-fd0a-4f00-b5c6-b002a58ec14a"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "in-between state",
+        "__collapse": true
+      },
+      "id": "72dfeb41-6e61-4bc5-aa97-b56a2cb8e4fe"
+    },
+    {
+      "command": "EVENT_REPLACE_TILE_XY",
+      "args": {
+        "x": {
+          "type": "variable",
+          "value": "V0"
+        },
+        "y": {
+          "type": "variable",
+          "value": "V1"
+        },
+        "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+        "tileIndex": {
+          "type": "number",
+          "value": 0
+        },
+        "tileSize": "16px",
+        "__collapse": true,
+        "__comment": false
+      },
+      "id": "d1a31270-1209-4a38-9f00-20a98335fe31"
+    },
+    {
+      "command": "EVENT_REPLACE_TILE_XY",
+      "args": {
+        "x": {
+          "type": "expression",
+          "value": "$V0$ + 2"
+        },
+        "y": {
+          "type": "variable",
+          "value": "V1"
+        },
+        "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+        "tileIndex": {
+          "type": "number",
+          "value": 2
+        },
+        "tileSize": "16px",
+        "__collapse": true,
+        "__comment": false
+      },
+      "id": "69cdd46a-3ecc-4a4b-a4c1-8f4bce9d71b0"
+    },
+    {
+      "command": "EVENT_REPLACE_TILE_XY",
+      "args": {
+        "x": {
+          "type": "variable",
+          "value": "V0"
+        },
+        "y": {
+          "type": "expression",
+          "value": "$V1$ + 2"
+        },
+        "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+        "tileIndex": {
+          "type": "number",
+          "value": 4
+        },
+        "tileSize": "16px",
+        "__collapse": true,
+        "__comment": false
+      },
+      "id": "dcc4cf12-f408-4ded-aabf-57a3fc9b7882"
+    },
+    {
+      "command": "EVENT_REPLACE_TILE_XY",
+      "args": {
+        "x": {
+          "type": "expression",
+          "value": "$V0$ + 2"
+        },
+        "y": {
+          "type": "expression",
+          "value": "$V1$ + 2"
+        },
+        "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+        "tileIndex": {
+          "type": "number",
+          "value": 6
+        },
+        "tileSize": "16px",
+        "__collapse": true,
+        "__comment": false
+      },
+      "id": "c9930601-71ea-42fb-bdd1-b14bbb158997"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Pick random end state",
+        "__collapse": true
+      },
+      "id": "9017fedc-8a91-4b0c-a61f-b5914942b360"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 0.1,
+        "frames": 30,
+        "__collapse": true
+      },
+      "id": "4098c44b-26c6-4a33-a9db-62e659c01460"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Debug:",
+        "__collapse": true
+      },
+      "id": "4cf7a745-45a1-43de-a33d-de046de6fd15"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "310",
+        "value": {
+          "type": "number",
+          "value": 79
+        },
+        "__comment": true
+      },
+      "id": "dce07d19-06f1-4c74-9b2e-a006b8a535fa"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gt",
+          "valueA": {
+            "type": "variable",
+            "value": "310"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 80
+          }
+        },
+        "__collapseElse": false,
+        "__comment": false,
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_REPLACE_TILE_XY",
+            "args": {
+              "x": {
+                "type": "variable",
+                "value": "V0"
+              },
+              "y": {
+                "type": "expression",
+                "value": "$V1$ + 1"
+              },
+              "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+              "tileIndex": {
+                "type": "number",
+                "value": 52
+              },
+              "tileSize": "16px",
+              "__collapse": true
+            },
+            "id": "e7b490f3-efd6-4d08-a23f-0b1cc63c927e"
+          },
+          {
+            "command": "EVENT_REPLACE_TILE_XY",
+            "args": {
+              "x": {
+                "type": "expression",
+                "value": "$V0$ + 2"
+              },
+              "y": {
+                "type": "expression",
+                "value": "$V1$ + 1"
+              },
+              "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+              "tileIndex": {
+                "type": "number",
+                "value": 54
+              },
+              "tileSize": "16px",
+              "__collapse": true
+            },
+            "id": "63aa8b9d-20cc-43ff-8e15-7fc18f29f93c"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "bottom of briefcase:",
+              "__collapse": true
+            },
+            "id": "9c191485-9629-46ff-bde0-cd8d80f358d8"
+          },
+          {
+            "command": "EVENT_REPLACE_TILE_XY",
+            "args": {
+              "x": {
+                "type": "variable",
+                "value": "V0"
+              },
+              "y": {
+                "type": "expression",
+                "value": "$V1$ + 3"
+              },
+              "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+              "tileIndex": {
+                "type": "number",
+                "value": 12
+              },
+              "tileSize": "8px",
+              "__collapse": true
+            },
+            "id": "c885fd3f-87b4-4924-94f6-4bcc80b15edd"
+          },
+          {
+            "command": "EVENT_REPLACE_TILE_XY",
+            "args": {
+              "x": {
+                "type": "expression",
+                "value": "$V0$ + 1"
+              },
+              "y": {
+                "type": "expression",
+                "value": "$V1$ + 3"
+              },
+              "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+              "tileIndex": {
+                "type": "number",
+                "value": 13
+              },
+              "tileSize": "8px",
+              "__collapse": true
+            },
+            "id": "9549a895-b337-44e6-9e6a-fe4cfcd09e9f"
+          },
+          {
+            "command": "EVENT_REPLACE_TILE_XY",
+            "args": {
+              "x": {
+                "type": "expression",
+                "value": "$V0$ + 2"
+              },
+              "y": {
+                "type": "expression",
+                "value": "$V1$ + 3"
+              },
+              "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+              "tileIndex": {
+                "type": "number",
+                "value": 14
+              },
+              "tileSize": "8px",
+              "__collapse": true
+            },
+            "id": "5a485f24-efb3-4180-8ee7-76952eb39e97"
+          },
+          {
+            "command": "EVENT_REPLACE_TILE_XY",
+            "args": {
+              "x": {
+                "type": "expression",
+                "value": "$V0$ + 3"
+              },
+              "y": {
+                "type": "expression",
+                "value": "$V1$ + 3"
+              },
+              "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+              "tileIndex": {
+                "type": "number",
+                "value": 15
+              },
+              "tileSize": "8px",
+              "__collapse": true
+            },
+            "id": "782aab44-52a5-49a2-805e-55c81eaa2a55"
+          },
+          {
+            "command": "EVENT_WAIT",
+            "args": {
+              "time": 0.5,
+              "frames": 30,
+              "__collapse": true
+            },
+            "id": "4038015a-0bf0-4407-b8de-b189982e42bd"
+          },
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                "Empty! You keep all the\ntokens you've found  @",
+                "but the game is over."
+              ],
+              "__section": "text",
+              "avatarId": "",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30,
+              "__collapse": true
+            },
+            "id": "41c73866-779c-4ea4-a761-7c0526f3d584"
+          },
+          {
+            "command": "EVENT_SCENE_POP_STATE",
+            "args": {
+              "fadeSpeed": "2",
+              "__collapse": true
+            },
+            "id": "396b6e16-d140-4d1c-9a94-2a675a3ae7e0"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "gt",
+                "valueA": {
+                  "type": "variable",
+                  "value": "310"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 68
+                }
+              },
+              "__collapseElse": false,
+              "__comment": false,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "1 WILD token",
+                    "__collapse": true
+                  },
+                  "id": "81353c9e-c69f-4dca-a26c-9aeb7e43040a"
+                },
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "variable",
+                      "value": "V0"
+                    },
+                    "y": {
+                      "type": "expression",
+                      "value": "$V1$ + 1"
+                    },
+                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 8
+                    },
+                    "tileSize": "16px",
+                    "__collapse": true
+                  },
+                  "id": "48c657b6-a15f-4442-8803-2f9c8d9272c6"
+                },
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "expression",
+                      "value": "$V0$ + 2"
+                    },
+                    "y": {
+                      "type": "expression",
+                      "value": "$V1$ + 1"
+                    },
+                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 10
+                    },
+                    "tileSize": "16px",
+                    "__collapse": true
+                  },
+                  "id": "e34b00bd-45c5-4495-bb55-74ba3e2a9a53"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "bottom of briefcase:",
+                    "__collapse": true
+                  },
+                  "id": "c71c4318-eada-46d3-adab-6c210ddfe66c"
+                },
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "variable",
+                      "value": "V0"
+                    },
+                    "y": {
+                      "type": "expression",
+                      "value": "$V1$ + 3"
+                    },
+                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 12
+                    },
+                    "tileSize": "8px",
+                    "__collapse": true
+                  },
+                  "id": "ecc3dbed-1a55-4645-adf3-f21f915ff797"
+                },
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "expression",
+                      "value": "$V0$ + 1"
+                    },
+                    "y": {
+                      "type": "expression",
+                      "value": "$V1$ + 3"
+                    },
+                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 13
+                    },
+                    "tileSize": "8px",
+                    "__collapse": true
+                  },
+                  "id": "7a6f425b-2184-423c-ad6e-c4bd03fb0de4"
+                },
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "expression",
+                      "value": "$V0$ + 2"
+                    },
+                    "y": {
+                      "type": "expression",
+                      "value": "$V1$ + 3"
+                    },
+                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 14
+                    },
+                    "tileSize": "8px",
+                    "__collapse": true
+                  },
+                  "id": "11105a8f-b7bd-47c1-9e49-760a02ba4b7c"
+                },
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "expression",
+                      "value": "$V0$ + 3"
+                    },
+                    "y": {
+                      "type": "expression",
+                      "value": "$V1$ + 3"
+                    },
+                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 15
+                    },
+                    "tileSize": "8px",
+                    "__collapse": true
+                  },
+                  "id": "16a3d64f-f802-48c8-8613-c4564ae1b933"
+                },
+                {
+                  "command": "EVENT_INC_VALUE",
+                  "args": {
+                    "variable": "140",
+                    "__collapse": true
+                  },
+                  "id": "fd9c44e3-7bc4-4630-a5df-39560860001c"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "variable",
+                      "value": "303"
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "WILD token +1"
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 2,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "79e5e7be-253c-4f4e-817d-b602a29b1be5"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "4e54c289-b5ef-4206-baf4-fd5f4ab04501"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "gt",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "310"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 63
+                      }
+                    },
+                    "__collapseElse": false,
+                    "__comment": false,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "1 SUPER YOTZEE token",
+                          "__collapse": true
+                        },
+                        "id": "f9ed81e7-3d48-4c24-b892-32e5237b72e3"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "variable",
+                            "value": "V0"
+                          },
+                          "y": {
+                            "type": "expression",
+                            "value": "$V1$ + 1"
+                          },
+                          "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 16
+                          },
+                          "tileSize": "16px",
+                          "__collapse": true
+                        },
+                        "id": "e75c0bf0-c77b-4799-810f-ea1c33bb3797"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "expression",
+                            "value": "$V0$ + 2"
+                          },
+                          "y": {
+                            "type": "expression",
+                            "value": "$V1$ + 1"
+                          },
+                          "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 18
+                          },
+                          "tileSize": "16px",
+                          "__collapse": true
+                        },
+                        "id": "7bf58b29-3a50-4c46-98df-26dbe52afbd7"
+                      },
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "bottom of briefcase:",
+                          "__collapse": true
+                        },
+                        "id": "b0281c2a-1e4f-4172-a914-28c4a9919bd5"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "variable",
+                            "value": "V0"
+                          },
+                          "y": {
+                            "type": "expression",
+                            "value": "$V1$ + 3"
+                          },
+                          "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 12
+                          },
+                          "tileSize": "8px",
+                          "__collapse": true
+                        },
+                        "id": "80f9c7cb-d02b-4537-b294-c5428f7dbc0e"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "expression",
+                            "value": "$V0$ + 1"
+                          },
+                          "y": {
+                            "type": "expression",
+                            "value": "$V1$ + 3"
+                          },
+                          "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 13
+                          },
+                          "tileSize": "8px",
+                          "__collapse": true
+                        },
+                        "id": "3f93979a-cd88-41d4-954d-cffdbc999e7f"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "expression",
+                            "value": "$V0$ + 2"
+                          },
+                          "y": {
+                            "type": "expression",
+                            "value": "$V1$ + 3"
+                          },
+                          "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 14
+                          },
+                          "tileSize": "8px",
+                          "__collapse": true
+                        },
+                        "id": "fed50f5f-4f2e-483b-bc9e-fdda6ace8fc6"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "expression",
+                            "value": "$V0$ + 3"
+                          },
+                          "y": {
+                            "type": "expression",
+                            "value": "$V1$ + 3"
+                          },
+                          "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 15
+                          },
+                          "tileSize": "8px",
+                          "__collapse": true
+                        },
+                        "id": "9e7f35c7-b8b5-49d9-99dd-3dc10ad632bb"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "141",
+                          "__collapse": true
+                        },
+                        "id": "0de55658-72ca-4b7e-8a07-4a1100e5703b"
+                      },
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "variable",
+                            "value": "303"
+                          },
+                          "__collapseElse": true
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_TEXT",
+                              "args": {
+                                "text": [
+                                  "SUPER YOTZEE token +1"
+                                ],
+                                "__section": "text",
+                                "avatarId": "",
+                                "minHeight": 2,
+                                "maxHeight": 7,
+                                "textX": 1,
+                                "textY": 1,
+                                "textHeight": 5,
+                                "position": "bottom",
+                                "clearPrevious": true,
+                                "showFrame": "true",
+                                "speedIn": -1,
+                                "speedOut": -1,
+                                "closeWhen": "key",
+                                "closeButton": "a",
+                                "closeDelayTime": 0.5,
+                                "closeDelayFrames": 30,
+                                "__collapse": false
+                              },
+                              "id": "f0d52050-90fd-44a6-a00c-dc38e7fedace"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "a0d501eb-6b38-40cc-afe5-5c0b73d5bd0d"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "gt",
+                            "valueA": {
+                              "type": "variable",
+                              "value": "310"
+                            },
+                            "valueB": {
+                              "type": "number",
+                              "value": 51
+                            }
+                          },
+                          "__collapseElse": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_COMMENT",
+                              "args": {
+                                "text": "1 ERASER token",
+                                "__collapse": true
+                              },
+                              "id": "dc6ba47f-94c9-4ac4-84cd-453820ed38f4"
+                            },
+                            {
+                              "command": "EVENT_REPLACE_TILE_XY",
+                              "args": {
+                                "x": {
+                                  "type": "variable",
+                                  "value": "V0"
+                                },
+                                "y": {
+                                  "type": "expression",
+                                  "value": "$V1$ + 1"
+                                },
+                                "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                "tileIndex": {
+                                  "type": "number",
+                                  "value": 20
+                                },
+                                "tileSize": "16px",
+                                "__collapse": true
+                              },
+                              "id": "f452e8da-e12e-43c4-ae22-5308fbde1f25"
+                            },
+                            {
+                              "command": "EVENT_REPLACE_TILE_XY",
+                              "args": {
+                                "x": {
+                                  "type": "expression",
+                                  "value": "$V0$ + 2"
+                                },
+                                "y": {
+                                  "type": "expression",
+                                  "value": "$V1$ + 1"
+                                },
+                                "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                "tileIndex": {
+                                  "type": "number",
+                                  "value": 22
+                                },
+                                "tileSize": "16px",
+                                "__collapse": true
+                              },
+                              "id": "313045b0-1828-40a9-8a57-4b894f0506a5"
+                            },
+                            {
+                              "command": "EVENT_COMMENT",
+                              "args": {
+                                "text": "bottom of briefcase:",
+                                "__collapse": true
+                              },
+                              "id": "83ec0ba3-f522-4009-8a35-c7bf630ec95b"
+                            },
+                            {
+                              "command": "EVENT_REPLACE_TILE_XY",
+                              "args": {
+                                "x": {
+                                  "type": "variable",
+                                  "value": "V0"
+                                },
+                                "y": {
+                                  "type": "expression",
+                                  "value": "$V1$ + 3"
+                                },
+                                "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                "tileIndex": {
+                                  "type": "number",
+                                  "value": 12
+                                },
+                                "tileSize": "8px",
+                                "__collapse": true
+                              },
+                              "id": "c6aa3fea-20a2-493c-8d86-a51f54775bfd"
+                            },
+                            {
+                              "command": "EVENT_REPLACE_TILE_XY",
+                              "args": {
+                                "x": {
+                                  "type": "expression",
+                                  "value": "$V0$ + 1"
+                                },
+                                "y": {
+                                  "type": "expression",
+                                  "value": "$V1$ + 3"
+                                },
+                                "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                "tileIndex": {
+                                  "type": "number",
+                                  "value": 13
+                                },
+                                "tileSize": "8px",
+                                "__collapse": true
+                              },
+                              "id": "181b7b81-341b-415b-aa39-d66718ed0824"
+                            },
+                            {
+                              "command": "EVENT_REPLACE_TILE_XY",
+                              "args": {
+                                "x": {
+                                  "type": "expression",
+                                  "value": "$V0$ + 2"
+                                },
+                                "y": {
+                                  "type": "expression",
+                                  "value": "$V1$ + 3"
+                                },
+                                "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                "tileIndex": {
+                                  "type": "number",
+                                  "value": 14
+                                },
+                                "tileSize": "8px",
+                                "__collapse": true
+                              },
+                              "id": "8936be2f-36f6-4d23-962d-3dabb2c96750"
+                            },
+                            {
+                              "command": "EVENT_REPLACE_TILE_XY",
+                              "args": {
+                                "x": {
+                                  "type": "expression",
+                                  "value": "$V0$ + 3"
+                                },
+                                "y": {
+                                  "type": "expression",
+                                  "value": "$V1$ + 3"
+                                },
+                                "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                "tileIndex": {
+                                  "type": "number",
+                                  "value": 15
+                                },
+                                "tileSize": "8px",
+                                "__collapse": true
+                              },
+                              "id": "d0058675-1033-4ec6-8e4f-a6c4ab88be4b"
+                            },
+                            {
+                              "command": "EVENT_INC_VALUE",
+                              "args": {
+                                "variable": "142",
+                                "__collapse": true
+                              },
+                              "id": "798848a8-74d9-4bf7-8180-46cf98bf0ef5"
+                            },
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "variable",
+                                  "value": "303"
+                                },
+                                "__collapseElse": true,
+                                "__collapse": false
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_TEXT",
+                                    "args": {
+                                      "text": [
+                                        "ERASER token +1"
+                                      ],
+                                      "__section": "text",
+                                      "avatarId": "",
+                                      "minHeight": 2,
+                                      "maxHeight": 7,
+                                      "textX": 1,
+                                      "textY": 1,
+                                      "textHeight": 5,
+                                      "position": "bottom",
+                                      "clearPrevious": true,
+                                      "showFrame": "true",
+                                      "speedIn": -1,
+                                      "speedOut": -1,
+                                      "closeWhen": "key",
+                                      "closeButton": "a",
+                                      "closeDelayTime": 0.5,
+                                      "closeDelayFrames": 30
+                                    },
+                                    "id": "bedaecf3-0e95-4227-91e0-7ff031f280a2"
+                                  }
+                                ],
+                                "false": []
+                              },
+                              "id": "a9733693-2330-4761-818d-d6f82c3d61b3"
+                            }
+                          ],
+                          "false": [
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "gt",
+                                  "valueA": {
+                                    "type": "variable",
+                                    "value": "310"
+                                  },
+                                  "valueB": {
+                                    "type": "number",
+                                    "value": 39
+                                  }
+                                },
+                                "__collapseElse": false,
+                                "__comment": false,
+                                "__collapse": false
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_COMMENT",
+                                    "args": {
+                                      "text": "1 REWIND token",
+                                      "__collapse": true
+                                    },
+                                    "id": "7d2ee979-3341-40ad-bab5-3108a3120e33"
+                                  },
+                                  {
+                                    "command": "EVENT_REPLACE_TILE_XY",
+                                    "args": {
+                                      "x": {
+                                        "type": "variable",
+                                        "value": "V0"
+                                      },
+                                      "y": {
+                                        "type": "expression",
+                                        "value": "$V1$ + 1"
+                                      },
+                                      "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                      "tileIndex": {
+                                        "type": "number",
+                                        "value": 24
+                                      },
+                                      "tileSize": "16px",
+                                      "__collapse": true
+                                    },
+                                    "id": "cf516254-ec87-4261-bab6-67eb348acb51"
+                                  },
+                                  {
+                                    "command": "EVENT_REPLACE_TILE_XY",
+                                    "args": {
+                                      "x": {
+                                        "type": "expression",
+                                        "value": "$V0$ + 2"
+                                      },
+                                      "y": {
+                                        "type": "expression",
+                                        "value": "$V1$ + 1"
+                                      },
+                                      "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                      "tileIndex": {
+                                        "type": "number",
+                                        "value": 26
+                                      },
+                                      "tileSize": "16px",
+                                      "__collapse": true
+                                    },
+                                    "id": "2814530d-b046-4007-8d35-71cac7930c6b"
+                                  },
+                                  {
+                                    "command": "EVENT_COMMENT",
+                                    "args": {
+                                      "text": "bottom of briefcase:",
+                                      "__collapse": true
+                                    },
+                                    "id": "28881a05-df01-4dcc-870f-5e692bc8ca3f"
+                                  },
+                                  {
+                                    "command": "EVENT_REPLACE_TILE_XY",
+                                    "args": {
+                                      "x": {
+                                        "type": "variable",
+                                        "value": "V0"
+                                      },
+                                      "y": {
+                                        "type": "expression",
+                                        "value": "$V1$ + 3"
+                                      },
+                                      "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                      "tileIndex": {
+                                        "type": "number",
+                                        "value": 12
+                                      },
+                                      "tileSize": "8px",
+                                      "__collapse": true
+                                    },
+                                    "id": "6c66ac58-74c4-4d2f-b892-adef838aa132"
+                                  },
+                                  {
+                                    "command": "EVENT_REPLACE_TILE_XY",
+                                    "args": {
+                                      "x": {
+                                        "type": "expression",
+                                        "value": "$V0$ + 1"
+                                      },
+                                      "y": {
+                                        "type": "expression",
+                                        "value": "$V1$ + 3"
+                                      },
+                                      "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                      "tileIndex": {
+                                        "type": "number",
+                                        "value": 13
+                                      },
+                                      "tileSize": "8px",
+                                      "__collapse": true
+                                    },
+                                    "id": "202e3356-d5ac-4a15-80a6-d9c0b9996067"
+                                  },
+                                  {
+                                    "command": "EVENT_REPLACE_TILE_XY",
+                                    "args": {
+                                      "x": {
+                                        "type": "expression",
+                                        "value": "$V0$ + 2"
+                                      },
+                                      "y": {
+                                        "type": "expression",
+                                        "value": "$V1$ + 3"
+                                      },
+                                      "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                      "tileIndex": {
+                                        "type": "number",
+                                        "value": 14
+                                      },
+                                      "tileSize": "8px",
+                                      "__collapse": true
+                                    },
+                                    "id": "78711e7b-1e11-4ef2-81bc-e5b46c01e2a0"
+                                  },
+                                  {
+                                    "command": "EVENT_REPLACE_TILE_XY",
+                                    "args": {
+                                      "x": {
+                                        "type": "expression",
+                                        "value": "$V0$ + 3"
+                                      },
+                                      "y": {
+                                        "type": "expression",
+                                        "value": "$V1$ + 3"
+                                      },
+                                      "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                      "tileIndex": {
+                                        "type": "number",
+                                        "value": 15
+                                      },
+                                      "tileSize": "8px",
+                                      "__collapse": true
+                                    },
+                                    "id": "c531626b-35d3-4897-a2a4-82de8b3e04a6"
+                                  },
+                                  {
+                                    "command": "EVENT_INC_VALUE",
+                                    "args": {
+                                      "variable": "143",
+                                      "__collapse": true
+                                    },
+                                    "id": "956dd6e5-82ef-4136-8e9b-941921180442"
+                                  },
+                                  {
+                                    "command": "EVENT_IF",
+                                    "args": {
+                                      "condition": {
+                                        "type": "variable",
+                                        "value": "303"
+                                      },
+                                      "__collapseElse": true
+                                    },
+                                    "children": {
+                                      "true": [
+                                        {
+                                          "command": "EVENT_TEXT",
+                                          "args": {
+                                            "text": [
+                                              "REWIND token +1"
+                                            ],
+                                            "__section": "text",
+                                            "avatarId": "",
+                                            "minHeight": 2,
+                                            "maxHeight": 7,
+                                            "textX": 1,
+                                            "textY": 1,
+                                            "textHeight": 5,
+                                            "position": "bottom",
+                                            "clearPrevious": true,
+                                            "showFrame": "true",
+                                            "speedIn": -1,
+                                            "speedOut": -1,
+                                            "closeWhen": "key",
+                                            "closeButton": "a",
+                                            "closeDelayTime": 0.5,
+                                            "closeDelayFrames": 30
+                                          },
+                                          "id": "62f74723-9602-4d94-85c9-6a4a54eb81fe"
+                                        }
+                                      ],
+                                      "false": []
+                                    },
+                                    "id": "f171abc1-845c-4cb4-9ff5-074f047c0743"
+                                  }
+                                ],
+                                "false": [
+                                  {
+                                    "command": "EVENT_IF",
+                                    "args": {
+                                      "condition": {
+                                        "type": "gt",
+                                        "valueA": {
+                                          "type": "variable",
+                                          "value": "310"
+                                        },
+                                        "valueB": {
+                                          "type": "number",
+                                          "value": 27
+                                        }
+                                      },
+                                      "__collapseElse": false,
+                                      "__comment": false,
+                                      "__collapse": false
+                                    },
+                                    "children": {
+                                      "true": [
+                                        {
+                                          "command": "EVENT_COMMENT",
+                                          "args": {
+                                            "text": "1 HEAVY token",
+                                            "__collapse": true
+                                          },
+                                          "id": "bf0199e7-d209-4ac7-97e2-ac9362a43a82"
+                                        },
+                                        {
+                                          "command": "EVENT_REPLACE_TILE_XY",
+                                          "args": {
+                                            "x": {
+                                              "type": "variable",
+                                              "value": "V0"
+                                            },
+                                            "y": {
+                                              "type": "expression",
+                                              "value": "$V1$ + 1"
+                                            },
+                                            "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                            "tileIndex": {
+                                              "type": "number",
+                                              "value": 28
+                                            },
+                                            "tileSize": "16px",
+                                            "__collapse": true
+                                          },
+                                          "id": "dacd0c4a-9dec-4c4a-aee4-5f60da422390"
+                                        },
+                                        {
+                                          "command": "EVENT_REPLACE_TILE_XY",
+                                          "args": {
+                                            "x": {
+                                              "type": "expression",
+                                              "value": "$V0$ + 2"
+                                            },
+                                            "y": {
+                                              "type": "expression",
+                                              "value": "$V1$ + 1"
+                                            },
+                                            "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                            "tileIndex": {
+                                              "type": "number",
+                                              "value": 30
+                                            },
+                                            "tileSize": "16px",
+                                            "__collapse": true
+                                          },
+                                          "id": "2bbb9746-31ea-45e2-a44e-4e437759d620"
+                                        },
+                                        {
+                                          "command": "EVENT_COMMENT",
+                                          "args": {
+                                            "text": "bottom of briefcase:",
+                                            "__collapse": true
+                                          },
+                                          "id": "8e7c25c3-04d1-4a01-be07-25561e2aee2a"
+                                        },
+                                        {
+                                          "command": "EVENT_REPLACE_TILE_XY",
+                                          "args": {
+                                            "x": {
+                                              "type": "variable",
+                                              "value": "V0"
+                                            },
+                                            "y": {
+                                              "type": "expression",
+                                              "value": "$V1$ + 3"
+                                            },
+                                            "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                            "tileIndex": {
+                                              "type": "number",
+                                              "value": 12
+                                            },
+                                            "tileSize": "8px",
+                                            "__collapse": true
+                                          },
+                                          "id": "72b14095-c953-4e0d-beb0-38b12a0e682a"
+                                        },
+                                        {
+                                          "command": "EVENT_REPLACE_TILE_XY",
+                                          "args": {
+                                            "x": {
+                                              "type": "expression",
+                                              "value": "$V0$ + 1"
+                                            },
+                                            "y": {
+                                              "type": "expression",
+                                              "value": "$V1$ + 3"
+                                            },
+                                            "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                            "tileIndex": {
+                                              "type": "number",
+                                              "value": 13
+                                            },
+                                            "tileSize": "8px",
+                                            "__collapse": true
+                                          },
+                                          "id": "afbb6c11-1eee-479a-83dd-c5ee2ac8bcae"
+                                        },
+                                        {
+                                          "command": "EVENT_REPLACE_TILE_XY",
+                                          "args": {
+                                            "x": {
+                                              "type": "expression",
+                                              "value": "$V0$ + 2"
+                                            },
+                                            "y": {
+                                              "type": "expression",
+                                              "value": "$V1$ + 3"
+                                            },
+                                            "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                            "tileIndex": {
+                                              "type": "number",
+                                              "value": 14
+                                            },
+                                            "tileSize": "8px",
+                                            "__collapse": true
+                                          },
+                                          "id": "1ad412c4-0e81-48ff-a38c-4b2570f99257"
+                                        },
+                                        {
+                                          "command": "EVENT_REPLACE_TILE_XY",
+                                          "args": {
+                                            "x": {
+                                              "type": "expression",
+                                              "value": "$V0$ + 3"
+                                            },
+                                            "y": {
+                                              "type": "expression",
+                                              "value": "$V1$ + 3"
+                                            },
+                                            "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                            "tileIndex": {
+                                              "type": "number",
+                                              "value": 15
+                                            },
+                                            "tileSize": "8px",
+                                            "__collapse": true
+                                          },
+                                          "id": "18897705-78fb-4234-a9cc-77fb89b046ee"
+                                        },
+                                        {
+                                          "command": "EVENT_INC_VALUE",
+                                          "args": {
+                                            "variable": "144",
+                                            "__collapse": true
+                                          },
+                                          "id": "df4f71cd-f734-4a6b-9a71-fb392d4c040e"
+                                        },
+                                        {
+                                          "command": "EVENT_IF",
+                                          "args": {
+                                            "condition": {
+                                              "type": "variable",
+                                              "value": "303"
+                                            },
+                                            "__collapseElse": true
+                                          },
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_TEXT",
+                                                "args": {
+                                                  "text": [
+                                                    "HEAVY token +1"
+                                                  ],
+                                                  "__section": "text",
+                                                  "avatarId": "",
+                                                  "minHeight": 2,
+                                                  "maxHeight": 7,
+                                                  "textX": 1,
+                                                  "textY": 1,
+                                                  "textHeight": 5,
+                                                  "position": "bottom",
+                                                  "clearPrevious": true,
+                                                  "showFrame": "true",
+                                                  "speedIn": -1,
+                                                  "speedOut": -1,
+                                                  "closeWhen": "key",
+                                                  "closeButton": "a",
+                                                  "closeDelayTime": 0.5,
+                                                  "closeDelayFrames": 30
+                                                },
+                                                "id": "243ec254-3410-4e0c-a0e1-c0e5c25b8021"
+                                              }
+                                            ],
+                                            "false": []
+                                          },
+                                          "id": "c7349ad5-ca3f-42c8-9d7b-77f3203f8256"
+                                        }
+                                      ],
+                                      "false": [
+                                        {
+                                          "command": "EVENT_IF",
+                                          "args": {
+                                            "condition": {
+                                              "type": "gt",
+                                              "valueA": {
+                                                "type": "variable",
+                                                "value": "310"
+                                              },
+                                              "valueB": {
+                                                "type": "number",
+                                                "value": 19
+                                              }
+                                            },
+                                            "__collapseElse": false,
+                                            "__comment": false,
+                                            "__collapse": false
+                                          },
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_COMMENT",
+                                                "args": {
+                                                  "text": "1 DOUBLE DOWN token",
+                                                  "__collapse": true
+                                                },
+                                                "id": "01f2bd84-253e-4dae-994b-6ddea85df4e1"
+                                              },
+                                              {
+                                                "command": "EVENT_REPLACE_TILE_XY",
+                                                "args": {
+                                                  "x": {
+                                                    "type": "variable",
+                                                    "value": "V0"
+                                                  },
+                                                  "y": {
+                                                    "type": "expression",
+                                                    "value": "$V1$ + 1"
+                                                  },
+                                                  "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                  "tileIndex": {
+                                                    "type": "number",
+                                                    "value": 32
+                                                  },
+                                                  "tileSize": "16px",
+                                                  "__collapse": true
+                                                },
+                                                "id": "511ce9a2-2365-481e-97dc-7c05a67edb90"
+                                              },
+                                              {
+                                                "command": "EVENT_REPLACE_TILE_XY",
+                                                "args": {
+                                                  "x": {
+                                                    "type": "expression",
+                                                    "value": "$V0$ + 2"
+                                                  },
+                                                  "y": {
+                                                    "type": "expression",
+                                                    "value": "$V1$ + 1"
+                                                  },
+                                                  "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                  "tileIndex": {
+                                                    "type": "number",
+                                                    "value": 34
+                                                  },
+                                                  "tileSize": "16px",
+                                                  "__collapse": true
+                                                },
+                                                "id": "d1ee76c8-6503-4653-9aa8-2563109d3f36"
+                                              },
+                                              {
+                                                "command": "EVENT_COMMENT",
+                                                "args": {
+                                                  "text": "bottom of briefcase:",
+                                                  "__collapse": true
+                                                },
+                                                "id": "e360af19-c051-42fb-96b4-7b511ebc66b7"
+                                              },
+                                              {
+                                                "command": "EVENT_REPLACE_TILE_XY",
+                                                "args": {
+                                                  "x": {
+                                                    "type": "variable",
+                                                    "value": "V0"
+                                                  },
+                                                  "y": {
+                                                    "type": "expression",
+                                                    "value": "$V1$ + 3"
+                                                  },
+                                                  "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                  "tileIndex": {
+                                                    "type": "number",
+                                                    "value": 12
+                                                  },
+                                                  "tileSize": "8px",
+                                                  "__collapse": true
+                                                },
+                                                "id": "1ed3fc2b-e1d9-405a-b7eb-bd55f25f1d13"
+                                              },
+                                              {
+                                                "command": "EVENT_REPLACE_TILE_XY",
+                                                "args": {
+                                                  "x": {
+                                                    "type": "expression",
+                                                    "value": "$V0$ + 1"
+                                                  },
+                                                  "y": {
+                                                    "type": "expression",
+                                                    "value": "$V1$ + 3"
+                                                  },
+                                                  "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                  "tileIndex": {
+                                                    "type": "number",
+                                                    "value": 13
+                                                  },
+                                                  "tileSize": "8px",
+                                                  "__collapse": true
+                                                },
+                                                "id": "019d7439-e820-4198-a457-4033c5958358"
+                                              },
+                                              {
+                                                "command": "EVENT_REPLACE_TILE_XY",
+                                                "args": {
+                                                  "x": {
+                                                    "type": "expression",
+                                                    "value": "$V0$ + 2"
+                                                  },
+                                                  "y": {
+                                                    "type": "expression",
+                                                    "value": "$V1$ + 3"
+                                                  },
+                                                  "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                  "tileIndex": {
+                                                    "type": "number",
+                                                    "value": 14
+                                                  },
+                                                  "tileSize": "8px",
+                                                  "__collapse": true
+                                                },
+                                                "id": "c6147d30-cb9f-4c6a-adb1-675e942b6be4"
+                                              },
+                                              {
+                                                "command": "EVENT_REPLACE_TILE_XY",
+                                                "args": {
+                                                  "x": {
+                                                    "type": "expression",
+                                                    "value": "$V0$ + 3"
+                                                  },
+                                                  "y": {
+                                                    "type": "expression",
+                                                    "value": "$V1$ + 3"
+                                                  },
+                                                  "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                  "tileIndex": {
+                                                    "type": "number",
+                                                    "value": 15
+                                                  },
+                                                  "tileSize": "8px",
+                                                  "__collapse": true
+                                                },
+                                                "id": "a907e048-7f6b-4f98-bb9c-1f13d6444f95"
+                                              },
+                                              {
+                                                "command": "EVENT_INC_VALUE",
+                                                "args": {
+                                                  "variable": "145",
+                                                  "__collapse": true
+                                                },
+                                                "id": "58f88a25-c74f-4505-8f2b-35cb6a5ca993"
+                                              },
+                                              {
+                                                "command": "EVENT_IF",
+                                                "args": {
+                                                  "condition": {
+                                                    "type": "variable",
+                                                    "value": "303"
+                                                  },
+                                                  "__collapseElse": true
+                                                },
+                                                "children": {
+                                                  "true": [
+                                                    {
+                                                      "command": "EVENT_TEXT",
+                                                      "args": {
+                                                        "text": [
+                                                          "DOUBLE DOWN token +1"
+                                                        ],
+                                                        "__section": "text",
+                                                        "avatarId": "",
+                                                        "minHeight": 2,
+                                                        "maxHeight": 7,
+                                                        "textX": 1,
+                                                        "textY": 1,
+                                                        "textHeight": 5,
+                                                        "position": "bottom",
+                                                        "clearPrevious": true,
+                                                        "showFrame": "true",
+                                                        "speedIn": -1,
+                                                        "speedOut": -1,
+                                                        "closeWhen": "key",
+                                                        "closeButton": "a",
+                                                        "closeDelayTime": 0.5,
+                                                        "closeDelayFrames": 30
+                                                      },
+                                                      "id": "99d16895-3c34-46b8-863c-b8439094f2fe"
+                                                    }
+                                                  ],
+                                                  "false": []
+                                                },
+                                                "id": "031dd1b2-2fe1-4ecd-904f-b81c9f2b5801"
+                                              }
+                                            ],
+                                            "false": [
+                                              {
+                                                "command": "EVENT_IF",
+                                                "args": {
+                                                  "condition": {
+                                                    "type": "gt",
+                                                    "valueA": {
+                                                      "type": "variable",
+                                                      "value": "310"
+                                                    },
+                                                    "valueB": {
+                                                      "type": "number",
+                                                      "value": 13
+                                                    }
+                                                  },
+                                                  "__collapseElse": false,
+                                                  "__comment": false,
+                                                  "__collapse": false
+                                                },
+                                                "children": {
+                                                  "true": [
+                                                    {
+                                                      "command": "EVENT_COMMENT",
+                                                      "args": {
+                                                        "text": "2 WILD tokens",
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "98ca267c-71a5-418c-9009-181a1423b5b8"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_REPLACE_TILE_XY",
+                                                      "args": {
+                                                        "x": {
+                                                          "type": "variable",
+                                                          "value": "V0"
+                                                        },
+                                                        "y": {
+                                                          "type": "expression",
+                                                          "value": "$V1$ + 1"
+                                                        },
+                                                        "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                        "tileIndex": {
+                                                          "type": "number",
+                                                          "value": 36
+                                                        },
+                                                        "tileSize": "16px",
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "76232ac3-65bb-4a26-9081-7339734569d9"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_REPLACE_TILE_XY",
+                                                      "args": {
+                                                        "x": {
+                                                          "type": "expression",
+                                                          "value": "$V0$ + 2"
+                                                        },
+                                                        "y": {
+                                                          "type": "expression",
+                                                          "value": "$V1$ + 1"
+                                                        },
+                                                        "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                        "tileIndex": {
+                                                          "type": "number",
+                                                          "value": 38
+                                                        },
+                                                        "tileSize": "16px",
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "9d34c770-69c9-4eb0-a027-27b296271028"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_COMMENT",
+                                                      "args": {
+                                                        "text": "bottom of briefcase:",
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "289b3dfd-6c48-4638-857d-f9abf6aba870"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_REPLACE_TILE_XY",
+                                                      "args": {
+                                                        "x": {
+                                                          "type": "variable",
+                                                          "value": "V0"
+                                                        },
+                                                        "y": {
+                                                          "type": "expression",
+                                                          "value": "$V1$ + 3"
+                                                        },
+                                                        "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                        "tileIndex": {
+                                                          "type": "number",
+                                                          "value": 12
+                                                        },
+                                                        "tileSize": "8px",
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "eba0bfdd-5853-4831-9860-2178eaa1bff2"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_REPLACE_TILE_XY",
+                                                      "args": {
+                                                        "x": {
+                                                          "type": "expression",
+                                                          "value": "$V0$ + 1"
+                                                        },
+                                                        "y": {
+                                                          "type": "expression",
+                                                          "value": "$V1$ + 3"
+                                                        },
+                                                        "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                        "tileIndex": {
+                                                          "type": "number",
+                                                          "value": 13
+                                                        },
+                                                        "tileSize": "8px",
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "f6e6e852-5936-4f90-8266-b1feaae2cfde"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_REPLACE_TILE_XY",
+                                                      "args": {
+                                                        "x": {
+                                                          "type": "expression",
+                                                          "value": "$V0$ + 2"
+                                                        },
+                                                        "y": {
+                                                          "type": "expression",
+                                                          "value": "$V1$ + 3"
+                                                        },
+                                                        "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                        "tileIndex": {
+                                                          "type": "number",
+                                                          "value": 14
+                                                        },
+                                                        "tileSize": "8px",
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "2b0dd9bf-a286-4f5f-971a-76444703965e"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_REPLACE_TILE_XY",
+                                                      "args": {
+                                                        "x": {
+                                                          "type": "expression",
+                                                          "value": "$V0$ + 3"
+                                                        },
+                                                        "y": {
+                                                          "type": "expression",
+                                                          "value": "$V1$ + 3"
+                                                        },
+                                                        "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                        "tileIndex": {
+                                                          "type": "number",
+                                                          "value": 15
+                                                        },
+                                                        "tileSize": "8px",
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "e9f00db5-c668-4e6c-a63b-46c130f6a9cb"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_INC_VALUE",
+                                                      "args": {
+                                                        "variable": "140",
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "29e26ad8-13ac-48dc-99b1-f19965c366d2"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_INC_VALUE",
+                                                      "args": {
+                                                        "variable": "140",
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "110466f6-a5f0-4f4e-8e26-2214ecdaf0bd"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_IF",
+                                                      "args": {
+                                                        "condition": {
+                                                          "type": "variable",
+                                                          "value": "303"
+                                                        },
+                                                        "__collapseElse": true
+                                                      },
+                                                      "children": {
+                                                        "true": [
+                                                          {
+                                                            "command": "EVENT_TEXT",
+                                                            "args": {
+                                                              "text": [
+                                                                "WILD token +2"
+                                                              ],
+                                                              "__section": "text",
+                                                              "avatarId": "",
+                                                              "minHeight": 2,
+                                                              "maxHeight": 7,
+                                                              "textX": 1,
+                                                              "textY": 1,
+                                                              "textHeight": 5,
+                                                              "position": "bottom",
+                                                              "clearPrevious": true,
+                                                              "showFrame": "true",
+                                                              "speedIn": -1,
+                                                              "speedOut": -1,
+                                                              "closeWhen": "key",
+                                                              "closeButton": "a",
+                                                              "closeDelayTime": 0.5,
+                                                              "closeDelayFrames": 30
+                                                            },
+                                                            "id": "ca509964-0083-4f92-8b3a-88fe32d8af4f"
+                                                          }
+                                                        ],
+                                                        "false": []
+                                                      },
+                                                      "id": "2a758a91-1c56-43d7-bf5f-54efa5c7dde1"
+                                                    }
+                                                  ],
+                                                  "false": [
+                                                    {
+                                                      "command": "EVENT_IF",
+                                                      "args": {
+                                                        "condition": {
+                                                          "type": "gt",
+                                                          "valueA": {
+                                                            "type": "variable",
+                                                            "value": "310"
+                                                          },
+                                                          "valueB": {
+                                                            "type": "number",
+                                                            "value": 7
+                                                          }
+                                                        },
+                                                        "__collapseElse": false,
+                                                        "__comment": false,
+                                                        "__collapse": false
+                                                      },
+                                                      "children": {
+                                                        "true": [
+                                                          {
+                                                            "command": "EVENT_COMMENT",
+                                                            "args": {
+                                                              "text": "1 ERASER token\n1 REWIND token",
+                                                              "__collapse": true
+                                                            },
+                                                            "id": "f0859408-37f1-4257-a5e5-bdbfb390ed84"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_REPLACE_TILE_XY",
+                                                            "args": {
+                                                              "x": {
+                                                                "type": "variable",
+                                                                "value": "V0"
+                                                              },
+                                                              "y": {
+                                                                "type": "expression",
+                                                                "value": "$V1$ + 1"
+                                                              },
+                                                              "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                              "tileIndex": {
+                                                                "type": "number",
+                                                                "value": 40
+                                                              },
+                                                              "tileSize": "16px",
+                                                              "__collapse": true
+                                                            },
+                                                            "id": "dc34f568-095c-4e85-b35f-fa9bcf1902d6"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_REPLACE_TILE_XY",
+                                                            "args": {
+                                                              "x": {
+                                                                "type": "expression",
+                                                                "value": "$V0$ + 2"
+                                                              },
+                                                              "y": {
+                                                                "type": "expression",
+                                                                "value": "$V1$ + 1"
+                                                              },
+                                                              "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                              "tileIndex": {
+                                                                "type": "number",
+                                                                "value": 42
+                                                              },
+                                                              "tileSize": "16px",
+                                                              "__collapse": true
+                                                            },
+                                                            "id": "b3692224-f2cf-4ab2-8b68-2671b1675b4e"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_COMMENT",
+                                                            "args": {
+                                                              "text": "bottom of briefcase:",
+                                                              "__collapse": true
+                                                            },
+                                                            "id": "381dbcaf-df4c-4a64-a181-6912c4913c61"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_REPLACE_TILE_XY",
+                                                            "args": {
+                                                              "x": {
+                                                                "type": "variable",
+                                                                "value": "V0"
+                                                              },
+                                                              "y": {
+                                                                "type": "expression",
+                                                                "value": "$V1$ + 3"
+                                                              },
+                                                              "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                              "tileIndex": {
+                                                                "type": "number",
+                                                                "value": 12
+                                                              },
+                                                              "tileSize": "8px",
+                                                              "__collapse": true
+                                                            },
+                                                            "id": "3c4fbd42-b00e-41d8-a009-5c1b19474006"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_REPLACE_TILE_XY",
+                                                            "args": {
+                                                              "x": {
+                                                                "type": "expression",
+                                                                "value": "$V0$ + 1"
+                                                              },
+                                                              "y": {
+                                                                "type": "expression",
+                                                                "value": "$V1$ + 3"
+                                                              },
+                                                              "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                              "tileIndex": {
+                                                                "type": "number",
+                                                                "value": 13
+                                                              },
+                                                              "tileSize": "8px",
+                                                              "__collapse": true
+                                                            },
+                                                            "id": "4ebd24c2-5155-45ce-8dca-edf23c1fd47a"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_REPLACE_TILE_XY",
+                                                            "args": {
+                                                              "x": {
+                                                                "type": "expression",
+                                                                "value": "$V0$ + 2"
+                                                              },
+                                                              "y": {
+                                                                "type": "expression",
+                                                                "value": "$V1$ + 3"
+                                                              },
+                                                              "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                              "tileIndex": {
+                                                                "type": "number",
+                                                                "value": 14
+                                                              },
+                                                              "tileSize": "8px",
+                                                              "__collapse": true
+                                                            },
+                                                            "id": "b775eb36-f0e9-4e36-b475-92e4d2192509"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_REPLACE_TILE_XY",
+                                                            "args": {
+                                                              "x": {
+                                                                "type": "expression",
+                                                                "value": "$V0$ + 3"
+                                                              },
+                                                              "y": {
+                                                                "type": "expression",
+                                                                "value": "$V1$ + 3"
+                                                              },
+                                                              "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                              "tileIndex": {
+                                                                "type": "number",
+                                                                "value": 15
+                                                              },
+                                                              "tileSize": "8px",
+                                                              "__collapse": true
+                                                            },
+                                                            "id": "522e57d5-4a01-46e2-999b-0d625de69c8a"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_INC_VALUE",
+                                                            "args": {
+                                                              "variable": "142",
+                                                              "__collapse": true
+                                                            },
+                                                            "id": "00335fd5-2fc7-4fb2-8d48-ffec52450fef"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_INC_VALUE",
+                                                            "args": {
+                                                              "variable": "143",
+                                                              "__collapse": true
+                                                            },
+                                                            "id": "4a4eeb69-585d-4c56-b76f-20ca97221e5e"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_IF",
+                                                            "args": {
+                                                              "condition": {
+                                                                "type": "variable",
+                                                                "value": "303"
+                                                              },
+                                                              "__collapseElse": true
+                                                            },
+                                                            "children": {
+                                                              "true": [
+                                                                {
+                                                                  "command": "EVENT_TEXT",
+                                                                  "args": {
+                                                                    "text": [
+                                                                      "ERASER token +1\nREWIND token +1"
+                                                                    ],
+                                                                    "__section": "text",
+                                                                    "avatarId": "",
+                                                                    "minHeight": 4,
+                                                                    "maxHeight": 7,
+                                                                    "textX": 1,
+                                                                    "textY": 1,
+                                                                    "textHeight": 5,
+                                                                    "position": "bottom",
+                                                                    "clearPrevious": true,
+                                                                    "showFrame": "true",
+                                                                    "speedIn": -1,
+                                                                    "speedOut": -1,
+                                                                    "closeWhen": "key",
+                                                                    "closeButton": "a",
+                                                                    "closeDelayTime": 0.5,
+                                                                    "closeDelayFrames": 30
+                                                                  },
+                                                                  "id": "d1c5080d-4b9b-4736-9252-196b53453090"
+                                                                }
+                                                              ],
+                                                              "false": []
+                                                            },
+                                                            "id": "721d3bfc-bb96-4636-93cd-d6cca9ebc768"
+                                                          }
+                                                        ],
+                                                        "false": [
+                                                          {
+                                                            "command": "EVENT_IF",
+                                                            "args": {
+                                                              "condition": {
+                                                                "type": "gt",
+                                                                "valueA": {
+                                                                  "type": "variable",
+                                                                  "value": "310"
+                                                                },
+                                                                "valueB": {
+                                                                  "type": "number",
+                                                                  "value": 1
+                                                                }
+                                                              },
+                                                              "__collapseElse": false,
+                                                              "__comment": false,
+                                                              "__collapse": false
+                                                            },
+                                                            "children": {
+                                                              "true": [
+                                                                {
+                                                                  "command": "EVENT_COMMENT",
+                                                                  "args": {
+                                                                    "text": "2 HEAVY tokens",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "cd5bc8bc-d426-4a7e-923c-f21653a740ea"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_REPLACE_TILE_XY",
+                                                                  "args": {
+                                                                    "x": {
+                                                                      "type": "variable",
+                                                                      "value": "V0"
+                                                                    },
+                                                                    "y": {
+                                                                      "type": "expression",
+                                                                      "value": "$V1$ + 1"
+                                                                    },
+                                                                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                                    "tileIndex": {
+                                                                      "type": "number",
+                                                                      "value": 44
+                                                                    },
+                                                                    "tileSize": "16px",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "2ff2e131-23d9-4bb9-adc7-ccf7a8f49ee2"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_REPLACE_TILE_XY",
+                                                                  "args": {
+                                                                    "x": {
+                                                                      "type": "expression",
+                                                                      "value": "$V0$ + 2"
+                                                                    },
+                                                                    "y": {
+                                                                      "type": "expression",
+                                                                      "value": "$V1$ + 1"
+                                                                    },
+                                                                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                                    "tileIndex": {
+                                                                      "type": "number",
+                                                                      "value": 46
+                                                                    },
+                                                                    "tileSize": "16px",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "017e0497-10a7-4484-8023-89d78cbe97bf"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_COMMENT",
+                                                                  "args": {
+                                                                    "text": "bottom of briefcase:",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "e9a2fad8-3f99-41a2-ac6b-effd54edecf8"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_REPLACE_TILE_XY",
+                                                                  "args": {
+                                                                    "x": {
+                                                                      "type": "variable",
+                                                                      "value": "V0"
+                                                                    },
+                                                                    "y": {
+                                                                      "type": "expression",
+                                                                      "value": "$V1$ + 3"
+                                                                    },
+                                                                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                                    "tileIndex": {
+                                                                      "type": "number",
+                                                                      "value": 12
+                                                                    },
+                                                                    "tileSize": "8px",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "67acde8f-6acb-412d-92fc-241902405294"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_REPLACE_TILE_XY",
+                                                                  "args": {
+                                                                    "x": {
+                                                                      "type": "expression",
+                                                                      "value": "$V0$ + 1"
+                                                                    },
+                                                                    "y": {
+                                                                      "type": "expression",
+                                                                      "value": "$V1$ + 3"
+                                                                    },
+                                                                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                                    "tileIndex": {
+                                                                      "type": "number",
+                                                                      "value": 13
+                                                                    },
+                                                                    "tileSize": "8px",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "8a091236-274e-4c37-836a-d79179dfd81d"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_REPLACE_TILE_XY",
+                                                                  "args": {
+                                                                    "x": {
+                                                                      "type": "expression",
+                                                                      "value": "$V0$ + 2"
+                                                                    },
+                                                                    "y": {
+                                                                      "type": "expression",
+                                                                      "value": "$V1$ + 3"
+                                                                    },
+                                                                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                                    "tileIndex": {
+                                                                      "type": "number",
+                                                                      "value": 14
+                                                                    },
+                                                                    "tileSize": "8px",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "549af31b-9972-4df2-9c38-2551c77bf71d"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_REPLACE_TILE_XY",
+                                                                  "args": {
+                                                                    "x": {
+                                                                      "type": "expression",
+                                                                      "value": "$V0$ + 3"
+                                                                    },
+                                                                    "y": {
+                                                                      "type": "expression",
+                                                                      "value": "$V1$ + 3"
+                                                                    },
+                                                                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                                    "tileIndex": {
+                                                                      "type": "number",
+                                                                      "value": 15
+                                                                    },
+                                                                    "tileSize": "8px",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "37b9350d-3568-4630-beb0-dae1f0439b34"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_INC_VALUE",
+                                                                  "args": {
+                                                                    "variable": "144",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "24ab132e-0311-489c-8939-37e57f57cf16"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_INC_VALUE",
+                                                                  "args": {
+                                                                    "variable": "144",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "092c4b27-dfa7-4fa3-aa96-46fba9b6f970"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_IF",
+                                                                  "args": {
+                                                                    "condition": {
+                                                                      "type": "variable",
+                                                                      "value": "303"
+                                                                    },
+                                                                    "__collapseElse": true
+                                                                  },
+                                                                  "children": {
+                                                                    "true": [
+                                                                      {
+                                                                        "command": "EVENT_TEXT",
+                                                                        "args": {
+                                                                          "text": [
+                                                                            "HEAVY token +2"
+                                                                          ],
+                                                                          "__section": "text",
+                                                                          "avatarId": "",
+                                                                          "minHeight": 2,
+                                                                          "maxHeight": 7,
+                                                                          "textX": 1,
+                                                                          "textY": 1,
+                                                                          "textHeight": 5,
+                                                                          "position": "bottom",
+                                                                          "clearPrevious": true,
+                                                                          "showFrame": "true",
+                                                                          "speedIn": -1,
+                                                                          "speedOut": -1,
+                                                                          "closeWhen": "key",
+                                                                          "closeButton": "a",
+                                                                          "closeDelayTime": 0.5,
+                                                                          "closeDelayFrames": 30
+                                                                        },
+                                                                        "id": "524e11e3-90cc-417f-9b64-cf352fe7708c"
+                                                                      }
+                                                                    ],
+                                                                    "false": []
+                                                                  },
+                                                                  "id": "f35e296e-07ae-48b1-be66-977025da2613"
+                                                                }
+                                                              ],
+                                                              "false": [
+                                                                {
+                                                                  "command": "EVENT_COMMENT",
+                                                                  "args": {
+                                                                    "text": "1 SUPER YOTZEE token\n1 DOUBLE DOWN token",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "3d9b4ae6-46c8-43b9-b80b-cc97c0843133"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_REPLACE_TILE_XY",
+                                                                  "args": {
+                                                                    "x": {
+                                                                      "type": "variable",
+                                                                      "value": "V0"
+                                                                    },
+                                                                    "y": {
+                                                                      "type": "expression",
+                                                                      "value": "$V1$ + 1"
+                                                                    },
+                                                                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                                    "tileIndex": {
+                                                                      "type": "number",
+                                                                      "value": 48
+                                                                    },
+                                                                    "tileSize": "16px",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "ee051d99-e830-46f7-88de-ab1a5cd0ef92"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_REPLACE_TILE_XY",
+                                                                  "args": {
+                                                                    "x": {
+                                                                      "type": "expression",
+                                                                      "value": "$V0$ + 2"
+                                                                    },
+                                                                    "y": {
+                                                                      "type": "expression",
+                                                                      "value": "$V1$ + 1"
+                                                                    },
+                                                                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                                    "tileIndex": {
+                                                                      "type": "number",
+                                                                      "value": 50
+                                                                    },
+                                                                    "tileSize": "16px",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "ede70f48-77a4-4f19-bf4b-bdce183146dd"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_COMMENT",
+                                                                  "args": {
+                                                                    "text": "bottom of briefcase:",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "fd3b2f8f-6489-4c90-8ac2-0c89040ebed7"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_REPLACE_TILE_XY",
+                                                                  "args": {
+                                                                    "x": {
+                                                                      "type": "variable",
+                                                                      "value": "V0"
+                                                                    },
+                                                                    "y": {
+                                                                      "type": "expression",
+                                                                      "value": "$V1$ + 3"
+                                                                    },
+                                                                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                                    "tileIndex": {
+                                                                      "type": "number",
+                                                                      "value": 12
+                                                                    },
+                                                                    "tileSize": "8px",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "d8589478-56dd-4313-8ba2-694737b0fd6d"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_REPLACE_TILE_XY",
+                                                                  "args": {
+                                                                    "x": {
+                                                                      "type": "expression",
+                                                                      "value": "$V0$ + 1"
+                                                                    },
+                                                                    "y": {
+                                                                      "type": "expression",
+                                                                      "value": "$V1$ + 3"
+                                                                    },
+                                                                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                                    "tileIndex": {
+                                                                      "type": "number",
+                                                                      "value": 13
+                                                                    },
+                                                                    "tileSize": "8px",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "2441fcd3-2dd7-40f8-b724-95ac18bcf94e"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_REPLACE_TILE_XY",
+                                                                  "args": {
+                                                                    "x": {
+                                                                      "type": "expression",
+                                                                      "value": "$V0$ + 2"
+                                                                    },
+                                                                    "y": {
+                                                                      "type": "expression",
+                                                                      "value": "$V1$ + 3"
+                                                                    },
+                                                                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                                    "tileIndex": {
+                                                                      "type": "number",
+                                                                      "value": 14
+                                                                    },
+                                                                    "tileSize": "8px",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "8408e9c9-762d-4655-a820-bac637d38748"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_REPLACE_TILE_XY",
+                                                                  "args": {
+                                                                    "x": {
+                                                                      "type": "expression",
+                                                                      "value": "$V0$ + 3"
+                                                                    },
+                                                                    "y": {
+                                                                      "type": "expression",
+                                                                      "value": "$V1$ + 3"
+                                                                    },
+                                                                    "tilesetId": "c9057612-2037-4072-ac87-fb16f763cd74",
+                                                                    "tileIndex": {
+                                                                      "type": "number",
+                                                                      "value": 15
+                                                                    },
+                                                                    "tileSize": "8px",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "a84e23d3-4be7-4ca0-818c-c528d18252bb"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_INC_VALUE",
+                                                                  "args": {
+                                                                    "variable": "141",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "45993cb6-71f9-4ccc-99e3-e9ab6c7fdb16"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_INC_VALUE",
+                                                                  "args": {
+                                                                    "variable": "145",
+                                                                    "__collapse": true
+                                                                  },
+                                                                  "id": "fd083b57-12ba-4895-aadc-5f156de2e6c4"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_IF",
+                                                                  "args": {
+                                                                    "condition": {
+                                                                      "type": "variable",
+                                                                      "value": "303"
+                                                                    },
+                                                                    "__collapseElse": true
+                                                                  },
+                                                                  "children": {
+                                                                    "true": [
+                                                                      {
+                                                                        "command": "EVENT_TEXT",
+                                                                        "args": {
+                                                                          "text": [
+                                                                            "SUPER YOTZEE token +1\nDOUBLE DOWN token +1"
+                                                                          ],
+                                                                          "__section": "text",
+                                                                          "avatarId": "",
+                                                                          "minHeight": 4,
+                                                                          "maxHeight": 7,
+                                                                          "textX": 1,
+                                                                          "textY": 1,
+                                                                          "textHeight": 5,
+                                                                          "position": "bottom",
+                                                                          "clearPrevious": true,
+                                                                          "showFrame": "true",
+                                                                          "speedIn": -1,
+                                                                          "speedOut": -1,
+                                                                          "closeWhen": "key",
+                                                                          "closeButton": "a",
+                                                                          "closeDelayTime": 0.5,
+                                                                          "closeDelayFrames": 30
+                                                                        },
+                                                                        "id": "3e360d41-fe00-4e28-9060-d73881dd1b3f"
+                                                                      }
+                                                                    ],
+                                                                    "false": []
+                                                                  },
+                                                                  "id": "4fc8b4ce-6f81-45f9-8dba-aa4603deaab0"
+                                                                }
+                                                              ]
+                                                            },
+                                                            "id": "a50ec423-f6dd-4393-8482-dc95d83c6a64"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "id": "6a5a19aa-1c41-4047-a5ad-7160154e51c4"
+                                                    }
+                                                  ]
+                                                },
+                                                "id": "da9c8629-9335-443a-9a86-81ecd4d5fb55"
+                                              }
+                                            ]
+                                          },
+                                          "id": "ffb2d1b7-9738-4fef-bc21-8bba66cef02a"
+                                        }
+                                      ]
+                                    },
+                                    "id": "798527fd-1d1f-42f2-b3cd-ccc32b63e4af"
+                                  }
+                                ]
+                              },
+                              "id": "570a6f15-5efe-4947-8189-338ed3db567c"
+                            }
+                          ]
+                        },
+                        "id": "d797919b-f8fa-49a9-a9ac-3024dd6f9e90"
+                      }
+                    ]
+                  },
+                  "id": "4d89b27b-3bd0-45df-8af1-2f3fd31c658d"
+                }
+              ]
+            },
+            "id": "02ffb428-4c71-4054-b71b-f358c2444066"
+          }
+        ]
+      },
+      "id": "33662152-239b-4727-b284-e6f448671fc2"
+    }
+  ]
+}
