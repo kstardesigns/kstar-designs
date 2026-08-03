@@ -259,29 +259,59 @@
       "id": "02f0e737-2ff7-4830-af62-b02d874aa5b2"
     },
     {
-      "command": "EVENT_TEXT",
+      "command": "EVENT_THREAD_START",
       "args": {
-        "text": [
-          " BRIEFCASE BOUT!"
-        ],
-        "__section": "layout",
-        "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
-        "minHeight": 4,
-        "maxHeight": 7,
-        "textX": 1,
-        "textY": 1,
-        "textHeight": 5,
-        "position": "bottom",
-        "clearPrevious": true,
-        "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
-        "closeButton": "a",
-        "closeDelayTime": 0.5,
-        "closeDelayFrames": 30
+        "variable": "L0",
+        "__scriptTabs": "true"
       },
-      "id": "d2f4c2d8-15b1-4add-bbd8-a8e15331009d"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_LOOP",
+            "args": {},
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "b36c7600-f920-44ec-b8d0-b8f0aea612b3",
+                    "spriteStateId": "Briefcase show",
+                    "loopAnim": false
+                  },
+                  "id": "b3d0de05-770d-4217-8340-b812a125712a"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 3,
+                    "frames": 30
+                  },
+                  "id": "cb81aee8-9320-4ebb-b963-df179296a029"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "b36c7600-f920-44ec-b8d0-b8f0aea612b3",
+                    "spriteStateId": "Briefcase hide",
+                    "loopAnim": false
+                  },
+                  "id": "ccdb1821-d174-4494-9e30-f4784a4b0fd0"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 2,
+                    "frames": 30
+                  },
+                  "id": "b5f5fe99-8663-493f-be3f-c61a6a42a751"
+                }
+              ]
+            },
+            "id": "5db131d3-b6ac-4711-9e8a-4590daf75fda"
+          }
+        ]
+      },
+      "id": "e64a4fa5-02ba-42d6-9395-6d55d120d1c2"
     },
     {
       "command": "EVENT_IF",
@@ -290,7 +320,8 @@
           "type": "variable",
           "value": "303"
         },
-        "__collapseElse": true
+        "__collapseElse": true,
+        "__collapse": true
       },
       "children": {
         "true": [
