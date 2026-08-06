@@ -1,0 +1,133 @@
+{
+  "_resourceType": "script",
+  "id": "23cd725b-6555-4077-a28d-ec6af7293185",
+  "name": "Gameplay award points",
+  "description": "Used for when you match 3 symbols on the slot",
+  "variables": {
+    "V0": {
+      "id": "V0",
+      "name": "points_to_award",
+      "passByReference": true
+    }
+  },
+  "actors": {},
+  "symbol": "script_63",
+  "script": [
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "122",
+        "value": {
+          "type": "true"
+        },
+        "__collapse": true
+      },
+      "id": "a8a6cd06-92e5-4a9e-9765-fb9eb6fc8478"
+    },
+    {
+      "command": "EVENT_LOOP_WHILE",
+      "args": {
+        "condition": {
+          "type": "gt",
+          "valueA": {
+            "type": "variable",
+            "value": "V0"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 0
+          }
+        }
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_DEC_VALUE",
+            "args": {
+              "variable": "V0",
+              "__collapse": true
+            },
+            "id": "12bb56fa-6ee2-4016-9e5b-a181d0bc3b44"
+          },
+          {
+            "command": "EVENT_INC_VALUE",
+            "args": {
+              "variable": "324",
+              "__collapse": true
+            },
+            "id": "1a4df4c2-fe28-48a3-909e-68f444d3274c"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Recalculate total score and redraw it, to account for new point added",
+              "__collapse": true
+            },
+            "id": "bcd7d3ed-4519-40ec-b9ee-6985dcb58409"
+          },
+          {
+            "command": "EVENT_SOUND_PLAY_EFFECT",
+            "args": {
+              "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
+              "priority": "medium",
+              "pitch": 4,
+              "frequency": 200,
+              "duration": 0.5,
+              "wait": true,
+              "effect": 6
+            },
+            "id": "ff530413-a5ce-4ae9-a391-da02cad77f3f"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "53449fc8-5d0a-49e4-8601-e91810792c1f",
+              "__collapse": true
+            },
+            "id": "8a3abb90-f0e0-4bda-aabe-da2b86e25a5d"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "de62d8fb-4adb-4ccf-8ed9-50813e05828f",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "115"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 18
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 16
+              },
+              "__collapse": true
+            },
+            "id": "fd02e53e-8ec4-4acc-869c-4ed6662ebe84"
+          }
+        ]
+      },
+      "id": "3aff09c0-ab27-4b62-9d0e-1064a7bb7fc3"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "122",
+        "value": {
+          "type": "false"
+        },
+        "__collapse": true
+      },
+      "id": "af12d67e-9be1-4f52-b8eb-3b920abab6c4"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 0.5,
+        "frames": 30
+      },
+      "id": "e75f3ab2-c350-4ede-9bac-ec8fc1537f4b"
+    }
+  ]
+}
