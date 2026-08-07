@@ -332,7 +332,7 @@
       "command": "EVENT_COMMENT",
       "args": {
         "text": "JOKER stuff: manually set joker score to be written as temp scores",
-        "__collapse": false
+        "__collapse": true
       },
       "id": "45cd6f0c-22ba-4cc1-a36a-77e80c00c4c5"
     },
@@ -1251,11 +1251,11 @@
       "args": {
         "condition": {
           "type": "expression",
-          "value": "$45$ || $61$ || $63$ || $146$ || $147$ || $148$ || $149$ || $150$ || $157$ || $160$ || $159$ || $161$"
+          "value": "$44$"
         },
         "__collapseElse": false,
-        "__collapse": false,
-        "__label": "(If) Change state of Pokey"
+        "__label": "(If) Change state of Pokey",
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -1263,19 +1263,11 @@
             "command": "EVENT_ACTOR_SET_STATE",
             "args": {
               "actorId": "854b5204-35e1-4a56-8d8b-fdafb8694aab",
-              "spriteStateId": "Star bonuses active",
-              "loopAnim": true,
+              "spriteStateId": "Star bad bonus active",
+              "loopAnim": false,
               "__collapse": false
             },
-            "id": "1187af74-6d76-413b-9595-28c29fb8564d"
-          },
-          {
-            "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
-            "args": {
-              "actorId": "854b5204-35e1-4a56-8d8b-fdafb8694aab",
-              "speed": 31
-            },
-            "id": "31b9b025-ce7c-4971-bf6d-8c67b56a0d83"
+            "id": "f957924c-c4f2-4102-93fc-e8529a86034a"
           }
         ],
         "false": [
@@ -1284,9 +1276,11 @@
             "args": {
               "condition": {
                 "type": "expression",
-                "value": "$44$"
+                "value": "$45$ || $61$ || $63$ || $146$ || $147$ || $148$ || $149$ || $150$ || $157$ || $160$ || $159$ || $161$"
               },
-              "__collapseElse": false
+              "__collapseElse": false,
+              "__collapse": false,
+              "__label": "(If) Bonuses and tokens"
             },
             "children": {
               "true": [
@@ -1294,11 +1288,19 @@
                   "command": "EVENT_ACTOR_SET_STATE",
                   "args": {
                     "actorId": "854b5204-35e1-4a56-8d8b-fdafb8694aab",
-                    "spriteStateId": "Star bad bonus active",
-                    "loopAnim": false,
+                    "spriteStateId": "Star bonuses active",
+                    "loopAnim": true,
                     "__collapse": false
                   },
-                  "id": "cb78127a-613e-46ec-ab97-8bfadff7e700"
+                  "id": "1187af74-6d76-413b-9595-28c29fb8564d"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
+                  "args": {
+                    "actorId": "854b5204-35e1-4a56-8d8b-fdafb8694aab",
+                    "speed": 31
+                  },
+                  "id": "31b9b025-ce7c-4971-bf6d-8c67b56a0d83"
                 }
               ],
               "false": [
@@ -1314,17 +1316,27 @@
                 }
               ]
             },
-            "id": "c0a11e5b-ca2f-4e94-b83f-8ed3ca3928ce"
+            "id": "455aa5d4-14a5-4384-bef8-fadf6c365b3d"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "854b5204-35e1-4a56-8d8b-fdafb8694aab",
+              "spriteStateId": "Scorecard done loading",
+              "loopAnim": false,
+              "__collapse": false
+            },
+            "id": "42026f41-530f-4671-b560-a36ffc873d5d"
           }
         ]
       },
-      "id": "455aa5d4-14a5-4384-bef8-fadf6c365b3d"
+      "id": "e21a8cdf-0c41-444f-9ac4-680c9f563a95"
     },
     {
       "command": "EVENT_COMMENT",
       "args": {
         "text": "Check Super Yotzee before Joker stuff",
-        "__collapse": false
+        "__collapse": true
       },
       "id": "52b16284-62d6-4186-95b8-3eae046b7ae8"
     },
