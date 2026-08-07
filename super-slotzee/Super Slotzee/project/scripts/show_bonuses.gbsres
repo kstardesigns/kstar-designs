@@ -17,7 +17,8 @@
     {
       "command": "EVENT_COMMENT",
       "args": {
-        "text": "Allows cursor movement to finish while dialog displays"
+        "text": "Allows cursor movement to finish while dialog displays",
+        "__collapse": true
       },
       "id": "d7035575-6416-44f9-a730-d43ca12cf3f8"
     },
@@ -31,44 +32,98 @@
       "id": "748f94e0-7336-4649-ab00-6ce392e8a74b"
     },
     {
-      "command": "EVENT_IF",
+      "id": "85c08d0b-1719-4285-b935-88565d580cfe",
+      "command": "EVENT_GROUP",
       "args": {
-        "condition": {
-          "type": "variable",
-          "value": "45"
-        },
-        "__collapseElse": false,
-        "__collapse": false
+        "__label": "Slot bonus messages",
+        "__collapse": true
       },
       "children": {
         "true": [
           {
-            "command": "EVENT_TEXT",
+            "command": "EVENT_IF",
             "args": {
-              "text": [
-                " Slot bonus active:\n Double stack\n (2x score)"
-              ],
-              "__section": "text",
-              "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
-              "minHeight": 4,
-              "maxHeight": 7,
-              "textX": 1,
-              "textY": 1,
-              "textHeight": 5,
-              "position": "top",
-              "clearPrevious": true,
-              "showFrame": true,
-              "speedIn": -1,
-              "speedOut": -1,
-              "closeWhen": "key",
-              "closeButton": "any",
-              "closeDelayTime": 0.5,
-              "closeDelayFrames": 30
+              "condition": {
+                "type": "variable",
+                "value": "61"
+              },
+              "__collapseElse": false,
+              "__collapse": true
             },
-            "id": "19cf5a10-f65d-4894-8159-f1501495b905"
-          }
-        ],
-        "false": [
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      " Slot bonus active:\n Extra roll\n (4th roll this turn)"
+                    ],
+                    "__section": "text",
+                    "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "top",
+                    "clearPrevious": true,
+                    "showFrame": true,
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "any",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "20d0659e-68f7-414b-9077-565e0d748aa3"
+                }
+              ],
+              "false": []
+            },
+            "id": "e28b25da-a130-4461-8473-3bd5708ddd78"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "45"
+              },
+              "__collapseElse": false,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      " Slot bonus active:\n Double stack\n (2x score)"
+                    ],
+                    "__section": "text",
+                    "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "top",
+                    "clearPrevious": true,
+                    "showFrame": true,
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "any",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "19cf5a10-f65d-4894-8159-f1501495b905"
+                }
+              ],
+              "false": []
+            },
+            "id": "c9edaf99-9f78-4b90-b4ec-6ea4caacd662"
+          },
           {
             "command": "EVENT_IF",
             "args": {
@@ -77,7 +132,7 @@
                 "value": "44"
               },
               "__collapseElse": false,
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -107,93 +162,7 @@
                   "id": "46899c47-9316-4b31-9e42-b8bab50813d8"
                 }
               ],
-              "false": [
-                {
-                  "command": "EVENT_IF",
-                  "args": {
-                    "condition": {
-                      "type": "variable",
-                      "value": "61"
-                    },
-                    "__collapseElse": false,
-                    "__collapse": false
-                  },
-                  "children": {
-                    "true": [
-                      {
-                        "command": "EVENT_TEXT",
-                        "args": {
-                          "text": [
-                            " Slot bonus active:\n Extra roll\n (4th roll this turn)"
-                          ],
-                          "__section": "text",
-                          "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
-                          "minHeight": 4,
-                          "maxHeight": 7,
-                          "textX": 1,
-                          "textY": 1,
-                          "textHeight": 5,
-                          "position": "top",
-                          "clearPrevious": true,
-                          "showFrame": true,
-                          "speedIn": -1,
-                          "speedOut": -1,
-                          "closeWhen": "key",
-                          "closeButton": "any",
-                          "closeDelayTime": 0.5,
-                          "closeDelayFrames": 30
-                        },
-                        "id": "20d0659e-68f7-414b-9077-565e0d748aa3"
-                      }
-                    ],
-                    "false": [
-                      {
-                        "command": "EVENT_IF",
-                        "args": {
-                          "condition": {
-                            "type": "variable",
-                            "value": "63"
-                          },
-                          "__collapseElse": false,
-                          "__collapse": false
-                        },
-                        "children": {
-                          "true": [
-                            {
-                              "command": "EVENT_TEXT",
-                              "args": {
-                                "text": [
-                                  " Slot bonus active:\n Slot token earned\n this turn"
-                                ],
-                                "__section": "text",
-                                "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
-                                "minHeight": 4,
-                                "maxHeight": 7,
-                                "textX": 1,
-                                "textY": 1,
-                                "textHeight": 5,
-                                "position": "top",
-                                "clearPrevious": true,
-                                "showFrame": true,
-                                "speedIn": -1,
-                                "speedOut": -1,
-                                "closeWhen": "key",
-                                "closeButton": "any",
-                                "closeDelayTime": 0.5,
-                                "closeDelayFrames": 30
-                              },
-                              "id": "be7676b2-4728-4942-87d2-7f95ff42b64c"
-                            }
-                          ],
-                          "false": []
-                        },
-                        "id": "387d168f-2f2e-4310-93b6-6759b8f11aaf"
-                      }
-                    ]
-                  },
-                  "id": "e28b25da-a130-4461-8473-3bd5708ddd78"
-                }
-              ]
+              "false": []
             },
             "id": "cbe72ed4-5542-4685-8910-bb0430197a59"
           },
@@ -201,10 +170,65 @@
             "command": "EVENT_IF",
             "args": {
               "condition": {
+                "type": "variable",
+                "value": "63"
+              },
+              "__collapseElse": false,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      " Slot bonus active:\n Slot token earned\n this turn"
+                    ],
+                    "__section": "text",
+                    "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "top",
+                    "clearPrevious": true,
+                    "showFrame": true,
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "any",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "be7676b2-4728-4942-87d2-7f95ff42b64c"
+                }
+              ],
+              "false": []
+            },
+            "id": "387d168f-2f2e-4310-93b6-6759b8f11aaf"
+          }
+        ]
+      }
+    },
+    {
+      "id": "17284b92-5fd8-4a6e-a7e8-e8e720e04041",
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Token messages",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
                 "type": "expression",
                 "value": "$146$ || $147$ || $148$ || $149$ || $150$"
               },
-              "__collapseElse": true
+              "__collapseElse": true,
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -245,7 +269,8 @@
                 "type": "expression",
                 "value": "$157$"
               },
-              "__collapseElse": true
+              "__collapseElse": true,
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -286,7 +311,8 @@
                 "type": "expression",
                 "value": "$160$"
               },
-              "__collapseElse": true
+              "__collapseElse": true,
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -327,7 +353,8 @@
                 "type": "expression",
                 "value": "$161$"
               },
-              "__collapseElse": true
+              "__collapseElse": true,
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -362,8 +389,7 @@
             "id": "381b109f-1bd3-4c05-8c95-f4fa062db2cb"
           }
         ]
-      },
-      "id": "c9edaf99-9f78-4b90-b4ec-6ea4caacd662"
+      }
     },
     {
       "command": "EVENT_IF",
@@ -372,7 +398,8 @@
           "type": "expression",
           "value": "!$44$ && !$45$ && !$61$ && !$63$ && !$146$ && !$147$ && !$148$ && !$149$ && !$150$ && !$160$ && !$157$ && !$159$ && !$161$"
         },
-        "__collapseElse": true
+        "__collapseElse": true,
+        "__label": "(If) no bonus message"
       },
       "children": {
         "true": [
