@@ -178,7 +178,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) not bonus_extra_roll then Check for Slots: Extra Roll",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -244,7 +244,7 @@
                                 "customEventId": "23cd725b-6555-4077-a28d-ec6af7293185",
                                 "$variable[V0]$": {
                                   "type": "number",
-                                  "value": 25
+                                  "value": 40
                                 },
                                 "__collapse": true
                               },
@@ -470,9 +470,9 @@
                                 "customEventId": "23cd725b-6555-4077-a28d-ec6af7293185",
                                 "$variable[V0]$": {
                                   "type": "number",
-                                  "value": 25
+                                  "value": 40
                                 },
-                                "__collapse": true
+                                "__collapse": false
                               },
                               "id": "0baa0a4c-45b2-4e9d-898c-0da6ec166407"
                             },
@@ -630,7 +630,7 @@
         },
         "__collapseElse": true,
         "__label": "(if) not bonus_auto_zero then Check for Slots: Auto Zero",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -833,7 +833,7 @@
         },
         "__collapseElse": true,
         "__label": "(if) not bonus_slot_coin then Check for Slots: Slot Token",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -908,7 +908,7 @@
           }
         },
         "__collapseElse": false,
-        "__collapse": true,
+        "__collapse": false,
         "__label": "(If) Score everything (if NOT bonus_auto_zero)"
       },
       "children": {
@@ -1702,7 +1702,7 @@
                       "value": "$19$ == 5"
                     },
                     "__collapseElse": true,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -1740,12 +1740,31 @@
                               "id": "43b89aec-7bbe-48bf-8488-a89eb0e97788"
                             },
                             {
-                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "command": "EVENT_IF",
                               "args": {
-                                "customEventId": "d5266c15-fd43-4464-b8e3-b9c9fc242cd1",
-                                "__collapse": false
+                                "condition": {
+                                  "type": "not",
+                                  "value": {
+                                    "type": "variable",
+                                    "value": "327"
+                                  }
+                                },
+                                "__collapseElse": true
                               },
-                              "id": "2ce7fc08-fe69-4bd5-bfff-f95caebbe1a6"
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_CALL_CUSTOM_EVENT",
+                                    "args": {
+                                      "customEventId": "d5266c15-fd43-4464-b8e3-b9c9fc242cd1",
+                                      "__collapse": false
+                                    },
+                                    "id": "2ce7fc08-fe69-4bd5-bfff-f95caebbe1a6"
+                                  }
+                                ],
+                                "false": []
+                              },
+                              "id": "e0e4e745-1972-40b8-8ac1-3db92ebe85bb"
                             }
                           ],
                           "false": []
