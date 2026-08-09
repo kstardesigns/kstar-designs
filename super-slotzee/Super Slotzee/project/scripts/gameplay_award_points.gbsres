@@ -203,18 +203,35 @@
             "id": "bcd7d3ed-4519-40ec-b9ee-6985dcb58409"
           },
           {
-            "command": "EVENT_SOUND_PLAY_EFFECT",
+            "command": "EVENT_IF",
             "args": {
-              "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
-              "priority": "medium",
-              "pitch": 4,
-              "frequency": 200,
-              "duration": 0.5,
-              "wait": true,
-              "effect": 6,
+              "condition": {
+                "type": "variable",
+                "value": "67"
+              },
+              "__collapseElse": true,
               "__collapse": true
             },
-            "id": "ff530413-a5ce-4ae9-a391-da02cad77f3f"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SOUND_PLAY_EFFECT",
+                  "args": {
+                    "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
+                    "priority": "medium",
+                    "pitch": 4,
+                    "frequency": 200,
+                    "duration": 0.5,
+                    "wait": true,
+                    "effect": 6,
+                    "__collapse": true
+                  },
+                  "id": "ff530413-a5ce-4ae9-a391-da02cad77f3f"
+                }
+              ],
+              "false": []
+            },
+            "id": "ed26bf5c-3684-4dae-a55f-b0e7383cfb81"
           },
           {
             "command": "EVENT_CALL_CUSTOM_EVENT",
