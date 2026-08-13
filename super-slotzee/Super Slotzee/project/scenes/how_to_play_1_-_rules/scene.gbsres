@@ -56,6 +56,13 @@
       "id": "73aeac63-1356-4130-9637-9dbeb1767988"
     },
     {
+      "command": "EVENT_PALETTE_SET_UI",
+      "args": {
+        "palette": "56059128-79fb-44a9-84fb-285257a04bd1"
+      },
+      "id": "f8810760-ee10-4447-8d9b-5e4e4e8fdc9e"
+    },
+    {
       "command": "EVENT_ACTOR_DEACTIVATE",
       "args": {
         "actorId": "$self$",
@@ -79,7 +86,7 @@
       "command": "EVENT_GROUP",
       "args": {
         "__label": "Konami listeners",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -87,7 +94,7 @@
             "command": "EVENT_COMMENT",
             "args": {
               "text": "Konami code minus buttons already assigned to something else:\nup, up, down, down, A\n1,  1,   2,    2,   3\nonly if game is active (paused)\nadds 3 of each token",
-              "__collapse": true
+              "__collapse": false
             },
             "id": "fffd896d-dc19-45f8-8f8f-84acbab9b26c"
           },
@@ -105,7 +112,7 @@
                 }
               },
               "__collapseElse": true,
-              "__collapse": true
+              "__collapse": false
             },
             "children": {
               "true": [
@@ -117,7 +124,7 @@
                     ],
                     "override": true,
                     "__scriptTabs": "press",
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -239,7 +246,7 @@
                     ],
                     "override": true,
                     "__scriptTabs": "press",
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -403,29 +410,138 @@
                               "children": {
                                 "true": [
                                   {
-                                    "command": "EVENT_TEXT",
+                                    "command": "EVENT_IF",
                                     "args": {
-                                      "text": [
-                                        " Umm... why do you \n need so many?"
-                                      ],
-                                      "__section": "text",
-                                      "avatarId": "7309ba10-1169-46e1-8cad-7f9330edff84",
-                                      "minHeight": 4,
-                                      "maxHeight": 7,
-                                      "textX": 1,
-                                      "textY": 1,
-                                      "textHeight": 5,
-                                      "position": "bottom",
-                                      "clearPrevious": true,
-                                      "showFrame": "true",
-                                      "speedIn": -1,
-                                      "speedOut": -1,
-                                      "closeWhen": "key",
-                                      "closeButton": "a",
-                                      "closeDelayTime": 0.5,
-                                      "closeDelayFrames": 30
+                                      "condition": {
+                                        "type": "variable",
+                                        "value": "330"
+                                      },
+                                      "__collapseElse": false
                                     },
-                                    "id": "7e288285-bd43-4959-9937-a4f5dcf81a03"
+                                    "children": {
+                                      "true": [
+                                        {
+                                          "command": "EVENT_IF",
+                                          "args": {
+                                            "condition": {
+                                              "type": "variable",
+                                              "value": "331"
+                                            },
+                                            "__collapseElse": false
+                                          },
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_TEXT",
+                                                "args": {
+                                                  "text": [
+                                                    " Go play the game!"
+                                                  ],
+                                                  "__section": "text",
+                                                  "avatarId": "fbc332a0-830f-4e8c-a2c0-83b3fae89d09",
+                                                  "minHeight": 4,
+                                                  "maxHeight": 7,
+                                                  "textX": 1,
+                                                  "textY": 1,
+                                                  "textHeight": 5,
+                                                  "position": "bottom",
+                                                  "clearPrevious": true,
+                                                  "showFrame": "true",
+                                                  "speedIn": -1,
+                                                  "speedOut": -1,
+                                                  "closeWhen": "key",
+                                                  "closeButton": "a",
+                                                  "closeDelayTime": 0.5,
+                                                  "closeDelayFrames": 30,
+                                                  "__collapse": false
+                                                },
+                                                "id": "b16047c3-d2fa-40c8-9273-eb6cd735709d"
+                                              }
+                                            ],
+                                            "false": [
+                                              {
+                                                "command": "EVENT_TEXT",
+                                                "args": {
+                                                  "text": [
+                                                    " Sorry, I'm all out."
+                                                  ],
+                                                  "__section": "text",
+                                                  "avatarId": "ad614e50-02e7-46b0-82c9-d6622366804c",
+                                                  "minHeight": 4,
+                                                  "maxHeight": 7,
+                                                  "textX": 1,
+                                                  "textY": 1,
+                                                  "textHeight": 5,
+                                                  "position": "bottom",
+                                                  "clearPrevious": true,
+                                                  "showFrame": "true",
+                                                  "speedIn": -1,
+                                                  "speedOut": -1,
+                                                  "closeWhen": "key",
+                                                  "closeButton": "a",
+                                                  "closeDelayTime": 0.5,
+                                                  "closeDelayFrames": 30,
+                                                  "__collapse": true
+                                                },
+                                                "id": "8bfaa653-9d5d-444a-8232-7ee63d140ad9"
+                                              },
+                                              {
+                                                "command": "EVENT_SET_VALUE",
+                                                "args": {
+                                                  "variable": "331",
+                                                  "value": {
+                                                    "type": "true"
+                                                  },
+                                                  "__collapse": true
+                                                },
+                                                "id": "8bda9e62-8cce-46e4-8bb9-d51cf03046d1"
+                                              }
+                                            ]
+                                          },
+                                          "id": "393a0f79-6e38-43e8-8b0b-aa535ad18cea"
+                                        }
+                                      ],
+                                      "false": [
+                                        {
+                                          "command": "EVENT_TEXT",
+                                          "args": {
+                                            "text": [
+                                              " Umm... why do you \n need so many?"
+                                            ],
+                                            "__section": "text",
+                                            "avatarId": "7309ba10-1169-46e1-8cad-7f9330edff84",
+                                            "minHeight": 4,
+                                            "maxHeight": 7,
+                                            "textX": 1,
+                                            "textY": 1,
+                                            "textHeight": 5,
+                                            "position": "bottom",
+                                            "clearPrevious": true,
+                                            "showFrame": "true",
+                                            "speedIn": -1,
+                                            "speedOut": -1,
+                                            "closeWhen": "key",
+                                            "closeButton": "a",
+                                            "closeDelayTime": 0.5,
+                                            "closeDelayFrames": 30,
+                                            "__collapse": false
+                                          },
+                                          "id": "7e288285-bd43-4959-9937-a4f5dcf81a03"
+                                        },
+                                        {
+                                          "command": "EVENT_SET_VALUE",
+                                          "args": {
+                                            "variable": "330",
+                                            "value": {
+                                              "type": "true"
+                                            },
+                                            "__collapse": true
+                                          },
+                                          "id": "1c0367d4-6c74-471e-b733-ce3b816f66df"
+                                        }
+                                      ]
+                                    },
+                                    "id": "6f7d8229-dea1-4101-b0c6-aa0c439a1e73"
                                   }
                                 ],
                                 "false": [
@@ -601,9 +717,18 @@
               "value": {
                 "type": "number",
                 "value": 0
-              }
+              },
+              "__collapse": true
             },
             "id": "582f0b55-62bd-4e0d-8c73-59dddf5d368e"
+          },
+          {
+            "command": "EVENT_PALETTE_SET_UI",
+            "args": {
+              "palette": "f006aaec-a37b-4d52-94a4-157d55a31514",
+              "__collapse": true
+            },
+            "id": "2b1b5685-7beb-4091-8b6f-502ede920223"
           },
           {
             "command": "EVENT_SCENE_POP_STATE",
@@ -639,6 +764,13 @@
               "__collapse": true
             },
             "id": "8e5ff696-ec79-4b00-990b-1709356fdcd4"
+          },
+          {
+            "command": "EVENT_PALETTE_SET_UI",
+            "args": {
+              "palette": "f006aaec-a37b-4d52-94a4-157d55a31514"
+            },
+            "id": "863787d3-f7e0-47aa-9417-0009b159358a"
           },
           {
             "command": "EVENT_SWITCH_SCENE",
@@ -687,6 +819,13 @@
             "id": "a54e6088-dbaa-4d31-a8a1-15f258c07d9f"
           },
           {
+            "command": "EVENT_PALETTE_SET_UI",
+            "args": {
+              "palette": "f006aaec-a37b-4d52-94a4-157d55a31514"
+            },
+            "id": "a29376f7-3aa5-430b-9c0e-661ce4d413f5"
+          },
+          {
             "command": "EVENT_SWITCH_SCENE",
             "args": {
               "sceneId": "ad4f3473-8036-4344-a629-a80d2541e304",
@@ -712,5 +851,6 @@
   "playerHit1Script": [],
   "playerHit2Script": [],
   "playerHit3Script": [],
-  "collisions": ""
+  "collisions": "",
+  "autoFadeEventCollapse": true
 }
