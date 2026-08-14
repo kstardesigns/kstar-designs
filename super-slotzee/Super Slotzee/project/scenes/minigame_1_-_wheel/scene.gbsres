@@ -42,43 +42,45 @@
       "id": "563cd07d-6f6d-4142-9a10-0c7f38de476e"
     },
     {
-      "command": "EVENT_COMMENT",
+      "id": "fc1beba0-2463-4b68-b2f6-0c8ef86e346f",
+      "command": "EVENT_GROUP",
       "args": {
-        "text": "First pick 4 random reward tokens & assign them",
-        "__collapse": true,
         "__label": "First pick 4 random reward tokens & assign them"
       },
-      "id": "08dd9d3c-56d2-4233-9405-64739e710874"
-    },
-    {
-      "command": "EVENT_VARIABLE_MATH",
-      "args": {
-        "vectorX": "133",
-        "operation": "set",
-        "other": "rnd",
-        "vectorY": "L0",
-        "value": "0",
-        "minValue": 1,
-        "maxValue": 3,
-        "clamp": false,
-        "__collapse": true
-      },
-      "id": "5c2eaacb-7eff-4864-a53a-46719fdeae56"
-    },
-    {
-      "command": "EVENT_VARIABLE_MATH",
-      "args": {
-        "vectorX": "134",
-        "operation": "set",
-        "other": "rnd",
-        "vectorY": "L0",
-        "value": "0",
-        "minValue": 1,
-        "maxValue": 3,
-        "clamp": false,
-        "__collapse": true
-      },
-      "id": "0fbe5a01-1101-4d86-8170-6279482be5ab"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_VARIABLE_MATH",
+            "args": {
+              "vectorX": "133",
+              "operation": "set",
+              "other": "rnd",
+              "vectorY": "L0",
+              "value": "0",
+              "minValue": 1,
+              "maxValue": 3,
+              "clamp": false,
+              "__collapse": true
+            },
+            "id": "5c2eaacb-7eff-4864-a53a-46719fdeae56"
+          },
+          {
+            "command": "EVENT_VARIABLE_MATH",
+            "args": {
+              "vectorX": "134",
+              "operation": "set",
+              "other": "rnd",
+              "vectorY": "L0",
+              "value": "0",
+              "minValue": 1,
+              "maxValue": 3,
+              "clamp": false,
+              "__collapse": true
+            },
+            "id": "0fbe5a01-1101-4d86-8170-6279482be5ab"
+          }
+        ]
+      }
     },
     {
       "command": "EVENT_LOOP_WHILE",
@@ -1415,7 +1417,8 @@
       "args": {
         "variable": "L0",
         "__scriptTabs": "true",
-        "__collapse": false
+        "__collapse": true,
+        "__label": "(Thread) title animation"
       },
       "children": {
         "true": [
@@ -1443,7 +1446,7 @@
                 {
                   "command": "EVENT_WAIT",
                   "args": {
-                    "time": 1,
+                    "time": 2,
                     "frames": 30,
                     "__collapse": true
                   },
@@ -1472,23 +1475,23 @@
                   "children": {
                     "true": [
                       {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 0.1,
+                          "frames": 30,
+                          "__collapse": true
+                        },
+                        "id": "39aead9b-0ae6-4614-9718-37c3ef6e63fc"
+                      },
+                      {
                         "id": "747ed59b-de62-4ff8-8993-f764cd7e2493",
                         "command": "EVENT_GROUP",
                         "args": {
                           "__label": "Rotate to 90",
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "children": {
                           "true": [
-                            {
-                              "command": "EVENT_WAIT",
-                              "args": {
-                                "time": 0.1,
-                                "frames": 30,
-                                "__collapse": false
-                              },
-                              "id": "39aead9b-0ae6-4614-9718-37c3ef6e63fc"
-                            },
                             {
                               "command": "EVENT_REPLACE_TILE_XY",
                               "args": {
@@ -1693,22 +1696,23 @@
                         }
                       },
                       {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 0.1,
+                          "frames": 30,
+                          "__collapse": true
+                        },
+                        "id": "fd150044-7b96-42a8-bff4-51065a68272d"
+                      },
+                      {
                         "id": "493c3c30-710b-4183-8d19-4af1bd4ea092",
                         "command": "EVENT_GROUP",
                         "args": {
                           "__label": "Rotate to 180",
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "children": {
                           "true": [
-                            {
-                              "command": "EVENT_WAIT",
-                              "args": {
-                                "time": 0.1,
-                                "frames": 30
-                              },
-                              "id": "fd150044-7b96-42a8-bff4-51065a68272d"
-                            },
                             {
                               "command": "EVENT_REPLACE_TILE_XY",
                               "args": {
@@ -1913,22 +1917,23 @@
                         }
                       },
                       {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 0.1,
+                          "frames": 30,
+                          "__collapse": true
+                        },
+                        "id": "7b79ebf9-5bc3-4c5c-b4f0-8ac3c6a7a5e2"
+                      },
+                      {
                         "id": "c971bc35-e3bc-4604-a5e2-c9f48a28991f",
                         "command": "EVENT_GROUP",
                         "args": {
                           "__label": "Rotate to 270",
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "children": {
                           "true": [
-                            {
-                              "command": "EVENT_WAIT",
-                              "args": {
-                                "time": 0.1,
-                                "frames": 30
-                              },
-                              "id": "7b79ebf9-5bc3-4c5c-b4f0-8ac3c6a7a5e2"
-                            },
                             {
                               "command": "EVENT_REPLACE_TILE_XY",
                               "args": {
@@ -2133,22 +2138,22 @@
                         }
                       },
                       {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 0.1,
+                          "frames": 30
+                        },
+                        "id": "52622264-51d5-49c0-87c6-5ffaa022bc8e"
+                      },
+                      {
                         "id": "33f759a3-17e3-40b2-bfe4-3ab4366053bf",
                         "command": "EVENT_GROUP",
                         "args": {
                           "__label": "Back to 0",
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "children": {
                           "true": [
-                            {
-                              "command": "EVENT_WAIT",
-                              "args": {
-                                "time": 0.1,
-                                "frames": 30
-                              },
-                              "id": "52622264-51d5-49c0-87c6-5ffaa022bc8e"
-                            },
                             {
                               "command": "EVENT_REPLACE_TILE_XY",
                               "args": {
