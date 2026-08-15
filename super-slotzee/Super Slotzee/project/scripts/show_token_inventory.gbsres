@@ -211,17 +211,17 @@
             "args": {
               "variable": "234",
               "choices": 6,
-              "__collapseCase0": false,
+              "__collapseCase0": true,
               "value0": 1,
               "__collapseCase1": false,
               "value1": 2,
-              "__collapseCase2": false,
+              "__collapseCase2": true,
               "value2": 3,
-              "__collapseCase3": false,
+              "__collapseCase3": true,
               "value3": 4,
-              "__collapseCase4": false,
+              "__collapseCase4": true,
               "value4": 5,
-              "__collapseCase5": false,
+              "__collapseCase5": true,
               "value5": 6,
               "__collapseCase6": false,
               "value6": 7,
@@ -2186,7 +2186,7 @@
                                   "value": "$16$ == 0 && $17$ == 1"
                                 },
                                 "__collapseElse": false,
-                                "__collapse": true
+                                "__collapse": false
                               },
                               "children": {
                                 "true": [
@@ -2345,18 +2345,33 @@
                                         {
                                           "command": "EVENT_GROUP",
                                           "args": {
-                                            "__label": "Set all dice to 5 for forced Yotzee",
-                                            "__collapse": true
+                                            "__label": "Get a random forced dice yotzee",
+                                            "__collapse": false
                                           },
                                           "children": {
                                             "true": [
+                                              {
+                                                "command": "EVENT_VARIABLE_MATH",
+                                                "args": {
+                                                  "vectorX": "332",
+                                                  "operation": "set",
+                                                  "other": "rnd",
+                                                  "vectorY": "L0",
+                                                  "value": "0",
+                                                  "minValue": 1,
+                                                  "maxValue": 6,
+                                                  "clamp": false,
+                                                  "__collapse": false
+                                                },
+                                                "id": "2d48510f-8cdd-4b30-8540-169da9d9b935"
+                                              },
                                               {
                                                 "command": "EVENT_SET_VALUE",
                                                 "args": {
                                                   "variable": "3",
                                                   "value": {
-                                                    "type": "number",
-                                                    "value": 5
+                                                    "type": "variable",
+                                                    "value": "332"
                                                   },
                                                   "__collapse": true
                                                 },
@@ -2367,8 +2382,8 @@
                                                 "args": {
                                                   "variable": "4",
                                                   "value": {
-                                                    "type": "number",
-                                                    "value": 5
+                                                    "type": "variable",
+                                                    "value": "332"
                                                   },
                                                   "__collapse": true
                                                 },
@@ -2379,8 +2394,8 @@
                                                 "args": {
                                                   "variable": "5",
                                                   "value": {
-                                                    "type": "number",
-                                                    "value": 5
+                                                    "type": "variable",
+                                                    "value": "332"
                                                   },
                                                   "__collapse": true
                                                 },
@@ -2391,8 +2406,8 @@
                                                 "args": {
                                                   "variable": "6",
                                                   "value": {
-                                                    "type": "number",
-                                                    "value": 5
+                                                    "type": "variable",
+                                                    "value": "332"
                                                   },
                                                   "__collapse": true
                                                 },
@@ -2403,8 +2418,8 @@
                                                 "args": {
                                                   "variable": "7",
                                                   "value": {
-                                                    "type": "number",
-                                                    "value": 5
+                                                    "type": "variable",
+                                                    "value": "332"
                                                   },
                                                   "__collapse": true
                                                 },
@@ -2439,6 +2454,32 @@
                                           "id": "0a056d47-3c5f-46a9-873b-3c85052c39c5"
                                         },
                                         {
+                                          "command": "EVENT_IF",
+                                          "args": {
+                                            "condition": {
+                                              "type": "variable",
+                                              "value": "44"
+                                            },
+                                            "__collapseElse": true
+                                          },
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_SET_VALUE",
+                                                "args": {
+                                                  "variable": "44",
+                                                  "value": {
+                                                    "type": "false"
+                                                  }
+                                                },
+                                                "id": "3b99be65-e0fb-4b86-988f-d0acf808956f"
+                                              }
+                                            ],
+                                            "false": []
+                                          },
+                                          "id": "00f83c09-45c0-4952-8950-746962a18f02"
+                                        },
+                                        {
                                           "command": "EVENT_CALL_CUSTOM_EVENT",
                                           "args": {
                                             "customEventId": "735debf0-782d-4027-a94a-3c845f866805",
@@ -2447,32 +2488,13 @@
                                           "id": "0d0ba68b-1125-4103-9279-9bea33f2b39f"
                                         },
                                         {
-                                          "command": "EVENT_IF",
+                                          "command": "EVENT_CALL_CUSTOM_EVENT",
                                           "args": {
-                                            "condition": {
-                                              "type": "not",
-                                              "value": {
-                                                "type": "variable",
-                                                "value": "44"
-                                              }
-                                            },
-                                            "__collapseElse": true
+                                            "customEventId": "ad3ec2a3-7c73-4364-b56a-180129e66468",
+                                            "__collapse": false,
+                                            "__comment": false
                                           },
-                                          "children": {
-                                            "true": [
-                                              {
-                                                "command": "EVENT_CALL_CUSTOM_EVENT",
-                                                "args": {
-                                                  "customEventId": "ad3ec2a3-7c73-4364-b56a-180129e66468",
-                                                  "__collapse": false,
-                                                  "__comment": false
-                                                },
-                                                "id": "21d40955-08f9-48eb-ac27-f52edf080e08"
-                                              }
-                                            ],
-                                            "false": []
-                                          },
-                                          "id": "fd86200c-b205-4072-b8c9-2f41be7dbb12"
+                                          "id": "21d40955-08f9-48eb-ac27-f52edf080e08"
                                         },
                                         {
                                           "command": "EVENT_PALETTE_SET_UI",
