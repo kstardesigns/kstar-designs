@@ -282,9 +282,83 @@
                 {
                   "command": "EVENT_INC_VALUE",
                   "args": {
-                    "variable": "290"
+                    "variable": "290",
+                    "__collapse": true
                   },
                   "id": "187f4585-a57c-4d6a-b974-f63500f81079"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "variable",
+                      "value": "123"
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "If already scored this turn, then the double down will apply to the next turn. Auto increment it.",
+                          "__collapse": false
+                        },
+                        "id": "1955500d-1205-4aa5-abf6-1319f62362d8"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "17",
+                          "__collapse": true
+                        },
+                        "id": "ca53f0bc-f6cd-4f44-860e-8978a651e581"
+                      },
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "Reset these variables that would have been set on spin",
+                          "__collapse": true
+                        },
+                        "id": "5d6b0c76-2df2-4066-ba67-aa81f32eb09b"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "123",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "5649a70c-9084-4400-955b-18ca3d3f9d2a"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "125",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "0d01c227-3104-4a34-9d41-8fa0b6acfb0a"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "129",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "795269c0-42ff-4dec-80f9-fc822dc99195"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "f2eaecf8-c9db-4fc1-943c-7aee82320231"
                 },
                 {
                   "command": "EVENT_TEXT",

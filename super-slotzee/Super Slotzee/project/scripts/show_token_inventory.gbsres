@@ -211,9 +211,9 @@
             "args": {
               "variable": "234",
               "choices": 6,
-              "__collapseCase0": true,
+              "__collapseCase0": false,
               "value0": 1,
-              "__collapseCase1": false,
+              "__collapseCase1": true,
               "value1": 2,
               "__collapseCase2": true,
               "value2": 3,
@@ -2185,7 +2185,7 @@
                                   "type": "expression",
                                   "value": "$16$ == 0 && $17$ == 1"
                                 },
-                                "__collapseElse": false,
+                                "__collapseElse": true,
                                 "__collapse": false
                               },
                               "children": {
@@ -2656,7 +2656,7 @@
                           "closeButton": "a",
                           "closeDelayTime": 0.5,
                           "closeDelayFrames": 30,
-                          "__collapse": true
+                          "__collapse": false
                         },
                         "id": "0b8495eb-75fa-49c8-8ec4-f209f1bd2708"
                       },
@@ -4396,7 +4396,7 @@
                             "value": "$234$ == 1 || !$302$"
                           },
                           "__collapseElse": false,
-                          "__collapse": true,
+                          "__collapse": false,
                           "__label": "(If) Confirmed using DOUBLE DOWN"
                         },
                         "children": {
@@ -4444,11 +4444,8 @@
                                     "command": "EVENT_IF",
                                     "args": {
                                       "condition": {
-                                        "type": "not",
-                                        "value": {
-                                          "type": "variable",
-                                          "value": "123"
-                                        }
+                                        "type": "expression",
+                                        "value": "$41$ == 50 || $41$ == 100"
                                       },
                                       "__collapseElse": false,
                                       "__collapse": false
@@ -4456,167 +4453,71 @@
                                     "children": {
                                       "true": [
                                         {
+                                          "command": "EVENT_INC_VALUE",
+                                          "args": {
+                                            "variable": "168",
+                                            "__collapse": true
+                                          },
+                                          "id": "23ac6867-6733-4387-a594-c2fc60a3bd1e"
+                                        },
+                                        {
+                                          "command": "EVENT_DEC_VALUE",
+                                          "args": {
+                                            "variable": "145",
+                                            "__collapse": true
+                                          },
+                                          "id": "62235965-4ca7-4633-b117-4b5d65ae3d16"
+                                        },
+                                        {
+                                          "command": "EVENT_CALL_CUSTOM_EVENT",
+                                          "args": {
+                                            "customEventId": "d3d961bb-693b-439d-8254-1eea46548b81",
+                                            "$actor[0]$": "0",
+                                            "__collapse": true
+                                          },
+                                          "id": "3c1ae838-8f94-4d46-99c3-0f591ce1e564"
+                                        },
+                                        {
+                                          "command": "EVENT_COMMENT",
+                                          "args": {
+                                            "text": "Setting this so minigame isnt played again",
+                                            "__collapse": true
+                                          },
+                                          "id": "5488901f-e5e2-4dc0-9215-5a27bae7ff5f"
+                                        },
+                                        {
                                           "command": "EVENT_IF",
                                           "args": {
                                             "condition": {
-                                              "type": "expression",
-                                              "value": "$41$ == 50 || $41$ == 100"
+                                              "type": "variable",
+                                              "value": "63"
                                             },
-                                            "__collapseElse": false,
-                                            "__collapse": false
+                                            "__collapseElse": true,
+                                            "__collapse": true
                                           },
                                           "children": {
                                             "true": [
                                               {
-                                                "command": "EVENT_INC_VALUE",
+                                                "command": "EVENT_SET_VALUE",
                                                 "args": {
-                                                  "variable": "168",
-                                                  "__collapse": true
-                                                },
-                                                "id": "23ac6867-6733-4387-a594-c2fc60a3bd1e"
-                                              },
-                                              {
-                                                "command": "EVENT_DEC_VALUE",
-                                                "args": {
-                                                  "variable": "145",
-                                                  "__collapse": true
-                                                },
-                                                "id": "62235965-4ca7-4633-b117-4b5d65ae3d16"
-                                              },
-                                              {
-                                                "command": "EVENT_CALL_CUSTOM_EVENT",
-                                                "args": {
-                                                  "customEventId": "d3d961bb-693b-439d-8254-1eea46548b81",
-                                                  "$actor[0]$": "0"
-                                                },
-                                                "id": "3c1ae838-8f94-4d46-99c3-0f591ce1e564"
-                                              },
-                                              {
-                                                "command": "EVENT_COMMENT",
-                                                "args": {
-                                                  "text": "Setting this so minigame isnt played again",
-                                                  "__collapse": true
-                                                },
-                                                "id": "5488901f-e5e2-4dc0-9215-5a27bae7ff5f"
-                                              },
-                                              {
-                                                "command": "EVENT_IF",
-                                                "args": {
-                                                  "condition": {
-                                                    "type": "variable",
-                                                    "value": "63"
+                                                  "variable": "65",
+                                                  "value": {
+                                                    "type": "true"
                                                   },
-                                                  "__collapseElse": true
-                                                },
-                                                "children": {
-                                                  "true": [
-                                                    {
-                                                      "command": "EVENT_SET_VALUE",
-                                                      "args": {
-                                                        "variable": "65",
-                                                        "value": {
-                                                          "type": "true"
-                                                        },
-                                                        "__collapse": true
-                                                      },
-                                                      "id": "8947cfb5-02b6-4a76-8807-058c122eecb6"
-                                                    }
-                                                  ],
-                                                  "false": []
-                                                },
-                                                "id": "ae7968f8-11fa-45d7-a438-32179c019e24"
-                                              },
-                                              {
-                                                "command": "EVENT_TEXT",
-                                                "args": {
-                                                  "text": [
-                                                    "Time to... \n               DOUBLE DOWN!"
-                                                  ],
-                                                  "__section": "text",
-                                                  "avatarId": "",
-                                                  "minHeight": 4,
-                                                  "maxHeight": 7,
-                                                  "textX": 1,
-                                                  "textY": 1,
-                                                  "textHeight": 5,
-                                                  "position": "bottom",
-                                                  "clearPrevious": true,
-                                                  "showFrame": "true",
-                                                  "speedIn": -1,
-                                                  "speedOut": -1,
-                                                  "closeWhen": "key",
-                                                  "closeButton": "a",
-                                                  "closeDelayTime": 0.5,
-                                                  "closeDelayFrames": 30,
                                                   "__collapse": true
                                                 },
-                                                "id": "9344a2e0-d9b2-4b37-bcd0-98db867879cc"
-                                              },
-                                              {
-                                                "command": "EVENT_SCENE_PUSH_STATE",
-                                                "args": {
-                                                  "__collapse": true
-                                                },
-                                                "id": "b752f7f1-56ef-4fb2-a42c-203598d06d9e"
-                                              },
-                                              {
-                                                "command": "EVENT_SWITCH_SCENE",
-                                                "args": {
-                                                  "sceneId": "9531a118-8610-4e15-81d0-f23b78508ccc",
-                                                  "x": {
-                                                    "type": "number",
-                                                    "value": 0
-                                                  },
-                                                  "y": {
-                                                    "type": "number",
-                                                    "value": 0
-                                                  },
-                                                  "direction": "",
-                                                  "fadeSpeed": "2"
-                                                },
-                                                "id": "ad5a8235-ecd6-4e7f-ba45-ac5d8597bc56"
+                                                "id": "8947cfb5-02b6-4a76-8807-058c122eecb6"
                                               }
                                             ],
-                                            "false": [
-                                              {
-                                                "command": "EVENT_TEXT",
-                                                "args": {
-                                                  "text": [
-                                                    "DOUBLE DOWN token\ncan only be played  @",
-                                                    "if you already have a\nYotzee to bet."
-                                                  ],
-                                                  "__section": "text",
-                                                  "avatarId": "",
-                                                  "minHeight": 4,
-                                                  "maxHeight": 7,
-                                                  "textX": 1,
-                                                  "textY": 1,
-                                                  "textHeight": 5,
-                                                  "position": "bottom",
-                                                  "clearPrevious": true,
-                                                  "showFrame": "true",
-                                                  "speedIn": -1,
-                                                  "speedOut": -1,
-                                                  "closeWhen": "key",
-                                                  "closeButton": "a",
-                                                  "closeDelayTime": 0.5,
-                                                  "closeDelayFrames": 30
-                                                },
-                                                "id": "5d0db293-f683-4d9d-9236-a9cfc1b566ac"
-                                              }
-                                            ]
+                                            "false": []
                                           },
-                                          "id": "6511c20c-3fd0-4bec-a38e-d9d3fdca43fe"
-                                        }
-                                      ],
-                                      "false": [
+                                          "id": "ae7968f8-11fa-45d7-a438-32179c019e24"
+                                        },
                                         {
                                           "command": "EVENT_TEXT",
                                           "args": {
                                             "text": [
-                                              "DOUBLE DOWN tokens \nmust be played  @",
-                                              "before the turn has\nbeen scored, in case  @",
-                                              "you win and need to\nscore a JOKER."
+                                              "Time to... \n               DOUBLE DOWN!"
                                             ],
                                             "__section": "text",
                                             "avatarId": "",
@@ -4634,13 +4535,66 @@
                                             "closeButton": "a",
                                             "closeDelayTime": 0.5,
                                             "closeDelayFrames": 30,
-                                            "__collapse": false
+                                            "__collapse": true
                                           },
-                                          "id": "60af3382-8554-4208-a6a4-96faf6f1f6b7"
+                                          "id": "9344a2e0-d9b2-4b37-bcd0-98db867879cc"
+                                        },
+                                        {
+                                          "command": "EVENT_SCENE_PUSH_STATE",
+                                          "args": {
+                                            "__collapse": true
+                                          },
+                                          "id": "b752f7f1-56ef-4fb2-a42c-203598d06d9e"
+                                        },
+                                        {
+                                          "command": "EVENT_SWITCH_SCENE",
+                                          "args": {
+                                            "sceneId": "9531a118-8610-4e15-81d0-f23b78508ccc",
+                                            "x": {
+                                              "type": "number",
+                                              "value": 0
+                                            },
+                                            "y": {
+                                              "type": "number",
+                                              "value": 0
+                                            },
+                                            "direction": "",
+                                            "fadeSpeed": "2",
+                                            "__collapse": true
+                                          },
+                                          "id": "ad5a8235-ecd6-4e7f-ba45-ac5d8597bc56"
+                                        }
+                                      ],
+                                      "false": [
+                                        {
+                                          "command": "EVENT_TEXT",
+                                          "args": {
+                                            "text": [
+                                              "DOUBLE DOWN token\ncan only be played  @",
+                                              "if you already have a\nYotzee to bet."
+                                            ],
+                                            "__section": "text",
+                                            "avatarId": "",
+                                            "minHeight": 4,
+                                            "maxHeight": 7,
+                                            "textX": 1,
+                                            "textY": 1,
+                                            "textHeight": 5,
+                                            "position": "bottom",
+                                            "clearPrevious": true,
+                                            "showFrame": "true",
+                                            "speedIn": -1,
+                                            "speedOut": -1,
+                                            "closeWhen": "key",
+                                            "closeButton": "a",
+                                            "closeDelayTime": 0.5,
+                                            "closeDelayFrames": 30
+                                          },
+                                          "id": "5d0db293-f683-4d9d-9236-a9cfc1b566ac"
                                         }
                                       ]
                                     },
-                                    "id": "326bea9e-9059-4550-884d-aa30b2a789d1"
+                                    "id": "6511c20c-3fd0-4bec-a38e-d9d3fdca43fe"
                                   },
                                   {
                                     "command": "EVENT_PALETTE_SET_UI",
