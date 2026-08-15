@@ -213,7 +213,7 @@
                       "type": "number",
                       "value": 8
                     },
-                    "__collapse": false,
+                    "__collapse": true,
                     "__label": "Start pencil at 1's"
                   },
                   "id": "a8e735f3-8fe6-4dfa-a687-c1b9d5eb6dd2"
@@ -361,9 +361,9 @@
             "args": {
               "variable": "3",
               "choices": 6,
-              "__collapseCase0": false,
+              "__collapseCase0": true,
               "value0": 1,
-              "__collapseCase1": false,
+              "__collapseCase1": true,
               "value1": 2,
               "__collapseCase2": true,
               "value2": 3,
@@ -394,7 +394,7 @@
               "__collapseCase15": false,
               "value15": 16,
               "__collapseElse": true,
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true0": [
@@ -405,7 +405,8 @@
                       "type": "variable",
                       "value": "99"
                     },
-                    "__collapseElse": true
+                    "__collapseElse": true,
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -433,7 +434,8 @@
                       "type": "variable",
                       "value": "100"
                     },
-                    "__collapseElse": true
+                    "__collapseElse": true,
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -609,7 +611,8 @@
                           "value": {
                             "type": "number",
                             "value": 50
-                          }
+                          },
+                          "__collapse": true
                         },
                         "id": "cc88be00-5807-44cb-bb56-3ba46c1b183b"
                       },
@@ -620,7 +623,8 @@
                           "value": {
                             "type": "number",
                             "value": 60
-                          }
+                          },
+                          "__collapse": true
                         },
                         "id": "9ebf58ec-2f94-4a64-867c-dbfec29eff76"
                       },
@@ -631,7 +635,8 @@
                           "value": {
                             "type": "number",
                             "value": 80
-                          }
+                          },
+                          "__collapse": true
                         },
                         "id": "03f89d94-6a06-49cf-a7a3-7d1f48ff24c1"
                       }
@@ -787,7 +792,8 @@
                                 "value": {
                                   "type": "number",
                                   "value": 0
-                                }
+                                },
+                                "__collapse": true
                               },
                               "id": "9a507e54-20e7-455f-b614-aacec2512487"
                             }
@@ -803,7 +809,8 @@
                           "value": {
                             "type": "number",
                             "value": 25
-                          }
+                          },
+                          "__collapse": true
                         },
                         "id": "8f95b4af-b889-4ddf-b27c-eb74d9aee69d"
                       },
@@ -814,7 +821,8 @@
                           "value": {
                             "type": "number",
                             "value": 30
-                          }
+                          },
+                          "__collapse": true
                         },
                         "id": "feb492b8-ac72-4420-849d-33c4ca1afb3d"
                       },
@@ -825,7 +833,8 @@
                           "value": {
                             "type": "number",
                             "value": 40
-                          }
+                          },
+                          "__collapse": true
                         },
                         "id": "56507284-f9a6-4e24-8fba-e7e81cf9c6a8"
                       }
@@ -870,14 +879,16 @@
                 {
                   "command": "EVENT_INC_VALUE",
                   "args": {
-                    "variable": "116"
+                    "variable": "116",
+                    "__collapse": true
                   },
                   "id": "be01267a-2494-4912-bb00-992bef2ebe5b"
                 },
                 {
                   "command": "EVENT_INC_VALUE",
                   "args": {
-                    "variable": "42"
+                    "variable": "42",
+                    "__collapse": true
                   },
                   "id": "34e668f9-5c95-4f5a-8235-94c81104d31f"
                 }
@@ -886,7 +897,8 @@
                 {
                   "command": "EVENT_INC_VALUE",
                   "args": {
-                    "variable": "42"
+                    "variable": "42",
+                    "__collapse": true
                   },
                   "id": "db9a7acc-b5d4-4761-96e3-0849069d1f11"
                 }
@@ -900,7 +912,8 @@
               "variable": "125",
               "value": {
                 "type": "true"
-              }
+              },
+              "__collapse": true
             },
             "id": "c3390142-194a-4d01-bebd-829a5e5f1e94"
           }
@@ -939,14 +952,16 @@
               "y": {
                 "type": "number",
                 "value": 0
-              }
+              },
+              "__collapse": true
             },
             "id": "da4dd985-a589-4e59-a937-1fc4710e5bc7"
           },
           {
             "command": "EVENT_ACTOR_DEACTIVATE",
             "args": {
-              "actorId": "$self$"
+              "actorId": "$self$",
+              "__collapse": true
             },
             "id": "b4633606-58a4-444a-8cb5-2812aa7eabea"
           }
@@ -1284,6 +1299,32 @@
               "__collapse": false
             },
             "id": "f957924c-c4f2-4102-93fc-e8529a86034a"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "176"
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "854b5204-35e1-4a56-8d8b-fdafb8694aab",
+                    "spriteStateId": "Star bonuses active",
+                    "loopAnim": true,
+                    "__collapse": false
+                  },
+                  "id": "fb93c200-c451-41de-845e-27cdfec78c35"
+                }
+              ],
+              "false": []
+            },
+            "id": "95ce4027-8b89-4c37-8c0a-504bea8b2f63"
           }
         ],
         "false": [
@@ -1408,7 +1449,8 @@
                       "type": "variable",
                       "value": "45"
                     },
-                    "__collapseElse": false
+                    "__collapseElse": false,
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -1420,7 +1462,7 @@
                             "type": "number",
                             "value": 100
                           },
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "id": "f417de4f-7401-4534-95fc-83bf8d254cf3"
                       }
@@ -1434,7 +1476,7 @@
                             "type": "number",
                             "value": 50
                           },
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "id": "a706ef80-9b38-4e65-89b3-7991e2dd6123"
                       }
@@ -1485,7 +1527,7 @@
                   "command": "EVENT_PALETTE_SET_UI",
                   "args": {
                     "palette": "f006aaec-a37b-4d52-94a4-157d55a31514",
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "id": "2dace04c-5b20-4562-a0e6-07af7a54dc4f"
                 },
@@ -1530,7 +1572,8 @@
                   "command": "EVENT_CALL_CUSTOM_EVENT",
                   "args": {
                     "customEventId": "d4a7dcd5-5e2a-421c-8fce-9f8109a09bfb",
-                    "__comment": false
+                    "__comment": false,
+                    "__collapse": true
                   },
                   "id": "b336acc5-14d5-4241-bf4e-aaf18df846b5"
                 }
@@ -1573,7 +1616,7 @@
                                   "type": "number",
                                   "value": 100
                                 },
-                                "__collapse": false
+                                "__collapse": true
                               },
                               "id": "ac4cbc49-c96a-4ec6-9bc3-dae8e125c826"
                             }
@@ -1587,7 +1630,7 @@
                                   "type": "number",
                                   "value": 50
                                 },
-                                "__collapse": false
+                                "__collapse": true
                               },
                               "id": "d86107b4-4e0c-4e7a-9636-2b7438950699"
                             }
@@ -1617,6 +1660,14 @@
                         "children": {
                           "true": [
                             {
+                              "command": "EVENT_PALETTE_SET_UI",
+                              "args": {
+                                "palette": "f006aaec-a37b-4d52-94a4-157d55a31514",
+                                "__collapse": false
+                              },
+                              "id": "0e891925-d82c-4cb3-aca6-f0e4999cbc06"
+                            },
+                            {
                               "command": "EVENT_TEXT",
                               "args": {
                                 "text": [
@@ -1639,12 +1690,21 @@
                                 "closeWhen": "key",
                                 "closeButton": "a",
                                 "closeDelayTime": 0.5,
-                                "closeDelayFrames": 30
+                                "closeDelayFrames": 30,
+                                "__collapse": true
                               },
                               "id": "59c56da0-d19c-467e-b80f-4f5b453aead0"
                             }
                           ],
                           "false": [
+                            {
+                              "command": "EVENT_PALETTE_SET_UI",
+                              "args": {
+                                "palette": "f006aaec-a37b-4d52-94a4-157d55a31514",
+                                "__collapse": false
+                              },
+                              "id": "eb7b4ac6-bbb2-4098-a269-b6598715bb25"
+                            },
                             {
                               "command": "EVENT_TEXT",
                               "args": {
@@ -1668,7 +1728,8 @@
                                 "closeWhen": "key",
                                 "closeButton": "a",
                                 "closeDelayTime": 0.5,
-                                "closeDelayFrames": 30
+                                "closeDelayFrames": 30,
+                                "__collapse": true
                               },
                               "id": "52940638-0c3c-4f5a-83a8-ae0b7e252ebf"
                             }
@@ -1723,7 +1784,7 @@
                         "command": "EVENT_TEXT",
                         "args": {
                           "text": [
-                            "Your Super Yotzee has\nbeen scored as a... @"
+                            "Your Super Yotzee has\nbeen scored as a..."
                           ],
                           "__section": "text",
                           "avatarId": "",
@@ -1838,7 +1899,7 @@
           "value": "$111$ && ($41$ == 50 || $41$ == 100) && $39$ && !$123$"
         },
         "__collapseElse": false,
-        "__collapse": true,
+        "__collapse": false,
         "__comment": false
       },
       "children": {
@@ -1882,7 +1943,8 @@
                 {
                   "command": "EVENT_PALETTE_SET_UI",
                   "args": {
-                    "palette": "56059128-79fb-44a9-84fb-285257a04bd1"
+                    "palette": "56059128-79fb-44a9-84fb-285257a04bd1",
+                    "__collapse": true
                   },
                   "id": "717db4b7-252d-49e3-a57b-5db5acfe3994"
                 },
@@ -1909,7 +1971,8 @@
                     "closeWhen": "key",
                     "closeButton": "a",
                     "closeDelayTime": 0.5,
-                    "closeDelayFrames": 30
+                    "closeDelayFrames": 30,
+                    "__collapse": true
                   },
                   "id": "b0b97dea-43ae-4932-812e-62f78035ad83"
                 },
@@ -1925,7 +1988,8 @@
                 {
                   "command": "EVENT_PALETTE_SET_UI",
                   "args": {
-                    "palette": "56059128-79fb-44a9-84fb-285257a04bd1"
+                    "palette": "56059128-79fb-44a9-84fb-285257a04bd1",
+                    "__collapse": true
                   },
                   "id": "4ef64220-706c-4c64-8195-077ed36c5e94"
                 },
@@ -1952,14 +2016,16 @@
                     "closeWhen": "key",
                     "closeButton": "a",
                     "closeDelayTime": 0.5,
-                    "closeDelayFrames": 30
+                    "closeDelayFrames": 30,
+                    "__collapse": true
                   },
                   "id": "3b61f0c3-f2a0-4982-8e18-f0e69db64e21"
                 },
                 {
                   "command": "EVENT_PALETTE_SET_UI",
                   "args": {
-                    "palette": "f006aaec-a37b-4d52-94a4-157d55a31514"
+                    "palette": "f006aaec-a37b-4d52-94a4-157d55a31514",
+                    "__collapse": true
                   },
                   "id": "6c75aeb3-46dd-4b87-b17e-9a27c473cdfa"
                 }
@@ -1983,7 +2049,8 @@
                 {
                   "command": "EVENT_PALETTE_SET_UI",
                   "args": {
-                    "palette": "56059128-79fb-44a9-84fb-285257a04bd1"
+                    "palette": "56059128-79fb-44a9-84fb-285257a04bd1",
+                    "__collapse": true
                   },
                   "id": "35dd4df2-9a4b-4545-945f-a64bf1bff0da"
                 },
@@ -2011,7 +2078,8 @@
                     "closeWhen": "key",
                     "closeButton": "a",
                     "closeDelayTime": 0.5,
-                    "closeDelayFrames": 30
+                    "closeDelayFrames": 30,
+                    "__collapse": true
                   },
                   "id": "32c11075-4af6-4f57-9619-1ad4ea4453fa"
                 },
@@ -2048,7 +2116,8 @@
           {
             "command": "EVENT_COMMENT",
             "args": {
-              "text": "Prevent player from leaving scorecard before they erase a score."
+              "text": "Prevent player from leaving scorecard before they erase a score.",
+              "__collapse": true
             },
             "id": "b087e288-fa54-4a98-a570-688b00a9f7cb"
           },
@@ -2073,14 +2142,16 @@
             "args": {
               "actorId": "$self$",
               "spriteStateId": "Actor Scorecard Eraser",
-              "loopAnim": true
+              "loopAnim": true,
+              "__collapse": true
             },
             "id": "883f9aef-8b29-4a63-aef0-36467a4965eb"
           },
           {
             "command": "EVENT_PALETTE_SET_UI",
             "args": {
-              "palette": "56059128-79fb-44a9-84fb-285257a04bd1"
+              "palette": "56059128-79fb-44a9-84fb-285257a04bd1",
+              "__collapse": true
             },
             "id": "307a2f66-de1c-45f7-8509-ae53bda4c877"
           },
@@ -2105,14 +2176,16 @@
               "closeWhen": "key",
               "closeButton": "a",
               "closeDelayTime": 0.5,
-              "closeDelayFrames": 30
+              "closeDelayFrames": 30,
+              "__collapse": true
             },
             "id": "0dbfb0d5-e40a-4f79-b829-765a41b28f8c"
           },
           {
             "command": "EVENT_PALETTE_SET_UI",
             "args": {
-              "palette": "f006aaec-a37b-4d52-94a4-157d55a31514"
+              "palette": "f006aaec-a37b-4d52-94a4-157d55a31514",
+              "__collapse": true
             },
             "id": "7f59a4bd-34ac-4171-8e4b-dbf8032c5cae"
           }
@@ -2129,7 +2202,7 @@
           "value": "$32$ == 1 && $17$ == 1 && $16$ > 0"
         },
         "__collapseElse": true,
-        "__collapse": false,
+        "__collapse": true,
         "__label": "(If) First game tutorial"
       },
       "children": {
@@ -2153,14 +2226,16 @@
                   "args": {
                     "time": 0.5,
                     "frames": 30,
-                    "__comment": false
+                    "__comment": false,
+                    "__collapse": true
                   },
                   "id": "50d3d194-02ce-4ef2-87f4-64cc81a3a262"
                 },
                 {
                   "command": "EVENT_PALETTE_SET_UI",
                   "args": {
-                    "palette": "56059128-79fb-44a9-84fb-285257a04bd1"
+                    "palette": "56059128-79fb-44a9-84fb-285257a04bd1",
+                    "__collapse": true
                   },
                   "id": "f82bd9a5-a5f9-422f-9622-a77151c175e5"
                 },
@@ -2186,7 +2261,7 @@
                     "closeButton": "a",
                     "closeDelayTime": 0.5,
                     "closeDelayFrames": 30,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "id": "55ca673a-6cb4-4703-8761-0315d33971bc"
                 },

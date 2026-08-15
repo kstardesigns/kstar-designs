@@ -139,34 +139,79 @@
                 "value": "44"
               },
               "__collapseElse": false,
-              "__collapse": true
+              "__collapse": false
             },
             "children": {
               "true": [
                 {
-                  "command": "EVENT_TEXT",
+                  "command": "EVENT_IF",
                   "args": {
-                    "text": [
-                      " Slot penalty active:\n No scoring dice\n (Must score a zero)"
-                    ],
-                    "__section": "text",
-                    "avatarId": "ebd85e00-e2a8-442f-b8c5-9aa9b9e50e9c",
-                    "minHeight": 4,
-                    "maxHeight": 7,
-                    "textX": 1,
-                    "textY": 1,
-                    "textHeight": 5,
-                    "position": "top",
-                    "clearPrevious": true,
-                    "showFrame": "true",
-                    "speedIn": -1,
-                    "speedOut": -1,
-                    "closeWhen": "key",
-                    "closeButton": "any",
-                    "closeDelayTime": 0.5,
-                    "closeDelayFrames": 30
+                    "condition": {
+                      "type": "not",
+                      "value": {
+                        "type": "variable",
+                        "value": "176"
+                      }
+                    },
+                    "__collapseElse": false
                   },
-                  "id": "46899c47-9316-4b31-9e42-b8bab50813d8"
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            " Slot penalty active:\n No scoring dice\n (Must score a zero)"
+                          ],
+                          "__section": "text",
+                          "avatarId": "ebd85e00-e2a8-442f-b8c5-9aa9b9e50e9c",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "top",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "any",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "46899c47-9316-4b31-9e42-b8bab50813d8"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            " No slot penalty!\n Your double down win\n overrode the lemons!"
+                          ],
+                          "__section": "text",
+                          "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "top",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "any",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "85ba9665-0407-4a08-a7a6-f6aa4f3f6750"
+                      }
+                    ]
+                  },
+                  "id": "648d6783-bf00-4780-9ca9-917ba836917d"
                 }
               ],
               "false": []
