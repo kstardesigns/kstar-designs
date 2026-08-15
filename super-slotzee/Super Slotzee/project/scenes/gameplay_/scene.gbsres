@@ -305,14 +305,6 @@
       }
     },
     {
-      "command": "EVENT_COMMENT",
-      "args": {
-        "text": "For first turn",
-        "__collapse": true
-      },
-      "id": "e1d9a89d-9d82-4277-a6ba-37eb1c96ec55"
-    },
-    {
       "command": "EVENT_IF",
       "args": {
         "condition": {
@@ -327,92 +319,187 @@
           }
         },
         "__collapseElse": true,
-        "__collapse": true
+        "__collapse": false,
+        "__label": "(If) 1st turn only"
       },
       "children": {
         "true": [
           {
-            "command": "EVENT_REPLACE_TILE_XY",
+            "command": "EVENT_IF",
             "args": {
-              "x": {
-                "type": "number",
-                "value": 4
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "169"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 0
+                }
               },
-              "y": {
-                "type": "number",
-                "value": 16
-              },
-              "tilesetId": "861454d4-6094-4790-ad6f-ca784a2e42ab",
-              "tileIndex": {
-                "type": "number",
-                "value": 0
-              },
-              "tileSize": "16px",
-              "__collapse": true,
-              "__label": "Set Roll # to 1 in display"
+              "__collapseElse": false
             },
-            "id": "6409e805-bde0-4530-b626-ebbb68d65543"
-          },
-          {
-            "command": "EVENT_SET_VALUE",
-            "args": {
-              "variable": "17",
-              "value": {
-                "type": "number",
-                "value": 1
-              },
-              "__collapse": true,
-              "__label": "Set Turn variable to 1"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "number",
+                      "value": 4
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 16
+                    },
+                    "tilesetId": "861454d4-6094-4790-ad6f-ca784a2e42ab",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "tileSize": "16px",
+                    "__collapse": true,
+                    "__label": "Set Roll # to 1 in display"
+                  },
+                  "id": "6409e805-bde0-4530-b626-ebbb68d65543"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "17",
+                    "value": {
+                      "type": "number",
+                      "value": 1
+                    },
+                    "__collapse": true,
+                    "__label": "Set Turn variable to 1"
+                  },
+                  "id": "daa3e1fb-b8fe-4d4a-bbb5-778832d9347f"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Update turn display to 1",
+                    "__collapse": true
+                  },
+                  "id": "5921cf3a-cf8f-40e6-ad01-8dc06232cd0d"
+                },
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "number",
+                      "value": 1
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 16
+                    },
+                    "tilesetId": "fbb854df-39e5-47d6-be76-7a4b8eb04ea7",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "__collapse": true
+                  },
+                  "id": "2aaa780c-a2ce-4543-918a-81a285c196b2"
+                },
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "number",
+                      "value": 1
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 17
+                    },
+                    "tilesetId": "fbb854df-39e5-47d6-be76-7a4b8eb04ea7",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 1
+                    },
+                    "__collapse": true
+                  },
+                  "id": "f4ae3da2-a859-454b-9318-a4be49d9a87b"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "number",
+                      "value": 4
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 16
+                    },
+                    "tilesetId": "861454d4-6094-4790-ad6f-ca784a2e42ab",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "tileSize": "16px",
+                    "__collapse": true,
+                    "__label": "Set Roll # to 1 in display"
+                  },
+                  "id": "79c3ae25-2607-4b0f-8af9-47ee585a8c30"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "$turn_no is already 1 from eraser decrement, so only display the 1",
+                    "__collapse": true
+                  },
+                  "id": "140fa453-b8bb-47f8-b002-0a955e0bc65a"
+                },
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "number",
+                      "value": 1
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 16
+                    },
+                    "tilesetId": "fbb854df-39e5-47d6-be76-7a4b8eb04ea7",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "__collapse": true
+                  },
+                  "id": "a8c58277-88d9-4042-9544-e3a51b94eea9"
+                },
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "number",
+                      "value": 1
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 17
+                    },
+                    "tilesetId": "fbb854df-39e5-47d6-be76-7a4b8eb04ea7",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 1
+                    },
+                    "__collapse": true
+                  },
+                  "id": "d46ea1b8-bb7f-4ec3-9a65-ed63d8df11b6"
+                }
+              ]
             },
-            "id": "daa3e1fb-b8fe-4d4a-bbb5-778832d9347f"
-          },
-          {
-            "command": "EVENT_COMMENT",
-            "args": {
-              "text": "Update turn display to 1",
-              "__collapse": true
-            },
-            "id": "5921cf3a-cf8f-40e6-ad01-8dc06232cd0d"
-          },
-          {
-            "command": "EVENT_REPLACE_TILE_XY",
-            "args": {
-              "x": {
-                "type": "number",
-                "value": 1
-              },
-              "y": {
-                "type": "number",
-                "value": 16
-              },
-              "tilesetId": "fbb854df-39e5-47d6-be76-7a4b8eb04ea7",
-              "tileIndex": {
-                "type": "number",
-                "value": 0
-              },
-              "__collapse": true
-            },
-            "id": "2aaa780c-a2ce-4543-918a-81a285c196b2"
-          },
-          {
-            "command": "EVENT_REPLACE_TILE_XY",
-            "args": {
-              "x": {
-                "type": "number",
-                "value": 1
-              },
-              "y": {
-                "type": "number",
-                "value": 17
-              },
-              "tilesetId": "fbb854df-39e5-47d6-be76-7a4b8eb04ea7",
-              "tileIndex": {
-                "type": "number",
-                "value": 1
-              },
-              "__collapse": true
-            },
-            "id": "f4ae3da2-a859-454b-9318-a4be49d9a87b"
+            "id": "38673a54-31b6-4c52-81f7-7815ed29d5b3"
           }
         ],
         "false": [
