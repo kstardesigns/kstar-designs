@@ -6,12 +6,17 @@
   "backgroundId": "6c24ae5c-d0b2-435c-bf09-e71f8bcf7883",
   "tilesetId": "",
   "width": 20,
-  "height": 18,
+  "height": 36,
   "type": "TOPDOWN",
   "paletteIds": [
-    "dmg"
+    "b48270fa-90bf-44b5-be33-850f6f5cad6c",
+    "fd7b072e-fa31-419d-a90d-e9f3dddd1800"
   ],
-  "spritePaletteIds": [],
+  "spritePaletteIds": [
+    "3e8ba849-093c-471f-9996-c37c6a9015a8",
+    "2288e752-00ad-48a9-885c-1bc21c0416a8",
+    "c2c1ebe1-80bc-42ee-a8b0-9c9ea8778eb0"
+  ],
   "collisions": "",
   "autoFadeSpeed": 1,
   "symbol": "scene_9",
@@ -34,6 +39,128 @@
       "id": "87c087ed-3167-4948-afff-35593ed30f7f"
     },
     {
+      "command": "EVENT_PALETTE_SET_UI",
+      "args": {
+        "palette": "56059128-79fb-44a9-84fb-285257a04bd1",
+        "__collapse": true
+      },
+      "id": "80ba4965-d03c-40da-af81-48ffd7e146b6"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 0.5,
+        "frames": 30
+      },
+      "id": "1f632a34-b645-4d16-b533-2719050f4cf4"
+    },
+    {
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": [
+          " It's time to...  @",
+          " DOUBLE DOWN!"
+        ],
+        "__section": "text",
+        "avatarId": "c1aac6d9-5fec-48a4-9494-a0fc80a5da3a",
+        "minHeight": 4,
+        "maxHeight": 7,
+        "textX": 1,
+        "textY": 1,
+        "textHeight": 5,
+        "position": "top",
+        "clearPrevious": true,
+        "showFrame": "true",
+        "speedIn": -1,
+        "speedOut": -1,
+        "closeWhen": "key",
+        "closeButton": "a",
+        "closeDelayTime": 0.5,
+        "closeDelayFrames": 30
+      },
+      "id": "83fb9dc5-d730-4da7-bc97-df6b4ae34dd5"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 0.5,
+        "frames": 30
+      },
+      "id": "7b3ff97e-0f41-4e9d-a5f8-73f060d97fc9"
+    },
+    {
+      "command": "EVENT_CAMERA_SET_POSITION",
+      "args": {
+        "x": {
+          "type": "number",
+          "value": 0
+        },
+        "y": {
+          "type": "number",
+          "value": 18
+        }
+      },
+      "id": "0b55d798-acdb-4958-b73c-e06724859d25"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 1,
+        "frames": 30
+      },
+      "id": "f648bd9c-a589-41ce-a00a-ba6bc6c1a483"
+    },
+    {
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": [
+          " Land on DD to win\n another Yotzee!  @",
+          " Land on L and lose\n your Yotzee.  @"
+        ],
+        "__section": "text",
+        "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
+        "minHeight": 4,
+        "maxHeight": 7,
+        "textX": 1,
+        "textY": 1,
+        "textHeight": 5,
+        "position": "top",
+        "clearPrevious": true,
+        "showFrame": "true",
+        "speedIn": -1,
+        "speedOut": -1,
+        "closeWhen": "key",
+        "closeButton": "a",
+        "closeDelayTime": 0.5,
+        "closeDelayFrames": 30
+      },
+      "id": "7fe1a891-e009-49d9-b1b4-5a0d117fc8c6"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 0.2,
+        "frames": 30,
+        "__collapse": true
+      },
+      "id": "0a906766-bf45-4140-a2be-d703132e5d24"
+    },
+    {
+      "command": "EVENT_PALETTE_SET_BACKGROUND",
+      "args": {
+        "palette0": "keep",
+        "palette1": "6e5c4cb6-293f-4fe7-93ca-ed00d7032cf2",
+        "palette2": "keep",
+        "palette3": "keep",
+        "palette4": "keep",
+        "palette5": "keep",
+        "palette6": "keep",
+        "palette7": "keep",
+        "__collapse": true
+      },
+      "id": "dd03f818-c1f6-46c1-845d-88203267bb36"
+    },
+    {
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
@@ -48,7 +175,8 @@
           {
             "command": "EVENT_INC_VALUE",
             "args": {
-              "variable": "289"
+              "variable": "289",
+              "__collapse": true
             },
             "id": "4ca19592-1277-475c-a315-69105fa7aaa7"
           },
@@ -215,12 +343,11 @@
                   "command": "EVENT_TEXT",
                   "args": {
                     "text": [
-                      "Unfortunately you lost\nthe coin flip, and  @",
-                      "lost your Yotzee.\nMaybe next time!  @",
-                      "Your scorecard has\nbeen updated."
+                      " Unfortunately you \n lost your Yotzee.  @",
+                      " Maybe next time!  @"
                     ],
                     "__section": "text",
-                    "avatarId": "",
+                    "avatarId": "ebd85e00-e2a8-442f-b8c5-9aa9b9e50e9c",
                     "minHeight": 4,
                     "maxHeight": 7,
                     "textX": 1,
@@ -235,9 +362,41 @@
                     "closeButton": "a",
                     "closeDelayTime": 0.5,
                     "closeDelayFrames": 30,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "id": "640d71c2-c7f7-4d82-9a2c-cafea20d216b"
+                },
+                {
+                  "command": "EVENT_PALETTE_SET_UI",
+                  "args": {
+                    "palette": "f006aaec-a37b-4d52-94a4-157d55a31514"
+                  },
+                  "id": "2be754da-cc38-476b-bc20-51f4f1c1ae35"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Your scorecard has been\nupdated."
+                    ],
+                    "__section": "layout",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "top",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "0e4ed1a3-760e-4299-97b4-6fc13246b1a2"
                 }
               ],
               "false": [
@@ -302,7 +461,7 @@
                         "command": "EVENT_COMMENT",
                         "args": {
                           "text": "If already scored this turn, then the double down will apply to the next turn. Auto increment it.",
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "id": "1955500d-1205-4aa5-abf6-1319f62362d8"
                       },
@@ -364,10 +523,10 @@
                   "command": "EVENT_TEXT",
                   "args": {
                     "text": [
-                      "DOUBLE DOWN SUCCESS!\nYou won a Yotzee!"
+                      " You won the flip and\n won a Yotzee!"
                     ],
                     "__section": "text",
-                    "avatarId": "",
+                    "avatarId": "c1aac6d9-5fec-48a4-9494-a0fc80a5da3a",
                     "minHeight": 4,
                     "maxHeight": 7,
                     "textX": 1,
@@ -382,7 +541,7 @@
                     "closeButton": "a",
                     "closeDelayTime": 0.5,
                     "closeDelayFrames": 30,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "id": "1e57702c-193e-48e7-9cb5-81b2ec4af747"
                 }
@@ -417,5 +576,6 @@
   "playerHit2Script": [],
   "playerHit3Script": [],
   "playerSpriteSheetId": "820764ac-2cc4-4708-89c9-14f344c81f80",
-  "labelColor": "blue"
+  "labelColor": "blue",
+  "autoFadeEventCollapse": true
 }
