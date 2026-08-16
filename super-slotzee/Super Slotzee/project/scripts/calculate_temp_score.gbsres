@@ -458,7 +458,7 @@
             "args": {
               "condition": {
                 "type": "expression",
-                "value": "$00$ == 2 && $01$ == 2 && $02$ == 2"
+                "value": "$00$ == 2 && $01$ == 2 && $02$ == 2 && !$333$"
               },
               "__collapseElse": true,
               "__label": "(If) Check for Slots: Double Cherries (2x score)",
@@ -466,6 +466,14 @@
             },
             "children": {
               "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "The following was added above so the double cherries aren't counted if super yotzee is used before first roll of the game\n&& !$333$ ",
+                    "__collapse": true
+                  },
+                  "id": "099c7906-d175-416b-863a-eccb78b0e458"
+                },
                 {
                   "command": "EVENT_SET_VALUE",
                   "args": {
@@ -497,7 +505,7 @@
                         "args": {
                           "variable": "328",
                           "__scriptTabs": "true",
-                          "__collapse": true
+                          "__collapse": false
                         },
                         "children": {
                           "true": [
@@ -850,7 +858,7 @@
         },
         "__collapseElse": true,
         "__label": "(if) not bonus_auto_zero then Check for Slots: Auto Zero",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -1176,7 +1184,7 @@
           }
         },
         "__collapseElse": false,
-        "__collapse": true,
+        "__collapse": false,
         "__label": "(If) Score everything (if NOT bonus_auto_zero)"
       },
       "children": {
@@ -1970,7 +1978,7 @@
                       "value": "$19$ == 5"
                     },
                     "__collapseElse": true,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -2111,7 +2119,7 @@
                     "__collapseCase15": false,
                     "value15": 16,
                     "__collapseElse": true,
-                    "__collapse": true,
+                    "__collapse": false,
                     "__label": "(Switch) (1-6) Assign temp score to individual variables"
                   },
                   "children": {
