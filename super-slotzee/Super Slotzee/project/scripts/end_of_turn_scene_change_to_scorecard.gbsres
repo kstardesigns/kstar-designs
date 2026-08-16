@@ -315,7 +315,7 @@
                       "type": "expression",
                       "value": "$39$ && ($41$ == 50 || $41$ == 100)"
                     },
-                    "__collapseElse": true
+                    "__collapseElse": false
                   },
                   "children": {
                     "true": [
@@ -367,8 +367,7 @@
                                   "JOKER!\n@",
                                   "This Yotzee is\nautomatically  @",
                                   "scored, and you will \nalso score another  @",
-                                  "box at the end of the \nturn. You can still  @",
-                                  "spin the slots! Be\ncareful of auto-zero."
+                                  "box at the end of the \nturn. "
                                 ],
                                 "__section": "text",
                                 "avatarId": "",
@@ -386,7 +385,7 @@
                                 "closeButton": "a",
                                 "closeDelayTime": 0.5,
                                 "closeDelayFrames": 30,
-                                "__collapse": true
+                                "__collapse": false
                               },
                               "id": "ea3fcda8-6b74-401a-a63b-d4c369bbd16d"
                             },
@@ -429,7 +428,49 @@
                         "id": "f5d3287b-e22d-4774-9499-235f701b619c"
                       }
                     ],
-                    "false": []
+                    "false": [
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "expression",
+                            "value": "$39$ && $41$ == 0 && !$111$"
+                          },
+                          "__collapseElse": true
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_SCENE_PUSH_STATE",
+                              "args": {
+                                "__collapse": true
+                              },
+                              "id": "e174e0e8-f58d-4620-988c-d71ebd3ce8cd"
+                            },
+                            {
+                              "command": "EVENT_SWITCH_SCENE",
+                              "args": {
+                                "sceneId": "98029bff-92c0-4c95-842e-6c46f00c6b5f",
+                                "x": {
+                                  "type": "number",
+                                  "value": 0
+                                },
+                                "y": {
+                                  "type": "number",
+                                  "value": 0
+                                },
+                                "direction": "",
+                                "fadeSpeed": 1,
+                                "__collapse": true
+                              },
+                              "id": "c1eb1a13-5874-4a16-a3fc-f8e3a6ace908"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "d5413076-8f4b-499b-ae58-6a120de6b0ae"
+                      }
+                    ]
                   },
                   "id": "99fba40c-a8d7-4ba3-ba76-0f23ed645db6"
                 }
