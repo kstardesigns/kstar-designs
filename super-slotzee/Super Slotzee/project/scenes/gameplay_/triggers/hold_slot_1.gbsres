@@ -42,17 +42,33 @@
             "children": {
               "true": [
                 {
-                  "command": "EVENT_SOUND_PLAY_EFFECT",
+                  "command": "EVENT_IF",
                   "args": {
-                    "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
-                    "priority": "low",
-                    "pitch": 4,
-                    "frequency": 200,
-                    "duration": 0.5,
-                    "wait": true,
-                    "effect": 6
+                    "condition": {
+                      "type": "variable",
+                      "value": "67"
+                    },
+                    "__collapseElse": true
                   },
-                  "id": "ba924051-21c8-4951-a6a3-906bbdb64bae"
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SOUND_PLAY_EFFECT",
+                        "args": {
+                          "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
+                          "priority": "low",
+                          "pitch": 4,
+                          "frequency": 200,
+                          "duration": 0.5,
+                          "wait": true,
+                          "effect": 6
+                        },
+                        "id": "ba924051-21c8-4951-a6a3-906bbdb64bae"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "3d733a55-edc6-4f85-83c5-921843c20701"
                 },
                 {
                   "command": "EVENT_IF",
@@ -242,6 +258,14 @@
       "children": {
         "true": [
           {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "1029b51f-a0aa-47d8-bd1d-1a84b946d86b",
+              "__collapse": true
+            },
+            "id": "f85b5d0d-67be-4e66-a457-74d76ec1475d"
+          },
+          {
             "command": "EVENT_ACTOR_SET_POSITION",
             "args": {
               "actorId": "$self$",
@@ -280,6 +304,14 @@
       },
       "children": {
         "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "1029b51f-a0aa-47d8-bd1d-1a84b946d86b",
+              "__collapse": true
+            },
+            "id": "19dcce8a-8c6b-4d73-a069-47084e2e4cbb"
+          },
           {
             "command": "EVENT_ACTOR_SET_STATE",
             "args": {

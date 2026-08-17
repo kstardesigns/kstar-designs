@@ -26,7 +26,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -55,17 +55,33 @@
                   "children": {
                     "true": [
                       {
-                        "command": "EVENT_SOUND_PLAY_EFFECT",
+                        "command": "EVENT_IF",
                         "args": {
-                          "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
-                          "priority": "low",
-                          "pitch": 4,
-                          "frequency": 200,
-                          "duration": 0.5,
-                          "wait": true,
-                          "effect": 6
+                          "condition": {
+                            "type": "variable",
+                            "value": "67"
+                          },
+                          "__collapseElse": true
                         },
-                        "id": "d90dde5e-b134-40fe-88f0-836ae111109e"
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_SOUND_PLAY_EFFECT",
+                              "args": {
+                                "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
+                                "priority": "low",
+                                "pitch": 4,
+                                "frequency": 200,
+                                "duration": 0.5,
+                                "wait": true,
+                                "effect": 6
+                              },
+                              "id": "ab3e271f-75e7-4824-965f-5df0b1d44ea3"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "af89be0c-b732-4f89-96ab-319f95791769"
                       },
                       {
                         "command": "EVENT_IF",
@@ -438,6 +454,14 @@
       "children": {
         "true": [
           {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "1029b51f-a0aa-47d8-bd1d-1a84b946d86b",
+              "__collapse": true
+            },
+            "id": "55bf00dd-fd08-4829-a170-af14a5ff8260"
+          },
+          {
             "command": "EVENT_ACTOR_SET_POSITION",
             "args": {
               "actorId": "$self$",
@@ -477,6 +501,14 @@
       "children": {
         "true": [
           {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "1029b51f-a0aa-47d8-bd1d-1a84b946d86b",
+              "__collapse": true
+            },
+            "id": "e100cc09-180f-4e6f-8f1d-084098d91593"
+          },
+          {
             "command": "EVENT_ACTOR_SET_POSITION",
             "args": {
               "actorId": "$self$",
@@ -488,7 +520,7 @@
                 "type": "number",
                 "value": 14
               },
-              "__collapse": false
+              "__collapse": true
             },
             "id": "6074a893-a369-47c1-8d11-bc05bd445850"
           }
@@ -516,6 +548,14 @@
       },
       "children": {
         "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "1029b51f-a0aa-47d8-bd1d-1a84b946d86b",
+              "__collapse": true
+            },
+            "id": "0585b800-6be1-41d4-b884-0cf21c9e7955"
+          },
           {
             "command": "EVENT_ACTOR_SET_STATE",
             "args": {
@@ -562,10 +602,18 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "1029b51f-a0aa-47d8-bd1d-1a84b946d86b",
+              "__collapse": true
+            },
+            "id": "03692f53-02dc-49a2-8d9c-e5624019e463"
+          },
           {
             "command": "EVENT_ACTOR_SET_STATE",
             "args": {
@@ -609,7 +657,7 @@
       "command": "EVENT_COMMENT",
       "args": {
         "text": "Disabled these buttons\nNOTE: B is set on scene\nNOTE: Start/Select are set with global script",
-        "__collapse": false
+        "__collapse": true
       },
       "id": "9ab5aa29-5a93-4a60-84a4-c7d8c4e8eaf2"
     }

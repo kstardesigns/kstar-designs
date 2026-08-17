@@ -54,18 +54,33 @@
                   "children": {
                     "true": [
                       {
-                        "command": "EVENT_SOUND_PLAY_EFFECT",
+                        "command": "EVENT_IF",
                         "args": {
-                          "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
-                          "priority": "low",
-                          "pitch": 4,
-                          "frequency": 200,
-                          "duration": 0.5,
-                          "wait": true,
-                          "effect": 6,
-                          "__collapse": true
+                          "condition": {
+                            "type": "variable",
+                            "value": "67"
+                          },
+                          "__collapseElse": true
                         },
-                        "id": "41c06bc7-90cd-4495-8d55-fd9f7e2665ee"
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_SOUND_PLAY_EFFECT",
+                              "args": {
+                                "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
+                                "priority": "low",
+                                "pitch": 4,
+                                "frequency": 200,
+                                "duration": 0.5,
+                                "wait": true,
+                                "effect": 6
+                              },
+                              "id": "a02ed07f-fe7f-41c1-8b0e-df7b35c34e98"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "9957fde7-7704-4b95-9916-5e67aa438671"
                       },
                       {
                         "command": "EVENT_IF",
@@ -433,10 +448,18 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "1029b51f-a0aa-47d8-bd1d-1a84b946d86b",
+              "__collapse": true
+            },
+            "id": "7f7fcdae-2b63-4998-aa68-20a7f587685b"
+          },
           {
             "command": "EVENT_ACTOR_SET_POSITION",
             "args": {
@@ -459,7 +482,8 @@
     {
       "command": "EVENT_COMMENT",
       "args": {
-        "text": "Move to HOLD above"
+        "text": "Move to HOLD above",
+        "__collapse": true
       },
       "id": "83a27831-83b9-4283-8e31-807c4f5f8222"
     },
@@ -471,10 +495,18 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "1029b51f-a0aa-47d8-bd1d-1a84b946d86b",
+              "__collapse": true
+            },
+            "id": "af0b0a70-4cd8-45e2-8871-bc9d0448aaaf"
+          },
           {
             "command": "EVENT_ACTOR_SET_STATE",
             "args": {
@@ -521,10 +553,18 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "1029b51f-a0aa-47d8-bd1d-1a84b946d86b",
+              "__collapse": true
+            },
+            "id": "33207552-7c91-4505-8d1e-9d52a01a0c5a"
+          },
           {
             "command": "EVENT_ACTOR_SET_STATE",
             "args": {
@@ -570,7 +610,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": []
