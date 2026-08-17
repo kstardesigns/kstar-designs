@@ -111,18 +111,34 @@
                   "children": {
                     "true": [
                       {
-                        "command": "EVENT_SOUND_PLAY_EFFECT",
+                        "command": "EVENT_IF",
                         "args": {
-                          "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
-                          "priority": "medium",
-                          "pitch": 4,
-                          "frequency": 200,
-                          "duration": 0.5,
-                          "wait": true,
-                          "effect": 5,
-                          "__collapse": true
+                          "condition": {
+                            "type": "variable",
+                            "value": "67"
+                          },
+                          "__collapseElse": true
                         },
-                        "id": "045a7111-b3b4-4fb9-abe7-62f10f5368d8"
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_SOUND_PLAY_EFFECT",
+                              "args": {
+                                "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
+                                "priority": "medium",
+                                "pitch": 4,
+                                "frequency": 200,
+                                "duration": 0.5,
+                                "wait": true,
+                                "effect": 5,
+                                "__collapse": false
+                              },
+                              "id": "045a7111-b3b4-4fb9-abe7-62f10f5368d8"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "116b9ee8-ffc7-413a-8990-368f3179b29a"
                       },
                       {
                         "command": "EVENT_SET_VALUE",
