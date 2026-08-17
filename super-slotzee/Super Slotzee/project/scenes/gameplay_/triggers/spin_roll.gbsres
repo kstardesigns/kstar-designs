@@ -151,7 +151,7 @@
                           },
                           "__collapseElse": false,
                           "__label": "Update roll # variable / reset turn",
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "children": {
                           "true": [
@@ -780,7 +780,7 @@
                         "command": "EVENT_GROUP",
                         "args": {
                           "__label": "Slots & dice",
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "children": {
                           "true": [
@@ -4131,7 +4131,7 @@
                           },
                           "__collapseElse": true,
                           "__label": "(If) good slot sound & animation",
-                          "__collapse": true
+                          "__collapse": false
                         },
                         "children": {
                           "true": [
@@ -4178,16 +4178,88 @@
                                           "id": "093bcf53-645e-4d95-a004-3a0cdace9c12"
                                         },
                                         {
-                                          "command": "EVENT_SET_VALUE",
+                                          "command": "EVENT_IF",
                                           "args": {
-                                            "variable": "66",
-                                            "value": {
-                                              "type": "number",
-                                              "value": 4
+                                            "condition": {
+                                              "type": "eq",
+                                              "valueA": {
+                                                "type": "variable",
+                                                "value": "16"
+                                              },
+                                              "valueB": {
+                                                "type": "number",
+                                                "value": 1
+                                              }
                                             },
-                                            "__collapse": true
+                                            "__collapseElse": false
                                           },
-                                          "id": "0657133b-81cc-4b22-a582-e67198cd3a6b"
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_SET_VALUE",
+                                                "args": {
+                                                  "variable": "66",
+                                                  "value": {
+                                                    "type": "number",
+                                                    "value": 7
+                                                  },
+                                                  "__collapse": false
+                                                },
+                                                "id": "1fddbb1e-d151-42b7-baf6-eee16d553198"
+                                              }
+                                            ],
+                                            "false": [
+                                              {
+                                                "command": "EVENT_IF",
+                                                "args": {
+                                                  "condition": {
+                                                    "type": "eq",
+                                                    "valueA": {
+                                                      "type": "variable",
+                                                      "value": "16"
+                                                    },
+                                                    "valueB": {
+                                                      "type": "number",
+                                                      "value": 2
+                                                    }
+                                                  },
+                                                  "__collapseElse": false
+                                                },
+                                                "children": {
+                                                  "true": [
+                                                    {
+                                                      "command": "EVENT_SET_VALUE",
+                                                      "args": {
+                                                        "variable": "66",
+                                                        "value": {
+                                                          "type": "number",
+                                                          "value": 4
+                                                        },
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "0657133b-81cc-4b22-a582-e67198cd3a6b"
+                                                    }
+                                                  ],
+                                                  "false": [
+                                                    {
+                                                      "command": "EVENT_SET_VALUE",
+                                                      "args": {
+                                                        "variable": "66",
+                                                        "value": {
+                                                          "type": "number",
+                                                          "value": 3
+                                                        },
+                                                        "__collapse": false
+                                                      },
+                                                      "id": "171e35ee-aca5-4a12-9848-df8212550d57"
+                                                    }
+                                                  ]
+                                                },
+                                                "id": "5a81e9cb-507a-454a-a9d2-eb3a25c72c50"
+                                              }
+                                            ]
+                                          },
+                                          "id": "fbb203eb-98ef-452f-b2c1-4827c584c39b"
                                         },
                                         {
                                           "command": "EVENT_PALETTE_SET_BACKGROUND",
@@ -4200,7 +4272,7 @@
                                             "palette5": "adeaa460-fc1a-416c-9e14-236bc9fe414d",
                                             "palette6": "keep",
                                             "palette7": "keep",
-                                            "__collapse": true
+                                            "__collapse": false
                                           },
                                           "id": "b764e9fe-974e-41cc-958d-f1817387e788"
                                         },
@@ -4212,7 +4284,7 @@
                                               "value": "67"
                                             },
                                             "__collapseElse": true,
-                                            "__collapse": true,
+                                            "__collapse": false,
                                             "__label": "(If) sound effects on"
                                           },
                                           "children": {
@@ -5304,7 +5376,7 @@
                         "command": "EVENT_CALL_CUSTOM_EVENT",
                         "args": {
                           "customEventId": "735debf0-782d-4027-a94a-3c845f866805",
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "id": "f6226acc-a9d2-4538-befe-07926811f46f"
                       },
@@ -5315,7 +5387,7 @@
                           "__scriptTabs": "true",
                           "__comment": false,
                           "__label": "End of roll thread",
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "children": {
                           "true": [
