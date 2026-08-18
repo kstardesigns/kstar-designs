@@ -1091,7 +1091,7 @@
                         "command": "EVENT_CALL_CUSTOM_EVENT",
                         "args": {
                           "customEventId": "9963b3b8-a749-42c6-99c7-850bc91418a7",
-                          "__collapse": true
+                          "__collapse": false
                         },
                         "id": "605f7210-0d08-4c56-b8d3-eee6dcadf170"
                       },
@@ -1113,11 +1113,34 @@
                         "children": {
                           "true": [
                             {
-                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "command": "EVENT_IF",
                               "args": {
-                                "customEventId": "0861ed40-5b4c-4448-ad2b-ac34694ce13f"
+                                "condition": {
+                                  "type": "eq",
+                                  "valueA": {
+                                    "type": "variable",
+                                    "value": "121"
+                                  },
+                                  "valueB": {
+                                    "type": "number",
+                                    "value": 0
+                                  }
+                                },
+                                "__collapseElse": true
                               },
-                              "id": "88fd6447-fccc-4388-a57a-b498a789da31"
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_CALL_CUSTOM_EVENT",
+                                    "args": {
+                                      "customEventId": "0861ed40-5b4c-4448-ad2b-ac34694ce13f"
+                                    },
+                                    "id": "88fd6447-fccc-4388-a57a-b498a789da31"
+                                  }
+                                ],
+                                "false": []
+                              },
+                              "id": "a868029d-b82c-4b03-b71d-40f28e5dca5e"
                             },
                             {
                               "command": "PT_EVENT_ADVANCED_MENU",
@@ -1269,6 +1292,14 @@
                         },
                         "children": {
                           "true": [
+                            {
+                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "args": {
+                                "customEventId": "54c1d4ae-bd29-4ed2-9fbc-11802343cb3c",
+                                "__collapse": true
+                              },
+                              "id": "03392f54-f191-4f57-aaca-89d5f89fae2e"
+                            },
                             {
                               "command": "EVENT_COMMENT",
                               "args": {
@@ -1610,6 +1641,14 @@
                               "children": {
                                 "true": [
                                   {
+                                    "command": "EVENT_CALL_CUSTOM_EVENT",
+                                    "args": {
+                                      "customEventId": "54c1d4ae-bd29-4ed2-9fbc-11802343cb3c",
+                                      "__collapse": true
+                                    },
+                                    "id": "89c1c5df-95e5-4a43-9031-dc9a83b0b1b6"
+                                  },
+                                  {
                                     "command": "EVENT_DEC_VALUE",
                                     "args": {
                                       "variable": "17",
@@ -1652,7 +1691,7 @@
                                     "command": "EVENT_CALL_CUSTOM_EVENT",
                                     "args": {
                                       "customEventId": "6e1675f1-fcae-439b-8337-e639aa842bca",
-                                      "__collapse": false,
+                                      "__collapse": true,
                                       "$actor[0]$": "357b22fa-7842-4200-9e0f-50b436f8ef7b"
                                     },
                                     "id": "241c4f6d-254c-4e59-9e14-814ab93b761e"

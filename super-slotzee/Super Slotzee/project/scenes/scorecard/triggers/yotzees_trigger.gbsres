@@ -963,7 +963,7 @@
                       }
                     },
                     "__collapseElse": false,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -987,11 +987,34 @@
                         "children": {
                           "true": [
                             {
-                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "command": "EVENT_IF",
                               "args": {
-                                "customEventId": "0861ed40-5b4c-4448-ad2b-ac34694ce13f"
+                                "condition": {
+                                  "type": "eq",
+                                  "valueA": {
+                                    "type": "variable",
+                                    "value": "121"
+                                  },
+                                  "valueB": {
+                                    "type": "number",
+                                    "value": 0
+                                  }
+                                },
+                                "__collapseElse": true
                               },
-                              "id": "7f602111-888f-45bf-b224-080560ff8eab"
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_CALL_CUSTOM_EVENT",
+                                    "args": {
+                                      "customEventId": "0861ed40-5b4c-4448-ad2b-ac34694ce13f"
+                                    },
+                                    "id": "202f9ad3-cea3-48e8-9fff-d16afb724dc5"
+                                  }
+                                ],
+                                "false": []
+                              },
+                              "id": "a3d7b54b-6d4c-45f1-b09c-fe7857c63223"
                             },
                             {
                               "command": "PT_EVENT_ADVANCED_MENU",
@@ -1144,6 +1167,14 @@
                         "children": {
                           "true": [
                             {
+                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "args": {
+                                "customEventId": "54c1d4ae-bd29-4ed2-9fbc-11802343cb3c",
+                                "__collapse": true
+                              },
+                              "id": "0c716428-505a-4bd1-93ea-1be85a37d00b"
+                            },
+                            {
                               "command": "EVENT_SET_VALUE",
                               "args": {
                                 "variable": "41",
@@ -1151,7 +1182,7 @@
                                   "type": "variable",
                                   "value": "40"
                                 },
-                                "__collapse": false
+                                "__collapse": true
                               },
                               "id": "2a152605-7e1a-462f-8c34-de6ba9f8a0c2"
                             },
@@ -1730,6 +1761,14 @@
                                     },
                                     "children": {
                                       "true": [
+                                        {
+                                          "command": "EVENT_CALL_CUSTOM_EVENT",
+                                          "args": {
+                                            "customEventId": "54c1d4ae-bd29-4ed2-9fbc-11802343cb3c",
+                                            "__collapse": true
+                                          },
+                                          "id": "3212780d-8958-4942-99ab-338befac4493"
+                                        },
                                         {
                                           "command": "EVENT_DEC_VALUE",
                                           "args": {
