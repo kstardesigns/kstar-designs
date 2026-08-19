@@ -128,7 +128,8 @@
                             "type": "variable",
                             "value": "67"
                           },
-                          "__collapseElse": true
+                          "__collapseElse": true,
+                          "__collapse": true
                         },
                         "children": {
                           "true": [
@@ -807,7 +808,7 @@
                         "command": "EVENT_GROUP",
                         "args": {
                           "__label": "Slots & dice",
-                          "__collapse": true
+                          "__collapse": false
                         },
                         "children": {
                           "true": [
@@ -823,7 +824,7 @@
                               "command": "EVENT_GROUP",
                               "args": {
                                 "__label": "Generate random slot numbers",
-                                "__collapse": false
+                                "__collapse": true
                               },
                               "children": {
                                 "true": [
@@ -838,7 +839,7 @@
                                         }
                                       },
                                       "__collapseElse": true,
-                                      "__collapse": false
+                                      "__collapse": true
                                     },
                                     "children": {
                                       "true": [
@@ -1022,7 +1023,7 @@
                                         }
                                       },
                                       "__collapseElse": true,
-                                      "__collapse": false
+                                      "__collapse": true
                                     },
                                     "children": {
                                       "true": [
@@ -1206,7 +1207,7 @@
                                         }
                                       },
                                       "__collapseElse": true,
-                                      "__collapse": false
+                                      "__collapse": true
                                     },
                                     "children": {
                                       "true": [
@@ -2123,7 +2124,7 @@
                                   }
                                 },
                                 "__collapseElse": true,
-                                "__collapse": true
+                                "__collapse": false
                               },
                               "children": {
                                 "true": [
@@ -2147,11 +2148,78 @@
                                           "id": "d3b3edc7-b44f-431e-8b02-42b8ddc3507d"
                                         },
                                         {
+                                          "command": "EVENT_IF",
+                                          "args": {
+                                            "condition": {
+                                              "type": "variable",
+                                              "value": "67"
+                                            },
+                                            "__collapseElse": true,
+                                            "__collapse": false
+                                          },
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_THREAD_START",
+                                                "args": {
+                                                  "variable": "L4",
+                                                  "__scriptTabs": "true"
+                                                },
+                                                "children": {
+                                                  "true": [
+                                                    {
+                                                      "command": "EVENT_WAIT",
+                                                      "args": {
+                                                        "time": 0.2,
+                                                        "frames": 30
+                                                      },
+                                                      "id": "b34fdfb5-3cb7-4d20-a15a-e59bf57b00d7"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_LOOP",
+                                                      "args": {},
+                                                      "children": {
+                                                        "true": [
+                                                          {
+                                                            "command": "EVENT_SOUND_PLAY_EFFECT",
+                                                            "args": {
+                                                              "type": "ec749f8b-b7b8-495e-9700-8b830847cf50",
+                                                              "priority": "low",
+                                                              "pitch": 4,
+                                                              "frequency": 200,
+                                                              "duration": 0.5,
+                                                              "wait": true,
+                                                              "effect": 6
+                                                            },
+                                                            "id": "a51a003b-764e-4485-acfb-08d85a43f327"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_WAIT",
+                                                            "args": {
+                                                              "time": 0.2,
+                                                              "frames": 30
+                                                            },
+                                                            "id": "222208c3-c678-44ae-b46b-51887b4c2b9d"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "id": "d9fa5e49-4e49-4ddf-8e02-38157a6a0258"
+                                                    }
+                                                  ]
+                                                },
+                                                "id": "ae67380a-008e-4aad-989f-9680d28e6845"
+                                              }
+                                            ],
+                                            "false": []
+                                          },
+                                          "id": "4da282b5-db5d-4463-b391-cdf473240d58"
+                                        },
+                                        {
                                           "command": "EVENT_WAIT",
                                           "args": {
                                             "time": 1.0667,
                                             "frames": 30,
-                                            "__collapse": false
+                                            "__collapse": true
                                           },
                                           "id": "7de1e5f6-d8e7-4298-8355-901de0cd9647"
                                         },
@@ -2194,7 +2262,7 @@
                                             "value15": 16,
                                             "__collapseElse": true,
                                             "__label": "[Switch] Slot 1 animation based on random",
-                                            "__collapse": false
+                                            "__collapse": true
                                           },
                                           "children": {
                                             "true0": [
@@ -2279,6 +2347,29 @@
                                           "args": {
                                             "condition": {
                                               "type": "expression",
+                                              "value": "$09$ && $10$"
+                                            },
+                                            "__collapseElse": true
+                                          },
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_THREAD_STOP",
+                                                "args": {
+                                                  "variable": "L4"
+                                                },
+                                                "id": "73f09b76-ebda-4cbd-ad0f-fad76fe9f77d"
+                                              }
+                                            ],
+                                            "false": []
+                                          },
+                                          "id": "78988691-8a19-4bf2-8602-6227c67d6771"
+                                        },
+                                        {
+                                          "command": "EVENT_IF",
+                                          "args": {
+                                            "condition": {
+                                              "type": "expression",
                                               "value": "$11$ && $12$ && $15$ && $13$ && $14$"
                                             },
                                             "__collapseElse": true,
@@ -2334,7 +2425,7 @@
                                   }
                                 },
                                 "__collapseElse": true,
-                                "__collapse": true,
+                                "__collapse": false,
                                 "__comment": false
                               },
                               "children": {
@@ -2356,6 +2447,89 @@
                                             "__collapse": true
                                           },
                                           "id": "3b4feae9-c0f2-4187-ab43-b96aba7d9478"
+                                        },
+                                        {
+                                          "command": "EVENT_IF",
+                                          "args": {
+                                            "condition": {
+                                              "type": "expression",
+                                              "value": "$08$"
+                                            },
+                                            "__collapseElse": true,
+                                            "__collapse": false
+                                          },
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_IF",
+                                                "args": {
+                                                  "condition": {
+                                                    "type": "variable",
+                                                    "value": "67"
+                                                  },
+                                                  "__collapseElse": true
+                                                },
+                                                "children": {
+                                                  "true": [
+                                                    {
+                                                      "command": "EVENT_THREAD_START",
+                                                      "args": {
+                                                        "variable": "L4",
+                                                        "__scriptTabs": "true"
+                                                      },
+                                                      "children": {
+                                                        "true": [
+                                                          {
+                                                            "command": "EVENT_WAIT",
+                                                            "args": {
+                                                              "time": 0.2,
+                                                              "frames": 30
+                                                            },
+                                                            "id": "9899a7fc-15bb-4ed2-92b4-2428fe00cd5d"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_LOOP",
+                                                            "args": {},
+                                                            "children": {
+                                                              "true": [
+                                                                {
+                                                                  "command": "EVENT_SOUND_PLAY_EFFECT",
+                                                                  "args": {
+                                                                    "type": "ec749f8b-b7b8-495e-9700-8b830847cf50",
+                                                                    "priority": "low",
+                                                                    "pitch": 4,
+                                                                    "frequency": 200,
+                                                                    "duration": 0.5,
+                                                                    "wait": true,
+                                                                    "effect": 6
+                                                                  },
+                                                                  "id": "5af1c1cb-2512-4e72-9aa5-30f2a682a35d"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_WAIT",
+                                                                  "args": {
+                                                                    "time": 0.2,
+                                                                    "frames": 30
+                                                                  },
+                                                                  "id": "52832808-17b6-4e46-b91e-915230ec08af"
+                                                                }
+                                                              ]
+                                                            },
+                                                            "id": "33f3ccaf-7974-4147-bc25-4ec8ab310f09"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "id": "3ea3e433-6708-44b2-848b-7093e663f6b2"
+                                                    }
+                                                  ],
+                                                  "false": []
+                                                },
+                                                "id": "d8e6b840-2dfa-4666-8ba4-f37a8bb70424"
+                                              }
+                                            ],
+                                            "false": []
+                                          },
+                                          "id": "e8a05433-e2cb-4295-b245-9127a1469769"
                                         },
                                         {
                                           "command": "EVENT_WAIT",
@@ -2490,6 +2664,29 @@
                                           "args": {
                                             "condition": {
                                               "type": "expression",
+                                              "value": "$10$"
+                                            },
+                                            "__collapseElse": true
+                                          },
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_THREAD_STOP",
+                                                "args": {
+                                                  "variable": "L4"
+                                                },
+                                                "id": "a64fb82c-51e8-4aaa-a80d-95eb35e922a9"
+                                              }
+                                            ],
+                                            "false": []
+                                          },
+                                          "id": "c9905593-a353-4eb8-beb6-b32718ddce73"
+                                        },
+                                        {
+                                          "command": "EVENT_IF",
+                                          "args": {
+                                            "condition": {
+                                              "type": "expression",
                                               "value": "$11$ && $12$ && $15$ && $13$ && $14$"
                                             },
                                             "__collapseElse": true,
@@ -2565,6 +2762,90 @@
                                             "__collapse": false
                                           },
                                           "id": "4fd600e6-54eb-4644-ae09-f1afa31e18aa"
+                                        },
+                                        {
+                                          "command": "EVENT_IF",
+                                          "args": {
+                                            "condition": {
+                                              "type": "expression",
+                                              "value": "$08$ && $09$"
+                                            },
+                                            "__collapseElse": true,
+                                            "__collapse": false
+                                          },
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_IF",
+                                                "args": {
+                                                  "condition": {
+                                                    "type": "variable",
+                                                    "value": "67"
+                                                  },
+                                                  "__collapseElse": true,
+                                                  "__collapse": false
+                                                },
+                                                "children": {
+                                                  "true": [
+                                                    {
+                                                      "command": "EVENT_WAIT",
+                                                      "args": {
+                                                        "time": 0.2,
+                                                        "frames": 30
+                                                      },
+                                                      "id": "ba14c23a-c512-45d5-8742-b11e26b26e16"
+                                                    },
+                                                    {
+                                                      "command": "EVENT_THREAD_START",
+                                                      "args": {
+                                                        "variable": "L4",
+                                                        "__scriptTabs": "true"
+                                                      },
+                                                      "children": {
+                                                        "true": [
+                                                          {
+                                                            "command": "EVENT_LOOP",
+                                                            "args": {},
+                                                            "children": {
+                                                              "true": [
+                                                                {
+                                                                  "command": "EVENT_SOUND_PLAY_EFFECT",
+                                                                  "args": {
+                                                                    "type": "ec749f8b-b7b8-495e-9700-8b830847cf50",
+                                                                    "priority": "low",
+                                                                    "pitch": 4,
+                                                                    "frequency": 200,
+                                                                    "duration": 0.5,
+                                                                    "wait": true,
+                                                                    "effect": 6
+                                                                  },
+                                                                  "id": "f118611a-7dde-4d93-b9a0-3623dc6b717e"
+                                                                },
+                                                                {
+                                                                  "command": "EVENT_WAIT",
+                                                                  "args": {
+                                                                    "time": 0.2,
+                                                                    "frames": 30
+                                                                  },
+                                                                  "id": "989b2571-8ec2-47fc-9982-e6f7d37aeba8"
+                                                                }
+                                                              ]
+                                                            },
+                                                            "id": "0ed55fc7-5998-4c9c-9280-2f3e3e6650f6"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "id": "4c06229d-3fe5-42b0-bec5-5fb900271c03"
+                                                    }
+                                                  ],
+                                                  "false": []
+                                                },
+                                                "id": "f77797d8-b984-40cd-9197-deadcfab05f2"
+                                              }
+                                            ],
+                                            "false": []
+                                          },
+                                          "id": "feea6098-255e-422a-9cfa-ec15a0b07699"
                                         },
                                         {
                                           "command": "EVENT_WAIT",
@@ -2694,6 +2975,13 @@
                                             "__collapse": false
                                           },
                                           "id": "b7c7263a-7cc8-4648-aa08-a697e2a79b4d"
+                                        },
+                                        {
+                                          "command": "EVENT_THREAD_STOP",
+                                          "args": {
+                                            "variable": "L4"
+                                          },
+                                          "id": "50b7df9b-f79e-408d-ab1d-7614f70099f7"
                                         },
                                         {
                                           "command": "EVENT_IF",
@@ -2938,7 +3226,7 @@
                                           "command": "EVENT_SOUND_PLAY_EFFECT",
                                           "args": {
                                             "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
-                                            "priority": "low",
+                                            "priority": "medium",
                                             "pitch": 4,
                                             "frequency": 200,
                                             "duration": 0.5,
@@ -3182,7 +3470,7 @@
                                           "command": "EVENT_SOUND_PLAY_EFFECT",
                                           "args": {
                                             "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
-                                            "priority": "low",
+                                            "priority": "medium",
                                             "pitch": 4,
                                             "frequency": 200,
                                             "duration": 0.5,
@@ -3484,7 +3772,7 @@
                                           "command": "EVENT_SOUND_PLAY_EFFECT",
                                           "args": {
                                             "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
-                                            "priority": "low",
+                                            "priority": "medium",
                                             "pitch": 4,
                                             "frequency": 200,
                                             "duration": 0.5,
@@ -3530,7 +3818,8 @@
                                     "command": "EVENT_THREAD_START",
                                     "args": {
                                       "variable": "75",
-                                      "__scriptTabs": "true"
+                                      "__scriptTabs": "true",
+                                      "__collapse": false
                                     },
                                     "children": {
                                       "true": [
@@ -3539,7 +3828,7 @@
                                           "args": {
                                             "variable": "78",
                                             "expression": "$11$ + $12$ + $15$",
-                                            "__collapse": false
+                                            "__collapse": true
                                           },
                                           "id": "ca41edfe-7051-465d-a3ca-b5539d6b5893"
                                         },
@@ -3796,7 +4085,7 @@
                                           "command": "EVENT_SOUND_PLAY_EFFECT",
                                           "args": {
                                             "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
-                                            "priority": "low",
+                                            "priority": "medium",
                                             "pitch": 4,
                                             "frequency": 200,
                                             "duration": 0.5,
@@ -3894,7 +4183,7 @@
                                             "value15": 16,
                                             "__collapseElse": false,
                                             "__label": "[Switch] Stagger dice finish",
-                                            "__collapse": false
+                                            "__collapse": true
                                           },
                                           "children": {
                                             "true0": [
@@ -4118,7 +4407,7 @@
                                           "command": "EVENT_SOUND_PLAY_EFFECT",
                                           "args": {
                                             "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
-                                            "priority": "low",
+                                            "priority": "medium",
                                             "pitch": 4,
                                             "frequency": 200,
                                             "duration": 0.5,
@@ -4158,7 +4447,7 @@
                           },
                           "__collapseElse": true,
                           "__label": "(If) good slot sound & animation",
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "children": {
                           "true": [
@@ -4320,7 +4609,7 @@
                                                 "command": "EVENT_SOUND_PLAY_EFFECT",
                                                 "args": {
                                                   "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
-                                                  "priority": "medium",
+                                                  "priority": "high",
                                                   "pitch": 4,
                                                   "frequency": 200,
                                                   "duration": 0.5,
@@ -4821,7 +5110,7 @@
                           },
                           "__collapseElse": true,
                           "__label": "(If) bad slot sound effect & animation",
-                          "__collapse": true
+                          "__collapse": false
                         },
                         "children": {
                           "true": [
@@ -4898,7 +5187,7 @@
                                               "value": "67"
                                             },
                                             "__collapseElse": true,
-                                            "__collapse": true,
+                                            "__collapse": false,
                                             "__label": "(If) sound effects on"
                                           },
                                           "children": {
@@ -4907,7 +5196,7 @@
                                                 "command": "EVENT_SOUND_PLAY_EFFECT",
                                                 "args": {
                                                   "type": "953342e8-4dc9-45fd-87f4-c0189b0f01eb",
-                                                  "priority": "medium",
+                                                  "priority": "high",
                                                   "pitch": 4,
                                                   "frequency": 200,
                                                   "duration": 0.5,
