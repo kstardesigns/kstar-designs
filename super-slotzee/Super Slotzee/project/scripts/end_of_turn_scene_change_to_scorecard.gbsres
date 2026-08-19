@@ -367,7 +367,7 @@
                                   "JOKER!\n@",
                                   "This Yotzee is\nautomatically  @",
                                   "scored, and you will \nalso score another  @",
-                                  "box at the end of the \nturn. "
+                                  "box on the scorecard."
                                 ],
                                 "__section": "text",
                                 "avatarId": "",
@@ -396,6 +396,47 @@
                                 "__collapse": true
                               },
                               "id": "2ce2574d-e9fb-4b52-b4a6-291f74897d19"
+                            },
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "expression",
+                                  "value": "($16$ == 3 && !$61$) || ($16$ == 4 && $61$)"
+                                },
+                                "__collapseElse": true
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_SCENE_PUSH_STATE",
+                                    "args": {
+                                      "__collapse": true
+                                    },
+                                    "id": "d48ed993-dd7f-4ca2-babf-eea8da84c25f"
+                                  },
+                                  {
+                                    "command": "EVENT_SWITCH_SCENE",
+                                    "args": {
+                                      "sceneId": "98029bff-92c0-4c95-842e-6c46f00c6b5f",
+                                      "x": {
+                                        "type": "number",
+                                        "value": 0
+                                      },
+                                      "y": {
+                                        "type": "number",
+                                        "value": 0
+                                      },
+                                      "direction": "",
+                                      "fadeSpeed": 1,
+                                      "__collapse": true
+                                    },
+                                    "id": "030543b3-12e6-4799-9fa1-c243ccaf626e"
+                                  }
+                                ],
+                                "false": []
+                              },
+                              "id": "bad86cb8-350c-4f1e-beb4-4f8a1ce3dcbc"
                             }
                           ],
                           "false": []
@@ -407,7 +448,7 @@
                       {
                         "command": "EVENT_COMMENT",
                         "args": {
-                          "text": "This was added to fix a bug, but I missed something because. it auto changes scenes no matter the roll. Not ideal."
+                          "text": "This is for the rare occurrence where the player has already scored this turn, and uses a super yotzee on the same turn before the next turn has started"
                         },
                         "id": "6f8eebcf-4a66-4077-bb02-24177891ecdd"
                       },
@@ -416,10 +457,11 @@
                         "args": {
                           "condition": {
                             "type": "expression",
-                            "value": "$39$ && $41$ == 0 && !$111$"
+                            "value": "$39$ && $111$ && $159$"
                           },
                           "__collapseElse": false,
-                          "__comment": true
+                          "__comment": false,
+                          "__collapse": false
                         },
                         "children": {
                           "true": [
