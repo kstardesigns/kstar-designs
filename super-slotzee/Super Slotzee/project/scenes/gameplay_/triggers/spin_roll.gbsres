@@ -54,7 +54,7 @@
             "args": {
               "condition": {
                 "type": "expression",
-                "value": "$16$ == 0 || $16$ == 1 || $16$ == 2 || $123$ || ($16$ == 3 && $61$)"
+                "value": "($16$ == 0 || $16$ == 1 || $16$ == 2 || $123$ || ($16$ == 3 && $61$)) && !$335$"
               },
               "__collapseElse": false,
               "__collapse": false,
@@ -179,7 +179,7 @@
                           },
                           "__collapseElse": false,
                           "__label": "Update roll # variable / reset turn",
-                          "__collapse": true
+                          "__collapse": false
                         },
                         "children": {
                           "true": [
@@ -5704,7 +5704,7 @@
                           "__scriptTabs": "true",
                           "__comment": false,
                           "__label": "End of roll thread",
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "children": {
                           "true": [
@@ -5939,47 +5939,45 @@
               ],
               "false": [
                 {
-                  "command": "EVENT_PALETTE_SET_UI",
+                  "command": "EVENT_IF",
                   "args": {
-                    "palette": "f006aaec-a37b-4d52-94a4-157d55a31514",
-                    "__collapse": true
+                    "condition": {
+                      "type": "variable",
+                      "value": "335"
+                    },
+                    "__collapseElse": true
                   },
-                  "id": "6d4b7d82-c2bb-4d77-b212-1c6d64971027"
-                },
-                {
-                  "command": "EVENT_TEXT",
-                  "args": {
-                    "text": [
-                      "You have not scored\nthis turn yet.  @",
-                      "Press SELECT to view\nyour scorecard."
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SCENE_PUSH_STATE",
+                        "args": {
+                          "__collapse": true
+                        },
+                        "id": "ef0d51cb-3dd7-47a5-b61e-16cee59dbca9"
+                      },
+                      {
+                        "command": "EVENT_SWITCH_SCENE",
+                        "args": {
+                          "sceneId": "98029bff-92c0-4c95-842e-6c46f00c6b5f",
+                          "x": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "direction": "",
+                          "fadeSpeed": 1,
+                          "__collapse": true
+                        },
+                        "id": "1ee8226d-eb9c-43cf-85cb-04cdd2f615a4"
+                      }
                     ],
-                    "__section": "text",
-                    "avatarId": "",
-                    "minHeight": 4,
-                    "maxHeight": 7,
-                    "textX": 1,
-                    "textY": 1,
-                    "textHeight": 5,
-                    "position": "bottom",
-                    "clearPrevious": true,
-                    "showFrame": "true",
-                    "speedIn": -1,
-                    "speedOut": -1,
-                    "closeWhen": "key",
-                    "closeButton": "a",
-                    "closeDelayTime": 0.5,
-                    "closeDelayFrames": 30,
-                    "__collapse": false
+                    "false": []
                   },
-                  "id": "65c71cb3-7d89-4ad9-87be-e23ae26f5112"
-                },
-                {
-                  "command": "EVENT_CALL_CUSTOM_EVENT",
-                  "args": {
-                    "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8",
-                    "__collapse": true
-                  },
-                  "id": "25a40e3b-17df-4ff6-9dba-44519642a60c"
+                  "id": "782ca598-6076-4938-8584-bf68c8cc3257"
                 }
               ]
             },
