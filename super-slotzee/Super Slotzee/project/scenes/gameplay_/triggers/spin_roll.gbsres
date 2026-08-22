@@ -5704,7 +5704,7 @@
                           "__scriptTabs": "true",
                           "__comment": false,
                           "__label": "End of roll thread",
-                          "__collapse": true
+                          "__collapse": false
                         },
                         "children": {
                           "true": [
@@ -5717,12 +5717,38 @@
                               "id": "5ccf164c-ebf2-4534-9f09-54a8522919c6"
                             },
                             {
-                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "command": "EVENT_IF",
                               "args": {
-                                "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762",
-                                "__collapse": true
+                                "condition": {
+                                  "type": "expression",
+                                  "value": "(($16$ == 3 && !$61$) || $16$ == 4) && $39$"
+                                },
+                                "__collapseElse": false
                               },
-                              "id": "c6edbf0b-0c18-4288-8d37-b607c4aef3ff"
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_COMMENT",
+                                    "args": {
+                                      "text": "Skipping wait when you have a yotzee on the last roll because it's handled in the yotzee animation script",
+                                      "__collapse": true
+                                    },
+                                    "id": "3bd83d95-8cb2-4cd5-ac22-6cd59df85b64"
+                                  }
+                                ],
+                                "false": [
+                                  {
+                                    "command": "EVENT_CALL_CUSTOM_EVENT",
+                                    "args": {
+                                      "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762",
+                                      "__collapse": true,
+                                      "__comment": false
+                                    },
+                                    "id": "c6edbf0b-0c18-4288-8d37-b607c4aef3ff"
+                                  }
+                                ]
+                              },
+                              "id": "9eb0dd56-c560-4cdf-ae3d-65d6f74f6230"
                             },
                             {
                               "command": "EVENT_COMMENT",
@@ -5878,7 +5904,7 @@
                               "command": "EVENT_CALL_CUSTOM_EVENT",
                               "args": {
                                 "customEventId": "ad3ec2a3-7c73-4364-b56a-180129e66468",
-                                "__collapse": false
+                                "__collapse": true
                               },
                               "id": "4e268868-d9c6-49ce-955c-725eb08bc239"
                             },
