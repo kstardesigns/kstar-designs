@@ -11,7 +11,7 @@
       "command": "EVENT_COMMENT",
       "args": {
         "text": "If a token is active to force a yotzee, or we are on the last roll of the turn, don't put animation in a thread",
-        "__collapse": true
+        "__collapse": false
       },
       "id": "f745cf9f-26e4-4be2-93bc-084f5c084f4e"
     },
@@ -31,7 +31,7 @@
       "args": {
         "condition": {
           "type": "expression",
-          "value": "$159$ || $176$"
+          "value": "$159$ || $176$ "
         },
         "__collapseElse": false,
         "__comment": false
@@ -168,13 +168,32 @@
             "children": {
               "true": [
                 {
-                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "command": "EVENT_IF",
                   "args": {
-                    "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762",
-                    "__collapse": true,
-                    "__comment": false
+                    "condition": {
+                      "type": "not",
+                      "value": {
+                        "type": "variable",
+                        "value": "337"
+                      }
+                    },
+                    "__collapseElse": true
                   },
-                  "id": "acd10e6f-b974-4ebd-9f97-820a6667c29b"
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762",
+                          "__collapse": true,
+                          "__comment": false
+                        },
+                        "id": "acd10e6f-b974-4ebd-9f97-820a6667c29b"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "abb311ef-776e-4b25-91ea-abc73329dab6"
                 },
                 {
                   "command": "EVENT_CALL_CUSTOM_EVENT",
@@ -224,7 +243,7 @@
                         "value": 0
                       }
                     },
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -279,7 +298,8 @@
                       {
                         "command": "EVENT_DEC_VALUE",
                         "args": {
-                          "variable": "68"
+                          "variable": "68",
+                          "__collapse": true
                         },
                         "id": "09bf2d9a-4949-44b8-88cc-20d019a9fb74"
                       }
@@ -312,12 +332,32 @@
                         "children": {
                           "true": [
                             {
-                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "command": "EVENT_IF",
                               "args": {
-                                "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762",
-                                "__collapse": true
+                                "condition": {
+                                  "type": "not",
+                                  "value": {
+                                    "type": "variable",
+                                    "value": "337"
+                                  }
+                                },
+                                "__collapseElse": true
                               },
-                              "id": "1765fe70-1a1f-4259-9a9c-5d437e648b8d"
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_CALL_CUSTOM_EVENT",
+                                    "args": {
+                                      "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762",
+                                      "__collapse": true,
+                                      "__comment": false
+                                    },
+                                    "id": "3999130b-0f70-49fb-b815-b006911f86af"
+                                  }
+                                ],
+                                "false": []
+                              },
+                              "id": "82410544-e426-494e-8379-290a8f22ea14"
                             },
                             {
                               "command": "EVENT_CALL_CUSTOM_EVENT",
