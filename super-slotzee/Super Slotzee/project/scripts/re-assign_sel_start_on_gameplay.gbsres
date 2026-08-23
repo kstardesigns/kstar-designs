@@ -1,0 +1,129 @@
+{
+  "_resourceType": "script",
+  "id": "4673992f-e082-4b9e-b105-4955ac07be4b",
+  "name": "Re-assign SEL START on gameplay",
+  "description": "This is a test script to disable/enable these buttons calculate score",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_72",
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "not",
+          "value": {
+            "type": "variable",
+            "value": "81"
+          }
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_INPUT_SCRIPT",
+            "args": {
+              "input": [
+                "select"
+              ],
+              "override": true,
+              "__scriptTabs": "press",
+              "__collapse": true,
+              "__label": "SEL button"
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "36d748b7-7374-42cc-983c-8f0101b47543"
+                  },
+                  "id": "55be4c6b-8b66-4fa3-bb1a-ed4501a7f211"
+                },
+                {
+                  "command": "EVENT_SCENE_PUSH_STATE",
+                  "args": {},
+                  "id": "c617b869-cdcb-4ac7-a56e-5796681cca97"
+                },
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "98029bff-92c0-4c95-842e-6c46f00c6b5f",
+                    "x": {
+                      "type": "number",
+                      "value": 3
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 8
+                    },
+                    "direction": "",
+                    "fadeSpeed": 1
+                  },
+                  "id": "e818864e-b468-438e-ab2f-b410915884ad"
+                }
+              ]
+            },
+            "id": "cc89629a-9fbf-4a09-a8d6-28e533fe4493"
+          },
+          {
+            "command": "EVENT_SET_INPUT_SCRIPT",
+            "args": {
+              "input": [
+                "start"
+              ],
+              "override": true,
+              "__scriptTabs": "press",
+              "__collapse": true,
+              "__label": "START button"
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "294",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "fb6af569-eb1c-45e0-a60f-2eeb16955f29"
+                },
+                {
+                  "command": "EVENT_SCENE_PUSH_STATE",
+                  "args": {
+                    "__collapse": true
+                  },
+                  "id": "a2af5786-e5fe-44e5-aeba-6119e3d86f44"
+                },
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "73d567b1-2ace-405d-b54b-2d98a621d362",
+                    "x": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "direction": "",
+                    "fadeSpeed": "2",
+                    "__collapse": false
+                  },
+                  "id": "509faede-fd98-4a9a-aa90-416f125b1bf2"
+                }
+              ]
+            },
+            "id": "de445636-6c39-4bc5-9a2d-442198040c5e"
+          }
+        ],
+        "false": []
+      },
+      "id": "168dd399-48ee-4db9-9e04-63193874ba8b"
+    }
+  ]
+}
