@@ -221,11 +221,11 @@
               "choices": 6,
               "__collapseCase0": true,
               "value0": 1,
-              "__collapseCase1": true,
+              "__collapseCase1": false,
               "value1": 2,
               "__collapseCase2": true,
               "value2": 3,
-              "__collapseCase3": false,
+              "__collapseCase3": true,
               "value3": 4,
               "__collapseCase4": true,
               "value4": 5,
@@ -2055,7 +2055,7 @@
                       }
                     },
                     "__collapseElse": false,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -2313,7 +2313,8 @@
                                         {
                                           "command": "EVENT_CALL_CUSTOM_EVENT",
                                           "args": {
-                                            "customEventId": "92c9d308-d473-4f5f-b6df-387c08603685"
+                                            "customEventId": "92c9d308-d473-4f5f-b6df-387c08603685",
+                                            "__collapse": true
                                           },
                                           "id": "c93a4a8e-72bb-46ae-9e98-e501025c6b81"
                                         },
@@ -2389,7 +2390,7 @@
                                               "value": "123"
                                             },
                                             "__collapseElse": true,
-                                            "__collapse": false
+                                            "__collapse": true
                                           },
                                           "children": {
                                             "true": [
@@ -2669,6 +2670,73 @@
                                             ]
                                           },
                                           "id": "bbeb038b-df9e-49fb-bf26-c6e9f2829a9d"
+                                        },
+                                        {
+                                          "command": "EVENT_IF",
+                                          "args": {
+                                            "condition": {
+                                              "type": "expression",
+                                              "value": "$16$ < 4 && $61$"
+                                            },
+                                            "__collapseElse": false,
+                                            "__label": "Set roll number to last one so player knows no more spinning",
+                                            "__collapse": false
+                                          },
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_SET_VALUE",
+                                                "args": {
+                                                  "variable": "16",
+                                                  "value": {
+                                                    "type": "number",
+                                                    "value": 4
+                                                  },
+                                                  "__collapse": true
+                                                },
+                                                "id": "433c9781-60df-431f-8966-c17f6c9b6196"
+                                              }
+                                            ],
+                                            "false": [
+                                              {
+                                                "command": "EVENT_IF",
+                                                "args": {
+                                                  "condition": {
+                                                    "type": "expression",
+                                                    "value": "$16$ < 3 && !$61$"
+                                                  },
+                                                  "__collapseElse": false
+                                                },
+                                                "children": {
+                                                  "true": [
+                                                    {
+                                                      "command": "EVENT_SET_VALUE",
+                                                      "args": {
+                                                        "variable": "16",
+                                                        "value": {
+                                                          "type": "number",
+                                                          "value": 3
+                                                        },
+                                                        "__collapse": true
+                                                      },
+                                                      "id": "97c2269b-dfe5-4a6e-ad75-7bb574ef1399"
+                                                    }
+                                                  ],
+                                                  "false": []
+                                                },
+                                                "id": "f351ddfc-6927-4a83-8ef3-cb4c7cd0aa75"
+                                              }
+                                            ]
+                                          },
+                                          "id": "1ffc9ad3-5017-4a36-83cd-25dbfecda9f1"
+                                        },
+                                        {
+                                          "command": "EVENT_CALL_CUSTOM_EVENT",
+                                          "args": {
+                                            "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8",
+                                            "__collapse": true
+                                          },
+                                          "id": "e67139d4-e9f2-4d66-927d-5fd76c455d9d"
                                         },
                                         {
                                           "command": "EVENT_CALL_CUSTOM_EVENT",
@@ -3458,7 +3526,7 @@
                       }
                     },
                     "__collapseElse": false,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -3834,6 +3902,14 @@
                                             "false": []
                                           },
                                           "id": "5e5c9264-3025-4337-abf0-cbd6e36dc228"
+                                        },
+                                        {
+                                          "command": "EVENT_PALETTE_SET_UI",
+                                          "args": {
+                                            "palette": "045b8ede-d114-41db-b65d-934f94aa7bfa",
+                                            "__collapse": true
+                                          },
+                                          "id": "72e1092f-7eea-4b60-bc48-3859fa48dc63"
                                         },
                                         {
                                           "command": "EVENT_TEXT",

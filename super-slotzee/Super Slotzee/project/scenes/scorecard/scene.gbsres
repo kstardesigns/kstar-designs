@@ -1170,7 +1170,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -1212,15 +1212,8 @@
                         "command": "EVENT_IF",
                         "args": {
                           "condition": {
-                            "type": "eq",
-                            "valueA": {
-                              "type": "variable",
-                              "value": "16"
-                            },
-                            "valueB": {
-                              "type": "number",
-                              "value": 0
-                            }
+                            "type": "expression",
+                            "value": "$16$ == 0"
                           },
                           "__collapseElse": true,
                           "__collapse": false
@@ -1236,30 +1229,75 @@
                               "id": "213c4c94-6221-421b-b930-7acf2099413e"
                             },
                             {
-                              "command": "EVENT_TEXT",
+                              "command": "EVENT_IF",
                               "args": {
-                                "text": [
-                                  " You haven't rolled\n yet! Press B to go  @",
-                                  " back to start the \n game."
-                                ],
-                                "__section": "text",
-                                "avatarId": "377443ae-4ce7-4d73-ab12-6f732f8687f4",
-                                "minHeight": 4,
-                                "maxHeight": 7,
-                                "textX": 1,
-                                "textY": 1,
-                                "textHeight": 5,
-                                "position": "bottom",
-                                "clearPrevious": true,
-                                "showFrame": "true",
-                                "speedIn": -1,
-                                "speedOut": -1,
-                                "closeWhen": "key",
-                                "closeButton": "a",
-                                "closeDelayTime": 0.5,
-                                "closeDelayFrames": 30
+                                "condition": {
+                                  "type": "variable",
+                                  "value": "160"
+                                },
+                                "__collapseElse": false
                               },
-                              "id": "d6e6355c-bb56-4080-b31c-1a50e8f8a91d"
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_TEXT",
+                                    "args": {
+                                      "text": [
+                                        " You have a rewind\n token active! Roll  @",
+                                        " at least 1 more time\n to make use of it."
+                                      ],
+                                      "__section": "text",
+                                      "avatarId": "377443ae-4ce7-4d73-ab12-6f732f8687f4",
+                                      "minHeight": 4,
+                                      "maxHeight": 7,
+                                      "textX": 1,
+                                      "textY": 1,
+                                      "textHeight": 5,
+                                      "position": "bottom",
+                                      "clearPrevious": true,
+                                      "showFrame": "true",
+                                      "speedIn": -1,
+                                      "speedOut": -1,
+                                      "closeWhen": "key",
+                                      "closeButton": "a",
+                                      "closeDelayTime": 0.5,
+                                      "closeDelayFrames": 30,
+                                      "__collapse": false
+                                    },
+                                    "id": "aea77361-c200-4f07-8dfc-4a7e003045e1"
+                                  }
+                                ],
+                                "false": [
+                                  {
+                                    "command": "EVENT_TEXT",
+                                    "args": {
+                                      "text": [
+                                        " You haven't rolled\n yet! Press B to go  @",
+                                        " back to start the \n game."
+                                      ],
+                                      "__section": "text",
+                                      "avatarId": "377443ae-4ce7-4d73-ab12-6f732f8687f4",
+                                      "minHeight": 4,
+                                      "maxHeight": 7,
+                                      "textX": 1,
+                                      "textY": 1,
+                                      "textHeight": 5,
+                                      "position": "bottom",
+                                      "clearPrevious": true,
+                                      "showFrame": "true",
+                                      "speedIn": -1,
+                                      "speedOut": -1,
+                                      "closeWhen": "key",
+                                      "closeButton": "a",
+                                      "closeDelayTime": 0.5,
+                                      "closeDelayFrames": 30,
+                                      "__collapse": true
+                                    },
+                                    "id": "d6e6355c-bb56-4080-b31c-1a50e8f8a91d"
+                                  }
+                                ]
+                              },
+                              "id": "f62974c1-9cda-4d41-8da4-4fe99ed561b1"
                             },
                             {
                               "command": "EVENT_PALETTE_SET_UI",
@@ -1494,7 +1532,7 @@
         },
         "__collapseElse": false,
         "__label": "(If) Change state of Pokey",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -1646,7 +1684,7 @@
           "value": "159"
         },
         "__collapseElse": true,
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -1689,7 +1727,7 @@
                 }
               },
               "__collapseElse": false,
-              "__collapse": true
+              "__collapse": false
             },
             "children": {
               "true": [
@@ -1824,7 +1862,7 @@
                   "args": {
                     "customEventId": "d4a7dcd5-5e2a-421c-8fce-9f8109a09bfb",
                     "__comment": false,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "id": "b336acc5-14d5-4241-bf4e-aaf18df846b5"
                 }

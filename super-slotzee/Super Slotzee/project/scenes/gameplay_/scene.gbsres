@@ -817,7 +817,7 @@
           "value": "$176$ == true"
         },
         "__collapseElse": true,
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -1047,6 +1047,73 @@
               ]
             },
             "id": "279096b9-048a-4169-b340-d732811acceb"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "$16$ < 4 && $61$"
+              },
+              "__collapseElse": false,
+              "__label": "Set roll number to last one so player knows no more spinning",
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "16",
+                    "value": {
+                      "type": "number",
+                      "value": 4
+                    },
+                    "__collapse": true
+                  },
+                  "id": "5cfc00e6-00c9-4bae-ad6a-0c4829f68eb8"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "expression",
+                      "value": "$16$ < 3 && !$61$"
+                    },
+                    "__collapseElse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "16",
+                          "value": {
+                            "type": "number",
+                            "value": 3
+                          },
+                          "__collapse": true
+                        },
+                        "id": "a6d7f973-ce61-4c58-9f14-25893452ec5a"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "f5aeef90-6f66-48da-a765-f3482af94c09"
+                }
+              ]
+            },
+            "id": "c04960a9-32f3-49ea-836a-ac3d86af763b"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8",
+              "__collapse": true
+            },
+            "id": "b6932fb0-b7ab-4fa6-a922-2ef198ad9042"
           },
           {
             "command": "EVENT_CALL_CUSTOM_EVENT",
