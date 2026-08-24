@@ -71,7 +71,7 @@
           "value": "222"
         },
         "__collapseElse": true,
-        "__collapse": false,
+        "__collapse": true,
         "__label": "(If) game_active, show turns and current score"
       },
       "children": {
@@ -107,7 +107,7 @@
       "args": {
         "__label": "Hide Continue if not applicable, re-align others",
         "__comment": false,
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -507,12 +507,72 @@
       "id": "a0ba879f-db91-45fe-a8c4-2ef76dd00241"
     },
     {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Load game settings",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Saved settings to Slot 2 so we can save them without causing \"Continue\" to load settings page, and it goes to gameplay instead",
+              "__collapse": true
+            },
+            "id": "6f1c6b73-6ba1-4c9b-96e4-b9d93be2fd0f"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "97157a44-6fa0-4cfe-bc68-c923fe3dcc13",
+              "__collapse": true
+            },
+            "id": "9e7ae112-4c68-4e2d-a1d9-760a4cce6ab7"
+          }
+        ]
+      },
+      "id": "3506ccc9-c5b9-4842-8b69-5498764701f9"
+    },
+    {
       "command": "EVENT_FADE_IN",
       "args": {
         "speed": 2,
         "__collapse": true
       },
       "id": "e2c42e1c-d21a-43a7-a328-48fa75b3cceb"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "299"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_GBVM_SCRIPT",
+            "args": {
+              "script": "; Step 0: Ensure the volume starts completely silent\nVM_SOUND_MASTERVOL 0\nVM_IDLE\n\n; Step 1: Incline steps with brief waits\nVM_SOUND_MASTERVOL 1\nVM_IDLE\nVM_SOUND_MASTERVOL 2\nVM_IDLE\nVM_SOUND_MASTERVOL 3\nVM_IDLE\n\n; Step 2: Middle volume levels\nVM_SOUND_MASTERVOL 4\nVM_IDLE\nVM_SOUND_MASTERVOL 5\nVM_IDLE",
+              "__comment": true
+            },
+            "id": "80d450e7-99f1-4bfd-9ce0-2bd4c8c4adbd"
+          },
+          {
+            "command": "EVENT_MUSIC_PLAY",
+            "args": {
+              "musicId": "0b156630-9f81-459c-a1e6-90e36e776e3d",
+              "__collapse": false
+            },
+            "id": "7741266f-806a-4ee8-bef0-ce2a554eab66"
+          }
+        ],
+        "false": []
+      },
+      "id": "50d094c7-6056-42f5-8d01-a425d60341c5"
     },
     {
       "command": "EVENT_CALL_CUSTOM_EVENT",

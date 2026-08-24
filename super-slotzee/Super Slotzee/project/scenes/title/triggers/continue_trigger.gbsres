@@ -179,10 +179,42 @@
                   "args": {
                     "saveSlot": 0,
                     "__collapseElse": true,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "variable",
+                            "value": "299"
+                          },
+                          "__collapseElse": true,
+                          "__comment": true
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_COMMENT",
+                              "args": {
+                                "text": "Fade volume out between scenes/songs",
+                                "__collapse": true
+                              },
+                              "id": "33c50732-c033-49a8-8f31-55eaaccf5640"
+                            },
+                            {
+                              "command": "EVENT_GBVM_SCRIPT",
+                              "args": {
+                                "script": "VM_SOUND_MASTERVOL 6\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 5\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 4\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 3\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 2\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 1\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 0\nVM_WAIT_FRAMES 6"
+                              },
+                              "id": "209f09fd-3856-4970-a3be-80d681d10990"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "340ed65e-3642-4e81-82d1-74a10009aade"
+                      },
                       {
                         "command": "EVENT_LOAD_DATA",
                         "args": {

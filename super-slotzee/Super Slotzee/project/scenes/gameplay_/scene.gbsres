@@ -37,7 +37,8 @@
       "command": "EVENT_CALL_CUSTOM_EVENT",
       "args": {
         "customEventId": "97157a44-6fa0-4cfe-bc68-c923fe3dcc13",
-        "__collapse": true
+        "__collapse": false,
+        "__comment": true
       },
       "id": "4de501b2-be5c-40cf-b801-d66091d98123"
     },
@@ -49,7 +50,7 @@
           "value": "220"
         },
         "__collapseElse": false,
-        "__collapse": true,
+        "__collapse": false,
         "__comment": false
       },
       "children": {
@@ -601,6 +602,38 @@
       "id": "a6aeee11-6cff-4feb-bf11-9c927348cedf"
     },
     {
+      "command": "EVENT_CALL_CUSTOM_EVENT",
+      "args": {
+        "customEventId": "97157a44-6fa0-4cfe-bc68-c923fe3dcc13",
+        "__collapse": false
+      },
+      "id": "3bf2a2dd-ca98-451a-8fa9-28b41094863a"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "not",
+          "value": {
+            "type": "variable",
+            "value": "299"
+          }
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_MUSIC_STOP",
+            "args": {},
+            "id": "2af136dd-5207-4b8e-a8ce-0bf7840a9754"
+          }
+        ],
+        "false": []
+      },
+      "id": "0737c38e-0b9c-438e-a30e-c0b31ca6bd40"
+    },
+    {
       "command": "EVENT_FADE_IN",
       "args": {
         "speed": "2",
@@ -617,7 +650,7 @@
         },
         "__collapseElse": false,
         "__label": "(If) Show save animation after saved",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -1226,7 +1259,7 @@
           "value": "$177$ == true"
         },
         "__collapseElse": true,
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [

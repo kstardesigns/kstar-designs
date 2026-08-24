@@ -20,7 +20,7 @@
               "variableDest": "222",
               "variableSource": "222",
               "saveSlot": 0,
-              "__collapse": false
+              "__collapse": true
             },
             "id": "0348b2a9-dcb9-4a39-9034-7f94629bd833"
           },
@@ -119,6 +119,38 @@
                         "id": "ed140de7-2d2f-40d5-857d-eea993a5c785"
                       },
                       {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "variable",
+                            "value": "299"
+                          },
+                          "__collapseElse": true,
+                          "__comment": true
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_COMMENT",
+                              "args": {
+                                "text": "Fade volume out between scenes/songs",
+                                "__collapse": true
+                              },
+                              "id": "6dd91b99-2f02-48ea-b751-96ca9f634069"
+                            },
+                            {
+                              "command": "EVENT_GBVM_SCRIPT",
+                              "args": {
+                                "script": "VM_SOUND_MASTERVOL 6\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 5\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 4\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 3\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 2\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 1\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 0\nVM_WAIT_FRAMES 6"
+                              },
+                              "id": "7c4af4f8-9c52-46ec-8ec4-97c6a9ff1b79"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "e31251d5-a8ce-49c5-9419-526af5c08a5f"
+                      },
+                      {
                         "command": "EVENT_SWITCH_SCENE",
                         "args": {
                           "sceneId": "e5d970c7-6555-447f-a475-89cf6e9969b7",
@@ -146,6 +178,38 @@
                   "command": "EVENT_RNG_SEED",
                   "args": {},
                   "id": "da8f30be-4b08-4c45-87dd-eb16e4e38094"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "variable",
+                      "value": "299"
+                    },
+                    "__collapseElse": true,
+                    "__comment": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "Fade volume out between scenes/songs",
+                          "__collapse": true
+                        },
+                        "id": "d1d7d9fb-6bef-4665-9f46-725c42b87201"
+                      },
+                      {
+                        "command": "EVENT_GBVM_SCRIPT",
+                        "args": {
+                          "script": "VM_SOUND_MASTERVOL 6\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 5\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 4\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 3\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 2\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 1\nVM_WAIT_FRAMES 6\nVM_SOUND_MASTERVOL 0\nVM_WAIT_FRAMES 6"
+                        },
+                        "id": "11c7ba76-92af-4ea0-bb92-ec195141aa27"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "93f42f96-2701-4ff4-a74e-b3c0f1121e9a"
                 },
                 {
                   "command": "EVENT_SWITCH_SCENE",

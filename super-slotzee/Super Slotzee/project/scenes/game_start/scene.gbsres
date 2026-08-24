@@ -35,12 +35,36 @@
   "playerSpriteSheetId": "e33d5b2a-47aa-4d31-9cc9-ef786d187fe1",
   "script": [
     {
-      "command": "EVENT_MUSIC_PLAY",
+      "command": "EVENT_IF",
       "args": {
-        "musicId": "3490401c-a580-49fa-9702-95ff7c384271",
-        "__collapse": true
+        "condition": {
+          "type": "variable",
+          "value": "299"
+        },
+        "__collapseElse": true
       },
-      "id": "48c75a2c-59aa-4e57-a742-c9dbf8143fc6"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_MUSIC_PLAY",
+            "args": {
+              "musicId": "3490401c-a580-49fa-9702-95ff7c384271",
+              "__collapse": false
+            },
+            "id": "48c75a2c-59aa-4e57-a742-c9dbf8143fc6"
+          },
+          {
+            "command": "EVENT_GBVM_SCRIPT",
+            "args": {
+              "script": "VM_SOUND_MASTERVOL 0\nVM_WAIT_FRAMES 8\nVM_SOUND_MASTERVOL 1\nVM_WAIT_FRAMES 8\nVM_SOUND_MASTERVOL 2\nVM_WAIT_FRAMES 8\nVM_SOUND_MASTERVOL 3\nVM_WAIT_FRAMES 8\nVM_SOUND_MASTERVOL 4\nVM_WAIT_FRAMES 8\nVM_SOUND_MASTERVOL 5\nVM_WAIT_FRAMES 8\nVM_SOUND_MASTERVOL 6\nVM_WAIT_FRAMES 8\nVM_SOUND_MASTERVOL 7",
+              "__comment": true
+            },
+            "id": "457c5c6a-77d7-41ff-88e7-7917a87dd8a4"
+          }
+        ],
+        "false": []
+      },
+      "id": "490a4757-9bd7-42eb-8f5a-b02e4c891424"
     },
     {
       "id": "92a9aba0-1fe4-4c35-bcb5-d1789afb1e23",
@@ -155,7 +179,7 @@
       "command": "EVENT_GROUP",
       "args": {
         "__label": "Write game # at bottom",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
