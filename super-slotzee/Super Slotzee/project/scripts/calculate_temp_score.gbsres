@@ -166,6 +166,41 @@
       "id": "ac63299a-9797-49e8-9f7d-69cb06c7690f"
     },
     {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "160"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "If player rewound, set lemons back to false in case they unheld some so they don't have. to score zero anymore",
+              "__collapse": true
+            },
+            "id": "ece4c298-a0b7-4a8a-92f6-7bd9413a5784"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "44",
+              "value": {
+                "type": "false"
+              },
+              "__collapse": true
+            },
+            "id": "a9f777ff-2cd1-4c74-a503-f2a12ef4d9d0"
+          }
+        ],
+        "false": []
+      },
+      "id": "590a9356-c18a-4816-96df-a877f97e409c"
+    },
+    {
       "command": "EVENT_SET_VALUE",
       "args": {
         "variable": "60",
@@ -460,7 +495,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) not bonus_double_stack then Check for Slots: Double Stack",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -869,7 +904,7 @@
         },
         "__collapseElse": true,
         "__label": "(if) not bonus_auto_zero then Check for Slots: Auto Zero",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -922,7 +957,8 @@
                             {
                               "command": "EVENT_CALL_CUSTOM_EVENT",
                               "args": {
-                                "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762"
+                                "customEventId": "a56aa619-8d0c-4f1b-a0d0-ab898e50e762",
+                                "__collapse": true
                               },
                               "id": "b182c1d0-0d26-4664-ad8d-eacb87222a0b"
                             },
@@ -930,7 +966,7 @@
                               "command": "EVENT_CALL_CUSTOM_EVENT",
                               "args": {
                                 "customEventId": "f792ce6f-7872-45de-afbb-9df1a0e710e6",
-                                "__collapse": false
+                                "__collapse": true
                               },
                               "id": "2809e360-4bbe-4581-8d0f-ce0c287ac7c9"
                             },
@@ -1061,26 +1097,11 @@
                               "id": "411bc51f-1587-4b3d-a4f5-aecf6b9584c3"
                             },
                             {
-                              "command": "EVENT_SCENE_PUSH_STATE",
-                              "args": {},
-                              "id": "ee94be7c-ac71-4fcb-bf79-e0deac893631"
-                            },
-                            {
-                              "command": "EVENT_SWITCH_SCENE",
+                              "command": "EVENT_CALL_CUSTOM_EVENT",
                               "args": {
-                                "sceneId": "98029bff-92c0-4c95-842e-6c46f00c6b5f",
-                                "x": {
-                                  "type": "number",
-                                  "value": 0
-                                },
-                                "y": {
-                                  "type": "number",
-                                  "value": 0
-                                },
-                                "direction": "",
-                                "fadeSpeed": "2"
+                                "customEventId": "4e8b3ff2-3534-4105-9433-9219ae85744d"
                               },
-                              "id": "5e4279b6-df21-45de-928f-3d0bd58645c0"
+                              "id": "227ec472-8a07-4f0f-99f7-8a59a68fc91f"
                             },
                             {
                               "command": "EVENT_THREAD_STOP",
