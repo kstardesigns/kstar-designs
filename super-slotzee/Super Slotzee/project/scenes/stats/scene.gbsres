@@ -572,7 +572,8 @@
                 {
                   "command": "EVENT_COMMENT",
                   "args": {
-                    "text": "Once 30 games are played, we are now just tracking first 3 digits of average and adding a 0 at the end (see script Calculate average score for more info)"
+                    "text": "Once 30 games are played, we are now just tracking first 3 digits of average and adding a 0 at the end (see script Calculate average score for more info)",
+                    "__collapse": true
                   },
                   "id": "6b9950ae-ace2-412f-a2e8-2d5df6d4c963"
                 },
@@ -596,24 +597,70 @@
                   "id": "a4214082-4634-4b90-accd-52b99fd4fa99"
                 },
                 {
-                  "command": "EVENT_REPLACE_TILE_XY",
+                  "command": "EVENT_IF",
                   "args": {
-                    "x": {
-                      "type": "number",
-                      "value": 14
+                    "condition": {
+                      "type": "lt",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "269"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 100
+                      }
                     },
-                    "y": {
-                      "type": "number",
-                      "value": 9
-                    },
-                    "tilesetId": "a3d33ea1-ce73-4284-bf43-56ad1d70ba96",
-                    "tileIndex": {
-                      "type": "number",
-                      "value": 0
-                    },
-                    "__collapse": false
+                    "__collapseElse": false
                   },
-                  "id": "00ba8e45-fee1-4df6-b097-a959f495b5c3"
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 13
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 9
+                          },
+                          "tilesetId": "a3d33ea1-ce73-4284-bf43-56ad1d70ba96",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "__collapse": false,
+                          "__comment": false
+                        },
+                        "id": "00ba8e45-fee1-4df6-b097-a959f495b5c3"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 14
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 9
+                          },
+                          "tilesetId": "a3d33ea1-ce73-4284-bf43-56ad1d70ba96",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "__collapse": false,
+                          "__comment": false
+                        },
+                        "id": "4d90d274-599e-49dd-854b-4f7338fba640"
+                      }
+                    ]
+                  },
+                  "id": "75d61980-502d-4b2c-b832-74b433b95a33"
                 }
               ]
             },
