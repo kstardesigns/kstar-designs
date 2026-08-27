@@ -258,7 +258,7 @@
       "args": {
         "__label": "Debug demo",
         "__comment": true,
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -524,29 +524,100 @@
                 "type": "number",
                 "value": 7
               },
-              "__label": "(Script) Lowest score"
+              "__label": "(Script) Lowest score",
+              "__collapse": true
             },
             "id": "5f65df6b-5ef0-49ae-97b9-8c4c471e4871"
           },
           {
-            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "command": "EVENT_IF",
             "args": {
-              "customEventId": "6ba6706f-6991-44eb-9af7-1bed77d232a0",
-              "$variable[V0]$": {
-                "type": "variable",
-                "value": "269"
+              "condition": {
+                "type": "lte",
+                "valueA": {
+                  "type": "variable",
+                  "value": "266"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 30
+                }
               },
-              "$variable[V1]$": {
-                "type": "number",
-                "value": 11
-              },
-              "$variable[V2]$": {
-                "type": "number",
-                "value": 9
-              },
-              "__label": "(Script) Avg score"
+              "__collapseElse": false
             },
-            "id": "9b561915-ca02-40b7-b57e-a01b5eeb574e"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "6ba6706f-6991-44eb-9af7-1bed77d232a0",
+                    "$variable[V0]$": {
+                      "type": "variable",
+                      "value": "269"
+                    },
+                    "$variable[V1]$": {
+                      "type": "number",
+                      "value": 11
+                    },
+                    "$variable[V2]$": {
+                      "type": "number",
+                      "value": 9
+                    },
+                    "__label": "(Script) Avg score"
+                  },
+                  "id": "9b561915-ca02-40b7-b57e-a01b5eeb574e"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Once 30 games are played, we are now just tracking first 3 digits of average and adding a 0 at the end (see script Calculate average score for more info)"
+                  },
+                  "id": "6b9950ae-ace2-412f-a2e8-2d5df6d4c963"
+                },
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "a3f7aa9f-caf8-406c-9bde-4eddb4a5b633",
+                    "$variable[V0]$": {
+                      "type": "variable",
+                      "value": "269"
+                    },
+                    "$variable[V1]$": {
+                      "type": "number",
+                      "value": 11
+                    },
+                    "$variable[V2]$": {
+                      "type": "number",
+                      "value": 9
+                    }
+                  },
+                  "id": "a4214082-4634-4b90-accd-52b99fd4fa99"
+                },
+                {
+                  "command": "EVENT_REPLACE_TILE_XY",
+                  "args": {
+                    "x": {
+                      "type": "number",
+                      "value": 14
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 9
+                    },
+                    "tilesetId": "a3d33ea1-ce73-4284-bf43-56ad1d70ba96",
+                    "tileIndex": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "__collapse": false
+                  },
+                  "id": "00ba8e45-fee1-4df6-b097-a959f495b5c3"
+                }
+              ]
+            },
+            "id": "1ad38366-7af0-4068-b236-5d4c4b402b0b"
           },
           {
             "command": "EVENT_CALL_CUSTOM_EVENT",
@@ -777,7 +848,7 @@
                 "value": "283"
               },
               "__label": "(Script) Yotzee streak",
-              "__collapse": true
+              "__collapse": false
             },
             "id": "720136c1-69ef-4bf6-b64a-9364d560db51"
           },

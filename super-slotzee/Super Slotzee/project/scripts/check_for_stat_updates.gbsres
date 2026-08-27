@@ -73,17 +73,61 @@
       "id": "8437cb11-5673-41a3-bc28-f1a198059440"
     },
     {
-      "command": "EVENT_SET_VALUE",
+      "command": "EVENT_IF",
       "args": {
-        "variable": "268",
-        "value": {
-          "type": "expression",
-          "value": "$268$ + $115$"
+        "condition": {
+          "type": "lte",
+          "valueA": {
+            "type": "variable",
+            "value": "266"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 30
+          }
         },
-        "__label": "update running total score",
-        "__collapse": true
+        "__collapseElse": false
       },
-      "id": "672708d6-3332-47d9-b0c6-042f86afc0c9"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "268",
+              "value": {
+                "type": "expression",
+                "value": "$268$ + $115$"
+              },
+              "__label": "update running total score",
+              "__collapse": false
+            },
+            "id": "672708d6-3332-47d9-b0c6-042f86afc0c9"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Since we can't go over max variable value of 32,767, we are now tracking a new running total where scores are divided by 10. The script Calculate average score now accounts for this and divides $stats_running_total_score by 10 as well before calculating new average"
+            },
+            "id": "3956b69a-e62d-4a34-82a6-09816fcaa98b"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "217",
+              "value": {
+                "type": "expression",
+                "value": "$217$ + ($115$ / 10)"
+              },
+              "__label": "update running total score",
+              "__collapse": false
+            },
+            "id": "15573301-83c5-48e8-8e2b-1e9caad57814"
+          }
+        ]
+      },
+      "id": "44108bfb-bc5f-4c18-a126-3c3c8d5e0f19"
     },
     {
       "command": "EVENT_IF",
@@ -521,7 +565,7 @@
         },
         "__collapseElse": false,
         "__label": "(If) update 700 streak",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
