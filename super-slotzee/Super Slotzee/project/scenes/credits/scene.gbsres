@@ -41,7 +41,7 @@
           "value": 76
         },
         "__comment": false,
-        "__collapse": false
+        "__collapse": true
       },
       "id": "b51380b5-d8a8-47b6-a293-861ed188e976"
     },
@@ -73,70 +73,6 @@
       "id": "e79ee4cb-1bd6-435f-afb1-987f667f3498"
     },
     {
-      "command": "EVENT_CAMERA_SET_POSITION",
-      "args": {
-        "x": {
-          "type": "number",
-          "value": 0
-        },
-        "y": {
-          "type": "number",
-          "value": 18
-        },
-        "__collapse": false,
-        "__comment": true
-      },
-      "id": "aed902af-b06b-4ffa-9d1d-fea41ab6b037"
-    },
-    {
-      "command": "EVENT_CAMERA_SET_POSITION",
-      "args": {
-        "x": {
-          "type": "number",
-          "value": 0
-        },
-        "y": {
-          "type": "number",
-          "value": 36
-        },
-        "__collapse": false,
-        "__comment": true
-      },
-      "id": "ed11e8b7-35da-4fcf-a60d-a9c90cc7649a"
-    },
-    {
-      "command": "EVENT_CAMERA_SET_POSITION",
-      "args": {
-        "x": {
-          "type": "number",
-          "value": 0
-        },
-        "y": {
-          "type": "number",
-          "value": 54
-        },
-        "__collapse": false,
-        "__comment": true
-      },
-      "id": "6c9e59aa-5c3b-4895-a3fa-f32653d29dbb"
-    },
-    {
-      "command": "EVENT_CAMERA_SET_POSITION",
-      "args": {
-        "x": {
-          "type": "number",
-          "value": 0
-        },
-        "y": {
-          "type": "number",
-          "value": 72
-        },
-        "__collapse": false,
-        "__comment": true
-      },
-      "id": "e61bc5bf-a034-4979-be9e-a89c3292324a"
-    },
-    {
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
@@ -145,7 +81,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -163,7 +99,7 @@
     {
       "command": "EVENT_WAIT",
       "args": {
-        "time": 1,
+        "time": 1.5,
         "frames": 30
       },
       "id": "dedfa6c0-7300-4949-b0bd-35464f6b07d1"
@@ -172,7 +108,8 @@
       "command": "EVENT_THREAD_START",
       "args": {
         "variable": "L1",
-        "__scriptTabs": "true"
+        "__scriptTabs": "true",
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -193,6 +130,61 @@
             },
             "children": {
               "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "lt",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "L0"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 50
+                      }
+                    },
+                    "__collapseElse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_INPUT_SCRIPT",
+                        "args": {
+                          "input": [
+                            "a"
+                          ],
+                          "override": true,
+                          "__scriptTabs": "press"
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_SCENE_POP_ALL_STATE",
+                              "args": {
+                                "fadeSpeed": "2"
+                              },
+                              "id": "37424ed2-0578-4b26-92b5-c7ca83e390af"
+                            }
+                          ]
+                        },
+                        "id": "cd43cda4-dddb-4359-a870-ae7daf7559ba"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_REMOVE_INPUT_SCRIPT",
+                        "args": {
+                          "input": [
+                            "a"
+                          ]
+                        },
+                        "id": "f97be572-5dac-470d-9ce5-95336123fe9a"
+                      }
+                    ]
+                  },
+                  "id": "7107444c-aedc-49cf-a059-6d6a80d139f0"
+                },
                 {
                   "command": "EVENT_IF",
                   "args": {
@@ -238,7 +230,7 @@
                         "value": 36
                       }
                     },
-                    "__collapseElse": true
+                    "__collapseElse": false
                   },
                   "children": {
                     "true": [
