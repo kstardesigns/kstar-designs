@@ -10,31 +10,40 @@
   "type": "PLATFORM",
   "paletteIds": [
     "82d900ea-4e6a-4610-88e1-68759b0f67e5",
-    null,
-    null,
-    null,
-    null,
-    null,
-    "11807f82-249f-478a-bbec-d6a19c57e724"
+    "db58dfbf-9463-4cb4-90cc-8e1de3063e52",
+    "807633b0-fc14-4944-8750-989980e1df5c",
+    "58d89efc-62e1-4b7f-a508-0eeec3b13b1a",
+    "45325328-0a36-4b02-a5f0-18301e5ed117",
+    "86a2618d-325d-4a00-b2ab-591c66f909d0",
+    "a08de15e-bf96-4a44-b0cf-aeb7b52bf2f7",
+    "40dda8d0-be64-428b-9990-b0e5c945df52"
   ],
   "spritePaletteIds": [
     "48a4d365-a9b0-4a08-b8ed-1792f6f6bf58",
-    "11807f82-249f-478a-bbec-d6a19c57e724"
+    "40dda8d0-be64-428b-9990-b0e5c945df52"
   ],
-  "collisions": "",
+  "collisions": "00604+0f14+00f0+",
   "autoFadeSpeed": 1,
   "symbol": "scene_19",
   "x": 1336,
   "y": 664,
   "script": [
     {
-      "command": "EVENT_ACTOR_DEACTIVATE",
+      "command": "EVENT_ACTOR_SET_POSITION",
       "args": {
         "actorId": "$self$",
-        "__collapse": true,
-        "__comment": false
+        "x": {
+          "type": "number",
+          "value": 9
+        },
+        "y": {
+          "type": "number",
+          "value": 76
+        },
+        "__comment": false,
+        "__collapse": false
       },
-      "id": "c69cd57b-f620-47a8-8a05-982f7d0ebcf2"
+      "id": "b51380b5-d8a8-47b6-a293-861ed188e976"
     },
     {
       "command": "EVENT_SET_VALUE",
@@ -59,7 +68,7 @@
           "type": "variable",
           "value": "L0"
         },
-        "__collapse": false
+        "__collapse": true
       },
       "id": "e79ee4cb-1bd6-435f-afb1-987f667f3498"
     },
@@ -131,13 +140,12 @@
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
-          "b",
-          "a",
-          "start"
+          "start",
+          "b"
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -179,7 +187,7 @@
                 },
                 "valueB": {
                   "type": "number",
-                  "value": 72
+                  "value": 62
                 }
               }
             },
@@ -248,9 +256,63 @@
                   "id": "f17209a7-f85a-4a16-9ad6-1908b1c093f6"
                 },
                 {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "eq",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "L0"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 60
+                      }
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_PALETTE_SET_SPRITE",
+                        "args": {
+                          "palette0": "keep",
+                          "palette1": "11807f82-249f-478a-bbec-d6a19c57e724",
+                          "palette2": "keep",
+                          "palette3": "keep",
+                          "palette4": "keep",
+                          "palette5": "keep",
+                          "palette6": "keep",
+                          "palette7": "keep",
+                          "__collapse": true
+                        },
+                        "id": "8d4b660a-0c26-42df-91a4-d91fba1b6058"
+                      },
+                      {
+                        "command": "EVENT_PALETTE_SET_BACKGROUND",
+                        "args": {
+                          "palette0": "keep",
+                          "palette1": "keep",
+                          "palette2": "keep",
+                          "palette3": "keep",
+                          "palette4": "keep",
+                          "palette5": "keep",
+                          "palette6": "keep",
+                          "palette7": "11807f82-249f-478a-bbec-d6a19c57e724",
+                          "__collapse": true
+                        },
+                        "id": "c952e257-2000-40f1-a8e0-66fe46cb19e3"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "ad192f20-ef2c-48f1-88ea-3ba2988cd286"
+                },
+                {
                   "command": "EVENT_INC_VALUE",
                   "args": {
-                    "variable": "L0"
+                    "variable": "L0",
+                    "__collapse": false
                   },
                   "id": "d9793f9d-11f7-44e0-b0a0-12af152449ee"
                 },
