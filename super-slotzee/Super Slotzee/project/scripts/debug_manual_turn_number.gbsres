@@ -44,15 +44,38 @@
       "children": {
         "true": [
           {
-            "command": "EVENT_SET_VALUE",
+            "command": "EVENT_IF",
             "args": {
-              "variable": "17",
-              "value": {
-                "type": "number",
-                "value": 12
-              }
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "32"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 1
+                }
+              },
+              "__collapseElse": true
             },
-            "id": "cc68261a-63e1-4a82-9aca-d90fabce2bfd"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "17",
+                    "value": {
+                      "type": "number",
+                      "value": 12
+                    }
+                  },
+                  "id": "cc68261a-63e1-4a82-9aca-d90fabce2bfd"
+                }
+              ],
+              "false": []
+            },
+            "id": "8100b20f-4704-44f1-978e-234f6ed40a38"
           }
         ],
         "false": []
