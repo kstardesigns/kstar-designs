@@ -495,6 +495,61 @@
       "id": "4f7f62d0-8d92-4a62-8df0-0f880117a9e3"
     },
     {
+      "command": "EVENT_CALL_CUSTOM_EVENT",
+      "args": {
+        "customEventId": "74a235aa-b16b-4c96-9f06-6fc04cf42bc5",
+        "__collapse": true
+      },
+      "id": "174cd894-df5e-4ad2-b5df-b4031b60f710"
+    },
+    {
+      "id": "a6b19552-bdd3-48ae-a1a2-088b3f042765",
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Load settings from slot 2 to overwrite slot 1 settings",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "97157a44-6fa0-4cfe-bc68-c923fe3dcc13",
+              "__collapse": false,
+              "__comment": false
+            },
+            "id": "44f0c824-cd1e-41d7-ab1f-2903cebda842"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "not",
+                "value": {
+                  "type": "variable",
+                  "value": "299"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": false,
+              "__comment": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_MUSIC_STOP",
+                  "args": {},
+                  "id": "366552af-5293-4819-8a01-0c81c14c6772"
+                }
+              ],
+              "false": []
+            },
+            "id": "8b2043a4-08e5-41dc-9704-32f4044cae14"
+          }
+        ]
+      }
+    },
+    {
       "command": "EVENT_SET_VALUE",
       "args": {
         "variable": "81",
@@ -505,6 +560,32 @@
         "__comment": false
       },
       "id": "46562c3f-5ce4-4b63-b95a-790729f0c76c"
+    },
+    {
+      "command": "EVENT_ACTOR_SET_POSITION",
+      "args": {
+        "actorId": "$self$",
+        "x": {
+          "type": "number",
+          "value": 6
+        },
+        "y": {
+          "type": "number",
+          "value": 17
+        },
+        "__collapse": true
+      },
+      "id": "804261b6-c1d5-429f-a30d-ba4696bf6cb0"
+    },
+    {
+      "command": "EVENT_ACTOR_SET_STATE",
+      "args": {
+        "actorId": "$self$",
+        "spriteStateId": "",
+        "loopAnim": true,
+        "__collapse": true
+      },
+      "id": "c0e996d5-fbe2-4c4d-bb4a-1ddc68b186a2"
     },
     {
       "command": "EVENT_IF",
