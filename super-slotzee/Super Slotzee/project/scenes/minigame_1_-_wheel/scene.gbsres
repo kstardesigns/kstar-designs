@@ -31,6 +31,14 @@
   "autoFadeEventCollapse": true,
   "script": [
     {
+      "command": "EVENT_ACTOR_DEACTIVATE",
+      "args": {
+        "actorId": "$self$",
+        "__collapse": true
+      },
+      "id": "a04af57b-e9f7-42f7-b7b1-2a9188f0c08b"
+    },
+    {
       "command": "EVENT_SET_VALUE",
       "args": {
         "variable": "138",
@@ -159,7 +167,7 @@
         "__collapseCase15": false,
         "value15": 16,
         "__collapseElse": false,
-        "__collapse": false,
+        "__collapse": true,
         "__label": "Assign token 1 to actor"
       },
       "children": {
@@ -251,7 +259,7 @@
         "__collapseCase15": false,
         "value15": 16,
         "__collapseElse": false,
-        "__collapse": false,
+        "__collapse": true,
         "__label": "Assign token 2 to actor"
       },
       "children": {
@@ -411,7 +419,7 @@
         "__collapseCase15": false,
         "value15": 16,
         "__collapseElse": false,
-        "__collapse": false,
+        "__collapse": true,
         "__label": "Assign token 3 to actor"
       },
       "children": {
@@ -503,7 +511,7 @@
         "__collapseCase15": false,
         "value15": 16,
         "__collapseElse": false,
-        "__collapse": false,
+        "__collapse": true,
         "__label": "Assign token 4 to actor"
       },
       "children": {
@@ -581,52 +589,6 @@
       "id": "ebb91819-4572-409f-b538-85b645e655f0"
     },
     {
-      "command": "EVENT_COMMENT",
-      "args": {
-        "text": "DEBUG:",
-        "__collapse": true
-      },
-      "id": "f418241a-46dc-4bdc-9fe8-42e8677d8551"
-    },
-    {
-      "command": "EVENT_SET_VALUE",
-      "args": {
-        "variable": "137",
-        "value": {
-          "type": "number",
-          "value": 4
-        },
-        "__comment": true
-      },
-      "id": "76e25f10-cbe5-49b2-8b3c-8b485c0752bd"
-    },
-    {
-      "command": "EVENT_TEXT",
-      "args": {
-        "text": [
-          "reward will be spot \n# $137$"
-        ],
-        "__section": "text",
-        "avatarId": "",
-        "minHeight": 4,
-        "maxHeight": 7,
-        "textX": 1,
-        "textY": 1,
-        "textHeight": 5,
-        "position": "bottom",
-        "clearPrevious": true,
-        "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
-        "closeButton": "a",
-        "closeDelayTime": 0.5,
-        "closeDelayFrames": 30,
-        "__comment": true
-      },
-      "id": "4e7c62b8-f271-4454-8850-28952d69a717"
-    },
-    {
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
@@ -634,7 +596,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -683,9 +645,9 @@
                   "args": {
                     "variable": "137",
                     "choices": 4,
-                    "__collapseCase0": false,
+                    "__collapseCase0": true,
                     "value0": 1,
-                    "__collapseCase1": false,
+                    "__collapseCase1": true,
                     "value1": 2,
                     "__collapseCase2": false,
                     "value2": 3,
@@ -717,7 +679,7 @@
                     "value15": 16,
                     "__collapseElse": false,
                     "__label": "(switch) stop at reward token",
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true0": [
@@ -726,7 +688,8 @@
                         "args": {
                           "actorId": "0a07d680-82f9-40f8-9f89-736bd383ae72",
                           "spriteStateId": "Wheel win 1",
-                          "loopAnim": false
+                          "loopAnim": false,
+                          "__collapse": true
                         },
                         "id": "6bef6a70-c8c9-460e-a8c7-795cd946f012"
                       },
@@ -737,7 +700,8 @@
                           "value": {
                             "type": "variable",
                             "value": "133"
-                          }
+                          },
+                          "__collapse": true
                         },
                         "id": "7d33b17e-6420-4e02-b728-b1bbf9fd1363"
                       }
@@ -928,7 +892,7 @@
                     "value15": 16,
                     "__collapseElse": false,
                     "__label": "(switch) stop at reward token",
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true0": [
@@ -1000,7 +964,7 @@
                   "args": {
                     "variable": "139",
                     "choices": 6,
-                    "__collapseCase0": true,
+                    "__collapseCase0": false,
                     "value0": 1,
                     "__collapseCase1": true,
                     "value1": 2,
@@ -1033,7 +997,7 @@
                     "__collapseCase15": false,
                     "value15": 16,
                     "__collapseElse": false,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true0": [
@@ -1067,7 +1031,7 @@
                           "closeButton": "a",
                           "closeDelayTime": 0.5,
                           "closeDelayFrames": 30,
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "id": "2a860565-c720-4303-af1e-b6cc330cad68"
                       },
@@ -1473,12 +1437,21 @@
                   "id": "7e563c1b-8d87-4eb6-b4fe-96bfcec56a25"
                 },
                 {
-                  "command": "EVENT_SCENE_POP_STATE",
+                  "command": "EVENT_SWITCH_SCENE",
                   "args": {
-                    "fadeSpeed": "2",
-                    "__collapse": true
+                    "sceneId": "5a5fca72-8d96-45d2-9f47-f418c5d5a21d",
+                    "x": {
+                      "type": "number",
+                      "value": 6
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 17
+                    },
+                    "direction": "",
+                    "fadeSpeed": "2"
                   },
-                  "id": "f5a0e191-b371-49dd-ba17-469b0bed776c"
+                  "id": "1f4fe34b-6102-471a-a6db-ae7931590c11"
                 }
               ],
               "false": []
@@ -2493,7 +2466,8 @@
     {
       "command": "EVENT_PALETTE_SET_UI",
       "args": {
-        "palette": "f006aaec-a37b-4d52-94a4-157d55a31514"
+        "palette": "f006aaec-a37b-4d52-94a4-157d55a31514",
+        "__collapse": true
       },
       "id": "7a351251-4933-4e25-a685-7359659e80f5"
     }
