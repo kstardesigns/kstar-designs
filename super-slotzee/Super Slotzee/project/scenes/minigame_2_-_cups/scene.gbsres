@@ -183,7 +183,7 @@
       "command": "EVENT_GROUP",
       "args": {
         "__label": "Get random cup order result",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -387,31 +387,87 @@
       "id": "b18b6eae-d6c2-4b3f-8d6c-58f0efb402b5"
     },
     {
-      "command": "EVENT_TEXT",
+      "command": "EVENT_IF",
       "args": {
-        "text": [
-          " Follow the cup with \n the token you want!",
-          " The tokens will show \n for 2 seconds."
-        ],
-        "__section": "text",
-        "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
-        "minHeight": 4,
-        "maxHeight": 7,
-        "textX": 1,
-        "textY": 1,
-        "textHeight": 5,
-        "position": "bottom",
-        "clearPrevious": true,
-        "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
-        "closeButton": "a",
-        "closeDelayTime": 0.5,
-        "closeDelayFrames": 30,
-        "__collapse": true
+        "condition": {
+          "type": "not",
+          "value": {
+            "type": "variable",
+            "value": "338"
+          }
+        },
+        "__collapseElse": false
       },
-      "id": "150fd6aa-80b6-499c-bdc3-e1bf1aff96ca"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                " Follow the cup with \n the token you want!",
+                " The tokens will show \n for 2 seconds."
+              ],
+              "__section": "text",
+              "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30,
+              "__collapse": false
+            },
+            "id": "150fd6aa-80b6-499c-bdc3-e1bf1aff96ca"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "338",
+              "value": {
+                "type": "true"
+              }
+            },
+            "id": "d21195e9-1de9-467a-8a09-d75d0eeadbf8"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                " Follow the cup with \n the token you want!"
+              ],
+              "__section": "text",
+              "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30,
+              "__collapse": false
+            },
+            "id": "107bac75-d18e-4a19-ab4f-30e9f29fa8c6"
+          }
+        ]
+      },
+      "id": "3c52dbd9-4996-4946-9459-b3760740a021"
     },
     {
       "command": "EVENT_PALETTE_SET_UI",
@@ -425,7 +481,7 @@
       "command": "EVENT_GROUP",
       "args": {
         "__label": "Show tokens under cup",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [

@@ -596,7 +596,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -919,7 +919,7 @@
                       {
                         "command": "EVENT_WAIT",
                         "args": {
-                          "time": 4.4,
+                          "time": 4.6,
                           "frames": 30
                         },
                         "id": "f5a08d43-3738-4427-b1de-97ffb00ec0bf"
@@ -929,7 +929,7 @@
                       {
                         "command": "EVENT_WAIT",
                         "args": {
-                          "time": 1.6,
+                          "time": 0.5,
                           "frames": 30
                         },
                         "id": "99679617-1cbb-459d-a286-c4d97b37ae17"
@@ -2438,31 +2438,87 @@
       "id": "0422c9d4-72aa-470b-9b87-7f90800fbbe8"
     },
     {
-      "command": "EVENT_TEXT",
+      "command": "EVENT_IF",
       "args": {
-        "text": [
-          " The simplest mini-\n game of them all!  @",
-          " Spin the wheel!"
-        ],
-        "__section": "text",
-        "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
-        "minHeight": 4,
-        "maxHeight": 7,
-        "textX": 1,
-        "textY": 1,
-        "textHeight": 5,
-        "position": "bottom",
-        "clearPrevious": true,
-        "showFrame": "true",
-        "speedIn": -1,
-        "speedOut": -1,
-        "closeWhen": "key",
-        "closeButton": "a",
-        "closeDelayTime": 0.5,
-        "closeDelayFrames": 30,
-        "__collapse": true
+        "condition": {
+          "type": "not",
+          "value": {
+            "type": "variable",
+            "value": "339"
+          }
+        },
+        "__collapseElse": false
       },
-      "id": "74fe14a9-b1bc-4716-b6c2-32fb561e7935"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                " The simplest mini-\n game of them all!  @",
+                " Spin the wheel!"
+              ],
+              "__section": "text",
+              "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30,
+              "__collapse": false
+            },
+            "id": "74fe14a9-b1bc-4716-b6c2-32fb561e7935"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "339",
+              "value": {
+                "type": "true"
+              }
+            },
+            "id": "8daaa3d0-a14d-4317-bb15-2ddeefedd37b"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_TEXT",
+            "args": {
+              "text": [
+                " Spin the wheel!"
+              ],
+              "__section": "text",
+              "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
+              "minHeight": 4,
+              "maxHeight": 7,
+              "textX": 1,
+              "textY": 1,
+              "textHeight": 5,
+              "position": "bottom",
+              "clearPrevious": true,
+              "showFrame": "true",
+              "speedIn": -1,
+              "speedOut": -1,
+              "closeWhen": "key",
+              "closeButton": "a",
+              "closeDelayTime": 0.5,
+              "closeDelayFrames": 30,
+              "__collapse": false
+            },
+            "id": "1cfe8d79-fd6a-44d5-8071-612bacfba6c6"
+          }
+        ]
+      },
+      "id": "84d7a095-78a5-49d6-a11d-0c6e61e26393"
     },
     {
       "command": "EVENT_PALETTE_SET_UI",
