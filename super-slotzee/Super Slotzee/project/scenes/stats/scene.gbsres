@@ -187,7 +187,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -508,7 +508,7 @@
       "command": "EVENT_GROUP",
       "args": {
         "__label": "Draw stats to page",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -1072,6 +1072,83 @@
         "__collapse": true
       },
       "id": "c33371c8-b372-46db-bd09-a7f47fe3a082"
+    },
+    {
+      "command": "EVENT_IF_INPUT",
+      "args": {
+        "input": [
+          "down"
+        ],
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_LOOP",
+            "args": {},
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "expression",
+                      "value": "$L0$ < 18"
+                    },
+                    "__collapseElse": true,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_CAMERA_MOVE_TO",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "y": {
+                            "type": "expression",
+                            "value": "$L0$ + 3"
+                          },
+                          "speed": 3,
+                          "__collapse": true
+                        },
+                        "id": "9e89e9dd-902e-4cb9-95ea-7024fe84d040"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "L0",
+                          "value": {
+                            "type": "expression",
+                            "value": "$L0$ + 3"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "bdf122a5-d12e-49ba-91be-a7fdde8d1a1d"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "7b58a699-51a9-492f-932e-28a111df55d7"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 0.5,
+                    "frames": 30
+                  },
+                  "id": "ded49361-d073-4a79-85a8-769a0adaa749"
+                }
+              ]
+            },
+            "id": "4c152d27-f04b-411f-a467-f07da309c98b"
+          }
+        ],
+        "false": []
+      },
+      "id": "19c502ed-21a1-4159-b003-829c83a667a1"
     }
   ],
   "playerHit1Script": [],
