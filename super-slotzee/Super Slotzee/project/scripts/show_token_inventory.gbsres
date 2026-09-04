@@ -230,7 +230,7 @@
               "value3": 4,
               "__collapseCase4": true,
               "value4": 5,
-              "__collapseCase5": false,
+              "__collapseCase5": true,
               "value5": 6,
               "__collapseCase6": false,
               "value6": 7,
@@ -2571,24 +2571,56 @@
                                                 "command": "EVENT_GROUP",
                                                 "args": {
                                                   "__label": "Get a random forced dice yotzee",
-                                                  "__collapse": true
+                                                  "__collapse": false
                                                 },
                                                 "children": {
                                                   "true": [
                                                     {
-                                                      "command": "EVENT_VARIABLE_MATH",
+                                                      "command": "EVENT_IF",
                                                       "args": {
-                                                        "vectorX": "332",
-                                                        "operation": "set",
-                                                        "other": "rnd",
-                                                        "vectorY": "L0",
-                                                        "value": "0",
-                                                        "minValue": 1,
-                                                        "maxValue": 6,
-                                                        "clamp": false,
-                                                        "__collapse": true
+                                                        "condition": {
+                                                          "type": "variable",
+                                                          "value": "161"
+                                                        },
+                                                        "__collapseElse": false
                                                       },
-                                                      "id": "2d48510f-8cdd-4b30-8540-169da9d9b935"
+                                                      "children": {
+                                                        "true": [
+                                                          {
+                                                            "command": "EVENT_VARIABLE_MATH",
+                                                            "args": {
+                                                              "vectorX": "332",
+                                                              "operation": "set",
+                                                              "other": "rnd",
+                                                              "vectorY": "L0",
+                                                              "value": "0",
+                                                              "minValue": 4,
+                                                              "maxValue": 6,
+                                                              "clamp": false,
+                                                              "__collapse": false
+                                                            },
+                                                            "id": "68a37172-8d6b-49e7-8a29-90983f9ef0c3"
+                                                          }
+                                                        ],
+                                                        "false": [
+                                                          {
+                                                            "command": "EVENT_VARIABLE_MATH",
+                                                            "args": {
+                                                              "vectorX": "332",
+                                                              "operation": "set",
+                                                              "other": "rnd",
+                                                              "vectorY": "L0",
+                                                              "value": "0",
+                                                              "minValue": 1,
+                                                              "maxValue": 6,
+                                                              "clamp": false,
+                                                              "__collapse": false
+                                                            },
+                                                            "id": "2d48510f-8cdd-4b30-8540-169da9d9b935"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "id": "27b37bc0-2755-43d7-bf28-71528220f250"
                                                     },
                                                     {
                                                       "command": "EVENT_IF",
@@ -4898,16 +4930,147 @@
                                               "value": "302"
                                             },
                                             "__collapseElse": true,
-                                            "__collapse": true
+                                            "__collapse": false
                                           },
                                           "children": {
                                             "true": [
+                                              {
+                                                "command": "EVENT_IF",
+                                                "args": {
+                                                  "condition": {
+                                                    "type": "expression",
+                                                    "value": "($41$ == 50 || $41$ == 100) && $42$ == 0"
+                                                  },
+                                                  "__collapseElse": false,
+                                                  "__collapse": false
+                                                },
+                                                "children": {
+                                                  "true": [
+                                                    {
+                                                      "command": "EVENT_IF",
+                                                      "args": {
+                                                        "condition": {
+                                                          "type": "eq",
+                                                          "valueA": {
+                                                            "type": "variable",
+                                                            "value": "41"
+                                                          },
+                                                          "valueB": {
+                                                            "type": "number",
+                                                            "value": 50
+                                                          }
+                                                        },
+                                                        "__collapseElse": false
+                                                      },
+                                                      "children": {
+                                                        "true": [
+                                                          {
+                                                            "command": "EVENT_SET_VALUE",
+                                                            "args": {
+                                                              "variable": "340",
+                                                              "value": {
+                                                                "type": "number",
+                                                                "value": 50
+                                                              },
+                                                              "__collapse": false
+                                                            },
+                                                            "id": "87d3c05d-437f-4993-a51d-d843de31fe36"
+                                                          }
+                                                        ],
+                                                        "false": [
+                                                          {
+                                                            "command": "EVENT_SET_VALUE",
+                                                            "args": {
+                                                              "variable": "340",
+                                                              "value": {
+                                                                "type": "number",
+                                                                "value": 100
+                                                              },
+                                                              "__collapse": false
+                                                            },
+                                                            "id": "9e28ade7-61f4-488e-ac5b-7439da936e96"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "id": "af3c2761-204c-4f50-8b40-f16c57c4a169"
+                                                    }
+                                                  ],
+                                                  "false": [
+                                                    {
+                                                      "command": "EVENT_IF",
+                                                      "args": {
+                                                        "condition": {
+                                                          "type": "expression",
+                                                          "value": "($41$ == 50 || $41$ == 100) && $42$ >= 1"
+                                                        },
+                                                        "__collapseElse": true
+                                                      },
+                                                      "children": {
+                                                        "true": [
+                                                          {
+                                                            "command": "EVENT_COMMENT",
+                                                            "args": {
+                                                              "text": "If all bonus Yotzees are doubled, we must bet a doubled one.",
+                                                              "__collapse": true
+                                                            },
+                                                            "id": "e642d254-6134-48a1-8bb6-2c7f5f5ab49d"
+                                                          },
+                                                          {
+                                                            "command": "EVENT_IF",
+                                                            "args": {
+                                                              "condition": {
+                                                                "type": "expression",
+                                                                "value": "$42$ == $116$"
+                                                              },
+                                                              "__collapseElse": false
+                                                            },
+                                                            "children": {
+                                                              "true": [
+                                                                {
+                                                                  "command": "EVENT_SET_VALUE",
+                                                                  "args": {
+                                                                    "variable": "340",
+                                                                    "value": {
+                                                                      "type": "number",
+                                                                      "value": 200
+                                                                    },
+                                                                    "__collapse": false
+                                                                  },
+                                                                  "id": "b84b3d4b-cc40-4b6a-8a5e-258335d63269"
+                                                                }
+                                                              ],
+                                                              "false": [
+                                                                {
+                                                                  "command": "EVENT_SET_VALUE",
+                                                                  "args": {
+                                                                    "variable": "340",
+                                                                    "value": {
+                                                                      "type": "number",
+                                                                      "value": 100
+                                                                    },
+                                                                    "__collapse": false
+                                                                  },
+                                                                  "id": "622981ef-0eb9-49bd-8993-f46f1bb28c74"
+                                                                }
+                                                              ]
+                                                            },
+                                                            "id": "7f27bf17-09c3-45d4-b1f0-ae577994f6cd"
+                                                          }
+                                                        ],
+                                                        "false": []
+                                                      },
+                                                      "id": "77fbdd8e-3f19-49c4-b022-5204055629e1"
+                                                    }
+                                                  ]
+                                                },
+                                                "id": "668d7777-ad3d-4ed9-82dd-9fe6df6c2d3d"
+                                              },
                                               {
                                                 "command": "PT_EVENT_ADVANCED_MENU",
                                                 "args": {
                                                   "__scriptTabs": "items",
                                                   "width": 20,
-                                                  "height": 8,
+                                                  "height": 9,
                                                   "position": "bottom",
                                                   "from": "bottom",
                                                   "clearPrevious": true,
@@ -4916,16 +5079,16 @@
                                                   "speedOut": 0,
                                                   "variable": "234",
                                                   "setStartValue": false,
-                                                  "items": 5,
+                                                  "items": 6,
                                                   "option_1_text": "Confirm",
                                                   "option1_x": 1,
-                                                  "option1_y": 4,
+                                                  "option1_y": 5,
                                                   "option1_l": 0,
                                                   "option1_r": 0,
                                                   "option1_u": 0,
                                                   "option1_d": 4,
-                                                  "option_2_text": "Use DOUBLE DOWN",
-                                                  "option2_x": 1,
+                                                  "option_2_text": "Use DOUBLE DOWN token?",
+                                                  "option2_x": 0,
                                                   "option2_y": 1,
                                                   "option2_l": 0,
                                                   "option2_r": 0,
@@ -4933,28 +5096,28 @@
                                                   "option2_d": 0,
                                                   "option_3_text": "Cancel",
                                                   "option3_x": 1,
-                                                  "option3_y": 6,
+                                                  "option3_y": 7,
                                                   "option3_l": 0,
                                                   "option3_r": 0,
                                                   "option3_u": 4,
                                                   "option3_d": 0,
                                                   "option_4_text": "Info",
                                                   "option4_x": 1,
-                                                  "option4_y": 5,
+                                                  "option4_y": 6,
                                                   "option4_l": 0,
                                                   "option4_r": 0,
                                                   "option4_u": 1,
                                                   "option4_d": 3,
-                                                  "option_5_text": "token?",
-                                                  "option5_x": 1,
+                                                  "option_5_text": "You are betting a",
+                                                  "option5_x": 0,
                                                   "option5_y": 2,
                                                   "option5_l": 0,
                                                   "option5_r": 0,
                                                   "option5_u": 0,
                                                   "option5_d": 0,
-                                                  "option_6_text": "",
+                                                  "option_6_text": "Yotzee worth $340$ points.",
                                                   "option6_x": 0,
-                                                  "option6_y": 0,
+                                                  "option6_y": 3,
                                                   "option6_l": 0,
                                                   "option6_r": 0,
                                                   "option6_u": 0,
@@ -5048,7 +5211,7 @@
                                               "value": "$234$ == 1 || !$302$"
                                             },
                                             "__collapseElse": false,
-                                            "__collapse": true,
+                                            "__collapse": false,
                                             "__label": "(If) Confirmed using DOUBLE DOWN"
                                           },
                                           "children": {
@@ -5107,7 +5270,8 @@
                                                           {
                                                             "command": "EVENT_CALL_CUSTOM_EVENT",
                                                             "args": {
-                                                              "customEventId": "92c9d308-d473-4f5f-b6df-387c08603685"
+                                                              "customEventId": "92c9d308-d473-4f5f-b6df-387c08603685",
+                                                              "__collapse": true
                                                             },
                                                             "id": "297b352c-427f-40a6-9e48-4889c2d33414"
                                                           },
@@ -5202,14 +5366,15 @@
                                                               "closeButton": "a",
                                                               "closeDelayTime": 0.5,
                                                               "closeDelayFrames": 30,
-                                                              "__collapse": false
+                                                              "__collapse": true
                                                             },
                                                             "id": "9344a2e0-d9b2-4b37-bcd0-98db867879cc"
                                                           },
                                                           {
                                                             "command": "EVENT_PALETTE_SET_UI",
                                                             "args": {
-                                                              "palette": "f006aaec-a37b-4d52-94a4-157d55a31514"
+                                                              "palette": "f006aaec-a37b-4d52-94a4-157d55a31514",
+                                                              "__collapse": true
                                                             },
                                                             "id": "b1be7d3c-65d3-41cc-853b-39bfe347ba41"
                                                           },

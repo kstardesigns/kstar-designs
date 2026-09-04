@@ -725,7 +725,7 @@
           "value": "$65$ && !$160$ && !$123$"
         },
         "__collapseElse": true,
-        "__collapse": true,
+        "__collapse": false,
         "__comment": false
       },
       "children": {
@@ -735,7 +735,7 @@
             "args": {
               "condition": {
                 "type": "expression",
-                "value": "($16$ == 1 || $16$ == 2) && !$123$"
+                "value": "($16$ == 1 || $16$ == 2 || ($16$ == 3 && $61$)) && !$123$"
               },
               "__collapseElse": false
             },
@@ -754,7 +754,8 @@
                   "args": {
                     "actorId": "$self$",
                     "spriteStateId": "Middle row cursor",
-                    "loopAnim": true
+                    "loopAnim": true,
+                    "__collapse": true
                   },
                   "id": "0241bbce-134a-4d77-92f8-8b261c24465a"
                 },
@@ -769,7 +770,8 @@
                     "y": {
                       "type": "number",
                       "value": 14
-                    }
+                    },
+                    "__collapse": true
                   },
                   "id": "51c1a4c7-d8c4-415d-a390-6d8f73755ee8"
                 }
@@ -847,24 +849,56 @@
             "command": "EVENT_GROUP",
             "args": {
               "__label": "Get a random forced dice yotzee",
-              "__collapse": true
+              "__collapse": false
             },
             "children": {
               "true": [
                 {
-                  "command": "EVENT_VARIABLE_MATH",
+                  "command": "EVENT_IF",
                   "args": {
-                    "vectorX": "332",
-                    "operation": "set",
-                    "other": "rnd",
-                    "vectorY": "L0",
-                    "value": "0",
-                    "minValue": 1,
-                    "maxValue": 6,
-                    "clamp": false,
-                    "__collapse": true
+                    "condition": {
+                      "type": "variable",
+                      "value": "161"
+                    },
+                    "__collapseElse": false
                   },
-                  "id": "51e0311d-f40b-4791-a410-93ec91b4d4ef"
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_VARIABLE_MATH",
+                        "args": {
+                          "vectorX": "332",
+                          "operation": "set",
+                          "other": "rnd",
+                          "vectorY": "L0",
+                          "value": "0",
+                          "minValue": 4,
+                          "maxValue": 6,
+                          "clamp": false,
+                          "__collapse": false
+                        },
+                        "id": "68d2c99f-0cf9-4fae-bddf-44108d36def4"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_VARIABLE_MATH",
+                        "args": {
+                          "vectorX": "332",
+                          "operation": "set",
+                          "other": "rnd",
+                          "vectorY": "L0",
+                          "value": "0",
+                          "minValue": 1,
+                          "maxValue": 6,
+                          "clamp": false,
+                          "__collapse": false
+                        },
+                        "id": "9f42a0e8-9a5d-4167-a359-bf88466bd497"
+                      }
+                    ]
+                  },
+                  "id": "46ac08a8-de8e-4ce0-a5cd-d3debbe5316d"
                 },
                 {
                   "command": "EVENT_IF",
@@ -1208,7 +1242,7 @@
           "value": "$177$ == true"
         },
         "__collapseElse": true,
-        "__collapse": true,
+        "__collapse": false,
         "__comment": false
       },
       "children": {
@@ -1292,6 +1326,56 @@
               "__collapse": true
             },
             "id": "b53bd8f4-57ef-4e8a-8bcc-09c4c416ba5f"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "($16$ == 1 || $16$ == 2 || ($16$ == 3 && $61$)) && !$123$"
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Set cursor to first die after a slot token game is played earlier in the turn, to let user know they can still hold before spinning again (since they were taken away before holding to play the game)",
+                    "__collapse": true
+                  },
+                  "id": "d8cdc269-0c91-4dd2-ad90-e7fd4dad9d6d"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "$self$",
+                    "spriteStateId": "Middle row cursor",
+                    "loopAnim": true,
+                    "__collapse": true
+                  },
+                  "id": "1fb3db7e-b8b2-4733-b436-8329a1228dd3"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_POSITION",
+                  "args": {
+                    "actorId": "$self$",
+                    "x": {
+                      "type": "number",
+                      "value": 2
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 14
+                    },
+                    "__collapse": true
+                  },
+                  "id": "bc1447fb-2a58-4fc7-afe7-f8824768c5a3"
+                }
+              ],
+              "false": []
+            },
+            "id": "5ec26f10-0e88-4720-bdba-6a2274841bb4"
           }
         ],
         "false": []
@@ -1549,7 +1633,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": false,
+        "__collapse": true,
         "__label": "SEL button",
         "__comment": false
       },
@@ -1591,7 +1675,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": false,
+        "__collapse": true,
         "__label": "START button",
         "__comment": false
       },
