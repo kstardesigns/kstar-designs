@@ -118,7 +118,8 @@
           {
             "command": "EVENT_CALL_CUSTOM_EVENT",
             "args": {
-              "customEventId": "4e8b3ff2-3534-4105-9433-9219ae85744d"
+              "customEventId": "4e8b3ff2-3534-4105-9433-9219ae85744d",
+              "__collapse": true
             },
             "id": "38a8a8a6-ce9c-4752-8764-47f97351fd95"
           }
@@ -147,7 +148,7 @@
                       }
                     },
                     "__collapseElse": false,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -193,7 +194,7 @@
                       "value": "$39$ && ($41$ == 50 || $41$ == 100)"
                     },
                     "__collapseElse": false,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -239,33 +240,49 @@
                               "id": "e9c3f169-c9ff-4f7a-b49c-2c0304110fd2"
                             },
                             {
-                              "command": "EVENT_TEXT",
+                              "command": "EVENT_IF",
                               "args": {
-                                "text": [
-                                  "JOKER!\n@",
-                                  "This Yotzee is\nautomatically  @",
-                                  "scored, and you will \nalso score another  @",
-                                  "box on the scorecard."
-                                ],
-                                "__section": "text",
-                                "avatarId": "",
-                                "minHeight": 4,
-                                "maxHeight": 7,
-                                "textX": 1,
-                                "textY": 1,
-                                "textHeight": 5,
-                                "position": "bottom",
-                                "clearPrevious": true,
-                                "showFrame": "true",
-                                "speedIn": -1,
-                                "speedOut": -1,
-                                "closeWhen": "key",
-                                "closeButton": "a",
-                                "closeDelayTime": 0.5,
-                                "closeDelayFrames": 30,
-                                "__collapse": true
+                                "condition": {
+                                  "type": "variable",
+                                  "value": "303"
+                                },
+                                "__collapseElse": true
                               },
-                              "id": "ea3fcda8-6b74-401a-a63b-d4c369bbd16d"
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_TEXT",
+                                    "args": {
+                                      "text": [
+                                        "JOKER!\n@",
+                                        "This Yotzee is\nautomatically  @",
+                                        "scored, and you will \nalso score another  @",
+                                        "box on the scorecard."
+                                      ],
+                                      "__section": "text",
+                                      "avatarId": "",
+                                      "minHeight": 4,
+                                      "maxHeight": 7,
+                                      "textX": 1,
+                                      "textY": 1,
+                                      "textHeight": 5,
+                                      "position": "bottom",
+                                      "clearPrevious": true,
+                                      "showFrame": "true",
+                                      "speedIn": -1,
+                                      "speedOut": -1,
+                                      "closeWhen": "key",
+                                      "closeButton": "a",
+                                      "closeDelayTime": 0.5,
+                                      "closeDelayFrames": 30,
+                                      "__collapse": false
+                                    },
+                                    "id": "ea3fcda8-6b74-401a-a63b-d4c369bbd16d"
+                                  }
+                                ],
+                                "false": []
+                              },
+                              "id": "72046179-4433-4a9d-abde-48b00ea380ed"
                             },
                             {
                               "command": "EVENT_CALL_CUSTOM_EVENT",
