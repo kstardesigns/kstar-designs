@@ -636,7 +636,7 @@
         },
         "__collapseElse": false,
         "__label": "(If) Show save animation after saved",
-        "__collapse": true,
+        "__collapse": false,
         "__comment": false
       },
       "children": {
@@ -682,10 +682,10 @@
                   "args": {
                     "condition": {
                       "type": "expression",
-                      "value": "$32$ == 1 && $17$ == 1 && $123$"
+                      "value": "$32$ == 1 && ($17$ == 1 || $17$ == 2) && $123$"
                     },
                     "__collapseElse": false,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [],
@@ -765,7 +765,7 @@
           "value": "$65$ && !$123$"
         },
         "__collapseElse": true,
-        "__collapse": false,
+        "__collapse": true,
         "__comment": false
       },
       "children": {
@@ -1549,6 +1549,105 @@
                       "type": "not",
                       "value": {
                         "type": "variable",
+                        "value": "214"
+                      }
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 0.5,
+                          "frames": 30
+                        },
+                        "id": "a7c5f2bb-ff03-443d-90d9-49b56abd1d58"
+                      },
+                      {
+                        "command": "EVENT_PALETTE_SET_UI",
+                        "args": {
+                          "palette": "56059128-79fb-44a9-84fb-285257a04bd1",
+                          "__collapse": true
+                        },
+                        "id": "1c1ca15d-183a-427a-9d7c-43c121e12a72"
+                      },
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            " Between rolls, you \n can press START  @",
+                            " to pause and view \n the game rules.  @",
+                            " Press SELECT to \n switch between  @",
+                            " this gameplay view\n and the scorecard."
+                          ],
+                          "__section": "text",
+                          "avatarId": "377443ae-4ce7-4d73-ab12-6f732f8687f4",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "top",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "e6cd857e-5f4f-45d7-a1ea-13ad0625dcf5"
+                      },
+                      {
+                        "command": "EVENT_PALETTE_SET_UI",
+                        "args": {
+                          "palette": "f006aaec-a37b-4d52-94a4-157d55a31514",
+                          "__collapse": true
+                        },
+                        "id": "51de2ff7-17de-45bf-9bf5-1c37fe8f0989"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "214",
+                          "value": {
+                            "type": "true"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "e00f9842-1198-4bc4-af86-b2d3d47aa2c1"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "983ce410-e449-4453-b39c-96e27536ca2f"
+                }
+              ],
+              "false": []
+            },
+            "id": "a659d582-4a76-4eab-8da1-1add153f6922"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "$32$ == 1 && $17$ == 2 && $123$"
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "not",
+                      "value": {
+                        "type": "variable",
                         "value": "298"
                       }
                     },
@@ -1576,6 +1675,7 @@
                         "command": "EVENT_TEXT",
                         "args": {
                           "text": [
+                            " One last thing!  @",
                             " You can view your \n token inventory  @",
                             " by selecting the \n token next to  @",
                             " \"Spin + Roll\" or by \n pressing B."
