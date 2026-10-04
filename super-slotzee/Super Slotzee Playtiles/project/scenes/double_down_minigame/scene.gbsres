@@ -1,0 +1,715 @@
+{
+  "_resourceType": "scene",
+  "id": "9531a118-8610-4e15-81d0-f23b78508ccc",
+  "_index": 8,
+  "name": "Double down minigame",
+  "backgroundId": "6c24ae5c-d0b2-435c-bf09-e71f8bcf7883",
+  "tilesetId": "",
+  "width": 20,
+  "height": 36,
+  "type": "TOPDOWN",
+  "paletteIds": [
+    "b48270fa-90bf-44b5-be33-850f6f5cad6c",
+    "fd7b072e-fa31-419d-a90d-e9f3dddd1800"
+  ],
+  "spritePaletteIds": [
+    "3e8ba849-093c-471f-9996-c37c6a9015a8",
+    "2288e752-00ad-48a9-885c-1bc21c0416a8",
+    "c2c1ebe1-80bc-42ee-a8b0-9c9ea8778eb0"
+  ],
+  "collisions": "",
+  "autoFadeSpeed": null,
+  "symbol": "scene_9",
+  "x": 912,
+  "y": 416,
+  "script": [
+    {
+      "command": "EVENT_VARIABLE_MATH",
+      "args": {
+        "vectorX": "174",
+        "operation": "set",
+        "other": "rnd",
+        "vectorY": "L0",
+        "value": "0",
+        "minValue": 1,
+        "maxValue": 2,
+        "clamp": false,
+        "__collapse": true
+      },
+      "id": "87c087ed-3167-4948-afff-35593ed30f7f"
+    },
+    {
+      "command": "EVENT_PALETTE_SET_UI",
+      "args": {
+        "palette": "56059128-79fb-44a9-84fb-285257a04bd1",
+        "__collapse": true
+      },
+      "id": "80ba4965-d03c-40da-af81-48ffd7e146b6"
+    },
+    {
+      "command": "EVENT_FADE_IN",
+      "args": {
+        "speed": "2"
+      },
+      "id": "6f806cdf-8ea7-4a4f-89df-3db67d947ee3"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "299"
+        },
+        "__collapseElse": true,
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_MUSIC_PLAY",
+            "args": {
+              "musicId": "8ae6b5c2-13a8-4beb-8171-9e081122c979"
+            },
+            "id": "f094cf45-b117-4386-b92f-5a6ff7aceaa3"
+          }
+        ],
+        "false": []
+      },
+      "id": "ada64b3a-48b3-45b5-98f4-3fa499db3fc2"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 0.5,
+        "frames": 30,
+        "__collapse": true
+      },
+      "id": "1f632a34-b645-4d16-b533-2719050f4cf4"
+    },
+    {
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": [
+          " It's time to...  @",
+          " DOUBLE DOWN!"
+        ],
+        "__section": "text",
+        "avatarId": "c1aac6d9-5fec-48a4-9494-a0fc80a5da3a",
+        "minHeight": 4,
+        "maxHeight": 7,
+        "textX": 1,
+        "textY": 1,
+        "textHeight": 5,
+        "position": "top",
+        "clearPrevious": true,
+        "showFrame": "true",
+        "speedIn": -1,
+        "speedOut": -1,
+        "closeWhen": "key",
+        "closeButton": "a",
+        "closeDelayTime": 0.5,
+        "closeDelayFrames": 30,
+        "__collapse": true
+      },
+      "id": "83fb9dc5-d730-4da7-bc97-df6b4ae34dd5"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 0.5,
+        "frames": 30,
+        "__collapse": true
+      },
+      "id": "7b3ff97e-0f41-4e9d-a5f8-73f060d97fc9"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "67"
+        },
+        "__collapseElse": true,
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SOUND_PLAY_EFFECT",
+            "args": {
+              "type": "47207f91-a8fd-4688-aaad-414de1252358",
+              "priority": "medium",
+              "pitch": 4,
+              "frequency": 200,
+              "duration": 0.5,
+              "wait": true,
+              "effect": 3
+            },
+            "id": "d564e87f-657d-4440-a96e-dfc701244faf"
+          }
+        ],
+        "false": []
+      },
+      "id": "172dc7ca-d17a-4927-b15a-c5dc8b35a606"
+    },
+    {
+      "command": "EVENT_CAMERA_SET_POSITION",
+      "args": {
+        "x": {
+          "type": "number",
+          "value": 0
+        },
+        "y": {
+          "type": "number",
+          "value": 18
+        },
+        "__collapse": true
+      },
+      "id": "0b55d798-acdb-4958-b73c-e06724859d25"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 1,
+        "frames": 30,
+        "__collapse": true
+      },
+      "id": "f648bd9c-a589-41ce-a00a-ba6bc6c1a483"
+    },
+    {
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": [
+          " Land on DD to win\n another Yotzee!  @",
+          " Land on L and lose\n your Yotzee."
+        ],
+        "__section": "text",
+        "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
+        "minHeight": 4,
+        "maxHeight": 7,
+        "textX": 1,
+        "textY": 1,
+        "textHeight": 5,
+        "position": "top",
+        "clearPrevious": true,
+        "showFrame": "true",
+        "speedIn": -1,
+        "speedOut": -1,
+        "closeWhen": "key",
+        "closeButton": "a",
+        "closeDelayTime": 0.5,
+        "closeDelayFrames": 30,
+        "__collapse": true
+      },
+      "id": "7fe1a891-e009-49d9-b1b4-5a0d117fc8c6"
+    },
+    {
+      "command": "EVENT_WAIT",
+      "args": {
+        "time": 0.2,
+        "frames": 30,
+        "__collapse": true
+      },
+      "id": "0a906766-bf45-4140-a2be-d703132e5d24"
+    },
+    {
+      "command": "EVENT_PALETTE_SET_BACKGROUND",
+      "args": {
+        "palette0": "keep",
+        "palette1": "6e5c4cb6-293f-4fe7-93ca-ed00d7032cf2",
+        "palette2": "keep",
+        "palette3": "keep",
+        "palette4": "keep",
+        "palette5": "keep",
+        "palette6": "keep",
+        "palette7": "keep",
+        "__collapse": true
+      },
+      "id": "dd03f818-c1f6-46c1-845d-88203267bb36"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "a"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "ccf7f141-a8fd-45e0-bb48-f7d4392adba5",
+              "__collapse": true
+            },
+            "id": "4e091eae-8bd8-4358-a8c7-8439a42bca0a"
+          },
+          {
+            "command": "EVENT_INC_VALUE",
+            "args": {
+              "variable": "289",
+              "__collapse": true
+            },
+            "id": "4ca19592-1277-475c-a315-69105fa7aaa7"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "174"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 2
+                }
+              },
+              "__collapseElse": false,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Lose coin flip",
+                    "__collapse": true
+                  },
+                  "id": "0937a870-63ec-40ec-ba30-d806577c8f6e"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "eadbe384-d1f7-4814-910d-db4647f0783d",
+                    "spriteStateId": "Coin flip lose",
+                    "loopAnim": false,
+                    "__collapse": true
+                  },
+                  "id": "62540710-38b7-4e2d-a3b3-a1c809e8f978"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 1.5,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "8d90c2fa-878a-4d80-94a0-7e8d0593f1e6"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "177",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "d3ac84ff-20bb-4165-b2d2-b919e3420565"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Take away a Yotzee",
+                    "__collapse": true
+                  },
+                  "id": "45a8d8ee-b598-4246-a3fd-e13f59c54f6e"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "expression",
+                      "value": "($41$ == 50 || $41$ == 100) && $42$ == 0"
+                    },
+                    "__collapseElse": false,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "41",
+                          "value": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "__collapse": true
+                        },
+                        "id": "b310be10-d929-4254-a9ba-90240af434fd"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "expression",
+                            "value": "($41$ == 50 || $41$ == 100) && $42$ >= 1"
+                          },
+                          "__collapseElse": true
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_COMMENT",
+                              "args": {
+                                "text": "If all bonus Yotzees are doubled, we must take away a doubled one.",
+                                "__collapse": true
+                              },
+                              "id": "b06c8a47-662f-48fb-8779-8592e3ce0425"
+                            },
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "expression",
+                                  "value": "$42$ == $116$"
+                                },
+                                "__collapseElse": false
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_DEC_VALUE",
+                                    "args": {
+                                      "variable": "116",
+                                      "__collapse": false
+                                    },
+                                    "id": "95be8d7a-d1be-432c-8c02-e6820c2d4c5c"
+                                  }
+                                ],
+                                "false": []
+                              },
+                              "id": "34ef401d-495d-4966-853a-2d8e8ba7f1cb"
+                            },
+                            {
+                              "command": "EVENT_COMMENT",
+                              "args": {
+                                "text": "Also decrement the main bonus yotzee count either way",
+                                "__collapse": true
+                              },
+                              "id": "52cb0fd7-ac90-4e54-b99b-088eb9f68ac8"
+                            },
+                            {
+                              "command": "EVENT_DEC_VALUE",
+                              "args": {
+                                "variable": "42",
+                                "__collapse": true
+                              },
+                              "id": "8228c85f-240c-47db-a2cd-b4434970a10f"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "c57bcfab-48c2-408c-8789-ec1d5718587c"
+                      }
+                    ]
+                  },
+                  "id": "40a22b67-a1e4-43f6-820e-345e69ae6ecf"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "variable",
+                      "value": "67"
+                    },
+                    "__collapseElse": true,
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SOUND_PLAY_EFFECT",
+                        "args": {
+                          "type": "47207f91-a8fd-4688-aaad-414de1252358",
+                          "priority": "medium",
+                          "pitch": 4,
+                          "frequency": 200,
+                          "duration": 0.5,
+                          "wait": true,
+                          "effect": 4
+                        },
+                        "id": "c5d123bf-07fc-4904-9c31-c48909035fde"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "9bd3df19-73a8-4508-b2be-2bcfb185d7ab"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      " Unfortunately you \n lost your Yotzee.  @",
+                      " Maybe next time!  @"
+                    ],
+                    "__section": "text",
+                    "avatarId": "ebd85e00-e2a8-442f-b8c5-9aa9b9e50e9c",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "top",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": true
+                  },
+                  "id": "640d71c2-c7f7-4d82-9a2c-cafea20d216b"
+                },
+                {
+                  "command": "EVENT_PALETTE_SET_UI",
+                  "args": {
+                    "palette": "f006aaec-a37b-4d52-94a4-157d55a31514"
+                  },
+                  "id": "2be754da-cc38-476b-bc20-51f4f1c1ae35"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "Your scorecard has been\nupdated."
+                    ],
+                    "__section": "layout",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "top",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "0e4ed1a3-760e-4299-97b4-6fc13246b1a2"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Win coin flip",
+                    "__collapse": true
+                  },
+                  "id": "aa977f24-66ef-4cdc-8943-fb42f857dc7d"
+                },
+                {
+                  "command": "EVENT_ACTOR_SET_STATE",
+                  "args": {
+                    "actorId": "eadbe384-d1f7-4814-910d-db4647f0783d",
+                    "spriteStateId": "Coin flip win",
+                    "loopAnim": false,
+                    "__collapse": true
+                  },
+                  "id": "7d20ea53-3523-4970-a9f7-9c2b0b74bae0"
+                },
+                {
+                  "command": "EVENT_WAIT",
+                  "args": {
+                    "time": 1.5,
+                    "frames": 30,
+                    "__collapse": true
+                  },
+                  "id": "b6164d69-8761-4910-8c54-bfee235a0469"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "176",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "aa2bd34a-abfa-48ce-8e1d-d2418ef28679"
+                },
+                {
+                  "command": "EVENT_INC_VALUE",
+                  "args": {
+                    "variable": "290",
+                    "__collapse": true
+                  },
+                  "id": "187f4585-a57c-4d6a-b974-f63500f81079"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "variable",
+                      "value": "123"
+                    },
+                    "__collapseElse": true,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "If already scored this turn, then the double down will apply to the next turn. Auto increment it.",
+                          "__collapse": true
+                        },
+                        "id": "1955500d-1205-4aa5-abf6-1319f62362d8"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "17",
+                          "__collapse": true
+                        },
+                        "id": "ca53f0bc-f6cd-4f44-860e-8978a651e581"
+                      },
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "Reset these variables that would have been set on spin",
+                          "__collapse": true
+                        },
+                        "id": "5d6b0c76-2df2-4066-ba67-aa81f32eb09b"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "123",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "5649a70c-9084-4400-955b-18ca3d3f9d2a"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "125",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "0d01c227-3104-4a34-9d41-8fa0b6acfb0a"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "129",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "795269c0-42ff-4dec-80f9-fc822dc99195"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "f2eaecf8-c9db-4fc1-943c-7aee82320231"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "variable",
+                      "value": "67"
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SOUND_PLAY_EFFECT",
+                        "args": {
+                          "type": "47207f91-a8fd-4688-aaad-414de1252358",
+                          "priority": "medium",
+                          "pitch": 4,
+                          "frequency": 200,
+                          "duration": 0.5,
+                          "wait": true,
+                          "effect": 9
+                        },
+                        "id": "92af1ac3-d3a3-4a36-8756-d3d6e5b4f24d"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "f396555f-356d-43b1-9692-acdd40967d2e"
+                },
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      " You won the flip and\n won a Yotzee!"
+                    ],
+                    "__section": "text",
+                    "avatarId": "c1aac6d9-5fec-48a4-9494-a0fc80a5da3a",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "top",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30,
+                    "__collapse": false
+                  },
+                  "id": "1e57702c-193e-48e7-9cb5-81b2ec4af747"
+                }
+              ]
+            },
+            "id": "ca835362-3507-4316-ba77-6207f49179c0"
+          },
+          {
+            "command": "EVENT_SWITCH_SCENE",
+            "args": {
+              "sceneId": "5a5fca72-8d96-45d2-9f47-f418c5d5a21d",
+              "x": {
+                "type": "number",
+                "value": 6
+              },
+              "y": {
+                "type": "number",
+                "value": 17
+              },
+              "direction": "",
+              "fadeSpeed": "2"
+            },
+            "id": "96403740-a85e-4e3b-be62-5fc66f926194"
+          }
+        ]
+      },
+      "id": "29152859-9fc0-411c-84fa-5c83d4374092"
+    }
+  ],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": [],
+  "playerSpriteSheetId": "820764ac-2cc4-4708-89c9-14f344c81f80",
+  "labelColor": "blue",
+  "autoFadeEventCollapse": true
+}

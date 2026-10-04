@@ -1,0 +1,73 @@
+{
+  "_resourceType": "script",
+  "id": "f4f6b58f-5fad-4936-8002-c335a1042194",
+  "name": "Calculate avg score",
+  "description": "",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_77",
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "lte",
+          "valueA": {
+            "type": "variable",
+            "value": "266"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 30
+          }
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "$stats_running_total_score is only holding the points for the first 30 games for accurate average. after that it will be divided by 10"
+            },
+            "id": "518ca983-c674-4640-94d2-99753baf5f9e"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "269",
+              "value": {
+                "type": "expression",
+                "value": "$268$ / $266$"
+              },
+              "__collapse": false,
+              "__comment": false
+            },
+            "id": "ba956f83-107e-426d-af99-328fe647a77f"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Once 30 games played, at roughly 600 points per game, we are already at 18,000 when 32,767 is the max variable value. To be safe we are cutting off the last digit of all total scores and then adding a \"0\" tile after the average when drawing the score."
+            },
+            "id": "b5c65735-e240-4579-984d-23d864252265"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "269",
+              "value": {
+                "type": "expression",
+                "value": "(($268$ / 10) + $217$) / $266$"
+              }
+            },
+            "id": "894095d4-9f49-4f01-9383-bd18f1a59ff2"
+          }
+        ]
+      },
+      "id": "2e9d8f13-32f6-427d-b26a-6efb7f2b3d92"
+    }
+  ]
+}

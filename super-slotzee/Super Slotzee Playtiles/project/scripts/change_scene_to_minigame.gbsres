@@ -1,0 +1,204 @@
+{
+  "_resourceType": "script",
+  "id": "a5ec2a2e-2b85-4575-8ee8-dd58f0866cfd",
+  "name": "Change scene to minigame",
+  "description": "This script will be called when a slot token is matched in the slots, so it can be decided what minigame will be played to earn a token",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_32",
+  "script": [
+    {
+      "command": "EVENT_VARIABLE_MATH",
+      "args": {
+        "vectorX": "131",
+        "operation": "set",
+        "other": "rnd",
+        "vectorY": "L0",
+        "value": "0",
+        "minValue": 1,
+        "maxValue": 100,
+        "clamp": false,
+        "__collapse": false
+      },
+      "id": "cb4dffda-bd6d-487b-a4a5-a063c13a842c"
+    },
+    {
+      "command": "EVENT_CALL_CUSTOM_EVENT",
+      "args": {
+        "customEventId": "43ea4230-518d-4e2c-9730-8ed10d6949dd",
+        "__collapse": true
+      },
+      "id": "f5e1003a-51fa-4b3b-b417-6d158742174a"
+    },
+    {
+      "command": "EVENT_TEXT",
+      "args": {
+        "text": [
+          "minigame random \nchosen: $131$"
+        ],
+        "__section": "text",
+        "avatarId": "",
+        "minHeight": 4,
+        "maxHeight": 7,
+        "textX": 1,
+        "textY": 1,
+        "textHeight": 5,
+        "position": "bottom",
+        "clearPrevious": true,
+        "showFrame": "true",
+        "speedIn": -1,
+        "speedOut": -1,
+        "closeWhen": "key",
+        "closeButton": "a",
+        "closeDelayTime": 0.5,
+        "closeDelayFrames": 30,
+        "__comment": true
+      },
+      "id": "39c892d3-7889-4d4a-bcca-5a5d0ed271dc"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "lte",
+          "valueA": {
+            "type": "variable",
+            "value": "131"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 27
+          }
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SWITCH_SCENE",
+            "args": {
+              "sceneId": "844538a4-ddbf-43c7-b42a-5970cab92f66",
+              "x": {
+                "type": "number",
+                "value": 0
+              },
+              "y": {
+                "type": "number",
+                "value": 0
+              },
+              "direction": "",
+              "fadeSpeed": "2",
+              "__collapse": false
+            },
+            "id": "2b14838b-e9f9-4066-a289-975ba75cee59"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "lte",
+                "valueA": {
+                  "type": "variable",
+                  "value": "131"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 54
+                }
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "07186494-64bc-49db-9a1a-6b231e09be22",
+                    "x": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "direction": "",
+                    "fadeSpeed": "2",
+                    "__collapse": false
+                  },
+                  "id": "082cd290-a166-42ff-a8d1-93dd9a68655c"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "lte",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "131"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 81
+                      }
+                    },
+                    "__collapseElse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SWITCH_SCENE",
+                        "args": {
+                          "sceneId": "1d66d466-8e7d-46cc-95a3-43f7207ee638",
+                          "x": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "direction": "",
+                          "fadeSpeed": "2",
+                          "__collapse": false
+                        },
+                        "id": "a3ceb2b9-f10f-4584-83ba-d7eff27ed20a"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_SWITCH_SCENE",
+                        "args": {
+                          "sceneId": "897eb1ba-bce8-4118-bfd8-d9b492814c63",
+                          "x": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "direction": "",
+                          "fadeSpeed": "2",
+                          "__collapse": false
+                        },
+                        "id": "407964fc-3974-4c1a-b396-b6a36d7efed1"
+                      }
+                    ]
+                  },
+                  "id": "e41ddf8e-f959-4d44-a3bb-03cdb1df57e4"
+                }
+              ]
+            },
+            "id": "5a69af0e-ad00-4b0f-a259-a274e3b22db1"
+          }
+        ]
+      },
+      "id": "4e710146-6a3e-401c-a247-f8428d60a179"
+    }
+  ]
+}

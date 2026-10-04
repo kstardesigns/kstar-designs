@@ -1,0 +1,793 @@
+{
+  "_resourceType": "script",
+  "id": "69c00e7a-1e97-4b6e-ab72-ec6a042b5045",
+  "name": "Check for stat updates",
+  "description": "Called when a game ends on either endgame summary or when quitting early on title screen by starting a new game while one is in progress",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_57",
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gt",
+          "valueA": {
+            "type": "variable",
+            "value": "115"
+          },
+          "valueB": {
+            "type": "variable",
+            "value": "291"
+          }
+        },
+        "__collapseElse": true,
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "291",
+              "value": {
+                "type": "variable",
+                "value": "115"
+              }
+            },
+            "id": "f2515839-457c-4499-bcc0-0b2072406b82"
+          }
+        ],
+        "false": []
+      },
+      "id": "1b3fd6f3-a841-435b-8e21-02450c320644"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$115$ < $267$ || $267$ == 0"
+        },
+        "__collapseElse": true,
+        "__label": "(If) update lowest score",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "267",
+              "value": {
+                "type": "variable",
+                "value": "115"
+              },
+              "__collapse": true
+            },
+            "id": "e8efbfc5-2e93-4dbc-a92f-643abba0f35f"
+          }
+        ],
+        "false": []
+      },
+      "id": "8437cb11-5673-41a3-bc28-f1a198059440"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "lte",
+          "valueA": {
+            "type": "variable",
+            "value": "266"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 30
+          }
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "268",
+              "value": {
+                "type": "expression",
+                "value": "$268$ + $115$"
+              },
+              "__label": "update running total score",
+              "__collapse": false
+            },
+            "id": "672708d6-3332-47d9-b0c6-042f86afc0c9"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Since we can't go over max variable value of 32,767, we are now tracking a new running total where scores are divided by 10. The script Calculate average score now accounts for this and divides $stats_running_total_score by 10 as well before calculating new average"
+            },
+            "id": "3956b69a-e62d-4a34-82a6-09816fcaa98b"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "217",
+              "value": {
+                "type": "expression",
+                "value": "$217$ + ($115$ / 10)"
+              },
+              "__label": "update running total score",
+              "__collapse": false
+            },
+            "id": "15573301-83c5-48e8-8e2b-1e9caad57814"
+          }
+        ]
+      },
+      "id": "44108bfb-bc5f-4c18-a126-3c3c8d5e0f19"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gte",
+          "valueA": {
+            "type": "variable",
+            "value": "42"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 1
+          }
+        },
+        "__collapseElse": false,
+        "__collapse": true,
+        "__label": "(If) update running yotzee count / most yotzees in a game"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "1 represents the initial 50/100 yotzee to get total count",
+              "__collapse": true
+            },
+            "id": "d6313548-0b0c-4ec1-9871-bf8dd66a093a"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "270",
+              "value": {
+                "type": "expression",
+                "value": "$270$ + 1 + $42$"
+              },
+              "__label": "update running total yotzees",
+              "__collapse": false
+            },
+            "id": "7106d6fe-00e5-4567-a2e1-089ceccd81a0"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "gt",
+                "valueA": {
+                  "type": "expression",
+                  "value": "1 + $42$"
+                },
+                "valueB": {
+                  "type": "variable",
+                  "value": "271"
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "271",
+                    "value": {
+                      "type": "expression",
+                      "value": "1 + $42$"
+                    }
+                  },
+                  "id": "1c6d2e53-ad1d-46b2-aac5-5fa0075e9a1b"
+                }
+              ],
+              "false": []
+            },
+            "id": "6fa1a12a-eb5e-497d-9674-17f374b5a559"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "gte",
+                "valueA": {
+                  "type": "variable",
+                  "value": "41"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 50
+                }
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "1 represents the 50/100 yotzee for the lone yotzee",
+                    "__collapse": false
+                  },
+                  "id": "2a14baae-367a-49f3-aeac-6033c3158fb7"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "270",
+                    "value": {
+                      "type": "expression",
+                      "value": "$270$ + 1"
+                    },
+                    "__label": "update running total yotzees",
+                    "__collapse": false
+                  },
+                  "id": "ae564009-c3db-4294-a088-2f344c56b986"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "gt",
+                      "valueA": {
+                        "type": "expression",
+                        "value": "1"
+                      },
+                      "valueB": {
+                        "type": "variable",
+                        "value": "271"
+                      }
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "271",
+                          "value": {
+                            "type": "expression",
+                            "value": "1"
+                          }
+                        },
+                        "id": "01785578-0d11-4513-a08f-6b2447e33948"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "dae9ba89-794f-4bc3-a531-fa0816cbe197"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "No need to update running total if it didn't change",
+                    "__collapse": true
+                  },
+                  "id": "be1975c5-d2b7-4889-b958-81558fe3041a"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "No need to check most yotzees if at 0",
+                    "__collapse": true
+                  },
+                  "id": "97a105df-014a-44a9-81c5-46888135c577"
+                }
+              ]
+            },
+            "id": "460324f8-5926-47da-9031-80f3c1a9c18b"
+          }
+        ]
+      },
+      "id": "d9de7ff5-c3ca-42fc-a39c-ddba202fc399"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "272",
+        "value": {
+          "type": "expression",
+          "value": "$272$ + $62$ + $49$ + $53$ + $64$"
+        },
+        "__label": "update running total slot wins",
+        "__collapse": true
+      },
+      "id": "262b0284-48a6-4875-9efd-12cff02b3d4f"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gt",
+          "valueA": {
+            "type": "expression",
+            "value": "($62$ + $49$ + $53$ + $64$)"
+          },
+          "valueB": {
+            "type": "variable",
+            "value": "273"
+          }
+        },
+        "__collapseElse": true,
+        "__label": "(If) update most slot wins in a game",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "273",
+              "value": {
+                "type": "expression",
+                "value": "($62$ + $49$ + $53$ + $64$)"
+              }
+            },
+            "id": "2cdd6ad8-6a69-4003-8cd5-5c9069d13fbc"
+          }
+        ],
+        "false": []
+      },
+      "id": "7b5da53e-7933-4eb8-9d82-7571caf9016e"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "274",
+        "value": {
+          "type": "expression",
+          "value": "$274$ + $173$ + $172$ + $169$ + $171$ + $170$ + $168$"
+        },
+        "__label": "update running total tokens used",
+        "__collapse": true
+      },
+      "id": "3e7e9505-f6c8-4773-b678-3889397233ae"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gt",
+          "valueA": {
+            "type": "expression",
+            "value": "($173$ + $172$ + $169$ + $171$ + $170$ + $168$)"
+          },
+          "valueB": {
+            "type": "variable",
+            "value": "275"
+          }
+        },
+        "__collapseElse": true,
+        "__label": "(If) update most tokens used in a game",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "275",
+              "value": {
+                "type": "expression",
+                "value": "($173$ + $172$ + $169$ + $171$ + $170$ + $168$)"
+              }
+            },
+            "id": "25465561-17ca-44b9-ab2d-7b668e6ecf16"
+          }
+        ],
+        "false": []
+      },
+      "id": "182b8494-99dc-4e2c-8736-59fac529c068"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "eq",
+          "valueA": {
+            "type": "variable",
+            "value": "120"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 35
+          }
+        },
+        "__collapseElse": true,
+        "__collapse": true,
+        "__label": "(If) update upper bonus hit count"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_INC_VALUE",
+            "args": {
+              "variable": "276"
+            },
+            "id": "2d806f9a-b7cd-439a-816c-72045b946169"
+          }
+        ],
+        "false": []
+      },
+      "id": "2072912e-f35d-4f1f-875e-02a0c99e31d8"
+    },
+    {
+      "id": "d39398fc-490c-409a-a10f-370b86317437",
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "update double down wins and plays",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "279",
+              "value": {
+                "type": "expression",
+                "value": "$279$ + $290$"
+              },
+              "__collapse": true
+            },
+            "id": "67ba0fe5-b925-41c1-b194-db07c4607766"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "278",
+              "value": {
+                "type": "expression",
+                "value": "$278$ + $289$"
+              },
+              "__collapse": true
+            },
+            "id": "f4381284-8875-448f-93f9-5b87ec1037c3"
+          }
+        ]
+      }
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gte",
+          "valueA": {
+            "type": "variable",
+            "value": "115"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 500
+          }
+        },
+        "__collapseElse": false,
+        "__label": "(If) update 500 streak",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_INC_VALUE",
+            "args": {
+              "variable": "285"
+            },
+            "id": "d3313184-b850-4278-94d3-4a66c9d51672"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "gt",
+                "valueA": {
+                  "type": "variable",
+                  "value": "285"
+                },
+                "valueB": {
+                  "type": "variable",
+                  "value": "282"
+                }
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "282",
+                    "value": {
+                      "type": "variable",
+                      "value": "285"
+                    }
+                  },
+                  "id": "aa2141bf-186c-493f-9e57-182cd110ad7b"
+                }
+              ],
+              "false": []
+            },
+            "id": "2511c67d-892d-4fb7-95b2-03434daa2d65"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "285",
+              "value": {
+                "type": "number",
+                "value": 0
+              }
+            },
+            "id": "26cfa988-e231-4c7a-910a-c1b0a404c475"
+          }
+        ]
+      },
+      "id": "c5d251bc-96de-44c2-813b-54fcc52947d9"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gte",
+          "valueA": {
+            "type": "variable",
+            "value": "115"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 700
+          }
+        },
+        "__collapseElse": false,
+        "__label": "(If) update 700 streak",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_INC_VALUE",
+            "args": {
+              "variable": "284",
+              "__collapse": true
+            },
+            "id": "ec1f2d9a-90db-4ca9-8518-6f85c1251d2e"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "gt",
+                "valueA": {
+                  "type": "variable",
+                  "value": "284"
+                },
+                "valueB": {
+                  "type": "variable",
+                  "value": "281"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "281",
+                    "value": {
+                      "type": "variable",
+                      "value": "284"
+                    }
+                  },
+                  "id": "c6817e9a-9a2a-4f1d-9b09-cade3a1a7938"
+                }
+              ],
+              "false": []
+            },
+            "id": "b84e3147-9619-4dd9-92ae-533cf2a31244"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "284",
+              "value": {
+                "type": "number",
+                "value": 0
+              }
+            },
+            "id": "03d9ddda-d369-40d8-b2f2-24758f689c7e"
+          }
+        ]
+      },
+      "id": "8f901352-3cec-441d-b659-e6ab1a985794"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "gte",
+          "valueA": {
+            "type": "variable",
+            "value": "41"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 50
+          }
+        },
+        "__collapseElse": false,
+        "__label": "(If) update yotzee streak",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_INC_VALUE",
+            "args": {
+              "variable": "286",
+              "__collapse": false
+            },
+            "id": "be103014-175d-4839-bb8f-308eed04ab45"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "gt",
+                "valueA": {
+                  "type": "variable",
+                  "value": "286"
+                },
+                "valueB": {
+                  "type": "variable",
+                  "value": "283"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "283",
+                    "value": {
+                      "type": "variable",
+                      "value": "286"
+                    }
+                  },
+                  "id": "2498184d-386a-4179-8d3d-d168e84c420d"
+                }
+              ],
+              "false": []
+            },
+            "id": "74997b73-2d1a-4118-bfba-ea760c8f640a"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "286",
+              "value": {
+                "type": "number",
+                "value": 0
+              }
+            },
+            "id": "411b36c0-9f6b-44e9-87a7-c32cad7a7017"
+          }
+        ]
+      },
+      "id": "1f4d6b0a-eb4d-4ca4-87a5-4bdba2d06d38"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "eq",
+          "valueA": {
+            "type": "variable",
+            "value": "120"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 35
+          }
+        },
+        "__collapseElse": false,
+        "__label": "(If) update top bonus streak",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_INC_VALUE",
+            "args": {
+              "variable": "287",
+              "__collapse": false
+            },
+            "id": "f6e9db3b-6ba1-4a50-9106-c892b95a401e"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "gt",
+                "valueA": {
+                  "type": "variable",
+                  "value": "287"
+                },
+                "valueB": {
+                  "type": "variable",
+                  "value": "288"
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "288",
+                    "value": {
+                      "type": "variable",
+                      "value": "287"
+                    }
+                  },
+                  "id": "c25cf438-b2f4-4653-9c8d-cf1bb5596d42"
+                }
+              ],
+              "false": []
+            },
+            "id": "7b9125f4-5956-4542-bdcd-9353c4647757"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "287",
+              "value": {
+                "type": "number",
+                "value": 0
+              }
+            },
+            "id": "1a5bd0e7-3a30-4ab2-8873-73ece647f834"
+          }
+        ]
+      },
+      "id": "041d76b4-f57a-4edd-b792-7a4a8e9e21fa"
+    }
+  ]
+}

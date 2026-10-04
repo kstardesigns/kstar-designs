@@ -1,0 +1,167 @@
+{
+  "_resourceType": "script",
+  "id": "9963b3b8-a749-42c6-99c7-850bc91418a7",
+  "name": "Check for rolls left",
+  "description": "This reminds the player they have turns left if they are trying to score early on turns 1 or 2 (they can still score early)",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_25",
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "61"
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "121",
+              "value": {
+                "type": "expression",
+                "value": "4 - $16$"
+              }
+            },
+            "id": "f100bd09-d238-4411-b25c-78ce3b5d3394"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "121",
+              "value": {
+                "type": "expression",
+                "value": "3 - $16$"
+              }
+            },
+            "id": "530abea1-90bc-4420-9248-983daaf0296d"
+          }
+        ]
+      },
+      "id": "5c85d236-c337-4674-abb5-b3a6356e5d11"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "300"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "($16$ < 4 && $61$) || ($16$ < 3 && !$61$)"
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "0861ed40-5b4c-4448-ad2b-ac34694ce13f"
+                  },
+                  "id": "9f79288a-5243-4ed7-a277-fc1cb0f4fe1e"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "eq",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "121"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 1
+                      }
+                    },
+                    "__collapseElse": false,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "You have 1 roll left in \nthis turn."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "top",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30,
+                          "__collapse": false
+                        },
+                        "id": "60cafdc0-36f7-4560-a604-54e91f7110b9"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "You have $121$ rolls left in \nthis turn."
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "top",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30,
+                          "__collapse": false
+                        },
+                        "id": "f291be52-0f63-4970-b34a-bbecc332bddc"
+                      }
+                    ]
+                  },
+                  "id": "89a46c52-3306-4107-9b78-d7871b92bdd7"
+                }
+              ],
+              "false": []
+            },
+            "id": "42ade822-a3b6-4bd4-a73e-3c0b55800583"
+          }
+        ],
+        "false": []
+      },
+      "id": "a626c531-fd09-4b9a-a24f-410b1943ad0c"
+    }
+  ]
+}

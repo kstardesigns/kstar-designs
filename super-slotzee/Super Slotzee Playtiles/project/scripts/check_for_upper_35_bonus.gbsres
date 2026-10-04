@@ -1,0 +1,192 @@
+{
+  "_resourceType": "script",
+  "id": "feb192c7-5d1a-4dee-abef-9c9bc0d57542",
+  "name": "Check for Upper 35 bonus",
+  "description": "",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_24",
+  "script": [
+    {
+      "command": "EVENT_VARIABLE_MATH_EVALUATE",
+      "args": {
+        "variable": "114",
+        "expression": "$88$ + $89$ + $90$ + $91$ + $92$ + $93$",
+        "__label": "Get upper bonus total",
+        "__collapse": true
+      },
+      "id": "da564dd6-2f73-4c99-9200-479a412a036f"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "ne",
+          "valueA": {
+            "type": "variable",
+            "value": "120"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 35
+          }
+        },
+        "__collapseElse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "gte",
+                "valueA": {
+                  "type": "variable",
+                  "value": "114"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 63
+                }
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_TEXT",
+                  "args": {
+                    "text": [
+                      "You got 35 bonus \npoints for reaching  @",
+                      "63 on your upper \nscore!"
+                    ],
+                    "__section": "text",
+                    "avatarId": "",
+                    "minHeight": 4,
+                    "maxHeight": 7,
+                    "textX": 1,
+                    "textY": 1,
+                    "textHeight": 5,
+                    "position": "bottom",
+                    "clearPrevious": true,
+                    "showFrame": "true",
+                    "speedIn": -1,
+                    "speedOut": -1,
+                    "closeWhen": "key",
+                    "closeButton": "a",
+                    "closeDelayTime": 0.5,
+                    "closeDelayFrames": 30
+                  },
+                  "id": "00997878-c34f-4bc2-a3c9-f1414f5e9a3b"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "120",
+                    "value": {
+                      "type": "number",
+                      "value": 35
+                    }
+                  },
+                  "id": "52800bf0-a143-4795-9fe2-168b19e530f8"
+                }
+              ],
+              "false": []
+            },
+            "id": "4adbcb1f-f9ba-4be4-8bb1-9e63d5258a95"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "157"
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "If score IS 35, check if we need to deduct 35 bonus due to what was erased.",
+                    "__collapse": true
+                  },
+                  "id": "1eab73d8-53b4-489f-8159-63f5c5b909a2"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "lt",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "114"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 63
+                      }
+                    },
+                    "__collapseElse": true,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "Your top section has\ndropped below 63,  @",
+                            "so your 35-point bonus\nhas been lost"
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "top",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "4c1289e2-23ba-42c6-ac88-c533e5620a98"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "120",
+                          "value": {
+                            "type": "number",
+                            "value": 0
+                          }
+                        },
+                        "id": "267a6db2-bcdb-4a35-8f26-62d3898b264c"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "d6ace8bb-ca03-4eb4-98a8-01d7351e2b9a"
+                }
+              ],
+              "false": []
+            },
+            "id": "bd195a8e-060f-482d-82cd-1cdfeccd8b00"
+          }
+        ]
+      },
+      "id": "8483e73f-d1bb-48ac-9215-c5433fff13bb"
+    }
+  ]
+}

@@ -1,0 +1,1078 @@
+{
+  "_resourceType": "scene",
+  "id": "cb80a93a-7d95-4300-ac78-5e3a8936f14a",
+  "_index": 17,
+  "type": "TOPDOWN",
+  "name": "Stats",
+  "symbol": "scene_18",
+  "labelColor": "yellow",
+  "x": 1336,
+  "y": 336,
+  "width": 20,
+  "height": 36,
+  "backgroundId": "f59a96c6-2ce4-432a-952a-2dbe69348181",
+  "tilesetId": "",
+  "paletteIds": [
+    "dmg",
+    "0cef988f-3d9f-40f6-833d-d577f67f135d",
+    "2e8ede91-3b87-4601-bd7a-3026fa967db1",
+    "b2c811a9-a192-4678-b946-299cc4504c77",
+    "6cc1d70f-2917-46be-9b51-eb1c2ebb74f8",
+    "e7a1d42c-a198-45d4-8561-276e1e0aacf5",
+    "92bc3f86-a87d-4087-b95e-fa361c21e92e",
+    "7b537eca-72bd-4fb4-85be-a4e69c31f7ec"
+  ],
+  "spritePaletteIds": [
+    "",
+    "6cc1d70f-2917-46be-9b51-eb1c2ebb74f8"
+  ],
+  "autoFadeSpeed": null,
+  "playerSpriteSheetId": "820764ac-2cc4-4708-89c9-14f344c81f80",
+  "script": [
+    {
+      "command": "EVENT_ACTOR_DEACTIVATE",
+      "args": {
+        "actorId": "$self$",
+        "__collapse": true,
+        "__comment": false
+      },
+      "id": "9c9cbf2d-ef54-46f1-aba6-b601bd61f4f4"
+    },
+    {
+      "command": "EVENT_SET_VALUE",
+      "args": {
+        "variable": "L0",
+        "value": {
+          "type": "number",
+          "value": 0
+        },
+        "__collapse": true
+      },
+      "id": "b531ebbb-4593-4f40-91bc-6d07a8877160"
+    },
+    {
+      "command": "EVENT_CAMERA_SET_POSITION",
+      "args": {
+        "x": {
+          "type": "number",
+          "value": 0
+        },
+        "y": {
+          "type": "variable",
+          "value": "L0"
+        },
+        "__collapse": true
+      },
+      "id": "0ed66ab4-c6b5-427c-84d3-031315b7057e"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "b",
+          "a"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "ccf7f141-a8fd-45e0-bb48-f7d4392adba5"
+            },
+            "id": "b53e2b99-2418-4c75-9c66-0c0216f355df"
+          },
+          {
+            "command": "EVENT_SWITCH_SCENE",
+            "args": {
+              "sceneId": "e4e90a7f-3caa-435a-bd3c-b38e152d95ef",
+              "x": {
+                "type": "number",
+                "value": 5
+              },
+              "y": {
+                "type": "number",
+                "value": 9
+              },
+              "direction": "right",
+              "fadeSpeed": "2"
+            },
+            "id": "67b85f92-d991-44fa-b33c-acbc51e243d6"
+          }
+        ]
+      },
+      "id": "81e2862f-3b49-4eb7-8ba5-aef73986ba71"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "up"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "$L0$ > 0"
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "ccf7f141-a8fd-45e0-bb48-f7d4392adba5",
+                    "__collapse": true
+                  },
+                  "id": "6df856a8-1158-4099-80b9-83a5bd9b0abd"
+                },
+                {
+                  "command": "EVENT_CAMERA_MOVE_TO",
+                  "args": {
+                    "x": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "y": {
+                      "type": "expression",
+                      "value": "$L0$ - 6"
+                    },
+                    "speed": 3,
+                    "__collapse": false
+                  },
+                  "id": "a64a9fd4-0936-4e88-b92d-63a5c0ac9193"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "L0",
+                    "value": {
+                      "type": "expression",
+                      "value": "$L0$ - 6"
+                    },
+                    "__collapse": false
+                  },
+                  "id": "e5d9c2a3-3759-498c-b331-96cf836c74c1"
+                }
+              ],
+              "false": []
+            },
+            "id": "1b30cbc8-0c7f-4668-a385-bfc64ee10458"
+          }
+        ]
+      },
+      "id": "fabbe633-ebc8-47a5-8274-fac69ec87752"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "down"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_DEACTIVATE",
+            "args": {
+              "actorId": "1a452dc7-5d91-404a-924d-1792477b2a23",
+              "__collapse": true
+            },
+            "id": "2524dc84-df9c-4d5a-8d93-a1bf15d1e167"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "$L0$ < 18"
+              },
+              "__collapseElse": true,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "ccf7f141-a8fd-45e0-bb48-f7d4392adba5",
+                    "__collapse": true
+                  },
+                  "id": "a6b093ce-99cb-473e-8e2c-f26dbd2a223a"
+                },
+                {
+                  "command": "EVENT_CAMERA_MOVE_TO",
+                  "args": {
+                    "x": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "y": {
+                      "type": "expression",
+                      "value": "$L0$ + 6"
+                    },
+                    "speed": 3,
+                    "__collapse": false
+                  },
+                  "id": "a61da541-9806-4a13-83db-3cc38ef04d73"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "L0",
+                    "value": {
+                      "type": "expression",
+                      "value": "$L0$ + 6"
+                    },
+                    "__collapse": false
+                  },
+                  "id": "46ab541b-9ed0-4191-a5d4-83f3f9e37188"
+                }
+              ],
+              "false": []
+            },
+            "id": "56e4baec-9a02-46c2-95d2-30451ccb1335"
+          }
+        ]
+      },
+      "id": "fdc5aab1-10c2-4b31-bf2b-446ada1f0ed7"
+    },
+    {
+      "command": "EVENT_FADE_IN",
+      "args": {
+        "speed": "2",
+        "__collapse": true
+      },
+      "id": "5693f1a5-e914-484c-b3c4-9c6bca1d2d44"
+    },
+    {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Debug demo",
+        "__comment": true,
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "266",
+              "value": {
+                "type": "number",
+                "value": 7
+              },
+              "__collapse": false
+            },
+            "id": "4ef23a35-9f3f-4476-93c2-5c0518d5431d"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "291",
+              "value": {
+                "type": "number",
+                "value": 998
+              },
+              "__collapse": false
+            },
+            "id": "16a579f9-709b-4c98-b6d0-5a703a1fdb9c"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "267",
+              "value": {
+                "type": "number",
+                "value": 223
+              },
+              "__collapse": false
+            },
+            "id": "fb8060a2-2a29-4a8f-81be-c249e7857aec"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "270",
+              "value": {
+                "type": "number",
+                "value": 9
+              },
+              "__collapse": false
+            },
+            "id": "89d24120-d55f-4467-911c-6388c3d7ee34"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "271",
+              "value": {
+                "type": "number",
+                "value": 3
+              },
+              "__collapse": false
+            },
+            "id": "d5c9bbed-c5f5-4661-8c3e-449851e93bff"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "272",
+              "value": {
+                "type": "number",
+                "value": 68
+              },
+              "__collapse": false
+            },
+            "id": "7a01d858-e010-41e5-8c1a-348615a7edfb"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "273",
+              "value": {
+                "type": "number",
+                "value": 9
+              },
+              "__collapse": false
+            },
+            "id": "5406d495-f5fc-4a1a-b315-e4bda890fe0e"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "274",
+              "value": {
+                "type": "number",
+                "value": 42
+              },
+              "__collapse": false
+            },
+            "id": "6dc42e79-989d-47ed-ae91-5fef9f9e4598"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "275",
+              "value": {
+                "type": "number",
+                "value": 8
+              },
+              "__collapse": false
+            },
+            "id": "ef50581f-5ffa-4134-b298-d4bc69e3c17c"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "277",
+              "value": {
+                "type": "number",
+                "value": 100
+              },
+              "__collapse": false
+            },
+            "id": "83eac65c-8a9f-42bd-bdad-07376ef34904"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "280",
+              "value": {
+                "type": "number",
+                "value": 100
+              },
+              "__collapse": false
+            },
+            "id": "81713adb-4ea8-48b5-a664-3f21a8430421"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "269",
+              "value": {
+                "type": "number",
+                "value": 565
+              },
+              "__collapse": false
+            },
+            "id": "a454d41f-fa64-460f-9d24-aa5fa5226309"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "288",
+              "value": {
+                "type": "number",
+                "value": 7
+              },
+              "__collapse": false
+            },
+            "id": "cbb57b30-25ea-497f-ab5c-29981e2bf4c0"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "283",
+              "value": {
+                "type": "number",
+                "value": 10
+              },
+              "__collapse": false
+            },
+            "id": "6c9fedae-ae8e-496f-869e-2ff87f9de2ee"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "281",
+              "value": {
+                "type": "number",
+                "value": 2
+              },
+              "__collapse": false
+            },
+            "id": "a1be7f17-052a-4abd-a590-53a63ee879f8"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "282",
+              "value": {
+                "type": "number",
+                "value": 6
+              },
+              "__collapse": false
+            },
+            "id": "d02f24f3-0b43-4c6a-83d7-a1674fe23215"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "279",
+              "value": {
+                "type": "number",
+                "value": 5
+              },
+              "__collapse": false
+            },
+            "id": "2ab9ad3f-5ded-4fc7-8b69-38944b957efb"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "278",
+              "value": {
+                "type": "number",
+                "value": 5
+              },
+              "__collapse": false
+            },
+            "id": "4e98f6e3-9e0b-4a9f-9d55-6f7a6a682c65"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "276",
+              "value": {
+                "type": "number",
+                "value": 7
+              },
+              "__collapse": false
+            },
+            "id": "a2bd5942-72cd-4ab3-ad09-7ae450fa7624"
+          }
+        ]
+      },
+      "id": "35c56376-b80c-4bc4-9551-369eb537ee3a"
+    },
+    {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Draw stats to page",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "6ba6706f-6991-44eb-9af7-1bed77d232a0",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "266"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 11
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 3
+              },
+              "__label": "(Script) Games played",
+              "__collapse": true
+            },
+            "id": "bfa01183-dc91-4906-b345-09b138e3db89"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "6ba6706f-6991-44eb-9af7-1bed77d232a0",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "291"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 11
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 5
+              },
+              "__label": "(Script) High score",
+              "__collapse": true
+            },
+            "id": "513c2961-4b3a-4825-abdc-ab6530115a0b"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "6ba6706f-6991-44eb-9af7-1bed77d232a0",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "267"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 11
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 7
+              },
+              "__label": "(Script) Lowest score",
+              "__collapse": true
+            },
+            "id": "5f65df6b-5ef0-49ae-97b9-8c4c471e4871"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "lte",
+                "valueA": {
+                  "type": "variable",
+                  "value": "266"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 30
+                }
+              },
+              "__collapseElse": false,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "6ba6706f-6991-44eb-9af7-1bed77d232a0",
+                    "$variable[V0]$": {
+                      "type": "variable",
+                      "value": "269"
+                    },
+                    "$variable[V1]$": {
+                      "type": "number",
+                      "value": 11
+                    },
+                    "$variable[V2]$": {
+                      "type": "number",
+                      "value": 9
+                    },
+                    "__label": "(Script) Avg score",
+                    "__collapse": true
+                  },
+                  "id": "9b561915-ca02-40b7-b57e-a01b5eeb574e"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Once 30 games are played, we are now just tracking first 3 digits of average and adding a 0 at the end (see script Calculate average score for more info)",
+                    "__collapse": true
+                  },
+                  "id": "6b9950ae-ace2-412f-a2e8-2d5df6d4c963"
+                },
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "a3f7aa9f-caf8-406c-9bde-4eddb4a5b633",
+                    "$variable[V0]$": {
+                      "type": "variable",
+                      "value": "269"
+                    },
+                    "$variable[V1]$": {
+                      "type": "number",
+                      "value": 11
+                    },
+                    "$variable[V2]$": {
+                      "type": "number",
+                      "value": 9
+                    },
+                    "__collapse": false
+                  },
+                  "id": "a4214082-4634-4b90-accd-52b99fd4fa99"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "lt",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "269"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 100
+                      }
+                    },
+                    "__collapseElse": false,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 13
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 9
+                          },
+                          "tilesetId": "a3d33ea1-ce73-4284-bf43-56ad1d70ba96",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "__collapse": false,
+                          "__comment": false
+                        },
+                        "id": "00ba8e45-fee1-4df6-b097-a959f495b5c3"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 14
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 9
+                          },
+                          "tilesetId": "a3d33ea1-ce73-4284-bf43-56ad1d70ba96",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "__collapse": false,
+                          "__comment": false
+                        },
+                        "id": "4d90d274-599e-49dd-854b-4f7338fba640"
+                      }
+                    ]
+                  },
+                  "id": "75d61980-502d-4b2c-b832-74b433b95a33"
+                }
+              ]
+            },
+            "id": "1ad38366-7af0-4068-b236-5d4c4b402b0b"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "6ba6706f-6991-44eb-9af7-1bed77d232a0",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "270"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 7
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 13
+              },
+              "__collapse": true,
+              "__label": "(Script) Yotzees - total"
+            },
+            "id": "90fd7b63-798d-4803-92cc-dc445f2afc5a"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "b2472afa-96fb-4cd8-bdf0-460edd9d8521",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "271"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 16
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 13
+              },
+              "__label": "(Script) Yotzees - game",
+              "__collapse": true
+            },
+            "id": "32eac271-27ad-4fe5-8348-bb3f0b87ce37"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "6ba6706f-6991-44eb-9af7-1bed77d232a0",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "272"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 7
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 16
+              },
+              "__label": "(Script) Slot wins - total",
+              "__collapse": true
+            },
+            "id": "fff21f7f-1542-428a-bc52-00a6282c8f6a"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "b2472afa-96fb-4cd8-bdf0-460edd9d8521",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "273"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 16
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 16
+              },
+              "__label": "(Script) Slot wins - game",
+              "__collapse": true
+            },
+            "id": "0d4fca5a-7792-4c2a-bf33-fe43c39ae381"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "6ba6706f-6991-44eb-9af7-1bed77d232a0",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "274"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 7
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 19
+              },
+              "__label": "(Script) Tokens used - total",
+              "__collapse": true
+            },
+            "id": "a41d8de2-80cf-4be3-bd8a-fa94b13ea801"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "b2472afa-96fb-4cd8-bdf0-460edd9d8521",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "275"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 16
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 19
+              },
+              "__label": "(Script) Tokens used - game",
+              "__collapse": true
+            },
+            "id": "21a48f05-8d5f-497d-b009-deea00864942"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "4e592ab0-9ff5-488b-9deb-c68f54f98d9b",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "277"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 11
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 21
+              },
+              "__label": "(Script) Top bonus percentage",
+              "__comment": false,
+              "__collapse": true
+            },
+            "id": "0d18b571-e835-46cd-b2d1-293387d44ef8"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "2f88f883-dfd9-4c7d-9416-f5a2bd22e445",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "276"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 9
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 22
+              },
+              "__collapse": true,
+              "__label": "(Script) Top bonus hit count"
+            },
+            "id": "f940ff3b-5b17-46ab-86dc-10de9d010b63"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "5298f640-346a-4ca3-ac7a-d06b13a10606",
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 14
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 22
+              },
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "266"
+              },
+              "__collapse": true,
+              "__label": "(Script) Top bonus games played"
+            },
+            "id": "eb9bcdf4-d536-49a9-9d5e-5ae50faf0483"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "4e592ab0-9ff5-488b-9deb-c68f54f98d9b",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "280"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 11
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 24
+              },
+              "__label": "(Script) Double down percentage",
+              "__comment": false,
+              "__collapse": true
+            },
+            "id": "73d1267e-a347-4080-91e8-a54987a7d9d4"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "0164a75c-9c63-4522-a4e5-2c2008de2b5f",
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 10
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 25
+              },
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "279"
+              },
+              "__label": "(Script) Double down wins",
+              "__collapse": true
+            },
+            "id": "cacdddf9-c2de-49d3-85b2-382a9f922b51"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "7e5c6efd-19b3-42b7-934a-e9709092c1cf",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "278"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 14
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 25
+              },
+              "__label": "(Script) Double down plays",
+              "__collapse": true
+            },
+            "id": "130159be-3929-4d5a-a34c-bb8980e21357"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "a3f7aa9f-caf8-406c-9bde-4eddb4a5b633",
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 13
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 28
+              },
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "282"
+              },
+              "__label": "(Script) 500 streak",
+              "__collapse": true
+            },
+            "id": "9d99ab91-f25b-412e-8c02-e837163e2c12"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "a3f7aa9f-caf8-406c-9bde-4eddb4a5b633",
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 13
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 29
+              },
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "281"
+              },
+              "__label": "(Script) 700 streak",
+              "__collapse": false
+            },
+            "id": "028dda36-1648-4720-92ad-33b9f22e8401"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "a3f7aa9f-caf8-406c-9bde-4eddb4a5b633",
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 13
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 30
+              },
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "283"
+              },
+              "__label": "(Script) Yotzee streak",
+              "__collapse": false
+            },
+            "id": "720136c1-69ef-4bf6-b64a-9364d560db51"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "a3f7aa9f-caf8-406c-9bde-4eddb4a5b633",
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 13
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 31
+              },
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "288"
+              },
+              "__label": "(Script) Top bonus streak",
+              "__collapse": false
+            },
+            "id": "e07b3183-37a5-4be3-9000-b5b862b37ff3"
+          }
+        ]
+      },
+      "id": "c9894f41-92f3-462f-803a-68565022cc05"
+    },
+    {
+      "command": "EVENT_PALETTE_SET_BACKGROUND",
+      "args": {
+        "palette0": "keep",
+        "palette1": "keep",
+        "palette2": "keep",
+        "palette3": "keep",
+        "palette4": "keep",
+        "palette5": "keep",
+        "palette6": "0cef988f-3d9f-40f6-833d-d577f67f135d",
+        "palette7": "keep",
+        "__collapse": true
+      },
+      "id": "c33371c8-b372-46db-bd09-a7f47fe3a082"
+    }
+  ],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": [],
+  "collisions": "002d0+"
+}

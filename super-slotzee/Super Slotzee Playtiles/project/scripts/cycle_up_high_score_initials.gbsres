@@ -1,0 +1,88 @@
+{
+  "_resourceType": "script",
+  "id": "ca4fc596-e396-4909-9638-3c30abad2466",
+  "name": "Cycle up high score initials",
+  "description": "This is reused a lot for each initial you can cycle through when entering high scores",
+  "variables": {
+    "V0": {
+      "id": "V0",
+      "name": "initial_to_increment",
+      "passByReference": true
+    }
+  },
+  "actors": {},
+  "symbol": "script_54",
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "67"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SOUND_PLAY_EFFECT",
+            "args": {
+              "type": "3adb8acb-8256-4783-bd0c-4a575a24cf1f",
+              "priority": "medium",
+              "pitch": 4,
+              "frequency": 200,
+              "duration": 0.5,
+              "wait": true,
+              "effect": 7
+            },
+            "id": "58ab606f-d399-4776-8844-50c5ee316e7d"
+          }
+        ],
+        "false": []
+      },
+      "id": "2fb30f10-2882-47bf-a41e-98a29fdde6b3"
+    },
+    {
+      "command": "EVENT_INC_VALUE",
+      "args": {
+        "variable": "V0",
+        "__collapse": true
+      },
+      "id": "e353f607-f89c-4759-b944-46363b8324b8"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "eq",
+          "valueA": {
+            "type": "variable",
+            "value": "V0"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 33
+          }
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "V0",
+              "value": {
+                "type": "number",
+                "value": 1
+              }
+            },
+            "id": "bc43d8ed-39be-4ef2-a739-318f6208628c"
+          }
+        ],
+        "false": []
+      },
+      "id": "25dbdc60-a9dc-4ae0-baac-9eae31252fd6"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "_resourceType": "scene",
+  "id": "bba0f8eb-cf6e-4e8c-8645-756d952af714",
+  "_index": 14,
+  "type": "TOPDOWN",
+  "name": "How to play 3 - Slot tokens",
+  "symbol": "scene_15",
+  "labelColor": "yellow",
+  "x": 1112,
+  "y": 704,
+  "width": 20,
+  "height": 18,
+  "backgroundId": "77a23d0a-438b-4587-8428-ce4fef34e974",
+  "tilesetId": "",
+  "paletteIds": [
+    "9ca02340-b065-4dd8-aeb4-9fca42ab73ec",
+    "1c998caa-96a2-407a-9b53-672da8a201c4",
+    "83898684-81cb-4b51-b50f-d598fef5c345",
+    "c8abcfc9-0ce1-4f46-9507-1d8f1ebec6a6",
+    "",
+    "",
+    "",
+    "f006aaec-a37b-4d52-94a4-157d55a31514"
+  ],
+  "spritePaletteIds": [
+    "11039d1b-aab7-4521-b748-0389d4f220a1",
+    "",
+    "c8abcfc9-0ce1-4f46-9507-1d8f1ebec6a6"
+  ],
+  "autoFadeSpeed": 1,
+  "playerSpriteSheetId": "e33d5b2a-47aa-4d31-9cc9-ef786d187fe1",
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "294"
+        },
+        "__collapseElse": true,
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "344d9e3c-6ff3-428a-a54f-0f5e7492a8d7",
+              "spriteStateId": "Paused state",
+              "loopAnim": true
+            },
+            "id": "2053b0dd-ef41-4552-8295-1620aa5951bc"
+          }
+        ],
+        "false": []
+      },
+      "id": "e424fe23-792d-484d-9a42-29fc15eb7b6a"
+    },
+    {
+      "command": "EVENT_ACTOR_SET_STATE",
+      "args": {
+        "actorId": "$self$",
+        "spriteStateId": "Animated up still small",
+        "loopAnim": true,
+        "__collapse": true
+      },
+      "id": "3cdc9a80-14c5-430f-8e85-97018c87bb5b"
+    },
+    {
+      "command": "EVENT_PALETTE_SET_UI",
+      "args": {
+        "palette": "045b8ede-d114-41db-b65d-934f94aa7bfa",
+        "__collapse": true
+      },
+      "id": "53922419-d129-43b0-8eb3-1e4d96bba71c"
+    },
+    {
+      "command": "EVENT_ACTOR_SET_POSITION",
+      "args": {
+        "actorId": "$self$",
+        "x": {
+          "type": "number",
+          "value": 4
+        },
+        "y": {
+          "type": "number",
+          "value": 9
+        },
+        "__collapse": true
+      },
+      "id": "5b4a9023-0c6c-48d6-9960-e74f149ba797"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "b",
+          "start"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "ccf7f141-a8fd-45e0-bb48-f7d4392adba5"
+            },
+            "id": "2141e28d-f612-4171-b92d-ec9b17b7e633"
+          },
+          {
+            "command": "EVENT_PALETTE_SET_UI",
+            "args": {
+              "palette": "f006aaec-a37b-4d52-94a4-157d55a31514"
+            },
+            "id": "f5af2849-b0fe-4ae2-b1c9-82d407d33f4a"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "294"
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "5a5fca72-8d96-45d2-9f47-f418c5d5a21d",
+                    "x": {
+                      "type": "number",
+                      "value": 6
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 17
+                    },
+                    "direction": "",
+                    "fadeSpeed": "2"
+                  },
+                  "id": "7a097fa7-4e18-4e23-9f16-aa93db690b90"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "e4e90a7f-3caa-435a-bd3c-b38e152d95ef",
+                    "x": {
+                      "type": "number",
+                      "value": 5
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 9
+                    },
+                    "direction": "right",
+                    "fadeSpeed": "2"
+                  },
+                  "id": "72226f9c-c9aa-4e2d-a5a7-502d4d6dfa62"
+                }
+              ]
+            },
+            "id": "7479a406-ef0c-448a-8357-9da8b44b1390"
+          }
+        ]
+      },
+      "id": "babfdba5-0839-4938-a344-ba1c6936040b"
+    }
+  ],
+  "playerHit1Script": [],
+  "playerHit2Script": [],
+  "playerHit3Script": [],
+  "collisions": ""
+}

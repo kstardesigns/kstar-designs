@@ -1,0 +1,372 @@
+{
+  "_resourceType": "trigger",
+  "id": "8f98743d-32ee-4389-b5fe-0543b9c9a274",
+  "name": "Hold slot 1",
+  "prefabId": "",
+  "x": 2,
+  "y": 5,
+  "symbol": "trigger_0",
+  "prefabScriptOverrides": {},
+  "width": 1,
+  "height": 4,
+  "script": [
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Hold functionality",
+        "__collapse": true
+      },
+      "id": "cd315fb8-df65-4693-88fe-d1f0881b17e4"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "a"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "($16$ != 0 || ($160$ && $16$ == 0)) && (!$44$ || ($44$ && $160$))"
+              },
+              "__collapseElse": false,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "variable",
+                      "value": "67"
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SOUND_PLAY_EFFECT",
+                        "args": {
+                          "type": "3adb8acb-8256-4783-bd0c-4a575a24cf1f",
+                          "priority": "low",
+                          "pitch": 4,
+                          "frequency": 200,
+                          "duration": 0.5,
+                          "wait": true,
+                          "effect": 6
+                        },
+                        "id": "ba924051-21c8-4951-a6a3-906bbdb64bae"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "3d733a55-edc6-4f85-83c5-921843c20701"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "not",
+                      "value": {
+                        "type": "variable",
+                        "value": "8"
+                      }
+                    },
+                    "__collapseElse": false,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "8",
+                          "value": {
+                            "type": "true"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "5198d585-3321-44a0-9245-c3a1a86bf1ad"
+                      },
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "HOLD -> HELD",
+                          "__collapse": true
+                        },
+                        "id": "e4bf7718-b645-4695-81f7-9ef65d9e4acb"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 3
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 7
+                          },
+                          "tilesetId": "632d4790-77b9-4492-95a8-4a3a40217284",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "__collapse": true
+                        },
+                        "id": "1f6b86da-9642-491d-b8a0-dd83b3f3082e"
+                      },
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "no lock -> lock\n",
+                          "__collapse": true
+                        },
+                        "id": "2f7b3cd9-4908-4a88-be4c-29814ac50590"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 3
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 5
+                          },
+                          "tilesetId": "1263a783-b93b-43b6-9085-57e1c5afe78f",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 2
+                          },
+                          "__collapse": true,
+                          "tileSize": "16px"
+                        },
+                        "id": "457127b6-f5a6-4738-8271-309fafbad48c"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "8",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "5937c7d7-692b-4431-84c4-6debfe2154e3"
+                      },
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "HELD -> HOLD",
+                          "__collapse": true
+                        },
+                        "id": "1da96fd1-4260-4cfb-bbf7-06d02b926e6f"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 3
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 7
+                          },
+                          "tilesetId": "632d4790-77b9-4492-95a8-4a3a40217284",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 3
+                          },
+                          "__collapse": true,
+                          "tileSize": "8px"
+                        },
+                        "id": "00498aa7-6302-476d-9844-f149d6f15dbf"
+                      },
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "no lock -> lock\n",
+                          "__collapse": true
+                        },
+                        "id": "45b9a4cf-587b-4cf6-afc8-32c4daeaa6b0"
+                      },
+                      {
+                        "command": "EVENT_REPLACE_TILE_XY",
+                        "args": {
+                          "x": {
+                            "type": "number",
+                            "value": 3
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 5
+                          },
+                          "tilesetId": "1263a783-b93b-43b6-9085-57e1c5afe78f",
+                          "tileIndex": {
+                            "type": "number",
+                            "value": 0
+                          },
+                          "__collapse": true,
+                          "tileSize": "16px"
+                        },
+                        "id": "5f4a0f7e-d5bf-4087-bbd0-d4e792a2416c"
+                      }
+                    ]
+                  },
+                  "id": "6151e5d8-4c52-4b0c-ad61-dc1833c1dfcd"
+                }
+              ],
+              "false": []
+            },
+            "id": "3df1bd79-ea8d-4778-a020-382c983c6ca8"
+          }
+        ]
+      },
+      "id": "b7f2bb4a-74b9-47c5-94ac-266d93f9d9f5"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Move to next HOLD",
+        "__collapse": true
+      },
+      "id": "f874d3a6-eb92-4e59-8a9b-129473950ae5"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "right"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "1029b51f-a0aa-47d8-bd1d-1a84b946d86b",
+              "__collapse": true
+            },
+            "id": "f85b5d0d-67be-4e66-a457-74d76ec1475d"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 8
+              },
+              "y": {
+                "type": "number",
+                "value": 8
+              }
+            },
+            "id": "0c2403b7-f8ac-4943-a779-64fa08faf7b7"
+          }
+        ]
+      },
+      "id": "e6308385-68b8-425b-a9df-0a34836d6404"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Move to HOLD below",
+        "__collapse": true
+      },
+      "id": "90c5f413-bab9-410f-a146-185d3d419fc7"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "down"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "1029b51f-a0aa-47d8-bd1d-1a84b946d86b",
+              "__collapse": true
+            },
+            "id": "19dcce8a-8c6b-4d73-a069-47084e2e4cbb"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "$self$",
+              "spriteStateId": "Middle row cursor",
+              "loopAnim": true
+            },
+            "id": "a0614ba3-46db-476b-9e5b-972a86bb61c4"
+          },
+          {
+            "command": "EVENT_ACTOR_SET_POSITION",
+            "args": {
+              "actorId": "$self$",
+              "x": {
+                "type": "number",
+                "value": 2
+              },
+              "y": {
+                "type": "number",
+                "value": 14
+              },
+              "__collapse": false
+            },
+            "id": "95e601f4-aec7-453d-a49e-c10ebbaadc1f"
+          }
+        ]
+      },
+      "id": "9f06bb66-359f-4a26-a6af-033805471444"
+    },
+    {
+      "command": "EVENT_COMMENT",
+      "args": {
+        "text": "Disabled these buttons\nNOTE: B is set on scene\nNOTE: Start/Select are set with global script",
+        "__collapse": true
+      },
+      "id": "161a5283-5e20-42dd-b76f-069e3a6d2ea3"
+    },
+    {
+      "command": "EVENT_SET_INPUT_SCRIPT",
+      "args": {
+        "input": [
+          "up",
+          "left"
+        ],
+        "override": true,
+        "__scriptTabs": "press",
+        "__collapse": true
+      },
+      "children": {
+        "true": []
+      },
+      "id": "3ea82c36-107b-4088-a2e2-b6a4f4ea3889"
+    }
+  ],
+  "leaveScript": [],
+  "_index": 0
+}

@@ -1,0 +1,371 @@
+{
+  "_resourceType": "script",
+  "id": "ad3ec2a3-7c73-4364-b56a-180129e66468",
+  "name": "End of Turn Scene Change to Score button",
+  "description": "This script is at the end of spin & roll button. It checks if an animation should play and waits for it, before an automatic scene change.",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_31",
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "129"
+        },
+        "__collapseElse": true,
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "81",
+              "value": {
+                "type": "false"
+              },
+              "__collapse": true
+            },
+            "id": "48f6796e-a336-4214-a129-bea7d488de2f"
+          },
+          {
+            "command": "EVENT_THREAD_START",
+            "args": {
+              "variable": "130",
+              "__scriptTabs": "true"
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "variable",
+                      "value": "44"
+                    },
+                    "__collapseElse": false,
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 1,
+                          "frames": 30
+                        },
+                        "id": "f99c9a8c-f8ec-4e9c-97ba-672b5e44f2d8"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_WAIT",
+                        "args": {
+                          "time": 3,
+                          "frames": 30
+                        },
+                        "id": "f0647264-5234-42fc-a117-5b55fb9cca7b"
+                      }
+                    ]
+                  },
+                  "id": "7da37b67-de02-4024-a84d-d8cd8a555e4a"
+                },
+                {
+                  "command": "EVENT_THREAD_STOP",
+                  "args": {
+                    "variable": "130",
+                    "__collapse": false
+                  },
+                  "id": "9ba79f54-2c37-46f3-b6ff-8ccf0692e670"
+                }
+              ]
+            },
+            "id": "c88cbf84-e1fe-408e-8ca1-1dd47af8ead2"
+          }
+        ],
+        "false": []
+      },
+      "id": "e04d75c2-dd1f-4e67-a89b-19a3f7b0065c"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$16$ == 4 && !$123$"
+        },
+        "__collapseElse": false,
+        "__collapse": false,
+        "__label": "(If) End of turn scene change to scorecard",
+        "__comment": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "65",
+              "value": {
+                "type": "false"
+              },
+              "__collapse": true,
+              "__comment": false
+            },
+            "id": "1f28fdbd-e397-42d3-b9f6-507f3d623f19"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "4e8b3ff2-3534-4105-9433-9219ae85744d",
+              "__collapse": true
+            },
+            "id": "38a8a8a6-ce9c-4752-8764-47f97351fd95"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "$16$ == 3 && !$123$"
+              },
+              "__collapseElse": false,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "not",
+                      "value": {
+                        "type": "variable",
+                        "value": "61"
+                      }
+                    },
+                    "__collapseElse": false,
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "65",
+                          "value": {
+                            "type": "false"
+                          },
+                          "__collapse": true,
+                          "__comment": false
+                        },
+                        "id": "084a084c-c00f-4da4-97d7-6ea7b983e659"
+                      },
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "4e8b3ff2-3534-4105-9433-9219ae85744d"
+                        },
+                        "id": "9390194c-39e0-4c68-ad7a-dd9097134d96"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "e46eadc6-a469-4455-b95c-c3316190507f"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "If it's a joker Yotzee, force hold all dice and let player know.",
+                    "__collapse": true
+                  },
+                  "id": "0c33f3a1-9d20-4b7c-8beb-a61d91864b55"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "expression",
+                      "value": "$39$ && ($41$ == 50 || $41$ == 100)"
+                    },
+                    "__collapseElse": false,
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "not",
+                            "value": {
+                              "type": "variable",
+                              "value": "127"
+                            }
+                          },
+                          "__collapseElse": true
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "args": {
+                                "customEventId": "6145b3c0-ceb7-480c-bf11-ca46f03a8402",
+                                "__collapse": true
+                              },
+                              "id": "aa860850-0bc6-4468-a81c-5cd0c2092a55"
+                            },
+                            {
+                              "command": "EVENT_SET_VALUE",
+                              "args": {
+                                "variable": "127",
+                                "value": {
+                                  "type": "true"
+                                },
+                                "__collapse": true
+                              },
+                              "id": "ee9539ac-234c-457a-9394-49c30f867e75"
+                            },
+                            {
+                              "command": "EVENT_PALETTE_SET_UI",
+                              "args": {
+                                "palette": "f006aaec-a37b-4d52-94a4-157d55a31514",
+                                "__collapse": true
+                              },
+                              "id": "e9c3f169-c9ff-4f7a-b49c-2c0304110fd2"
+                            },
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "variable",
+                                  "value": "303"
+                                },
+                                "__collapseElse": true
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_TEXT",
+                                    "args": {
+                                      "text": [
+                                        "JOKER!\n@",
+                                        "This Yotzee is\nautomatically  @",
+                                        "scored, and you will \nalso score another  @",
+                                        "box on the scorecard."
+                                      ],
+                                      "__section": "text",
+                                      "avatarId": "",
+                                      "minHeight": 4,
+                                      "maxHeight": 7,
+                                      "textX": 1,
+                                      "textY": 1,
+                                      "textHeight": 5,
+                                      "position": "bottom",
+                                      "clearPrevious": true,
+                                      "showFrame": "true",
+                                      "speedIn": -1,
+                                      "speedOut": -1,
+                                      "closeWhen": "key",
+                                      "closeButton": "a",
+                                      "closeDelayTime": 0.5,
+                                      "closeDelayFrames": 30,
+                                      "__collapse": false
+                                    },
+                                    "id": "ea3fcda8-6b74-401a-a63b-d4c369bbd16d"
+                                  }
+                                ],
+                                "false": []
+                              },
+                              "id": "72046179-4433-4a9d-abde-48b00ea380ed"
+                            },
+                            {
+                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "args": {
+                                "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8",
+                                "__collapse": true
+                              },
+                              "id": "2ce2574d-e9fb-4b52-b4a6-291f74897d19"
+                            },
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "expression",
+                                  "value": "($16$ == 3 && !$61$) || ($16$ == 4 && $61$)"
+                                },
+                                "__collapseElse": true
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_CALL_CUSTOM_EVENT",
+                                    "args": {
+                                      "customEventId": "4e8b3ff2-3534-4105-9433-9219ae85744d"
+                                    },
+                                    "id": "194ae813-97c3-4617-82ad-10a890169aef"
+                                  }
+                                ],
+                                "false": []
+                              },
+                              "id": "bad86cb8-350c-4f1e-beb4-4f8a1ce3dcbc"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "f5d3287b-e22d-4774-9499-235f701b619c"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "This is for the rare occurrence where the player has already scored this turn, and uses a super yotzee on the same turn before the next turn has started",
+                          "__collapse": true
+                        },
+                        "id": "6f8eebcf-4a66-4077-bb02-24177891ecdd"
+                      },
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "expression",
+                            "value": "$39$ && $159$"
+                          },
+                          "__collapseElse": false,
+                          "__comment": false,
+                          "__collapse": false
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_CALL_CUSTOM_EVENT",
+                              "args": {
+                                "customEventId": "4e8b3ff2-3534-4105-9433-9219ae85744d"
+                              },
+                              "id": "f5f26c5a-dfdc-48de-ae3d-9b0899ab8056"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "d5413076-8f4b-499b-ae58-6a120de6b0ae"
+                      }
+                    ]
+                  },
+                  "id": "99fba40c-a8d7-4ba3-ba76-0f23ed645db6"
+                }
+              ]
+            },
+            "id": "f5987805-f3d6-4e7c-9b09-e676c53e74aa"
+          }
+        ]
+      },
+      "id": "bb6c302a-c729-4b7f-b123-14575f8274ab"
+    }
+  ]
+}

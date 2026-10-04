@@ -1,0 +1,88 @@
+{
+  "_resourceType": "script",
+  "id": "7ee064b7-d7ec-442c-9a22-a400a9f846f2",
+  "name": "Cycle down high score initials",
+  "description": "This is reused a lot for each initial you can cycle through when entering high scores",
+  "variables": {
+    "V0": {
+      "id": "V0",
+      "name": "initial_to_decrement",
+      "passByReference": true
+    }
+  },
+  "actors": {},
+  "symbol": "script_55",
+  "script": [
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "variable",
+          "value": "67"
+        },
+        "__collapseElse": true,
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SOUND_PLAY_EFFECT",
+            "args": {
+              "type": "3adb8acb-8256-4783-bd0c-4a575a24cf1f",
+              "priority": "medium",
+              "pitch": 4,
+              "frequency": 200,
+              "duration": 0.5,
+              "wait": true,
+              "effect": 7
+            },
+            "id": "4ac774f2-678f-4ef1-8eec-522c89d025cc"
+          }
+        ],
+        "false": []
+      },
+      "id": "72d882ab-ace9-4eb1-bf81-c165cb422fd8"
+    },
+    {
+      "command": "EVENT_DEC_VALUE",
+      "args": {
+        "variable": "V0"
+      },
+      "id": "68a06a93-628b-4c19-9877-4767306393a1"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "eq",
+          "valueA": {
+            "type": "variable",
+            "value": "V0"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 0
+          }
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "V0",
+              "value": {
+                "type": "number",
+                "value": 32
+              }
+            },
+            "id": "ca2501e9-3f6c-458c-bb70-32a9631ff71f"
+          }
+        ],
+        "false": []
+      },
+      "id": "beb7ffbc-fe3b-4387-b3e0-d56c24a0900a"
+    }
+  ]
+}

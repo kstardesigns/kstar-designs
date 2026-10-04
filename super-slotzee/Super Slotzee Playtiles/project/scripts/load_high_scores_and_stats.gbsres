@@ -1,0 +1,459 @@
+{
+  "_resourceType": "script",
+  "id": "5fc88111-eaac-4b12-94c4-947394727ad9",
+  "name": "Load high scores and stats",
+  "description": "",
+  "variables": {},
+  "actors": {},
+  "symbol": "script_13",
+  "script": [
+    {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Load high score variables",
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "ec0ccd89-2846-4fe0-9e76-609843ca7b35",
+              "__collapse": false
+            },
+            "id": "973e0525-bd46-4f63-b5a4-981075fd6b80"
+          }
+        ]
+      },
+      "id": "67f16de6-cf28-4a57-aff8-fcec588b4a99"
+    },
+    {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "Load and calc stats",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Games played:",
+              "__collapse": true
+            },
+            "id": "85b01a73-dada-4a09-ace5-2d635769de10"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "variable",
+                "value": "222"
+              },
+              "__collapseElse": false,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "266",
+                    "value": {
+                      "type": "expression",
+                      "value": "$32$ - 1"
+                    }
+                  },
+                  "id": "16b763d0-9d29-4912-8568-958fdd538a82"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "266",
+                    "value": {
+                      "type": "variable",
+                      "value": "32"
+                    }
+                  },
+                  "id": "4b381dc0-65f8-4503-a6ac-8d3539bfc97b"
+                }
+              ]
+            },
+            "id": "1548e1f7-2edf-46bc-9d8d-19b18c9b2730"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "High score - loaded above",
+              "__collapse": true,
+              "__label": "High score:"
+            },
+            "id": "1762c8f3-772f-411d-a0b0-533cc61a3b96"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "291",
+              "variableSource": "291",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "0f78c52f-9e16-4e15-b51c-c83721874650"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Low score:",
+              "__collapse": true
+            },
+            "id": "94d78590-d3cf-49e1-a79c-e33d19cab74e"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "267",
+              "variableSource": "267",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "d87248d1-a0d7-4e2c-8333-97f51bda82d5"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Average score:",
+              "__collapse": true
+            },
+            "id": "f1664747-dd82-4d9b-8cf9-bc0777500650"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "268",
+              "variableSource": "268",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "3fc675bd-67f4-43bf-b4d5-3d54fac79c6f"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "217",
+              "variableSource": "217",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "6215683a-ad1d-4ed7-8347-96c6c3ab7150"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "f4f6b58f-5fad-4936-8002-c335a1042194",
+              "__collapse": true
+            },
+            "id": "c04f1800-8396-4cf5-9e81-964a39df6bf0"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Yotzees - total\n",
+              "__collapse": true
+            },
+            "id": "0cecc9df-aab1-4ab9-ae67-3acb6ac1a4c8"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "270",
+              "variableSource": "270",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "a69f78cf-d43f-426e-80a8-77cb1c826e7c"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Yotzees - game",
+              "__collapse": true
+            },
+            "id": "1b079b2f-0348-44d5-bdfc-49c891dd8b5a"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "271",
+              "variableSource": "271",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "2208d2dc-bb2d-406e-b059-1319b3aeb4a4"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Slot wins - total",
+              "__collapse": true
+            },
+            "id": "e1bf3e61-66fa-4ed1-a816-da4993631d7b"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "272",
+              "variableSource": "272",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "3d651db3-026d-4b34-b7fe-1891d8b9763a"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Slot wins - game",
+              "__collapse": true
+            },
+            "id": "31edc5d3-7a43-44ff-be00-404c25c7d96f"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "273",
+              "variableSource": "273",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "7fc31794-2cd4-4ebc-abf8-9b5a6bc38f40"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Tokens wins - total",
+              "__collapse": true,
+              "__label": ""
+            },
+            "id": "b0e3b20f-9960-438c-8402-f3afe7325e7c"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "274",
+              "variableSource": "274",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "1b9401f2-918f-4d17-906e-aba59a8f91f3"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Tokens used - game",
+              "__collapse": true
+            },
+            "id": "a4883d4f-6d91-4769-907e-2b8fdbbe0b83"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "275",
+              "variableSource": "275",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "2962ea5b-ca03-4f74-baf3-1b0ae7970ff0"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Upper bonus %",
+              "__collapse": true
+            },
+            "id": "98a11fe2-f3b1-4985-9795-173c235ba65f"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "276",
+              "variableSource": "276",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "70421931-5d2c-4f7b-b0ee-8f31a7d6c999"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "277",
+              "value": {
+                "type": "expression",
+                "value": "($276$ * 100)/ $266$"
+              },
+              "__collapse": false
+            },
+            "id": "e258019c-091c-4f05-a29a-831da311207e"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Double down %\n",
+              "__collapse": true
+            },
+            "id": "f82483b1-1b35-48af-a3c2-eecf8680b398"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "279",
+              "variableSource": "279",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "1dc22102-7ed4-437f-b4e3-4bda3f5bdb3c"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "278",
+              "variableSource": "278",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "546b762a-cf60-43ba-8063-434683c44110"
+          },
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "280",
+              "value": {
+                "type": "expression",
+                "value": "($279$ * 100)/ $278$"
+              },
+              "__collapse": false
+            },
+            "id": "14d28b29-36ee-49cb-a002-7f055f6aed09"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "7\n00 streak",
+              "__collapse": true,
+              "__label": "700 streak"
+            },
+            "id": "0385ecf9-e20d-4030-93de-0926bb44fb23"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "284",
+              "variableSource": "284",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "fd2d41cb-a8c5-456e-bfd4-7ad83bbe4703"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "281",
+              "variableSource": "281",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "d61e55bb-780d-4f22-a2f5-a6cd616bb33a"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "300 streak",
+              "__collapse": true,
+              "__label": "500 streak"
+            },
+            "id": "6b423417-d2a1-488e-9844-ff3447b418bd"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "285",
+              "variableSource": "285",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "3bd197a5-3e33-4fc0-a30c-b5139c4bf414"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "282",
+              "variableSource": "282",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "5ecec9cb-c25d-46b2-9990-a940e043e5e0"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "300 streak",
+              "__collapse": true,
+              "__label": "Yotzee streak"
+            },
+            "id": "b2ba1038-e217-4508-ad6e-2a92e9488fce"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "286",
+              "variableSource": "286",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "da38e04a-7994-427e-afcf-069b6014c89d"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "283",
+              "variableSource": "283",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "4942847c-e367-4ed4-907d-50df42afb69f"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "300 streak",
+              "__collapse": true,
+              "__label": "Top bonus streak"
+            },
+            "id": "0ca2888a-9e98-4eb1-a1b1-31c948b94603"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "287",
+              "variableSource": "287",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "c36c16fa-0219-4968-934f-d69ad2b2a44e"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "288",
+              "variableSource": "288",
+              "saveSlot": 0,
+              "__collapse": true
+            },
+            "id": "aca88b27-dd23-4cc7-bc1a-2c24fdff6336"
+          }
+        ]
+      },
+      "id": "b3c2651a-f403-424d-b131-69e93c5056a4"
+    }
+  ]
+}
