@@ -200,6 +200,182 @@
             "command": "EVENT_IF",
             "args": {
               "condition": {
+                "type": "expression",
+                "value": "$325$ == 2 || $325$ == 3"
+              },
+              "__collapseElse": true,
+              "__label": "Fruity/Classic"
+            },
+            "children": {
+              "true": [
+                {
+                  "id": "50225c38-ef22-4f1d-9b20-c39a755f99b4",
+                  "command": "EVENT_GROUP",
+                  "args": {
+                    "__label": "Initialize actors & vars (skipped Game Start)",
+                    "__collapse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "tracks if game is currently active for title screen continue/new game",
+                          "__collapse": true
+                        },
+                        "id": "8e02a106-f79d-4f3a-8e54-d0c93db7cab2"
+                      },
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "222",
+                          "value": {
+                            "type": "true"
+                          },
+                          "__collapse": true
+                        },
+                        "id": "4495d91e-6a60-464f-b6de-c9d90cb15618"
+                      },
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "bfd5d21b-7e1c-4e26-9cd1-48c908dd4fdb",
+                          "__collapse": true
+                        },
+                        "id": "94716ef3-d0d2-48df-86d1-2c07aa8c3ea0"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Fruity mode: start with 1 of each token",
+                    "__collapse": true
+                  },
+                  "id": "485b7321-e8fe-4c05-adbc-69c44d3719cc"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "expression",
+                      "value": "$325$ == 2"
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "140",
+                          "__collapse": true
+                        },
+                        "id": "f283798d-2b96-4758-84ac-b89a5b20ff09"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "162",
+                          "__collapse": true
+                        },
+                        "id": "0f97b240-dd92-46be-94a8-ebe842459212"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "141",
+                          "__collapse": true
+                        },
+                        "id": "8677334b-2fdf-43d8-9037-31683995f765"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "163",
+                          "__collapse": true
+                        },
+                        "id": "678fd5fa-1120-49e9-a84c-99876afc54a8"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "142",
+                          "__collapse": true
+                        },
+                        "id": "3e487041-92df-48ca-8b2c-acbb5ae67ec7"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "164",
+                          "__collapse": true
+                        },
+                        "id": "56e9f5d8-9ec7-4d0b-9221-4dfd0382ac85"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "143",
+                          "__collapse": true
+                        },
+                        "id": "a26b3969-75ce-4a1c-af68-f56b0bb506fc"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "165",
+                          "__collapse": true
+                        },
+                        "id": "389d1447-dec8-4184-bf11-022b062866e1"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "144",
+                          "__collapse": true
+                        },
+                        "id": "abd66831-c441-4b41-8afd-8c385e1dcd77"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "166",
+                          "__collapse": true
+                        },
+                        "id": "c295b2da-1de6-460b-b73e-d7d95a063e73"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "145",
+                          "__collapse": true
+                        },
+                        "id": "f402f603-f92b-4d5f-9b61-7b30d2b740a9"
+                      },
+                      {
+                        "command": "EVENT_INC_VALUE",
+                        "args": {
+                          "variable": "167",
+                          "__collapse": true
+                        },
+                        "id": "35c39541-c8a1-408b-9308-04a2f912e87e"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "2a351059-4d5f-4921-9af9-df9d5b1a0f9b"
+                }
+              ],
+              "false": []
+            },
+            "id": "4078a15f-da02-4a3f-b33c-364a9ebc70f4"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
                 "type": "eq",
                 "valueA": {
                   "type": "variable",
@@ -466,6 +642,32 @@
       "id": "a6aeee11-6cff-4feb-bf11-9c927348cedf"
     },
     {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$325$ == 3"
+        },
+        "__collapseElse": true,
+        "__label": "Classic Yotzee - hide token"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_ACTOR_SET_STATE",
+            "args": {
+              "actorId": "8a5ab7ac-b064-42d2-beff-18dfa141442d",
+              "spriteStateId": "Classic Yotzee default",
+              "loopAnim": true
+            },
+            "id": "695ef7d8-ec9a-4c6a-84e3-e16b599107fa"
+          }
+        ],
+        "false": []
+      },
+      "id": "cd22881c-0171-4611-99a5-7443f2bb3b15"
+    },
+    {
       "command": "EVENT_FADE_IN",
       "args": {
         "speed": "2",
@@ -486,13 +688,46 @@
       "children": {
         "true": [
           {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "On first turn of Fruity/Classic, start music since we skipped Game Start",
+              "__collapse": true
+            },
+            "id": "f21aebbe-573b-4e16-a439-65fe8b597c07"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "($325$ == 2 || $325$ == 3) && $17$ == 0"
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_MUSIC_PLAY",
+                  "args": {
+                    "musicId": "3490401c-a580-49fa-9702-95ff7c384271",
+                    "__collapse": false
+                  },
+                  "id": "0d4816cc-f0c6-458e-b51d-e6af2f714d9e"
+                }
+              ],
+              "false": []
+            },
+            "id": "b4283432-733d-4f36-b479-105044993fb8"
+          },
+          {
             "command": "EVENT_IF",
             "args": {
               "condition": {
                 "type": "expression",
                 "value": "$176$ == true || $177$ == true || $65$"
               },
-              "__collapseElse": true
+              "__collapseElse": true,
+              "__collapse": false
             },
             "children": {
               "true": [
@@ -664,7 +899,8 @@
                   "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
                   "args": {
                     "actorId": "8a5ab7ac-b064-42d2-beff-18dfa141442d",
-                    "speed": 7
+                    "speed": 7,
+                    "__collapse": true
                   },
                   "id": "c50a5884-83b3-41f3-8741-bf5f3ae9a108"
                 },
@@ -673,7 +909,8 @@
                   "args": {
                     "actorId": "8a5ab7ac-b064-42d2-beff-18dfa141442d",
                     "spriteStateId": "Token menu saved",
-                    "loopAnim": false
+                    "loopAnim": false,
+                    "__collapse": true
                   },
                   "id": "0c878a44-23ab-4870-af5f-43a07be16855"
                 },
@@ -693,7 +930,8 @@
                       {
                         "command": "EVENT_COMMENT",
                         "args": {
-                          "text": "If it's not going to show the tutorial, wait before showing save animation"
+                          "text": "If it's not going to show the tutorial, wait before showing save animation",
+                          "__collapse": true
                         },
                         "id": "0624e3de-b467-41a9-877d-14a2716a276e"
                       },
@@ -702,7 +940,7 @@
                         "args": {
                           "time": 1.5,
                           "frames": 30,
-                          "__collapse": false
+                          "__collapse": true
                         },
                         "id": "ff7cfdac-1468-4ab0-b6a6-5d2465846b0e"
                       }
@@ -714,7 +952,8 @@
                   "command": "EVENT_ACTOR_SET_ANIMATION_SPEED",
                   "args": {
                     "actorId": "8a5ab7ac-b064-42d2-beff-18dfa141442d",
-                    "speed": 255
+                    "speed": 255,
+                    "__collapse": true
                   },
                   "id": "a75aa965-d319-46ef-9ff0-2ef75bfec752"
                 },
@@ -723,7 +962,7 @@
                   "args": {
                     "customEventId": "d3d961bb-693b-439d-8254-1eea46548b81",
                     "$actor[8a5ab7ac-b064-42d2-beff-18dfa141442d]$": "8a5ab7ac-b064-42d2-beff-18dfa141442d",
-                    "__collapse": true,
+                    "__collapse": false,
                     "__comment": false,
                     "$actor[0]$": "8a5ab7ac-b064-42d2-beff-18dfa141442d"
                   },
@@ -1421,6 +1660,131 @@
         "false": []
       },
       "id": "850ec380-0db9-44ef-ba3d-96f04251e2af"
+    },
+    {
+      "command": "EVENT_GROUP",
+      "args": {
+        "__label": "!!!! DEBUG",
+        "__collapse": false
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "$17$ == 1 && $16$ == 1"
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "eq",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "325"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 2
+                      }
+                    },
+                    "__collapseElse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "~ Fruity Slotzee mode ~"
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "13567ba2-d64b-406e-a3f3-a8ae599a0992"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_IF",
+                        "args": {
+                          "condition": {
+                            "type": "eq",
+                            "valueA": {
+                              "type": "variable",
+                              "value": "325"
+                            },
+                            "valueB": {
+                              "type": "number",
+                              "value": 3
+                            }
+                          },
+                          "__collapseElse": true
+                        },
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_TEXT",
+                              "args": {
+                                "text": [
+                                  "~ Classic Yotzee mode ~"
+                                ],
+                                "__section": "text",
+                                "avatarId": "",
+                                "minHeight": 4,
+                                "maxHeight": 7,
+                                "textX": 1,
+                                "textY": 1,
+                                "textHeight": 5,
+                                "position": "bottom",
+                                "clearPrevious": true,
+                                "showFrame": "true",
+                                "speedIn": -1,
+                                "speedOut": -1,
+                                "closeWhen": "key",
+                                "closeButton": "a",
+                                "closeDelayTime": 0.5,
+                                "closeDelayFrames": 30
+                              },
+                              "id": "f39baa90-c831-48c9-a1f4-b0fa459ec58a"
+                            }
+                          ],
+                          "false": []
+                        },
+                        "id": "b52bd07b-324c-477c-87d0-b5a16921ce9f"
+                      }
+                    ]
+                  },
+                  "id": "cb39cbd1-3010-43bc-a6ae-b90d76f950c3"
+                }
+              ],
+              "false": []
+            },
+            "id": "cb108349-7d9f-4783-af17-869e528b170f"
+          }
+        ]
+      },
+      "id": "4462de59-8fcb-4757-8e1d-a97f60faa6c2"
     },
     {
       "id": "1af994fc-3f87-4ef0-a212-cb874b068c69",
