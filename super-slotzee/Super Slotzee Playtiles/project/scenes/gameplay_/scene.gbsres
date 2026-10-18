@@ -112,6 +112,34 @@
       "id": "d08b7383-6278-452d-b2ce-318b8fec895e"
     },
     {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$17$ == 13 && !$222$"
+        },
+        "__collapseElse": true,
+        "__collapse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_VALUE",
+            "args": {
+              "variable": "17",
+              "value": {
+                "type": "number",
+                "value": 0
+              }
+            },
+            "id": "d53f4c25-7094-40d7-9ee9-ede87a6361a0"
+          }
+        ],
+        "false": []
+      },
+      "id": "12d23bb3-aa88-494b-b8a0-dc7e1d5dd488"
+    },
+    {
       "id": "724b89d2-3213-4504-8b39-cccf6c844e1f",
       "command": "EVENT_GROUP",
       "args": {
@@ -190,7 +218,7 @@
           }
         },
         "__collapseElse": true,
-        "__collapse": false,
+        "__collapse": true,
         "__label": "(If) 1st turn only",
         "__comment": false
       },
@@ -218,20 +246,20 @@
                   "children": {
                     "true": [
                       {
-                        "command": "EVENT_COMMENT",
-                        "args": {
-                          "text": "tracks if game is currently active for title screen continue/new game",
-                          "__collapse": true
-                        },
-                        "id": "8e02a106-f79d-4f3a-8e54-d0c93db7cab2"
-                      },
-                      {
                         "command": "EVENT_CALL_CUSTOM_EVENT",
                         "args": {
                           "customEventId": "bfd5d21b-7e1c-4e26-9cd1-48c908dd4fdb",
                           "__collapse": true
                         },
                         "id": "94716ef3-d0d2-48df-86d1-2c07aa8c3ea0"
+                      },
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "tracks if game is currently active for title screen continue/new game",
+                          "__collapse": true
+                        },
+                        "id": "8e02a106-f79d-4f3a-8e54-d0c93db7cab2"
                       },
                       {
                         "command": "EVENT_SET_VALUE",
@@ -262,7 +290,8 @@
                       "type": "expression",
                       "value": "$325$ == 2"
                     },
-                    "__collapseElse": true
+                    "__collapseElse": true,
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -650,7 +679,7 @@
         },
         "__collapseElse": true,
         "__label": "Classic Yotzee - disable tokens, slots",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -939,7 +968,7 @@
         },
         "__collapseElse": false,
         "__label": "(If) Show save animation after saved",
-        "__collapse": true,
+        "__collapse": false,
         "__comment": false
       },
       "children": {
@@ -960,7 +989,7 @@
             "args": {
               "variable": "L2",
               "__scriptTabs": "true",
-              "__collapse": true
+              "__collapse": false
             },
             "children": {
               "true": [
@@ -991,7 +1020,7 @@
                       "value": "$32$ == 1 && ($17$ == 1 || $17$ == 2) && $123$"
                     },
                     "__collapseElse": false,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [],
@@ -1009,7 +1038,7 @@
                         "args": {
                           "time": 1.5,
                           "frames": 30,
-                          "__collapse": true
+                          "__collapse": false
                         },
                         "id": "ff7cfdac-1468-4ab0-b6a6-5d2465846b0e"
                       }
@@ -1729,131 +1758,6 @@
         "false": []
       },
       "id": "850ec380-0db9-44ef-ba3d-96f04251e2af"
-    },
-    {
-      "command": "EVENT_GROUP",
-      "args": {
-        "__label": "!!!! DEBUG",
-        "__collapse": true
-      },
-      "children": {
-        "true": [
-          {
-            "command": "EVENT_IF",
-            "args": {
-              "condition": {
-                "type": "expression",
-                "value": "$17$ == 1 && $16$ == 1"
-              },
-              "__collapseElse": true
-            },
-            "children": {
-              "true": [
-                {
-                  "command": "EVENT_IF",
-                  "args": {
-                    "condition": {
-                      "type": "eq",
-                      "valueA": {
-                        "type": "variable",
-                        "value": "325"
-                      },
-                      "valueB": {
-                        "type": "number",
-                        "value": 2
-                      }
-                    },
-                    "__collapseElse": false
-                  },
-                  "children": {
-                    "true": [
-                      {
-                        "command": "EVENT_TEXT",
-                        "args": {
-                          "text": [
-                            "~ Fruity Slotzee mode ~"
-                          ],
-                          "__section": "text",
-                          "avatarId": "",
-                          "minHeight": 4,
-                          "maxHeight": 7,
-                          "textX": 1,
-                          "textY": 1,
-                          "textHeight": 5,
-                          "position": "bottom",
-                          "clearPrevious": true,
-                          "showFrame": "true",
-                          "speedIn": -1,
-                          "speedOut": -1,
-                          "closeWhen": "key",
-                          "closeButton": "a",
-                          "closeDelayTime": 0.5,
-                          "closeDelayFrames": 30
-                        },
-                        "id": "13567ba2-d64b-406e-a3f3-a8ae599a0992"
-                      }
-                    ],
-                    "false": [
-                      {
-                        "command": "EVENT_IF",
-                        "args": {
-                          "condition": {
-                            "type": "eq",
-                            "valueA": {
-                              "type": "variable",
-                              "value": "325"
-                            },
-                            "valueB": {
-                              "type": "number",
-                              "value": 3
-                            }
-                          },
-                          "__collapseElse": true
-                        },
-                        "children": {
-                          "true": [
-                            {
-                              "command": "EVENT_TEXT",
-                              "args": {
-                                "text": [
-                                  "~ Classic Yotzee mode ~"
-                                ],
-                                "__section": "text",
-                                "avatarId": "",
-                                "minHeight": 4,
-                                "maxHeight": 7,
-                                "textX": 1,
-                                "textY": 1,
-                                "textHeight": 5,
-                                "position": "bottom",
-                                "clearPrevious": true,
-                                "showFrame": "true",
-                                "speedIn": -1,
-                                "speedOut": -1,
-                                "closeWhen": "key",
-                                "closeButton": "a",
-                                "closeDelayTime": 0.5,
-                                "closeDelayFrames": 30
-                              },
-                              "id": "f39baa90-c831-48c9-a1f4-b0fa459ec58a"
-                            }
-                          ],
-                          "false": []
-                        },
-                        "id": "b52bd07b-324c-477c-87d0-b5a16921ce9f"
-                      }
-                    ]
-                  },
-                  "id": "cb39cbd1-3010-43bc-a6ae-b90d76f950c3"
-                }
-              ],
-              "false": []
-            },
-            "id": "cb108349-7d9f-4783-af17-869e528b170f"
-          }
-        ]
-      },
-      "id": "4462de59-8fcb-4757-8e1d-a97f60faa6c2"
     },
     {
       "id": "1af994fc-3f87-4ef0-a212-cb874b068c69",
