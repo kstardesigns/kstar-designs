@@ -37,7 +37,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -6199,7 +6199,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -6216,38 +6216,62 @@
             "children": {
               "true": [
                 {
-                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "command": "EVENT_IF",
                   "args": {
-                    "customEventId": "1029b51f-a0aa-47d8-bd1d-1a84b946d86b",
-                    "__collapse": true
-                  },
-                  "id": "3b694dac-f0bc-4248-a1cd-3f25ef18f1f8"
-                },
-                {
-                  "command": "EVENT_ACTOR_SET_STATE",
-                  "args": {
-                    "actorId": "$self$",
-                    "spriteStateId": "Middle row cursor",
-                    "loopAnim": true,
-                    "__collapse": true
-                  },
-                  "id": "d258e566-7fd1-4d32-b450-41106534fbe3"
-                },
-                {
-                  "command": "EVENT_ACTOR_SET_POSITION",
-                  "args": {
-                    "actorId": "$self$",
-                    "x": {
-                      "type": "number",
-                      "value": 8
+                    "condition": {
+                      "type": "expression",
+                      "value": "$325$ == 3 && $16$ == 3"
                     },
-                    "y": {
-                      "type": "number",
-                      "value": 14
-                    },
-                    "__collapse": true
+                    "__collapseElse": false
                   },
-                  "id": "7e959ff6-3500-485e-9fb2-c6c22bff7876"
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "no need to go up from spin & roll in classic yotzee on roll 3, since you won't need to hold for rewind)"
+                        },
+                        "id": "cad2cbba-80ce-41dc-9ee9-47dcf3462421"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "1029b51f-a0aa-47d8-bd1d-1a84b946d86b",
+                          "__collapse": true
+                        },
+                        "id": "3b694dac-f0bc-4248-a1cd-3f25ef18f1f8"
+                      },
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "$self$",
+                          "spriteStateId": "Middle row cursor",
+                          "loopAnim": true,
+                          "__collapse": true
+                        },
+                        "id": "d258e566-7fd1-4d32-b450-41106534fbe3"
+                      },
+                      {
+                        "command": "EVENT_ACTOR_SET_POSITION",
+                        "args": {
+                          "actorId": "$self$",
+                          "x": {
+                            "type": "number",
+                            "value": 8
+                          },
+                          "y": {
+                            "type": "number",
+                            "value": 14
+                          },
+                          "__collapse": true
+                        },
+                        "id": "7e959ff6-3500-485e-9fb2-c6c22bff7876"
+                      }
+                    ]
+                  },
+                  "id": "2e8bf3b0-8d87-410c-82a5-f36da23ec8ea"
                 }
               ],
               "false": []
