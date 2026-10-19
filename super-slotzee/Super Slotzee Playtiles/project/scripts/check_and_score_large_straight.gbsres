@@ -24,7 +24,7 @@
           "type": "variable",
           "value": "151"
         },
-        "__collapse": false
+        "__collapse": true
       },
       "id": "745fd2b5-0d7e-4c30-b51e-d78aab3f19d7"
     },
@@ -203,7 +203,7 @@
           }
         },
         "__collapseElse": false,
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -471,15 +471,43 @@
               ],
               "false": [
                 {
-                  "command": "EVENT_SET_VALUE",
+                  "command": "EVENT_IF",
                   "args": {
-                    "variable": "38",
-                    "value": {
-                      "type": "number",
-                      "value": 40
-                    }
+                    "condition": {
+                      "type": "variable",
+                      "value": "363"
+                    },
+                    "__collapseElse": false
                   },
-                  "id": "c7993638-cc10-403c-8d53-cec84bfd95ed"
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "38",
+                          "value": {
+                            "type": "number",
+                            "value": 120
+                          }
+                        },
+                        "id": "498b1c41-3657-4fa0-9dc3-45b3307670e2"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "38",
+                          "value": {
+                            "type": "number",
+                            "value": 40
+                          }
+                        },
+                        "id": "c7993638-cc10-403c-8d53-cec84bfd95ed"
+                      }
+                    ]
+                  },
+                  "id": "6470b885-57b1-4327-9621-9001ce750f98"
                 }
               ]
             },
