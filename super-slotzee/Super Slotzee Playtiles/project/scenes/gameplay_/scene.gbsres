@@ -232,54 +232,34 @@
                 "value": "$325$ == 2 || $325$ == 3"
               },
               "__collapseElse": true,
-              "__label": "Fruity/Classic"
+              "__label": "Fruity/Classic",
+              "__collapse": false
             },
             "children": {
               "true": [
                 {
-                  "id": "50225c38-ef22-4f1d-9b20-c39a755f99b4",
-                  "command": "EVENT_GROUP",
+                  "command": "EVENT_COMMENT",
                   "args": {
-                    "__label": "Initialize actors & vars (skipped Game Start)",
-                    "__collapse": false
+                    "text": "tracks if game is currently active for title screen continue/new game",
+                    "__collapse": true
                   },
-                  "children": {
-                    "true": [
-                      {
-                        "command": "EVENT_CALL_CUSTOM_EVENT",
-                        "args": {
-                          "customEventId": "bfd5d21b-7e1c-4e26-9cd1-48c908dd4fdb",
-                          "__collapse": true,
-                          "__comment": true
-                        },
-                        "id": "94716ef3-d0d2-48df-86d1-2c07aa8c3ea0"
-                      },
-                      {
-                        "command": "EVENT_COMMENT",
-                        "args": {
-                          "text": "tracks if game is currently active for title screen continue/new game",
-                          "__collapse": true
-                        },
-                        "id": "8e02a106-f79d-4f3a-8e54-d0c93db7cab2"
-                      },
-                      {
-                        "command": "EVENT_SET_VALUE",
-                        "args": {
-                          "variable": "222",
-                          "value": {
-                            "type": "true"
-                          },
-                          "__collapse": true
-                        },
-                        "id": "4495d91e-6a60-464f-b6de-c9d90cb15618"
-                      }
-                    ]
-                  }
+                  "id": "8e02a106-f79d-4f3a-8e54-d0c93db7cab2"
+                },
+                {
+                  "command": "EVENT_SET_VALUE",
+                  "args": {
+                    "variable": "222",
+                    "value": {
+                      "type": "true"
+                    },
+                    "__collapse": true
+                  },
+                  "id": "4495d91e-6a60-464f-b6de-c9d90cb15618"
                 },
                 {
                   "command": "EVENT_COMMENT",
                   "args": {
-                    "text": "Fruity mode: start with 1 of each token",
+                    "text": "Fruity mode: start with 1 of each token, show triple cherries on slots since it's an odd turn (1)",
                     "__collapse": true
                   },
                   "id": "485b7321-e8fe-4c05-adbc-69c44d3719cc"
@@ -292,7 +272,7 @@
                       "value": "$325$ == 2"
                     },
                     "__collapseElse": true,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -391,6 +371,36 @@
                           "__collapse": true
                         },
                         "id": "35c39541-c8a1-408b-9308-04a2f912e87e"
+                      },
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
+                          "spriteStateId": "Slot 1 offset 0 Fruity Triples",
+                          "loopAnim": false,
+                          "__collapse": true
+                        },
+                        "id": "6d6c4d84-9ab2-47b0-829a-aaad85bf6f67"
+                      },
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "36657c76-2944-4804-b137-c6ebcc4a9b10",
+                          "spriteStateId": "Slot 2 | offset 4 | + 1 spin Fruity Triples",
+                          "loopAnim": false,
+                          "__collapse": true
+                        },
+                        "id": "7b6db3f8-a4b4-40f6-a29e-e1e3117c7ca1"
+                      },
+                      {
+                        "command": "EVENT_ACTOR_SET_STATE",
+                        "args": {
+                          "actorId": "1a0898f6-a468-4539-84d1-b7975ef135d3",
+                          "spriteStateId": "Slot 3 | offset 8 | + 2 spins Fruity Triples",
+                          "loopAnim": false,
+                          "__collapse": true
+                        },
+                        "id": "04785cb8-f4f9-410c-b799-3527e2c9ba3e"
                       }
                     ],
                     "false": []
@@ -417,7 +427,7 @@
                 }
               },
               "__collapseElse": false,
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -680,7 +690,7 @@
         },
         "__collapseElse": true,
         "__label": "Classic Yotzee - disable tokens, slots",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
