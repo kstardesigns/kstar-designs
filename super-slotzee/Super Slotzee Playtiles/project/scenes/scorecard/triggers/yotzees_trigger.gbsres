@@ -20,7 +20,8 @@
             "value": "157"
           }
         },
-        "__collapseElse": false
+        "__collapseElse": false,
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -71,7 +72,7 @@
         ],
         "override": true,
         "__scriptTabs": "press",
-        "__collapse": false
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -1183,7 +1184,7 @@
                                 "option16_d": 0,
                                 "cancelOnB": true,
                                 "cancelOnLastOption": true,
-                                "__collapse": true
+                                "__collapse": false
                               },
                               "id": "df1cdae3-a531-4f6c-94b7-bd20dc8d6bf0"
                             }
@@ -1239,7 +1240,7 @@
                               "command": "EVENT_SWITCH",
                               "args": {
                                 "variable": "41",
-                                "choices": 3,
+                                "choices": 4,
                                 "__collapseCase0": false,
                                 "value0": 0,
                                 "__collapseCase1": false,
@@ -1247,7 +1248,7 @@
                                 "__collapseCase2": false,
                                 "value2": 100,
                                 "__collapseCase3": false,
-                                "value3": 4,
+                                "value3": 150,
                                 "__collapseCase4": false,
                                 "value4": 5,
                                 "__collapseCase5": false,
@@ -1309,7 +1310,17 @@
                                     "id": "282edb7d-19ed-4097-bcc5-15345baae920"
                                   }
                                 ],
-                                "true3": [],
+                                "true3": [
+                                  {
+                                    "command": "EVENT_ACTOR_SET_STATE",
+                                    "args": {
+                                      "actorId": "aacea7e3-5f35-44ff-a371-5c04a05c14e9",
+                                      "spriteStateId": "Yotzees Score Final 150",
+                                      "loopAnim": false
+                                    },
+                                    "id": "7c771c7f-abc1-4aa6-b863-2c9d6087d738"
+                                  }
+                                ],
                                 "true4": [],
                                 "true5": [],
                                 "true6": [],
@@ -1427,57 +1438,158 @@
                               "id": "0985c664-7f3e-4f65-9ff4-95523bd5b5e0"
                             },
                             {
-                              "command": "EVENT_SET_VALUE",
+                              "command": "EVENT_IF",
                               "args": {
-                                "variable": "126",
-                                "value": {
-                                  "type": "expression",
-                                  "value": "$42$ - $116$"
-                                }
+                                "condition": {
+                                  "type": "eq",
+                                  "valueA": {
+                                    "type": "variable",
+                                    "value": "325"
+                                  },
+                                  "valueB": {
+                                    "type": "number",
+                                    "value": 2
+                                  }
+                                },
+                                "__collapseElse": false
                               },
-                              "id": "9f5b2953-c411-4970-9a68-856deee50faf"
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_SET_VALUE",
+                                    "args": {
+                                      "variable": "367",
+                                      "value": {
+                                        "type": "expression",
+                                        "value": "$42$ - $116$ - $366$"
+                                      }
+                                    },
+                                    "id": "9f5b2953-c411-4970-9a68-856deee50faf"
+                                  }
+                                ],
+                                "false": [
+                                  {
+                                    "command": "EVENT_SET_VALUE",
+                                    "args": {
+                                      "variable": "126",
+                                      "value": {
+                                        "type": "expression",
+                                        "value": "$42$ - $116$"
+                                      }
+                                    },
+                                    "id": "d3ad7579-a320-4ec9-9ff1-4986ba3de562"
+                                  }
+                                ]
+                              },
+                              "id": "aa838588-0047-4379-8a06-1ef188cabce8"
                             },
                             {
                               "command": "EVENT_IF",
                               "args": {
                                 "condition": {
-                                  "type": "expression",
-                                  "value": "$126$ > 0"
+                                  "type": "eq",
+                                  "valueA": {
+                                    "type": "variable",
+                                    "value": "325"
+                                  },
+                                  "valueB": {
+                                    "type": "number",
+                                    "value": 2
+                                  }
                                 },
-                                "__collapseElse": true
+                                "__collapseElse": false
                               },
                               "children": {
                                 "true": [
                                   {
-                                    "command": "EVENT_TEXT",
+                                    "command": "EVENT_IF",
                                     "args": {
-                                      "text": [
-                                        "You have $126$ bonus \nYotzee(s) scored at  @",
-                                        "100 points."
-                                      ],
-                                      "__section": "text",
-                                      "avatarId": "",
-                                      "minHeight": 4,
-                                      "maxHeight": 7,
-                                      "textX": 1,
-                                      "textY": 1,
-                                      "textHeight": 5,
-                                      "position": "bottom",
-                                      "clearPrevious": true,
-                                      "showFrame": true,
-                                      "speedIn": -1,
-                                      "speedOut": -1,
-                                      "closeWhen": "key",
-                                      "closeButton": "a",
-                                      "closeDelayTime": 0.5,
-                                      "closeDelayFrames": 30
+                                      "condition": {
+                                        "type": "expression",
+                                        "value": "($367$) > 0"
+                                      },
+                                      "__collapseElse": true
                                     },
-                                    "id": "3684702d-42b2-46fa-a3c9-4deedfaca95a"
+                                    "children": {
+                                      "true": [
+                                        {
+                                          "command": "EVENT_TEXT",
+                                          "args": {
+                                            "text": [
+                                              "You have $367$ bonus \nYotzee(s) scored at  @",
+                                              "100 points."
+                                            ],
+                                            "__section": "text",
+                                            "avatarId": "",
+                                            "minHeight": 4,
+                                            "maxHeight": 7,
+                                            "textX": 1,
+                                            "textY": 1,
+                                            "textHeight": 5,
+                                            "position": "bottom",
+                                            "clearPrevious": true,
+                                            "showFrame": true,
+                                            "speedIn": -1,
+                                            "speedOut": -1,
+                                            "closeWhen": "key",
+                                            "closeButton": "a",
+                                            "closeDelayTime": 0.5,
+                                            "closeDelayFrames": 30
+                                          },
+                                          "id": "60d3d771-4328-4fd1-91a6-bd2a5364a7f2"
+                                        }
+                                      ],
+                                      "false": []
+                                    },
+                                    "id": "a3eab45f-7445-42f0-a64c-cc1a6bec74ee"
                                   }
                                 ],
-                                "false": []
+                                "false": [
+                                  {
+                                    "command": "EVENT_IF",
+                                    "args": {
+                                      "condition": {
+                                        "type": "expression",
+                                        "value": "$126$ > 0"
+                                      },
+                                      "__collapseElse": true
+                                    },
+                                    "children": {
+                                      "true": [
+                                        {
+                                          "command": "EVENT_TEXT",
+                                          "args": {
+                                            "text": [
+                                              "You have $126$ bonus \nYotzee(s) scored at  @",
+                                              "100 points."
+                                            ],
+                                            "__section": "text",
+                                            "avatarId": "",
+                                            "minHeight": 4,
+                                            "maxHeight": 7,
+                                            "textX": 1,
+                                            "textY": 1,
+                                            "textHeight": 5,
+                                            "position": "bottom",
+                                            "clearPrevious": true,
+                                            "showFrame": true,
+                                            "speedIn": -1,
+                                            "speedOut": -1,
+                                            "closeWhen": "key",
+                                            "closeButton": "a",
+                                            "closeDelayTime": 0.5,
+                                            "closeDelayFrames": 30
+                                          },
+                                          "id": "3684702d-42b2-46fa-a3c9-4deedfaca95a"
+                                        }
+                                      ],
+                                      "false": []
+                                    },
+                                    "id": "994a0ab2-aa33-47df-b662-33cc3e9d59f8"
+                                  }
+                                ]
                               },
-                              "id": "994a0ab2-aa33-47df-b662-33cc3e9d59f8"
+                              "id": "673495be-27ad-4641-a786-6db13fb28aa9"
                             },
                             {
                               "command": "EVENT_IF",
@@ -1520,6 +1632,48 @@
                                 "false": []
                               },
                               "id": "c9bcc8cd-5698-4ab1-a20f-97b033bfd78d"
+                            },
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "variable",
+                                  "value": "366"
+                                },
+                                "__collapseElse": true
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_TEXT",
+                                    "args": {
+                                      "text": [
+                                        "You have $366$ bonus\nYotzee(s) scored at @",
+                                        "300 points."
+                                      ],
+                                      "__section": "text",
+                                      "avatarId": "",
+                                      "minHeight": 4,
+                                      "maxHeight": 7,
+                                      "textX": 1,
+                                      "textY": 1,
+                                      "textHeight": 5,
+                                      "position": "bottom",
+                                      "clearPrevious": true,
+                                      "showFrame": true,
+                                      "speedIn": -1,
+                                      "speedOut": -1,
+                                      "closeWhen": "key",
+                                      "closeButton": "a",
+                                      "closeDelayTime": 0.5,
+                                      "closeDelayFrames": 30
+                                    },
+                                    "id": "9649213b-b4b6-4474-aaf6-a4b535f46ef6"
+                                  }
+                                ],
+                                "false": []
+                              },
+                              "id": "9aca5775-e7c1-4485-86af-3bcbd735e980"
                             }
                           ],
                           "false": []

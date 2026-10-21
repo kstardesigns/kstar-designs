@@ -49,7 +49,8 @@
     {
       "command": "EVENT_FADE_IN",
       "args": {
-        "speed": "2"
+        "speed": "2",
+        "__collapse": true
       },
       "id": "6f806cdf-8ea7-4a4f-89df-3db67d947ee3"
     },
@@ -325,7 +326,7 @@
                   "args": {
                     "condition": {
                       "type": "expression",
-                      "value": "($41$ == 50 || $41$ == 100) && $42$ == 0"
+                      "value": "($41$ == 50 || $41$ == 100 || $41$ == 150) && $42$ == 0"
                     },
                     "__collapseElse": false,
                     "__collapse": false
@@ -340,7 +341,7 @@
                             "type": "number",
                             "value": 0
                           },
-                          "__collapse": true
+                          "__collapse": false
                         },
                         "id": "b310be10-d929-4254-a9ba-90240af434fd"
                       }
@@ -351,59 +352,165 @@
                         "args": {
                           "condition": {
                             "type": "expression",
-                            "value": "($41$ == 50 || $41$ == 100) && $42$ >= 1"
+                            "value": "($41$ == 50 || $41$ == 100 || $41$ == 150) && $42$ >= 1"
                           },
                           "__collapseElse": true
                         },
                         "children": {
                           "true": [
                             {
-                              "command": "EVENT_COMMENT",
-                              "args": {
-                                "text": "If all bonus Yotzees are doubled, we must take away a doubled one.",
-                                "__collapse": true
-                              },
-                              "id": "b06c8a47-662f-48fb-8779-8592e3ce0425"
-                            },
-                            {
                               "command": "EVENT_IF",
                               "args": {
                                 "condition": {
-                                  "type": "expression",
-                                  "value": "$42$ == $116$"
+                                  "type": "eq",
+                                  "valueA": {
+                                    "type": "variable",
+                                    "value": "32"
+                                  },
+                                  "valueB": {
+                                    "type": "number",
+                                    "value": 2
+                                  }
                                 },
                                 "__collapseElse": false
                               },
                               "children": {
                                 "true": [
                                   {
-                                    "command": "EVENT_DEC_VALUE",
+                                    "command": "EVENT_COMMENT",
                                     "args": {
-                                      "variable": "116",
+                                      "text": "If all bonus Yotzees are doubled or tripled, we must take away a doubled or tripled one.",
+                                      "__collapse": true
+                                    },
+                                    "id": "d47a7d79-09e5-43ca-9d5a-e39d175f9b53"
+                                  },
+                                  {
+                                    "command": "EVENT_IF",
+                                    "args": {
+                                      "condition": {
+                                        "type": "expression",
+                                        "value": "$42$ == ($116$ + $366$)"
+                                      },
+                                      "__collapseElse": false,
                                       "__collapse": false
                                     },
-                                    "id": "95be8d7a-d1be-432c-8c02-e6820c2d4c5c"
+                                    "children": {
+                                      "true": [
+                                        {
+                                          "command": "EVENT_IF",
+                                          "args": {
+                                            "condition": {
+                                              "type": "gte",
+                                              "valueA": {
+                                                "type": "variable",
+                                                "value": "116"
+                                              },
+                                              "valueB": {
+                                                "type": "number",
+                                                "value": 1
+                                              }
+                                            },
+                                            "__collapseElse": false
+                                          },
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_DEC_VALUE",
+                                                "args": {
+                                                  "variable": "116",
+                                                  "__collapse": false
+                                                },
+                                                "id": "f51022bf-814b-49fb-bc37-d3092d7024bd"
+                                              }
+                                            ],
+                                            "false": [
+                                              {
+                                                "command": "EVENT_DEC_VALUE",
+                                                "args": {
+                                                  "variable": "366",
+                                                  "__collapse": false
+                                                },
+                                                "id": "c3f35ebf-170d-43dd-b69b-faafb98ec470"
+                                              }
+                                            ]
+                                          },
+                                          "id": "2a18c987-64d6-4e6f-8970-874e64ca3720"
+                                        }
+                                      ],
+                                      "false": []
+                                    },
+                                    "id": "ac04ae57-73eb-40cf-8487-ae8db4869c97"
+                                  },
+                                  {
+                                    "command": "EVENT_COMMENT",
+                                    "args": {
+                                      "text": "Also decrement the main bonus yotzee count either way",
+                                      "__collapse": true
+                                    },
+                                    "id": "48c10899-93f6-47a2-9317-bc4a1e91d85f"
+                                  },
+                                  {
+                                    "command": "EVENT_DEC_VALUE",
+                                    "args": {
+                                      "variable": "42",
+                                      "__collapse": true
+                                    },
+                                    "id": "ee0e8c5c-50b1-4bd0-aac8-d59a896f4201"
                                   }
                                 ],
-                                "false": []
+                                "false": [
+                                  {
+                                    "command": "EVENT_COMMENT",
+                                    "args": {
+                                      "text": "If all bonus Yotzees are doubled, we must take away a doubled one.",
+                                      "__collapse": true
+                                    },
+                                    "id": "b06c8a47-662f-48fb-8779-8592e3ce0425"
+                                  },
+                                  {
+                                    "command": "EVENT_IF",
+                                    "args": {
+                                      "condition": {
+                                        "type": "expression",
+                                        "value": "$42$ == $116$"
+                                      },
+                                      "__collapseElse": false,
+                                      "__collapse": false
+                                    },
+                                    "children": {
+                                      "true": [
+                                        {
+                                          "command": "EVENT_DEC_VALUE",
+                                          "args": {
+                                            "variable": "116",
+                                            "__collapse": true
+                                          },
+                                          "id": "95be8d7a-d1be-432c-8c02-e6820c2d4c5c"
+                                        }
+                                      ],
+                                      "false": []
+                                    },
+                                    "id": "34ef401d-495d-4966-853a-2d8e8ba7f1cb"
+                                  },
+                                  {
+                                    "command": "EVENT_COMMENT",
+                                    "args": {
+                                      "text": "Also decrement the main bonus yotzee count either way",
+                                      "__collapse": true
+                                    },
+                                    "id": "52cb0fd7-ac90-4e54-b99b-088eb9f68ac8"
+                                  },
+                                  {
+                                    "command": "EVENT_DEC_VALUE",
+                                    "args": {
+                                      "variable": "42",
+                                      "__collapse": true
+                                    },
+                                    "id": "8228c85f-240c-47db-a2cd-b4434970a10f"
+                                  }
+                                ]
                               },
-                              "id": "34ef401d-495d-4966-853a-2d8e8ba7f1cb"
-                            },
-                            {
-                              "command": "EVENT_COMMENT",
-                              "args": {
-                                "text": "Also decrement the main bonus yotzee count either way",
-                                "__collapse": true
-                              },
-                              "id": "52cb0fd7-ac90-4e54-b99b-088eb9f68ac8"
-                            },
-                            {
-                              "command": "EVENT_DEC_VALUE",
-                              "args": {
-                                "variable": "42",
-                                "__collapse": true
-                              },
-                              "id": "8228c85f-240c-47db-a2cd-b4434970a10f"
+                              "id": "4f509b3c-acae-4401-ade9-0f0982c259c8"
                             }
                           ],
                           "false": []
@@ -632,7 +739,8 @@
                       "type": "variable",
                       "value": "67"
                     },
-                    "__collapseElse": true
+                    "__collapseElse": true,
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
