@@ -18,14 +18,48 @@
       "id": "04778ae4-fff6-422b-9f35-bded224e1405"
     },
     {
-      "command": "EVENT_VARIABLE_MATH_EVALUATE",
+      "command": "EVENT_IF",
       "args": {
-        "variable": "115",
-        "expression": "$88$ + $89$ + $90$ + $91$ + $92$ + $93$ + $94$ + $95$ + $96$ + $113$ + $97$ + $98$ + $41$ + ($42$ * 100) + ($116$ * 100) + $120$ + $324$",
-        "__label": "Get total score",
-        "__collapse": false
+        "condition": {
+          "type": "eq",
+          "valueA": {
+            "type": "variable",
+            "value": "325"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 2
+          }
+        },
+        "__collapseElse": false
       },
-      "id": "a9506905-17e1-4626-99ef-facbe6c1ffa4"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_VARIABLE_MATH_EVALUATE",
+            "args": {
+              "variable": "115",
+              "expression": "$88$ + $89$ + $90$ + $91$ + $92$ + $93$ + $94$ + $95$ + $96$ + $113$ + $97$ + $98$ + $41$ + ($42$ * 100) + ($116$ * 100) + ($366$ * 100) + $120$ + $324$",
+              "__label": "Get total score",
+              "__collapse": false
+            },
+            "id": "25243a4c-9c2e-4e89-92c6-c8bf687dbedb"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_VARIABLE_MATH_EVALUATE",
+            "args": {
+              "variable": "115",
+              "expression": "$88$ + $89$ + $90$ + $91$ + $92$ + $93$ + $94$ + $95$ + $96$ + $113$ + $97$ + $98$ + $41$ + ($42$ * 100) + ($116$ * 100) + $120$ + $324$",
+              "__label": "Get total score",
+              "__collapse": false
+            },
+            "id": "a9506905-17e1-4626-99ef-facbe6c1ffa4"
+          }
+        ]
+      },
+      "id": "0141ac0d-4fae-476f-b648-df68f9cbddee"
     }
   ]
 }
