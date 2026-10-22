@@ -218,25 +218,124 @@
       "id": "cd90e171-4f14-424d-bd07-4210e40195cf"
     },
     {
-      "command": "EVENT_CALL_CUSTOM_EVENT",
+      "command": "EVENT_IF",
       "args": {
-        "customEventId": "362c1828-b7f6-41d1-acb7-e9b03d1e087e",
-        "$variable[V0]$": {
-          "type": "variable",
-          "value": "38"
+        "condition": {
+          "type": "gte",
+          "valueA": {
+            "type": "variable",
+            "value": "38"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 100
+          }
         },
-        "$variable[V1]$": {
-          "type": "number",
-          "value": 14
-        },
-        "$variable[V2]$": {
-          "type": "number",
-          "value": 14
-        },
-        "__label": "(Call script) Show temp large straight",
-        "__collapse": true
+        "__collapseElse": false
       },
-      "id": "b7c52ad3-fd6e-4e3c-8336-8e5b649b4fde"
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "362c1828-b7f6-41d1-acb7-e9b03d1e087e",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "38"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 15
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 14
+              },
+              "__label": "(Call script) Show temp large straight",
+              "__collapse": false
+            },
+            "id": "86436fef-da76-44a9-b4f6-ee6631fb3390"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "redraw 0 to include the line on right side",
+              "__collapse": false
+            },
+            "id": "fa569ebe-5d1a-4d43-aacf-0a6aa6f80d21"
+          },
+          {
+            "command": "EVENT_REPLACE_TILE_XY",
+            "args": {
+              "x": {
+                "type": "number",
+                "value": 15
+              },
+              "y": {
+                "type": "number",
+                "value": 14
+              },
+              "tilesetId": "7c23aba2-d85a-41c3-bcbf-da5ed9dabd1f",
+              "tileIndex": {
+                "type": "number",
+                "value": 23
+              }
+            },
+            "id": "fef9d15f-c2d0-4d52-af07-d9cf1e04df4f"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "362c1828-b7f6-41d1-acb7-e9b03d1e087e",
+              "$variable[V0]$": {
+                "type": "variable",
+                "value": "38"
+              },
+              "$variable[V1]$": {
+                "type": "number",
+                "value": 14
+              },
+              "$variable[V2]$": {
+                "type": "number",
+                "value": 14
+              },
+              "__label": "(Call script) Show temp large straight",
+              "__collapse": false
+            },
+            "id": "b7c52ad3-fd6e-4e3c-8336-8e5b649b4fde"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "empty tile after 2-digit large straight score",
+              "__collapse": true
+            },
+            "id": "7c051696-cde2-4a37-82b3-c88952707b60"
+          },
+          {
+            "command": "EVENT_REPLACE_TILE_XY",
+            "args": {
+              "x": {
+                "type": "number",
+                "value": 15
+              },
+              "y": {
+                "type": "number",
+                "value": 14
+              },
+              "tilesetId": "7c23aba2-d85a-41c3-bcbf-da5ed9dabd1f",
+              "tileIndex": {
+                "type": "number",
+                "value": 25
+              }
+            },
+            "id": "1569176b-59f0-48f5-bb39-bd22707bd96e"
+          }
+        ]
+      },
+      "id": "eb9400d6-51e9-41cb-b7ca-fb05c1644eb0"
     },
     {
       "command": "EVENT_CALL_CUSTOM_EVENT",
