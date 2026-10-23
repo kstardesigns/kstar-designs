@@ -217,9 +217,9 @@
             "value": 0
           }
         },
-        "__collapseElse": true,
-        "__collapse": true,
-        "__label": "(If) 1st turn only",
+        "__collapseElse": false,
+        "__collapse": false,
+        "__label": "(If) 1st turn only / else other turns",
         "__comment": false
       },
       "children": {
@@ -233,7 +233,7 @@
               },
               "__collapseElse": true,
               "__label": "Fruity/Classic",
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -412,7 +412,8 @@
                           "palette4": "keep",
                           "palette5": "keep",
                           "palette6": "keep",
-                          "palette7": "keep"
+                          "palette7": "keep",
+                          "__collapse": true
                         },
                         "id": "2d2c0b74-bbe0-4b07-a35a-364710869506"
                       }
@@ -440,8 +441,8 @@
                   "value": 0
                 }
               },
-              "__collapseElse": false,
-              "__collapse": false
+              "__collapseElse": true,
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -615,6 +616,90 @@
             "id": "22737a9e-9c83-43f2-9dd1-348aaf352902"
           },
           {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "eq",
+                "valueA": {
+                  "type": "variable",
+                  "value": "325"
+                },
+                "valueB": {
+                  "type": "number",
+                  "value": 2
+                }
+              },
+              "__collapseElse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Odd turn",
+                    "__collapse": true
+                  },
+                  "id": "d2320a5a-f46f-4cc1-bd8c-9b09ab499295"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "expression",
+                      "value": "$17$ % 2 != 0"
+                    },
+                    "__collapseElse": false
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_PALETTE_SET_SPRITE",
+                        "args": {
+                          "palette0": "keep",
+                          "palette1": "232e1840-729e-4d53-b06b-04aba2fc3e9b",
+                          "palette2": "keep",
+                          "palette3": "keep",
+                          "palette4": "keep",
+                          "palette5": "keep",
+                          "palette6": "keep",
+                          "palette7": "keep"
+                        },
+                        "id": "d1178d60-03f8-4b90-b9c4-9169b70cb771"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "command": "EVENT_COMMENT",
+                        "args": {
+                          "text": "Even turn",
+                          "__collapse": true
+                        },
+                        "id": "f80a99d7-418c-4083-b640-c6d7035e428c"
+                      },
+                      {
+                        "command": "EVENT_PALETTE_SET_SPRITE",
+                        "args": {
+                          "palette0": "keep",
+                          "palette1": "1175ba40-5840-48b6-adfd-238622919a09",
+                          "palette2": "keep",
+                          "palette3": "keep",
+                          "palette4": "keep",
+                          "palette5": "keep",
+                          "palette6": "keep",
+                          "palette7": "keep"
+                        },
+                        "id": "319f2396-c576-4eaa-bf3f-ea82b71079fe"
+                      }
+                    ]
+                  },
+                  "id": "2eaaeea8-f57b-49c7-b3a2-554ba9d140e3"
+                }
+              ],
+              "false": []
+            },
+            "id": "1b3adfee-ba1e-4ea3-a650-c0947227e046"
+          },
+          {
             "command": "EVENT_CALL_CUSTOM_EVENT",
             "args": {
               "customEventId": "4ee4a072-1f76-41d0-b36a-7cf1e420b9f8",
@@ -638,7 +723,7 @@
               "$actor[5]$": "960ff9ae-fa9f-441c-ab91-bda0bd0e6b79",
               "$actor[6]$": "861c6f30-7409-4664-a467-c3acac5ca55a",
               "$actor[7]$": "8227a800-afcc-459e-8414-f8cb74a37c08",
-              "__collapse": false
+              "__collapse": true
             },
             "id": "bf2f5645-b324-4db7-ae7a-e83b378dc172"
           },
@@ -646,17 +731,9 @@
             "command": "EVENT_CALL_CUSTOM_EVENT",
             "args": {
               "customEventId": "a6d67d8c-038d-4d13-8ab1-36c0e9fabb79",
-              "__collapse": false
-            },
-            "id": "bdb7f92b-57f1-43ca-bdf2-916fc8a4fc72"
-          },
-          {
-            "command": "EVENT_COMMENT",
-            "args": {
-              "text": "Possible animation for when user can only spin & roll, to let them know. ",
               "__collapse": true
             },
-            "id": "ca5f7c44-bdaa-4d06-b1ad-ed5a9dcdf790"
+            "id": "bdb7f92b-57f1-43ca-bdf2-916fc8a4fc72"
           }
         ]
       },
@@ -1014,7 +1091,7 @@
             "args": {
               "variable": "L2",
               "__scriptTabs": "true",
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true": [
