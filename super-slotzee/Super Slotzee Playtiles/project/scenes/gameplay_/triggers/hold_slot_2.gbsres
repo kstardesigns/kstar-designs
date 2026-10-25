@@ -38,7 +38,7 @@
                 "value": "($16$ != 0 || ($160$ && $16$ == 0)) && (!$44$ || ($44$ && $160$))"
               },
               "__collapseElse": false,
-              "__collapse": false
+              "__collapse": true
             },
             "children": {
               "true": [
@@ -156,72 +156,207 @@
                     ],
                     "false": [
                       {
-                        "command": "EVENT_SET_VALUE",
+                        "command": "EVENT_IF",
                         "args": {
-                          "variable": "9",
-                          "value": {
-                            "type": "false"
+                          "condition": {
+                            "type": "expression",
+                            "value": "$325$ == 2 "
                           },
-                          "__collapse": false
+                          "__collapseElse": false
                         },
-                        "id": "94de5a2b-2706-4573-a233-98dad5daf0fa"
-                      },
-                      {
-                        "command": "EVENT_COMMENT",
-                        "args": {
-                          "text": "HELD -> HOLD",
-                          "__collapse": true
+                        "children": {
+                          "true": [
+                            {
+                              "command": "EVENT_IF",
+                              "args": {
+                                "condition": {
+                                  "type": "expression",
+                                  "value": "$45$ || $363$"
+                                },
+                                "__collapseElse": false
+                              },
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_PALETTE_SET_UI",
+                                    "args": {
+                                      "palette": "f006aaec-a37b-4d52-94a4-157d55a31514"
+                                    },
+                                    "id": "ad84ef77-be11-4c39-80d9-5e22fd74ec4c"
+                                  },
+                                  {
+                                    "command": "EVENT_TEXT",
+                                    "args": {
+                                      "text": [
+                                        "In Fruity Slotzee, all\nmatching slots must  @",
+                                        "remain held until the \nnext turn. "
+                                      ],
+                                      "__section": "text",
+                                      "avatarId": "",
+                                      "minHeight": 4,
+                                      "maxHeight": 7,
+                                      "textX": 1,
+                                      "textY": 1,
+                                      "textHeight": 5,
+                                      "position": "bottom",
+                                      "clearPrevious": true,
+                                      "showFrame": "true",
+                                      "speedIn": -1,
+                                      "speedOut": -1,
+                                      "closeWhen": "key",
+                                      "closeButton": "a",
+                                      "closeDelayTime": 0.5,
+                                      "closeDelayFrames": 30
+                                    },
+                                    "id": "fadf88f1-2cec-4efe-97ee-d3a1dddbcf25"
+                                  }
+                                ],
+                                "false": [
+                                  {
+                                    "command": "EVENT_SET_VALUE",
+                                    "args": {
+                                      "variable": "9",
+                                      "value": {
+                                        "type": "false"
+                                      },
+                                      "__collapse": true
+                                    },
+                                    "id": "d6015b45-a74a-4f9f-a17d-0d61e3a14fd8"
+                                  },
+                                  {
+                                    "command": "EVENT_COMMENT",
+                                    "args": {
+                                      "text": "HELD -> HOLD",
+                                      "__collapse": true
+                                    },
+                                    "id": "82fa69b1-2b15-405a-8ffd-b4ad10b18c6c"
+                                  },
+                                  {
+                                    "command": "EVENT_REPLACE_TILE_XY",
+                                    "args": {
+                                      "x": {
+                                        "type": "number",
+                                        "value": 9
+                                      },
+                                      "y": {
+                                        "type": "number",
+                                        "value": 7
+                                      },
+                                      "tilesetId": "632d4790-77b9-4492-95a8-4a3a40217284",
+                                      "tileIndex": {
+                                        "type": "number",
+                                        "value": 4
+                                      },
+                                      "__collapse": true
+                                    },
+                                    "id": "64b26679-6cb3-4a7c-a471-992406050f7e"
+                                  },
+                                  {
+                                    "command": "EVENT_COMMENT",
+                                    "args": {
+                                      "text": "no lock -> lock\n",
+                                      "__collapse": true
+                                    },
+                                    "id": "240e3100-0864-44e6-b18f-9824ac3ef423"
+                                  },
+                                  {
+                                    "command": "EVENT_REPLACE_TILE_XY",
+                                    "args": {
+                                      "x": {
+                                        "type": "number",
+                                        "value": 9
+                                      },
+                                      "y": {
+                                        "type": "number",
+                                        "value": 5
+                                      },
+                                      "tilesetId": "1263a783-b93b-43b6-9085-57e1c5afe78f",
+                                      "tileIndex": {
+                                        "type": "number",
+                                        "value": 4
+                                      },
+                                      "__collapse": true,
+                                      "tileSize": "16px"
+                                    },
+                                    "id": "dca515e8-fd2e-4ef8-8d02-3dbb17558be1"
+                                  }
+                                ]
+                              },
+                              "id": "e07e92e6-f79d-4946-8313-7e7ac1208409"
+                            }
+                          ],
+                          "false": [
+                            {
+                              "command": "EVENT_SET_VALUE",
+                              "args": {
+                                "variable": "9",
+                                "value": {
+                                  "type": "false"
+                                },
+                                "__collapse": true
+                              },
+                              "id": "94de5a2b-2706-4573-a233-98dad5daf0fa"
+                            },
+                            {
+                              "command": "EVENT_COMMENT",
+                              "args": {
+                                "text": "HELD -> HOLD",
+                                "__collapse": true
+                              },
+                              "id": "ad6afad4-35bf-45c0-bf8a-b855e36d4f5b"
+                            },
+                            {
+                              "command": "EVENT_REPLACE_TILE_XY",
+                              "args": {
+                                "x": {
+                                  "type": "number",
+                                  "value": 9
+                                },
+                                "y": {
+                                  "type": "number",
+                                  "value": 7
+                                },
+                                "tilesetId": "632d4790-77b9-4492-95a8-4a3a40217284",
+                                "tileIndex": {
+                                  "type": "number",
+                                  "value": 4
+                                },
+                                "__collapse": true
+                              },
+                              "id": "10b72e58-e87a-4cbf-b9b7-ab8fe28e3aad"
+                            },
+                            {
+                              "command": "EVENT_COMMENT",
+                              "args": {
+                                "text": "no lock -> lock\n",
+                                "__collapse": true
+                              },
+                              "id": "f9ab9ba2-9af1-4ee2-993e-ff4efb1588fd"
+                            },
+                            {
+                              "command": "EVENT_REPLACE_TILE_XY",
+                              "args": {
+                                "x": {
+                                  "type": "number",
+                                  "value": 9
+                                },
+                                "y": {
+                                  "type": "number",
+                                  "value": 5
+                                },
+                                "tilesetId": "1263a783-b93b-43b6-9085-57e1c5afe78f",
+                                "tileIndex": {
+                                  "type": "number",
+                                  "value": 4
+                                },
+                                "__collapse": true,
+                                "tileSize": "16px"
+                              },
+                              "id": "1562c623-9814-48f5-97ef-a2a925e35423"
+                            }
+                          ]
                         },
-                        "id": "ad6afad4-35bf-45c0-bf8a-b855e36d4f5b"
-                      },
-                      {
-                        "command": "EVENT_REPLACE_TILE_XY",
-                        "args": {
-                          "x": {
-                            "type": "number",
-                            "value": 9
-                          },
-                          "y": {
-                            "type": "number",
-                            "value": 7
-                          },
-                          "tilesetId": "632d4790-77b9-4492-95a8-4a3a40217284",
-                          "tileIndex": {
-                            "type": "number",
-                            "value": 4
-                          },
-                          "__collapse": false
-                        },
-                        "id": "10b72e58-e87a-4cbf-b9b7-ab8fe28e3aad"
-                      },
-                      {
-                        "command": "EVENT_COMMENT",
-                        "args": {
-                          "text": "no lock -> lock\n",
-                          "__collapse": false
-                        },
-                        "id": "f9ab9ba2-9af1-4ee2-993e-ff4efb1588fd"
-                      },
-                      {
-                        "command": "EVENT_REPLACE_TILE_XY",
-                        "args": {
-                          "x": {
-                            "type": "number",
-                            "value": 9
-                          },
-                          "y": {
-                            "type": "number",
-                            "value": 5
-                          },
-                          "tilesetId": "1263a783-b93b-43b6-9085-57e1c5afe78f",
-                          "tileIndex": {
-                            "type": "number",
-                            "value": 4
-                          },
-                          "__collapse": false,
-                          "tileSize": "16px"
-                        },
-                        "id": "1562c623-9814-48f5-97ef-a2a925e35423"
+                        "id": "43e2d816-6a8c-4f21-8226-8833265794b3"
                       }
                     ]
                   },
@@ -231,6 +366,72 @@
               "false": []
             },
             "id": "5618c3ea-d872-4588-bf7f-03b0b79cc271"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "$325$ == 2 "
+              },
+              "__collapseElse": false,
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "expression",
+                      "value": "$09$ && $44$"
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_PALETTE_SET_UI",
+                        "args": {
+                          "palette": "f006aaec-a37b-4d52-94a4-157d55a31514"
+                        },
+                        "id": "7591f501-451e-4af4-bc33-f2789d37224b"
+                      },
+                      {
+                        "command": "EVENT_TEXT",
+                        "args": {
+                          "text": [
+                            "In Fruity Slotzee, all\nmatching slots must  @",
+                            "remain held until the \nnext turn. "
+                          ],
+                          "__section": "text",
+                          "avatarId": "",
+                          "minHeight": 4,
+                          "maxHeight": 7,
+                          "textX": 1,
+                          "textY": 1,
+                          "textHeight": 5,
+                          "position": "bottom",
+                          "clearPrevious": true,
+                          "showFrame": "true",
+                          "speedIn": -1,
+                          "speedOut": -1,
+                          "closeWhen": "key",
+                          "closeButton": "a",
+                          "closeDelayTime": 0.5,
+                          "closeDelayFrames": 30
+                        },
+                        "id": "9803b732-1ed2-49ad-a1a0-1f69c828d2a9"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "1fc4cf04-5edd-4d0e-8c06-199b82c38014"
+                }
+              ],
+              "false": []
+            },
+            "id": "84204553-1091-4e39-b81b-a68ca05a583f"
           }
         ]
       },
