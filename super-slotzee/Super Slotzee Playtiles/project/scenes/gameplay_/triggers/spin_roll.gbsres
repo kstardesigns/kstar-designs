@@ -487,12 +487,35 @@
                                     "id": "8808fd7d-da85-4cb5-ad9c-7b65f0b66cf2"
                                   },
                                   {
-                                    "command": "EVENT_CALL_CUSTOM_EVENT",
+                                    "command": "EVENT_IF",
                                     "args": {
-                                      "customEventId": "ce1a66e5-2346-4f33-83f6-7f187fe2fd97",
-                                      "__collapse": true
+                                      "condition": {
+                                        "type": "ne",
+                                        "valueA": {
+                                          "type": "variable",
+                                          "value": "325"
+                                        },
+                                        "valueB": {
+                                          "type": "number",
+                                          "value": 3
+                                        }
+                                      },
+                                      "__collapseElse": false
                                     },
-                                    "id": "b214b881-9f60-4e16-a85b-154d11f5ef69"
+                                    "children": {
+                                      "true": [
+                                        {
+                                          "command": "EVENT_CALL_CUSTOM_EVENT",
+                                          "args": {
+                                            "customEventId": "ce1a66e5-2346-4f33-83f6-7f187fe2fd97",
+                                            "__collapse": true
+                                          },
+                                          "id": "b214b881-9f60-4e16-a85b-154d11f5ef69"
+                                        }
+                                      ],
+                                      "false": []
+                                    },
+                                    "id": "f5205d5e-4ca7-4a54-a245-5b57ac522fe4"
                                   },
                                   {
                                     "command": "EVENT_SET_VALUE",

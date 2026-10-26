@@ -284,7 +284,8 @@
           }
         },
         "__collapseElse": false,
-        "__label": "(if) set pokie animation state"
+        "__label": "(if) set pokie animation state",
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -1368,6 +1369,72 @@
       "id": "e8313389-e1fd-425a-a2de-7d80301a1c03"
     },
     {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
+          "type": "expression",
+          "value": "$325$ == 1 || $325$ == 2"
+        },
+        "__collapseElse": false,
+        "__collapse": true,
+        "__label": "(If) Attach script to Down"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_SET_INPUT_SCRIPT",
+            "args": {
+              "input": [
+                "down"
+              ],
+              "override": true,
+              "__scriptTabs": "press",
+              "__collapse": false
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_SWITCH_SCENE",
+                  "args": {
+                    "sceneId": "3767077b-5485-44c9-b9a2-b4bd8b28fecd",
+                    "x": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "y": {
+                      "type": "number",
+                      "value": 0
+                    },
+                    "direction": "",
+                    "fadeSpeed": 1
+                  },
+                  "id": "825edd4b-98b4-4147-a57d-767109c8378b"
+                }
+              ]
+            },
+            "id": "c842c1a0-b585-4d58-8156-a084abc11cba"
+          }
+        ],
+        "false": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Classic Yotzee"
+            },
+            "id": "196ff378-a241-40cd-9add-8be0bdbda704"
+          },
+          {
+            "command": "EVENT_ACTOR_DEACTIVATE",
+            "args": {
+              "actorId": "0d9698f3-d837-475e-aa1c-66d91adff867"
+            },
+            "id": "41af892a-c05a-48fb-b488-30290128b06a"
+          }
+        ]
+      },
+      "id": "6b9c45fa-373c-4eb1-8cc6-6321f389a90f"
+    },
+    {
       "command": "EVENT_FADE_IN",
       "args": {
         "speed": "2",
@@ -1900,72 +1967,6 @@
       "id": "1726f5d8-a30c-4724-8c55-bd526b7e4b84"
     },
     {
-      "command": "EVENT_IF",
-      "args": {
-        "condition": {
-          "type": "expression",
-          "value": "$325$ == 1 || $325$ == 2"
-        },
-        "__collapseElse": false,
-        "__collapse": true,
-        "__label": "(If) Attach script to Down"
-      },
-      "children": {
-        "true": [
-          {
-            "command": "EVENT_SET_INPUT_SCRIPT",
-            "args": {
-              "input": [
-                "down"
-              ],
-              "override": true,
-              "__scriptTabs": "press",
-              "__collapse": false
-            },
-            "children": {
-              "true": [
-                {
-                  "command": "EVENT_SWITCH_SCENE",
-                  "args": {
-                    "sceneId": "3767077b-5485-44c9-b9a2-b4bd8b28fecd",
-                    "x": {
-                      "type": "number",
-                      "value": 0
-                    },
-                    "y": {
-                      "type": "number",
-                      "value": 0
-                    },
-                    "direction": "",
-                    "fadeSpeed": 1
-                  },
-                  "id": "825edd4b-98b4-4147-a57d-767109c8378b"
-                }
-              ]
-            },
-            "id": "c842c1a0-b585-4d58-8156-a084abc11cba"
-          }
-        ],
-        "false": [
-          {
-            "command": "EVENT_COMMENT",
-            "args": {
-              "text": "Classic Yotzee"
-            },
-            "id": "196ff378-a241-40cd-9add-8be0bdbda704"
-          },
-          {
-            "command": "EVENT_ACTOR_DEACTIVATE",
-            "args": {
-              "actorId": "0d9698f3-d837-475e-aa1c-66d91adff867"
-            },
-            "id": "41af892a-c05a-48fb-b488-30290128b06a"
-          }
-        ]
-      },
-      "id": "6b9c45fa-373c-4eb1-8cc6-6321f389a90f"
-    },
-    {
       "command": "EVENT_SET_INPUT_SCRIPT",
       "args": {
         "input": [
@@ -2081,7 +2082,8 @@
           {
             "command": "EVENT_COMMENT",
             "args": {
-              "text": "only update stats if in regular super slotzee mode"
+              "text": "only update stats if in regular super slotzee mode",
+              "__collapse": true
             },
             "id": "cbab0709-8027-4172-85f1-265ce6ed8431"
           },

@@ -20,9 +20,29 @@
               "variableDest": "222",
               "variableSource": "222",
               "saveSlot": 0,
-              "__collapse": true
+              "__collapse": false
             },
             "id": "0348b2a9-dcb9-4a39-9034-7f94629bd833"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "32",
+              "variableSource": "32",
+              "saveSlot": 0,
+              "__collapse": false
+            },
+            "id": "9320e576-3600-4a67-9671-46353e3380fe"
+          },
+          {
+            "command": "EVENT_PEEK_DATA",
+            "args": {
+              "variableDest": "325",
+              "variableSource": "325",
+              "saveSlot": 0,
+              "__collapse": false
+            },
+            "id": "46c7a60d-54fb-45a6-b77b-4cc992d85fdf"
           },
           {
             "command": "EVENT_IF",
@@ -101,19 +121,18 @@
                       {
                         "command": "EVENT_COMMENT",
                         "args": {
-                          "text": "Decrement game number since last game was not finished, removing it from history",
-                          "__collapse": true
+                          "text": "If last playing regular super slotzee, decrement game_no since that is the only mode that counts stats"
                         },
-                        "id": "b86907a3-23f2-4e67-a658-6f35aa967852"
+                        "id": "41fe4768-da48-4cef-a3da-df2b2fbbce35"
                       },
                       {
                         "command": "EVENT_IF",
                         "args": {
                           "condition": {
-                            "type": "gt",
+                            "type": "eq",
                             "valueA": {
                               "type": "variable",
-                              "value": "32"
+                              "value": "325"
                             },
                             "valueB": {
                               "type": "number",
@@ -125,16 +144,25 @@
                         "children": {
                           "true": [
                             {
+                              "command": "EVENT_COMMENT",
+                              "args": {
+                                "text": "Decrement game number since last game was not finished, removing it from history",
+                                "__collapse": true
+                              },
+                              "id": "b86907a3-23f2-4e67-a658-6f35aa967852"
+                            },
+                            {
                               "command": "EVENT_DEC_VALUE",
                               "args": {
-                                "variable": "32"
+                                "variable": "32",
+                                "__collapse": false
                               },
                               "id": "d3b75dd2-316c-44a9-aee1-35a0b19aa8e1"
                             }
                           ],
                           "false": []
                         },
-                        "id": "8b7086ca-4fff-4566-ad95-a3818bfdd631"
+                        "id": "3ed209db-7a0c-4bcc-8d7c-68e52fd9994e"
                       },
                       {
                         "command": "EVENT_CALL_CUSTOM_EVENT",

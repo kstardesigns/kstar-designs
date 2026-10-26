@@ -208,6 +208,54 @@
       "command": "EVENT_IF",
       "args": {
         "condition": {
+          "type": "variable",
+          "value": "299"
+        },
+        "__collapseElse": true
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "On first turn of Fruity/Classic, start music since we skipped Game Start",
+              "__collapse": true
+            },
+            "id": "f21aebbe-573b-4e16-a439-65fe8b597c07"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "($325$ == 2 || $325$ == 3) && $17$ == 0"
+              },
+              "__collapseElse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_MUSIC_PLAY",
+                  "args": {
+                    "musicId": "3490401c-a580-49fa-9702-95ff7c384271",
+                    "__collapse": false
+                  },
+                  "id": "0d4816cc-f0c6-458e-b51d-e6af2f714d9e"
+                }
+              ],
+              "false": []
+            },
+            "id": "b4283432-733d-4f36-b479-105044993fb8"
+          }
+        ],
+        "false": []
+      },
+      "id": "30cd70ab-0e76-424d-aaf1-398f700f38b6"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
           "type": "eq",
           "valueA": {
             "type": "variable",
@@ -219,7 +267,7 @@
           }
         },
         "__collapseElse": false,
-        "__collapse": true,
+        "__collapse": false,
         "__label": "(If) 1st turn only / else other turns",
         "__comment": false
       },
@@ -273,7 +321,7 @@
                       "value": "$325$ == 2"
                     },
                     "__collapseElse": true,
-                    "__collapse": false
+                    "__collapse": true
                   },
                   "children": {
                     "true": [
@@ -407,6 +455,36 @@
                     "false": []
                   },
                   "id": "2a351059-4d5f-4921-9af9-df9d5b1a0f9b"
+                },
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Classic Yotzee mode: hold all slots as OUT OF ORDER, cant be unheld\n"
+                  },
+                  "id": "e676629b-a33c-46e2-99ab-3bfdf6e22fda"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "expression",
+                      "value": "$325$ == 3"
+                    },
+                    "__collapseElse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_CALL_CUSTOM_EVENT",
+                        "args": {
+                          "customEventId": "f792ce6f-7872-45de-afbb-9df1a0e710e6"
+                        },
+                        "id": "94d8f304-d8bf-4cd3-8cc3-1b2d0c3cab0a"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "3874b917-ea09-4308-9553-4729458671a6"
                 }
               ],
               "false": []
@@ -645,6 +723,301 @@
       "command": "EVENT_IF",
       "args": {
         "condition": {
+          "type": "eq",
+          "valueA": {
+            "type": "variable",
+            "value": "325"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 2
+          }
+        },
+        "__collapseElse": true,
+        "__label": "(if) game_mode 2 and eraser changed turn"
+      },
+      "children": {
+        "true": [
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "this condition is here if eraser changed turn number (decrementing by 1). it changes the cherries to the corresponding amount (evens 2, odds 3)"
+            },
+            "id": "6480169e-9d72-4713-b89d-8ab10742626f"
+          },
+          {
+            "command": "EVENT_COMMENT",
+            "args": {
+              "text": "Odd turn",
+              "__collapse": true
+            },
+            "id": "0fba14c5-2a1f-49d2-85a7-40149545281b"
+          },
+          {
+            "command": "EVENT_IF",
+            "args": {
+              "condition": {
+                "type": "expression",
+                "value": "$17$ % 2 != 0"
+              },
+              "__collapseElse": false,
+              "__collapse": true
+            },
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "eq",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "0"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 2
+                      }
+                    },
+                    "__collapseElse": true,
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "0",
+                          "value": {
+                            "type": "number",
+                            "value": 5
+                          }
+                        },
+                        "id": "0aaa9f4c-b064-495d-966b-0c1d0477ca40"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "be6f0f5d-937d-4bfb-a1fe-d8e8765ae071"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "eq",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "1"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 2
+                      }
+                    },
+                    "__collapseElse": true,
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "1",
+                          "value": {
+                            "type": "number",
+                            "value": 5
+                          }
+                        },
+                        "id": "0b276d86-9cf7-4c68-b832-571d956b6d00"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "22019fbc-fec4-4cd0-9e86-373bedb35594"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "eq",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "2"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 2
+                      }
+                    },
+                    "__collapseElse": true,
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "2",
+                          "value": {
+                            "type": "number",
+                            "value": 5
+                          }
+                        },
+                        "id": "78acaa13-9930-466f-aa52-1ffd7203eca9"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "d2d441a3-e1f4-47d9-b4d0-db540ee55cc0"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_COMMENT",
+                  "args": {
+                    "text": "Even turn",
+                    "__collapse": true
+                  },
+                  "id": "e85fddd2-4971-4752-966a-07385b83823b"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "eq",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "0"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 5
+                      }
+                    },
+                    "__collapseElse": true,
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "0",
+                          "value": {
+                            "type": "number",
+                            "value": 2
+                          }
+                        },
+                        "id": "ae65fb85-628b-4375-880d-a94b772b40d5"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "3fc0eb14-9930-42e8-af7c-b67747bd142b"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "eq",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "1"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 5
+                      }
+                    },
+                    "__collapseElse": true,
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "1",
+                          "value": {
+                            "type": "number",
+                            "value": 2
+                          }
+                        },
+                        "id": "ef482e1a-bb18-43f4-aa9e-3ae50ca04f3e"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "8b7ed0d9-1958-478d-b0fa-1dff155bd4fe"
+                },
+                {
+                  "command": "EVENT_IF",
+                  "args": {
+                    "condition": {
+                      "type": "eq",
+                      "valueA": {
+                        "type": "variable",
+                        "value": "2"
+                      },
+                      "valueB": {
+                        "type": "number",
+                        "value": 5
+                      }
+                    },
+                    "__collapseElse": true,
+                    "__collapse": true
+                  },
+                  "children": {
+                    "true": [
+                      {
+                        "command": "EVENT_SET_VALUE",
+                        "args": {
+                          "variable": "2",
+                          "value": {
+                            "type": "number",
+                            "value": 2
+                          }
+                        },
+                        "id": "8ce7e571-19d2-4de3-9de5-fd6a245117f4"
+                      }
+                    ],
+                    "false": []
+                  },
+                  "id": "862efc48-bf98-4bcd-af76-10e6820ef21a"
+                }
+              ]
+            },
+            "id": "d0bfdbb4-ce72-4e32-8ef2-eaeb2569bd36"
+          },
+          {
+            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "args": {
+              "customEventId": "f608921d-498c-454b-882f-6a9b889935f2",
+              "$actor[d7a3285e-1b39-4d79-9f9f-d3aae3560dc3]$": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
+              "$actor[36657c76-2944-4804-b137-c6ebcc4a9b10]$": "36657c76-2944-4804-b137-c6ebcc4a9b10",
+              "$actor[1a0898f6-a468-4539-84d1-b7975ef135d3]$": "1a0898f6-a468-4539-84d1-b7975ef135d3",
+              "__comment": false,
+              "$actor[0]$": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
+              "$actor[1]$": "36657c76-2944-4804-b137-c6ebcc4a9b10",
+              "$actor[2]$": "1a0898f6-a468-4539-84d1-b7975ef135d3",
+              "$actor[3]$": "f4791597-54b2-4120-835b-ecd41940b012",
+              "$actor[4]$": "5ee50987-2285-4aa3-baa1-4408a6b835e1",
+              "$actor[5]$": "960ff9ae-fa9f-441c-ab91-bda0bd0e6b79",
+              "$actor[6]$": "861c6f30-7409-4664-a467-c3acac5ca55a",
+              "$actor[7]$": "8227a800-afcc-459e-8414-f8cb74a37c08",
+              "__collapse": true
+            },
+            "id": "3e37f7f3-93c2-424d-8d04-efde28c4faa3"
+          }
+        ],
+        "false": []
+      },
+      "id": "040737a1-b853-407d-9df4-894be503d2bc"
+    },
+    {
+      "command": "EVENT_IF",
+      "args": {
+        "condition": {
           "type": "variable",
           "value": "335"
         },
@@ -784,42 +1157,10 @@
           "value": "299"
         },
         "__collapseElse": true,
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
-          {
-            "command": "EVENT_COMMENT",
-            "args": {
-              "text": "On first turn of Fruity/Classic, start music since we skipped Game Start",
-              "__collapse": true
-            },
-            "id": "f21aebbe-573b-4e16-a439-65fe8b597c07"
-          },
-          {
-            "command": "EVENT_IF",
-            "args": {
-              "condition": {
-                "type": "expression",
-                "value": "($325$ == 2 || $325$ == 3) && $17$ == 0"
-              },
-              "__collapseElse": true
-            },
-            "children": {
-              "true": [
-                {
-                  "command": "EVENT_MUSIC_PLAY",
-                  "args": {
-                    "musicId": "3490401c-a580-49fa-9702-95ff7c384271",
-                    "__collapse": false
-                  },
-                  "id": "0d4816cc-f0c6-458e-b51d-e6af2f714d9e"
-                }
-              ],
-              "false": []
-            },
-            "id": "b4283432-733d-4f36-b479-105044993fb8"
-          },
           {
             "command": "EVENT_IF",
             "args": {
