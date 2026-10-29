@@ -211,7 +211,8 @@
           "type": "variable",
           "value": "299"
         },
-        "__collapseElse": true
+        "__collapseElse": true,
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -267,7 +268,7 @@
           }
         },
         "__collapseElse": false,
-        "__collapse": false,
+        "__collapse": true,
         "__label": "(If) 1st turn only / else other turns",
         "__comment": false
       },
@@ -734,7 +735,8 @@
           }
         },
         "__collapseElse": true,
-        "__label": "(if) game_mode 2 and eraser changed turn"
+        "__label": "(if) game_mode 2 and eraser changed turn",
+        "__collapse": true
       },
       "children": {
         "true": [
@@ -1022,7 +1024,7 @@
           "value": "335"
         },
         "__collapseElse": false,
-        "__collapse": true,
+        "__collapse": false,
         "__comment": false
       },
       "children": {
@@ -1037,11 +1039,35 @@
         ],
         "false": [
           {
-            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "command": "EVENT_IF",
             "args": {
-              "customEventId": "f478e133-99f4-40cb-9c81-d5a8e386b7cd"
+              "condition": {
+                "type": "variable",
+                "value": "123"
+              },
+              "__collapseElse": false
             },
-            "id": "eecc8c33-e6bd-4ede-a8a3-a5d4e71125bb"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "db45ebb2-db6e-4b02-b6be-05d65fdd34bd"
+                  },
+                  "id": "2f7ca374-b32d-472c-9034-5cb7ce0f2d37"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "f478e133-99f4-40cb-9c81-d5a8e386b7cd"
+                  },
+                  "id": "eecc8c33-e6bd-4ede-a8a3-a5d4e71125bb"
+                }
+              ]
+            },
+            "id": "c6341029-e840-4416-b251-8175fcecb8bf"
           }
         ]
       },
