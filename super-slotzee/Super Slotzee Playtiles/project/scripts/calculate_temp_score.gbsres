@@ -510,7 +510,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) not bonus_double_stack then Check for Slots: Double Stack",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -761,7 +761,7 @@
                                   "value": "303"
                                 },
                                 "__collapseElse": true,
-                                "__collapse": true
+                                "__collapse": false
                               },
                               "children": {
                                 "true": [
@@ -769,117 +769,172 @@
                                     "command": "EVENT_IF",
                                     "args": {
                                       "condition": {
-                                        "type": "expression",
-                                        "value": "$32$ == 1 && $62$ == 0 && $49$ == 0 && $325$ == 1"
+                                        "type": "not",
+                                        "value": {
+                                          "type": "variable",
+                                          "value": "370"
+                                        }
                                       },
-                                      "__collapseElse": false
+                                      "__collapseElse": true
                                     },
                                     "children": {
                                       "true": [
                                         {
-                                          "command": "EVENT_COMMENT",
+                                          "command": "EVENT_IF",
                                           "args": {
-                                            "text": "Tutorial message",
+                                            "condition": {
+                                              "type": "expression",
+                                              "value": "$32$ == 1 && $62$ == 0 && $49$ == 0 && $325$ == 1"
+                                            },
+                                            "__collapseElse": false,
                                             "__collapse": true
                                           },
-                                          "id": "b25486a6-e32d-4931-b088-422fddd2b651"
-                                        },
-                                        {
-                                          "command": "EVENT_PALETTE_SET_UI",
-                                          "args": {
-                                            "palette": "56059128-79fb-44a9-84fb-285257a04bd1",
-                                            "__collapse": true
-                                          },
-                                          "id": "4007b865-7b80-47a4-a808-41acf43e2ecd"
-                                        },
-                                        {
-                                          "command": "EVENT_TEXT",
-                                          "args": {
-                                            "text": [
-                                              " Double cherries!\n @",
-                                              " All scores are\n doubled this turn!  @",
-                                              " All slot wins are auto\n unheld so you can  @",
-                                              " keep spinning for a \n chance at more  @",
-                                              " bonuses this turn."
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_COMMENT",
+                                                "args": {
+                                                  "text": "Tutorial message",
+                                                  "__collapse": true
+                                                },
+                                                "id": "b25486a6-e32d-4931-b088-422fddd2b651"
+                                              },
+                                              {
+                                                "command": "EVENT_PALETTE_SET_UI",
+                                                "args": {
+                                                  "palette": "56059128-79fb-44a9-84fb-285257a04bd1",
+                                                  "__collapse": true
+                                                },
+                                                "id": "4007b865-7b80-47a4-a808-41acf43e2ecd"
+                                              },
+                                              {
+                                                "command": "EVENT_TEXT",
+                                                "args": {
+                                                  "text": [
+                                                    " Double cherries!\n @",
+                                                    " All scores are\n doubled this turn!  @",
+                                                    " All slot wins are auto\n unheld so you can  @",
+                                                    " keep spinning for a \n chance at more  @",
+                                                    " bonuses this turn."
+                                                  ],
+                                                  "__section": "text",
+                                                  "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
+                                                  "minHeight": 4,
+                                                  "maxHeight": 7,
+                                                  "textX": 1,
+                                                  "textY": 1,
+                                                  "textHeight": 5,
+                                                  "position": "bottom",
+                                                  "clearPrevious": true,
+                                                  "showFrame": "true",
+                                                  "speedIn": -1,
+                                                  "speedOut": -1,
+                                                  "closeWhen": "key",
+                                                  "closeButton": "a",
+                                                  "closeDelayTime": 0.5,
+                                                  "closeDelayFrames": 30,
+                                                  "__collapse": true,
+                                                  "__comment": false
+                                                },
+                                                "id": "0b10bb59-1ff7-47ae-b2e9-c50514c2c275"
+                                              },
+                                              {
+                                                "command": "EVENT_PALETTE_SET_UI",
+                                                "args": {
+                                                  "palette": "f006aaec-a37b-4d52-94a4-157d55a31514",
+                                                  "__collapse": true
+                                                },
+                                                "id": "717447a8-a8ec-404a-8ea7-6287cefbc797"
+                                              }
                                             ],
-                                            "__section": "text",
-                                            "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
-                                            "minHeight": 4,
-                                            "maxHeight": 7,
-                                            "textX": 1,
-                                            "textY": 1,
-                                            "textHeight": 5,
-                                            "position": "bottom",
-                                            "clearPrevious": true,
-                                            "showFrame": "true",
-                                            "speedIn": -1,
-                                            "speedOut": -1,
-                                            "closeWhen": "key",
-                                            "closeButton": "a",
-                                            "closeDelayTime": 0.5,
-                                            "closeDelayFrames": 30,
-                                            "__collapse": false,
-                                            "__comment": false
+                                            "false": [
+                                              {
+                                                "command": "EVENT_PALETTE_SET_UI",
+                                                "args": {
+                                                  "palette": "56059128-79fb-44a9-84fb-285257a04bd1",
+                                                  "__collapse": true
+                                                },
+                                                "id": "be54cb2a-b089-4452-b1da-12a40e4b7a0f"
+                                              },
+                                              {
+                                                "command": "EVENT_TEXT",
+                                                "args": {
+                                                  "text": [
+                                                    " Double cherries!\n @",
+                                                    " All scores are\n doubled this turn!"
+                                                  ],
+                                                  "__section": "text",
+                                                  "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
+                                                  "minHeight": 4,
+                                                  "maxHeight": 7,
+                                                  "textX": 1,
+                                                  "textY": 1,
+                                                  "textHeight": 5,
+                                                  "position": "bottom",
+                                                  "clearPrevious": true,
+                                                  "showFrame": "true",
+                                                  "speedIn": -1,
+                                                  "speedOut": -1,
+                                                  "closeWhen": "key",
+                                                  "closeButton": "a",
+                                                  "closeDelayTime": 0.5,
+                                                  "closeDelayFrames": 30,
+                                                  "__collapse": false,
+                                                  "__comment": false
+                                                },
+                                                "id": "878136b9-919c-408f-8473-914646ac0e8c"
+                                              },
+                                              {
+                                                "command": "EVENT_PALETTE_SET_UI",
+                                                "args": {
+                                                  "palette": "f006aaec-a37b-4d52-94a4-157d55a31514",
+                                                  "__collapse": true
+                                                },
+                                                "id": "92b2c8f4-cbbc-46dc-8034-dfb4a70039bd"
+                                              }
+                                            ]
                                           },
-                                          "id": "0b10bb59-1ff7-47ae-b2e9-c50514c2c275"
-                                        },
-                                        {
-                                          "command": "EVENT_PALETTE_SET_UI",
-                                          "args": {
-                                            "palette": "f006aaec-a37b-4d52-94a4-157d55a31514",
-                                            "__collapse": true
-                                          },
-                                          "id": "717447a8-a8ec-404a-8ea7-6287cefbc797"
+                                          "id": "d55987b1-d3ab-4153-8c72-bbea3ed2c692"
                                         }
                                       ],
-                                      "false": [
-                                        {
-                                          "command": "EVENT_PALETTE_SET_UI",
-                                          "args": {
-                                            "palette": "56059128-79fb-44a9-84fb-285257a04bd1",
-                                            "__collapse": true
-                                          },
-                                          "id": "be54cb2a-b089-4452-b1da-12a40e4b7a0f"
-                                        },
-                                        {
-                                          "command": "EVENT_TEXT",
-                                          "args": {
-                                            "text": [
-                                              " Double cherries!\n @",
-                                              " All scores are\n doubled this turn!"
-                                            ],
-                                            "__section": "text",
-                                            "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
-                                            "minHeight": 4,
-                                            "maxHeight": 7,
-                                            "textX": 1,
-                                            "textY": 1,
-                                            "textHeight": 5,
-                                            "position": "bottom",
-                                            "clearPrevious": true,
-                                            "showFrame": "true",
-                                            "speedIn": -1,
-                                            "speedOut": -1,
-                                            "closeWhen": "key",
-                                            "closeButton": "a",
-                                            "closeDelayTime": 0.5,
-                                            "closeDelayFrames": 30,
-                                            "__collapse": false,
-                                            "__comment": false
-                                          },
-                                          "id": "878136b9-919c-408f-8473-914646ac0e8c"
-                                        },
-                                        {
-                                          "command": "EVENT_PALETTE_SET_UI",
-                                          "args": {
-                                            "palette": "f006aaec-a37b-4d52-94a4-157d55a31514",
-                                            "__collapse": true
-                                          },
-                                          "id": "92b2c8f4-cbbc-46dc-8034-dfb4a70039bd"
-                                        }
-                                      ]
+                                      "false": []
                                     },
-                                    "id": "d55987b1-d3ab-4153-8c72-bbea3ed2c692"
+                                    "id": "af2441e5-05e1-4c00-8332-bad08b44298b"
+                                  },
+                                  {
+                                    "command": "EVENT_IF",
+                                    "args": {
+                                      "condition": {
+                                        "type": "eq",
+                                        "valueA": {
+                                          "type": "variable",
+                                          "value": "325"
+                                        },
+                                        "valueB": {
+                                          "type": "number",
+                                          "value": 2
+                                        }
+                                      },
+                                      "__collapseElse": true,
+                                      "__collapse": false
+                                    },
+                                    "children": {
+                                      "true": [
+                                        {
+                                          "command": "EVENT_SET_VALUE",
+                                          "args": {
+                                            "variable": "370",
+                                            "value": {
+                                              "type": "true"
+                                            },
+                                            "__collapse": false
+                                          },
+                                          "id": "394cb45d-4c7a-47bb-8222-7f2022f20e4c"
+                                        }
+                                      ],
+                                      "false": []
+                                    },
+                                    "id": "83a06f97-32f4-47c4-b8e8-974dc0ae399a"
                                   }
                                 ],
                                 "false": []
@@ -980,7 +1035,7 @@
         },
         "__collapseElse": true,
         "__label": "(If) game_mode 2 -> triple stack",
-        "__collapse": true
+        "__collapse": false
       },
       "children": {
         "true": [
@@ -1220,48 +1275,102 @@
                                     "children": {
                                       "true": [
                                         {
-                                          "command": "EVENT_PALETTE_SET_UI",
+                                          "command": "EVENT_IF",
                                           "args": {
-                                            "palette": "56059128-79fb-44a9-84fb-285257a04bd1",
-                                            "__collapse": true
+                                            "condition": {
+                                              "type": "not",
+                                              "value": {
+                                                "type": "variable",
+                                                "value": "371"
+                                              }
+                                            },
+                                            "__collapseElse": true
                                           },
-                                          "id": "5b4f438a-7bc0-473d-9d2a-6e0716777479"
-                                        },
-                                        {
-                                          "command": "EVENT_TEXT",
-                                          "args": {
-                                            "text": [
-                                              " Triple black cherries!\n @",
-                                              " All scores are\n tripled this turn!"
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_PALETTE_SET_UI",
+                                                "args": {
+                                                  "palette": "56059128-79fb-44a9-84fb-285257a04bd1",
+                                                  "__collapse": true
+                                                },
+                                                "id": "5b4f438a-7bc0-473d-9d2a-6e0716777479"
+                                              },
+                                              {
+                                                "command": "EVENT_TEXT",
+                                                "args": {
+                                                  "text": [
+                                                    " Triple black cherries!\n @",
+                                                    " All scores are\n tripled this turn!"
+                                                  ],
+                                                  "__section": "text",
+                                                  "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
+                                                  "minHeight": 4,
+                                                  "maxHeight": 7,
+                                                  "textX": 1,
+                                                  "textY": 1,
+                                                  "textHeight": 5,
+                                                  "position": "bottom",
+                                                  "clearPrevious": true,
+                                                  "showFrame": "true",
+                                                  "speedIn": -1,
+                                                  "speedOut": -1,
+                                                  "closeWhen": "key",
+                                                  "closeButton": "a",
+                                                  "closeDelayTime": 0.5,
+                                                  "closeDelayFrames": 30,
+                                                  "__collapse": true,
+                                                  "__comment": false
+                                                },
+                                                "id": "ee2dacac-1261-4a74-b766-878d1ddf945f"
+                                              },
+                                              {
+                                                "command": "EVENT_PALETTE_SET_UI",
+                                                "args": {
+                                                  "palette": "f006aaec-a37b-4d52-94a4-157d55a31514",
+                                                  "__collapse": true
+                                                },
+                                                "id": "a8c0d474-6fb6-4a57-83ff-1e3117df95e1"
+                                              }
                                             ],
-                                            "__section": "text",
-                                            "avatarId": "333472c4-c5ed-47ee-8834-7dd80434d0f8",
-                                            "minHeight": 4,
-                                            "maxHeight": 7,
-                                            "textX": 1,
-                                            "textY": 1,
-                                            "textHeight": 5,
-                                            "position": "bottom",
-                                            "clearPrevious": true,
-                                            "showFrame": "true",
-                                            "speedIn": -1,
-                                            "speedOut": -1,
-                                            "closeWhen": "key",
-                                            "closeButton": "a",
-                                            "closeDelayTime": 0.5,
-                                            "closeDelayFrames": 30,
-                                            "__collapse": false,
-                                            "__comment": false
+                                            "false": []
                                           },
-                                          "id": "ee2dacac-1261-4a74-b766-878d1ddf945f"
+                                          "id": "39ec1a56-81f2-4b7a-9655-62a594ce3d92"
                                         },
                                         {
-                                          "command": "EVENT_PALETTE_SET_UI",
+                                          "command": "EVENT_IF",
                                           "args": {
-                                            "palette": "f006aaec-a37b-4d52-94a4-157d55a31514",
+                                            "condition": {
+                                              "type": "eq",
+                                              "valueA": {
+                                                "type": "variable",
+                                                "value": "325"
+                                              },
+                                              "valueB": {
+                                                "type": "number",
+                                                "value": 2
+                                              }
+                                            },
+                                            "__collapseElse": true,
                                             "__collapse": false
                                           },
-                                          "id": "a8c0d474-6fb6-4a57-83ff-1e3117df95e1"
+                                          "children": {
+                                            "true": [
+                                              {
+                                                "command": "EVENT_SET_VALUE",
+                                                "args": {
+                                                  "variable": "371",
+                                                  "value": {
+                                                    "type": "true"
+                                                  },
+                                                  "__collapse": false
+                                                },
+                                                "id": "654a1f0e-bd43-4ff0-9bd9-fe28bcf10452"
+                                              }
+                                            ],
+                                            "false": []
+                                          },
+                                          "id": "082079a9-428e-41c3-808c-2da00466e64b"
                                         }
                                       ],
                                       "false": []
