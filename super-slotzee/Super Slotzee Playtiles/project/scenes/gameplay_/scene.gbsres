@@ -2444,39 +2444,63 @@
       }
     },
     {
-      "command": "EVENT_SET_INPUT_SCRIPT",
+      "command": "EVENT_IF",
       "args": {
-        "input": [
-          "b"
-        ],
-        "override": true,
-        "__scriptTabs": "press",
-        "__collapse": true,
-        "__label": "B button",
-        "__comment": false
+        "condition": {
+          "type": "ne",
+          "valueA": {
+            "type": "variable",
+            "value": "325"
+          },
+          "valueB": {
+            "type": "number",
+            "value": 3
+          }
+        },
+        "__collapseElse": true,
+        "__label": "(if) B button"
       },
       "children": {
         "true": [
           {
-            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "command": "EVENT_SET_INPUT_SCRIPT",
             "args": {
-              "customEventId": "faf53331-d12c-4fea-9a5d-ba3eef48f549",
-              "$actor[0]$": "8a5ab7ac-b064-42d2-beff-18dfa141442d",
-              "$actor[1]$": "f4791597-54b2-4120-835b-ecd41940b012",
-              "$actor[2]$": "5ee50987-2285-4aa3-baa1-4408a6b835e1",
-              "$actor[3]$": "960ff9ae-fa9f-441c-ab91-bda0bd0e6b79",
-              "$actor[4]$": "861c6f30-7409-4664-a467-c3acac5ca55a",
-              "$actor[5]$": "8227a800-afcc-459e-8414-f8cb74a37c08",
-              "$actor[6]$": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
-              "$actor[7]$": "36657c76-2944-4804-b137-c6ebcc4a9b10",
-              "$actor[8]$": "1a0898f6-a468-4539-84d1-b7975ef135d3",
-              "__collapse": true
+              "input": [
+                "b"
+              ],
+              "override": true,
+              "__scriptTabs": "press",
+              "__collapse": false,
+              "__label": "B button",
+              "__comment": false
             },
-            "id": "ad2304e6-575d-4776-a505-74915a312199"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "faf53331-d12c-4fea-9a5d-ba3eef48f549",
+                    "$actor[0]$": "8a5ab7ac-b064-42d2-beff-18dfa141442d",
+                    "$actor[1]$": "f4791597-54b2-4120-835b-ecd41940b012",
+                    "$actor[2]$": "5ee50987-2285-4aa3-baa1-4408a6b835e1",
+                    "$actor[3]$": "960ff9ae-fa9f-441c-ab91-bda0bd0e6b79",
+                    "$actor[4]$": "861c6f30-7409-4664-a467-c3acac5ca55a",
+                    "$actor[5]$": "8227a800-afcc-459e-8414-f8cb74a37c08",
+                    "$actor[6]$": "d7a3285e-1b39-4d79-9f9f-d3aae3560dc3",
+                    "$actor[7]$": "36657c76-2944-4804-b137-c6ebcc4a9b10",
+                    "$actor[8]$": "1a0898f6-a468-4539-84d1-b7975ef135d3",
+                    "__collapse": false
+                  },
+                  "id": "ad2304e6-575d-4776-a505-74915a312199"
+                }
+              ]
+            },
+            "id": "a97dd637-9462-4ca5-ad26-473d5930611a"
           }
-        ]
+        ],
+        "false": []
       },
-      "id": "a97dd637-9462-4ca5-ad26-473d5930611a"
+      "id": "8d16bb9a-371c-4772-b59e-f3c6d378b861"
     },
     {
       "command": "EVENT_SET_INPUT_SCRIPT",
