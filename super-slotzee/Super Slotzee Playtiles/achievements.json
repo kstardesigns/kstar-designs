@@ -1,0 +1,290 @@
+{
+  "version": "1.0",
+  "gameId": "SuperSlotzee",
+  "name": "Super Slotzee",
+  "description": "Achievement definitions for Super Slotzee",
+  "achievements": [
+    {
+      "id": "world_thanking",
+      "name": "The whole world's thanking you", 
+      "description": "Finish your first game",
+      "icon": "🏁",
+      "points": 15,
+      "rarity": "success",
+      "conditions": {
+        "type": "and",
+        "conditions": [
+          { "type": "value", "address": "0xCBB6", "operator": "==", "value": 13 },
+          { "type": "delta", "address": "0xCD4A", "operator": "changed", "from": 1, "to": 0 }
+        ]
+      }
+    },
+    {
+      "id": "shut_outted",
+      "name": "We didn't get shut-outted!",
+      "description": "Finish a game with no zeroes",
+      "icon": "🥅",
+      "points": 15,
+      "rarity": "success",
+      "conditions": {
+        "type": "and",
+        "conditions": [
+          { "type": "value", "address": "0xCBB6", "operator": "==", "value": 13 },
+          { "type": "value", "address": "0xCC3E", "operator": ">", "value": 0 },
+          { "type": "value", "address": "0xCC40", "operator": ">", "value": 0 },
+          { "type": "value", "address": "0xCC42", "operator": ">", "value": 0 },
+          { "type": "value", "address": "0xCC44", "operator": ">", "value": 0 },
+          { "type": "value", "address": "0xCC46", "operator": ">", "value": 0 },
+          { "type": "value", "address": "0xCC48", "operator": ">", "value": 0 },
+          { "type": "value", "address": "0xCC4A", "operator": ">", "value": 0 },
+          { "type": "value", "address": "0xCC4C", "operator": ">", "value": 0 },
+          { "type": "value", "address": "0xCC4E", "operator": ">", "value": 0 },
+          { "type": "value", "address": "0xCC70", "operator": ">", "value": 0 },
+          { "type": "value", "address": "0xCC50", "operator": ">", "value": 0 },
+          { "type": "value", "address": "0xCC52", "operator": ">", "value": 0 },
+          { "type": "value", "address": "0xCBE6", "operator": ">", "value": 0 },
+          { "type": "delta", "address": "0xCD4A", "operator": "changed", "from": 1, "to": 0 }
+        ]
+      }
+    },
+    {
+      "id": "make_rain",
+      "name": "I make it rain, I make it rain ",
+      "description": "Use all 6 tokens in 1 game",
+      "icon": "💰",
+      "points": 15,
+      "rarity": "success",
+      "conditions": {
+        "type": "and",
+        "conditions": [
+          { "type": "value", "address": "0xCCDE", "operator": ">=", "value": 1 },
+          { "type": "value", "address": "0xCCE0", "operator": ">=", "value": 1 },
+          { "type": "value", "address": "0xCCE2", "operator": ">=", "value": 1 },
+          { "type": "value", "address": "0xCCE4", "operator": ">=", "value": 1 },
+          { "type": "value", "address": "0xCCE6", "operator": ">=", "value": 1 },
+          { "type": "value", "address": "0xCCE8", "operator": ">=", "value": 1 }
+        ]
+      }
+    },
+    {
+      "id": "bad_place",
+      "name": "THIS is the bad place!",
+      "description": "Match lemons on the slot machine",
+      "icon": "🌵",
+      "points": 10,
+      "rarity": "success",
+      "hidden": true,
+      "conditions": {
+        "type": "and",
+        "conditions": [
+          { "type": "value", "address": "0xCB94", "operator": "==", "value": 3 },
+          { "type": "value", "address": "0xCB96", "operator": "==", "value": 3 },
+          { "type": "value", "address": "0xCB98", "operator": "==", "value": 3 }
+        ]
+      }
+    },
+    {
+      "id": "flip_coin",
+      "name": "Flip... a... coin.",
+      "description": "Place a bet to double your Yotzee",
+      "icon": "🪙",
+      "points": 10,
+      "rarity": "success",
+      "hidden": true,
+      "conditions": {
+        "type": "delta",
+        "address": "0xCCDE",
+        "operator": "changed",
+        "from": 0,
+        "to": 1
+      }
+    },
+    {
+      "id": "having_fun",
+      "name": "Are we having fun yet?!",
+      "description": "Use the Super Yotzee token for the first time",
+      "icon": "🎲",
+      "points": 10,
+      "rarity": "success",
+      "hidden": true,
+      "conditions": {
+        "type": "value",
+        "address": "0xCCCC",
+        "operator": "==",
+        "value": 1,
+        "format": "uint16"
+      }
+    },
+    {
+      "id": "sunny_day",
+      "name": "It's a sunny day!",
+      "description": "Get 5 Yotzees in a single game",
+      "icon": "🖐️",
+      "points": 30,
+      "rarity": "rare",
+      "conditions": {
+        "type": "value",
+        "address": "0xCBE8",
+        "operator": ">=",
+        "value": 4,
+        "format": "uint16"
+      }
+    },
+    {
+      "id": "loyal_gane",
+      "name": "Loyal to the Game",
+      "description": "Play 10 games",
+      "icon": "🫡",
+      "points": 30,
+      "rarity": "rare",
+      "conditions": {
+        "type": "and",
+        "conditions": [
+          { "type": "value", "address": "0xCBD4", "operator": "==", "value": 10 },
+          { "type": "delta", "address": "0xCD4A", "operator": "changed", "from": 1, "to": 0 }
+        ]
+      }
+    },
+    {
+      "id": "time_charm",
+      "name": "8th time's the charm",
+      "description": "Roll 8 times in a single turn",
+      "icon": "⏪",
+      "points": 30,
+      "rarity": "rare",
+      "conditions": {
+        "type": "and",
+        "conditions": [
+          { "type": "value", "address": "0xCCCE", "operator": "==", "value": 1 },
+          { "type": "value", "address": "0xCC0A", "operator": "==", "value": 1 },
+          { "type": "delta", "address": "0xCBB4", "operator": "changed", "from": 3, "to": 4 }
+        ]
+      }
+    },
+    {
+      "id": "top_three",
+      "name": "If everyone's getting one...",
+      "description": "Earn a trophy (Get 1st, 2nd, or 3rd place)",
+      "icon": "🏆",
+      "points": 25,
+      "rarity": "rare",
+      "hidden": true,
+      "conditions": {
+        "type": "and",
+        "conditions": [
+          { "type": "value", "address": "0xCD9A", "operator": "<=", "value": 3 },
+          { "type": "value", "address": "0xCD9A", "operator": ">", "value": 0 },
+          { "type": "delta", "address": "0xCD9C", "operator": "changed", "from": 3, "to": 4 }
+        ]
+      }
+    },
+    {
+      "id": "double_it",
+      "name": "Double it, then double it again... then lose it.",
+      "description": "Place 5 double down bets total",
+      "icon": "🤞",
+      "points": 25,
+      "rarity": "rare",
+      "hidden": true,
+      "conditions": {
+        "type": "delta",
+        "address": "0xCDBA",
+        "operator": "changed",
+        "from": 4,
+        "to": 5
+      }
+    },
+    {
+      "id": "perfect_game",
+      "name": "A perfect game?", 
+      "description": "Roll a Yotzee on turn 1",
+      "icon": "👀",
+      "points": 30,
+      "rarity": "rare",
+      "hidden": true,
+      "conditions": {
+        "type": "and",
+        "conditions": [
+          { "type": "value", "address": "0xCBB6", "operator": "==", "value": 1 },
+          { "type": "delta", "address": "0xCBE2", "operator": "changed", "from": 0, "to": 1 }
+        ]
+      }
+    },
+    {
+      "id": "number_one",
+      "name": "I'm comin' for that number one spot!", 
+      "description": "Top the high score list",
+      "icon": "👑",
+      "points": 50,
+      "rarity": "legendary",
+      "conditions": {
+        "type": "and",
+        "conditions": [
+          { "type": "value", "address": "0xCD9A", "operator": "==", "value": 1 },
+          { "type": "delta", "address": "0xCD9C", "operator": "changed", "from": 3, "to": 4 }
+        ]
+      }
+    },
+    {
+      "id": "other_timelines",
+      "name": "Abed, there are no other timelines.",
+      "description": "Roll a Yotzee on the first roll of a turn",
+      "icon": "🍕",
+      "points": 50,
+      "rarity": "legendary",
+      "hidden": true,
+      "conditions": {
+        "type": "and",
+        "conditions": [
+          { "type": "value", "address": "0xCBB4", "operator": "==", "value": 1 },
+          { "type": "value", "address": "0xCCCC", "operator": "==", "value": 0 },
+          { "type": "delta", "address": "0xCBE2", "operator": "changed", "from": 0, "to": 1 }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "author": "Kyle Stark",
+    "version": "1.0.0",
+    "date": "2026-11-07",
+    "notes": {
+      "memory_map": {
+        "0xCBE8": "VAR_SCORE_FINAL_BONUS_YOTZE - final bonus yotzee count, not including the first non-bonus yotzee",
+        "0xCBB4": "VAR_ROLL_NUMBER - current roll number",
+        "0xCCCC": "VAR_SUPER_YOTZEE_TOKEN_ACTI - state of the super yotzee token (in use or not)",
+        "0xCBE2": "VAR_SCORE_YOTZEE_BOOLEAN - state of whether player has a yotzee on the current turn",
+        "0xCBD4": "VAR_GAME_NO - overall game number of regular super slotzee",
+        "0xCD4A": "VAR_GAME_ACTIVE - tracks whether a game is active or not",
+        "0xCCCE": "VAR_REWIND_TOKEN_ACTIVE - tracks whether or not a rewind token is currently active",
+        "0xCC0A": "VAR_BONUS_EXTRA_ROLL - tracks whether the extra roll bonus (spinning 3 ONE slots) is active",
+        "0xCBB6": "VAR_TURN_NUMBER - tracks current turn number from 1-13",
+        "0xCC3E": "VAR_SCORE_FINAL1 - the final score for 1s",
+        "0xCC40": "VAR_SCORE_FINAL2 - the final score for 2s",
+        "0xCC42": "VAR_SCORE_FINAL3 - the final score for 3s",
+        "0xCC44": "VAR_SCORE_FINAL4 - the final score for 4s",
+        "0xCC46": "VAR_SCORE_FINAL5 - the final score for 5s",
+        "0xCC48": "VAR_SCORE_FINAL6 - the final score for 6s",
+        "0xCC4A": "VAR_SCORE_FINAL_3OAK - the final score for 3 of a kind",
+        "0xCC4C": "VAR_SCORE_FINAL_4OAK - the final score for 4 of a kind",
+        "0xCC4E": "VAR_SCORE_FINAL_FULL_HOUSE - the final score for full house",
+        "0xCC70": "VAR_SCORE_FINAL_SM_STRAIGHT - the final score for small straight",
+        "0xCC50": "VAR_SCORE_FINAL_LG_STRAIGHT - the final score for large straight",
+        "0xCC52": "VAR_SCORE_FINAL_CHANCE - the final score for chance",
+        "0xCBE6": "VAR_SCORE_FINAL_YOTZEE - the final score for yotzee",
+        "0xCB94": "VAR_SLOT1RESULT - current state of slot 1 (1, 2, 3, or 4)",
+        "0xCB96": "VAR_SLOT2RESULT - current state of slot 2 (1, 2, 3, or 4)",
+        "0xCB98": "VAR_SLOT3RESULT - current state of slot 3 (1, 2, 3, or 4)",
+        "0xCCDE": "VAR_ENDGAME_TOKEN_DOUBLE_DO_0 - count of double down tokens used in current game",
+        "0xCCE0": "VAR_ENDGAME_TOKEN_ERASER_CO_0 - count of eraser tokens used in current game",
+        "0xCCE2": "VAR_ENDGAME_TOKEN_HEAVY_COU_0 - count of heavy tokens used in current game",
+        "0xCCE4": "VAR_ENDGAME_TOKEN_REWIND_CO_0 - count of rewind tokens used in current game",
+        "0xCCE6": "VAR_ENDGAME_TOKEN_SUPER_YOT_0 - count of super yotzee tokens used in current game",
+        "0xCCE8": "VAR_ENDGAME_TOKEN_WILD_COUN_0 - count of wild tokens used in current game",
+        "0xCD9A": "VAR_HIGH_SCORE_NEED_INITIAL - tracks what place on high score list user will need to enter initials for",
+        "0xCD9C": "VAR_HIGH_SCORE_CURRENT_INIT - tracks what initial is currently being entered into on the high score list",
+        "0xCCEC": "VAR_DOUBLE_DOWN_TOKEN_ACTIV - tracks whether or not a double down token is currently active",
+        "0xCDBA": "VAR_STATS_RUNNING_TOTAL_DOU - tracks how many times player played double down minigame"
+      }
+    }
+  }
+}
