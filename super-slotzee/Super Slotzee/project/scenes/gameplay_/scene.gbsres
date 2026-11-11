@@ -440,7 +440,7 @@
           "value": "335"
         },
         "__collapseElse": false,
-        "__collapse": true,
+        "__collapse": false,
         "__comment": false
       },
       "children": {
@@ -455,11 +455,35 @@
         ],
         "false": [
           {
-            "command": "EVENT_CALL_CUSTOM_EVENT",
+            "command": "EVENT_IF",
             "args": {
-              "customEventId": "f478e133-99f4-40cb-9c81-d5a8e386b7cd"
+              "condition": {
+                "type": "variable",
+                "value": "123"
+              },
+              "__collapseElse": false
             },
-            "id": "eecc8c33-e6bd-4ede-a8a3-a5d4e71125bb"
+            "children": {
+              "true": [
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "cb18d0af-822f-45d5-83a1-051edc579488"
+                  },
+                  "id": "b709b8bd-90c5-4c38-9917-aab19358c008"
+                }
+              ],
+              "false": [
+                {
+                  "command": "EVENT_CALL_CUSTOM_EVENT",
+                  "args": {
+                    "customEventId": "f478e133-99f4-40cb-9c81-d5a8e386b7cd"
+                  },
+                  "id": "eecc8c33-e6bd-4ede-a8a3-a5d4e71125bb"
+                }
+              ]
+            },
+            "id": "094acc45-552e-4ebb-8013-d51fbe1c6cef"
           }
         ]
       },
@@ -636,7 +660,7 @@
         },
         "__collapseElse": false,
         "__label": "(If) Show save animation after saved",
-        "__collapse": false,
+        "__collapse": true,
         "__comment": false
       },
       "children": {
