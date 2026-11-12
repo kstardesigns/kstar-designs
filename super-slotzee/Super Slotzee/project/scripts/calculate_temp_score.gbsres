@@ -1690,10 +1690,10 @@
                   "args": {
                     "condition": {
                       "type": "expression",
-                      "value": "$19$ >= 3"
+                      "value": "$19$ + $151$ >= 3"
                     },
                     "__collapseElse": true,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -1711,15 +1711,8 @@
                         "command": "EVENT_IF",
                         "args": {
                           "condition": {
-                            "type": "eq",
-                            "valueA": {
-                              "type": "variable",
-                              "value": "151"
-                            },
-                            "valueB": {
-                              "type": "number",
-                              "value": 2
-                            }
+                            "type": "expression",
+                            "value": "$151$ >= 1 && $19$ + $151$ >= 5"
                           },
                           "__collapseElse": true
                         },
@@ -1734,7 +1727,7 @@
                                 },
                                 "__collapse": true
                               },
-                              "id": "10870055-cd9c-42d7-916c-6657a063d19f"
+                              "id": "4d19e5d5-e57a-4510-936f-92b31d6eac49"
                             },
                             {
                               "command": "EVENT_IF",
@@ -1746,7 +1739,8 @@
                                     "value": "327"
                                   }
                                 },
-                                "__collapseElse": true
+                                "__collapseElse": true,
+                                "__collapse": false
                               },
                               "children": {
                                 "true": [
@@ -1759,7 +1753,7 @@
                                       },
                                       "__collapse": true
                                     },
-                                    "id": "01864789-0c8c-4a27-8672-dd870d688ce1"
+                                    "id": "5777c085-b99b-4d9f-936a-75b6907098f6"
                                   },
                                   {
                                     "command": "EVENT_CALL_CUSTOM_EVENT",
@@ -1767,17 +1761,17 @@
                                       "customEventId": "d5266c15-fd43-4464-b8e3-b9c9fc242cd1",
                                       "__collapse": false
                                     },
-                                    "id": "c50de22a-a6ae-4848-8db5-7ff760190782"
+                                    "id": "ca844207-7280-45c0-a40c-8d45e3aec15c"
                                   }
                                 ],
                                 "false": []
                               },
-                              "id": "89724467-2e0e-49d4-b319-30d10b87c941"
+                              "id": "b0e0551d-52f0-411a-943b-0ab21218008f"
                             }
                           ],
                           "false": []
                         },
-                        "id": "c48a47f9-96b8-4f37-a825-7bbe3ca5ea35"
+                        "id": "982c6403-8d5d-401f-8bc2-102304d2a64b"
                       },
                       {
                         "command": "EVENT_IF",
@@ -1809,14 +1803,30 @@
                               "id": "53e60641-96e1-4efd-99fe-cbbe6cea2637"
                             },
                             {
-                              "command": "EVENT_SET_VALUE",
+                              "command": "EVENT_IF",
                               "args": {
-                                "variable": "30",
-                                "value": {
-                                  "type": "true"
-                                }
+                                "condition": {
+                                  "type": "expression",
+                                  "value": "$19$ + $151$ >= 4"
+                                },
+                                "__collapseElse": true
                               },
-                              "id": "729b9815-1e1f-4059-90d9-7940653f45fe"
+                              "children": {
+                                "true": [
+                                  {
+                                    "command": "EVENT_SET_VALUE",
+                                    "args": {
+                                      "variable": "30",
+                                      "value": {
+                                        "type": "true"
+                                      }
+                                    },
+                                    "id": "729b9815-1e1f-4059-90d9-7940653f45fe"
+                                  }
+                                ],
+                                "false": []
+                              },
+                              "id": "f30c5c67-0e27-4bc3-a306-899be4af96b5"
                             }
                           ],
                           "false": []
@@ -1841,10 +1851,10 @@
                   "args": {
                     "condition": {
                       "type": "expression",
-                      "value": "$19$ >= 4"
+                      "value": "$19$ + $151$ >= 4"
                     },
                     "__collapseElse": true,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -1862,15 +1872,8 @@
                         "command": "EVENT_IF",
                         "args": {
                           "condition": {
-                            "type": "eq",
-                            "valueA": {
-                              "type": "variable",
-                              "value": "151"
-                            },
-                            "valueB": {
-                              "type": "number",
-                              "value": 1
-                            }
+                            "type": "expression",
+                            "value": "$151$ >= 1 && $19$ + $151$ >= 5"
                           },
                           "__collapseElse": true
                         },
@@ -1909,7 +1912,8 @@
                                     "value": "327"
                                   }
                                 },
-                                "__collapseElse": true
+                                "__collapseElse": true,
+                                "__collapse": true
                               },
                               "children": {
                                 "true": [
@@ -1940,7 +1944,7 @@
                           ],
                           "false": []
                         },
-                        "id": "c2087176-3226-4374-a856-4dde5369735c"
+                        "id": "b17a6af9-f050-4ce2-82e9-26bbf5bdd54c"
                       }
                     ],
                     "false": []
@@ -2115,7 +2119,7 @@
                       "value": "$19$ == 5"
                     },
                     "__collapseElse": true,
-                    "__collapse": true
+                    "__collapse": false
                   },
                   "children": {
                     "true": [
@@ -2258,7 +2262,7 @@
                     "__collapseCase15": false,
                     "value15": 16,
                     "__collapseElse": true,
-                    "__collapse": true,
+                    "__collapse": false,
                     "__label": "(Switch) (1-6) Assign temp score to individual variables"
                   },
                   "children": {
@@ -2625,7 +2629,7 @@
                 "value": "28"
               },
               "__collapseElse": false,
-              "__collapse": true,
+              "__collapse": false,
               "__label": "(If) (3 of a Kind)"
             },
             "children": {
